@@ -2,7 +2,7 @@ import librosa
 import librosa.display
 import numpy as np
 import matplotlib.pyplot as plt
-from collections import Counter
+from collections import defaultdict
 
 # **Step 1: Load Audio (First 30 Seconds)**
 audio_path = r"C:\Users\drivi\Downloads\kal.mp3"  # Replace with your song
@@ -21,10 +21,20 @@ def hz_to_note_name(frequency):
     note_number = round(12 * np.log2(frequency / 16.35)) % 12  # 16.35 Hz = C0
     return note_labels[note_number]
 
-# **Step 4: Convert All Detected Pitches to Note Names**
-filtered_notes = [hz_to_note_name(f) for f in pitches if f > 0]
+# **Step 4: Collect Frequencies for Each Note**
+note_frequencies = defaultdict(list)
+filtered_notes = []
 
-# **Step 5: Identify the Most Stable Note (Longest Continuous Pitch)**
+for f in pitches:
+    if f > 0:
+        note = hz_to_note_name(f)
+        note_frequencies[note].append(f)
+        filtered_notes.append(note)
+
+# **Step 5: Compute Average Frequency for Each Note**
+average_frequencies = {note: sum(freqs) / len(freqs) for note, freqs in note_frequencies.items() if freqs}
+
+# **Step 6: Identify the Most Stable Note (Longest Continuous Pitch)**
 note_durations = []
 current_note = None
 current_length = 0
@@ -42,13 +52,13 @@ for note in filtered_notes:
 if current_note:
     note_durations.append((current_note, current_length))
 
-# Find the note with the maximum duration
-most_stable_note = max(note_durations, key=lambda x: x[1])[0]  # Get the note with the longest duration
+# Find the most stable note (longest duration)
+most_stable_note = max(note_durations, key=lambda x: x[1])[0]
 
-# **Step 6: Plot Pitch vs Time Graph**
+# **Step 7: Plot Pitch vs Time Graph**
 time = np.arange(len(pitches)) * (512 / sr)  # Convert frames to time in seconds
 note_map = {note: i for i, note in enumerate(note_labels)}  # Map notes to Y-axis values
-note_indices = [note_map[note] for note in filtered_notes if note]  # Convert notes to numbers
+note_indices = [note_map[note] for note in filtered_notes if note]  # Convert notes to numerical values
 
 plt.figure(figsize=(10, 4))
 for i, (t, note) in enumerate(zip(time[:len(note_indices)], filtered_notes)):
@@ -59,9 +69,14 @@ plt.xlabel("Time (s)")
 plt.ylabel("Pitch (Octave-Independent)")
 plt.title("Pitch vs Time Graph for 30 Seconds")
 plt.yticks(range(len(note_labels)), note_labels)  # Set y-axis to note names
-plt.legend(["Detected Pitch", f"Shruti ({most_stable_note})"], loc="upper right")
+plt.legend(["Detected Pitch", f"Most Stable Note ({most_stable_note})"], loc="upper right")
 plt.grid(True)
 plt.show()
 
+# **Step 8: Print Average Frequency for Each Note**
+print("\nAverage Frequency for Each Detected Note:")
+for note, avg_freq in sorted(average_frequencies.items()):
+    print(f"Note: {note}, Average Frequency: {avg_freq:.2f} Hz")
+
 # Print the most stable note
-print(f"Shruti: {most_stable_note}")
+print(f"\nMost Stable Note (Shruti): {most_stable_note}")
