@@ -1,0 +1,47 @@
+package com.google.android.gms.internal.measurement;
+
+public final class zzfe extends zzjz<zzfe, zzfd> implements zzlh {
+    /* access modifiers changed from: private */
+    public static final zzfe zza;
+    private int zze;
+    private String zzf = "";
+    private String zzg = "";
+
+    static {
+        zzfe zzfe = new zzfe();
+        zza = zzfe;
+        zzjz.zzbG(zzfe.class, zzfe);
+    }
+
+    private zzfe() {
+    }
+
+    public final String zzb() {
+        return this.zzf;
+    }
+
+    public final String zzc() {
+        return this.zzg;
+    }
+
+    /* access modifiers changed from: protected */
+    public final Object zzl(int i10, Object obj, Object obj2) {
+        int i11 = i10 - 1;
+        if (i11 == 0) {
+            return (byte) 1;
+        }
+        if (i11 == 2) {
+            return zzjz.zzbF(zza, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဈ\u0000\u0002ဈ\u0001", new Object[]{"zze", "zzf", "zzg"});
+        } else if (i11 == 3) {
+            return new zzfe();
+        } else {
+            if (i11 == 4) {
+                return new zzfd((zzey) null);
+            }
+            if (i11 != 5) {
+                return null;
+            }
+            return zza;
+        }
+    }
+}

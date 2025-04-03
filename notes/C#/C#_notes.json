@@ -1,0 +1,578 @@
+[
+    {
+        "data-name": "Sa",
+        "data-value": 24,
+        "data-octave": 1,
+        "data-frequency": 69.27
+    },
+    {
+        "data-name": "re",
+        "data-value": 25,
+        "data-octave": 1,
+        "data-frequency": 73.39
+    },
+    {
+        "data-name": "Re",
+        "data-value": 26,
+        "data-octave": 1,
+        "data-frequency": 77.75
+    },
+    {
+        "data-name": "ga",
+        "data-value": 27,
+        "data-octave": 1,
+        "data-frequency": 82.38
+    },
+    {
+        "data-name": "Ga",
+        "data-value": 28,
+        "data-octave": 1,
+        "data-frequency": 87.28
+    },
+    {
+        "data-name": "ma",
+        "data-value": 29,
+        "data-octave": 1,
+        "data-frequency": 92.47
+    },
+    {
+        "data-name": "Ma",
+        "data-value": 30,
+        "data-octave": 1,
+        "data-frequency": 97.96
+    },
+    {
+        "data-name": "Pa",
+        "data-value": 31,
+        "data-octave": 1,
+        "data-frequency": 103.79
+    },
+    {
+        "data-name": "dha",
+        "data-value": 32,
+        "data-octave": 1,
+        "data-frequency": 109.96
+    },
+    {
+        "data-name": "Dha",
+        "data-value": 33,
+        "data-octave": 1,
+        "data-frequency": 116.5
+    },
+    {
+        "data-name": "ni",
+        "data-value": 34,
+        "data-octave": 1,
+        "data-frequency": 123.43
+    },
+    {
+        "data-name": "Ni",
+        "data-value": 35,
+        "data-octave": 1,
+        "data-frequency": 130.77
+    },
+    {
+        "data-name": "Sa",
+        "data-value": 36,
+        "data-octave": 2,
+        "data-frequency": 138.54
+    },
+    {
+        "data-name": "re",
+        "data-value": 37,
+        "data-octave": 2,
+        "data-frequency": 146.78
+    },
+    {
+        "data-name": "Re",
+        "data-value": 38,
+        "data-octave": 2,
+        "data-frequency": 155.51
+    },
+    {
+        "data-name": "ga",
+        "data-value": 39,
+        "data-octave": 2,
+        "data-frequency": 164.76
+    },
+    {
+        "data-name": "Ga",
+        "data-value": 40,
+        "data-octave": 2,
+        "data-frequency": 174.55
+    },
+    {
+        "data-name": "ma",
+        "data-value": 41,
+        "data-octave": 2,
+        "data-frequency": 184.93
+    },
+    {
+        "data-name": "Ma",
+        "data-value": 42,
+        "data-octave": 2,
+        "data-frequency": 195.93
+    },
+    {
+        "data-name": "Pa",
+        "data-value": 43,
+        "data-octave": 2,
+        "data-frequency": 207.58
+    },
+    {
+        "data-name": "dha",
+        "data-value": 44,
+        "data-octave": 2,
+        "data-frequency": 219.92
+    },
+    {
+        "data-name": "Dha",
+        "data-value": 45,
+        "data-octave": 2,
+        "data-frequency": 233.0
+    },
+    {
+        "data-name": "ni",
+        "data-value": 46,
+        "data-octave": 2,
+        "data-frequency": 246.85
+    },
+    {
+        "data-name": "Ni",
+        "data-value": 47,
+        "data-octave": 2,
+        "data-frequency": 261.53
+    },
+    {
+        "data-name": "Sa",
+        "data-value": 48,
+        "data-octave": 3,
+        "data-frequency": 277.09
+    },
+    {
+        "data-name": "re",
+        "data-value": 49,
+        "data-octave": 3,
+        "data-frequency": 293.56
+    },
+    {
+        "data-name": "Re",
+        "data-value": 50,
+        "data-octave": 3,
+        "data-frequency": 311.02
+    },
+    {
+        "data-name": "ga",
+        "data-value": 51,
+        "data-octave": 3,
+        "data-frequency": 329.51
+    },
+    {
+        "data-name": "Ga",
+        "data-value": 52,
+        "data-octave": 3,
+        "data-frequency": 349.11
+    },
+    {
+        "data-name": "ma",
+        "data-value": 53,
+        "data-octave": 3,
+        "data-frequency": 369.86
+    },
+    {
+        "data-name": "Ma",
+        "data-value": 54,
+        "data-octave": 3,
+        "data-frequency": 391.86
+    },
+    {
+        "data-name": "Pa",
+        "data-value": 55,
+        "data-octave": 3,
+        "data-frequency": 415.16
+    },
+    {
+        "data-name": "dha",
+        "data-value": 56,
+        "data-octave": 3,
+        "data-frequency": 439.85
+    },
+    {
+        "data-name": "Dha",
+        "data-value": 57,
+        "data-octave": 3,
+        "data-frequency": 466.0
+    },
+    {
+        "data-name": "ni",
+        "data-value": 58,
+        "data-octave": 3,
+        "data-frequency": 493.71
+    },
+    {
+        "data-name": "Ni",
+        "data-value": 59,
+        "data-octave": 3,
+        "data-frequency": 523.07
+    },
+    {
+        "data-name": "Sa",
+        "data-value": 60,
+        "data-octave": 4,
+        "data-frequency": 554.17
+    },
+    {
+        "data-name": "re",
+        "data-value": 61,
+        "data-octave": 4,
+        "data-frequency": 587.12
+    },
+    {
+        "data-name": "Re",
+        "data-value": 62,
+        "data-octave": 4,
+        "data-frequency": 622.04
+    },
+    {
+        "data-name": "ga",
+        "data-value": 63,
+        "data-octave": 4,
+        "data-frequency": 659.02
+    },
+    {
+        "data-name": "Ga",
+        "data-value": 64,
+        "data-octave": 4,
+        "data-frequency": 698.21
+    },
+    {
+        "data-name": "ma",
+        "data-value": 65,
+        "data-octave": 4,
+        "data-frequency": 739.73
+    },
+    {
+        "data-name": "Ma",
+        "data-value": 66,
+        "data-octave": 4,
+        "data-frequency": 783.72
+    },
+    {
+        "data-name": "Pa",
+        "data-value": 67,
+        "data-octave": 4,
+        "data-frequency": 830.32
+    },
+    {
+        "data-name": "dha",
+        "data-value": 68,
+        "data-octave": 4,
+        "data-frequency": 879.69
+    },
+    {
+        "data-name": "Dha",
+        "data-value": 69,
+        "data-octave": 4,
+        "data-frequency": 932.0
+    },
+    {
+        "data-name": "ni",
+        "data-value": 70,
+        "data-octave": 4,
+        "data-frequency": 987.42
+    },
+    {
+        "data-name": "Ni",
+        "data-value": 71,
+        "data-octave": 4,
+        "data-frequency": 1046.13
+    },
+    {
+        "data-name": "Sa",
+        "data-value": 72,
+        "data-octave": 5,
+        "data-frequency": 1108.34
+    },
+    {
+        "data-name": "re",
+        "data-value": 73,
+        "data-octave": 5,
+        "data-frequency": 1174.25
+    },
+    {
+        "data-name": "Re",
+        "data-value": 74,
+        "data-octave": 5,
+        "data-frequency": 1244.07
+    },
+    {
+        "data-name": "ga",
+        "data-value": 75,
+        "data-octave": 5,
+        "data-frequency": 1318.05
+    },
+    {
+        "data-name": "Ga",
+        "data-value": 76,
+        "data-octave": 5,
+        "data-frequency": 1396.42
+    },
+    {
+        "data-name": "ma",
+        "data-value": 77,
+        "data-octave": 5,
+        "data-frequency": 1479.46
+    },
+    {
+        "data-name": "Ma",
+        "data-value": 78,
+        "data-octave": 5,
+        "data-frequency": 1567.43
+    },
+    {
+        "data-name": "Pa",
+        "data-value": 79,
+        "data-octave": 5,
+        "data-frequency": 1660.64
+    },
+    {
+        "data-name": "dha",
+        "data-value": 80,
+        "data-octave": 5,
+        "data-frequency": 1759.38
+    },
+    {
+        "data-name": "Dha",
+        "data-value": 81,
+        "data-octave": 5,
+        "data-frequency": 1864.0
+    },
+    {
+        "data-name": "ni",
+        "data-value": 82,
+        "data-octave": 5,
+        "data-frequency": 1974.84
+    },
+    {
+        "data-name": "Ni",
+        "data-value": 83,
+        "data-octave": 5,
+        "data-frequency": 2092.27
+    },
+    {
+        "data-name": "Sa",
+        "data-value": 84,
+        "data-octave": 6,
+        "data-frequency": 2216.68
+    },
+    {
+        "data-name": "re",
+        "data-value": 85,
+        "data-octave": 6,
+        "data-frequency": 2348.49
+    },
+    {
+        "data-name": "Re",
+        "data-value": 86,
+        "data-octave": 6,
+        "data-frequency": 2488.14
+    },
+    {
+        "data-name": "ga",
+        "data-value": 87,
+        "data-octave": 6,
+        "data-frequency": 2636.09
+    },
+    {
+        "data-name": "Ga",
+        "data-value": 88,
+        "data-octave": 6,
+        "data-frequency": 2792.84
+    },
+    {
+        "data-name": "ma",
+        "data-value": 89,
+        "data-octave": 6,
+        "data-frequency": 2958.92
+    },
+    {
+        "data-name": "Ma",
+        "data-value": 90,
+        "data-octave": 6,
+        "data-frequency": 3134.86
+    },
+    {
+        "data-name": "Pa",
+        "data-value": 91,
+        "data-octave": 6,
+        "data-frequency": 3321.27
+    },
+    {
+        "data-name": "dha",
+        "data-value": 92,
+        "data-octave": 6,
+        "data-frequency": 3518.76
+    },
+    {
+        "data-name": "Dha",
+        "data-value": 93,
+        "data-octave": 6,
+        "data-frequency": 3728.0
+    },
+    {
+        "data-name": "ni",
+        "data-value": 94,
+        "data-octave": 6,
+        "data-frequency": 3949.68
+    },
+    {
+        "data-name": "Ni",
+        "data-value": 95,
+        "data-octave": 6,
+        "data-frequency": 4184.54
+    },
+    {
+        "data-name": "Sa",
+        "data-value": 96,
+        "data-octave": 7,
+        "data-frequency": 4433.36
+    },
+    {
+        "data-name": "re",
+        "data-value": 97,
+        "data-octave": 7,
+        "data-frequency": 4696.99
+    },
+    {
+        "data-name": "Re",
+        "data-value": 98,
+        "data-octave": 7,
+        "data-frequency": 4976.28
+    },
+    {
+        "data-name": "ga",
+        "data-value": 99,
+        "data-octave": 7,
+        "data-frequency": 5272.19
+    },
+    {
+        "data-name": "Ga",
+        "data-value": 100,
+        "data-octave": 7,
+        "data-frequency": 5585.69
+    },
+    {
+        "data-name": "ma",
+        "data-value": 101,
+        "data-octave": 7,
+        "data-frequency": 5917.83
+    },
+    {
+        "data-name": "Ma",
+        "data-value": 102,
+        "data-octave": 7,
+        "data-frequency": 6269.72
+    },
+    {
+        "data-name": "Pa",
+        "data-value": 103,
+        "data-octave": 7,
+        "data-frequency": 6642.54
+    },
+    {
+        "data-name": "dha",
+        "data-value": 104,
+        "data-octave": 7,
+        "data-frequency": 7037.53
+    },
+    {
+        "data-name": "Dha",
+        "data-value": 105,
+        "data-octave": 7,
+        "data-frequency": 7456.0
+    },
+    {
+        "data-name": "ni",
+        "data-value": 106,
+        "data-octave": 7,
+        "data-frequency": 7899.36
+    },
+    {
+        "data-name": "Ni",
+        "data-value": 107,
+        "data-octave": 7,
+        "data-frequency": 8369.08
+    },
+    {
+        "data-name": "Sa",
+        "data-value": 108,
+        "data-octave": 8,
+        "data-frequency": 8866.73
+    },
+    {
+        "data-name": "re",
+        "data-value": 109,
+        "data-octave": 8,
+        "data-frequency": 9393.97
+    },
+    {
+        "data-name": "Re",
+        "data-value": 110,
+        "data-octave": 8,
+        "data-frequency": 9952.57
+    },
+    {
+        "data-name": "ga",
+        "data-value": 111,
+        "data-octave": 8,
+        "data-frequency": 10544.38
+    },
+    {
+        "data-name": "Ga",
+        "data-value": 112,
+        "data-octave": 8,
+        "data-frequency": 11171.38
+    },
+    {
+        "data-name": "ma",
+        "data-value": 113,
+        "data-octave": 8,
+        "data-frequency": 11835.66
+    },
+    {
+        "data-name": "Ma",
+        "data-value": 114,
+        "data-octave": 8,
+        "data-frequency": 12539.45
+    },
+    {
+        "data-name": "Pa",
+        "data-value": 115,
+        "data-octave": 8,
+        "data-frequency": 13285.08
+    },
+    {
+        "data-name": "dha",
+        "data-value": 116,
+        "data-octave": 8,
+        "data-frequency": 14075.05
+    },
+    {
+        "data-name": "Dha",
+        "data-value": 117,
+        "data-octave": 8,
+        "data-frequency": 14912.0
+    },
+    {
+        "data-name": "ni",
+        "data-value": 118,
+        "data-octave": 8,
+        "data-frequency": 15798.71
+    },
+    {
+        "data-name": "Ni",
+        "data-value": 119,
+        "data-octave": 8,
+        "data-frequency": 16738.15
+    }
+]
