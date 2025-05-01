@@ -1,0 +1,49 @@
+package com.google.android.gms.common.internal;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import s3.a;
+import s3.c;
+
+public class p
+  extends a
+{
+  public static final Parcelable.Creator<p> CREATOR = new o0();
+  private final int e;
+  private final int f;
+  private final int g;
+  private final long h;
+  private final long i;
+  private final String j;
+  private final String k;
+  private final int l;
+  private final int m;
+  
+  public p(int paramInt1, int paramInt2, int paramInt3, long paramLong1, long paramLong2, String paramString1, String paramString2, int paramInt4, int paramInt5)
+  {
+    e = paramInt1;
+    f = paramInt2;
+    g = paramInt3;
+    h = paramLong1;
+    i = paramLong2;
+    j = paramString1;
+    k = paramString2;
+    l = paramInt4;
+    m = paramInt5;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramInt = c.a(paramParcel);
+    c.t(paramParcel, 1, e);
+    c.t(paramParcel, 2, f);
+    c.t(paramParcel, 3, g);
+    c.w(paramParcel, 4, h);
+    c.w(paramParcel, 5, i);
+    c.D(paramParcel, 6, j, false);
+    c.D(paramParcel, 7, k, false);
+    c.t(paramParcel, 8, l);
+    c.t(paramParcel, 9, m);
+    c.b(paramParcel, paramInt);
+  }
+}

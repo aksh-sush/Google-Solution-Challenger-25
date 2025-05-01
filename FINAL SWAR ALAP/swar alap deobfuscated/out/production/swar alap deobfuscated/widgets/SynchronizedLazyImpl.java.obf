@@ -1,0 +1,64 @@
+package sa;
+
+import cb.a;
+import db.l;
+import java.io.Serializable;
+
+final class p
+  implements h, Serializable
+{
+  private a e;
+  private volatile Object f;
+  private final Object g;
+  
+  public p(a paramA, Object paramObject)
+  {
+    e = paramA;
+    f = r.a;
+    paramA = paramObject;
+    if (paramObject == null) {
+      paramA = this;
+    }
+    g = paramA;
+  }
+  
+  private final Object writeReplace()
+  {
+    return new d(getValue());
+  }
+  
+  public boolean a()
+  {
+    return f != r.a;
+  }
+  
+  public Object getValue()
+  {
+    Object localObject1 = f;
+    r localR = r.a;
+    if (localObject1 != localR) {
+      return localObject1;
+    }
+    synchronized (g)
+    {
+      localObject1 = f;
+      if (localObject1 == localR)
+      {
+        localObject1 = e;
+        l.b(localObject1);
+        localObject1 = ((a)localObject1).invoke();
+        f = localObject1;
+        e = null;
+      }
+      return localObject1;
+    }
+  }
+  
+  public String toString()
+  {
+    if (a()) {
+      return String.valueOf(getValue());
+    }
+    return "Lazy value not initialized yet.";
+  }
+}

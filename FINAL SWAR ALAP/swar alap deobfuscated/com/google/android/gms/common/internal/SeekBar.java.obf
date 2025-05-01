@@ -1,0 +1,62 @@
+package com.google.android.gms.common.internal;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import s3.a;
+import s3.c;
+
+public class u
+  extends a
+{
+  public static final Parcelable.Creator<u> CREATOR = new l1();
+  private final int e;
+  private final boolean f;
+  private final boolean g;
+  private final int h;
+  private final int i;
+  
+  public u(int paramInt1, boolean paramBoolean1, boolean paramBoolean2, int paramInt2, int paramInt3)
+  {
+    e = paramInt1;
+    f = paramBoolean1;
+    g = paramBoolean2;
+    h = paramInt2;
+    i = paramInt3;
+  }
+  
+  public int U()
+  {
+    return h;
+  }
+  
+  public int V()
+  {
+    return i;
+  }
+  
+  public boolean W()
+  {
+    return f;
+  }
+  
+  public boolean X()
+  {
+    return g;
+  }
+  
+  public int j0()
+  {
+    return e;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramInt = c.a(paramParcel);
+    c.t(paramParcel, 1, j0());
+    c.g(paramParcel, 2, W());
+    c.g(paramParcel, 3, X());
+    c.t(paramParcel, 4, U());
+    c.t(paramParcel, 5, V());
+    c.b(paramParcel, paramInt);
+  }
+}

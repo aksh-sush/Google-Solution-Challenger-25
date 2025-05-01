@@ -1,0 +1,148 @@
+package com.google.android.gms.common.api;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Looper;
+import com.google.android.gms.common.api.internal.g;
+import com.google.android.gms.common.api.internal.o;
+import com.google.android.gms.common.internal.c.c;
+import com.google.android.gms.common.internal.c.e;
+import com.google.android.gms.common.internal.k;
+import com.google.android.gms.common.internal.s;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+public final class a
+{
+  private final a a;
+  private final g b;
+  private final String c;
+  
+  public a(String paramString, a paramA, g paramG)
+  {
+    s.l(paramA, "Cannot construct an Api with a null ClientBuilder");
+    s.l(paramG, "Cannot construct an Api with a null ClientKey");
+    c = paramString;
+    a = paramA;
+    b = paramG;
+  }
+  
+  public final a a()
+  {
+    return a;
+  }
+  
+  public final c b()
+  {
+    return b;
+  }
+  
+  public final e c()
+  {
+    return a;
+  }
+  
+  public final String d()
+  {
+    return c;
+  }
+  
+  public static abstract class a
+    extends a.e
+  {
+    public a() {}
+    
+    @Deprecated
+    public a.f buildClient(Context paramContext, Looper paramLooper, com.google.android.gms.common.internal.d paramD, Object paramObject, GoogleApiClient.b paramB, GoogleApiClient.c paramC)
+    {
+      return buildClient(paramContext, paramLooper, paramD, paramObject, paramB, paramC);
+    }
+    
+    public a.f buildClient(Context paramContext, Looper paramLooper, com.google.android.gms.common.internal.d paramD, Object paramObject, g paramG, o paramO)
+    {
+      throw new UnsupportedOperationException("buildClient must be implemented");
+    }
+  }
+  
+  public static abstract interface b {}
+  
+  public static abstract class c
+  {
+    public c() {}
+  }
+  
+  public static abstract interface d
+  {
+    public static final a a = new a(null);
+    
+    public static final class a
+      implements a.d
+    {}
+  }
+  
+  public static abstract class e
+  {
+    public static final int API_PRIORITY_GAMES = 1;
+    public static final int API_PRIORITY_OTHER = Integer.MAX_VALUE;
+    public static final int API_PRIORITY_PLUS = 2;
+    
+    public e() {}
+    
+    public List<Scope> getImpliedScopes(Object paramObject)
+    {
+      return Collections.emptyList();
+    }
+    
+    public int getPriority()
+    {
+      return Integer.MAX_VALUE;
+    }
+  }
+  
+  public static abstract interface f
+    extends a.b
+  {
+    public abstract void connect(c.c paramC);
+    
+    public abstract void disconnect();
+    
+    public abstract void disconnect(String paramString);
+    
+    public abstract void dump(String paramString, FileDescriptor paramFileDescriptor, PrintWriter paramPrintWriter, String[] paramArrayOfString);
+    
+    public abstract q3.d[] getAvailableFeatures();
+    
+    public abstract String getEndpointPackageName();
+    
+    public abstract String getLastDisconnectMessage();
+    
+    public abstract int getMinApkVersion();
+    
+    public abstract void getRemoteService(k paramK, Set paramSet);
+    
+    public abstract Set getScopesForConnectionlessNonSignIn();
+    
+    public abstract Intent getSignInIntent();
+    
+    public abstract boolean isConnected();
+    
+    public abstract boolean isConnecting();
+    
+    public abstract void onUserSignOut(c.e paramE);
+    
+    public abstract boolean providesSignIn();
+    
+    public abstract boolean requiresGooglePlayServices();
+    
+    public abstract boolean requiresSignIn();
+  }
+  
+  public static final class g
+    extends a.c
+  {
+    public g() {}
+  }
+}

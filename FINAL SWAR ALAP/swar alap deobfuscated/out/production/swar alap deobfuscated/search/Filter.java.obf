@@ -1,0 +1,6 @@
+package u0;
+
+public abstract class a
+{
+  public static final int a = 2131296898;
+}

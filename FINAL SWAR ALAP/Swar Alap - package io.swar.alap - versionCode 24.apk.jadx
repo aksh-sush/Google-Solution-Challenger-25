@@ -1,0 +1,340 @@
+{
+  "projectVersion": 1,
+  "files": [
+    "Swar Alap - package io.swar.alap - versionCode 24.apk"
+  ],
+  "treeExpansions": [
+    [
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "androidx",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "activity",
+      "androidx",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "androidx.activity.c",
+      "activity",
+      "androidx",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "a3",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "a3.e",
+      "a3",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "constraintlayout",
+      "androidx",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "androidx.activity.c",
+      "activity",
+      "androidx",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "a3.e",
+      "a3",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "collection",
+      "androidx",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ],
+    [
+      "androidx.collection.a",
+      "collection",
+      "androidx",
+      "Source code",
+      "Swar Alap - package io.swar.alap - versionCode 24.apk"
+    ]
+  ],
+  "codeData": {
+    "comments": [],
+    "renames": [
+      {
+        "nodeRef": {
+          "refType": "PKG",
+          "declClass": "androidx.cardview.widget",
+          "shortId": ""
+        },
+        "newName": "widget"
+      }
+    ]
+  },
+  "openTabs": [
+    {
+      "type": "class",
+      "tabPath": "io.swar.alap.MainActivity",
+      "subPath": "java",
+      "caret": 13542,
+      "view": {
+        "x": 0,
+        "y": 6332
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.emoji2.text.f",
+      "subPath": "java",
+      "caret": 9345,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.core.content.res.c",
+      "subPath": "java",
+      "caret": 3049,
+      "view": {
+        "x": 0,
+        "y": 1175
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.constraintlayout.widget.b",
+      "subPath": "java",
+      "caret": 447,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.core.content.res.f",
+      "subPath": "java",
+      "caret": 6934,
+      "view": {
+        "x": 0,
+        "y": 2021
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "io.swar.alap.MainSurfaceView",
+      "subPath": "java",
+      "caret": 9526,
+      "view": {
+        "x": 0,
+        "y": 3012
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "io.swar.alap.R",
+      "subPath": "java",
+      "caret": 482647,
+      "view": {
+        "x": 0,
+        "y": 101013
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.appcompat.view.f",
+      "subPath": "java",
+      "caret": 5000,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.core.app.g",
+      "subPath": "java",
+      "caret": 358,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.activity.c",
+      "subPath": "java",
+      "caret": 79,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.activity.ComponentActivity",
+      "subPath": "java",
+      "caret": 1319,
+      "view": {
+        "x": 0,
+        "y": 372
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "a3.c0",
+      "subPath": "java",
+      "caret": 66,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "a3.d",
+      "subPath": "java",
+      "caret": 78,
+      "view": {
+        "x": 0,
+        "y": 125
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.recyclerview.widget.a",
+      "subPath": "java",
+      "caret": 231,
+      "view": {
+        "x": 0,
+        "y": 8545
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.cardview.widget.CardView",
+      "subPath": "java",
+      "caret": 8319,
+      "view": {
+        "x": 0,
+        "y": 3543
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.appcompat.app.a",
+      "subPath": "java",
+      "caret": 384,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    },
+    {
+      "type": "class",
+      "tabPath": "androidx.collection.a",
+      "subPath": "java",
+      "caret": 1902,
+      "view": {
+        "x": 0,
+        "y": 959
+      },
+      "active": true,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false
+    }
+  ],
+  "cacheDir": "C:\\Users\\drivi\\AppData\\Local\\skylot\\jadx\\cache\\projects\\Swar Alap - package io.swar.alap - versionCode 24-497b582d61e2007dd78401637134a7e9",
+  "enableLiveReload": false,
+  "searchHistory": [
+    "western",
+    "androidx.collection.g",
+    "customview",
+    "surfaceview",
+    "startRecording",
+    ".xml",
+    "AndroidManifest",
+    "mainactivity",
+    "audiorecord"
+  ],
+  "pluginOptions": {}
+}

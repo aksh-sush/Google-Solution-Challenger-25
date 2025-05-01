@@ -1,0 +1,18 @@
+package com.google.android.gms.common.api;
+
+public abstract class g
+{
+  private h a;
+  
+  public g() {}
+  
+  protected h a()
+  {
+    return a;
+  }
+  
+  public void b(h paramH)
+  {
+    a = paramH;
+  }
+}

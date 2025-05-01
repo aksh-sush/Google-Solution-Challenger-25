@@ -1,0 +1,55 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.List;
+
+public final class zzhr
+  extends zzeu
+  implements zzfx
+{
+  private static final zzhr zzb;
+  private zzey zzd = zzeu.zzc();
+  
+  static
+  {
+    zzhr localZzhr = new zzhr();
+    zzb = localZzhr;
+    zzeu.zzg(zzhr.class, localZzhr);
+  }
+  
+  private zzhr() {}
+  
+  public static zzhr zzk(byte[] paramArrayOfByte)
+  {
+    return (zzhr)zzeu.zzb(zzb, paramArrayOfByte);
+  }
+  
+  protected final Object zzi(int paramInt, Object paramObject1, Object paramObject2)
+  {
+    paramInt -= 1;
+    if (paramInt != 0)
+    {
+      if (paramInt != 2)
+      {
+        if (paramInt != 3)
+        {
+          if (paramInt != 4)
+          {
+            if (paramInt != 5) {
+              return null;
+            }
+            return zzb;
+          }
+          return new zzhq(null);
+        }
+        return new zzhr();
+      }
+      return zzeu.zzf(zzb, "\001\001\000\000\001\001\001\000\001\000\001\032", new Object[] { "zzd" });
+    }
+    return Byte.valueOf((byte)1);
+  }
+  
+  public final List zzl()
+  {
+    return zzd;
+  }
+}

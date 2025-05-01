@@ -1,0 +1,11 @@
+package com.google.android.gms.internal.auth;
+
+import android.os.IInterface;
+import com.google.android.gms.common.api.Status;
+import g3.c;
+
+public abstract interface zzm
+  extends IInterface
+{
+  public abstract void zzb(Status paramStatus, c paramC);
+}

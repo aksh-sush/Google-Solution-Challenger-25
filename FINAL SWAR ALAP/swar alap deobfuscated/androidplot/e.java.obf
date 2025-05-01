@@ -1,0 +1,192 @@
+package u;
+
+import java.util.ArrayList;
+import java.util.List;
+import t.e;
+
+class m
+{
+  public static int h;
+  public int a = 0;
+  public boolean b = false;
+  p c = null;
+  p d = null;
+  ArrayList e = new ArrayList();
+  int f;
+  int g;
+  
+  public m(p paramP, int paramInt)
+  {
+    int i = h;
+    f = i;
+    h = i + 1;
+    c = paramP;
+    d = paramP;
+    g = paramInt;
+  }
+  
+  private long c(f paramF, long paramLong)
+  {
+    p localP = d;
+    if ((localP instanceof k)) {
+      return paramLong;
+    }
+    int j = k.size();
+    int i = 0;
+    for (long l1 = paramLong; i < j; l1 = l2)
+    {
+      Object localObject = (d)k.get(i);
+      l2 = l1;
+      if ((localObject instanceof f))
+      {
+        localObject = (f)localObject;
+        if (d == localP) {
+          l2 = l1;
+        } else {
+          l2 = Math.min(l1, c((f)localObject, f + paramLong));
+        }
+      }
+      i += 1;
+    }
+    long l2 = l1;
+    if (paramF == i)
+    {
+      l2 = localP.j();
+      paramF = h;
+      paramLong -= l2;
+      l2 = Math.min(Math.min(l1, c(paramF, paramLong)), paramLong - h.f);
+    }
+    return l2;
+  }
+  
+  private long d(f paramF, long paramLong)
+  {
+    p localP = d;
+    if ((localP instanceof k)) {
+      return paramLong;
+    }
+    int j = k.size();
+    int i = 0;
+    for (long l1 = paramLong; i < j; l1 = l2)
+    {
+      Object localObject = (d)k.get(i);
+      l2 = l1;
+      if ((localObject instanceof f))
+      {
+        localObject = (f)localObject;
+        if (d == localP) {
+          l2 = l1;
+        } else {
+          l2 = Math.max(l1, d((f)localObject, f + paramLong));
+        }
+      }
+      i += 1;
+    }
+    long l2 = l1;
+    if (paramF == h)
+    {
+      l2 = localP.j();
+      paramF = i;
+      paramLong += l2;
+      l2 = Math.max(Math.max(l1, d(paramF, paramLong)), paramLong - i.f);
+    }
+    return l2;
+  }
+  
+  public void a(p paramP)
+  {
+    e.add(paramP);
+    d = paramP;
+  }
+  
+  public long b(t.f paramF, int paramInt)
+  {
+    p localP = c;
+    boolean bool1 = localP instanceof c;
+    long l3 = 0L;
+    if (bool1)
+    {
+      if (f != paramInt) {
+        return 0L;
+      }
+    }
+    else if (paramInt == 0)
+    {
+      if (!(localP instanceof l)) {
+        return 0L;
+      }
+    }
+    else if (!(localP instanceof n)) {
+      return 0L;
+    }
+    if (paramInt == 0) {
+      localObject = e;
+    } else {
+      localObject = f;
+    }
+    Object localObject = h;
+    if (paramInt == 0) {
+      paramF = e;
+    } else {
+      paramF = f;
+    }
+    paramF = i;
+    bool1 = h.l.contains(localObject);
+    boolean bool2 = c.i.l.contains(paramF);
+    long l5 = c.j();
+    long l1;
+    long l2;
+    if ((bool1) && (bool2))
+    {
+      l1 = d(c.h, 0L);
+      long l4 = c(c.i, 0L);
+      l2 = l1 - l5;
+      paramF = c;
+      int i = i.f;
+      l1 = l2;
+      if (l2 >= -i) {
+        l1 = l2 + i;
+      }
+      l2 = -l4;
+      i = h.f;
+      l4 = l2 - l5 - i;
+      l2 = l4;
+      if (l4 >= i) {
+        l2 = l4 - i;
+      }
+      float f1 = b.q(paramInt);
+      if (f1 > 0.0F) {
+        l3 = ((float)l2 / f1 + (float)l1 / (1.0F - f1));
+      }
+      float f2 = (float)l3;
+      l1 = (f2 * f1 + 0.5F);
+      l2 = (f2 * (1.0F - f1) + 0.5F);
+      paramF = c;
+      l1 = h.f + (l1 + l5 + l2);
+    }
+    else
+    {
+      if (bool1)
+      {
+        paramF = c.h;
+        l2 = d(paramF, f);
+        l1 = c.h.f + l5;
+      }
+      for (;;)
+      {
+        return Math.max(l2, l1);
+        if (!bool2) {
+          break;
+        }
+        paramF = c.i;
+        l2 = c(paramF, f);
+        l1 = -c.i.f + l5;
+        l2 = -l2;
+      }
+      paramF = c;
+      l1 = h.f + paramF.j();
+      paramF = c;
+    }
+    return l1 - i.f;
+  }
+}

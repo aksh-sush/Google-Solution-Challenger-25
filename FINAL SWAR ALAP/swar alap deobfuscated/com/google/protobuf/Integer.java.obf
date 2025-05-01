@@ -1,0 +1,750 @@
+package com.google.protobuf;
+
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Field;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.security.AccessController;
+import java.security.PrivilegedExceptionAction;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sun.misc.Unsafe;
+
+abstract class x1
+{
+  private static final Unsafe a = ;
+  private static final Class b = d.b();
+  private static final boolean c = o(Long.TYPE);
+  private static final boolean d = o(Integer.TYPE);
+  private static final e e = D();
+  private static final boolean f = U();
+  private static final boolean g = T();
+  static final long h;
+  private static final long i;
+  private static final long j;
+  private static final long k;
+  private static final long l;
+  private static final long m;
+  private static final long n;
+  private static final long o;
+  private static final long p;
+  private static final long q;
+  private static final long r;
+  private static final long s;
+  private static final long t;
+  private static final long u;
+  private static final int v;
+  static final boolean w;
+  
+  static
+  {
+    long l1 = k([B.class);
+    h = l1;
+    i = k([Z.class);
+    j = l([Z.class);
+    k = k([I.class);
+    l = l([I.class);
+    m = k([J.class);
+    n = l([J.class);
+    o = k([F.class);
+    p = l([F.class);
+    q = k([D.class);
+    r = l([D.class);
+    s = k([Ljava.lang.Object.class);
+    t = l([Ljava.lang.Object.class);
+    u = q(m());
+    v = (int)(l1 & 0x7);
+    boolean bool;
+    if (ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    w = bool;
+  }
+  
+  static int A(Object paramObject, long paramLong)
+  {
+    return e.i(paramObject, paramLong);
+  }
+  
+  static long B(long paramLong)
+  {
+    return e.j(paramLong);
+  }
+  
+  static long C(Object paramObject, long paramLong)
+  {
+    return e.k(paramObject, paramLong);
+  }
+  
+  private static e D()
+  {
+    Unsafe localUnsafe = a;
+    b localB = null;
+    if (localUnsafe == null) {
+      return null;
+    }
+    if (d.c())
+    {
+      if (c) {
+        return new c(localUnsafe);
+      }
+      if (d) {
+        localB = new b(localUnsafe);
+      }
+      return localB;
+    }
+    return new d(localUnsafe);
+  }
+  
+  static Object E(Object paramObject, long paramLong)
+  {
+    return e.l(paramObject, paramLong);
+  }
+  
+  static Unsafe F()
+  {
+    try
+    {
+      Unsafe localUnsafe = (Unsafe)AccessController.doPrivileged(new a());
+      return localUnsafe;
+    }
+    finally
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+  
+  static boolean G()
+  {
+    return g;
+  }
+  
+  static boolean H()
+  {
+    return f;
+  }
+  
+  static void I(Object paramObject, long paramLong, boolean paramBoolean)
+  {
+    e.n(paramObject, paramLong, paramBoolean);
+  }
+  
+  private static void J(Object paramObject, long paramLong, boolean paramBoolean)
+  {
+    M(paramObject, paramLong, (byte)paramBoolean);
+  }
+  
+  private static void K(Object paramObject, long paramLong, boolean paramBoolean)
+  {
+    N(paramObject, paramLong, (byte)paramBoolean);
+  }
+  
+  static void L(byte[] paramArrayOfByte, long paramLong, byte paramByte)
+  {
+    e.o(paramArrayOfByte, h + paramLong, paramByte);
+  }
+  
+  private static void M(Object paramObject, long paramLong, byte paramByte)
+  {
+    long l1 = 0xFFFFFFFFFFFFFFFC & paramLong;
+    int i1 = A(paramObject, l1);
+    int i2 = ((int)paramLong & 0x3) << 3;
+    Q(paramObject, l1, (0xFF & paramByte) << i2 | i1 & 255 << i2);
+  }
+  
+  private static void N(Object paramObject, long paramLong, byte paramByte)
+  {
+    long l1 = 0xFFFFFFFFFFFFFFFC & paramLong;
+    int i1 = A(paramObject, l1);
+    int i2 = ((int)paramLong & 0x3) << 3;
+    Q(paramObject, l1, (0xFF & paramByte) << i2 | i1 & 255 << i2);
+  }
+  
+  static void O(Object paramObject, long paramLong, double paramDouble)
+  {
+    e.p(paramObject, paramLong, paramDouble);
+  }
+  
+  static void P(Object paramObject, long paramLong, float paramFloat)
+  {
+    e.q(paramObject, paramLong, paramFloat);
+  }
+  
+  static void Q(Object paramObject, long paramLong, int paramInt)
+  {
+    e.r(paramObject, paramLong, paramInt);
+  }
+  
+  static void R(Object paramObject, long paramLong1, long paramLong2)
+  {
+    e.s(paramObject, paramLong1, paramLong2);
+  }
+  
+  static void S(Object paramObject1, long paramLong, Object paramObject2)
+  {
+    e.t(paramObject1, paramLong, paramObject2);
+  }
+  
+  private static boolean T()
+  {
+    Object localObject1 = a;
+    if (localObject1 == null) {
+      return false;
+    }
+    try
+    {
+      localObject1 = localObject1.getClass();
+      ((Class)localObject1).getMethod("objectFieldOffset", new Class[] { Field.class });
+      ((Class)localObject1).getMethod("arrayBaseOffset", new Class[] { Class.class });
+      ((Class)localObject1).getMethod("arrayIndexScale", new Class[] { Class.class });
+      localObject3 = Long.TYPE;
+      ((Class)localObject1).getMethod("getInt", new Class[] { Object.class, localObject3 });
+      ((Class)localObject1).getMethod("putInt", new Class[] { Object.class, localObject3, Integer.TYPE });
+      ((Class)localObject1).getMethod("getLong", new Class[] { Object.class, localObject3 });
+      ((Class)localObject1).getMethod("putLong", new Class[] { Object.class, localObject3, localObject3 });
+      ((Class)localObject1).getMethod("getObject", new Class[] { Object.class, localObject3 });
+      ((Class)localObject1).getMethod("putObject", new Class[] { Object.class, localObject3, Object.class });
+      if (d.c()) {
+        return true;
+      }
+      ((Class)localObject1).getMethod("getByte", new Class[] { Object.class, localObject3 });
+      ((Class)localObject1).getMethod("putByte", new Class[] { Object.class, localObject3, Byte.TYPE });
+      ((Class)localObject1).getMethod("getBoolean", new Class[] { Object.class, localObject3 });
+      ((Class)localObject1).getMethod("putBoolean", new Class[] { Object.class, localObject3, Boolean.TYPE });
+      ((Class)localObject1).getMethod("getFloat", new Class[] { Object.class, localObject3 });
+      ((Class)localObject1).getMethod("putFloat", new Class[] { Object.class, localObject3, Float.TYPE });
+      ((Class)localObject1).getMethod("getDouble", new Class[] { Object.class, localObject3 });
+      ((Class)localObject1).getMethod("putDouble", new Class[] { Object.class, localObject3, Double.TYPE });
+      return true;
+    }
+    finally
+    {
+      Object localObject3 = Logger.getLogger(x1.class.getName());
+      Level localLevel = Level.WARNING;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("platform method missing - proto runtime falling back to safer methods: ");
+      localStringBuilder.append(localObject2);
+      ((Logger)localObject3).log(localLevel, localStringBuilder.toString());
+    }
+    return false;
+  }
+  
+  private static boolean U()
+  {
+    Object localObject1 = a;
+    if (localObject1 == null) {
+      return false;
+    }
+    try
+    {
+      localObject1 = localObject1.getClass();
+      ((Class)localObject1).getMethod("objectFieldOffset", new Class[] { Field.class });
+      localObject3 = Long.TYPE;
+      ((Class)localObject1).getMethod("getLong", new Class[] { Object.class, localObject3 });
+      if (m() == null) {
+        return false;
+      }
+      if (d.c()) {
+        return true;
+      }
+      ((Class)localObject1).getMethod("getByte", new Class[] { localObject3 });
+      ((Class)localObject1).getMethod("putByte", new Class[] { localObject3, Byte.TYPE });
+      ((Class)localObject1).getMethod("getInt", new Class[] { localObject3 });
+      ((Class)localObject1).getMethod("putInt", new Class[] { localObject3, Integer.TYPE });
+      ((Class)localObject1).getMethod("getLong", new Class[] { localObject3 });
+      ((Class)localObject1).getMethod("putLong", new Class[] { localObject3, localObject3 });
+      ((Class)localObject1).getMethod("copyMemory", new Class[] { localObject3, localObject3, localObject3 });
+      ((Class)localObject1).getMethod("copyMemory", new Class[] { Object.class, localObject3, Object.class, localObject3, localObject3 });
+      return true;
+    }
+    finally
+    {
+      Object localObject3 = Logger.getLogger(x1.class.getName());
+      Level localLevel = Level.WARNING;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("platform method missing - proto runtime falling back to safer methods: ");
+      localStringBuilder.append(localObject2);
+      ((Logger)localObject3).log(localLevel, localStringBuilder.toString());
+    }
+    return false;
+  }
+  
+  static long i(ByteBuffer paramByteBuffer)
+  {
+    return e.k(paramByteBuffer, u);
+  }
+  
+  static Object j(Class paramClass)
+  {
+    try
+    {
+      paramClass = a.allocateInstance(paramClass);
+      return paramClass;
+    }
+    catch (InstantiationException paramClass)
+    {
+      throw new IllegalStateException(paramClass);
+    }
+  }
+  
+  private static int k(Class paramClass)
+  {
+    if (g) {
+      return e.a(paramClass);
+    }
+    return -1;
+  }
+  
+  private static int l(Class paramClass)
+  {
+    if (g) {
+      return e.b(paramClass);
+    }
+    return -1;
+  }
+  
+  private static Field m()
+  {
+    if (d.c())
+    {
+      localField = p(Buffer.class, "effectiveDirectAddress");
+      if (localField != null) {
+        return localField;
+      }
+    }
+    Field localField = p(Buffer.class, "address");
+    if ((localField != null) && (localField.getType() == Long.TYPE)) {
+      return localField;
+    }
+    return null;
+  }
+  
+  static void n(long paramLong1, byte[] paramArrayOfByte, long paramLong2, long paramLong3)
+  {
+    e.c(paramLong1, paramArrayOfByte, paramLong2, paramLong3);
+  }
+  
+  private static boolean o(Class paramClass)
+  {
+    if (!d.c()) {
+      return false;
+    }
+    try
+    {
+      Class localClass1 = b;
+      Class localClass2 = Boolean.TYPE;
+      localClass1.getMethod("peekLong", new Class[] { paramClass, localClass2 });
+      localClass1.getMethod("pokeLong", new Class[] { paramClass, Long.TYPE, localClass2 });
+      Class localClass3 = Integer.TYPE;
+      localClass1.getMethod("pokeInt", new Class[] { paramClass, localClass3, localClass2 });
+      localClass1.getMethod("peekInt", new Class[] { paramClass, localClass2 });
+      localClass1.getMethod("pokeByte", new Class[] { paramClass, Byte.TYPE });
+      localClass1.getMethod("peekByte", new Class[] { paramClass });
+      localClass1.getMethod("pokeByteArray", new Class[] { paramClass, [B.class, localClass3, localClass3 });
+      localClass1.getMethod("peekByteArray", new Class[] { paramClass, [B.class, localClass3, localClass3 });
+      return true;
+    }
+    finally {}
+    return false;
+  }
+  
+  private static Field p(Class paramClass, String paramString)
+  {
+    try
+    {
+      paramClass = paramClass.getDeclaredField(paramString);
+      return paramClass;
+    }
+    finally
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+  
+  private static long q(Field paramField)
+  {
+    if (paramField != null)
+    {
+      e localE = e;
+      if (localE != null) {
+        return localE.m(paramField);
+      }
+    }
+    return -1L;
+  }
+  
+  static boolean r(Object paramObject, long paramLong)
+  {
+    return e.d(paramObject, paramLong);
+  }
+  
+  private static boolean s(Object paramObject, long paramLong)
+  {
+    return w(paramObject, paramLong) != 0;
+  }
+  
+  private static boolean t(Object paramObject, long paramLong)
+  {
+    return x(paramObject, paramLong) != 0;
+  }
+  
+  static byte u(long paramLong)
+  {
+    return e.e(paramLong);
+  }
+  
+  static byte v(byte[] paramArrayOfByte, long paramLong)
+  {
+    return e.f(paramArrayOfByte, h + paramLong);
+  }
+  
+  private static byte w(Object paramObject, long paramLong)
+  {
+    return (byte)(A(paramObject, 0xFFFFFFFFFFFFFFFC & paramLong) >>> (int)((paramLong & 0x3) << 3) & 0xFF);
+  }
+  
+  private static byte x(Object paramObject, long paramLong)
+  {
+    return (byte)(A(paramObject, 0xFFFFFFFFFFFFFFFC & paramLong) >>> (int)((paramLong & 0x3) << 3) & 0xFF);
+  }
+  
+  static double y(Object paramObject, long paramLong)
+  {
+    return e.g(paramObject, paramLong);
+  }
+  
+  static float z(Object paramObject, long paramLong)
+  {
+    return e.h(paramObject, paramLong);
+  }
+  
+  static final class a
+    implements PrivilegedExceptionAction
+  {
+    a() {}
+    
+    public Unsafe a()
+    {
+      Field[] arrayOfField = Unsafe.class.getDeclaredFields();
+      int j = arrayOfField.length;
+      int i = 0;
+      while (i < j)
+      {
+        Object localObject = arrayOfField[i];
+        ((AccessibleObject)localObject).setAccessible(true);
+        localObject = ((Field)localObject).get(null);
+        if (Unsafe.class.isInstance(localObject)) {
+          return (Unsafe)Unsafe.class.cast(localObject);
+        }
+        i += 1;
+      }
+      return null;
+    }
+  }
+  
+  private static final class b
+    extends x1.e
+  {
+    b(Unsafe paramUnsafe)
+    {
+      super();
+    }
+    
+    public void c(long paramLong1, byte[] paramArrayOfByte, long paramLong2, long paramLong3)
+    {
+      throw new UnsupportedOperationException();
+    }
+    
+    public boolean d(Object paramObject, long paramLong)
+    {
+      if (x1.w) {
+        return x1.e(paramObject, paramLong);
+      }
+      return x1.f(paramObject, paramLong);
+    }
+    
+    public byte e(long paramLong)
+    {
+      throw new UnsupportedOperationException();
+    }
+    
+    public byte f(Object paramObject, long paramLong)
+    {
+      if (x1.w) {
+        return x1.a(paramObject, paramLong);
+      }
+      return x1.b(paramObject, paramLong);
+    }
+    
+    public double g(Object paramObject, long paramLong)
+    {
+      return Double.longBitsToDouble(k(paramObject, paramLong));
+    }
+    
+    public float h(Object paramObject, long paramLong)
+    {
+      return Float.intBitsToFloat(i(paramObject, paramLong));
+    }
+    
+    public long j(long paramLong)
+    {
+      throw new UnsupportedOperationException();
+    }
+    
+    public void n(Object paramObject, long paramLong, boolean paramBoolean)
+    {
+      if (x1.w)
+      {
+        x1.g(paramObject, paramLong, paramBoolean);
+        return;
+      }
+      x1.h(paramObject, paramLong, paramBoolean);
+    }
+    
+    public void o(Object paramObject, long paramLong, byte paramByte)
+    {
+      if (x1.w)
+      {
+        x1.c(paramObject, paramLong, paramByte);
+        return;
+      }
+      x1.d(paramObject, paramLong, paramByte);
+    }
+    
+    public void p(Object paramObject, long paramLong, double paramDouble)
+    {
+      s(paramObject, paramLong, Double.doubleToLongBits(paramDouble));
+    }
+    
+    public void q(Object paramObject, long paramLong, float paramFloat)
+    {
+      r(paramObject, paramLong, Float.floatToIntBits(paramFloat));
+    }
+  }
+  
+  private static final class c
+    extends x1.e
+  {
+    c(Unsafe paramUnsafe)
+    {
+      super();
+    }
+    
+    public void c(long paramLong1, byte[] paramArrayOfByte, long paramLong2, long paramLong3)
+    {
+      throw new UnsupportedOperationException();
+    }
+    
+    public boolean d(Object paramObject, long paramLong)
+    {
+      if (x1.w) {
+        return x1.e(paramObject, paramLong);
+      }
+      return x1.f(paramObject, paramLong);
+    }
+    
+    public byte e(long paramLong)
+    {
+      throw new UnsupportedOperationException();
+    }
+    
+    public byte f(Object paramObject, long paramLong)
+    {
+      if (x1.w) {
+        return x1.a(paramObject, paramLong);
+      }
+      return x1.b(paramObject, paramLong);
+    }
+    
+    public double g(Object paramObject, long paramLong)
+    {
+      return Double.longBitsToDouble(k(paramObject, paramLong));
+    }
+    
+    public float h(Object paramObject, long paramLong)
+    {
+      return Float.intBitsToFloat(i(paramObject, paramLong));
+    }
+    
+    public long j(long paramLong)
+    {
+      throw new UnsupportedOperationException();
+    }
+    
+    public void n(Object paramObject, long paramLong, boolean paramBoolean)
+    {
+      if (x1.w)
+      {
+        x1.g(paramObject, paramLong, paramBoolean);
+        return;
+      }
+      x1.h(paramObject, paramLong, paramBoolean);
+    }
+    
+    public void o(Object paramObject, long paramLong, byte paramByte)
+    {
+      if (x1.w)
+      {
+        x1.c(paramObject, paramLong, paramByte);
+        return;
+      }
+      x1.d(paramObject, paramLong, paramByte);
+    }
+    
+    public void p(Object paramObject, long paramLong, double paramDouble)
+    {
+      s(paramObject, paramLong, Double.doubleToLongBits(paramDouble));
+    }
+    
+    public void q(Object paramObject, long paramLong, float paramFloat)
+    {
+      r(paramObject, paramLong, Float.floatToIntBits(paramFloat));
+    }
+  }
+  
+  private static final class d
+    extends x1.e
+  {
+    d(Unsafe paramUnsafe)
+    {
+      super();
+    }
+    
+    public void c(long paramLong1, byte[] paramArrayOfByte, long paramLong2, long paramLong3)
+    {
+      a.copyMemory(null, paramLong1, paramArrayOfByte, x1.h + paramLong2, paramLong3);
+    }
+    
+    public boolean d(Object paramObject, long paramLong)
+    {
+      return a.getBoolean(paramObject, paramLong);
+    }
+    
+    public byte e(long paramLong)
+    {
+      return a.getByte(paramLong);
+    }
+    
+    public byte f(Object paramObject, long paramLong)
+    {
+      return a.getByte(paramObject, paramLong);
+    }
+    
+    public double g(Object paramObject, long paramLong)
+    {
+      return a.getDouble(paramObject, paramLong);
+    }
+    
+    public float h(Object paramObject, long paramLong)
+    {
+      return a.getFloat(paramObject, paramLong);
+    }
+    
+    public long j(long paramLong)
+    {
+      return a.getLong(paramLong);
+    }
+    
+    public void n(Object paramObject, long paramLong, boolean paramBoolean)
+    {
+      a.putBoolean(paramObject, paramLong, paramBoolean);
+    }
+    
+    public void o(Object paramObject, long paramLong, byte paramByte)
+    {
+      a.putByte(paramObject, paramLong, paramByte);
+    }
+    
+    public void p(Object paramObject, long paramLong, double paramDouble)
+    {
+      a.putDouble(paramObject, paramLong, paramDouble);
+    }
+    
+    public void q(Object paramObject, long paramLong, float paramFloat)
+    {
+      a.putFloat(paramObject, paramLong, paramFloat);
+    }
+  }
+  
+  private static abstract class e
+  {
+    Unsafe a;
+    
+    e(Unsafe paramUnsafe)
+    {
+      a = paramUnsafe;
+    }
+    
+    public final int a(Class paramClass)
+    {
+      return a.arrayBaseOffset(paramClass);
+    }
+    
+    public final int b(Class paramClass)
+    {
+      return a.arrayIndexScale(paramClass);
+    }
+    
+    public abstract void c(long paramLong1, byte[] paramArrayOfByte, long paramLong2, long paramLong3);
+    
+    public abstract boolean d(Object paramObject, long paramLong);
+    
+    public abstract byte e(long paramLong);
+    
+    public abstract byte f(Object paramObject, long paramLong);
+    
+    public abstract double g(Object paramObject, long paramLong);
+    
+    public abstract float h(Object paramObject, long paramLong);
+    
+    public final int i(Object paramObject, long paramLong)
+    {
+      return a.getInt(paramObject, paramLong);
+    }
+    
+    public abstract long j(long paramLong);
+    
+    public final long k(Object paramObject, long paramLong)
+    {
+      return a.getLong(paramObject, paramLong);
+    }
+    
+    public final Object l(Object paramObject, long paramLong)
+    {
+      return a.getObject(paramObject, paramLong);
+    }
+    
+    public final long m(Field paramField)
+    {
+      return a.objectFieldOffset(paramField);
+    }
+    
+    public abstract void n(Object paramObject, long paramLong, boolean paramBoolean);
+    
+    public abstract void o(Object paramObject, long paramLong, byte paramByte);
+    
+    public abstract void p(Object paramObject, long paramLong, double paramDouble);
+    
+    public abstract void q(Object paramObject, long paramLong, float paramFloat);
+    
+    public final void r(Object paramObject, long paramLong, int paramInt)
+    {
+      a.putInt(paramObject, paramLong, paramInt);
+    }
+    
+    public final void s(Object paramObject, long paramLong1, long paramLong2)
+    {
+      a.putLong(paramObject, paramLong1, paramLong2);
+    }
+    
+    public final void t(Object paramObject1, long paramLong, Object paramObject2)
+    {
+      a.putObject(paramObject1, paramLong, paramObject2);
+    }
+  }
+}

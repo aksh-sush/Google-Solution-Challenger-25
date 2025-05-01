@@ -1,0 +1,39 @@
+package va;
+
+import cb.p;
+
+public abstract class a
+  implements g.b
+{
+  private final g.c e;
+  
+  public a(g.c paramC)
+  {
+    e = paramC;
+  }
+  
+  public Object T(Object paramObject, p paramP)
+  {
+    return g.b.a.a(this, paramObject, paramP);
+  }
+  
+  public g.b a(g.c paramC)
+  {
+    return g.b.a.b(this, paramC);
+  }
+  
+  public g g(g paramG)
+  {
+    return g.b.a.d(this, paramG);
+  }
+  
+  public g.c getKey()
+  {
+    return e;
+  }
+  
+  public g r(g.c paramC)
+  {
+    return g.b.a.c(this, paramC);
+  }
+}

@@ -1,0 +1,165 @@
+package androidx.core.view;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator.AnimatorUpdateListener;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.Interpolator;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+
+public final class p0
+{
+  private final WeakReference a;
+  Runnable b = null;
+  Runnable c = null;
+  int d = -1;
+  
+  p0(View paramView)
+  {
+    a = new WeakReference(paramView);
+  }
+  
+  private void j(final View paramView, final q0 paramQ0)
+  {
+    if (paramQ0 != null)
+    {
+      paramView.animate().setListener(new a(paramQ0, paramView));
+      return;
+    }
+    paramView.animate().setListener(null);
+  }
+  
+  public p0 b(float paramFloat)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().alpha(paramFloat);
+    }
+    return this;
+  }
+  
+  public void c()
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().cancel();
+    }
+  }
+  
+  public long d()
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      return localView.animate().getDuration();
+    }
+    return 0L;
+  }
+  
+  public p0 f(float paramFloat)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().rotation(paramFloat);
+    }
+    return this;
+  }
+  
+  public p0 g(long paramLong)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().setDuration(paramLong);
+    }
+    return this;
+  }
+  
+  public p0 h(Interpolator paramInterpolator)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().setInterpolator(paramInterpolator);
+    }
+    return this;
+  }
+  
+  public p0 i(q0 paramQ0)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      j(localView, paramQ0);
+    }
+    return this;
+  }
+  
+  public p0 k(long paramLong)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().setStartDelay(paramLong);
+    }
+    return this;
+  }
+  
+  public p0 l(s0 paramS0)
+  {
+    View localView = (View)a.get();
+    if (localView != null)
+    {
+      if (paramS0 != null) {
+        paramS0 = new o0(paramS0, localView);
+      } else {
+        paramS0 = null;
+      }
+      b.a(localView.animate(), paramS0);
+    }
+    return this;
+  }
+  
+  public void m()
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().start();
+    }
+  }
+  
+  public p0 n(float paramFloat)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().translationY(paramFloat);
+    }
+    return this;
+  }
+  
+  class a
+    extends AnimatorListenerAdapter
+  {
+    a(q0 paramQ0, View paramView) {}
+    
+    public void onAnimationCancel(Animator paramAnimator)
+    {
+      paramQ0.a(paramView);
+    }
+    
+    public void onAnimationEnd(Animator paramAnimator)
+    {
+      paramQ0.b(paramView);
+    }
+    
+    public void onAnimationStart(Animator paramAnimator)
+    {
+      paramQ0.c(paramView);
+    }
+  }
+  
+  static abstract class b
+  {
+    static ViewPropertyAnimator a(ViewPropertyAnimator paramViewPropertyAnimator, ValueAnimator.AnimatorUpdateListener paramAnimatorUpdateListener)
+    {
+      return paramViewPropertyAnimator.setUpdateListener(paramAnimatorUpdateListener);
+    }
+  }
+}

@@ -1,0 +1,105 @@
+package com.google.android.gms.common.internal;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import p3.b;
+import p3.c;
+import y3.i;
+
+public final class a0
+  extends Button
+{
+  public a0(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    super(paramContext, null, 16842824);
+  }
+  
+  private static final int b(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    if (paramInt1 != 0)
+    {
+      if (paramInt1 != 1)
+      {
+        if (paramInt1 == 2) {
+          return paramInt4;
+        }
+        StringBuilder localStringBuilder = new StringBuilder(33);
+        localStringBuilder.append("Unknown color scheme: ");
+        localStringBuilder.append(paramInt1);
+        throw new IllegalStateException(localStringBuilder.toString());
+      }
+      return paramInt3;
+    }
+    return paramInt2;
+  }
+  
+  public final void a(Resources paramResources, int paramInt1, int paramInt2)
+  {
+    setTypeface(Typeface.DEFAULT_BOLD);
+    setTextSize(14.0F);
+    int i = (int)(getDisplayMetricsdensity * 48.0F + 0.5F);
+    setMinHeight(i);
+    setMinWidth(i);
+    i = b.b;
+    int j = b.c;
+    i = b(paramInt2, i, j, j);
+    j = b.d;
+    int k = b.e;
+    j = b(paramInt2, j, k, k);
+    if ((paramInt1 != 0) && (paramInt1 != 1))
+    {
+      if (paramInt1 != 2)
+      {
+        paramResources = new StringBuilder(32);
+        paramResources.append("Unknown button size: ");
+        paramResources.append(paramInt1);
+        throw new IllegalStateException(paramResources.toString());
+      }
+    }
+    else {
+      i = j;
+    }
+    Drawable localDrawable = androidx.core.graphics.drawable.a.r(paramResources.getDrawable(i));
+    androidx.core.graphics.drawable.a.o(localDrawable, paramResources.getColorStateList(p3.a.c));
+    androidx.core.graphics.drawable.a.p(localDrawable, PorterDuff.Mode.SRC_ATOP);
+    setBackgroundDrawable(localDrawable);
+    i = p3.a.a;
+    j = p3.a.b;
+    setTextColor((ColorStateList)s.k(paramResources.getColorStateList(b(paramInt2, i, j, j))));
+    if (paramInt1 != 0)
+    {
+      if (paramInt1 != 1)
+      {
+        if (paramInt1 == 2)
+        {
+          setText(null);
+          break label289;
+        }
+        paramResources = new StringBuilder(32);
+        paramResources.append("Unknown button size: ");
+        paramResources.append(paramInt1);
+        throw new IllegalStateException(paramResources.toString());
+      }
+      paramInt1 = c.q;
+    }
+    else
+    {
+      paramInt1 = c.p;
+    }
+    setText(paramResources.getString(paramInt1));
+    label289:
+    setTransformationMethod(null);
+    if (i.c(getContext())) {
+      setGravity(19);
+    }
+  }
+}

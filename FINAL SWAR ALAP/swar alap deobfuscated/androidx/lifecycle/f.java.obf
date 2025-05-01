@@ -1,0 +1,355 @@
+package androidx.lifecycle;
+
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import k.c;
+import l.a;
+import l.b;
+import l.b.d;
+
+public class o
+  extends i
+{
+  public static final a j = new a(null);
+  private final boolean b;
+  private a c;
+  private i.b d;
+  private final WeakReference e;
+  private int f;
+  private boolean g;
+  private boolean h;
+  private ArrayList i;
+  
+  public o(n paramN)
+  {
+    this(paramN, true);
+  }
+  
+  private o(n paramN, boolean paramBoolean)
+  {
+    b = paramBoolean;
+    c = new a();
+    d = i.b.f;
+    i = new ArrayList();
+    e = new WeakReference(paramN);
+  }
+  
+  private final void d(n paramN)
+  {
+    Iterator localIterator = c.descendingIterator();
+    db.l.d(localIterator, "observerMap.descendingIterator()");
+    while ((localIterator.hasNext()) && (!h))
+    {
+      Object localObject = (Map.Entry)localIterator.next();
+      db.l.d(localObject, "next()");
+      m localM = (m)((Map.Entry)localObject).getKey();
+      localObject = (b)((Map.Entry)localObject).getValue();
+      while ((((b)localObject).b().compareTo(d) > 0) && (!h) && (c.contains(localM)))
+      {
+        i.a localA = i.a.Companion.a(((b)localObject).b());
+        if (localA == null) {
+          break label146;
+        }
+        m(localA.d());
+        ((b)localObject).a(paramN, localA);
+        l();
+      }
+      continue;
+      label146:
+      paramN = new StringBuilder();
+      paramN.append("no event down from ");
+      paramN.append(((b)localObject).b());
+      throw new IllegalStateException(paramN.toString());
+    }
+  }
+  
+  private final i.b e(m paramM)
+  {
+    paramM = c.k(paramM);
+    Object localObject = null;
+    if (paramM != null)
+    {
+      paramM = (b)paramM.getValue();
+      if (paramM != null)
+      {
+        paramM = paramM.b();
+        break label39;
+      }
+    }
+    paramM = null;
+    label39:
+    if ((i.isEmpty() ^ true))
+    {
+      localObject = i;
+      localObject = (i.b)((ArrayList)localObject).get(((ArrayList)localObject).size() - 1);
+    }
+    a localA = j;
+    return localA.a(localA.a(d, paramM), (i.b)localObject);
+  }
+  
+  private final void f(String paramString)
+  {
+    if (b)
+    {
+      if (c.g().b()) {
+        return;
+      }
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Method ");
+      localStringBuilder.append(paramString);
+      localStringBuilder.append(" must be called on the main thread");
+      throw new IllegalStateException(localStringBuilder.toString().toString());
+    }
+  }
+  
+  private final void g(n paramN)
+  {
+    b.d localD = c.e();
+    db.l.d(localD, "observerMap.iteratorWithAdditions()");
+    while ((localD.hasNext()) && (!h))
+    {
+      Object localObject = (Map.Entry)localD.next();
+      m localM = (m)((Map.Entry)localObject).getKey();
+      localObject = (b)((Map.Entry)localObject).getValue();
+      while ((((b)localObject).b().compareTo(d) < 0) && (!h) && (c.contains(localM)))
+      {
+        m(((b)localObject).b());
+        i.a localA = i.a.Companion.b(((b)localObject).b());
+        if (localA == null) {
+          break label139;
+        }
+        ((b)localObject).a(paramN, localA);
+        l();
+      }
+      continue;
+      label139:
+      paramN = new StringBuilder();
+      paramN.append("no event up from ");
+      paramN.append(((b)localObject).b());
+      throw new IllegalStateException(paramN.toString());
+    }
+  }
+  
+  private final boolean i()
+  {
+    if (c.size() == 0) {
+      return true;
+    }
+    Object localObject1 = c.b();
+    db.l.b(localObject1);
+    localObject1 = ((b)((Map.Entry)localObject1).getValue()).b();
+    Object localObject2 = c.f();
+    db.l.b(localObject2);
+    localObject2 = ((b)((Map.Entry)localObject2).getValue()).b();
+    return (localObject1 == localObject2) && (d == localObject2);
+  }
+  
+  private final void k(i.b paramB)
+  {
+    i.b localB = d;
+    if (localB == paramB) {
+      return;
+    }
+    int k;
+    if ((localB == i.b.f) && (paramB == i.b.e)) {
+      k = 0;
+    } else {
+      k = 1;
+    }
+    if (k != 0)
+    {
+      d = paramB;
+      if ((!g) && (f == 0))
+      {
+        g = true;
+        o();
+        g = false;
+        if (d == i.b.e) {
+          c = new a();
+        }
+        return;
+      }
+      h = true;
+      return;
+    }
+    paramB = new StringBuilder();
+    paramB.append("no event down from ");
+    paramB.append(d);
+    paramB.append(" in component ");
+    paramB.append(e.get());
+    throw new IllegalStateException(paramB.toString().toString());
+  }
+  
+  private final void l()
+  {
+    ArrayList localArrayList = i;
+    localArrayList.remove(localArrayList.size() - 1);
+  }
+  
+  private final void m(i.b paramB)
+  {
+    i.add(paramB);
+  }
+  
+  private final void o()
+  {
+    n localN = (n)e.get();
+    if (localN != null)
+    {
+      for (;;)
+      {
+        boolean bool = i();
+        h = false;
+        if (bool) {
+          break;
+        }
+        Object localObject = d;
+        Map.Entry localEntry = c.b();
+        db.l.b(localEntry);
+        if (((Enum)localObject).compareTo(((b)localEntry.getValue()).b()) < 0) {
+          d(localN);
+        }
+        localObject = c.f();
+        if ((!h) && (localObject != null) && (d.compareTo(((b)((Map.Entry)localObject).getValue()).b()) > 0)) {
+          g(localN);
+        }
+      }
+      return;
+    }
+    throw new IllegalStateException("LifecycleOwner of this LifecycleRegistry is already garbage collected. It is too late to change lifecycle state.");
+  }
+  
+  public void a(m paramM)
+  {
+    db.l.e(paramM, "observer");
+    f("addObserver");
+    Object localObject2 = d;
+    Object localObject1 = i.b.e;
+    if (localObject2 != localObject1) {
+      localObject1 = i.b.f;
+    }
+    localObject2 = new b(paramM, (i.b)localObject1);
+    if ((b)c.i(paramM, localObject2) != null) {
+      return;
+    }
+    n localN = (n)e.get();
+    if (localN == null) {
+      return;
+    }
+    int k;
+    if ((f == 0) && (!g)) {
+      k = 0;
+    } else {
+      k = 1;
+    }
+    localObject1 = e(paramM);
+    f += 1;
+    while ((((b)localObject2).b().compareTo((Enum)localObject1) < 0) && (c.contains(paramM)))
+    {
+      m(((b)localObject2).b());
+      localObject1 = i.a.Companion.b(((b)localObject2).b());
+      if (localObject1 != null)
+      {
+        ((b)localObject2).a(localN, (i.a)localObject1);
+        l();
+        localObject1 = e(paramM);
+      }
+      else
+      {
+        paramM = new StringBuilder();
+        paramM.append("no event up from ");
+        paramM.append(((b)localObject2).b());
+        throw new IllegalStateException(paramM.toString());
+      }
+    }
+    if (k == 0) {
+      o();
+    }
+    f -= 1;
+  }
+  
+  public i.b b()
+  {
+    return d;
+  }
+  
+  public void c(m paramM)
+  {
+    db.l.e(paramM, "observer");
+    f("removeObserver");
+    c.j(paramM);
+  }
+  
+  public void h(i.a paramA)
+  {
+    db.l.e(paramA, "event");
+    f("handleLifecycleEvent");
+    k(paramA.d());
+  }
+  
+  public void j(i.b paramB)
+  {
+    db.l.e(paramB, "state");
+    f("markState");
+    n(paramB);
+  }
+  
+  public void n(i.b paramB)
+  {
+    db.l.e(paramB, "state");
+    f("setCurrentState");
+    k(paramB);
+  }
+  
+  public static final class a
+  {
+    private a() {}
+    
+    public final i.b a(i.b paramB1, i.b paramB2)
+    {
+      db.l.e(paramB1, "state1");
+      i.b localB = paramB1;
+      if (paramB2 != null)
+      {
+        localB = paramB1;
+        if (paramB2.compareTo(paramB1) < 0) {
+          localB = paramB2;
+        }
+      }
+      return localB;
+    }
+  }
+  
+  public static final class b
+  {
+    private i.b a;
+    private l b;
+    
+    public b(m paramM, i.b paramB)
+    {
+      db.l.b(paramM);
+      b = q.f(paramM);
+      a = paramB;
+    }
+    
+    public final void a(n paramN, i.a paramA)
+    {
+      db.l.e(paramA, "event");
+      i.b localB = paramA.d();
+      a = o.j.a(a, localB);
+      l localL = b;
+      db.l.b(paramN);
+      localL.d(paramN, paramA);
+      a = localB;
+    }
+    
+    public final i.b b()
+    {
+      return a;
+    }
+  }
+}

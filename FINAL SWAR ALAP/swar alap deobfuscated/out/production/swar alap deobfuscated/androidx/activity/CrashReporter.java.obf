@@ -1,0 +1,14 @@
+package androidx.activity;
+
+import android.view.View;
+import db.l;
+
+public abstract class t
+{
+  public static final void a(View paramView, q paramQ)
+  {
+    l.e(paramView, "<this>");
+    l.e(paramQ, "onBackPressedDispatcherOwner");
+    paramView.setTag(r.b, paramQ);
+  }
+}

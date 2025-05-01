@@ -1,0 +1,69 @@
+package androidx.activity;
+
+import cb.a;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.Executor;
+import sa.t;
+
+public final class m
+{
+  private final Executor a;
+  private final a b;
+  private final Object c;
+  private int d;
+  private boolean e;
+  private boolean f;
+  private final List g;
+  private final Runnable h;
+  
+  public m(Executor paramExecutor, a paramA)
+  {
+    a = paramExecutor;
+    b = paramA;
+    c = new Object();
+    g = new ArrayList();
+    h = new l(this);
+  }
+  
+  private static final void d(m paramM)
+  {
+    db.l.e(paramM, "this$0");
+    synchronized (c)
+    {
+      e = false;
+      if ((d == 0) && (!f))
+      {
+        b.invoke();
+        paramM.b();
+      }
+      paramM = t.a;
+      return;
+    }
+  }
+  
+  public final void b()
+  {
+    synchronized (c)
+    {
+      f = true;
+      Object localObject2 = g.iterator();
+      while (((Iterator)localObject2).hasNext()) {
+        ((a)((Iterator)localObject2).next()).invoke();
+      }
+      g.clear();
+      localObject2 = t.a;
+      return;
+    }
+  }
+  
+  public final boolean c()
+  {
+    synchronized (c)
+    {
+      boolean bool = f;
+      return bool;
+    }
+  }
+}

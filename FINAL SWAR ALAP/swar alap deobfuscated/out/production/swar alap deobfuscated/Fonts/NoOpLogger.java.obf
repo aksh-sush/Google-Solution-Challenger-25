@@ -1,0 +1,36 @@
+package d8;
+
+import c8.b;
+import db.l;
+
+public final class a
+  implements c8.a
+{
+  public a()
+  {
+    setLogLevel(b.WARN);
+    setAlertLevel(b.NONE);
+  }
+  
+  public b getAlertLevel()
+  {
+    return com.onesignal.debug.internal.logging.a.getVisualLogLevel();
+  }
+  
+  public b getLogLevel()
+  {
+    return com.onesignal.debug.internal.logging.a.getLogLevel();
+  }
+  
+  public void setAlertLevel(b paramB)
+  {
+    l.e(paramB, "value");
+    com.onesignal.debug.internal.logging.a.setVisualLogLevel(paramB);
+  }
+  
+  public void setLogLevel(b paramB)
+  {
+    l.e(paramB, "value");
+    com.onesignal.debug.internal.logging.a.setLogLevel(paramB);
+  }
+}

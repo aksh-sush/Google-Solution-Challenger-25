@@ -1,0 +1,864 @@
+package androidx.fragment.app;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.graphics.Rect;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import androidx.collection.a;
+import androidx.collection.g;
+import androidx.core.os.e;
+import androidx.core.os.e.b;
+import androidx.core.util.h;
+import androidx.core.view.f0;
+import androidx.core.view.h0;
+import androidx.core.view.k0;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+class c
+  extends a0
+{
+  c(ViewGroup paramViewGroup)
+  {
+    super(paramViewGroup);
+  }
+  
+  private void w(List paramList1, final List paramList2, boolean paramBoolean, Map paramMap)
+  {
+    final ViewGroup localViewGroup = m();
+    Context localContext = localViewGroup.getContext();
+    Object localObject1 = new ArrayList();
+    paramList1 = paramList1.iterator();
+    int i = 0;
+    Object localObject2;
+    while (paramList1.hasNext())
+    {
+      localObject2 = (k)paramList1.next();
+      if (((l)localObject2).d()) {
+        label60:
+        ((l)localObject2).a();
+      }
+      Object localObject3;
+      for (;;)
+      {
+        break;
+        localObject3 = ((k)localObject2).e(localContext);
+        if (localObject3 == null) {
+          break label60;
+        }
+        localObject3 = b;
+        if (localObject3 != null) {
+          break label108;
+        }
+        ((ArrayList)localObject1).add(localObject2);
+      }
+      label108:
+      final a0.e localE = ((l)localObject2).b();
+      Object localObject4 = localE.f();
+      if (Boolean.TRUE.equals(paramMap.get(localE)))
+      {
+        if (m.F0(2))
+        {
+          localObject3 = new StringBuilder();
+          ((StringBuilder)localObject3).append("Ignoring Animator set on ");
+          ((StringBuilder)localObject3).append(localObject4);
+          ((StringBuilder)localObject3).append(" as this Fragment was involved in a Transition.");
+          Log.v("FragmentManager", ((StringBuilder)localObject3).toString());
+        }
+        ((l)localObject2).a();
+      }
+      else
+      {
+        final boolean bool;
+        if (localE.e() == a0.e.c.g) {
+          bool = true;
+        } else {
+          bool = false;
+        }
+        if (bool) {
+          paramList2.remove(localE);
+        }
+        localObject4 = mView;
+        localViewGroup.startViewTransition((View)localObject4);
+        ((Animator)localObject3).addListener(new c(localViewGroup, (View)localObject4, bool, localE, (k)localObject2));
+        ((Animator)localObject3).setTarget(localObject4);
+        ((Animator)localObject3).start();
+        ((l)localObject2).c().c(new d((Animator)localObject3));
+        i = 1;
+      }
+    }
+    paramMap = ((ArrayList)localObject1).iterator();
+    while (paramMap.hasNext())
+    {
+      localObject1 = (k)paramMap.next();
+      paramList1 = ((l)localObject1).b();
+      paramList2 = paramList1.f();
+      if (paramBoolean) {
+        if (m.F0(2))
+        {
+          paramList1 = new StringBuilder();
+          paramList1.append("Ignoring Animation set on ");
+          paramList1.append(paramList2);
+        }
+      }
+      for (paramList2 = " as Animations cannot run alongside Transitions.";; paramList2 = " as Animations cannot run alongside Animators.")
+      {
+        paramList1.append(paramList2);
+        Log.v("FragmentManager", paramList1.toString());
+        do
+        {
+          ((l)localObject1).a();
+          break;
+          if (i == 0) {
+            break label444;
+          }
+        } while (!m.F0(2));
+        paramList1 = new StringBuilder();
+        paramList1.append("Ignoring Animation set on ");
+        paramList1.append(paramList2);
+      }
+      label444:
+      paramList2 = mView;
+      localObject2 = (Animation)h.g(gea);
+      if (paramList1.e() != a0.e.c.e)
+      {
+        paramList2.startAnimation((Animation)localObject2);
+        ((l)localObject1).a();
+      }
+      else
+      {
+        localViewGroup.startViewTransition(paramList2);
+        paramList1 = new f.e((Animation)localObject2, localViewGroup, paramList2);
+        paramList1.setAnimationListener(new e(localViewGroup, paramList2, (k)localObject1));
+        paramList2.startAnimation(paramList1);
+      }
+      ((l)localObject1).c().c(new f(paramList2, localViewGroup, (k)localObject1));
+    }
+  }
+  
+  private Map x(List paramList1, List paramList2, final boolean paramBoolean, final a0.e paramE1, final a0.e paramE2)
+  {
+    Object localObject3 = paramE1;
+    Object localObject2 = paramE2;
+    HashMap localHashMap = new HashMap();
+    Object localObject5 = paramList1.iterator();
+    Object localObject1 = null;
+    while (((Iterator)localObject5).hasNext())
+    {
+      localObject6 = (m)((Iterator)localObject5).next();
+      if (!((l)localObject6).d())
+      {
+        localObject4 = ((m)localObject6).e();
+        if (localObject1 == null)
+        {
+          localObject1 = localObject4;
+        }
+        else if ((localObject4 != null) && (localObject1 != localObject4))
+        {
+          paramList1 = new StringBuilder();
+          paramList1.append("Mixing framework transitions and AndroidX transitions is not allowed. Fragment ");
+          paramList1.append(((l)localObject6).b().f());
+          paramList1.append(" returned Transition ");
+          paramList1.append(((m)localObject6).h());
+          paramList1.append(" which uses a different Transition  type than other Fragments.");
+          throw new IllegalArgumentException(paramList1.toString());
+        }
+      }
+    }
+    if (localObject1 == null)
+    {
+      paramList1 = paramList1.iterator();
+      while (paramList1.hasNext())
+      {
+        paramList2 = (m)paramList1.next();
+        localHashMap.put(paramList2.b(), Boolean.FALSE);
+        paramList2.a();
+      }
+      return localHashMap;
+    }
+    localObject5 = new View(m().getContext());
+    final Rect localRect = new Rect();
+    Object localObject6 = new ArrayList();
+    Object localObject4 = new ArrayList();
+    a localA = new a();
+    Object localObject10 = paramList1.iterator();
+    Object localObject7 = null;
+    Object localObject9 = null;
+    int i = 0;
+    final Object localObject8 = localObject1;
+    localObject1 = localObject9;
+    int j;
+    Object localObject13;
+    for (;;)
+    {
+      boolean bool = paramBoolean;
+      if (!((Iterator)localObject10).hasNext()) {
+        break;
+      }
+      localObject9 = (m)((Iterator)localObject10).next();
+      if ((((m)localObject9).i()) && (localObject3 != null) && (localObject2 != null))
+      {
+        localObject9 = localObject8.B(localObject8.g(((m)localObject9).g()));
+        localObject12 = paramE2.f().getSharedElementSourceNames();
+        localObject11 = paramE1.f().getSharedElementSourceNames();
+        localObject7 = paramE1.f().getSharedElementTargetNames();
+        j = 0;
+        while (j < ((ArrayList)localObject7).size())
+        {
+          k = ((ArrayList)localObject12).indexOf(((ArrayList)localObject7).get(j));
+          if (k != -1) {
+            ((ArrayList)localObject12).set(k, ((ArrayList)localObject11).get(j));
+          }
+          j += 1;
+        }
+        localObject7 = paramE2.f().getSharedElementTargetNames();
+        localObject11 = paramE1.f();
+        if (!bool)
+        {
+          ((Fragment)localObject11).getExitTransitionCallback();
+          paramE2.f().getEnterTransitionCallback();
+        }
+        else
+        {
+          ((Fragment)localObject11).getEnterTransitionCallback();
+          paramE2.f().getExitTransitionCallback();
+        }
+        j = ((ArrayList)localObject12).size();
+        int k = 0;
+        while (k < j)
+        {
+          localA.put((String)((ArrayList)localObject12).get(k), (String)((ArrayList)localObject7).get(k));
+          k += 1;
+        }
+        localObject13 = new a();
+        u((Map)localObject13, fmView);
+        ((a)localObject13).o((Collection)localObject12);
+        localA.o(((a)localObject13).keySet());
+        localObject11 = new a();
+        u((Map)localObject11, fmView);
+        ((a)localObject11).o((Collection)localObject7);
+        ((a)localObject11).o(localA.values());
+        v.x(localA, (a)localObject11);
+        v((a)localObject13, localA.keySet());
+        v((a)localObject11, localA.values());
+        if (localA.isEmpty())
+        {
+          ((ArrayList)localObject6).clear();
+          ((ArrayList)localObject4).clear();
+          localObject7 = null;
+        }
+        else
+        {
+          v.f(paramE2.f(), paramE1.f(), bool, (a)localObject13, true);
+          f0.a(m(), new g(paramE2, paramE1, paramBoolean, (a)localObject11));
+          ((ArrayList)localObject6).addAll(((a)localObject13).values());
+          if (!((ArrayList)localObject12).isEmpty())
+          {
+            localObject1 = (View)((g)localObject13).get((String)((ArrayList)localObject12).get(0));
+            localObject8.v(localObject9, (View)localObject1);
+          }
+          localObject3 = ((a)localObject11).values();
+          localObject2 = localObject4;
+          ((ArrayList)localObject2).addAll((Collection)localObject3);
+          j = i;
+          if (!((ArrayList)localObject7).isEmpty())
+          {
+            localObject3 = (View)((g)localObject11).get((String)((ArrayList)localObject7).get(0));
+            j = i;
+            if (localObject3 != null)
+            {
+              f0.a(m(), new h(localObject8, (View)localObject3, localRect));
+              j = 1;
+            }
+          }
+          localObject8.z(localObject9, (View)localObject5, (ArrayList)localObject6);
+          localObject8.t(localObject9, null, null, null, null, localObject9, (ArrayList)localObject2);
+          localObject7 = Boolean.TRUE;
+          localObject3 = paramE1;
+          localHashMap.put(localObject3, localObject7);
+          localObject2 = paramE2;
+          localHashMap.put(localObject2, localObject7);
+          localObject7 = localObject9;
+          i = j;
+        }
+      }
+    }
+    paramE1 = (a0.e)localObject1;
+    localObject1 = localObject4;
+    localObject9 = localObject6;
+    localObject6 = localObject5;
+    Object localObject11 = new ArrayList();
+    Object localObject12 = paramList1.iterator();
+    localObject10 = null;
+    paramE2 = null;
+    localObject5 = paramE1;
+    localObject4 = localObject2;
+    paramE1 = (a0.e)localObject10;
+    localObject2 = localObject9;
+    while (((Iterator)localObject12).hasNext())
+    {
+      localObject13 = (m)((Iterator)localObject12).next();
+      if (((l)localObject13).d())
+      {
+        localHashMap.put(((l)localObject13).b(), Boolean.FALSE);
+        ((l)localObject13).a();
+      }
+      else
+      {
+        Object localObject14 = localObject8.g(((m)localObject13).h());
+        localObject9 = ((l)localObject13).b();
+        if ((localObject7 != null) && ((localObject9 == localObject3) || (localObject9 == localObject4))) {
+          j = 1;
+        } else {
+          j = 0;
+        }
+        if (localObject14 == null)
+        {
+          if (j == 0)
+          {
+            localHashMap.put(localObject9, Boolean.FALSE);
+            ((l)localObject13).a();
+          }
+        }
+        else
+        {
+          final ArrayList localArrayList1 = new ArrayList();
+          t(localArrayList1, fmView);
+          if (j != 0) {
+            if (localObject9 == localObject3) {
+              localArrayList1.removeAll((Collection)localObject2);
+            } else {
+              localArrayList1.removeAll((Collection)localObject1);
+            }
+          }
+          if (localArrayList1.isEmpty())
+          {
+            localObject8.a(localObject14, (View)localObject6);
+          }
+          else
+          {
+            localObject8.b(localObject14, localArrayList1);
+            localObject8.t(localObject14, localObject14, localArrayList1, null, null, null, null);
+            if (((a0.e)localObject9).e() == a0.e.c.g)
+            {
+              localObject10 = localObject9;
+              paramList2.remove(localObject10);
+              ArrayList localArrayList2 = new ArrayList(localArrayList1);
+              localArrayList2.remove(fmView);
+              localObject8.r(localObject14, fmView, localArrayList2);
+              f0.a(m(), new i(localArrayList1));
+            }
+          }
+          if (((a0.e)localObject9).e() == a0.e.c.f)
+          {
+            ((ArrayList)localObject11).addAll(localArrayList1);
+            if (i != 0) {
+              localObject8.u(localObject14, localRect);
+            }
+          }
+          else
+          {
+            localObject8.v(localObject14, (View)localObject5);
+          }
+          localHashMap.put(localObject9, Boolean.TRUE);
+          if (((m)localObject13).j()) {
+            paramE2 = localObject8.n(paramE2, localObject14, null);
+          } else {
+            paramE1 = localObject8.n(paramE1, localObject14, null);
+          }
+        }
+      }
+    }
+    paramList2 = localObject8.m(paramE2, paramE1, localObject7);
+    paramList1 = paramList1.iterator();
+    while (paramList1.hasNext())
+    {
+      paramE1 = (m)paramList1.next();
+      if (!paramE1.d())
+      {
+        localObject5 = paramE1.h();
+        paramE2 = paramE1.b();
+        if ((localObject7 != null) && ((paramE2 == localObject3) || (paramE2 == localObject4))) {
+          i = 1;
+        } else {
+          i = 0;
+        }
+        if ((localObject5 != null) || (i != 0)) {
+          if (!h0.W(m()))
+          {
+            if (m.F0(2))
+            {
+              localObject5 = new StringBuilder();
+              ((StringBuilder)localObject5).append("SpecialEffectsController: Container ");
+              ((StringBuilder)localObject5).append(m());
+              ((StringBuilder)localObject5).append(" has not been laid out. Completing operation ");
+              ((StringBuilder)localObject5).append(paramE2);
+              Log.v("FragmentManager", ((StringBuilder)localObject5).toString());
+            }
+            paramE1.a();
+          }
+          else
+          {
+            localObject8.w(paramE1.b().f(), paramList2, paramE1.c(), new j(paramE1));
+          }
+        }
+      }
+    }
+    if (!h0.W(m())) {
+      return localHashMap;
+    }
+    v.A((ArrayList)localObject11, 4);
+    paramList1 = localObject8.o((ArrayList)localObject1);
+    localObject8.c(m(), paramList2);
+    localObject8.y(m(), (ArrayList)localObject2, (ArrayList)localObject1, paramList1, localA);
+    v.A((ArrayList)localObject11, 0);
+    localObject8.A(localObject7, (ArrayList)localObject2, (ArrayList)localObject1);
+    return localHashMap;
+  }
+  
+  void f(List paramList, boolean paramBoolean)
+  {
+    Object localObject4 = paramList.iterator();
+    Object localObject2 = null;
+    Object localObject1 = localObject2;
+    while (((Iterator)localObject4).hasNext())
+    {
+      localObject3 = (a0.e)((Iterator)localObject4).next();
+      localObject5 = a0.e.c.d(fmView);
+      int i = a.a[localObject3.e().ordinal()];
+      if ((i != 1) && (i != 2) && (i != 3))
+      {
+        if ((i == 4) && (localObject5 != a0.e.c.f)) {
+          localObject1 = localObject3;
+        }
+      }
+      else if ((localObject5 == a0.e.c.f) && (localObject2 == null)) {
+        localObject2 = localObject3;
+      }
+    }
+    localObject4 = new ArrayList();
+    Object localObject5 = new ArrayList();
+    Object localObject3 = new ArrayList(paramList);
+    paramList = paramList.iterator();
+    while (paramList.hasNext())
+    {
+      final a0.e localE = (a0.e)paramList.next();
+      e localE1 = new e();
+      localE.j(localE1);
+      ((List)localObject4).add(new k(localE, localE1, paramBoolean));
+      localE1 = new e();
+      localE.j(localE1);
+      boolean bool = false;
+      if (paramBoolean ? localE == localObject2 : localE == localObject1) {
+        bool = true;
+      }
+      ((List)localObject5).add(new m(localE, localE1, paramBoolean, bool));
+      localE.a(new b((List)localObject3, localE));
+    }
+    paramList = x((List)localObject5, (List)localObject3, paramBoolean, localObject2, localObject1);
+    w((List)localObject4, (List)localObject3, paramList.containsValue(Boolean.TRUE), paramList);
+    paramList = ((List)localObject3).iterator();
+    while (paramList.hasNext()) {
+      s((a0.e)paramList.next());
+    }
+    ((List)localObject3).clear();
+  }
+  
+  void s(a0.e paramE)
+  {
+    View localView = fmView;
+    paramE.e().a(localView);
+  }
+  
+  void t(ArrayList paramArrayList, View paramView)
+  {
+    if ((paramView instanceof ViewGroup))
+    {
+      ViewGroup localViewGroup = (ViewGroup)paramView;
+      if (k0.a(localViewGroup))
+      {
+        if (!paramArrayList.contains(paramView)) {
+          paramArrayList.add(localViewGroup);
+        }
+      }
+      else
+      {
+        int j = localViewGroup.getChildCount();
+        int i = 0;
+        while (i < j)
+        {
+          paramView = localViewGroup.getChildAt(i);
+          if (paramView.getVisibility() == 0) {
+            t(paramArrayList, paramView);
+          }
+          i += 1;
+        }
+      }
+    }
+    else if (!paramArrayList.contains(paramView))
+    {
+      paramArrayList.add(paramView);
+    }
+  }
+  
+  void u(Map paramMap, View paramView)
+  {
+    Object localObject = h0.N(paramView);
+    if (localObject != null) {
+      paramMap.put(localObject, paramView);
+    }
+    if ((paramView instanceof ViewGroup))
+    {
+      paramView = (ViewGroup)paramView;
+      int j = paramView.getChildCount();
+      int i = 0;
+      while (i < j)
+      {
+        localObject = paramView.getChildAt(i);
+        if (((View)localObject).getVisibility() == 0) {
+          u(paramMap, (View)localObject);
+        }
+        i += 1;
+      }
+    }
+  }
+  
+  void v(a paramA, Collection paramCollection)
+  {
+    paramA = paramA.entrySet().iterator();
+    while (paramA.hasNext()) {
+      if (!paramCollection.contains(h0.N((View)((Map.Entry)paramA.next()).getValue()))) {
+        paramA.remove();
+      }
+    }
+  }
+  
+  class b
+    implements Runnable
+  {
+    b(List paramList, a0.e paramE) {}
+    
+    public void run()
+    {
+      if (e.contains(localE))
+      {
+        e.remove(localE);
+        s(localE);
+      }
+    }
+  }
+  
+  class c
+    extends AnimatorListenerAdapter
+  {
+    c(ViewGroup paramViewGroup, View paramView, boolean paramBoolean, a0.e paramE, c.k paramK) {}
+    
+    public void onAnimationEnd(Animator paramAnimator)
+    {
+      localViewGroup.endViewTransition(b);
+      if (bool) {
+        localE.e().a(b);
+      }
+      e.a();
+    }
+  }
+  
+  class d
+    implements e.b
+  {
+    d(Animator paramAnimator) {}
+    
+    public void a()
+    {
+      a.end();
+    }
+  }
+  
+  class e
+    implements Animation.AnimationListener
+  {
+    e(ViewGroup paramViewGroup, View paramView, c.k paramK) {}
+    
+    public void onAnimationEnd(Animation paramAnimation)
+    {
+      localViewGroup.post(new a());
+    }
+    
+    public void onAnimationRepeat(Animation paramAnimation) {}
+    
+    public void onAnimationStart(Animation paramAnimation) {}
+    
+    class a
+      implements Runnable
+    {
+      a() {}
+      
+      public void run()
+      {
+        c.e localE = c.e.this;
+        a.endViewTransition(b);
+        c.a();
+      }
+    }
+  }
+  
+  class f
+    implements e.b
+  {
+    f(View paramView, ViewGroup paramViewGroup, c.k paramK) {}
+    
+    public void a()
+    {
+      paramList2.clearAnimation();
+      localViewGroup.endViewTransition(paramList2);
+      c.a();
+    }
+  }
+  
+  class g
+    implements Runnable
+  {
+    g(a0.e paramE1, a0.e paramE2, boolean paramBoolean, a paramA) {}
+    
+    public void run()
+    {
+      v.f(paramE2.f(), paramE1.f(), paramBoolean, h, false);
+    }
+  }
+  
+  class h
+    implements Runnable
+  {
+    h(x paramX, View paramView, Rect paramRect) {}
+    
+    public void run()
+    {
+      localObject8.k(f, localRect);
+    }
+  }
+  
+  class i
+    implements Runnable
+  {
+    i(ArrayList paramArrayList) {}
+    
+    public void run()
+    {
+      v.A(localArrayList1, 4);
+    }
+  }
+  
+  class j
+    implements Runnable
+  {
+    j(c.m paramM) {}
+    
+    public void run()
+    {
+      paramE1.a();
+    }
+  }
+  
+  private static class k
+    extends c.l
+  {
+    private boolean c;
+    private boolean d = false;
+    private f.d e;
+    
+    k(a0.e paramE, e paramE1, boolean paramBoolean)
+    {
+      super(paramE1);
+      c = paramBoolean;
+    }
+    
+    f.d e(Context paramContext)
+    {
+      if (d) {
+        return e;
+      }
+      Fragment localFragment = b().f();
+      boolean bool;
+      if (b().e() == a0.e.c.f) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      paramContext = f.c(paramContext, localFragment, bool, c);
+      e = paramContext;
+      d = true;
+      return paramContext;
+    }
+  }
+  
+  private static abstract class l
+  {
+    private final a0.e a;
+    private final e b;
+    
+    l(a0.e paramE, e paramE1)
+    {
+      a = paramE;
+      b = paramE1;
+    }
+    
+    void a()
+    {
+      a.d(b);
+    }
+    
+    a0.e b()
+    {
+      return a;
+    }
+    
+    e c()
+    {
+      return b;
+    }
+    
+    boolean d()
+    {
+      a0.e.c localC1 = a0.e.c.d(a.f().mView);
+      a0.e.c localC2 = a.e();
+      if (localC1 != localC2)
+      {
+        a0.e.c localC3 = a0.e.c.f;
+        if ((localC1 == localC3) || (localC2 == localC3)) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+  
+  private static class m
+    extends c.l
+  {
+    private final Object c;
+    private final boolean d;
+    private final Object e;
+    
+    m(a0.e paramE, e paramE1, boolean paramBoolean1, boolean paramBoolean2)
+    {
+      super(paramE1);
+      boolean bool;
+      if (paramE.e() == a0.e.c.f)
+      {
+        paramE1 = paramE.f();
+        if (paramBoolean1) {
+          paramE1 = paramE1.getReenterTransition();
+        } else {
+          paramE1 = paramE1.getEnterTransition();
+        }
+        c = paramE1;
+        paramE1 = paramE.f();
+        if (paramBoolean1) {
+          bool = paramE1.getAllowReturnTransitionOverlap();
+        } else {
+          bool = paramE1.getAllowEnterTransitionOverlap();
+        }
+      }
+      else
+      {
+        paramE1 = paramE.f();
+        if (paramBoolean1) {
+          paramE1 = paramE1.getReturnTransition();
+        } else {
+          paramE1 = paramE1.getExitTransition();
+        }
+        c = paramE1;
+        bool = true;
+      }
+      d = bool;
+      if (paramBoolean2)
+      {
+        paramE = paramE.f();
+        if (paramBoolean1) {
+          paramE = paramE.getSharedElementReturnTransition();
+        } else {
+          paramE = paramE.getSharedElementEnterTransition();
+        }
+      }
+      else
+      {
+        paramE = null;
+      }
+      e = paramE;
+    }
+    
+    private x f(Object paramObject)
+    {
+      if (paramObject == null) {
+        return null;
+      }
+      Object localObject = v.b;
+      if ((localObject != null) && (((x)localObject).e(paramObject))) {
+        return localObject;
+      }
+      localObject = v.c;
+      if ((localObject != null) && (((x)localObject).e(paramObject))) {
+        return localObject;
+      }
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Transition ");
+      ((StringBuilder)localObject).append(paramObject);
+      ((StringBuilder)localObject).append(" for fragment ");
+      ((StringBuilder)localObject).append(b().f());
+      ((StringBuilder)localObject).append(" is not a valid framework Transition or AndroidX Transition");
+      throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+    }
+    
+    x e()
+    {
+      Object localObject = f(c);
+      x localX = f(e);
+      if ((localObject != null) && (localX != null) && (localObject != localX))
+      {
+        localObject = new StringBuilder();
+        ((StringBuilder)localObject).append("Mixing framework transitions and AndroidX transitions is not allowed. Fragment ");
+        ((StringBuilder)localObject).append(b().f());
+        ((StringBuilder)localObject).append(" returned Transition ");
+        ((StringBuilder)localObject).append(c);
+        ((StringBuilder)localObject).append(" which uses a different Transition  type than its shared element transition ");
+        ((StringBuilder)localObject).append(e);
+        throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+      }
+      if (localObject != null) {
+        return localObject;
+      }
+      return localX;
+    }
+    
+    public Object g()
+    {
+      return e;
+    }
+    
+    Object h()
+    {
+      return c;
+    }
+    
+    public boolean i()
+    {
+      return e != null;
+    }
+    
+    boolean j()
+    {
+      return d;
+    }
+  }
+}

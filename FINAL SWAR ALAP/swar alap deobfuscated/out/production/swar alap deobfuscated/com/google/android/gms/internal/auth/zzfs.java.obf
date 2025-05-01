@@ -1,0 +1,34 @@
+package com.google.android.gms.internal.auth;
+
+import java.lang.reflect.Constructor;
+
+final class zzfs
+{
+  private static final zzfr zza;
+  private static final zzfr zzb = new zzfr();
+  
+  static
+  {
+    try
+    {
+      localZzfr = (zzfr)Class.forName("com.google.protobuf.MapFieldSchemaFull").getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+    }
+    catch (Exception localException)
+    {
+      zzfr localZzfr;
+      for (;;) {}
+    }
+    localZzfr = null;
+    zza = localZzfr;
+  }
+  
+  static zzfr zza()
+  {
+    return zza;
+  }
+  
+  static zzfr zzb()
+  {
+    return zzb;
+  }
+}

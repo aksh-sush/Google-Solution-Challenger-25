@@ -1,0 +1,299 @@
+package androidx.appcompat.app;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
+import android.support.v4.media.session.b;
+import android.view.KeyCharacterMap;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window.Callback;
+import androidx.appcompat.view.menu.g;
+import androidx.appcompat.view.menu.g.a;
+import androidx.appcompat.view.menu.m.a;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar.h;
+import androidx.appcompat.widget.j0;
+import androidx.appcompat.widget.j1;
+import androidx.core.util.h;
+import androidx.core.view.h0;
+import java.util.ArrayList;
+
+class f0
+  extends a
+{
+  final j0 a;
+  final Window.Callback b;
+  final h.g c;
+  boolean d;
+  private boolean e;
+  private boolean f;
+  private ArrayList g = new ArrayList();
+  private final Runnable h = new a();
+  private final Toolbar.h i;
+  
+  f0(Toolbar paramToolbar, CharSequence paramCharSequence, Window.Callback paramCallback)
+  {
+    b localB = new b();
+    i = localB;
+    h.g(paramToolbar);
+    j1 localJ1 = new j1(paramToolbar, false);
+    a = localJ1;
+    b = ((Window.Callback)h.g(paramCallback));
+    localJ1.setWindowCallback(paramCallback);
+    paramToolbar.setOnMenuItemClickListener(localB);
+    localJ1.setWindowTitle(paramCharSequence);
+    c = new e();
+  }
+  
+  private Menu y()
+  {
+    if (!e)
+    {
+      a.i(new c(), new d());
+      e = true;
+    }
+    return a.q();
+  }
+  
+  public boolean g()
+  {
+    return a.e();
+  }
+  
+  public boolean h()
+  {
+    if (a.n())
+    {
+      a.collapseActionView();
+      return true;
+    }
+    return false;
+  }
+  
+  public void i(boolean paramBoolean)
+  {
+    if (paramBoolean == f) {
+      return;
+    }
+    f = paramBoolean;
+    if (g.size() <= 0) {
+      return;
+    }
+    b.a(g.get(0));
+    throw null;
+  }
+  
+  public int j()
+  {
+    return a.p();
+  }
+  
+  public Context k()
+  {
+    return a.getContext();
+  }
+  
+  public boolean l()
+  {
+    a.l().removeCallbacks(h);
+    h0.k0(a.l(), h);
+    return true;
+  }
+  
+  public void m(Configuration paramConfiguration)
+  {
+    super.m(paramConfiguration);
+  }
+  
+  void n()
+  {
+    a.l().removeCallbacks(h);
+  }
+  
+  public boolean o(int paramInt, KeyEvent paramKeyEvent)
+  {
+    Menu localMenu = y();
+    if (localMenu != null)
+    {
+      if (paramKeyEvent != null) {
+        j = paramKeyEvent.getDeviceId();
+      } else {
+        j = -1;
+      }
+      int j = KeyCharacterMap.load(j).getKeyboardType();
+      boolean bool = true;
+      if (j == 1) {
+        bool = false;
+      }
+      localMenu.setQwertyMode(bool);
+      return localMenu.performShortcut(paramInt, paramKeyEvent, 0);
+    }
+    return false;
+  }
+  
+  public boolean p(KeyEvent paramKeyEvent)
+  {
+    if (paramKeyEvent.getAction() == 1) {
+      q();
+    }
+    return true;
+  }
+  
+  public boolean q()
+  {
+    return a.f();
+  }
+  
+  public void r(boolean paramBoolean) {}
+  
+  public void s(int paramInt)
+  {
+    a.s(paramInt);
+  }
+  
+  public void t(Drawable paramDrawable)
+  {
+    a.x(paramDrawable);
+  }
+  
+  public void u(boolean paramBoolean) {}
+  
+  public void v(CharSequence paramCharSequence)
+  {
+    a.setTitle(paramCharSequence);
+  }
+  
+  public void w(CharSequence paramCharSequence)
+  {
+    a.setWindowTitle(paramCharSequence);
+  }
+  
+  void z()
+  {
+    Menu localMenu = y();
+    g localG;
+    if ((localMenu instanceof g)) {
+      localG = (g)localMenu;
+    } else {
+      localG = null;
+    }
+    if (localG != null) {
+      localG.d0();
+    }
+    try
+    {
+      localMenu.clear();
+      if ((!b.onCreatePanelMenu(0, localMenu)) || (!b.onPreparePanel(0, null, localMenu))) {
+        localMenu.clear();
+      }
+      return;
+    }
+    finally
+    {
+      if (localG != null) {
+        localG.c0();
+      }
+    }
+  }
+  
+  class a
+    implements Runnable
+  {
+    a() {}
+    
+    public void run()
+    {
+      z();
+    }
+  }
+  
+  class b
+    implements Toolbar.h
+  {
+    b() {}
+    
+    public boolean onMenuItemClick(MenuItem paramMenuItem)
+    {
+      return b.onMenuItemSelected(0, paramMenuItem);
+    }
+  }
+  
+  private final class c
+    implements m.a
+  {
+    private boolean e;
+    
+    c() {}
+    
+    public void a(g paramG, boolean paramBoolean)
+    {
+      if (e) {
+        return;
+      }
+      e = true;
+      a.h();
+      b.onPanelClosed(108, paramG);
+      e = false;
+    }
+    
+    public boolean b(g paramG)
+    {
+      b.onMenuOpened(108, paramG);
+      return true;
+    }
+  }
+  
+  private final class d
+    implements g.a
+  {
+    d() {}
+    
+    public boolean a(g paramG, MenuItem paramMenuItem)
+    {
+      return false;
+    }
+    
+    public void b(g paramG)
+    {
+      if (a.b())
+      {
+        b.onPanelClosed(108, paramG);
+        return;
+      }
+      if (b.onPreparePanel(0, null, paramG)) {
+        b.onMenuOpened(108, paramG);
+      }
+    }
+  }
+  
+  private class e
+    implements h.g
+  {
+    e() {}
+    
+    public boolean a(int paramInt)
+    {
+      if (paramInt == 0)
+      {
+        f0 localF0 = f0.this;
+        if (!d)
+        {
+          a.c();
+          d = true;
+        }
+      }
+      return false;
+    }
+    
+    public View onCreatePanelView(int paramInt)
+    {
+      if (paramInt == 0) {
+        return new View(a.getContext());
+      }
+      return null;
+    }
+  }
+}

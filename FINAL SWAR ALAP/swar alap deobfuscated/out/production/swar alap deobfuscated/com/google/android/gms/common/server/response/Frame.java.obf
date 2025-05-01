@@ -1,0 +1,594 @@
+package com.google.android.gms.common.server.response;
+
+import android.os.BaseBundle;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import android.util.SparseArray;
+import com.google.android.gms.common.internal.s;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import s3.b.a;
+import y3.l;
+import y3.m;
+
+public class c
+  extends b
+{
+  public static final Parcelable.Creator<c> CREATOR = new k();
+  private final int e;
+  private final Parcel f;
+  private final int g;
+  private final h h;
+  private final String i;
+  private int j;
+  private int k;
+  
+  c(int paramInt, Parcel paramParcel, h paramH)
+  {
+    e = paramInt;
+    f = ((Parcel)s.k(paramParcel));
+    g = 2;
+    h = paramH;
+    if (paramH == null) {
+      paramParcel = null;
+    } else {
+      paramParcel = paramH.U();
+    }
+    i = paramParcel;
+    j = 2;
+  }
+  
+  private final void e(a.a paramA)
+  {
+    if (k != -1)
+    {
+      paramA = f;
+      if (paramA != null)
+      {
+        int m = j;
+        if (m != 0)
+        {
+          if (m == 1) {
+            return;
+          }
+          throw new IllegalStateException("Attempted to parse JSON with a SafeParcelResponse object that is already filled with data.");
+        }
+        k = s3.c.a(paramA);
+        j = 1;
+        return;
+      }
+      throw new IllegalStateException("Internal Parcel object is null.");
+    }
+    throw new IllegalStateException("Field does not have a valid safe parcelable field id.");
+  }
+  
+  private final void f(StringBuilder paramStringBuilder, Map paramMap, Parcel paramParcel)
+  {
+    SparseArray localSparseArray = new SparseArray();
+    paramMap = paramMap.entrySet().iterator();
+    Object localObject1;
+    while (paramMap.hasNext())
+    {
+      localObject1 = (Map.Entry)paramMap.next();
+      localSparseArray.put(((a.a)((Map.Entry)localObject1).getValue()).m0(), localObject1);
+    }
+    paramStringBuilder.append('{');
+    int n = s3.b.L(paramParcel);
+    int m = 0;
+    while (paramParcel.dataPosition() < n)
+    {
+      int i1 = s3.b.C(paramParcel);
+      localObject1 = (Map.Entry)localSparseArray.get(s3.b.v(i1));
+      if (localObject1 != null)
+      {
+        if (m != 0) {
+          paramStringBuilder.append(",");
+        }
+        paramMap = (String)((Map.Entry)localObject1).getKey();
+        localObject1 = (a.a)((Map.Entry)localObject1).getValue();
+        paramStringBuilder.append("\"");
+        paramStringBuilder.append(paramMap);
+        paramStringBuilder.append("\":");
+        Object localObject2;
+        if (((a.a)localObject1).F0())
+        {
+          m = h;
+          switch (m)
+          {
+          default: 
+            paramStringBuilder = new StringBuilder(36);
+            paramStringBuilder.append("Unknown field out type = ");
+            paramStringBuilder.append(m);
+            throw new IllegalArgumentException(paramStringBuilder.toString());
+          case 11: 
+            throw new IllegalArgumentException("Method does not accept concrete type.");
+          case 10: 
+            paramMap = s3.b.f(paramParcel, i1);
+            localObject2 = new HashMap();
+            Iterator localIterator = paramMap.keySet().iterator();
+            while (localIterator.hasNext())
+            {
+              String str = (String)localIterator.next();
+              ((HashMap)localObject2).put(str, (String)s.k(paramMap.getString(str)));
+            }
+            paramMap = a.zaD((a.a)localObject1, localObject2);
+            break;
+          case 8: 
+          case 9: 
+            paramMap = a.zaD((a.a)localObject1, s3.b.g(paramParcel, i1));
+            break;
+          case 7: 
+            paramMap = s3.b.p(paramParcel, i1);
+            break;
+          case 6: 
+            paramMap = Boolean.valueOf(s3.b.w(paramParcel, i1));
+            break;
+          case 5: 
+            paramMap = s3.b.a(paramParcel, i1);
+            break;
+          case 4: 
+            paramMap = Double.valueOf(s3.b.y(paramParcel, i1));
+            break;
+          case 3: 
+            paramMap = Float.valueOf(s3.b.A(paramParcel, i1));
+            break;
+          case 2: 
+            paramMap = Long.valueOf(s3.b.G(paramParcel, i1));
+            break;
+          case 1: 
+            paramMap = s3.b.c(paramParcel, i1);
+            break;
+          case 0: 
+            paramMap = Integer.valueOf(s3.b.E(paramParcel, i1));
+          }
+          paramMap = a.zaD((a.a)localObject1, paramMap);
+          i(paramStringBuilder, (a.a)localObject1, paramMap);
+        }
+        for (;;)
+        {
+          m = 1;
+          break;
+          if (i)
+          {
+            paramStringBuilder.append("[");
+            switch (h)
+            {
+            default: 
+              throw new IllegalStateException("Unknown field type out.");
+            case 11: 
+              paramMap = s3.b.n(paramParcel, i1);
+              i1 = paramMap.length;
+              m = 0;
+            }
+            while (m < i1)
+            {
+              if (m > 0) {
+                paramStringBuilder.append(",");
+              }
+              paramMap[m].setDataPosition(0);
+              f(paramStringBuilder, ((a.a)localObject1).D0(), paramMap[m]);
+              m += 1;
+              continue;
+              throw new UnsupportedOperationException("List of type BASE64, BASE64_URL_SAFE, or STRING_MAP is not supported");
+              y3.b.j(paramStringBuilder, s3.b.q(paramParcel, i1));
+              break;
+              y3.b.i(paramStringBuilder, s3.b.e(paramParcel, i1));
+              break;
+              y3.b.h(paramStringBuilder, s3.b.b(paramParcel, i1));
+              break;
+              y3.b.d(paramStringBuilder, s3.b.i(paramParcel, i1));
+              break;
+              y3.b.e(paramStringBuilder, s3.b.j(paramParcel, i1));
+              break;
+              y3.b.g(paramStringBuilder, s3.b.l(paramParcel, i1));
+              break;
+              y3.b.h(paramStringBuilder, s3.b.d(paramParcel, i1));
+              break;
+              y3.b.f(paramStringBuilder, s3.b.k(paramParcel, i1));
+            }
+          }
+          for (paramMap = "]";; paramMap = "}")
+          {
+            paramStringBuilder.append(paramMap);
+            break;
+            switch (h)
+            {
+            default: 
+              throw new IllegalStateException("Unknown field type out");
+            case 11: 
+              paramMap = s3.b.m(paramParcel, i1);
+              paramMap.setDataPosition(0);
+              f(paramStringBuilder, ((a.a)localObject1).D0(), paramMap);
+              break;
+            case 10: 
+              paramMap = s3.b.f(paramParcel, i1);
+              localObject1 = paramMap.keySet();
+              paramStringBuilder.append("{");
+              localObject1 = ((Set)localObject1).iterator();
+              for (m = 1; ((Iterator)localObject1).hasNext(); m = 0)
+              {
+                localObject2 = (String)((Iterator)localObject1).next();
+                if (m == 0) {
+                  paramStringBuilder.append(",");
+                }
+                paramStringBuilder.append("\"");
+                paramStringBuilder.append((String)localObject2);
+                paramStringBuilder.append("\":\"");
+                paramStringBuilder.append(l.a(paramMap.getString((String)localObject2)));
+                paramStringBuilder.append("\"");
+              }
+            }
+          }
+          paramMap = s3.b.g(paramParcel, i1);
+          paramStringBuilder.append("\"");
+          paramMap = y3.c.d(paramMap);
+          break label1079;
+          paramMap = s3.b.g(paramParcel, i1);
+          paramStringBuilder.append("\"");
+          paramMap = y3.c.c(paramMap);
+          break label1079;
+          paramMap = s3.b.p(paramParcel, i1);
+          paramStringBuilder.append("\"");
+          paramMap = l.a(paramMap);
+          label1079:
+          paramStringBuilder.append(paramMap);
+          paramStringBuilder.append("\"");
+          continue;
+          paramStringBuilder.append(s3.b.w(paramParcel, i1));
+          continue;
+          paramMap = s3.b.a(paramParcel, i1);
+          break label1168;
+          paramStringBuilder.append(s3.b.y(paramParcel, i1));
+          continue;
+          paramStringBuilder.append(s3.b.A(paramParcel, i1));
+          continue;
+          paramStringBuilder.append(s3.b.G(paramParcel, i1));
+          continue;
+          paramMap = s3.b.c(paramParcel, i1);
+          label1168:
+          paramStringBuilder.append(paramMap);
+          continue;
+          paramStringBuilder.append(s3.b.E(paramParcel, i1));
+        }
+      }
+    }
+    if (paramParcel.dataPosition() == n)
+    {
+      paramStringBuilder.append('}');
+      return;
+    }
+    paramStringBuilder = new StringBuilder(37);
+    paramStringBuilder.append("Overread allowed size end=");
+    paramStringBuilder.append(n);
+    throw new b.a(paramStringBuilder.toString(), paramParcel);
+  }
+  
+  private static final void g(StringBuilder paramStringBuilder, int paramInt, Object paramObject)
+  {
+    switch (paramInt)
+    {
+    default: 
+      paramStringBuilder = new StringBuilder(26);
+      paramStringBuilder.append("Unknown type = ");
+      paramStringBuilder.append(paramInt);
+      throw new IllegalArgumentException(paramStringBuilder.toString());
+    case 11: 
+      throw new IllegalArgumentException("Method does not accept concrete type.");
+    case 10: 
+      m.a(paramStringBuilder, (HashMap)s.k(paramObject));
+      return;
+    case 9: 
+      paramStringBuilder.append("\"");
+      paramStringBuilder.append(y3.c.d((byte[])paramObject));
+      paramStringBuilder.append("\"");
+      return;
+    case 8: 
+      paramStringBuilder.append("\"");
+      paramStringBuilder.append(y3.c.c((byte[])paramObject));
+      paramStringBuilder.append("\"");
+      return;
+    case 7: 
+      paramStringBuilder.append("\"");
+      paramStringBuilder.append(l.a(s.k(paramObject).toString()));
+      paramStringBuilder.append("\"");
+      return;
+    }
+    paramStringBuilder.append(paramObject);
+  }
+  
+  private static final void i(StringBuilder paramStringBuilder, a.a paramA, Object paramObject)
+  {
+    if (g)
+    {
+      paramObject = (ArrayList)paramObject;
+      paramStringBuilder.append("[");
+      int n = paramObject.size();
+      int m = 0;
+      while (m < n)
+      {
+        if (m != 0) {
+          paramStringBuilder.append(",");
+        }
+        g(paramStringBuilder, f, paramObject.get(m));
+        m += 1;
+      }
+      paramStringBuilder.append("]");
+      return;
+    }
+    g(paramStringBuilder, f, paramObject);
+  }
+  
+  public final void addConcreteTypeArrayInternal(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    paramString = new ArrayList();
+    ((ArrayList)s.k(paramArrayList)).size();
+    int n = paramArrayList.size();
+    int m = 0;
+    while (m < n)
+    {
+      paramString.add(((c)paramArrayList.get(m)).d());
+      m += 1;
+    }
+    s3.c.A(f, paramA.m0(), paramString, true);
+  }
+  
+  public final void addConcreteTypeInternal(a.a paramA, String paramString, a paramA1)
+  {
+    e(paramA);
+    paramString = ((c)paramA1).d();
+    s3.c.z(f, paramA.m0(), paramString, true);
+  }
+  
+  public final Parcel d()
+  {
+    int m = j;
+    if (m != 0)
+    {
+      if (m != 1) {
+        break label57;
+      }
+      s3.c.b(f, k);
+    }
+    else
+    {
+      m = s3.c.a(f);
+      k = m;
+      s3.c.b(f, m);
+    }
+    j = 2;
+    label57:
+    return f;
+  }
+  
+  public final Map getFieldMappings()
+  {
+    h localH = h;
+    if (localH == null) {
+      return null;
+    }
+    return localH.V((String)s.k(i));
+  }
+  
+  public final Object getValueObject(String paramString)
+  {
+    throw new UnsupportedOperationException("Converting to JSON does not require this method.");
+  }
+  
+  public final boolean isPrimitiveFieldSet(String paramString)
+  {
+    throw new UnsupportedOperationException("Converting to JSON does not require this method.");
+  }
+  
+  protected final void setBooleanInternal(a.a paramA, String paramString, boolean paramBoolean)
+  {
+    e(paramA);
+    s3.c.g(f, paramA.m0(), paramBoolean);
+  }
+  
+  protected final void setDecodedBytesInternal(a.a paramA, String paramString, byte[] paramArrayOfByte)
+  {
+    e(paramA);
+    s3.c.k(f, paramA.m0(), paramArrayOfByte, true);
+  }
+  
+  protected final void setIntegerInternal(a.a paramA, String paramString, int paramInt)
+  {
+    e(paramA);
+    s3.c.t(f, paramA.m0(), paramInt);
+  }
+  
+  protected final void setLongInternal(a.a paramA, String paramString, long paramLong)
+  {
+    e(paramA);
+    s3.c.w(f, paramA.m0(), paramLong);
+  }
+  
+  protected final void setStringInternal(a.a paramA, String paramString1, String paramString2)
+  {
+    e(paramA);
+    s3.c.D(f, paramA.m0(), paramString2, true);
+  }
+  
+  protected final void setStringMapInternal(a.a paramA, String paramString, Map paramMap)
+  {
+    e(paramA);
+    paramString = new Bundle();
+    Iterator localIterator = ((Map)s.k(paramMap)).keySet().iterator();
+    while (localIterator.hasNext())
+    {
+      String str = (String)localIterator.next();
+      paramString.putString(str, (String)paramMap.get(str));
+    }
+    s3.c.j(f, paramA.m0(), paramString, true);
+  }
+  
+  protected final void setStringsInternal(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    int n = ((ArrayList)s.k(paramArrayList)).size();
+    paramString = new String[n];
+    int m = 0;
+    while (m < n)
+    {
+      paramString[m] = ((String)paramArrayList.get(m));
+      m += 1;
+    }
+    s3.c.E(f, paramA.m0(), paramString, true);
+  }
+  
+  public final String toString()
+  {
+    s.l(h, "Cannot convert to JSON on client side.");
+    Parcel localParcel = d();
+    localParcel.setDataPosition(0);
+    StringBuilder localStringBuilder = new StringBuilder(100);
+    f(localStringBuilder, (Map)s.k(h.V((String)s.k(i))), localParcel);
+    return localStringBuilder.toString();
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int m = s3.c.a(paramParcel);
+    s3.c.t(paramParcel, 1, e);
+    s3.c.z(paramParcel, 2, d(), false);
+    h localH;
+    if (g != 0) {
+      localH = h;
+    } else {
+      localH = null;
+    }
+    s3.c.B(paramParcel, 3, localH, paramInt, false);
+    s3.c.b(paramParcel, m);
+  }
+  
+  protected final void zab(a.a paramA, String paramString, BigDecimal paramBigDecimal)
+  {
+    e(paramA);
+    s3.c.c(f, paramA.m0(), paramBigDecimal, true);
+  }
+  
+  protected final void zad(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    int n = ((ArrayList)s.k(paramArrayList)).size();
+    paramString = new BigDecimal[n];
+    int m = 0;
+    while (m < n)
+    {
+      paramString[m] = ((BigDecimal)paramArrayList.get(m));
+      m += 1;
+    }
+    s3.c.d(f, paramA.m0(), paramString, true);
+  }
+  
+  protected final void zaf(a.a paramA, String paramString, BigInteger paramBigInteger)
+  {
+    e(paramA);
+    s3.c.e(f, paramA.m0(), paramBigInteger, true);
+  }
+  
+  protected final void zah(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    int n = ((ArrayList)s.k(paramArrayList)).size();
+    paramString = new BigInteger[n];
+    int m = 0;
+    while (m < n)
+    {
+      paramString[m] = ((BigInteger)paramArrayList.get(m));
+      m += 1;
+    }
+    s3.c.f(f, paramA.m0(), paramString, true);
+  }
+  
+  protected final void zak(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    int n = ((ArrayList)s.k(paramArrayList)).size();
+    paramString = new boolean[n];
+    int m = 0;
+    while (m < n)
+    {
+      paramString[m] = ((Boolean)paramArrayList.get(m)).booleanValue();
+      m += 1;
+    }
+    s3.c.h(f, paramA.m0(), paramString, true);
+  }
+  
+  protected final void zan(a.a paramA, String paramString, double paramDouble)
+  {
+    e(paramA);
+    s3.c.m(f, paramA.m0(), paramDouble);
+  }
+  
+  protected final void zap(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    int n = ((ArrayList)s.k(paramArrayList)).size();
+    paramString = new double[n];
+    int m = 0;
+    while (m < n)
+    {
+      paramString[m] = ((Double)paramArrayList.get(m)).doubleValue();
+      m += 1;
+    }
+    s3.c.n(f, paramA.m0(), paramString, true);
+  }
+  
+  protected final void zar(a.a paramA, String paramString, float paramFloat)
+  {
+    e(paramA);
+    s3.c.p(f, paramA.m0(), paramFloat);
+  }
+  
+  protected final void zat(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    int n = ((ArrayList)s.k(paramArrayList)).size();
+    paramString = new float[n];
+    int m = 0;
+    while (m < n)
+    {
+      paramString[m] = ((Float)paramArrayList.get(m)).floatValue();
+      m += 1;
+    }
+    s3.c.q(f, paramA.m0(), paramString, true);
+  }
+  
+  protected final void zaw(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    int n = ((ArrayList)s.k(paramArrayList)).size();
+    paramString = new int[n];
+    int m = 0;
+    while (m < n)
+    {
+      paramString[m] = ((Integer)paramArrayList.get(m)).intValue();
+      m += 1;
+    }
+    s3.c.u(f, paramA.m0(), paramString, true);
+  }
+  
+  protected final void zaz(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    e(paramA);
+    int n = ((ArrayList)s.k(paramArrayList)).size();
+    paramString = new long[n];
+    int m = 0;
+    while (m < n)
+    {
+      paramString[m] = ((Long)paramArrayList.get(m)).longValue();
+      m += 1;
+    }
+    s3.c.x(f, paramA.m0(), paramString, true);
+  }
+}

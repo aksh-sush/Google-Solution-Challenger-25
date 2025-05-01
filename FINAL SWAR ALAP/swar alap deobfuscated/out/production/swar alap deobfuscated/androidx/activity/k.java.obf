@@ -1,0 +1,102 @@
+package androidx.activity;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.window.OnBackInvokedDispatcher;
+import androidx.lifecycle.i.a;
+import androidx.lifecycle.n;
+import androidx.lifecycle.o;
+import androidx.savedstate.a;
+import db.l;
+import u0.c;
+import u0.c.a;
+import u0.d;
+
+public abstract class k
+  extends Dialog
+  implements n, q, d
+{
+  private o e;
+  private final c f = c.d.a(this);
+  private final OnBackPressedDispatcher g = new OnBackPressedDispatcher(new j(this));
+  
+  public k(Context paramContext, int paramInt)
+  {
+    super(paramContext, paramInt);
+  }
+  
+  private final o c()
+  {
+    o localO2 = e;
+    o localO1 = localO2;
+    if (localO2 == null)
+    {
+      localO1 = new o(this);
+      e = localO1;
+    }
+    return localO1;
+  }
+  
+  private static final void e(k paramK)
+  {
+    l.e(paramK, "this$0");
+    paramK.onBackPressed();
+  }
+  
+  public androidx.lifecycle.i getLifecycle()
+  {
+    return c();
+  }
+  
+  public final OnBackPressedDispatcher getOnBackPressedDispatcher()
+  {
+    return g;
+  }
+  
+  public a getSavedStateRegistry()
+  {
+    return f.b();
+  }
+  
+  public void onBackPressed()
+  {
+    g.k();
+  }
+  
+  protected void onCreate(Bundle paramBundle)
+  {
+    super.onCreate(paramBundle);
+    if (Build.VERSION.SDK_INT >= 33)
+    {
+      OnBackPressedDispatcher localOnBackPressedDispatcher = g;
+      OnBackInvokedDispatcher localOnBackInvokedDispatcher = i.a(this);
+      l.d(localOnBackInvokedDispatcher, "onBackInvokedDispatcher");
+      localOnBackPressedDispatcher.n(localOnBackInvokedDispatcher);
+    }
+    f.d(paramBundle);
+    c().h(i.a.ON_CREATE);
+  }
+  
+  public Bundle onSaveInstanceState()
+  {
+    Bundle localBundle = super.onSaveInstanceState();
+    l.d(localBundle, "super.onSaveInstanceState()");
+    f.e(localBundle);
+    return localBundle;
+  }
+  
+  protected void onStart()
+  {
+    super.onStart();
+    c().h(i.a.ON_RESUME);
+  }
+  
+  protected void onStop()
+  {
+    c().h(i.a.ON_DESTROY);
+    e = null;
+    super.onStop();
+  }
+}

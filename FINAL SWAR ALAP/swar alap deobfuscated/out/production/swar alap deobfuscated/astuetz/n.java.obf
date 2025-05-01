@@ -1,0 +1,7 @@
+package cb;
+
+import sa.c;
+
+public abstract interface s
+  extends c
+{}

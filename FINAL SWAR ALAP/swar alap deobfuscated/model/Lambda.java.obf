@@ -1,0 +1,26 @@
+package db;
+
+import java.io.Serializable;
+
+public abstract class m
+  implements h, Serializable
+{
+  private final int arity;
+  
+  public m(int paramInt)
+  {
+    arity = paramInt;
+  }
+  
+  public int getArity()
+  {
+    return arity;
+  }
+  
+  public String toString()
+  {
+    String str = u.f(this);
+    l.d(str, "renderLambdaToString(this)");
+    return str;
+  }
+}

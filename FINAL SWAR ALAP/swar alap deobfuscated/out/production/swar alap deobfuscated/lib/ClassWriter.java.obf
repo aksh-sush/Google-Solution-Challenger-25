@@ -1,0 +1,191 @@
+package x1;
+
+import android.app.Application;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import com.facebook.i0;
+import db.l;
+import e2.q;
+import e2.r;
+import e2.w;
+import java.math.BigDecimal;
+import java.util.Currency;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import org.json.JSONException;
+import org.json.JSONObject;
+import p1.e0;
+import p1.o;
+import p1.o.a;
+
+public final class i
+{
+  public static final i a = new i();
+  private static final String b = i.class.getCanonicalName();
+  private static final e0 c = new e0(i0.l());
+  
+  private i() {}
+  
+  private final a a(String paramString1, String paramString2)
+  {
+    return b(paramString1, paramString2, new HashMap());
+  }
+  
+  private final a b(String paramString1, String paramString2, Map paramMap)
+  {
+    for (;;)
+    {
+      try
+      {
+        Object localObject = new JSONObject(paramString1);
+        paramString2 = new JSONObject(paramString2);
+        i = 1;
+        paramString1 = new Bundle(1);
+        paramString1.putCharSequence("fb_iap_product_id", ((JSONObject)localObject).getString("productId"));
+        paramString1.putCharSequence("fb_iap_purchase_time", ((JSONObject)localObject).getString("purchaseTime"));
+        paramString1.putCharSequence("fb_iap_purchase_token", ((JSONObject)localObject).getString("purchaseToken"));
+        paramString1.putCharSequence("fb_iap_package_name", ((JSONObject)localObject).optString("packageName"));
+        paramString1.putCharSequence("fb_iap_product_title", paramString2.optString("title"));
+        paramString1.putCharSequence("fb_iap_product_description", paramString2.optString("description"));
+        String str = paramString2.optString("type");
+        paramString1.putCharSequence("fb_iap_product_type", str);
+        if (l.a(str, "subs"))
+        {
+          paramString1.putCharSequence("fb_iap_subs_auto_renewing", Boolean.toString(((JSONObject)localObject).optBoolean("autoRenewing", false)));
+          paramString1.putCharSequence("fb_iap_subs_period", paramString2.optString("subscriptionPeriod"));
+          paramString1.putCharSequence("fb_free_trial_period", paramString2.optString("freeTrialPeriod"));
+          localObject = paramString2.optString("introductoryPriceCycles");
+          l.d(localObject, "introductoryPriceCycles");
+          if (((CharSequence)localObject).length() != 0) {
+            break label347;
+          }
+          if (i == 0)
+          {
+            paramString1.putCharSequence("fb_intro_price_amount_micros", paramString2.optString("introductoryPriceAmountMicros"));
+            paramString1.putCharSequence("fb_intro_price_cycles", (CharSequence)localObject);
+          }
+        }
+        paramMap = paramMap.entrySet().iterator();
+        if (paramMap.hasNext())
+        {
+          localObject = (Map.Entry)paramMap.next();
+          paramString1.putCharSequence((String)((Map.Entry)localObject).getKey(), (String)((Map.Entry)localObject).getValue());
+          continue;
+        }
+        paramMap = new BigDecimal(paramString2.getLong("price_amount_micros") / 1000000.0D);
+        paramString2 = Currency.getInstance(paramString2.getString("price_currency_code"));
+        l.d(paramString2, "getInstance(skuDetailsJSON.getString(\"price_currency_code\"))");
+        paramString1 = new a(paramMap, paramString2, paramString1);
+        return paramString1;
+      }
+      catch (JSONException paramString1)
+      {
+        Log.e(b, "Error parsing in-app subscription data.", paramString1);
+        return null;
+      }
+      label347:
+      int i = 0;
+    }
+  }
+  
+  public static final boolean c()
+  {
+    r localR = w.f(i0.m());
+    return (localR != null) && (i0.p()) && (localR.e());
+  }
+  
+  public static final void d()
+  {
+    Context localContext = i0.l();
+    String str = i0.m();
+    if (i0.p())
+    {
+      if ((localContext instanceof Application))
+      {
+        o.b.a((Application)localContext, str);
+        return;
+      }
+      Log.w(b, "Automatic logging of basic events will not happen, because FacebookSdk.getApplicationContext() returns object that is not instance of android.app.Application. Make sure you call FacebookSdk.sdkInitialize() from Application class and pass application context.");
+    }
+  }
+  
+  public static final void e(String paramString, long paramLong)
+  {
+    Object localObject1 = i0.l();
+    Object localObject2 = w.o(i0.m(), false);
+    if ((localObject2 != null) && (((r)localObject2).a()) && (paramLong > 0L))
+    {
+      localObject1 = new e0((Context)localObject1);
+      localObject2 = new Bundle(1);
+      ((Bundle)localObject2).putCharSequence("fb_aa_time_spent_view_name", paramString);
+      ((e0)localObject1).c("fb_aa_time_spent_on_view", paramLong, (Bundle)localObject2);
+    }
+  }
+  
+  public static final void f(String paramString1, String paramString2, boolean paramBoolean)
+  {
+    l.e(paramString1, "purchase");
+    l.e(paramString2, "skuDetails");
+    if (!c()) {
+      return;
+    }
+    a localA = a.a(paramString1, paramString2);
+    if (localA == null) {
+      return;
+    }
+    int j = 0;
+    int i = j;
+    if (paramBoolean)
+    {
+      paramString1 = q.a;
+      i = j;
+      if (q.d("app_events_if_auto_log_subs", i0.m(), false)) {
+        i = 1;
+      }
+    }
+    if (i != 0)
+    {
+      if (v1.i.a.m(paramString2)) {
+        paramString1 = "StartTrial";
+      } else {
+        paramString1 = "Subscribe";
+      }
+      c.i(paramString1, localA.c(), localA.a(), localA.b());
+      return;
+    }
+    c.j(localA.c(), localA.a(), localA.b());
+  }
+  
+  private static final class a
+  {
+    private BigDecimal a;
+    private Currency b;
+    private Bundle c;
+    
+    public a(BigDecimal paramBigDecimal, Currency paramCurrency, Bundle paramBundle)
+    {
+      a = paramBigDecimal;
+      b = paramCurrency;
+      c = paramBundle;
+    }
+    
+    public final Currency a()
+    {
+      return b;
+    }
+    
+    public final Bundle b()
+    {
+      return c;
+    }
+    
+    public final BigDecimal c()
+    {
+      return a;
+    }
+  }
+}

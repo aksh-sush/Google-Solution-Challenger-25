@@ -1,0 +1,40 @@
+package androidx.activity;
+
+import android.window.BackEvent;
+import db.l;
+
+public final class a
+{
+  public static final a a = new a();
+  
+  private a() {}
+  
+  public final BackEvent a(float paramFloat1, float paramFloat2, float paramFloat3, int paramInt)
+  {
+    return new BackEvent(paramFloat1, paramFloat2, paramFloat3, paramInt);
+  }
+  
+  public final float b(BackEvent paramBackEvent)
+  {
+    l.e(paramBackEvent, "backEvent");
+    return paramBackEvent.getProgress();
+  }
+  
+  public final int c(BackEvent paramBackEvent)
+  {
+    l.e(paramBackEvent, "backEvent");
+    return paramBackEvent.getSwipeEdge();
+  }
+  
+  public final float d(BackEvent paramBackEvent)
+  {
+    l.e(paramBackEvent, "backEvent");
+    return paramBackEvent.getTouchX();
+  }
+  
+  public final float e(BackEvent paramBackEvent)
+  {
+    l.e(paramBackEvent, "backEvent");
+    return paramBackEvent.getTouchY();
+  }
+}

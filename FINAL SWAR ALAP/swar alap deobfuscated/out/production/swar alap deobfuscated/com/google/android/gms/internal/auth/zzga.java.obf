@@ -1,0 +1,63 @@
+package com.google.android.gms.internal.auth;
+
+final class zzga
+  implements zzgh
+{
+  private final zzfw zza;
+  private final zzgy zzb;
+  private final zzel zzc;
+  
+  private zzga(zzgy paramZzgy, zzel paramZzel, zzfw paramZzfw)
+  {
+    zzb = paramZzgy;
+    zzc = paramZzel;
+    zza = paramZzfw;
+  }
+  
+  static zzga zzb(zzgy paramZzgy, zzel paramZzel, zzfw paramZzfw)
+  {
+    return new zzga(paramZzgy, paramZzel, paramZzfw);
+  }
+  
+  public final int zza(Object paramObject)
+  {
+    return zzb.zza(paramObject).hashCode();
+  }
+  
+  public final Object zzd()
+  {
+    return ((zzes)((zzeu)zza).zzi(5, null, null)).zzg();
+  }
+  
+  public final void zze(Object paramObject)
+  {
+    zzb.zze(paramObject);
+    zzc.zzb(paramObject);
+  }
+  
+  public final void zzf(Object paramObject1, Object paramObject2)
+  {
+    zzgj.zzf(zzb, paramObject1, paramObject2);
+  }
+  
+  public final void zzg(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, zzds paramZzds)
+  {
+    paramArrayOfByte = (zzeu)paramObject;
+    if (zzc == zzgz.zza()) {
+      zzc = zzgz.zzc();
+    }
+    paramObject = (zzet)paramObject;
+    throw null;
+  }
+  
+  public final boolean zzh(Object paramObject1, Object paramObject2)
+  {
+    return zzb.zza(paramObject1).equals(zzb.zza(paramObject2));
+  }
+  
+  public final boolean zzi(Object paramObject)
+  {
+    zzc.zza(paramObject);
+    throw null;
+  }
+}

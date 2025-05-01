@@ -1,0 +1,69 @@
+package androidx.core.view;
+
+import android.view.ViewGroup.MarginLayoutParams;
+
+public abstract class r
+{
+  public static int a(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+  {
+    return a.b(paramMarginLayoutParams);
+  }
+  
+  public static int b(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+  {
+    return a.c(paramMarginLayoutParams);
+  }
+  
+  public static void c(ViewGroup.MarginLayoutParams paramMarginLayoutParams, int paramInt)
+  {
+    a.g(paramMarginLayoutParams, paramInt);
+  }
+  
+  public static void d(ViewGroup.MarginLayoutParams paramMarginLayoutParams, int paramInt)
+  {
+    a.h(paramMarginLayoutParams, paramInt);
+  }
+  
+  static abstract class a
+  {
+    static int a(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+    {
+      return paramMarginLayoutParams.getLayoutDirection();
+    }
+    
+    static int b(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+    {
+      return paramMarginLayoutParams.getMarginEnd();
+    }
+    
+    static int c(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+    {
+      return paramMarginLayoutParams.getMarginStart();
+    }
+    
+    static boolean d(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+    {
+      return paramMarginLayoutParams.isMarginRelative();
+    }
+    
+    static void e(ViewGroup.MarginLayoutParams paramMarginLayoutParams, int paramInt)
+    {
+      paramMarginLayoutParams.resolveLayoutDirection(paramInt);
+    }
+    
+    static void f(ViewGroup.MarginLayoutParams paramMarginLayoutParams, int paramInt)
+    {
+      paramMarginLayoutParams.setLayoutDirection(paramInt);
+    }
+    
+    static void g(ViewGroup.MarginLayoutParams paramMarginLayoutParams, int paramInt)
+    {
+      paramMarginLayoutParams.setMarginEnd(paramInt);
+    }
+    
+    static void h(ViewGroup.MarginLayoutParams paramMarginLayoutParams, int paramInt)
+    {
+      paramMarginLayoutParams.setMarginStart(paramInt);
+    }
+  }
+}

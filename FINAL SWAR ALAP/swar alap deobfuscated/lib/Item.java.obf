@@ -1,0 +1,70 @@
+package x1;
+
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
+import com.facebook.i0;
+
+public final class o
+{
+  public static final a c = new a(null);
+  private final String a;
+  private final boolean b;
+  
+  private o(String paramString, boolean paramBoolean)
+  {
+    a = paramString;
+    b = paramBoolean;
+  }
+  
+  public final void a()
+  {
+    SharedPreferences.Editor localEditor = PreferenceManager.getDefaultSharedPreferences(i0.l()).edit();
+    localEditor.putString("com.facebook.appevents.SourceApplicationInfo.callingApplicationPackage", a);
+    localEditor.putBoolean("com.facebook.appevents.SourceApplicationInfo.openedByApplink", b);
+    localEditor.apply();
+  }
+  
+  public String toString()
+  {
+    String str;
+    if (b) {
+      str = "Applink";
+    } else {
+      str = "Unclassified";
+    }
+    Object localObject = str;
+    if (a != null)
+    {
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append(str);
+      ((StringBuilder)localObject).append('(');
+      ((StringBuilder)localObject).append(a);
+      ((StringBuilder)localObject).append(')');
+      localObject = ((StringBuilder)localObject).toString();
+    }
+    return localObject;
+  }
+  
+  public static final class a
+  {
+    private a() {}
+    
+    public final void a()
+    {
+      SharedPreferences.Editor localEditor = PreferenceManager.getDefaultSharedPreferences(i0.l()).edit();
+      localEditor.remove("com.facebook.appevents.SourceApplicationInfo.callingApplicationPackage");
+      localEditor.remove("com.facebook.appevents.SourceApplicationInfo.openedByApplink");
+      localEditor.apply();
+    }
+    
+    public final o b()
+    {
+      SharedPreferences localSharedPreferences = PreferenceManager.getDefaultSharedPreferences(i0.l());
+      if (!localSharedPreferences.contains("com.facebook.appevents.SourceApplicationInfo.callingApplicationPackage")) {
+        return null;
+      }
+      return new o(localSharedPreferences.getString("com.facebook.appevents.SourceApplicationInfo.callingApplicationPackage", null), localSharedPreferences.getBoolean("com.facebook.appevents.SourceApplicationInfo.openedByApplink", false), null);
+    }
+  }
+}

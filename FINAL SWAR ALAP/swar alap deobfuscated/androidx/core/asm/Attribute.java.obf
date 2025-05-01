@@ -1,0 +1,398 @@
+package androidx.core.app;
+
+import android.app.Notification;
+import android.app.Notification.Action.Builder;
+import android.app.Notification.Builder;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.graphics.drawable.Icon;
+import android.os.BaseBundle;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.RemoteViews;
+import androidx.core.graphics.drawable.IconCompat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+class h0
+  implements j
+{
+  private final Context a;
+  private final Notification.Builder b;
+  private final k.e c;
+  private RemoteViews d;
+  private RemoteViews e;
+  private final List f = new ArrayList();
+  private final Bundle g = new Bundle();
+  private int h;
+  private RemoteViews i;
+  
+  h0(k.e paramE)
+  {
+    c = paramE;
+    a = a;
+    if (Build.VERSION.SDK_INT >= 26)
+    {
+      t.a();
+      localObject1 = s.a(a, K);
+    }
+    else
+    {
+      localObject1 = new Notification.Builder(a);
+    }
+    b = ((Notification.Builder)localObject1);
+    Notification localNotification = R;
+    Object localObject1 = b.setWhen(when).setSmallIcon(icon, iconLevel).setContent(contentView).setTicker(tickerText, i).setVibrate(vibrate).setLights(ledARGB, ledOnMS, ledOffMS);
+    boolean bool;
+    if ((flags & 0x2) != 0) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    localObject1 = ((Notification.Builder)localObject1).setOngoing(bool);
+    if ((flags & 0x8) != 0) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    localObject1 = ((Notification.Builder)localObject1).setOnlyAlertOnce(bool);
+    if ((flags & 0x10) != 0) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    localObject1 = ((Notification.Builder)localObject1).setAutoCancel(bool).setDefaults(defaults).setContentTitle(e).setContentText(f).setContentInfo(k).setContentIntent(g).setDeleteIntent(deleteIntent);
+    Object localObject2 = h;
+    if ((flags & 0x80) != 0) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    ((Notification.Builder)localObject1).setFullScreenIntent((PendingIntent)localObject2, bool).setLargeIcon(j).setNumber(l).setProgress(t, u, v);
+    b.setSubText(q).setUsesChronometer(o).setPriority(m);
+    localObject1 = b.iterator();
+    while (((Iterator)localObject1).hasNext()) {
+      b((k.a)((Iterator)localObject1).next());
+    }
+    localObject1 = D;
+    if (localObject1 != null) {
+      g.putAll((Bundle)localObject1);
+    }
+    int j = Build.VERSION.SDK_INT;
+    d = H;
+    e = I;
+    b.setShowWhen(n);
+    b.setLocalOnly(z).setGroup(w).setGroupSummary(x).setSortKey(y);
+    h = O;
+    b.setCategory(C).setColor(E).setVisibility(F).setPublicVersion(G).setSound(sound, audioAttributes);
+    if (j < 28) {
+      localObject1 = e(g(c), U);
+    } else {
+      localObject1 = U;
+    }
+    if ((localObject1 != null) && (!((List)localObject1).isEmpty()))
+    {
+      localObject1 = ((List)localObject1).iterator();
+      while (((Iterator)localObject1).hasNext())
+      {
+        localObject2 = (String)((Iterator)localObject1).next();
+        b.addPerson((String)localObject2);
+      }
+    }
+    i = J;
+    if (d.size() > 0)
+    {
+      localObject2 = paramE.d().getBundle("android.car.EXTENSIONS");
+      localObject1 = localObject2;
+      if (localObject2 == null) {
+        localObject1 = new Bundle();
+      }
+      localObject2 = new Bundle((Bundle)localObject1);
+      Bundle localBundle = new Bundle();
+      j = 0;
+      while (j < d.size())
+      {
+        localBundle.putBundle(Integer.toString(j), i0.a((k.a)d.get(j)));
+        j += 1;
+      }
+      ((Bundle)localObject1).putBundle("invisible_actions", localBundle);
+      ((Bundle)localObject2).putBundle("invisible_actions", localBundle);
+      paramE.d().putBundle("android.car.EXTENSIONS", (Bundle)localObject1);
+      g.putBundle("android.car.EXTENSIONS", (Bundle)localObject2);
+    }
+    j = Build.VERSION.SDK_INT;
+    if (j >= 23)
+    {
+      localObject1 = T;
+      if (localObject1 != null) {
+        l.a(b, (Icon)localObject1);
+      }
+    }
+    if (j >= 24)
+    {
+      d0.a(b.setExtras(D), s);
+      localObject1 = H;
+      if (localObject1 != null) {
+        e0.a(b, (RemoteViews)localObject1);
+      }
+      localObject1 = I;
+      if (localObject1 != null) {
+        f0.a(b, (RemoteViews)localObject1);
+      }
+      localObject1 = J;
+      if (localObject1 != null) {
+        g0.a(b, (RemoteViews)localObject1);
+      }
+    }
+    if (j >= 26)
+    {
+      c0.a(p.a(o.a(n.a(m.a(b, L), r), M), N), O);
+      if (B) {
+        w.a(b, A);
+      }
+      if (!TextUtils.isEmpty(K)) {
+        b.setSound(null).setDefaults(0).setLights(0, 0, 0).setVibrate(null);
+      }
+    }
+    if (j >= 28)
+    {
+      localObject1 = c.iterator();
+      if (((Iterator)localObject1).hasNext())
+      {
+        android.support.v4.media.session.b.a(((Iterator)localObject1).next());
+        throw null;
+      }
+    }
+    if (j >= 29)
+    {
+      z.a(b, Q);
+      a0.a(b, k.d.a(null));
+    }
+    int k;
+    if (j >= 31)
+    {
+      k = P;
+      if (k != 0) {
+        b0.a(b, k);
+      }
+    }
+    if (S)
+    {
+      if (c.x) {
+        h = 2;
+      } else {
+        h = 1;
+      }
+      b.setVibrate(null);
+      b.setSound(null);
+      k = defaults & 0xFFFFFFFE & 0xFFFFFFFD;
+      defaults = k;
+      b.setDefaults(k);
+      if (j >= 26)
+      {
+        if (TextUtils.isEmpty(c.w)) {
+          b.setGroup("silent");
+        }
+        c0.a(b, h);
+      }
+    }
+  }
+  
+  private void b(k.a paramA)
+  {
+    int j = Build.VERSION.SDK_INT;
+    Object localObject1 = paramA.d();
+    int k = 0;
+    if (j >= 23)
+    {
+      r.a();
+      if (localObject1 != null) {
+        localObject1 = ((IconCompat)localObject1).l();
+      } else {
+        localObject1 = null;
+      }
+      localObject1 = q.a((Icon)localObject1, paramA.h(), paramA.a());
+    }
+    else
+    {
+      if (localObject1 != null) {
+        j = ((IconCompat)localObject1).e();
+      } else {
+        j = 0;
+      }
+      localObject1 = new Notification.Action.Builder(j, paramA.h(), paramA.a());
+    }
+    Object localObject2;
+    if (paramA.e() != null)
+    {
+      localObject2 = m0.b(paramA.e());
+      int m = localObject2.length;
+      j = k;
+      while (j < m)
+      {
+        ((Notification.Action.Builder)localObject1).addRemoteInput(localObject2[j]);
+        j += 1;
+      }
+    }
+    if (paramA.c() != null) {
+      localObject2 = new Bundle(paramA.c());
+    } else {
+      localObject2 = new Bundle();
+    }
+    ((Bundle)localObject2).putBoolean("android.support.allowGeneratedReplies", paramA.b());
+    j = Build.VERSION.SDK_INT;
+    if (j >= 24) {
+      u.a((Notification.Action.Builder)localObject1, paramA.b());
+    }
+    ((BaseBundle)localObject2).putInt("android.support.action.semanticAction", paramA.f());
+    if (j >= 28) {
+      v.a((Notification.Action.Builder)localObject1, paramA.f());
+    }
+    if (j >= 29) {
+      x.a((Notification.Action.Builder)localObject1, paramA.j());
+    }
+    if (j >= 31) {
+      y.a((Notification.Action.Builder)localObject1, paramA.i());
+    }
+    ((Bundle)localObject2).putBoolean("android.support.action.showsUserInterface", paramA.g());
+    ((Notification.Action.Builder)localObject1).addExtras((Bundle)localObject2);
+    b.addAction(((Notification.Action.Builder)localObject1).build());
+  }
+  
+  private static List e(List paramList1, List paramList2)
+  {
+    if (paramList1 == null) {
+      return paramList2;
+    }
+    if (paramList2 == null) {
+      return paramList1;
+    }
+    androidx.collection.b localB = new androidx.collection.b(paramList1.size() + paramList2.size());
+    localB.addAll(paramList1);
+    localB.addAll(paramList2);
+    return new ArrayList(localB);
+  }
+  
+  private static List g(List paramList)
+  {
+    if (paramList == null) {
+      return null;
+    }
+    ArrayList localArrayList = new ArrayList(paramList.size());
+    paramList = paramList.iterator();
+    if (!paramList.hasNext()) {
+      return localArrayList;
+    }
+    android.support.v4.media.session.b.a(paramList.next());
+    throw null;
+  }
+  
+  private void h(Notification paramNotification)
+  {
+    sound = null;
+    vibrate = null;
+    defaults = (defaults & 0xFFFFFFFE & 0xFFFFFFFD);
+  }
+  
+  public Notification.Builder a()
+  {
+    return b;
+  }
+  
+  public Notification c()
+  {
+    k.h localH = c.p;
+    if (localH != null) {
+      localH.b(this);
+    }
+    Object localObject;
+    if (localH != null) {
+      localObject = localH.e(this);
+    } else {
+      localObject = null;
+    }
+    Notification localNotification = d();
+    if (localObject != null) {}
+    do
+    {
+      contentView = ((RemoteViews)localObject);
+      break;
+      localObject = c.H;
+    } while (localObject != null);
+    if (localH != null)
+    {
+      localObject = localH.d(this);
+      if (localObject != null) {
+        bigContentView = ((RemoteViews)localObject);
+      }
+    }
+    if (localH != null)
+    {
+      localObject = c.p.f(this);
+      if (localObject != null) {
+        headsUpContentView = ((RemoteViews)localObject);
+      }
+    }
+    if (localH != null)
+    {
+      localObject = k.a(localNotification);
+      if (localObject != null) {
+        localH.a((Bundle)localObject);
+      }
+    }
+    return localNotification;
+  }
+  
+  protected Notification d()
+  {
+    int j = Build.VERSION.SDK_INT;
+    if (j >= 26) {
+      return b.build();
+    }
+    if (j >= 24)
+    {
+      localNotification = b.build();
+      if (h != 0)
+      {
+        if ((localNotification.getGroup() != null) && ((flags & 0x200) != 0) && (h == 2)) {
+          h(localNotification);
+        }
+        if ((localNotification.getGroup() != null) && ((flags & 0x200) == 0) && (h == 1)) {
+          h(localNotification);
+        }
+      }
+      return localNotification;
+    }
+    b.setExtras(g);
+    Notification localNotification = b.build();
+    RemoteViews localRemoteViews = d;
+    if (localRemoteViews != null) {
+      contentView = localRemoteViews;
+    }
+    localRemoteViews = e;
+    if (localRemoteViews != null) {
+      bigContentView = localRemoteViews;
+    }
+    localRemoteViews = i;
+    if (localRemoteViews != null) {
+      headsUpContentView = localRemoteViews;
+    }
+    if (h != 0)
+    {
+      if ((localNotification.getGroup() != null) && ((flags & 0x200) != 0) && (h == 2)) {
+        h(localNotification);
+      }
+      if ((localNotification.getGroup() != null) && ((flags & 0x200) == 0) && (h == 1)) {
+        h(localNotification);
+      }
+    }
+    return localNotification;
+  }
+  
+  Context f()
+  {
+    return a;
+  }
+}

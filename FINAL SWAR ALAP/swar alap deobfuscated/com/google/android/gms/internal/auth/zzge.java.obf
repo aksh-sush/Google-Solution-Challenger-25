@@ -1,0 +1,37 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+final class zzge
+{
+  private static final zzge zza = new zzge();
+  private final zzgi zzb = new zzfo();
+  private final ConcurrentMap zzc = new ConcurrentHashMap();
+  
+  private zzge() {}
+  
+  public static zzge zza()
+  {
+    return zza;
+  }
+  
+  public final zzgh zzb(Class paramClass)
+  {
+    zzez.zzf(paramClass, "messageType");
+    zzgh localZzgh = (zzgh)zzc.get(paramClass);
+    if (localZzgh == null)
+    {
+      localZzgh = zzb.zza(paramClass);
+      zzez.zzf(paramClass, "messageType");
+      zzez.zzf(localZzgh, "schema");
+      paramClass = (zzgh)zzc.putIfAbsent(paramClass, localZzgh);
+      if (paramClass == null) {
+        return localZzgh;
+      }
+      return paramClass;
+    }
+    return localZzgh;
+  }
+}

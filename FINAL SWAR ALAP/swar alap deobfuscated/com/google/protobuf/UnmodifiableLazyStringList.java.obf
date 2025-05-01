@@ -1,0 +1,138 @@
+package com.google.protobuf;
+
+import java.util.AbstractList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+
+public class w1
+  extends AbstractList
+  implements i0, RandomAccess
+{
+  private final i0 e;
+  
+  public w1(i0 paramI0)
+  {
+    e = paramI0;
+  }
+  
+  public i0 B()
+  {
+    return this;
+  }
+  
+  public Object G(int paramInt)
+  {
+    return e.G(paramInt);
+  }
+  
+  public List R()
+  {
+    return e.R();
+  }
+  
+  public String d(int paramInt)
+  {
+    return (String)e.get(paramInt);
+  }
+  
+  public Iterator iterator()
+  {
+    return new b();
+  }
+  
+  public ListIterator listIterator(final int paramInt)
+  {
+    return new a(paramInt);
+  }
+  
+  public void n(j paramJ)
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public int size()
+  {
+    return e.size();
+  }
+  
+  class a
+    implements ListIterator
+  {
+    ListIterator e;
+    
+    a(int paramInt)
+    {
+      e = w1.b(w1.this).listIterator(paramInt);
+    }
+    
+    public void b(String paramString)
+    {
+      throw new UnsupportedOperationException();
+    }
+    
+    public String c()
+    {
+      return (String)e.next();
+    }
+    
+    public String d()
+    {
+      return (String)e.previous();
+    }
+    
+    public void e(String paramString)
+    {
+      throw new UnsupportedOperationException();
+    }
+    
+    public boolean hasNext()
+    {
+      return e.hasNext();
+    }
+    
+    public boolean hasPrevious()
+    {
+      return e.hasPrevious();
+    }
+    
+    public int nextIndex()
+    {
+      return e.nextIndex();
+    }
+    
+    public int previousIndex()
+    {
+      return e.previousIndex();
+    }
+    
+    public void remove()
+    {
+      throw new UnsupportedOperationException();
+    }
+  }
+  
+  class b
+    implements Iterator
+  {
+    Iterator e = w1.b(w1.this).iterator();
+    
+    b() {}
+    
+    public String b()
+    {
+      return (String)e.next();
+    }
+    
+    public boolean hasNext()
+    {
+      return e.hasNext();
+    }
+    
+    public void remove()
+    {
+      throw new UnsupportedOperationException();
+    }
+  }
+}

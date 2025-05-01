@@ -1,0 +1,719 @@
+package com.google.android.gms.common.server.response;
+
+import android.os.Parcel;
+import android.util.Log;
+import com.google.android.gms.common.internal.q;
+import com.google.android.gms.common.internal.q.a;
+import com.google.android.gms.common.internal.s;
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import w3.b;
+import y3.l;
+import y3.m;
+
+public abstract class a
+{
+  public a() {}
+  
+  private final void a(a paramA, Object paramObject)
+  {
+    String str = j;
+    paramObject = paramA.A0(paramObject);
+    int i = h;
+    switch (i)
+    {
+    case 3: 
+    default: 
+      paramA = new StringBuilder(44);
+      paramA.append("Unsupported type for conversion: ");
+      paramA.append(i);
+      throw new IllegalStateException(paramA.toString());
+    case 8: 
+    case 9: 
+      if (paramObject != null)
+      {
+        setDecodedBytesInternal(paramA, str, (byte[])paramObject);
+        return;
+      }
+      c(str);
+      return;
+    case 7: 
+      setStringInternal(paramA, str, (String)paramObject);
+      return;
+    case 6: 
+      if (paramObject != null)
+      {
+        setBooleanInternal(paramA, str, ((Boolean)paramObject).booleanValue());
+        return;
+      }
+      c(str);
+      return;
+    case 5: 
+      zab(paramA, str, (BigDecimal)paramObject);
+      return;
+    case 4: 
+      if (paramObject != null)
+      {
+        zan(paramA, str, ((Double)paramObject).doubleValue());
+        return;
+      }
+      c(str);
+      return;
+    case 2: 
+      if (paramObject != null)
+      {
+        setLongInternal(paramA, str, ((Long)paramObject).longValue());
+        return;
+      }
+      c(str);
+      return;
+    case 1: 
+      zaf(paramA, str, (BigInteger)paramObject);
+      return;
+    }
+    if (paramObject != null)
+    {
+      setIntegerInternal(paramA, str, ((Integer)paramObject).intValue());
+      return;
+    }
+    c(str);
+  }
+  
+  private static final void b(StringBuilder paramStringBuilder, a paramA, Object paramObject)
+  {
+    int i = f;
+    if (i != 11) {
+      if (i == 7)
+      {
+        paramA = "\"";
+        paramStringBuilder.append("\"");
+        paramStringBuilder.append(l.a((String)paramObject));
+      }
+    }
+    for (;;)
+    {
+      paramStringBuilder.append(paramA);
+      return;
+      paramStringBuilder.append(paramObject);
+      return;
+      paramA = l;
+      s.k(paramA);
+      paramA = ((a)paramA.cast(paramObject)).toString();
+    }
+  }
+  
+  private static final void c(String paramString)
+  {
+    if (Log.isLoggable("FastJsonResponse", 6))
+    {
+      StringBuilder localStringBuilder = new StringBuilder(String.valueOf(paramString).length() + 58);
+      localStringBuilder.append("Output field (");
+      localStringBuilder.append(paramString);
+      localStringBuilder.append(") has a null value, but expected a primitive");
+      Log.e("FastJsonResponse", localStringBuilder.toString());
+    }
+  }
+  
+  protected static final <O, I> I zaD(a paramA, Object paramObject)
+  {
+    if (a.y0(paramA) != null) {
+      return paramA.B0(paramObject);
+    }
+    return paramObject;
+  }
+  
+  public <T extends a> void addConcreteTypeArrayInternal(a paramA, String paramString, ArrayList<T> paramArrayList)
+  {
+    throw new UnsupportedOperationException("Concrete type array not supported");
+  }
+  
+  public <T extends a> void addConcreteTypeInternal(a paramA, String paramString, T paramT)
+  {
+    throw new UnsupportedOperationException("Concrete type not supported");
+  }
+  
+  public abstract Map<String, a> getFieldMappings();
+  
+  protected Object getFieldValue(a paramA)
+  {
+    Object localObject = j;
+    if (l != null)
+    {
+      boolean bool;
+      if (getValueObject((String)localObject) == null) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      s.p(bool, "Concrete field shouldn't be value object: %s", new Object[] { j });
+      try
+      {
+        char c = Character.toUpperCase(((String)localObject).charAt(0));
+        paramA = ((String)localObject).substring(1);
+        localObject = new StringBuilder(String.valueOf(paramA).length() + 4);
+        ((StringBuilder)localObject).append("get");
+        ((StringBuilder)localObject).append(c);
+        ((StringBuilder)localObject).append(paramA);
+        paramA = getClass().getMethod(((StringBuilder)localObject).toString(), new Class[0]).invoke(this, new Object[0]);
+        return paramA;
+      }
+      catch (Exception paramA)
+      {
+        throw new RuntimeException(paramA);
+      }
+    }
+    return getValueObject((String)localObject);
+  }
+  
+  protected abstract Object getValueObject(String paramString);
+  
+  protected boolean isFieldSet(a paramA)
+  {
+    if (h == 11)
+    {
+      if (i) {
+        throw new UnsupportedOperationException("Concrete type arrays not supported");
+      }
+      throw new UnsupportedOperationException("Concrete types not supported");
+    }
+    return isPrimitiveFieldSet(j);
+  }
+  
+  protected abstract boolean isPrimitiveFieldSet(String paramString);
+  
+  protected void setBooleanInternal(a paramA, String paramString, boolean paramBoolean)
+  {
+    throw new UnsupportedOperationException("Boolean not supported");
+  }
+  
+  protected void setDecodedBytesInternal(a paramA, String paramString, byte[] paramArrayOfByte)
+  {
+    throw new UnsupportedOperationException("byte[] not supported");
+  }
+  
+  protected void setIntegerInternal(a paramA, String paramString, int paramInt)
+  {
+    throw new UnsupportedOperationException("Integer not supported");
+  }
+  
+  protected void setLongInternal(a paramA, String paramString, long paramLong)
+  {
+    throw new UnsupportedOperationException("Long not supported");
+  }
+  
+  protected void setStringInternal(a paramA, String paramString1, String paramString2)
+  {
+    throw new UnsupportedOperationException("String not supported");
+  }
+  
+  protected void setStringMapInternal(a paramA, String paramString, Map<String, String> paramMap)
+  {
+    throw new UnsupportedOperationException("String map not supported");
+  }
+  
+  protected void setStringsInternal(a paramA, String paramString, ArrayList<String> paramArrayList)
+  {
+    throw new UnsupportedOperationException("String list not supported");
+  }
+  
+  public String toString()
+  {
+    Map localMap = getFieldMappings();
+    StringBuilder localStringBuilder = new StringBuilder(100);
+    Iterator localIterator = localMap.keySet().iterator();
+    Object localObject1;
+    while (localIterator.hasNext())
+    {
+      Object localObject2 = (String)localIterator.next();
+      localObject1 = (a)localMap.get(localObject2);
+      if (isFieldSet((a)localObject1))
+      {
+        Object localObject3 = zaD((a)localObject1, getFieldValue((a)localObject1));
+        if (localStringBuilder.length() == 0) {
+          localStringBuilder.append("{");
+        } else {
+          localStringBuilder.append(",");
+        }
+        localStringBuilder.append("\"");
+        localStringBuilder.append((String)localObject2);
+        localStringBuilder.append("\":");
+        if (localObject3 == null) {}
+        for (localObject1 = "null";; localObject1 = "]")
+        {
+          localStringBuilder.append((String)localObject1);
+          break;
+          int j;
+          int i;
+          switch (h)
+          {
+          default: 
+            if (!g) {
+              break label343;
+            }
+            localObject2 = (ArrayList)localObject3;
+            localStringBuilder.append("[");
+            j = ((ArrayList)localObject2).size();
+            i = 0;
+            break;
+          case 10: 
+            m.a(localStringBuilder, (HashMap)localObject3);
+            break;
+          case 9: 
+            localStringBuilder.append("\"");
+            localObject1 = y3.c.d((byte[])localObject3);
+            break;
+          case 8: 
+            localStringBuilder.append("\"");
+            localObject1 = y3.c.c((byte[])localObject3);
+            localStringBuilder.append((String)localObject1);
+            localStringBuilder.append("\"");
+            break;
+            while (i < j)
+            {
+              if (i > 0) {
+                localStringBuilder.append(",");
+              }
+              localObject3 = ((ArrayList)localObject2).get(i);
+              if (localObject3 != null) {
+                b(localStringBuilder, (a)localObject1, localObject3);
+              }
+              i += 1;
+            }
+          }
+        }
+        label343:
+        b(localStringBuilder, (a)localObject1, localObject3);
+      }
+    }
+    if (localStringBuilder.length() > 0) {
+      localObject1 = "}";
+    } else {
+      localObject1 = "{}";
+    }
+    localStringBuilder.append((String)localObject1);
+    return localStringBuilder.toString();
+  }
+  
+  public final <O> void zaA(a paramA, String paramString)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramString);
+      return;
+    }
+    setStringInternal(paramA, j, paramString);
+  }
+  
+  public final <O> void zaB(a paramA, Map<String, String> paramMap)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramMap);
+      return;
+    }
+    setStringMapInternal(paramA, j, paramMap);
+  }
+  
+  public final <O> void zaC(a paramA, ArrayList<String> paramArrayList)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayList);
+      return;
+    }
+    setStringsInternal(paramA, j, paramArrayList);
+  }
+  
+  public final <O> void zaa(a paramA, BigDecimal paramBigDecimal)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramBigDecimal);
+      return;
+    }
+    zab(paramA, j, paramBigDecimal);
+  }
+  
+  protected void zab(a paramA, String paramString, BigDecimal paramBigDecimal)
+  {
+    throw new UnsupportedOperationException("BigDecimal not supported");
+  }
+  
+  public final <O> void zac(a paramA, ArrayList<BigDecimal> paramArrayList)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayList);
+      return;
+    }
+    zad(paramA, j, paramArrayList);
+  }
+  
+  protected void zad(a paramA, String paramString, ArrayList<BigDecimal> paramArrayList)
+  {
+    throw new UnsupportedOperationException("BigDecimal list not supported");
+  }
+  
+  public final <O> void zae(a paramA, BigInteger paramBigInteger)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramBigInteger);
+      return;
+    }
+    zaf(paramA, j, paramBigInteger);
+  }
+  
+  protected void zaf(a paramA, String paramString, BigInteger paramBigInteger)
+  {
+    throw new UnsupportedOperationException("BigInteger not supported");
+  }
+  
+  public final <O> void zag(a paramA, ArrayList<BigInteger> paramArrayList)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayList);
+      return;
+    }
+    zah(paramA, j, paramArrayList);
+  }
+  
+  protected void zah(a paramA, String paramString, ArrayList<BigInteger> paramArrayList)
+  {
+    throw new UnsupportedOperationException("BigInteger list not supported");
+  }
+  
+  public final <O> void zai(a paramA, boolean paramBoolean)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, Boolean.valueOf(paramBoolean));
+      return;
+    }
+    setBooleanInternal(paramA, j, paramBoolean);
+  }
+  
+  public final <O> void zaj(a paramA, ArrayList<Boolean> paramArrayList)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayList);
+      return;
+    }
+    zak(paramA, j, paramArrayList);
+  }
+  
+  protected void zak(a paramA, String paramString, ArrayList<Boolean> paramArrayList)
+  {
+    throw new UnsupportedOperationException("Boolean list not supported");
+  }
+  
+  public final <O> void zal(a paramA, byte[] paramArrayOfByte)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayOfByte);
+      return;
+    }
+    setDecodedBytesInternal(paramA, j, paramArrayOfByte);
+  }
+  
+  public final <O> void zam(a paramA, double paramDouble)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, Double.valueOf(paramDouble));
+      return;
+    }
+    zan(paramA, j, paramDouble);
+  }
+  
+  protected void zan(a paramA, String paramString, double paramDouble)
+  {
+    throw new UnsupportedOperationException("Double not supported");
+  }
+  
+  public final <O> void zao(a paramA, ArrayList<Double> paramArrayList)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayList);
+      return;
+    }
+    zap(paramA, j, paramArrayList);
+  }
+  
+  protected void zap(a paramA, String paramString, ArrayList<Double> paramArrayList)
+  {
+    throw new UnsupportedOperationException("Double list not supported");
+  }
+  
+  public final <O> void zaq(a paramA, float paramFloat)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, Float.valueOf(paramFloat));
+      return;
+    }
+    zar(paramA, j, paramFloat);
+  }
+  
+  protected void zar(a paramA, String paramString, float paramFloat)
+  {
+    throw new UnsupportedOperationException("Float not supported");
+  }
+  
+  public final <O> void zas(a paramA, ArrayList<Float> paramArrayList)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayList);
+      return;
+    }
+    zat(paramA, j, paramArrayList);
+  }
+  
+  protected void zat(a paramA, String paramString, ArrayList<Float> paramArrayList)
+  {
+    throw new UnsupportedOperationException("Float list not supported");
+  }
+  
+  public final <O> void zau(a paramA, int paramInt)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, Integer.valueOf(paramInt));
+      return;
+    }
+    setIntegerInternal(paramA, j, paramInt);
+  }
+  
+  public final <O> void zav(a paramA, ArrayList<Integer> paramArrayList)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayList);
+      return;
+    }
+    zaw(paramA, j, paramArrayList);
+  }
+  
+  protected void zaw(a paramA, String paramString, ArrayList<Integer> paramArrayList)
+  {
+    throw new UnsupportedOperationException("Integer list not supported");
+  }
+  
+  public final <O> void zax(a paramA, long paramLong)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, Long.valueOf(paramLong));
+      return;
+    }
+    setLongInternal(paramA, j, paramLong);
+  }
+  
+  public final <O> void zay(a paramA, ArrayList<Long> paramArrayList)
+  {
+    if (a.y0(paramA) != null)
+    {
+      a(paramA, paramArrayList);
+      return;
+    }
+    zaz(paramA, j, paramArrayList);
+  }
+  
+  protected void zaz(a paramA, String paramString, ArrayList<Long> paramArrayList)
+  {
+    throw new UnsupportedOperationException("Long list not supported");
+  }
+  
+  public static class a
+    extends s3.a
+  {
+    public static final d CREATOR = new d();
+    private final int e;
+    protected final int f;
+    protected final boolean g;
+    protected final int h;
+    protected final boolean i;
+    protected final String j;
+    protected final int k;
+    protected final Class l;
+    protected final String m;
+    private h n;
+    private a.b o;
+    
+    a(int paramInt1, int paramInt2, boolean paramBoolean1, int paramInt3, boolean paramBoolean2, String paramString1, int paramInt4, String paramString2, b paramB)
+    {
+      e = paramInt1;
+      f = paramInt2;
+      g = paramBoolean1;
+      h = paramInt3;
+      i = paramBoolean2;
+      j = paramString1;
+      k = paramInt4;
+      if (paramString2 == null)
+      {
+        l = null;
+        m = null;
+      }
+      else
+      {
+        l = c.class;
+        m = paramString2;
+      }
+      if (paramB == null)
+      {
+        o = null;
+        return;
+      }
+      o = paramB.V();
+    }
+    
+    protected a(int paramInt1, boolean paramBoolean1, int paramInt2, boolean paramBoolean2, String paramString, int paramInt3, Class paramClass, a.b paramB)
+    {
+      e = 1;
+      f = paramInt1;
+      g = paramBoolean1;
+      h = paramInt2;
+      i = paramBoolean2;
+      j = paramString;
+      k = paramInt3;
+      l = paramClass;
+      if (paramClass == null) {
+        paramString = null;
+      } else {
+        paramString = paramClass.getCanonicalName();
+      }
+      m = paramString;
+      o = paramB;
+    }
+    
+    public static a U(String paramString, int paramInt)
+    {
+      return new a(8, false, 8, false, paramString, paramInt, null, null);
+    }
+    
+    public static a V(String paramString, int paramInt, Class paramClass)
+    {
+      return new a(11, false, 11, false, paramString, paramInt, paramClass, null);
+    }
+    
+    public static a W(String paramString, int paramInt, Class paramClass)
+    {
+      return new a(11, true, 11, true, paramString, paramInt, paramClass, null);
+    }
+    
+    public static a X(String paramString, int paramInt)
+    {
+      return new a(0, false, 0, false, paramString, paramInt, null, null);
+    }
+    
+    public static a j0(String paramString, int paramInt)
+    {
+      return new a(7, false, 7, false, paramString, paramInt, null, null);
+    }
+    
+    public static a l0(String paramString, int paramInt)
+    {
+      return new a(7, true, 7, true, paramString, paramInt, null, null);
+    }
+    
+    public final Object A0(Object paramObject)
+    {
+      s.k(o);
+      return s.k(o.D(paramObject));
+    }
+    
+    public final Object B0(Object paramObject)
+    {
+      s.k(o);
+      return o.r(paramObject);
+    }
+    
+    final String C0()
+    {
+      String str2 = m;
+      String str1 = str2;
+      if (str2 == null) {
+        str1 = null;
+      }
+      return str1;
+    }
+    
+    public final Map D0()
+    {
+      s.k(m);
+      s.k(n);
+      return (Map)s.k(n.V(m));
+    }
+    
+    public final void E0(h paramH)
+    {
+      n = paramH;
+    }
+    
+    public final boolean F0()
+    {
+      return o != null;
+    }
+    
+    public int m0()
+    {
+      return k;
+    }
+    
+    public final String toString()
+    {
+      q.a localA = q.d(this).a("versionCode", Integer.valueOf(e)).a("typeIn", Integer.valueOf(f)).a("typeInArray", Boolean.valueOf(g)).a("typeOut", Integer.valueOf(h)).a("typeOutArray", Boolean.valueOf(i)).a("outputFieldName", j).a("safeParcelFieldId", Integer.valueOf(k)).a("concreteTypeName", C0());
+      Object localObject = l;
+      if (localObject != null) {
+        localA.a("concreteType.class", ((Class)localObject).getCanonicalName());
+      }
+      localObject = o;
+      if (localObject != null) {
+        localA.a("converterName", localObject.getClass().getCanonicalName());
+      }
+      return localA.toString();
+    }
+    
+    final b w0()
+    {
+      a.b localB = o;
+      if (localB == null) {
+        return null;
+      }
+      return b.U(localB);
+    }
+    
+    public final void writeToParcel(Parcel paramParcel, int paramInt)
+    {
+      int i1 = s3.c.a(paramParcel);
+      s3.c.t(paramParcel, 1, e);
+      s3.c.t(paramParcel, 2, f);
+      s3.c.g(paramParcel, 3, g);
+      s3.c.t(paramParcel, 4, h);
+      s3.c.g(paramParcel, 5, i);
+      s3.c.D(paramParcel, 6, j, false);
+      s3.c.t(paramParcel, 7, m0());
+      s3.c.D(paramParcel, 8, C0(), false);
+      s3.c.B(paramParcel, 9, w0(), paramInt, false);
+      s3.c.b(paramParcel, i1);
+    }
+  }
+  
+  public static abstract interface b
+  {
+    public abstract Object D(Object paramObject);
+    
+    public abstract Object r(Object paramObject);
+  }
+}

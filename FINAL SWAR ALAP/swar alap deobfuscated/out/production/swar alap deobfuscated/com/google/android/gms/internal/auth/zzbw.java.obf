@@ -1,0 +1,39 @@
+package com.google.android.gms.internal.auth;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import s3.a;
+import s3.c;
+
+public final class zzbw
+  extends a
+{
+  public static final Parcelable.Creator<zzbw> CREATOR = new zzbx();
+  final int zza;
+  String zzb;
+  
+  public zzbw()
+  {
+    zza = 1;
+  }
+  
+  zzbw(int paramInt, String paramString)
+  {
+    zza = paramInt;
+    zzb = paramString;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramInt = c.a(paramParcel);
+    c.t(paramParcel, 1, zza);
+    c.D(paramParcel, 2, zzb, false);
+    c.b(paramParcel, paramInt);
+  }
+  
+  public final zzbw zza(String paramString)
+  {
+    zzb = paramString;
+    return this;
+  }
+}

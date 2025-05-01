@@ -1,0 +1,53 @@
+package com.google.android.gms.internal.auth;
+
+import android.os.IBinder;
+import android.os.Parcel;
+
+public final class zzau
+  extends zza
+{
+  zzau(IBinder paramIBinder)
+  {
+    super(paramIBinder, "com.google.android.gms.auth.api.accounttransfer.internal.IAccountTransferService");
+  }
+  
+  public final void zzd(zzat paramZzat, zzaq paramZzaq)
+  {
+    Parcel localParcel = zza();
+    zzc.zze(localParcel, paramZzat);
+    zzc.zzd(localParcel, paramZzaq);
+    zzc(7, localParcel);
+  }
+  
+  public final void zze(zzat paramZzat, zzbb paramZzbb)
+  {
+    Parcel localParcel = zza();
+    zzc.zze(localParcel, paramZzat);
+    zzc.zzd(localParcel, paramZzbb);
+    zzc(8, localParcel);
+  }
+  
+  public final void zzf(zzat paramZzat, zzav paramZzav)
+  {
+    Parcel localParcel = zza();
+    zzc.zze(localParcel, paramZzat);
+    zzc.zzd(localParcel, paramZzav);
+    zzc(9, localParcel);
+  }
+  
+  public final void zzg(zzat paramZzat, zzax paramZzax)
+  {
+    Parcel localParcel = zza();
+    zzc.zze(localParcel, paramZzat);
+    zzc.zzd(localParcel, paramZzax);
+    zzc(6, localParcel);
+  }
+  
+  public final void zzh(zzat paramZzat, zzaz paramZzaz)
+  {
+    Parcel localParcel = zza();
+    zzc.zze(localParcel, paramZzat);
+    zzc.zzd(localParcel, paramZzaz);
+    zzc(5, localParcel);
+  }
+}

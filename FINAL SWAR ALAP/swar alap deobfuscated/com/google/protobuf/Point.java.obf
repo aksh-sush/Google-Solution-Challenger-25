@@ -1,0 +1,8 @@
+package com.google.protobuf;
+
+public abstract interface u0
+{
+  public abstract t0 getDefaultInstanceForType();
+  
+  public abstract boolean isInitialized();
+}

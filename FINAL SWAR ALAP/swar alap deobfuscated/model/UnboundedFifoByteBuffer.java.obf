@@ -1,0 +1,12 @@
+package db;
+
+import java.util.Iterator;
+
+public abstract class b
+{
+  public static final Iterator a(Object[] paramArrayOfObject)
+  {
+    l.e(paramArrayOfObject, "array");
+    return new a(paramArrayOfObject);
+  }
+}

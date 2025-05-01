@@ -1,0 +1,25 @@
+package com.google.android.gms.internal.auth;
+
+import android.os.IInterface;
+import com.google.android.gms.common.api.Status;
+import i3.a;
+import i3.b;
+import i3.i;
+
+public abstract interface zzat
+  extends IInterface
+{
+  public abstract void zzb(byte[] paramArrayOfByte);
+  
+  public abstract void zzc(a paramA);
+  
+  public abstract void zzd(Status paramStatus);
+  
+  public abstract void zze();
+  
+  public abstract void zzf(Status paramStatus, i paramI);
+  
+  public abstract void zzg(Status paramStatus, b paramB);
+  
+  public abstract void zzh(Status paramStatus);
+}

@@ -1,0 +1,2069 @@
+package androidx.core.view;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.support.v4.media.session.b;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.util.SparseArray;
+import android.view.ContentInfo;
+import android.view.Display;
+import android.view.KeyEvent;
+import android.view.OnReceiveContentListener;
+import android.view.View;
+import android.view.View.AccessibilityDelegate;
+import android.view.View.OnApplyWindowInsetsListener;
+import android.view.View.OnAttachStateChangeListener;
+import android.view.View.OnUnhandledKeyEventListener;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.Window;
+import android.view.WindowInsets;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
+import android.view.accessibility.AccessibilityNodeProvider;
+import android.view.accessibility.AccessibilityRecord;
+import androidx.collection.g;
+import androidx.core.view.accessibility.k0;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import java.util.WeakHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import x.c;
+
+public abstract class h0
+{
+  private static final AtomicInteger a = new AtomicInteger(1);
+  private static WeakHashMap b = null;
+  private static Field c;
+  private static boolean d = false;
+  private static ThreadLocal e;
+  private static final int[] f = { c.b, c.c, c.n, c.y, c.B, c.C, c.D, c.E, c.F, c.G, c.d, c.e, c.f, c.g, c.h, c.i, c.j, c.k, c.l, c.m, c.o, c.p, c.q, c.r, c.s, c.t, c.u, c.v, c.w, c.x, c.z, c.A };
+  private static final e0 g = new g0();
+  private static final e h = new e();
+  
+  private static e0 A(View paramView)
+  {
+    if ((paramView instanceof e0)) {
+      return (e0)paramView;
+    }
+    return g;
+  }
+  
+  public static void A0(View paramView, float paramFloat)
+  {
+    m.s(paramView, paramFloat);
+  }
+  
+  public static boolean B(View paramView)
+  {
+    return h.b(paramView);
+  }
+  
+  public static void B0(View paramView, boolean paramBoolean)
+  {
+    h.r(paramView, paramBoolean);
+  }
+  
+  public static int C(View paramView)
+  {
+    return h.c(paramView);
+  }
+  
+  public static void C0(View paramView, int paramInt)
+  {
+    h.s(paramView, paramInt);
+  }
+  
+  public static int D(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 26) {
+      return o.b(paramView);
+    }
+    return 0;
+  }
+  
+  public static void D0(View paramView, int paramInt)
+  {
+    if (Build.VERSION.SDK_INT >= 26) {
+      o.l(paramView, paramInt);
+    }
+  }
+  
+  public static int E(View paramView)
+  {
+    return i.d(paramView);
+  }
+  
+  public static void E0(View paramView, int paramInt)
+  {
+    i.h(paramView, paramInt);
+  }
+  
+  public static int F(View paramView)
+  {
+    return h.d(paramView);
+  }
+  
+  public static void F0(View paramView, c0 paramC0)
+  {
+    m.u(paramView, paramC0);
+  }
+  
+  public static int G(View paramView)
+  {
+    return h.e(paramView);
+  }
+  
+  public static void G0(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    i.k(paramView, paramInt1, paramInt2, paramInt3, paramInt4);
+  }
+  
+  public static String[] H(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 31) {
+      return s.a(paramView);
+    }
+    return (String[])paramView.getTag(c.N);
+  }
+  
+  public static void H0(View paramView, boolean paramBoolean)
+  {
+    r0().g(paramView, Boolean.valueOf(paramBoolean));
+  }
+  
+  public static int I(View paramView)
+  {
+    return i.e(paramView);
+  }
+  
+  public static void I0(View paramView, int paramInt1, int paramInt2)
+  {
+    if (Build.VERSION.SDK_INT >= 23) {
+      n.d(paramView, paramInt1, paramInt2);
+    }
+  }
+  
+  public static int J(View paramView)
+  {
+    return i.f(paramView);
+  }
+  
+  public static void J0(View paramView, CharSequence paramCharSequence)
+  {
+    N0().g(paramView, paramCharSequence);
+  }
+  
+  public static ViewParent K(View paramView)
+  {
+    return h.f(paramView);
+  }
+  
+  public static void K0(View paramView, String paramString)
+  {
+    m.v(paramView, paramString);
+  }
+  
+  public static h1 L(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 23) {
+      return n.a(paramView);
+    }
+    return m.j(paramView);
+  }
+  
+  private static void L0(View paramView)
+  {
+    if (C(paramView) == 0) {
+      C0(paramView, 1);
+    }
+    for (ViewParent localViewParent = paramView.getParent(); (localViewParent instanceof View); localViewParent = localViewParent.getParent()) {
+      if (C((View)localViewParent) == 4)
+      {
+        C0(paramView, 2);
+        return;
+      }
+    }
+  }
+  
+  public static CharSequence M(View paramView)
+  {
+    return (CharSequence)N0().f(paramView);
+  }
+  
+  public static void M0(View paramView, u0.b paramB)
+  {
+    u0.d(paramView, paramB);
+  }
+  
+  public static String N(View paramView)
+  {
+    return m.k(paramView);
+  }
+  
+  private static f N0()
+  {
+    return new c(c.P, CharSequence.class, 64, 30);
+  }
+  
+  public static i2 O(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 30) {
+      return r.b(paramView);
+    }
+    for (Object localObject1 = paramView.getContext();; localObject1 = ((ContextWrapper)localObject1).getBaseContext())
+    {
+      boolean bool = localObject1 instanceof ContextWrapper;
+      Object localObject2 = null;
+      if (!bool) {
+        break;
+      }
+      if ((localObject1 instanceof Activity))
+      {
+        Window localWindow = ((Activity)localObject1).getWindow();
+        localObject1 = localObject2;
+        if (localWindow != null) {
+          localObject1 = t0.a(localWindow, paramView);
+        }
+        return localObject1;
+      }
+    }
+    return null;
+  }
+  
+  public static void O0(View paramView)
+  {
+    m.z(paramView);
+  }
+  
+  public static int P(View paramView)
+  {
+    return h.g(paramView);
+  }
+  
+  private static void P0(View paramView)
+  {
+    float f1 = paramView.getTranslationY();
+    paramView.setTranslationY(1.0F + f1);
+    paramView.setTranslationY(f1);
+  }
+  
+  public static float Q(View paramView)
+  {
+    return m.m(paramView);
+  }
+  
+  public static boolean R(View paramView)
+  {
+    return g.a(paramView);
+  }
+  
+  public static boolean S(View paramView)
+  {
+    return h.h(paramView);
+  }
+  
+  public static boolean T(View paramView)
+  {
+    return h.i(paramView);
+  }
+  
+  public static boolean U(View paramView)
+  {
+    paramView = (Boolean)b().f(paramView);
+    return (paramView != null) && (paramView.booleanValue());
+  }
+  
+  public static boolean V(View paramView)
+  {
+    return k.b(paramView);
+  }
+  
+  public static boolean W(View paramView)
+  {
+    return k.c(paramView);
+  }
+  
+  public static boolean X(View paramView)
+  {
+    return m.p(paramView);
+  }
+  
+  public static boolean Y(View paramView)
+  {
+    return i.g(paramView);
+  }
+  
+  public static boolean Z(View paramView)
+  {
+    paramView = (Boolean)r0().f(paramView);
+    return (paramView != null) && (paramView.booleanValue());
+  }
+  
+  private static f b()
+  {
+    return new d(c.J, Boolean.class, 28);
+  }
+  
+  static void b0(View paramView, int paramInt)
+  {
+    Object localObject1 = (AccessibilityManager)paramView.getContext().getSystemService("accessibility");
+    if (!((AccessibilityManager)localObject1).isEnabled()) {
+      return;
+    }
+    int i;
+    if ((r(paramView) != null) && (paramView.isShown()) && (paramView.getWindowVisibility() == 0)) {
+      i = 1;
+    } else {
+      i = 0;
+    }
+    int k = q(paramView);
+    int j = 32;
+    if ((k == 0) && (i == 0))
+    {
+      Object localObject2;
+      if (paramInt == 32)
+      {
+        localObject2 = AccessibilityEvent.obtain();
+        paramView.onInitializeAccessibilityEvent((AccessibilityEvent)localObject2);
+        ((AccessibilityEvent)localObject2).setEventType(32);
+        k.g((AccessibilityEvent)localObject2, paramInt);
+        ((AccessibilityRecord)localObject2).setSource(paramView);
+        paramView.onPopulateAccessibilityEvent((AccessibilityEvent)localObject2);
+        ((AccessibilityRecord)localObject2).getText().add(r(paramView));
+        ((AccessibilityManager)localObject1).sendAccessibilityEvent((AccessibilityEvent)localObject2);
+        return;
+      }
+      if (paramView.getParent() == null) {
+        return;
+      }
+      localObject1 = paramView.getParent();
+      try
+      {
+        k.e((ViewParent)localObject1, paramView, paramView, paramInt);
+        return;
+      }
+      catch (AbstractMethodError localAbstractMethodError)
+      {
+        localObject2 = new StringBuilder();
+        ((StringBuilder)localObject2).append(paramView.getParent().getClass().getSimpleName());
+        ((StringBuilder)localObject2).append(" does not fully implement ViewParent");
+        Log.e("ViewCompat", ((StringBuilder)localObject2).toString(), localAbstractMethodError);
+        return;
+      }
+    }
+    AccessibilityEvent localAccessibilityEvent = AccessibilityEvent.obtain();
+    if (i == 0) {
+      j = 2048;
+    }
+    localAccessibilityEvent.setEventType(j);
+    k.g(localAccessibilityEvent, paramInt);
+    if (i != 0)
+    {
+      localAccessibilityEvent.getText().add(r(paramView));
+      L0(paramView);
+    }
+    paramView.sendAccessibilityEventUnchecked(localAccessibilityEvent);
+  }
+  
+  public static int c(View paramView, CharSequence paramCharSequence, k0 paramK0)
+  {
+    int i = t(paramView, paramCharSequence);
+    if (i != -1) {
+      d(paramView, new androidx.core.view.accessibility.h0.a(i, paramCharSequence, paramK0));
+    }
+    return i;
+  }
+  
+  public static void c0(View paramView, int paramInt)
+  {
+    if (Build.VERSION.SDK_INT >= 23)
+    {
+      paramView.offsetLeftAndRight(paramInt);
+      return;
+    }
+    Rect localRect = z();
+    ViewParent localViewParent = paramView.getParent();
+    boolean bool;
+    if ((localViewParent instanceof View))
+    {
+      View localView = (View)localViewParent;
+      localRect.set(localView.getLeft(), localView.getTop(), localView.getRight(), localView.getBottom());
+      bool = localRect.intersects(paramView.getLeft(), paramView.getTop(), paramView.getRight(), paramView.getBottom()) ^ true;
+    }
+    else
+    {
+      bool = false;
+    }
+    f(paramView, paramInt);
+    if ((bool) && (localRect.intersect(paramView.getLeft(), paramView.getTop(), paramView.getRight(), paramView.getBottom()))) {
+      ((View)localViewParent).invalidate(localRect);
+    }
+  }
+  
+  private static void d(View paramView, androidx.core.view.accessibility.h0.a paramA)
+  {
+    l(paramView);
+    n0(paramA.b(), paramView);
+    s(paramView).add(paramA);
+    b0(paramView, 0);
+  }
+  
+  public static void d0(View paramView, int paramInt)
+  {
+    if (Build.VERSION.SDK_INT >= 23)
+    {
+      paramView.offsetTopAndBottom(paramInt);
+      return;
+    }
+    Rect localRect = z();
+    ViewParent localViewParent = paramView.getParent();
+    boolean bool;
+    if ((localViewParent instanceof View))
+    {
+      View localView = (View)localViewParent;
+      localRect.set(localView.getLeft(), localView.getTop(), localView.getRight(), localView.getBottom());
+      bool = localRect.intersects(paramView.getLeft(), paramView.getTop(), paramView.getRight(), paramView.getBottom()) ^ true;
+    }
+    else
+    {
+      bool = false;
+    }
+    g(paramView, paramInt);
+    if ((bool) && (localRect.intersect(paramView.getLeft(), paramView.getTop(), paramView.getRight(), paramView.getBottom()))) {
+      ((View)localViewParent).invalidate(localRect);
+    }
+  }
+  
+  public static p0 e(View paramView)
+  {
+    if (b == null) {
+      b = new WeakHashMap();
+    }
+    p0 localP02 = (p0)b.get(paramView);
+    p0 localP01 = localP02;
+    if (localP02 == null)
+    {
+      localP01 = new p0(paramView);
+      b.put(paramView, localP01);
+    }
+    return localP01;
+  }
+  
+  public static h1 e0(View paramView, h1 paramH1)
+  {
+    WindowInsets localWindowInsets1 = paramH1.u();
+    if (localWindowInsets1 != null)
+    {
+      WindowInsets localWindowInsets2 = l.b(paramView, localWindowInsets1);
+      if (!localWindowInsets2.equals(localWindowInsets1)) {
+        return h1.w(localWindowInsets2, paramView);
+      }
+    }
+    return paramH1;
+  }
+  
+  private static void f(View paramView, int paramInt)
+  {
+    paramView.offsetLeftAndRight(paramInt);
+    if (paramView.getVisibility() == 0)
+    {
+      P0(paramView);
+      paramView = paramView.getParent();
+      if ((paramView instanceof View)) {
+        P0((View)paramView);
+      }
+    }
+  }
+  
+  public static void f0(View paramView, androidx.core.view.accessibility.h0 paramH0)
+  {
+    paramView.onInitializeAccessibilityNodeInfo(paramH0.C0());
+  }
+  
+  private static void g(View paramView, int paramInt)
+  {
+    paramView.offsetTopAndBottom(paramInt);
+    if (paramView.getVisibility() == 0)
+    {
+      P0(paramView);
+      paramView = paramView.getParent();
+      if ((paramView instanceof View)) {
+        P0((View)paramView);
+      }
+    }
+  }
+  
+  private static f g0()
+  {
+    return new b(c.K, CharSequence.class, 8, 28);
+  }
+  
+  public static h1 h(View paramView, h1 paramH1, Rect paramRect)
+  {
+    return m.b(paramView, paramH1, paramRect);
+  }
+  
+  public static boolean h0(View paramView, int paramInt, Bundle paramBundle)
+  {
+    return h.j(paramView, paramInt, paramBundle);
+  }
+  
+  public static h1 i(View paramView, h1 paramH1)
+  {
+    WindowInsets localWindowInsets1 = paramH1.u();
+    if (localWindowInsets1 != null)
+    {
+      WindowInsets localWindowInsets2 = l.a(paramView, localWindowInsets1);
+      if (!localWindowInsets2.equals(localWindowInsets1)) {
+        return h1.w(localWindowInsets2, paramView);
+      }
+    }
+    return paramH1;
+  }
+  
+  public static d i0(View paramView, d paramD)
+  {
+    if (Log.isLoggable("ViewCompat", 3))
+    {
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("performReceiveContent: ");
+      ((StringBuilder)localObject).append(paramD);
+      ((StringBuilder)localObject).append(", view=");
+      ((StringBuilder)localObject).append(paramView.getClass().getSimpleName());
+      ((StringBuilder)localObject).append("[");
+      ((StringBuilder)localObject).append(paramView.getId());
+      ((StringBuilder)localObject).append("]");
+      Log.d("ViewCompat", ((StringBuilder)localObject).toString());
+    }
+    if (Build.VERSION.SDK_INT >= 31) {
+      return s.b(paramView, paramD);
+    }
+    Object localObject = (d0)paramView.getTag(c.M);
+    if (localObject != null)
+    {
+      paramD = ((d0)localObject).a(paramView, paramD);
+      if (paramD == null) {
+        return null;
+      }
+      return A(paramView).a(paramD);
+    }
+    return A(paramView).a(paramD);
+  }
+  
+  static boolean j(View paramView, KeyEvent paramKeyEvent)
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return false;
+    }
+    return v.a(paramView).b(paramView, paramKeyEvent);
+  }
+  
+  public static void j0(View paramView)
+  {
+    h.k(paramView);
+  }
+  
+  static boolean k(View paramView, KeyEvent paramKeyEvent)
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return false;
+    }
+    return v.a(paramView).f(paramKeyEvent);
+  }
+  
+  public static void k0(View paramView, Runnable paramRunnable)
+  {
+    h.m(paramView, paramRunnable);
+  }
+  
+  static void l(View paramView)
+  {
+    a localA2 = n(paramView);
+    a localA1 = localA2;
+    if (localA2 == null) {
+      localA1 = new a();
+    }
+    s0(paramView, localA1);
+  }
+  
+  public static void l0(View paramView, Runnable paramRunnable, long paramLong)
+  {
+    h.n(paramView, paramRunnable, paramLong);
+  }
+  
+  public static int m()
+  {
+    return i.a();
+  }
+  
+  public static void m0(View paramView, int paramInt)
+  {
+    n0(paramInt, paramView);
+    b0(paramView, 0);
+  }
+  
+  public static a n(View paramView)
+  {
+    paramView = o(paramView);
+    if (paramView == null) {
+      return null;
+    }
+    if ((paramView instanceof a.a)) {
+      return a;
+    }
+    return new a(paramView);
+  }
+  
+  private static void n0(int paramInt, View paramView)
+  {
+    paramView = s(paramView);
+    int i = 0;
+    while (i < paramView.size())
+    {
+      if (((androidx.core.view.accessibility.h0.a)paramView.get(i)).b() == paramInt)
+      {
+        paramView.remove(i);
+        return;
+      }
+      i += 1;
+    }
+  }
+  
+  private static View.AccessibilityDelegate o(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 29) {
+      return q.a(paramView);
+    }
+    return p(paramView);
+  }
+  
+  public static void o0(View paramView, androidx.core.view.accessibility.h0.a paramA, CharSequence paramCharSequence, k0 paramK0)
+  {
+    if ((paramK0 == null) && (paramCharSequence == null))
+    {
+      m0(paramView, paramA.b());
+      return;
+    }
+    d(paramView, paramA.a(paramCharSequence, paramK0));
+  }
+  
+  /* Error */
+  private static View.AccessibilityDelegate p(View paramView)
+  {
+    // Byte code:
+    //   0: getstatic 94	androidx/core/view/h0:d	Z
+    //   3: ifeq +5 -> 8
+    //   6: aconst_null
+    //   7: areturn
+    //   8: getstatic 736	androidx/core/view/h0:c	Ljava/lang/reflect/Field;
+    //   11: ifnonnull +30 -> 41
+    //   14: ldc -16
+    //   16: ldc_w 738
+    //   19: invokevirtual 742	java/lang/Class:getDeclaredField	(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    //   22: astore_1
+    //   23: aload_1
+    //   24: putstatic 736	androidx/core/view/h0:c	Ljava/lang/reflect/Field;
+    //   27: aload_1
+    //   28: iconst_1
+    //   29: invokevirtual 748	java/lang/reflect/AccessibleObject:setAccessible	(Z)V
+    //   32: goto +9 -> 41
+    //   35: iconst_1
+    //   36: putstatic 94	androidx/core/view/h0:d	Z
+    //   39: aconst_null
+    //   40: areturn
+    //   41: getstatic 736	androidx/core/view/h0:c	Ljava/lang/reflect/Field;
+    //   44: aload_0
+    //   45: invokevirtual 751	java/lang/reflect/Field:get	(Ljava/lang/Object;)Ljava/lang/Object;
+    //   48: astore_0
+    //   49: aload_0
+    //   50: instanceof 753
+    //   53: ifeq +10 -> 63
+    //   56: aload_0
+    //   57: checkcast 753	android/view/View$AccessibilityDelegate
+    //   60: astore_0
+    //   61: aload_0
+    //   62: areturn
+    //   63: aconst_null
+    //   64: areturn
+    //   65: iconst_1
+    //   66: putstatic 94	androidx/core/view/h0:d	Z
+    //   69: aconst_null
+    //   70: areturn
+    //   71: astore_0
+    //   72: goto -37 -> 35
+    //   75: astore_0
+    //   76: goto -11 -> 65
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	79	0	paramView	View
+    //   22	6	1	localField	Field
+    // Exception table:
+    //   from	to	target	type
+    //   14	32	71	finally
+    //   41	61	75	finally
+  }
+  
+  public static void p0(View paramView)
+  {
+    l.c(paramView);
+  }
+  
+  public static int q(View paramView)
+  {
+    return k.a(paramView);
+  }
+  
+  public static void q0(View paramView, Context paramContext, int[] paramArrayOfInt, AttributeSet paramAttributeSet, TypedArray paramTypedArray, int paramInt1, int paramInt2)
+  {
+    if (Build.VERSION.SDK_INT >= 29) {
+      q.c(paramView, paramContext, paramArrayOfInt, paramAttributeSet, paramTypedArray, paramInt1, paramInt2);
+    }
+  }
+  
+  public static CharSequence r(View paramView)
+  {
+    return (CharSequence)g0().f(paramView);
+  }
+  
+  private static f r0()
+  {
+    return new a(c.O, Boolean.class, 28);
+  }
+  
+  private static List s(View paramView)
+  {
+    int i = c.H;
+    ArrayList localArrayList2 = (ArrayList)paramView.getTag(i);
+    ArrayList localArrayList1 = localArrayList2;
+    if (localArrayList2 == null)
+    {
+      localArrayList1 = new ArrayList();
+      paramView.setTag(i, localArrayList1);
+    }
+    return localArrayList1;
+  }
+  
+  public static void s0(View paramView, a paramA)
+  {
+    a localA = paramA;
+    if (paramA == null)
+    {
+      localA = paramA;
+      if ((o(paramView) instanceof a.a)) {
+        localA = new a();
+      }
+    }
+    if (localA == null) {
+      paramA = null;
+    } else {
+      paramA = localA.d();
+    }
+    paramView.setAccessibilityDelegate(paramA);
+  }
+  
+  private static int t(View paramView, CharSequence paramCharSequence)
+  {
+    paramView = s(paramView);
+    int i = 0;
+    while (i < paramView.size())
+    {
+      if (TextUtils.equals(paramCharSequence, ((androidx.core.view.accessibility.h0.a)paramView.get(i)).c())) {
+        return ((androidx.core.view.accessibility.h0.a)paramView.get(i)).b();
+      }
+      i += 1;
+    }
+    i = 0;
+    int j = -1;
+    for (;;)
+    {
+      paramCharSequence = f;
+      if ((i >= paramCharSequence.length) || (j != -1)) {
+        break;
+      }
+      int i1 = paramCharSequence[i];
+      int m = 0;
+      int k = 1;
+      while (m < paramView.size())
+      {
+        int n;
+        if (((androidx.core.view.accessibility.h0.a)paramView.get(m)).b() != i1) {
+          n = 1;
+        } else {
+          n = 0;
+        }
+        k &= n;
+        m += 1;
+      }
+      if (k != 0) {
+        j = i1;
+      }
+      i += 1;
+    }
+    return j;
+  }
+  
+  public static void t0(View paramView, boolean paramBoolean)
+  {
+    b().g(paramView, Boolean.valueOf(paramBoolean));
+  }
+  
+  public static ColorStateList u(View paramView)
+  {
+    return m.g(paramView);
+  }
+  
+  public static void u0(View paramView, int paramInt)
+  {
+    k.f(paramView, paramInt);
+  }
+  
+  public static PorterDuff.Mode v(View paramView)
+  {
+    return m.h(paramView);
+  }
+  
+  public static void v0(View paramView, CharSequence paramCharSequence)
+  {
+    g0().g(paramView, paramCharSequence);
+    if (paramCharSequence != null)
+    {
+      h.a(paramView);
+      return;
+    }
+    h.d(paramView);
+  }
+  
+  public static Rect w(View paramView)
+  {
+    return j.a(paramView);
+  }
+  
+  public static void w0(View paramView, Drawable paramDrawable)
+  {
+    h.q(paramView, paramDrawable);
+  }
+  
+  public static Display x(View paramView)
+  {
+    return i.b(paramView);
+  }
+  
+  public static void x0(View paramView, ColorStateList paramColorStateList)
+  {
+    int i = Build.VERSION.SDK_INT;
+    m.q(paramView, paramColorStateList);
+    if (i == 21)
+    {
+      paramColorStateList = paramView.getBackground();
+      if ((m.g(paramView) == null) && (m.h(paramView) == null)) {
+        i = 0;
+      } else {
+        i = 1;
+      }
+      if ((paramColorStateList != null) && (i != 0))
+      {
+        if (paramColorStateList.isStateful()) {
+          paramColorStateList.setState(paramView.getDrawableState());
+        }
+        h.q(paramView, paramColorStateList);
+      }
+    }
+  }
+  
+  public static float y(View paramView)
+  {
+    return m.i(paramView);
+  }
+  
+  public static void y0(View paramView, PorterDuff.Mode paramMode)
+  {
+    int i = Build.VERSION.SDK_INT;
+    m.r(paramView, paramMode);
+    if (i == 21)
+    {
+      paramMode = paramView.getBackground();
+      if ((m.g(paramView) == null) && (m.h(paramView) == null)) {
+        i = 0;
+      } else {
+        i = 1;
+      }
+      if ((paramMode != null) && (i != 0))
+      {
+        if (paramMode.isStateful()) {
+          paramMode.setState(paramView.getDrawableState());
+        }
+        h.q(paramView, paramMode);
+      }
+    }
+  }
+  
+  private static Rect z()
+  {
+    if (e == null) {
+      e = new ThreadLocal();
+    }
+    Rect localRect2 = (Rect)e.get();
+    Rect localRect1 = localRect2;
+    if (localRect2 == null)
+    {
+      localRect1 = new Rect();
+      e.set(localRect1);
+    }
+    localRect1.setEmpty();
+    return localRect1;
+  }
+  
+  public static void z0(View paramView, Rect paramRect)
+  {
+    j.c(paramView, paramRect);
+  }
+  
+  class a
+    extends h0.f
+  {
+    a(Class paramClass, int paramInt)
+    {
+      super(paramClass, paramInt);
+    }
+    
+    Boolean i(View paramView)
+    {
+      return Boolean.valueOf(h0.p.d(paramView));
+    }
+    
+    void j(View paramView, Boolean paramBoolean)
+    {
+      h0.p.i(paramView, paramBoolean.booleanValue());
+    }
+    
+    boolean k(Boolean paramBoolean1, Boolean paramBoolean2)
+    {
+      return a(paramBoolean1, paramBoolean2) ^ true;
+    }
+  }
+  
+  class b
+    extends h0.f
+  {
+    b(Class paramClass, int paramInt1, int paramInt2)
+    {
+      super(paramClass, paramInt1, paramInt2);
+    }
+    
+    CharSequence i(View paramView)
+    {
+      return h0.p.b(paramView);
+    }
+    
+    void j(View paramView, CharSequence paramCharSequence)
+    {
+      h0.p.h(paramView, paramCharSequence);
+    }
+    
+    boolean k(CharSequence paramCharSequence1, CharSequence paramCharSequence2)
+    {
+      return TextUtils.equals(paramCharSequence1, paramCharSequence2) ^ true;
+    }
+  }
+  
+  class c
+    extends h0.f
+  {
+    c(Class paramClass, int paramInt1, int paramInt2)
+    {
+      super(paramClass, paramInt1, paramInt2);
+    }
+    
+    CharSequence i(View paramView)
+    {
+      return h0.r.a(paramView);
+    }
+    
+    void j(View paramView, CharSequence paramCharSequence)
+    {
+      h0.r.c(paramView, paramCharSequence);
+    }
+    
+    boolean k(CharSequence paramCharSequence1, CharSequence paramCharSequence2)
+    {
+      return TextUtils.equals(paramCharSequence1, paramCharSequence2) ^ true;
+    }
+  }
+  
+  class d
+    extends h0.f
+  {
+    d(Class paramClass, int paramInt)
+    {
+      super(paramClass, paramInt);
+    }
+    
+    Boolean i(View paramView)
+    {
+      return Boolean.valueOf(h0.p.c(paramView));
+    }
+    
+    void j(View paramView, Boolean paramBoolean)
+    {
+      h0.p.g(paramView, paramBoolean.booleanValue());
+    }
+    
+    boolean k(Boolean paramBoolean1, Boolean paramBoolean2)
+    {
+      return a(paramBoolean1, paramBoolean2) ^ true;
+    }
+  }
+  
+  static class e
+    implements ViewTreeObserver.OnGlobalLayoutListener, View.OnAttachStateChangeListener
+  {
+    private final WeakHashMap e = new WeakHashMap();
+    
+    e() {}
+    
+    private void b(View paramView, boolean paramBoolean)
+    {
+      boolean bool;
+      if ((paramView.isShown()) && (paramView.getWindowVisibility() == 0)) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      if (paramBoolean != bool)
+      {
+        int i;
+        if (bool) {
+          i = 16;
+        } else {
+          i = 32;
+        }
+        h0.b0(paramView, i);
+        e.put(paramView, Boolean.valueOf(bool));
+      }
+    }
+    
+    private void c(View paramView)
+    {
+      paramView.getViewTreeObserver().addOnGlobalLayoutListener(this);
+    }
+    
+    private void e(View paramView)
+    {
+      h0.h.o(paramView.getViewTreeObserver(), this);
+    }
+    
+    void a(View paramView)
+    {
+      WeakHashMap localWeakHashMap = e;
+      boolean bool;
+      if ((paramView.isShown()) && (paramView.getWindowVisibility() == 0)) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      localWeakHashMap.put(paramView, Boolean.valueOf(bool));
+      paramView.addOnAttachStateChangeListener(this);
+      if (h0.k.b(paramView)) {
+        c(paramView);
+      }
+    }
+    
+    void d(View paramView)
+    {
+      e.remove(paramView);
+      paramView.removeOnAttachStateChangeListener(this);
+      e(paramView);
+    }
+    
+    public void onGlobalLayout()
+    {
+      if (Build.VERSION.SDK_INT < 28)
+      {
+        Iterator localIterator = e.entrySet().iterator();
+        while (localIterator.hasNext())
+        {
+          Map.Entry localEntry = (Map.Entry)localIterator.next();
+          b((View)localEntry.getKey(), ((Boolean)localEntry.getValue()).booleanValue());
+        }
+      }
+    }
+    
+    public void onViewAttachedToWindow(View paramView)
+    {
+      c(paramView);
+    }
+    
+    public void onViewDetachedFromWindow(View paramView) {}
+  }
+  
+  static abstract class f
+  {
+    private final int a;
+    private final Class b;
+    private final int c;
+    private final int d;
+    
+    f(int paramInt1, Class paramClass, int paramInt2)
+    {
+      this(paramInt1, paramClass, 0, paramInt2);
+    }
+    
+    f(int paramInt1, Class paramClass, int paramInt2, int paramInt3)
+    {
+      a = paramInt1;
+      b = paramClass;
+      d = paramInt2;
+      c = paramInt3;
+    }
+    
+    private boolean b()
+    {
+      return true;
+    }
+    
+    private boolean c()
+    {
+      return Build.VERSION.SDK_INT >= c;
+    }
+    
+    boolean a(Boolean paramBoolean1, Boolean paramBoolean2)
+    {
+      int i;
+      if ((paramBoolean1 != null) && (paramBoolean1.booleanValue())) {
+        i = 1;
+      } else {
+        i = 0;
+      }
+      int j;
+      if ((paramBoolean2 != null) && (paramBoolean2.booleanValue())) {
+        j = 1;
+      } else {
+        j = 0;
+      }
+      return i == j;
+    }
+    
+    abstract Object d(View paramView);
+    
+    abstract void e(View paramView, Object paramObject);
+    
+    Object f(View paramView)
+    {
+      if (c()) {
+        return d(paramView);
+      }
+      if (b())
+      {
+        paramView = paramView.getTag(a);
+        if (b.isInstance(paramView)) {
+          return paramView;
+        }
+      }
+      return null;
+    }
+    
+    void g(View paramView, Object paramObject)
+    {
+      if (c())
+      {
+        e(paramView, paramObject);
+        return;
+      }
+      if ((b()) && (h(f(paramView), paramObject)))
+      {
+        h0.l(paramView);
+        paramView.setTag(a, paramObject);
+        h0.b0(paramView, d);
+      }
+    }
+    
+    abstract boolean h(Object paramObject1, Object paramObject2);
+  }
+  
+  static abstract class g
+  {
+    static boolean a(View paramView)
+    {
+      return paramView.hasOnClickListeners();
+    }
+  }
+  
+  static abstract class h
+  {
+    static AccessibilityNodeProvider a(View paramView)
+    {
+      return paramView.getAccessibilityNodeProvider();
+    }
+    
+    static boolean b(View paramView)
+    {
+      return paramView.getFitsSystemWindows();
+    }
+    
+    static int c(View paramView)
+    {
+      return paramView.getImportantForAccessibility();
+    }
+    
+    static int d(View paramView)
+    {
+      return paramView.getMinimumHeight();
+    }
+    
+    static int e(View paramView)
+    {
+      return paramView.getMinimumWidth();
+    }
+    
+    static ViewParent f(View paramView)
+    {
+      return paramView.getParentForAccessibility();
+    }
+    
+    static int g(View paramView)
+    {
+      return paramView.getWindowSystemUiVisibility();
+    }
+    
+    static boolean h(View paramView)
+    {
+      return paramView.hasOverlappingRendering();
+    }
+    
+    static boolean i(View paramView)
+    {
+      return paramView.hasTransientState();
+    }
+    
+    static boolean j(View paramView, int paramInt, Bundle paramBundle)
+    {
+      return paramView.performAccessibilityAction(paramInt, paramBundle);
+    }
+    
+    static void k(View paramView)
+    {
+      paramView.postInvalidateOnAnimation();
+    }
+    
+    static void l(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+    {
+      paramView.postInvalidateOnAnimation(paramInt1, paramInt2, paramInt3, paramInt4);
+    }
+    
+    static void m(View paramView, Runnable paramRunnable)
+    {
+      paramView.postOnAnimation(paramRunnable);
+    }
+    
+    static void n(View paramView, Runnable paramRunnable, long paramLong)
+    {
+      paramView.postOnAnimationDelayed(paramRunnable, paramLong);
+    }
+    
+    static void o(ViewTreeObserver paramViewTreeObserver, ViewTreeObserver.OnGlobalLayoutListener paramOnGlobalLayoutListener)
+    {
+      paramViewTreeObserver.removeOnGlobalLayoutListener(paramOnGlobalLayoutListener);
+    }
+    
+    static void p(View paramView)
+    {
+      paramView.requestFitSystemWindows();
+    }
+    
+    static void q(View paramView, Drawable paramDrawable)
+    {
+      paramView.setBackground(paramDrawable);
+    }
+    
+    static void r(View paramView, boolean paramBoolean)
+    {
+      paramView.setHasTransientState(paramBoolean);
+    }
+    
+    static void s(View paramView, int paramInt)
+    {
+      paramView.setImportantForAccessibility(paramInt);
+    }
+  }
+  
+  static abstract class i
+  {
+    static int a()
+    {
+      return View.generateViewId();
+    }
+    
+    static Display b(View paramView)
+    {
+      return paramView.getDisplay();
+    }
+    
+    static int c(View paramView)
+    {
+      return paramView.getLabelFor();
+    }
+    
+    static int d(View paramView)
+    {
+      return paramView.getLayoutDirection();
+    }
+    
+    static int e(View paramView)
+    {
+      return paramView.getPaddingEnd();
+    }
+    
+    static int f(View paramView)
+    {
+      return paramView.getPaddingStart();
+    }
+    
+    static boolean g(View paramView)
+    {
+      return paramView.isPaddingRelative();
+    }
+    
+    static void h(View paramView, int paramInt)
+    {
+      paramView.setLabelFor(paramInt);
+    }
+    
+    static void i(View paramView, Paint paramPaint)
+    {
+      paramView.setLayerPaint(paramPaint);
+    }
+    
+    static void j(View paramView, int paramInt)
+    {
+      paramView.setLayoutDirection(paramInt);
+    }
+    
+    static void k(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+    {
+      paramView.setPaddingRelative(paramInt1, paramInt2, paramInt3, paramInt4);
+    }
+  }
+  
+  static abstract class j
+  {
+    static Rect a(View paramView)
+    {
+      return paramView.getClipBounds();
+    }
+    
+    static boolean b(View paramView)
+    {
+      return paramView.isInLayout();
+    }
+    
+    static void c(View paramView, Rect paramRect)
+    {
+      paramView.setClipBounds(paramRect);
+    }
+  }
+  
+  static abstract class k
+  {
+    static int a(View paramView)
+    {
+      return paramView.getAccessibilityLiveRegion();
+    }
+    
+    static boolean b(View paramView)
+    {
+      return paramView.isAttachedToWindow();
+    }
+    
+    static boolean c(View paramView)
+    {
+      return paramView.isLaidOut();
+    }
+    
+    static boolean d(View paramView)
+    {
+      return paramView.isLayoutDirectionResolved();
+    }
+    
+    static void e(ViewParent paramViewParent, View paramView1, View paramView2, int paramInt)
+    {
+      paramViewParent.notifySubtreeAccessibilityStateChanged(paramView1, paramView2, paramInt);
+    }
+    
+    static void f(View paramView, int paramInt)
+    {
+      paramView.setAccessibilityLiveRegion(paramInt);
+    }
+    
+    static void g(AccessibilityEvent paramAccessibilityEvent, int paramInt)
+    {
+      paramAccessibilityEvent.setContentChangeTypes(paramInt);
+    }
+  }
+  
+  static abstract class l
+  {
+    static WindowInsets a(View paramView, WindowInsets paramWindowInsets)
+    {
+      return paramView.dispatchApplyWindowInsets(paramWindowInsets);
+    }
+    
+    static WindowInsets b(View paramView, WindowInsets paramWindowInsets)
+    {
+      return paramView.onApplyWindowInsets(paramWindowInsets);
+    }
+    
+    static void c(View paramView)
+    {
+      paramView.requestApplyInsets();
+    }
+  }
+  
+  private static abstract class m
+  {
+    static void a(WindowInsets paramWindowInsets, View paramView)
+    {
+      View.OnApplyWindowInsetsListener localOnApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener)paramView.getTag(c.S);
+      if (localOnApplyWindowInsetsListener != null) {
+        localOnApplyWindowInsetsListener.onApplyWindowInsets(paramView, paramWindowInsets);
+      }
+    }
+    
+    static h1 b(View paramView, h1 paramH1, Rect paramRect)
+    {
+      WindowInsets localWindowInsets = paramH1.u();
+      if (localWindowInsets != null) {
+        return h1.w(paramView.computeSystemWindowInsets(localWindowInsets, paramRect), paramView);
+      }
+      paramRect.setEmpty();
+      return paramH1;
+    }
+    
+    static boolean c(View paramView, float paramFloat1, float paramFloat2, boolean paramBoolean)
+    {
+      return paramView.dispatchNestedFling(paramFloat1, paramFloat2, paramBoolean);
+    }
+    
+    static boolean d(View paramView, float paramFloat1, float paramFloat2)
+    {
+      return paramView.dispatchNestedPreFling(paramFloat1, paramFloat2);
+    }
+    
+    static boolean e(View paramView, int paramInt1, int paramInt2, int[] paramArrayOfInt1, int[] paramArrayOfInt2)
+    {
+      return paramView.dispatchNestedPreScroll(paramInt1, paramInt2, paramArrayOfInt1, paramArrayOfInt2);
+    }
+    
+    static boolean f(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int[] paramArrayOfInt)
+    {
+      return paramView.dispatchNestedScroll(paramInt1, paramInt2, paramInt3, paramInt4, paramArrayOfInt);
+    }
+    
+    static ColorStateList g(View paramView)
+    {
+      return paramView.getBackgroundTintList();
+    }
+    
+    static PorterDuff.Mode h(View paramView)
+    {
+      return paramView.getBackgroundTintMode();
+    }
+    
+    static float i(View paramView)
+    {
+      return paramView.getElevation();
+    }
+    
+    public static h1 j(View paramView)
+    {
+      return h1.a.a(paramView);
+    }
+    
+    static String k(View paramView)
+    {
+      return paramView.getTransitionName();
+    }
+    
+    static float l(View paramView)
+    {
+      return paramView.getTranslationZ();
+    }
+    
+    static float m(View paramView)
+    {
+      return paramView.getZ();
+    }
+    
+    static boolean n(View paramView)
+    {
+      return paramView.hasNestedScrollingParent();
+    }
+    
+    static boolean o(View paramView)
+    {
+      return paramView.isImportantForAccessibility();
+    }
+    
+    static boolean p(View paramView)
+    {
+      return paramView.isNestedScrollingEnabled();
+    }
+    
+    static void q(View paramView, ColorStateList paramColorStateList)
+    {
+      paramView.setBackgroundTintList(paramColorStateList);
+    }
+    
+    static void r(View paramView, PorterDuff.Mode paramMode)
+    {
+      paramView.setBackgroundTintMode(paramMode);
+    }
+    
+    static void s(View paramView, float paramFloat)
+    {
+      paramView.setElevation(paramFloat);
+    }
+    
+    static void t(View paramView, boolean paramBoolean)
+    {
+      paramView.setNestedScrollingEnabled(paramBoolean);
+    }
+    
+    static void u(View paramView, final c0 paramC0)
+    {
+      if (Build.VERSION.SDK_INT < 30) {
+        paramView.setTag(c.L, paramC0);
+      }
+      if (paramC0 == null)
+      {
+        paramView.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener)paramView.getTag(c.S));
+        return;
+      }
+      paramView.setOnApplyWindowInsetsListener(new a(paramC0));
+    }
+    
+    static void v(View paramView, String paramString)
+    {
+      paramView.setTransitionName(paramString);
+    }
+    
+    static void w(View paramView, float paramFloat)
+    {
+      paramView.setTranslationZ(paramFloat);
+    }
+    
+    static void x(View paramView, float paramFloat)
+    {
+      paramView.setZ(paramFloat);
+    }
+    
+    static boolean y(View paramView, int paramInt)
+    {
+      return paramView.startNestedScroll(paramInt);
+    }
+    
+    static void z(View paramView)
+    {
+      paramView.stopNestedScroll();
+    }
+    
+    class a
+      implements View.OnApplyWindowInsetsListener
+    {
+      h1 a = null;
+      
+      a(c0 paramC0) {}
+      
+      public WindowInsets onApplyWindowInsets(View paramView, WindowInsets paramWindowInsets)
+      {
+        h1 localH1 = h1.w(paramWindowInsets, paramView);
+        int i = Build.VERSION.SDK_INT;
+        if (i < 30)
+        {
+          h0.m.a(paramWindowInsets, h0.m.this);
+          if (localH1.equals(a)) {
+            return paramC0.a(paramView, localH1).u();
+          }
+        }
+        a = localH1;
+        paramWindowInsets = paramC0.a(paramView, localH1);
+        if (i >= 30) {
+          return paramWindowInsets.u();
+        }
+        h0.p0(paramView);
+        return paramWindowInsets.u();
+      }
+    }
+  }
+  
+  private static abstract class n
+  {
+    public static h1 a(View paramView)
+    {
+      Object localObject = paramView.getRootWindowInsets();
+      if (localObject == null) {
+        return null;
+      }
+      localObject = h1.v((WindowInsets)localObject);
+      ((h1)localObject).s((h1)localObject);
+      ((h1)localObject).d(paramView.getRootView());
+      return localObject;
+    }
+    
+    static int b(View paramView)
+    {
+      return paramView.getScrollIndicators();
+    }
+    
+    static void c(View paramView, int paramInt)
+    {
+      paramView.setScrollIndicators(paramInt);
+    }
+    
+    static void d(View paramView, int paramInt1, int paramInt2)
+    {
+      paramView.setScrollIndicators(paramInt1, paramInt2);
+    }
+  }
+  
+  static abstract class o
+  {
+    static void a(View paramView, Collection<View> paramCollection, int paramInt)
+    {
+      paramView.addKeyboardNavigationClusters(paramCollection, paramInt);
+    }
+    
+    static int b(View paramView)
+    {
+      return paramView.getImportantForAutofill();
+    }
+    
+    static int c(View paramView)
+    {
+      return paramView.getNextClusterForwardId();
+    }
+    
+    static boolean d(View paramView)
+    {
+      return paramView.hasExplicitFocusable();
+    }
+    
+    static boolean e(View paramView)
+    {
+      return paramView.isFocusedByDefault();
+    }
+    
+    static boolean f(View paramView)
+    {
+      return paramView.isImportantForAutofill();
+    }
+    
+    static boolean g(View paramView)
+    {
+      return paramView.isKeyboardNavigationCluster();
+    }
+    
+    static View h(View paramView1, View paramView2, int paramInt)
+    {
+      return paramView1.keyboardNavigationClusterSearch(paramView2, paramInt);
+    }
+    
+    static boolean i(View paramView)
+    {
+      return paramView.restoreDefaultFocus();
+    }
+    
+    static void j(View paramView, String... paramVarArgs)
+    {
+      paramView.setAutofillHints(paramVarArgs);
+    }
+    
+    static void k(View paramView, boolean paramBoolean)
+    {
+      paramView.setFocusedByDefault(paramBoolean);
+    }
+    
+    static void l(View paramView, int paramInt)
+    {
+      paramView.setImportantForAutofill(paramInt);
+    }
+    
+    static void m(View paramView, boolean paramBoolean)
+    {
+      paramView.setKeyboardNavigationCluster(paramBoolean);
+    }
+    
+    static void n(View paramView, int paramInt)
+    {
+      paramView.setNextClusterForwardId(paramInt);
+    }
+    
+    static void o(View paramView, CharSequence paramCharSequence)
+    {
+      paramView.setTooltipText(paramCharSequence);
+    }
+  }
+  
+  static abstract class p
+  {
+    static void a(View paramView, h0.u paramU)
+    {
+      int i = c.R;
+      Object localObject2 = (g)paramView.getTag(i);
+      Object localObject1 = localObject2;
+      if (localObject2 == null)
+      {
+        localObject1 = new g();
+        paramView.setTag(i, localObject1);
+      }
+      Objects.requireNonNull(paramU);
+      localObject2 = new i0(paramU);
+      ((g)localObject1).put(paramU, localObject2);
+      paramView.addOnUnhandledKeyEventListener((View.OnUnhandledKeyEventListener)localObject2);
+    }
+    
+    static CharSequence b(View paramView)
+    {
+      return paramView.getAccessibilityPaneTitle();
+    }
+    
+    static boolean c(View paramView)
+    {
+      return paramView.isAccessibilityHeading();
+    }
+    
+    static boolean d(View paramView)
+    {
+      return paramView.isScreenReaderFocusable();
+    }
+    
+    static void e(View paramView, h0.u paramU)
+    {
+      g localG = (g)paramView.getTag(c.R);
+      if (localG == null) {
+        return;
+      }
+      paramU = (View.OnUnhandledKeyEventListener)localG.get(paramU);
+      if (paramU != null) {
+        paramView.removeOnUnhandledKeyEventListener(paramU);
+      }
+    }
+    
+    static <T> T f(View paramView, int paramInt)
+    {
+      return paramView.requireViewById(paramInt);
+    }
+    
+    static void g(View paramView, boolean paramBoolean)
+    {
+      paramView.setAccessibilityHeading(paramBoolean);
+    }
+    
+    static void h(View paramView, CharSequence paramCharSequence)
+    {
+      paramView.setAccessibilityPaneTitle(paramCharSequence);
+    }
+    
+    static void i(View paramView, boolean paramBoolean)
+    {
+      paramView.setScreenReaderFocusable(paramBoolean);
+    }
+  }
+  
+  private static abstract class q
+  {
+    static View.AccessibilityDelegate a(View paramView)
+    {
+      return paramView.getAccessibilityDelegate();
+    }
+    
+    static List<Rect> b(View paramView)
+    {
+      return paramView.getSystemGestureExclusionRects();
+    }
+    
+    static void c(View paramView, Context paramContext, int[] paramArrayOfInt, AttributeSet paramAttributeSet, TypedArray paramTypedArray, int paramInt1, int paramInt2)
+    {
+      paramView.saveAttributeDataForStyleable(paramContext, paramArrayOfInt, paramAttributeSet, paramTypedArray, paramInt1, paramInt2);
+    }
+    
+    static void d(View paramView, List<Rect> paramList)
+    {
+      paramView.setSystemGestureExclusionRects(paramList);
+    }
+  }
+  
+  private static abstract class r
+  {
+    static CharSequence a(View paramView)
+    {
+      return paramView.getStateDescription();
+    }
+    
+    public static i2 b(View paramView)
+    {
+      paramView = paramView.getWindowInsetsController();
+      if (paramView != null) {
+        return i2.d(paramView);
+      }
+      return null;
+    }
+    
+    static void c(View paramView, CharSequence paramCharSequence)
+    {
+      paramView.setStateDescription(paramCharSequence);
+    }
+  }
+  
+  private static final abstract class s
+  {
+    public static String[] a(View paramView)
+    {
+      return paramView.getReceiveContentMimeTypes();
+    }
+    
+    public static d b(View paramView, d paramD)
+    {
+      ContentInfo localContentInfo = paramD.f();
+      paramView = paramView.performReceiveContent(localContentInfo);
+      if (paramView == null) {
+        return null;
+      }
+      if (paramView == localContentInfo) {
+        return paramD;
+      }
+      return d.g(paramView);
+    }
+    
+    public static void c(View paramView, String[] paramArrayOfString, d0 paramD0)
+    {
+      if (paramD0 == null)
+      {
+        paramView.setOnReceiveContentListener(paramArrayOfString, null);
+        return;
+      }
+      paramView.setOnReceiveContentListener(paramArrayOfString, new h0.t(paramD0));
+    }
+  }
+  
+  private static final class t
+    implements OnReceiveContentListener
+  {
+    private final d0 a;
+    
+    t(d0 paramD0)
+    {
+      a = paramD0;
+    }
+    
+    public ContentInfo onReceiveContent(View paramView, ContentInfo paramContentInfo)
+    {
+      d localD = d.g(paramContentInfo);
+      paramView = a.a(paramView, localD);
+      if (paramView == null) {
+        return null;
+      }
+      if (paramView == localD) {
+        return paramContentInfo;
+      }
+      return paramView.f();
+    }
+  }
+  
+  public static abstract interface u {}
+  
+  static class v
+  {
+    private static final ArrayList d = new ArrayList();
+    private WeakHashMap a = null;
+    private SparseArray b = null;
+    private WeakReference c = null;
+    
+    v() {}
+    
+    static v a(View paramView)
+    {
+      int i = c.Q;
+      v localV2 = (v)paramView.getTag(i);
+      v localV1 = localV2;
+      if (localV2 == null)
+      {
+        localV1 = new v();
+        paramView.setTag(i, localV1);
+      }
+      return localV1;
+    }
+    
+    private View c(View paramView, KeyEvent paramKeyEvent)
+    {
+      Object localObject = a;
+      if (localObject != null)
+      {
+        if (!((WeakHashMap)localObject).containsKey(paramView)) {
+          return null;
+        }
+        if ((paramView instanceof ViewGroup))
+        {
+          localObject = (ViewGroup)paramView;
+          int i = ((ViewGroup)localObject).getChildCount() - 1;
+          while (i >= 0)
+          {
+            View localView = c(((ViewGroup)localObject).getChildAt(i), paramKeyEvent);
+            if (localView != null) {
+              return localView;
+            }
+            i -= 1;
+          }
+        }
+        if (e(paramView, paramKeyEvent)) {
+          return paramView;
+        }
+      }
+      return null;
+    }
+    
+    private SparseArray d()
+    {
+      if (b == null) {
+        b = new SparseArray();
+      }
+      return b;
+    }
+    
+    private boolean e(View paramView, KeyEvent paramKeyEvent)
+    {
+      paramView = (ArrayList)paramView.getTag(c.R);
+      if (paramView != null)
+      {
+        int i = paramView.size() - 1;
+        if (i >= 0)
+        {
+          b.a(paramView.get(i));
+          throw null;
+        }
+      }
+      return false;
+    }
+    
+    private void g()
+    {
+      Object localObject1 = a;
+      if (localObject1 != null) {
+        ((WeakHashMap)localObject1).clear();
+      }
+      ArrayList localArrayList = d;
+      if (localArrayList.isEmpty()) {
+        return;
+      }
+      for (;;)
+      {
+        int i;
+        try
+        {
+          if (a == null) {
+            a = new WeakHashMap();
+          }
+          i = localArrayList.size() - 1;
+          if (i >= 0)
+          {
+            localObject1 = d;
+            View localView = (View)((WeakReference)((ArrayList)localObject1).get(i)).get();
+            if (localView == null)
+            {
+              ((ArrayList)localObject1).remove(i);
+            }
+            else
+            {
+              a.put(localView, Boolean.TRUE);
+              localObject1 = localView.getParent();
+              if ((localObject1 instanceof View))
+              {
+                a.put((View)localObject1, Boolean.TRUE);
+                localObject1 = ((ViewParent)localObject1).getParent();
+                continue;
+              }
+            }
+          }
+          else
+          {
+            return;
+          }
+        }
+        finally {}
+        i -= 1;
+      }
+    }
+    
+    boolean b(View paramView, KeyEvent paramKeyEvent)
+    {
+      if (paramKeyEvent.getAction() == 0) {
+        g();
+      }
+      paramView = c(paramView, paramKeyEvent);
+      if (paramKeyEvent.getAction() == 0)
+      {
+        int i = paramKeyEvent.getKeyCode();
+        if ((paramView != null) && (!KeyEvent.isModifierKey(i))) {
+          d().put(i, new WeakReference(paramView));
+        }
+      }
+      return paramView != null;
+    }
+    
+    boolean f(KeyEvent paramKeyEvent)
+    {
+      Object localObject1 = c;
+      if ((localObject1 != null) && (((Reference)localObject1).get() == paramKeyEvent)) {
+        return false;
+      }
+      c = new WeakReference(paramKeyEvent);
+      SparseArray localSparseArray = d();
+      if (paramKeyEvent.getAction() == 1)
+      {
+        int i = localSparseArray.indexOfKey(paramKeyEvent.getKeyCode());
+        if (i >= 0)
+        {
+          localObject1 = (WeakReference)localSparseArray.valueAt(i);
+          localSparseArray.removeAt(i);
+          break label80;
+        }
+      }
+      localObject1 = null;
+      label80:
+      Object localObject2 = localObject1;
+      if (localObject1 == null) {
+        localObject2 = (WeakReference)localSparseArray.get(paramKeyEvent.getKeyCode());
+      }
+      if (localObject2 != null)
+      {
+        localObject1 = (View)((Reference)localObject2).get();
+        if ((localObject1 != null) && (h0.V((View)localObject1))) {
+          e((View)localObject1, paramKeyEvent);
+        }
+        return true;
+      }
+      return false;
+    }
+  }
+}

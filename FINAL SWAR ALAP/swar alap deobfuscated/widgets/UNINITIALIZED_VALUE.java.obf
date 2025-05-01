@@ -1,0 +1,8 @@
+package sa;
+
+public final class r
+{
+  public static final r a = new r();
+  
+  private r() {}
+}

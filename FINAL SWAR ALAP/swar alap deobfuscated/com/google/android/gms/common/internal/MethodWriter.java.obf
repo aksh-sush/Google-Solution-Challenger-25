@@ -1,0 +1,30 @@
+package com.google.android.gms.common.internal;
+
+public final class f2
+{
+  private final String a;
+  private final String b;
+  private final boolean c;
+  
+  public f2(String paramString1, String paramString2, boolean paramBoolean1, int paramInt, boolean paramBoolean2)
+  {
+    b = paramString1;
+    a = paramString2;
+    c = paramBoolean2;
+  }
+  
+  final String a()
+  {
+    return b;
+  }
+  
+  final String b()
+  {
+    return a;
+  }
+  
+  final boolean c()
+  {
+    return c;
+  }
+}

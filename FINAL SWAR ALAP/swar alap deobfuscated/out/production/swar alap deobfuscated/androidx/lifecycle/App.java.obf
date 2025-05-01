@@ -1,0 +1,212 @@
+package androidx.lifecycle;
+
+import android.app.Activity;
+import android.app.Application;
+import android.app.Application.ActivityLifecycleCallbacks;
+import android.content.Context;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.os.Handler;
+import db.l;
+
+public final class w
+  implements n
+{
+  public static final b m = new b(null);
+  private static final w n = new w();
+  private int e;
+  private int f;
+  private boolean g = true;
+  private boolean h = true;
+  private Handler i;
+  private final o j = new o(this);
+  private final Runnable k = new v(this);
+  private final x.a l = new d(this);
+  
+  private w() {}
+  
+  private static final void i(w paramW)
+  {
+    l.e(paramW, "this$0");
+    paramW.j();
+    paramW.k();
+  }
+  
+  public final void d()
+  {
+    int i1 = f - 1;
+    f = i1;
+    if (i1 == 0)
+    {
+      Handler localHandler = i;
+      l.b(localHandler);
+      localHandler.postDelayed(k, 700L);
+    }
+  }
+  
+  public final void e()
+  {
+    int i1 = f + 1;
+    f = i1;
+    if (i1 == 1)
+    {
+      if (g)
+      {
+        j.h(i.a.ON_RESUME);
+        g = false;
+        return;
+      }
+      Handler localHandler = i;
+      l.b(localHandler);
+      localHandler.removeCallbacks(k);
+    }
+  }
+  
+  public final void f()
+  {
+    int i1 = e + 1;
+    e = i1;
+    if ((i1 == 1) && (h))
+    {
+      j.h(i.a.ON_START);
+      h = false;
+    }
+  }
+  
+  public final void g()
+  {
+    e -= 1;
+    k();
+  }
+  
+  public i getLifecycle()
+  {
+    return j;
+  }
+  
+  public final void h(Context paramContext)
+  {
+    l.e(paramContext, "context");
+    i = new Handler();
+    j.h(i.a.ON_CREATE);
+    paramContext = paramContext.getApplicationContext();
+    l.c(paramContext, "null cannot be cast to non-null type android.app.Application");
+    ((Application)paramContext).registerActivityLifecycleCallbacks(new c(this));
+  }
+  
+  public final void j()
+  {
+    if (f == 0)
+    {
+      g = true;
+      j.h(i.a.ON_PAUSE);
+    }
+  }
+  
+  public final void k()
+  {
+    if ((e == 0) && (g))
+    {
+      j.h(i.a.ON_STOP);
+      h = true;
+    }
+  }
+  
+  public static final class a
+  {
+    public static final a a = new a();
+    
+    private a() {}
+    
+    public static final void a(Activity paramActivity, Application.ActivityLifecycleCallbacks paramActivityLifecycleCallbacks)
+    {
+      l.e(paramActivity, "activity");
+      l.e(paramActivityLifecycleCallbacks, "callback");
+      paramActivity.registerActivityLifecycleCallbacks(paramActivityLifecycleCallbacks);
+    }
+  }
+  
+  public static final class b
+  {
+    private b() {}
+    
+    public final n a()
+    {
+      return w.c();
+    }
+    
+    public final void b(Context paramContext)
+    {
+      l.e(paramContext, "context");
+      w.c().h(paramContext);
+    }
+  }
+  
+  public static final class c
+    extends e
+  {
+    c(w paramW) {}
+    
+    public void onActivityCreated(Activity paramActivity, Bundle paramBundle)
+    {
+      l.e(paramActivity, "activity");
+      if (Build.VERSION.SDK_INT < 29) {
+        x.f.b(paramActivity).f(w.b(this$0));
+      }
+    }
+    
+    public void onActivityPaused(Activity paramActivity)
+    {
+      l.e(paramActivity, "activity");
+      this$0.d();
+    }
+    
+    public void onActivityPreCreated(Activity paramActivity, Bundle paramBundle)
+    {
+      l.e(paramActivity, "activity");
+      w.a.a(paramActivity, new a(this$0));
+    }
+    
+    public void onActivityStopped(Activity paramActivity)
+    {
+      l.e(paramActivity, "activity");
+      this$0.g();
+    }
+    
+    public static final class a
+      extends e
+    {
+      a(w paramW) {}
+      
+      public void onActivityPostResumed(Activity paramActivity)
+      {
+        l.e(paramActivity, "activity");
+        this$0.e();
+      }
+      
+      public void onActivityPostStarted(Activity paramActivity)
+      {
+        l.e(paramActivity, "activity");
+        this$0.f();
+      }
+    }
+  }
+  
+  public static final class d
+    implements x.a
+  {
+    d(w paramW) {}
+    
+    public void a() {}
+    
+    public void b()
+    {
+      a.e();
+    }
+    
+    public void c()
+    {
+      a.f();
+    }
+  }
+}

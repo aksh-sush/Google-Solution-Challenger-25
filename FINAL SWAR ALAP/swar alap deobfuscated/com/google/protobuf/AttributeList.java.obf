@@ -1,0 +1,145 @@
+package com.google.protobuf;
+
+import java.util.AbstractList;
+import java.util.Arrays;
+import java.util.RandomAccess;
+
+final class h1
+  extends c
+  implements RandomAccess
+{
+  private static final h1 h;
+  private Object[] f;
+  private int g;
+  
+  static
+  {
+    h1 localH1 = new h1(new Object[0], 0);
+    h = localH1;
+    localH1.c();
+  }
+  
+  private h1(Object[] paramArrayOfObject, int paramInt)
+  {
+    f = paramArrayOfObject;
+    g = paramInt;
+  }
+  
+  private static Object[] d(int paramInt)
+  {
+    return new Object[paramInt];
+  }
+  
+  public static h1 e()
+  {
+    return h;
+  }
+  
+  private void f(int paramInt)
+  {
+    if ((paramInt >= 0) && (paramInt < g)) {
+      return;
+    }
+    throw new IndexOutOfBoundsException(h(paramInt));
+  }
+  
+  private String h(int paramInt)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Index:");
+    localStringBuilder.append(paramInt);
+    localStringBuilder.append(", Size:");
+    localStringBuilder.append(g);
+    return localStringBuilder.toString();
+  }
+  
+  public void add(int paramInt, Object paramObject)
+  {
+    b();
+    if (paramInt >= 0)
+    {
+      int i = g;
+      if (paramInt <= i)
+      {
+        Object[] arrayOfObject = f;
+        if (i < arrayOfObject.length)
+        {
+          System.arraycopy(arrayOfObject, paramInt, arrayOfObject, paramInt + 1, i - paramInt);
+        }
+        else
+        {
+          arrayOfObject = d(i * 3 / 2 + 1);
+          System.arraycopy(f, 0, arrayOfObject, 0, paramInt);
+          System.arraycopy(f, paramInt, arrayOfObject, paramInt + 1, g - paramInt);
+          f = arrayOfObject;
+        }
+        f[paramInt] = paramObject;
+        g += 1;
+        modCount += 1;
+        return;
+      }
+    }
+    throw new IndexOutOfBoundsException(h(paramInt));
+  }
+  
+  public boolean add(Object paramObject)
+  {
+    b();
+    int i = g;
+    Object[] arrayOfObject = f;
+    if (i == arrayOfObject.length) {
+      f = Arrays.copyOf(arrayOfObject, i * 3 / 2 + 1);
+    }
+    arrayOfObject = f;
+    i = g;
+    g = (i + 1);
+    arrayOfObject[i] = paramObject;
+    modCount += 1;
+    return true;
+  }
+  
+  public Object get(int paramInt)
+  {
+    f(paramInt);
+    return f[paramInt];
+  }
+  
+  public h1 i(int paramInt)
+  {
+    if (paramInt >= g) {
+      return new h1(Arrays.copyOf(f, paramInt), g);
+    }
+    throw new IllegalArgumentException();
+  }
+  
+  public Object remove(int paramInt)
+  {
+    b();
+    f(paramInt);
+    Object[] arrayOfObject = f;
+    Object localObject = arrayOfObject[paramInt];
+    int i = g;
+    if (paramInt < i - 1) {
+      System.arraycopy(arrayOfObject, paramInt + 1, arrayOfObject, paramInt, i - paramInt - 1);
+    }
+    g -= 1;
+    modCount += 1;
+    return localObject;
+  }
+  
+  public Object set(int paramInt, Object paramObject)
+  {
+    b();
+    f(paramInt);
+    Object[] arrayOfObject = f;
+    Object localObject = arrayOfObject[paramInt];
+    arrayOfObject[paramInt] = paramObject;
+    modCount += 1;
+    return localObject;
+  }
+  
+  public int size()
+  {
+    return g;
+  }
+}

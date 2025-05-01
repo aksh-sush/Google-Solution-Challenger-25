@@ -1,0 +1,139 @@
+package com.google.protobuf;
+
+import java.lang.reflect.Method;
+
+final class l0
+  implements m1
+{
+  private static final s0 b = new a();
+  private final s0 a;
+  
+  public l0()
+  {
+    this(b());
+  }
+  
+  private l0(s0 paramS0)
+  {
+    a = ((s0)c0.b(paramS0, "messageInfoFactory"));
+  }
+  
+  private static s0 b()
+  {
+    return new b(new s0[] { y.c(), c() });
+  }
+  
+  private static s0 c()
+  {
+    try
+    {
+      s0 localS0 = (s0)Class.forName("com.google.protobuf.DescriptorMessageInfoFactory").getDeclaredMethod("getInstance", new Class[0]).invoke(null, new Object[0]);
+      return localS0;
+    }
+    catch (Exception localException)
+    {
+      for (;;) {}
+    }
+    return b;
+  }
+  
+  private static boolean d(r0 paramR0)
+  {
+    return paramR0.b() == f1.e;
+  }
+  
+  private static l1 e(Class paramClass, r0 paramR0)
+  {
+    if (z.class.isAssignableFrom(paramClass))
+    {
+      if (d(paramR0)) {
+        return w0.Q(paramClass, paramR0, a1.b(), j0.b(), n1.M(), u.b(), q0.b());
+      }
+      return w0.Q(paramClass, paramR0, a1.b(), j0.b(), n1.M(), null, q0.b());
+    }
+    if (d(paramR0)) {
+      return w0.Q(paramClass, paramR0, a1.a(), j0.a(), n1.H(), u.a(), q0.a());
+    }
+    return w0.Q(paramClass, paramR0, a1.a(), j0.a(), n1.I(), null, q0.a());
+  }
+  
+  public l1 a(Class paramClass)
+  {
+    n1.J(paramClass);
+    r0 localR0 = a.a(paramClass);
+    if (localR0.a())
+    {
+      t1 localT1;
+      if (z.class.isAssignableFrom(paramClass)) {
+        localT1 = n1.M();
+      }
+      for (paramClass = u.b();; paramClass = u.a())
+      {
+        return x0.m(localT1, paramClass, localR0.c());
+        localT1 = n1.H();
+      }
+    }
+    return e(paramClass, localR0);
+  }
+  
+  static final class a
+    implements s0
+  {
+    a() {}
+    
+    public r0 a(Class paramClass)
+    {
+      throw new IllegalStateException("This should never be called.");
+    }
+    
+    public boolean b(Class paramClass)
+    {
+      return false;
+    }
+  }
+  
+  private static class b
+    implements s0
+  {
+    private s0[] a;
+    
+    b(s0... paramVarArgs)
+    {
+      a = paramVarArgs;
+    }
+    
+    public r0 a(Class paramClass)
+    {
+      Object localObject1 = a;
+      int j = localObject1.length;
+      int i = 0;
+      while (i < j)
+      {
+        Object localObject2 = localObject1[i];
+        if (localObject2.b(paramClass)) {
+          return localObject2.a(paramClass);
+        }
+        i += 1;
+      }
+      localObject1 = new StringBuilder();
+      ((StringBuilder)localObject1).append("No factory is available for message type: ");
+      ((StringBuilder)localObject1).append(paramClass.getName());
+      throw new UnsupportedOperationException(((StringBuilder)localObject1).toString());
+    }
+    
+    public boolean b(Class paramClass)
+    {
+      s0[] arrayOfS0 = a;
+      int j = arrayOfS0.length;
+      int i = 0;
+      while (i < j)
+      {
+        if (arrayOfS0[i].b(paramClass)) {
+          return true;
+        }
+        i += 1;
+      }
+      return false;
+    }
+  }
+}

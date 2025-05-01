@@ -1,0 +1,94 @@
+package com.google.android.gms.common.internal;
+
+import android.accounts.Account;
+import android.content.Context;
+import android.os.Looper;
+import com.google.android.gms.common.api.GoogleApiClient.b;
+import com.google.android.gms.common.api.GoogleApiClient.c;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.a.f;
+import com.google.android.gms.common.api.internal.g;
+import com.google.android.gms.common.api.internal.o;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import q3.j;
+
+public abstract class h
+  extends c
+  implements a.f, k0
+{
+  private static volatile Executor zaa;
+  private final d zab;
+  private final Set<Scope> zac;
+  private final Account zad;
+  
+  protected h(Context paramContext, Looper paramLooper, int paramInt, d paramD, GoogleApiClient.b paramB, GoogleApiClient.c paramC)
+  {
+    this(paramContext, paramLooper, paramInt, paramD, paramB, paramC);
+  }
+  
+  protected h(Context paramContext, Looper paramLooper, int paramInt, d paramD, g paramG, o paramO)
+  {
+    this(paramContext, paramLooper, i.a(paramContext), j.q(), paramInt, paramD, (g)s.k(paramG), (o)s.k(paramO));
+  }
+  
+  protected h(Context paramContext, Looper paramLooper, i paramI, j paramJ, int paramInt, d paramD, g paramG, o paramO)
+  {
+    super(paramContext, paramLooper, paramI, paramJ, paramInt, paramG, paramO, paramD.j());
+    zab = paramD;
+    zad = paramD.a();
+    zac = f(paramD.d());
+  }
+  
+  private final Set f(Set paramSet)
+  {
+    Set localSet = validateScopes(paramSet);
+    Iterator localIterator = localSet.iterator();
+    while (localIterator.hasNext()) {
+      if (!paramSet.contains((Scope)localIterator.next())) {
+        throw new IllegalStateException("Expanding scopes is not permitted, use implied scopes instead");
+      }
+    }
+    return localSet;
+  }
+  
+  public final Account getAccount()
+  {
+    return zad;
+  }
+  
+  protected final Executor getBindServiceExecutor()
+  {
+    return null;
+  }
+  
+  protected final d getClientSettings()
+  {
+    return zab;
+  }
+  
+  public q3.d[] getRequiredFeatures()
+  {
+    return new q3.d[0];
+  }
+  
+  protected final Set<Scope> getScopes()
+  {
+    return zac;
+  }
+  
+  public Set<Scope> getScopesForConnectionlessNonSignIn()
+  {
+    if (requiresSignIn()) {
+      return zac;
+    }
+    return Collections.emptySet();
+  }
+  
+  protected Set<Scope> validateScopes(Set<Scope> paramSet)
+  {
+    return paramSet;
+  }
+}

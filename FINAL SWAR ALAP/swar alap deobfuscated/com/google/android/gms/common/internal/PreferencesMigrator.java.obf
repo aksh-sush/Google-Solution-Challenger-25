@@ -1,0 +1,28 @@
+package com.google.android.gms.common.internal;
+
+import android.content.Context;
+import android.content.res.Resources;
+import q3.q;
+
+public class v
+{
+  private final Resources a;
+  private final String b;
+  
+  public v(Context paramContext)
+  {
+    s.k(paramContext);
+    paramContext = paramContext.getResources();
+    a = paramContext;
+    b = paramContext.getResourcePackageName(q.a);
+  }
+  
+  public String a(String paramString)
+  {
+    int i = a.getIdentifier(paramString, "string", b);
+    if (i == 0) {
+      return null;
+    }
+    return a.getString(i);
+  }
+}

@@ -1,0 +1,13 @@
+package com.google.protobuf;
+
+public enum f1
+{
+  static
+  {
+    f1 localF11 = new f1("PROTO2", 0);
+    e = localF11;
+    f1 localF12 = new f1("PROTO3", 1);
+    f = localF12;
+    g = new f1[] { localF11, localF12 };
+  }
+}

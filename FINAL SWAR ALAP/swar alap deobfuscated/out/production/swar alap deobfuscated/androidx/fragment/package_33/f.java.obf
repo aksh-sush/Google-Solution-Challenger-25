@@ -1,0 +1,192 @@
+package androidx.fragment.app;
+
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.lifecycle.i.b;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+
+public abstract class u
+{
+  private final i a;
+  private final ClassLoader b;
+  ArrayList c = new ArrayList();
+  int d;
+  int e;
+  int f;
+  int g;
+  int h;
+  boolean i;
+  boolean j = true;
+  String k;
+  int l;
+  CharSequence m;
+  int n;
+  CharSequence o;
+  ArrayList p;
+  ArrayList q;
+  boolean r = false;
+  ArrayList s;
+  
+  u(i paramI, ClassLoader paramClassLoader)
+  {
+    a = paramI;
+    b = paramClassLoader;
+  }
+  
+  public u b(int paramInt, Fragment paramFragment, String paramString)
+  {
+    k(paramInt, paramFragment, paramString, 1);
+    return this;
+  }
+  
+  u c(ViewGroup paramViewGroup, Fragment paramFragment, String paramString)
+  {
+    mContainer = paramViewGroup;
+    return b(paramViewGroup.getId(), paramFragment, paramString);
+  }
+  
+  public u d(Fragment paramFragment, String paramString)
+  {
+    k(0, paramFragment, paramString, 1);
+    return this;
+  }
+  
+  void e(a paramA)
+  {
+    c.add(paramA);
+    c = d;
+    d = e;
+    e = f;
+    f = g;
+  }
+  
+  public abstract int f();
+  
+  public abstract int g();
+  
+  public abstract void h();
+  
+  public abstract void i();
+  
+  public u j()
+  {
+    if (!i)
+    {
+      j = false;
+      return this;
+    }
+    throw new IllegalStateException("This transaction is already being added to the back stack");
+  }
+  
+  void k(int paramInt1, Fragment paramFragment, String paramString, int paramInt2)
+  {
+    Object localObject = paramFragment.getClass();
+    int i1 = ((Class)localObject).getModifiers();
+    if ((!((Class)localObject).isAnonymousClass()) && (Modifier.isPublic(i1)) && ((!((Class)localObject).isMemberClass()) || (Modifier.isStatic(i1))))
+    {
+      if (paramString != null)
+      {
+        localObject = mTag;
+        if ((localObject != null) && (!paramString.equals(localObject)))
+        {
+          localObject = new StringBuilder();
+          ((StringBuilder)localObject).append("Can't change tag of fragment ");
+          ((StringBuilder)localObject).append(paramFragment);
+          ((StringBuilder)localObject).append(": was ");
+          ((StringBuilder)localObject).append(mTag);
+          ((StringBuilder)localObject).append(" now ");
+          ((StringBuilder)localObject).append(paramString);
+          throw new IllegalStateException(((StringBuilder)localObject).toString());
+        }
+        mTag = paramString;
+      }
+      if (paramInt1 != 0) {
+        if (paramInt1 != -1)
+        {
+          i1 = mFragmentId;
+          if ((i1 != 0) && (i1 != paramInt1))
+          {
+            paramString = new StringBuilder();
+            paramString.append("Can't change container ID of fragment ");
+            paramString.append(paramFragment);
+            paramString.append(": was ");
+            paramString.append(mFragmentId);
+            paramString.append(" now ");
+            paramString.append(paramInt1);
+            throw new IllegalStateException(paramString.toString());
+          }
+          mFragmentId = paramInt1;
+          mContainerId = paramInt1;
+        }
+        else
+        {
+          localObject = new StringBuilder();
+          ((StringBuilder)localObject).append("Can't add fragment ");
+          ((StringBuilder)localObject).append(paramFragment);
+          ((StringBuilder)localObject).append(" with tag ");
+          ((StringBuilder)localObject).append(paramString);
+          ((StringBuilder)localObject).append(" to container view with no id");
+          throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+        }
+      }
+      e(new a(paramInt2, paramFragment));
+      return;
+    }
+    paramFragment = new StringBuilder();
+    paramFragment.append("Fragment ");
+    paramFragment.append(((Class)localObject).getCanonicalName());
+    paramFragment.append(" must be a public static class to be  properly recreated from instance state.");
+    throw new IllegalStateException(paramFragment.toString());
+  }
+  
+  public u l(Fragment paramFragment)
+  {
+    e(new a(3, paramFragment));
+    return this;
+  }
+  
+  public u m(int paramInt, Fragment paramFragment)
+  {
+    return n(paramInt, paramFragment, null);
+  }
+  
+  public u n(int paramInt, Fragment paramFragment, String paramString)
+  {
+    if (paramInt != 0)
+    {
+      k(paramInt, paramFragment, paramString, 2);
+      return this;
+    }
+    throw new IllegalArgumentException("Must use non-zero containerViewId");
+  }
+  
+  public u o(boolean paramBoolean)
+  {
+    r = paramBoolean;
+    return this;
+  }
+  
+  static final class a
+  {
+    int a;
+    Fragment b;
+    int c;
+    int d;
+    int e;
+    int f;
+    i.b g;
+    i.b h;
+    
+    a() {}
+    
+    a(int paramInt, Fragment paramFragment)
+    {
+      a = paramInt;
+      b = paramFragment;
+      paramFragment = i.b.i;
+      g = paramFragment;
+      h = paramFragment;
+    }
+  }
+}

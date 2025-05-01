@@ -1,0 +1,348 @@
+package androidx.appcompat.view.menu;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.appcompat.widget.ActionMenuView.a;
+import androidx.appcompat.widget.c0;
+import androidx.appcompat.widget.k1;
+import androidx.appcompat.widget.r0;
+import f.j;
+
+public class ActionMenuItemView
+  extends c0
+  implements n.a, View.OnClickListener, ActionMenuView.a
+{
+  i l;
+  private CharSequence m;
+  private Drawable n;
+  g.b o;
+  private r0 p;
+  b q;
+  private boolean r;
+  private boolean s;
+  private int t;
+  private int u;
+  private int v;
+  
+  public ActionMenuItemView(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 0);
+  }
+  
+  public ActionMenuItemView(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    Resources localResources = paramContext.getResources();
+    r = s();
+    paramContext = paramContext.obtainStyledAttributes(paramAttributeSet, j.v, paramInt, 0);
+    t = paramContext.getDimensionPixelSize(j.w, 0);
+    paramContext.recycle();
+    v = ((int)(getDisplayMetricsdensity * 32.0F + 0.5F));
+    setOnClickListener(this);
+    u = -1;
+    setSaveEnabled(false);
+  }
+  
+  private boolean s()
+  {
+    Configuration localConfiguration = getContext().getResources().getConfiguration();
+    int i = screenWidthDp;
+    int j = screenHeightDp;
+    return (i >= 480) || ((i >= 640) && (j >= 480)) || (orientation == 2);
+  }
+  
+  private void t()
+  {
+    boolean bool = TextUtils.isEmpty(m);
+    int j = 1;
+    int i = j;
+    if (n != null)
+    {
+      if (l.B())
+      {
+        i = j;
+        if (r) {
+          break label52;
+        }
+        if (s)
+        {
+          i = j;
+          break label52;
+        }
+      }
+      i = 0;
+    }
+    label52:
+    i = (bool ^ true) & i;
+    Object localObject2 = null;
+    if (i != 0) {
+      localObject1 = m;
+    } else {
+      localObject1 = null;
+    }
+    setText((CharSequence)localObject1);
+    CharSequence localCharSequence = l.getContentDescription();
+    Object localObject1 = localCharSequence;
+    if (TextUtils.isEmpty(localCharSequence)) {
+      if (i != 0) {
+        localObject1 = null;
+      } else {
+        localObject1 = l.getTitle();
+      }
+    }
+    setContentDescription((CharSequence)localObject1);
+    localObject1 = l.getTooltipText();
+    if (TextUtils.isEmpty((CharSequence)localObject1))
+    {
+      if (i != 0) {
+        localObject1 = localObject2;
+      } else {
+        localObject1 = l.getTitle();
+      }
+      k1.a(this, (CharSequence)localObject1);
+      return;
+    }
+    k1.a(this, (CharSequence)localObject1);
+  }
+  
+  public boolean a()
+  {
+    return r();
+  }
+  
+  public boolean b()
+  {
+    return (r()) && (l.getIcon() == null);
+  }
+  
+  public boolean d()
+  {
+    return true;
+  }
+  
+  public void e(i paramI, int paramInt)
+  {
+    l = paramI;
+    setIcon(paramI.getIcon());
+    setTitle(paramI.i(this));
+    setId(paramI.getItemId());
+    if (paramI.isVisible()) {
+      paramInt = 0;
+    } else {
+      paramInt = 8;
+    }
+    setVisibility(paramInt);
+    setEnabled(paramI.isEnabled());
+    if ((paramI.hasSubMenu()) && (p == null)) {
+      p = new a();
+    }
+  }
+  
+  public CharSequence getAccessibilityClassName()
+  {
+    return Button.class.getName();
+  }
+  
+  public i getItemData()
+  {
+    return l;
+  }
+  
+  public void onClick(View paramView)
+  {
+    paramView = o;
+    if (paramView != null) {
+      paramView.a(l);
+    }
+  }
+  
+  public void onConfigurationChanged(Configuration paramConfiguration)
+  {
+    super.onConfigurationChanged(paramConfiguration);
+    r = s();
+    t();
+  }
+  
+  protected void onMeasure(int paramInt1, int paramInt2)
+  {
+    boolean bool = r();
+    if (bool)
+    {
+      i = u;
+      if (i >= 0) {
+        super.setPadding(i, getPaddingTop(), getPaddingRight(), getPaddingBottom());
+      }
+    }
+    super.onMeasure(paramInt1, paramInt2);
+    int i = View.MeasureSpec.getMode(paramInt1);
+    paramInt1 = View.MeasureSpec.getSize(paramInt1);
+    int j = getMeasuredWidth();
+    if (i == Integer.MIN_VALUE) {
+      paramInt1 = Math.min(paramInt1, t);
+    } else {
+      paramInt1 = t;
+    }
+    if ((i != 1073741824) && (t > 0) && (j < paramInt1)) {
+      super.onMeasure(View.MeasureSpec.makeMeasureSpec(paramInt1, 1073741824), paramInt2);
+    }
+    if ((!bool) && (n != null)) {
+      super.setPadding((getMeasuredWidth() - n.getBounds().width()) / 2, getPaddingTop(), getPaddingRight(), getPaddingBottom());
+    }
+  }
+  
+  public void onRestoreInstanceState(Parcelable paramParcelable)
+  {
+    super.onRestoreInstanceState(null);
+  }
+  
+  public boolean onTouchEvent(MotionEvent paramMotionEvent)
+  {
+    if (l.hasSubMenu())
+    {
+      r0 localR0 = p;
+      if ((localR0 != null) && (localR0.onTouch(this, paramMotionEvent))) {
+        return true;
+      }
+    }
+    return super.onTouchEvent(paramMotionEvent);
+  }
+  
+  public boolean r()
+  {
+    return TextUtils.isEmpty(getText()) ^ true;
+  }
+  
+  public void setCheckable(boolean paramBoolean) {}
+  
+  public void setChecked(boolean paramBoolean) {}
+  
+  public void setExpandedFormat(boolean paramBoolean)
+  {
+    if (s != paramBoolean)
+    {
+      s = paramBoolean;
+      i localI = l;
+      if (localI != null) {
+        localI.c();
+      }
+    }
+  }
+  
+  public void setIcon(Drawable paramDrawable)
+  {
+    n = paramDrawable;
+    if (paramDrawable != null)
+    {
+      int i1 = paramDrawable.getIntrinsicWidth();
+      int i2 = paramDrawable.getIntrinsicHeight();
+      int k = v;
+      int i = i1;
+      int j = i2;
+      float f;
+      if (i1 > k)
+      {
+        f = k / i1;
+        j = (int)(i2 * f);
+        i = k;
+      }
+      if (j > k)
+      {
+        f = k / j;
+        i = (int)(i * f);
+      }
+      else
+      {
+        k = j;
+      }
+      paramDrawable.setBounds(0, 0, i, k);
+    }
+    setCompoundDrawables(paramDrawable, null, null, null);
+    t();
+  }
+  
+  public void setItemInvoker(g.b paramB)
+  {
+    o = paramB;
+  }
+  
+  public void setPadding(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    u = paramInt1;
+    super.setPadding(paramInt1, paramInt2, paramInt3, paramInt4);
+  }
+  
+  public void setPopupCallback(b paramB)
+  {
+    q = paramB;
+  }
+  
+  public void setTitle(CharSequence paramCharSequence)
+  {
+    m = paramCharSequence;
+    t();
+  }
+  
+  private class a
+    extends r0
+  {
+    public a()
+    {
+      super();
+    }
+    
+    public p b()
+    {
+      ActionMenuItemView.b localB = q;
+      if (localB != null) {
+        return localB.a();
+      }
+      return null;
+    }
+    
+    protected boolean c()
+    {
+      Object localObject = ActionMenuItemView.this;
+      g.b localB = o;
+      boolean bool2 = false;
+      boolean bool1 = bool2;
+      if (localB != null)
+      {
+        bool1 = bool2;
+        if (localB.a(l))
+        {
+          localObject = b();
+          bool1 = bool2;
+          if (localObject != null)
+          {
+            bool1 = bool2;
+            if (((p)localObject).b()) {
+              bool1 = true;
+            }
+          }
+        }
+      }
+      return bool1;
+    }
+  }
+  
+  public static abstract class b
+  {
+    public b() {}
+    
+    public abstract p a();
+  }
+}

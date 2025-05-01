@@ -1,0 +1,51 @@
+package pb;
+
+import cb.l;
+import cb.p;
+import kotlinx.coroutines.internal.f;
+import sa.n;
+import sa.n.a;
+import sa.o;
+import sa.t;
+import va.d;
+import wa.b;
+
+public abstract class a
+{
+  private static final void a(d paramD, Throwable paramThrowable)
+  {
+    n.a localA = n.e;
+    paramD.resumeWith(n.a(o.a(paramThrowable)));
+    throw paramThrowable;
+  }
+  
+  public static final void b(p paramP, Object paramObject, d paramD, l paramL)
+  {
+    try
+    {
+      paramP = b.b(b.a(paramP, paramObject, paramD));
+      paramObject = n.e;
+      f.b(paramP, n.a(t.a), paramL);
+      return;
+    }
+    finally
+    {
+      a(paramD, paramP);
+    }
+  }
+  
+  public static final void c(d paramD1, d paramD2)
+  {
+    try
+    {
+      paramD1 = b.b(paramD1);
+      n.a localA = n.e;
+      f.c(paramD1, n.a(t.a), null, 2, null);
+      return;
+    }
+    finally
+    {
+      a(paramD2, paramD1);
+    }
+  }
+}

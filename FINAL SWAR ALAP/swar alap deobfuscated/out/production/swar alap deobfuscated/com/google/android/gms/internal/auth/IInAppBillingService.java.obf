@@ -1,0 +1,21 @@
+package com.google.android.gms.internal.auth;
+
+import android.accounts.Account;
+import android.os.Bundle;
+import android.os.IInterface;
+import g3.b;
+import g3.c;
+
+public abstract interface zzf
+  extends IInterface
+{
+  public abstract Bundle zzd(String paramString, Bundle paramBundle);
+  
+  public abstract Bundle zze(Account paramAccount, String paramString, Bundle paramBundle);
+  
+  public abstract Bundle zzf(Account paramAccount);
+  
+  public abstract Bundle zzg(String paramString);
+  
+  public abstract c zzh(b paramB);
+}

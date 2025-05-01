@@ -1,0 +1,87 @@
+package h9;
+
+import java.util.List;
+import va.d;
+
+public abstract interface b
+{
+  public abstract Object clearOldestOverLimitFallback(int paramInt1, int paramInt2, d paramD);
+  
+  public abstract Object createNotification(String paramString1, String paramString2, String paramString3, boolean paramBoolean1, boolean paramBoolean2, int paramInt, String paramString4, String paramString5, long paramLong, String paramString6, d paramD);
+  
+  public abstract Object createSummaryNotification(int paramInt, String paramString, d paramD);
+  
+  public abstract Object deleteExpiredNotifications(d paramD);
+  
+  public abstract Object doesNotificationExist(String paramString, d paramD);
+  
+  public abstract Object getAndroidIdForGroup(String paramString, boolean paramBoolean, d paramD);
+  
+  public abstract Object getAndroidIdFromCollapseKey(String paramString, d paramD);
+  
+  public abstract Object getGroupId(int paramInt, d paramD);
+  
+  public abstract Object listNotificationsForGroup(String paramString, d paramD);
+  
+  public abstract Object listNotificationsForOutstanding(List<Integer> paramList, d paramD);
+  
+  public abstract Object markAsConsumed(int paramInt, boolean paramBoolean1, String paramString, boolean paramBoolean2, d paramD);
+  
+  public abstract Object markAsDismissed(int paramInt, d paramD);
+  
+  public abstract Object markAsDismissedForGroup(String paramString, d paramD);
+  
+  public abstract Object markAsDismissedForOutstanding(d paramD);
+  
+  public static final abstract class a {}
+  
+  public static final class b
+  {
+    private final int androidId;
+    private final long createdAt;
+    private final String fullData;
+    private final String id;
+    private final String message;
+    private final String title;
+    
+    public b(int paramInt, String paramString1, String paramString2, long paramLong, String paramString3, String paramString4)
+    {
+      androidId = paramInt;
+      id = paramString1;
+      fullData = paramString2;
+      createdAt = paramLong;
+      title = paramString3;
+      message = paramString4;
+    }
+    
+    public final int getAndroidId()
+    {
+      return androidId;
+    }
+    
+    public final long getCreatedAt()
+    {
+      return createdAt;
+    }
+    
+    public final String getFullData()
+    {
+      return fullData;
+    }
+    
+    public final String getId()
+    {
+      return id;
+    }
+    
+    public final String getMessage()
+    {
+      return message;
+    }
+    
+    public final String getTitle()
+    {
+      return title;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+package com.google.android.gms.internal.auth;
+
+final class zzem
+  extends zzel
+{
+  zzem() {}
+  
+  final zzep zza(Object paramObject)
+  {
+    paramObject = zzb;
+    throw null;
+  }
+  
+  final void zzb(Object paramObject)
+  {
+    paramObject = zzb;
+    throw null;
+  }
+}

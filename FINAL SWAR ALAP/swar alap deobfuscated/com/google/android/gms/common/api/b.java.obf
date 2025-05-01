@@ -1,0 +1,25 @@
+package com.google.android.gms.common.api;
+
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import com.google.android.gms.common.api.internal.u;
+import com.google.android.gms.common.internal.s;
+
+public abstract class e
+{
+  public static PendingResult a(h paramH, GoogleApiClient paramGoogleApiClient)
+  {
+    s.l(paramH, "Result must not be null");
+    s.b(paramH.getStatus().j0() ^ true, "Status code must not be SUCCESS");
+    paramGoogleApiClient = new o(paramGoogleApiClient, paramH);
+    paramGoogleApiClient.setResult(paramH);
+    return paramGoogleApiClient;
+  }
+  
+  public static PendingResult b(Status paramStatus, GoogleApiClient paramGoogleApiClient)
+  {
+    s.l(paramStatus, "Result must not be null");
+    paramGoogleApiClient = new u(paramGoogleApiClient);
+    paramGoogleApiClient.setResult(paramStatus);
+    return paramGoogleApiClient;
+  }
+}

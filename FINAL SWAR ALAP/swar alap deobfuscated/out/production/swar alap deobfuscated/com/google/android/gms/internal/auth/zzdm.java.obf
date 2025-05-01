@@ -1,0 +1,46 @@
+package com.google.android.gms.internal.auth;
+
+import java.io.Serializable;
+import java.util.Arrays;
+
+final class zzdm
+  implements Serializable, zzdj
+{
+  final Object zza;
+  
+  zzdm(Object paramObject)
+  {
+    zza = paramObject;
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if ((paramObject instanceof zzdm))
+    {
+      Object localObject = (zzdm)paramObject;
+      paramObject = zza;
+      localObject = zza;
+      return (paramObject == localObject) || (paramObject.equals(localObject));
+    }
+    return false;
+  }
+  
+  public final int hashCode()
+  {
+    return Arrays.hashCode(new Object[] { zza });
+  }
+  
+  public final String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Suppliers.ofInstance(");
+    localStringBuilder.append(zza);
+    localStringBuilder.append(")");
+    return localStringBuilder.toString();
+  }
+  
+  public final Object zza()
+  {
+    return zza;
+  }
+}

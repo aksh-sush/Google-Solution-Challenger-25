@@ -1,0 +1,7 @@
+package l4;
+
+public abstract class d
+  extends e
+{
+  public d() {}
+}

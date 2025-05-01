@@ -1,0 +1,167 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.text.InputFilter;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.ToggleButton;
+import androidx.core.widget.n;
+
+public class h0
+  extends ToggleButton
+  implements n
+{
+  private final e e;
+  private final b0 f;
+  private m g;
+  
+  public h0(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 16842827);
+  }
+  
+  public h0(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    b1.a(this, getContext());
+    paramContext = new e(this);
+    e = paramContext;
+    paramContext.e(paramAttributeSet, paramInt);
+    paramContext = new b0(this);
+    f = paramContext;
+    paramContext.m(paramAttributeSet, paramInt);
+    getEmojiTextViewHelper().c(paramAttributeSet, paramInt);
+  }
+  
+  private m getEmojiTextViewHelper()
+  {
+    if (g == null) {
+      g = new m(this);
+    }
+    return g;
+  }
+  
+  protected void drawableStateChanged()
+  {
+    super.drawableStateChanged();
+    Object localObject = e;
+    if (localObject != null) {
+      ((e)localObject).b();
+    }
+    localObject = f;
+    if (localObject != null) {
+      ((b0)localObject).b();
+    }
+  }
+  
+  public ColorStateList getSupportBackgroundTintList()
+  {
+    e localE = e;
+    if (localE != null) {
+      return localE.c();
+    }
+    return null;
+  }
+  
+  public PorterDuff.Mode getSupportBackgroundTintMode()
+  {
+    e localE = e;
+    if (localE != null) {
+      return localE.d();
+    }
+    return null;
+  }
+  
+  public ColorStateList getSupportCompoundDrawablesTintList()
+  {
+    return f.j();
+  }
+  
+  public PorterDuff.Mode getSupportCompoundDrawablesTintMode()
+  {
+    return f.k();
+  }
+  
+  public void setAllCaps(boolean paramBoolean)
+  {
+    super.setAllCaps(paramBoolean);
+    getEmojiTextViewHelper().d(paramBoolean);
+  }
+  
+  public void setBackgroundDrawable(Drawable paramDrawable)
+  {
+    super.setBackgroundDrawable(paramDrawable);
+    e localE = e;
+    if (localE != null) {
+      localE.f(paramDrawable);
+    }
+  }
+  
+  public void setBackgroundResource(int paramInt)
+  {
+    super.setBackgroundResource(paramInt);
+    e localE = e;
+    if (localE != null) {
+      localE.g(paramInt);
+    }
+  }
+  
+  public void setCompoundDrawables(Drawable paramDrawable1, Drawable paramDrawable2, Drawable paramDrawable3, Drawable paramDrawable4)
+  {
+    super.setCompoundDrawables(paramDrawable1, paramDrawable2, paramDrawable3, paramDrawable4);
+    paramDrawable1 = f;
+    if (paramDrawable1 != null) {
+      paramDrawable1.p();
+    }
+  }
+  
+  public void setCompoundDrawablesRelative(Drawable paramDrawable1, Drawable paramDrawable2, Drawable paramDrawable3, Drawable paramDrawable4)
+  {
+    super.setCompoundDrawablesRelative(paramDrawable1, paramDrawable2, paramDrawable3, paramDrawable4);
+    paramDrawable1 = f;
+    if (paramDrawable1 != null) {
+      paramDrawable1.p();
+    }
+  }
+  
+  public void setEmojiCompatEnabled(boolean paramBoolean)
+  {
+    getEmojiTextViewHelper().e(paramBoolean);
+  }
+  
+  public void setFilters(InputFilter[] paramArrayOfInputFilter)
+  {
+    super.setFilters(getEmojiTextViewHelper().a(paramArrayOfInputFilter));
+  }
+  
+  public void setSupportBackgroundTintList(ColorStateList paramColorStateList)
+  {
+    e localE = e;
+    if (localE != null) {
+      localE.i(paramColorStateList);
+    }
+  }
+  
+  public void setSupportBackgroundTintMode(PorterDuff.Mode paramMode)
+  {
+    e localE = e;
+    if (localE != null) {
+      localE.j(paramMode);
+    }
+  }
+  
+  public void setSupportCompoundDrawablesTintList(ColorStateList paramColorStateList)
+  {
+    f.w(paramColorStateList);
+    f.b();
+  }
+  
+  public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode paramMode)
+  {
+    f.x(paramMode);
+    f.b();
+  }
+}

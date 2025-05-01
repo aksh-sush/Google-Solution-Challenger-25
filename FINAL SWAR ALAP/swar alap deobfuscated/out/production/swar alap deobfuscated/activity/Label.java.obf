@@ -1,0 +1,108 @@
+package va;
+
+import cb.p;
+import db.l;
+import db.m;
+
+public abstract interface g
+{
+  public abstract Object T(Object paramObject, p paramP);
+  
+  public abstract b a(c paramC);
+  
+  public abstract g g(g paramG);
+  
+  public abstract g r(c paramC);
+  
+  public static final abstract class a
+  {
+    public static g a(g paramG1, g paramG2)
+    {
+      l.e(paramG2, "context");
+      if (paramG2 == h.e) {
+        return paramG1;
+      }
+      return (g)paramG2.T(paramG1, a.e);
+    }
+    
+    static final class a
+      extends m
+      implements p
+    {
+      public static final a e = new a();
+      
+      a()
+      {
+        super();
+      }
+      
+      public final g a(g paramG, g.b paramB)
+      {
+        l.e(paramG, "acc");
+        l.e(paramB, "element");
+        g localG = paramG.r(paramB.getKey());
+        paramG = h.e;
+        if (localG == paramG) {
+          return paramB;
+        }
+        e.b localB = e.d;
+        e localE = (e)localG.a(localB);
+        if (localE == null) {}
+        for (paramG = new c(localG, paramB);; paramG = new c(new c(localG, paramB), localE))
+        {
+          return paramG;
+          localG = localG.r(localB);
+          if (localG == paramG) {
+            return new c(paramB, localE);
+          }
+        }
+      }
+    }
+  }
+  
+  public static abstract interface b
+    extends g
+  {
+    public abstract b a(g.c paramC);
+    
+    public abstract g.c getKey();
+    
+    public static final abstract class a
+    {
+      public static Object a(g.b paramB, Object paramObject, p paramP)
+      {
+        l.e(paramP, "operation");
+        return paramP.invoke(paramObject, paramB);
+      }
+      
+      public static g.b b(g.b paramB, g.c paramC)
+      {
+        l.e(paramC, "key");
+        if (l.a(paramB.getKey(), paramC))
+        {
+          l.c(paramB, "null cannot be cast to non-null type E of kotlin.coroutines.CoroutineContext.Element.get");
+          return paramB;
+        }
+        return null;
+      }
+      
+      public static g c(g.b paramB, g.c paramC)
+      {
+        l.e(paramC, "key");
+        Object localObject = paramB;
+        if (l.a(paramB.getKey(), paramC)) {
+          localObject = h.e;
+        }
+        return localObject;
+      }
+      
+      public static g d(g.b paramB, g paramG)
+      {
+        l.e(paramG, "context");
+        return g.a.a(paramB, paramG);
+      }
+    }
+  }
+  
+  public static abstract interface c {}
+}

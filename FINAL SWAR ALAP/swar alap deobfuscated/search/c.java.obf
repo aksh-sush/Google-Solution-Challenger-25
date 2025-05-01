@@ -1,0 +1,10 @@
+package u0;
+
+import androidx.lifecycle.n;
+import androidx.savedstate.a;
+
+public abstract interface d
+  extends n
+{
+  public abstract a getSavedStateRegistry();
+}

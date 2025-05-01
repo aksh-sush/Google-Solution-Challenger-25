@@ -1,0 +1,263 @@
+package com.google.protobuf;
+
+import java.util.AbstractList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.RandomAccess;
+
+final class x
+  extends c
+  implements c0.f, RandomAccess, e1
+{
+  private static final x h;
+  private float[] f;
+  private int g;
+  
+  static
+  {
+    x localX = new x(new float[0], 0);
+    h = localX;
+    localX.c();
+  }
+  
+  private x(float[] paramArrayOfFloat, int paramInt)
+  {
+    f = paramArrayOfFloat;
+    g = paramInt;
+  }
+  
+  private void h(int paramInt, float paramFloat)
+  {
+    b();
+    if (paramInt >= 0)
+    {
+      int i = g;
+      if (paramInt <= i)
+      {
+        float[] arrayOfFloat1 = f;
+        if (i < arrayOfFloat1.length)
+        {
+          System.arraycopy(arrayOfFloat1, paramInt, arrayOfFloat1, paramInt + 1, i - paramInt);
+        }
+        else
+        {
+          float[] arrayOfFloat2 = new float[i * 3 / 2 + 1];
+          System.arraycopy(arrayOfFloat1, 0, arrayOfFloat2, 0, paramInt);
+          System.arraycopy(f, paramInt, arrayOfFloat2, paramInt + 1, g - paramInt);
+          f = arrayOfFloat2;
+        }
+        f[paramInt] = paramFloat;
+        g += 1;
+        modCount += 1;
+        return;
+      }
+    }
+    throw new IndexOutOfBoundsException(m(paramInt));
+  }
+  
+  public static x i()
+  {
+    return h;
+  }
+  
+  private void j(int paramInt)
+  {
+    if ((paramInt >= 0) && (paramInt < g)) {
+      return;
+    }
+    throw new IndexOutOfBoundsException(m(paramInt));
+  }
+  
+  private String m(int paramInt)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Index:");
+    localStringBuilder.append(paramInt);
+    localStringBuilder.append(", Size:");
+    localStringBuilder.append(g);
+    return localStringBuilder.toString();
+  }
+  
+  public c0.f a(int paramInt)
+  {
+    if (paramInt >= g) {
+      return new x(Arrays.copyOf(f, paramInt), g);
+    }
+    throw new IllegalArgumentException();
+  }
+  
+  public boolean addAll(Collection paramCollection)
+  {
+    b();
+    c0.a(paramCollection);
+    if (!(paramCollection instanceof x)) {
+      return super.addAll(paramCollection);
+    }
+    paramCollection = (x)paramCollection;
+    int i = g;
+    if (i == 0) {
+      return false;
+    }
+    int j = g;
+    if (Integer.MAX_VALUE - j >= i)
+    {
+      i = j + i;
+      float[] arrayOfFloat = f;
+      if (i > arrayOfFloat.length) {
+        f = Arrays.copyOf(arrayOfFloat, i);
+      }
+      System.arraycopy(f, 0, f, g, g);
+      g = i;
+      modCount += 1;
+      return true;
+    }
+    throw new OutOfMemoryError();
+  }
+  
+  public boolean contains(Object paramObject)
+  {
+    return indexOf(paramObject) != -1;
+  }
+  
+  public void d(int paramInt, Float paramFloat)
+  {
+    h(paramInt, paramFloat.floatValue());
+  }
+  
+  public boolean e(Float paramFloat)
+  {
+    f(paramFloat.floatValue());
+    return true;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof x)) {
+      return super.equals(paramObject);
+    }
+    paramObject = (x)paramObject;
+    if (g != g) {
+      return false;
+    }
+    paramObject = f;
+    int i = 0;
+    while (i < g)
+    {
+      if (Float.floatToIntBits(f[i]) != Float.floatToIntBits(paramObject[i])) {
+        return false;
+      }
+      i += 1;
+    }
+    return true;
+  }
+  
+  public void f(float paramFloat)
+  {
+    b();
+    int i = g;
+    float[] arrayOfFloat1 = f;
+    if (i == arrayOfFloat1.length)
+    {
+      float[] arrayOfFloat2 = new float[i * 3 / 2 + 1];
+      System.arraycopy(arrayOfFloat1, 0, arrayOfFloat2, 0, i);
+      f = arrayOfFloat2;
+    }
+    arrayOfFloat1 = f;
+    i = g;
+    g = (i + 1);
+    arrayOfFloat1[i] = paramFloat;
+  }
+  
+  public int hashCode()
+  {
+    int j = 1;
+    int i = 0;
+    while (i < g)
+    {
+      j = j * 31 + Float.floatToIntBits(f[i]);
+      i += 1;
+    }
+    return j;
+  }
+  
+  public int indexOf(Object paramObject)
+  {
+    if (!(paramObject instanceof Float)) {
+      return -1;
+    }
+    float f1 = ((Float)paramObject).floatValue();
+    int j = size();
+    int i = 0;
+    while (i < j)
+    {
+      if (f[i] == f1) {
+        return i;
+      }
+      i += 1;
+    }
+    return -1;
+  }
+  
+  public Float k(int paramInt)
+  {
+    return Float.valueOf(l(paramInt));
+  }
+  
+  public float l(int paramInt)
+  {
+    j(paramInt);
+    return f[paramInt];
+  }
+  
+  public Float o(int paramInt)
+  {
+    b();
+    j(paramInt);
+    float[] arrayOfFloat = f;
+    float f1 = arrayOfFloat[paramInt];
+    int i = g;
+    if (paramInt < i - 1) {
+      System.arraycopy(arrayOfFloat, paramInt + 1, arrayOfFloat, paramInt, i - paramInt - 1);
+    }
+    g -= 1;
+    modCount += 1;
+    return Float.valueOf(f1);
+  }
+  
+  public Float p(int paramInt, Float paramFloat)
+  {
+    return Float.valueOf(q(paramInt, paramFloat.floatValue()));
+  }
+  
+  public float q(int paramInt, float paramFloat)
+  {
+    b();
+    j(paramInt);
+    float[] arrayOfFloat = f;
+    float f1 = arrayOfFloat[paramInt];
+    arrayOfFloat[paramInt] = paramFloat;
+    return f1;
+  }
+  
+  protected void removeRange(int paramInt1, int paramInt2)
+  {
+    b();
+    if (paramInt2 >= paramInt1)
+    {
+      float[] arrayOfFloat = f;
+      System.arraycopy(arrayOfFloat, paramInt2, arrayOfFloat, paramInt1, g - paramInt2);
+      g -= paramInt2 - paramInt1;
+      modCount += 1;
+      return;
+    }
+    throw new IndexOutOfBoundsException("toIndex < fromIndex");
+  }
+  
+  public int size()
+  {
+    return g;
+  }
+}

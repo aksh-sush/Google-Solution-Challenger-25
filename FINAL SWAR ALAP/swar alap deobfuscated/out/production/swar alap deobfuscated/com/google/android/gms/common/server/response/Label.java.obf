@@ -1,0 +1,60 @@
+package com.google.android.gms.common.server.response;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import s3.a;
+import s3.c;
+
+public final class f
+  extends a
+{
+  public static final Parcelable.Creator<f> CREATOR = new j();
+  final int e;
+  final String f;
+  final ArrayList g;
+  
+  f(int paramInt, String paramString, ArrayList paramArrayList)
+  {
+    e = paramInt;
+    f = paramString;
+    g = paramArrayList;
+  }
+  
+  f(String paramString, Map paramMap)
+  {
+    e = 1;
+    f = paramString;
+    if (paramMap == null)
+    {
+      paramString = null;
+    }
+    else
+    {
+      ArrayList localArrayList = new ArrayList();
+      Iterator localIterator = paramMap.keySet().iterator();
+      for (;;)
+      {
+        paramString = localArrayList;
+        if (!localIterator.hasNext()) {
+          break;
+        }
+        paramString = (String)localIterator.next();
+        localArrayList.add(new g(paramString, (a.a)paramMap.get(paramString)));
+      }
+    }
+    g = paramString;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramInt = c.a(paramParcel);
+    c.t(paramParcel, 1, e);
+    c.D(paramParcel, 2, f, false);
+    c.H(paramParcel, 3, g, false);
+    c.b(paramParcel, paramInt);
+  }
+}

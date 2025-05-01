@@ -1,0 +1,28 @@
+package com.google.android.gms.common.internal;
+
+import android.os.IBinder;
+import android.os.Parcel;
+import b4.a;
+import b4.a.a;
+import com.google.android.gms.internal.base.zaa;
+import com.google.android.gms.internal.base.zac;
+
+public final class n0
+  extends zaa
+{
+  n0(IBinder paramIBinder)
+  {
+    super(paramIBinder, "com.google.android.gms.common.internal.ISignInButtonCreator");
+  }
+  
+  public final a c(a paramA, y0 paramY0)
+  {
+    Parcel localParcel = zaa();
+    zac.zad(localParcel, paramA);
+    zac.zac(localParcel, paramY0);
+    paramA = zab(2, localParcel);
+    paramY0 = a.a.c(paramA.readStrongBinder());
+    paramA.recycle();
+    return paramY0;
+  }
+}

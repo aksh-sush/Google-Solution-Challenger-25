@@ -1,0 +1,24 @@
+package com.google.protobuf;
+
+abstract interface l1
+{
+  public abstract void a(Object paramObject1, Object paramObject2);
+  
+  public abstract void b(Object paramObject, a2 paramA2);
+  
+  public abstract void c(Object paramObject);
+  
+  public abstract boolean d(Object paramObject);
+  
+  public abstract void e(Object paramObject, j1 paramJ1, r paramR);
+  
+  public abstract boolean f(Object paramObject1, Object paramObject2);
+  
+  public abstract void g(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, f.a paramA);
+  
+  public abstract int h(Object paramObject);
+  
+  public abstract Object i();
+  
+  public abstract int j(Object paramObject);
+}

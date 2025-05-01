@@ -1,0 +1,79 @@
+package com.google.protobuf;
+
+import java.util.Collections;
+import java.util.Map;
+
+public class r
+{
+  private static boolean b = true;
+  private static volatile r c;
+  static final r d = new r(true);
+  private final Map a = Collections.emptyMap();
+  
+  r(boolean paramBoolean) {}
+  
+  public static r b()
+  {
+    Object localObject = c;
+    if (localObject == null) {
+      try
+      {
+        r localR2 = c;
+        localObject = localR2;
+        if (localR2 == null)
+        {
+          if (b) {
+            localObject = q.a();
+          } else {
+            localObject = d;
+          }
+          c = (r)localObject;
+        }
+        return localObject;
+      }
+      finally {}
+    }
+    return localR1;
+  }
+  
+  public z.d a(t0 paramT0, int paramInt)
+  {
+    return (z.d)a.get(new a(paramT0, paramInt));
+  }
+  
+  private static final class a
+  {
+    private final Object a;
+    private final int b;
+    
+    a(Object paramObject, int paramInt)
+    {
+      a = paramObject;
+      b = paramInt;
+    }
+    
+    public boolean equals(Object paramObject)
+    {
+      boolean bool1 = paramObject instanceof a;
+      boolean bool2 = false;
+      if (!bool1) {
+        return false;
+      }
+      paramObject = (a)paramObject;
+      bool1 = bool2;
+      if (a == a)
+      {
+        bool1 = bool2;
+        if (b == b) {
+          bool1 = true;
+        }
+      }
+      return bool1;
+    }
+    
+    public int hashCode()
+    {
+      return System.identityHashCode(a) * 65535 + b;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+package androidx.activity.result;
+
+public abstract interface d
+{
+  public abstract ActivityResultRegistry getActivityResultRegistry();
+}

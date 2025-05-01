@@ -1,0 +1,418 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Shader.TileMode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import f.c;
+import f.d;
+import f.e;
+
+public final class j
+{
+  private static final PorterDuff.Mode b = PorterDuff.Mode.SRC_IN;
+  private static j c;
+  private w0 a;
+  
+  public j() {}
+  
+  public static j b()
+  {
+    try
+    {
+      if (c == null) {
+        h();
+      }
+      j localJ = c;
+      return localJ;
+    }
+    finally {}
+  }
+  
+  public static PorterDuffColorFilter e(int paramInt, PorterDuff.Mode paramMode)
+  {
+    try
+    {
+      paramMode = w0.l(paramInt, paramMode);
+      return paramMode;
+    }
+    finally
+    {
+      paramMode = finally;
+      throw paramMode;
+    }
+  }
+  
+  public static void h()
+  {
+    try
+    {
+      if (c == null)
+      {
+        j localJ = new j();
+        c = localJ;
+        a = w0.h();
+        ca.u(new a());
+      }
+      return;
+    }
+    finally
+    {
+      localObject = finally;
+      throw localObject;
+    }
+  }
+  
+  static void i(Drawable paramDrawable, d1 paramD1, int[] paramArrayOfInt)
+  {
+    w0.w(paramDrawable, paramD1, paramArrayOfInt);
+  }
+  
+  public Drawable c(Context paramContext, int paramInt)
+  {
+    try
+    {
+      paramContext = a.j(paramContext, paramInt);
+      return paramContext;
+    }
+    finally
+    {
+      paramContext = finally;
+      throw paramContext;
+    }
+  }
+  
+  Drawable d(Context paramContext, int paramInt, boolean paramBoolean)
+  {
+    try
+    {
+      paramContext = a.k(paramContext, paramInt, paramBoolean);
+      return paramContext;
+    }
+    finally
+    {
+      paramContext = finally;
+      throw paramContext;
+    }
+  }
+  
+  ColorStateList f(Context paramContext, int paramInt)
+  {
+    try
+    {
+      paramContext = a.m(paramContext, paramInt);
+      return paramContext;
+    }
+    finally
+    {
+      paramContext = finally;
+      throw paramContext;
+    }
+  }
+  
+  public void g(Context paramContext)
+  {
+    try
+    {
+      a.s(paramContext);
+      return;
+    }
+    finally
+    {
+      paramContext = finally;
+      throw paramContext;
+    }
+  }
+  
+  class a
+    implements w0.f
+  {
+    private final int[] a = { e.R, e.P, e.a };
+    private final int[] b = { e.o, e.B, e.t, e.p, e.q, e.s, e.r };
+    private final int[] c = { e.O, e.Q, e.k, e.K, e.L, e.M, e.N };
+    private final int[] d = { e.w, e.i, e.v };
+    private final int[] e = { e.J, e.S };
+    private final int[] f = { e.c, e.g, e.d, e.h };
+    
+    a() {}
+    
+    private boolean f(int[] paramArrayOfInt, int paramInt)
+    {
+      int j = paramArrayOfInt.length;
+      int i = 0;
+      while (i < j)
+      {
+        if (paramArrayOfInt[i] == paramInt) {
+          return true;
+        }
+        i += 1;
+      }
+      return false;
+    }
+    
+    private ColorStateList g(Context paramContext)
+    {
+      return h(paramContext, 0);
+    }
+    
+    private ColorStateList h(Context paramContext, int paramInt)
+    {
+      int k = b1.c(paramContext, f.a.t);
+      int i = b1.b(paramContext, f.a.r);
+      paramContext = b1.b;
+      int[] arrayOfInt1 = b1.e;
+      int j = androidx.core.graphics.a.g(k, paramInt);
+      int[] arrayOfInt2 = b1.c;
+      k = androidx.core.graphics.a.g(k, paramInt);
+      return new ColorStateList(new int[][] { paramContext, arrayOfInt1, arrayOfInt2, b1.i }, new int[] { i, j, k, paramInt });
+    }
+    
+    private ColorStateList i(Context paramContext)
+    {
+      return h(paramContext, b1.c(paramContext, f.a.q));
+    }
+    
+    private ColorStateList j(Context paramContext)
+    {
+      return h(paramContext, b1.c(paramContext, f.a.r));
+    }
+    
+    private ColorStateList k(Context paramContext)
+    {
+      int[][] arrayOfInt = new int[3][];
+      int[] arrayOfInt1 = new int[3];
+      int i = f.a.v;
+      ColorStateList localColorStateList = b1.e(paramContext, i);
+      if ((localColorStateList != null) && (localColorStateList.isStateful()))
+      {
+        int[] arrayOfInt2 = b1.b;
+        arrayOfInt[0] = arrayOfInt2;
+        arrayOfInt1[0] = localColorStateList.getColorForState(arrayOfInt2, 0);
+        arrayOfInt[1] = b1.f;
+        arrayOfInt1[1] = b1.c(paramContext, f.a.s);
+        arrayOfInt[2] = b1.i;
+        arrayOfInt1[2] = localColorStateList.getDefaultColor();
+      }
+      else
+      {
+        arrayOfInt[0] = b1.b;
+        arrayOfInt1[0] = b1.b(paramContext, i);
+        arrayOfInt[1] = b1.f;
+        arrayOfInt1[1] = b1.c(paramContext, f.a.s);
+        arrayOfInt[2] = b1.i;
+        arrayOfInt1[2] = b1.c(paramContext, i);
+      }
+      return new ColorStateList(arrayOfInt, arrayOfInt1);
+    }
+    
+    private LayerDrawable l(w0 paramW0, Context paramContext, int paramInt)
+    {
+      paramInt = paramContext.getResources().getDimensionPixelSize(paramInt);
+      Object localObject2 = paramW0.j(paramContext, e.F);
+      Object localObject1 = paramW0.j(paramContext, e.G);
+      if (((localObject2 instanceof BitmapDrawable)) && (((Drawable)localObject2).getIntrinsicWidth() == paramInt) && (((Drawable)localObject2).getIntrinsicHeight() == paramInt))
+      {
+        paramW0 = (BitmapDrawable)localObject2;
+        paramContext = new BitmapDrawable(paramW0.getBitmap());
+      }
+      else
+      {
+        paramContext = Bitmap.createBitmap(paramInt, paramInt, Bitmap.Config.ARGB_8888);
+        paramW0 = new Canvas(paramContext);
+        ((Drawable)localObject2).setBounds(0, 0, paramInt, paramInt);
+        ((Drawable)localObject2).draw(paramW0);
+        paramW0 = new BitmapDrawable(paramContext);
+        paramContext = new BitmapDrawable(paramContext);
+      }
+      paramContext.setTileModeX(Shader.TileMode.REPEAT);
+      if (((localObject1 instanceof BitmapDrawable)) && (((Drawable)localObject1).getIntrinsicWidth() == paramInt) && (((Drawable)localObject1).getIntrinsicHeight() == paramInt))
+      {
+        localObject1 = (BitmapDrawable)localObject1;
+      }
+      else
+      {
+        localObject2 = Bitmap.createBitmap(paramInt, paramInt, Bitmap.Config.ARGB_8888);
+        Canvas localCanvas = new Canvas((Bitmap)localObject2);
+        ((Drawable)localObject1).setBounds(0, 0, paramInt, paramInt);
+        ((Drawable)localObject1).draw(localCanvas);
+        localObject1 = new BitmapDrawable((Bitmap)localObject2);
+      }
+      paramW0 = new LayerDrawable(new Drawable[] { paramW0, localObject1, paramContext });
+      paramW0.setId(0, 16908288);
+      paramW0.setId(1, 16908303);
+      paramW0.setId(2, 16908301);
+      return paramW0;
+    }
+    
+    private void m(Drawable paramDrawable, int paramInt, PorterDuff.Mode paramMode)
+    {
+      Drawable localDrawable = paramDrawable;
+      if (o0.a(paramDrawable)) {
+        localDrawable = paramDrawable.mutate();
+      }
+      paramDrawable = paramMode;
+      if (paramMode == null) {
+        paramDrawable = j.a();
+      }
+      localDrawable.setColorFilter(j.e(paramInt, paramDrawable));
+    }
+    
+    public boolean a(Context paramContext, int paramInt, Drawable paramDrawable)
+    {
+      PorterDuff.Mode localMode = j.a();
+      if (f(a, paramInt)) {}
+      for (int j = f.a.u;; j = f.a.s)
+      {
+        paramInt = -1;
+        i = 1;
+        break label118;
+        if (!f(c, paramInt)) {
+          break;
+        }
+      }
+      if (f(d, paramInt)) {
+        localMode = PorterDuff.Mode.MULTIPLY;
+      }
+      do
+      {
+        j = 16842801;
+        break;
+        if (paramInt == e.u)
+        {
+          paramInt = Math.round(40.8F);
+          i = 1;
+          j = 16842800;
+          break label118;
+        }
+      } while (paramInt == e.l);
+      j = 0;
+      paramInt = -1;
+      int i = 0;
+      label118:
+      if (i != 0)
+      {
+        Drawable localDrawable = paramDrawable;
+        if (o0.a(paramDrawable)) {
+          localDrawable = paramDrawable.mutate();
+        }
+        localDrawable.setColorFilter(j.e(b1.c(paramContext, j), localMode));
+        if (paramInt != -1) {
+          localDrawable.setAlpha(paramInt);
+        }
+        return true;
+      }
+      return false;
+    }
+    
+    public PorterDuff.Mode b(int paramInt)
+    {
+      if (paramInt == e.H) {
+        return PorterDuff.Mode.MULTIPLY;
+      }
+      return null;
+    }
+    
+    public Drawable c(w0 paramW0, Context paramContext, int paramInt)
+    {
+      if (paramInt == e.j) {
+        return new LayerDrawable(new Drawable[] { paramW0.j(paramContext, e.i), paramW0.j(paramContext, e.k) });
+      }
+      if (paramInt == e.y) {
+        paramInt = d.g;
+      }
+      for (;;)
+      {
+        return l(paramW0, paramContext, paramInt);
+        if (paramInt == e.x)
+        {
+          paramInt = d.h;
+        }
+        else
+        {
+          if (paramInt != e.z) {
+            break;
+          }
+          paramInt = d.i;
+        }
+      }
+      return null;
+    }
+    
+    public ColorStateList d(Context paramContext, int paramInt)
+    {
+      if (paramInt == e.m) {
+        return g.a.a(paramContext, c.e);
+      }
+      if (paramInt == e.I) {
+        return g.a.a(paramContext, c.h);
+      }
+      if (paramInt == e.H) {
+        return k(paramContext);
+      }
+      if (paramInt == e.f) {
+        return j(paramContext);
+      }
+      if (paramInt == e.b) {
+        return g(paramContext);
+      }
+      if (paramInt == e.e) {
+        return i(paramContext);
+      }
+      if ((paramInt != e.D) && (paramInt != e.E))
+      {
+        if (f(b, paramInt)) {
+          return b1.e(paramContext, f.a.u);
+        }
+        if (f(e, paramInt)) {
+          return g.a.a(paramContext, c.d);
+        }
+        if (f(f, paramInt)) {
+          return g.a.a(paramContext, c.c);
+        }
+        if (paramInt == e.A) {
+          return g.a.a(paramContext, c.f);
+        }
+        return null;
+      }
+      return g.a.a(paramContext, c.g);
+    }
+    
+    public boolean e(Context paramContext, int paramInt, Drawable paramDrawable)
+    {
+      Drawable localDrawable;
+      if (paramInt == e.C)
+      {
+        paramDrawable = (LayerDrawable)paramDrawable;
+        localDrawable = paramDrawable.findDrawableByLayerId(16908288);
+        paramInt = f.a.u;
+        m(localDrawable, b1.c(paramContext, paramInt), j.a());
+        m(paramDrawable.findDrawableByLayerId(16908303), b1.c(paramContext, paramInt), j.a());
+        paramDrawable = paramDrawable.findDrawableByLayerId(16908301);
+        paramInt = b1.c(paramContext, f.a.s);
+      }
+      for (paramContext = paramDrawable;; paramContext = paramDrawable)
+      {
+        m(paramContext, paramInt, j.a());
+        return true;
+        if ((paramInt != e.y) && (paramInt != e.x) && (paramInt != e.z)) {
+          return false;
+        }
+        paramDrawable = (LayerDrawable)paramDrawable;
+        m(paramDrawable.findDrawableByLayerId(16908288), b1.b(paramContext, f.a.u), j.a());
+        localDrawable = paramDrawable.findDrawableByLayerId(16908303);
+        paramInt = f.a.s;
+        m(localDrawable, b1.c(paramContext, paramInt), j.a());
+        paramDrawable = paramDrawable.findDrawableByLayerId(16908301);
+        paramInt = b1.c(paramContext, paramInt);
+      }
+    }
+  }
+}

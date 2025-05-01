@@ -1,0 +1,18 @@
+package com.google.android.gms.common.api;
+
+public class b
+  extends Exception
+{
+  protected final Status e;
+  
+  public b(Status paramStatus)
+  {
+    super(localStringBuilder.toString());
+    e = paramStatus;
+  }
+  
+  public Status a()
+  {
+    return e;
+  }
+}

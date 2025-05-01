@@ -1,0 +1,147 @@
+package x1;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
+import android.view.View;
+import android.view.Window;
+import com.facebook.i0;
+import db.l;
+import db.w;
+import e2.s0;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public final class g
+{
+  public static final g a = new g();
+  
+  private g() {}
+  
+  public static final void a() {}
+  
+  public static final void b() {}
+  
+  public static final String c(byte[] paramArrayOfByte)
+  {
+    l.e(paramArrayOfByte, "bytes");
+    StringBuffer localStringBuffer = new StringBuffer();
+    int j = paramArrayOfByte.length;
+    int i = 0;
+    while (i < j)
+    {
+      byte b = paramArrayOfByte[i];
+      i += 1;
+      Object localObject = w.a;
+      localObject = String.format("%02x", Arrays.copyOf(new Object[] { Byte.valueOf(b) }, 1));
+      l.d(localObject, "java.lang.String.format(format, *args)");
+      localStringBuffer.append((String)localObject);
+    }
+    paramArrayOfByte = localStringBuffer.toString();
+    l.d(paramArrayOfByte, "sb.toString()");
+    return paramArrayOfByte;
+  }
+  
+  public static final String d()
+  {
+    Object localObject = i0.l();
+    try
+    {
+      localObject = getPackageManagergetPackageInfogetPackageName0versionName;
+      l.d(localObject, "{\n      val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)\n      packageInfo.versionName\n    }");
+      return localObject;
+    }
+    catch (PackageManager.NameNotFoundException localNameNotFoundException)
+    {
+      for (;;) {}
+    }
+    return "";
+  }
+  
+  public static final View e(Activity paramActivity)
+  {
+    if (paramActivity == null) {
+      return null;
+    }
+    try
+    {
+      paramActivity = paramActivity.getWindow();
+      if (paramActivity == null) {
+        return null;
+      }
+      paramActivity = paramActivity.getDecorView().getRootView();
+      return paramActivity;
+    }
+    catch (Exception paramActivity) {}
+    return null;
+  }
+  
+  public static final boolean f()
+  {
+    String str = Build.FINGERPRINT;
+    l.d(str, "FINGERPRINT");
+    boolean bool = false;
+    if (!lb.g.t(str, "generic", false, 2, null))
+    {
+      l.d(str, "FINGERPRINT");
+      if (!lb.g.t(str, "unknown", false, 2, null))
+      {
+        str = Build.MODEL;
+        l.d(str, "MODEL");
+        if (!lb.g.w(str, "google_sdk", false, 2, null))
+        {
+          l.d(str, "MODEL");
+          if (!lb.g.w(str, "Emulator", false, 2, null))
+          {
+            l.d(str, "MODEL");
+            if (!lb.g.w(str, "Android SDK built for x86", false, 2, null))
+            {
+              str = Build.MANUFACTURER;
+              l.d(str, "MANUFACTURER");
+              if (!lb.g.w(str, "Genymotion", false, 2, null))
+              {
+                str = Build.BRAND;
+                l.d(str, "BRAND");
+                if (lb.g.t(str, "generic", false, 2, null))
+                {
+                  str = Build.DEVICE;
+                  l.d(str, "DEVICE");
+                  if (lb.g.t(str, "generic", false, 2, null)) {}
+                }
+                else if (!l.a("google_sdk", Build.PRODUCT))
+                {
+                  return bool;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    bool = true;
+    return bool;
+  }
+  
+  public static final double g(String paramString)
+  {
+    double d = 0.0D;
+    try
+    {
+      paramString = Pattern.compile("[-+]*\\d+([.,]\\d+)*([.,]\\d+)?", 8).matcher(paramString);
+      if (paramString.find())
+      {
+        paramString = paramString.group(0);
+        d = NumberFormat.getNumberInstance(s0.A()).parse(paramString).doubleValue();
+      }
+      return d;
+    }
+    catch (ParseException paramString) {}
+    return 0.0D;
+  }
+}

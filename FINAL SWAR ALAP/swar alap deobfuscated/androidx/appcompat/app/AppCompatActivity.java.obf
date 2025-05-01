@@ -1,0 +1,357 @@
+package androidx.appcompat.app;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import androidx.activity.ComponentActivity;
+import androidx.activity.t;
+import androidx.appcompat.view.b.a;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.p1;
+import androidx.core.app.i;
+import androidx.core.app.o0.a;
+import androidx.core.os.h;
+import androidx.lifecycle.n0;
+import androidx.savedstate.a.c;
+
+public abstract class d
+  extends androidx.fragment.app.e
+  implements e, o0.a, b.c
+{
+  private g e;
+  private Resources f;
+  
+  public d()
+  {
+    x();
+  }
+  
+  private boolean F(KeyEvent paramKeyEvent)
+  {
+    if ((Build.VERSION.SDK_INT < 26) && (!paramKeyEvent.isCtrlPressed()) && (!KeyEvent.metaStateHasNoModifiers(paramKeyEvent.getMetaState())) && (paramKeyEvent.getRepeatCount() == 0) && (!KeyEvent.isModifierKey(paramKeyEvent.getKeyCode())))
+    {
+      Window localWindow = getWindow();
+      if ((localWindow != null) && (localWindow.getDecorView() != null) && (localWindow.getDecorView().dispatchKeyShortcutEvent(paramKeyEvent))) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  private void x()
+  {
+    getSavedStateRegistry().h("androidx:appcompat", new a());
+    addOnContextAvailableListener(new b());
+  }
+  
+  private void y()
+  {
+    n0.a(getWindow().getDecorView(), this);
+    androidx.lifecycle.o0.a(getWindow().getDecorView(), this);
+    u0.e.a(getWindow().getDecorView(), this);
+    t.a(getWindow().getDecorView(), this);
+  }
+  
+  protected void A(h paramH) {}
+  
+  protected void B(int paramInt) {}
+  
+  public void C(androidx.core.app.o0 paramO0) {}
+  
+  public void D() {}
+  
+  public boolean E()
+  {
+    Object localObject = i();
+    if (localObject != null) {
+      if (I((Intent)localObject))
+      {
+        localObject = androidx.core.app.o0.f(this);
+        z((androidx.core.app.o0)localObject);
+        C((androidx.core.app.o0)localObject);
+        ((androidx.core.app.o0)localObject).h();
+      }
+    }
+    try
+    {
+      androidx.core.app.b.p(this);
+    }
+    catch (IllegalStateException localIllegalStateException)
+    {
+      for (;;) {}
+    }
+    finish();
+    break label55;
+    H((Intent)localObject);
+    label55:
+    return true;
+    return false;
+  }
+  
+  public void G(Toolbar paramToolbar)
+  {
+    v().M(paramToolbar);
+  }
+  
+  public void H(Intent paramIntent)
+  {
+    i.e(this, paramIntent);
+  }
+  
+  public boolean I(Intent paramIntent)
+  {
+    return i.f(this, paramIntent);
+  }
+  
+  public void addContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
+  {
+    y();
+    v().e(paramView, paramLayoutParams);
+  }
+  
+  protected void attachBaseContext(Context paramContext)
+  {
+    super.attachBaseContext(v().g(paramContext));
+  }
+  
+  public void b(androidx.appcompat.view.b paramB) {}
+  
+  public b.b c()
+  {
+    return v().n();
+  }
+  
+  public void closeOptionsMenu()
+  {
+    a localA = w();
+    if ((getWindow().hasFeature(0)) && ((localA == null) || (!localA.g()))) {
+      super.closeOptionsMenu();
+    }
+  }
+  
+  public void d(androidx.appcompat.view.b paramB) {}
+  
+  public boolean dispatchKeyEvent(KeyEvent paramKeyEvent)
+  {
+    int i = paramKeyEvent.getKeyCode();
+    a localA = w();
+    if ((i == 82) && (localA != null) && (localA.p(paramKeyEvent))) {
+      return true;
+    }
+    return super.dispatchKeyEvent(paramKeyEvent);
+  }
+  
+  public View findViewById(int paramInt)
+  {
+    return v().j(paramInt);
+  }
+  
+  public MenuInflater getMenuInflater()
+  {
+    return v().q();
+  }
+  
+  public Resources getResources()
+  {
+    if ((f == null) && (p1.c())) {
+      f = new p1(this, super.getResources());
+    }
+    Resources localResources2 = f;
+    Resources localResources1 = localResources2;
+    if (localResources2 == null) {
+      localResources1 = super.getResources();
+    }
+    return localResources1;
+  }
+  
+  public Intent i()
+  {
+    return i.a(this);
+  }
+  
+  public void invalidateOptionsMenu()
+  {
+    v().u();
+  }
+  
+  public androidx.appcompat.view.b k(b.a paramA)
+  {
+    return null;
+  }
+  
+  public void onConfigurationChanged(Configuration paramConfiguration)
+  {
+    super.onConfigurationChanged(paramConfiguration);
+    v().x(paramConfiguration);
+    if (f != null)
+    {
+      paramConfiguration = super.getResources().getConfiguration();
+      DisplayMetrics localDisplayMetrics = super.getResources().getDisplayMetrics();
+      f.updateConfiguration(paramConfiguration, localDisplayMetrics);
+    }
+  }
+  
+  public void onContentChanged()
+  {
+    D();
+  }
+  
+  protected void onDestroy()
+  {
+    super.onDestroy();
+    v().z();
+  }
+  
+  public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent)
+  {
+    if (F(paramKeyEvent)) {
+      return true;
+    }
+    return super.onKeyDown(paramInt, paramKeyEvent);
+  }
+  
+  public final boolean onMenuItemSelected(int paramInt, MenuItem paramMenuItem)
+  {
+    if (super.onMenuItemSelected(paramInt, paramMenuItem)) {
+      return true;
+    }
+    a localA = w();
+    if ((paramMenuItem.getItemId() == 16908332) && (localA != null) && ((localA.j() & 0x4) != 0)) {
+      return E();
+    }
+    return false;
+  }
+  
+  public boolean onMenuOpened(int paramInt, Menu paramMenu)
+  {
+    return super.onMenuOpened(paramInt, paramMenu);
+  }
+  
+  public void onPanelClosed(int paramInt, Menu paramMenu)
+  {
+    super.onPanelClosed(paramInt, paramMenu);
+  }
+  
+  protected void onPostCreate(Bundle paramBundle)
+  {
+    super.onPostCreate(paramBundle);
+    v().A(paramBundle);
+  }
+  
+  protected void onPostResume()
+  {
+    super.onPostResume();
+    v().B();
+  }
+  
+  protected void onStart()
+  {
+    super.onStart();
+    v().D();
+  }
+  
+  protected void onStop()
+  {
+    super.onStop();
+    v().E();
+  }
+  
+  protected void onTitleChanged(CharSequence paramCharSequence, int paramInt)
+  {
+    super.onTitleChanged(paramCharSequence, paramInt);
+    v().O(paramCharSequence);
+  }
+  
+  public void openOptionsMenu()
+  {
+    a localA = w();
+    if ((getWindow().hasFeature(0)) && ((localA == null) || (!localA.q()))) {
+      super.openOptionsMenu();
+    }
+  }
+  
+  public void setContentView(int paramInt)
+  {
+    y();
+    v().I(paramInt);
+  }
+  
+  public void setContentView(View paramView)
+  {
+    y();
+    v().J(paramView);
+  }
+  
+  public void setContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
+  {
+    y();
+    v().K(paramView, paramLayoutParams);
+  }
+  
+  public void setTheme(int paramInt)
+  {
+    super.setTheme(paramInt);
+    v().N(paramInt);
+  }
+  
+  public void supportInvalidateOptionsMenu()
+  {
+    v().u();
+  }
+  
+  public g v()
+  {
+    if (e == null) {
+      e = g.h(this, this);
+    }
+    return e;
+  }
+  
+  public a w()
+  {
+    return v().s();
+  }
+  
+  public void z(androidx.core.app.o0 paramO0)
+  {
+    paramO0.d(this);
+  }
+  
+  class a
+    implements a.c
+  {
+    a() {}
+    
+    public Bundle a()
+    {
+      Bundle localBundle = new Bundle();
+      v().C(localBundle);
+      return localBundle;
+    }
+  }
+  
+  class b
+    implements d.b
+  {
+    b() {}
+    
+    public void a(Context paramContext)
+    {
+      paramContext = v();
+      paramContext.t();
+      paramContext.y(getSavedStateRegistry().b("androidx:appcompat"));
+    }
+  }
+}

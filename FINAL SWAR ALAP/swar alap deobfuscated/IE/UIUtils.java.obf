@@ -1,0 +1,190 @@
+package e7;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.content.res.Resources.Theme;
+import android.content.res.TypedArray;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
+import android.graphics.drawable.StateListDrawable;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager.LayoutParams;
+import androidx.core.content.res.h;
+import androidx.core.view.h0;
+import b7.c;
+import b7.e;
+
+public abstract class a
+{
+  public static float a(float paramFloat, Context paramContext)
+  {
+    return paramFloat * (getResourcesgetDisplayMetricsdensityDpi / 160.0F);
+  }
+  
+  public static int b(Context paramContext)
+  {
+    int j = k(paramContext, c.a);
+    int i = j;
+    if (j == 0) {
+      i = paramContext.getResources().getDimensionPixelSize(e.a);
+    }
+    return i;
+  }
+  
+  public static StateListDrawable c(Drawable paramDrawable1, Drawable paramDrawable2)
+  {
+    StateListDrawable localStateListDrawable = new StateListDrawable();
+    localStateListDrawable.addState(new int[] { 16842913 }, paramDrawable2);
+    localStateListDrawable.addState(new int[0], paramDrawable1);
+    return localStateListDrawable;
+  }
+  
+  public static int d(Context paramContext)
+  {
+    Resources localResources = paramContext.getResources();
+    if (getResourcesgetConfigurationorientation == 1) {
+      paramContext = "navigation_bar_height";
+    } else {
+      paramContext = "navigation_bar_height_landscape";
+    }
+    int i = localResources.getIdentifier(paramContext, "dimen", "android");
+    if (i > 0) {
+      return localResources.getDimensionPixelSize(i);
+    }
+    return 0;
+  }
+  
+  public static int e(Context paramContext)
+  {
+    return getResourcesgetDisplayMetricswidthPixels;
+  }
+  
+  public static Drawable f(Context paramContext)
+  {
+    return androidx.core.content.a.e(paramContext, h(paramContext));
+  }
+  
+  public static StateListDrawable g(Context paramContext, int paramInt, boolean paramBoolean)
+  {
+    StateListDrawable localStateListDrawable = new StateListDrawable();
+    Object localObject = new ColorDrawable(paramInt);
+    localStateListDrawable.addState(new int[] { 16842913 }, (Drawable)localObject);
+    localObject = f(paramContext);
+    localStateListDrawable.addState(new int[0], (Drawable)localObject);
+    if (paramBoolean)
+    {
+      paramInt = paramContext.getResources().getInteger(17694720);
+      localStateListDrawable.setEnterFadeDuration(paramInt);
+      localStateListDrawable.setExitFadeDuration(paramInt);
+    }
+    return localStateListDrawable;
+  }
+  
+  public static int h(Context paramContext)
+  {
+    TypedValue localTypedValue = new TypedValue();
+    paramContext.getTheme().resolveAttribute(c.c, localTypedValue, true);
+    return resourceId;
+  }
+  
+  public static int i(Context paramContext)
+  {
+    return j(paramContext, false);
+  }
+  
+  public static int j(Context paramContext, boolean paramBoolean)
+  {
+    int i = paramContext.getResources().getIdentifier("status_bar_height", "dimen", "android");
+    if (i > 0) {
+      i = paramContext.getResources().getDimensionPixelSize(i);
+    } else {
+      i = 0;
+    }
+    int k = paramContext.getResources().getDimensionPixelSize(e.b);
+    if ((k == 0) && (!paramBoolean)) {
+      return 0;
+    }
+    int j = i;
+    if (i == 0) {
+      j = k;
+    }
+    return j;
+  }
+  
+  public static int k(Context paramContext, int paramInt)
+  {
+    Context localContext = null;
+    try
+    {
+      paramContext = paramContext.getTheme().obtainStyledAttributes(new int[] { paramInt });
+      localContext = paramContext;
+      paramInt = paramContext.getDimensionPixelSize(0, 0);
+      paramContext.recycle();
+      return paramInt;
+    }
+    finally
+    {
+      if (localContext != null) {
+        localContext.recycle();
+      }
+    }
+  }
+  
+  public static int l(Context paramContext, int paramInt)
+  {
+    TypedValue localTypedValue = new TypedValue();
+    if (paramContext.getTheme().resolveAttribute(paramInt, localTypedValue, true)) {
+      return data;
+    }
+    return 0;
+  }
+  
+  public static int m(Context paramContext, int paramInt1, int paramInt2)
+  {
+    int i = l(paramContext, paramInt1);
+    paramInt1 = i;
+    if (i == 0) {
+      paramInt1 = h.d(paramContext.getResources(), paramInt2, paramContext.getTheme());
+    }
+    return paramInt1;
+  }
+  
+  public static void n(View paramView, int paramInt)
+  {
+    h0.w0(paramView, androidx.core.content.a.e(paramView.getContext(), paramInt));
+  }
+  
+  public static void o(View paramView, Drawable paramDrawable)
+  {
+    h0.w0(paramView, paramDrawable);
+  }
+  
+  public static void p(Activity paramActivity, int paramInt, boolean paramBoolean)
+  {
+    paramActivity = paramActivity.getWindow();
+    WindowManager.LayoutParams localLayoutParams = paramActivity.getAttributes();
+    if (paramBoolean) {
+      paramInt |= flags;
+    } else {
+      paramInt &= flags;
+    }
+    flags = paramInt;
+    paramActivity.setAttributes(localLayoutParams);
+  }
+  
+  public static void q(Activity paramActivity, boolean paramBoolean)
+  {
+    p(paramActivity, 134217728, paramBoolean);
+  }
+  
+  public static void r(Activity paramActivity, boolean paramBoolean)
+  {
+    p(paramActivity, 67108864, paramBoolean);
+  }
+}

@@ -1,0 +1,7 @@
+package androidx.fragment.app;
+
+class n
+  extends m
+{
+  n() {}
+}

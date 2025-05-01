@@ -1,0 +1,79 @@
+package db;
+
+import java.io.Serializable;
+import jb.a;
+
+public abstract class c
+  implements a, Serializable
+{
+  public static final Object k = ;
+  private transient a e;
+  protected final Object f;
+  private final Class g;
+  private final String h;
+  private final String i;
+  private final boolean j;
+  
+  protected c(Object paramObject, Class paramClass, String paramString1, String paramString2, boolean paramBoolean)
+  {
+    f = paramObject;
+    g = paramClass;
+    h = paramString1;
+    i = paramString2;
+    j = paramBoolean;
+  }
+  
+  public a a()
+  {
+    a localA2 = e;
+    a localA1 = localA2;
+    if (localA2 == null)
+    {
+      localA1 = b();
+      e = localA1;
+    }
+    return localA1;
+  }
+  
+  protected abstract a b();
+  
+  public Object c()
+  {
+    return f;
+  }
+  
+  public String d()
+  {
+    return h;
+  }
+  
+  public jb.c e()
+  {
+    Class localClass = g;
+    if (localClass == null) {
+      return null;
+    }
+    if (j) {
+      return u.c(localClass);
+    }
+    return u.b(localClass);
+  }
+  
+  public String f()
+  {
+    return i;
+  }
+  
+  private static class a
+    implements Serializable
+  {
+    private static final a e = new a();
+    
+    private a() {}
+    
+    private Object readResolve()
+    {
+      return e;
+    }
+  }
+}

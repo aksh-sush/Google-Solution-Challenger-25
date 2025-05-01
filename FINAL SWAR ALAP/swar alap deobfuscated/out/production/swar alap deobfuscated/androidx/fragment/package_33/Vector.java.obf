@@ -1,0 +1,284 @@
+package androidx.fragment.app;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+class l
+{
+  private final CopyOnWriteArrayList a = new CopyOnWriteArrayList();
+  private final m b;
+  
+  l(m paramM)
+  {
+    b = paramM;
+  }
+  
+  void a(Fragment paramFragment, Bundle paramBundle, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().a(paramFragment, paramBundle, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentActivityCreated(b, paramFragment, paramBundle);
+      }
+    }
+  }
+  
+  void b(Fragment paramFragment, boolean paramBoolean)
+  {
+    Context localContext = b.t0().f();
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().b(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentAttached(b, paramFragment, localContext);
+      }
+    }
+  }
+  
+  void c(Fragment paramFragment, Bundle paramBundle, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().c(paramFragment, paramBundle, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentCreated(b, paramFragment, paramBundle);
+      }
+    }
+  }
+  
+  void d(Fragment paramFragment, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().d(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentDestroyed(b, paramFragment);
+      }
+    }
+  }
+  
+  void e(Fragment paramFragment, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().e(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentDetached(b, paramFragment);
+      }
+    }
+  }
+  
+  void f(Fragment paramFragment, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().f(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentPaused(b, paramFragment);
+      }
+    }
+  }
+  
+  void g(Fragment paramFragment, boolean paramBoolean)
+  {
+    Context localContext = b.t0().f();
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().g(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentPreAttached(b, paramFragment, localContext);
+      }
+    }
+  }
+  
+  void h(Fragment paramFragment, Bundle paramBundle, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().h(paramFragment, paramBundle, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentPreCreated(b, paramFragment, paramBundle);
+      }
+    }
+  }
+  
+  void i(Fragment paramFragment, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().i(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentResumed(b, paramFragment);
+      }
+    }
+  }
+  
+  void j(Fragment paramFragment, Bundle paramBundle, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().j(paramFragment, paramBundle, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentSaveInstanceState(b, paramFragment, paramBundle);
+      }
+    }
+  }
+  
+  void k(Fragment paramFragment, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().k(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentStarted(b, paramFragment);
+      }
+    }
+  }
+  
+  void l(Fragment paramFragment, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().l(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentStopped(b, paramFragment);
+      }
+    }
+  }
+  
+  void m(Fragment paramFragment, View paramView, Bundle paramBundle, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().m(paramFragment, paramView, paramBundle, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentViewCreated(b, paramFragment, paramView, paramBundle);
+      }
+    }
+  }
+  
+  void n(Fragment paramFragment, boolean paramBoolean)
+  {
+    Object localObject = b.w0();
+    if (localObject != null) {
+      ((Fragment)localObject).getParentFragmentManager().v0().n(paramFragment, true);
+    }
+    localObject = a.iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      a localA = (a)((Iterator)localObject).next();
+      if ((!paramBoolean) || (b)) {
+        a.onFragmentViewDestroyed(b, paramFragment);
+      }
+    }
+  }
+  
+  public void o(m.l paramL, boolean paramBoolean)
+  {
+    a.add(new a(paramL, paramBoolean));
+  }
+  
+  public void p(m.l paramL)
+  {
+    for (;;)
+    {
+      int i;
+      synchronized (a)
+      {
+        int j = a.size();
+        i = 0;
+        if (i < j)
+        {
+          if (a.get(i)).a != paramL) {
+            break label64;
+          }
+          a.remove(i);
+        }
+        return;
+      }
+      label64:
+      i += 1;
+    }
+  }
+  
+  private static final class a
+  {
+    final m.l a;
+    final boolean b;
+    
+    a(m.l paramL, boolean paramBoolean)
+    {
+      a = paramL;
+      b = paramBoolean;
+    }
+  }
+}

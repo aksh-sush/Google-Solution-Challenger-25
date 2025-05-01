@@ -1,0 +1,8 @@
+package va;
+
+public abstract interface d
+{
+  public abstract g getContext();
+  
+  public abstract void resumeWith(Object paramObject);
+}

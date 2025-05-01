@@ -1,0 +1,217 @@
+package com.google.android.gms.common.internal;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Handler.Callback;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
+import com.google.android.gms.common.api.GoogleApiClient.b;
+import com.google.android.gms.common.api.GoogleApiClient.c;
+import com.google.android.gms.common.api.internal.g;
+import com.google.android.gms.common.api.internal.o;
+import com.google.android.gms.internal.base.zaq;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicInteger;
+import q3.b;
+
+public final class l0
+  implements Handler.Callback
+{
+  private final k0 a;
+  private final ArrayList b = new ArrayList();
+  final ArrayList c = new ArrayList();
+  private final ArrayList d = new ArrayList();
+  private volatile boolean e = false;
+  private final AtomicInteger f = new AtomicInteger(0);
+  private boolean g = false;
+  private final Handler h;
+  private final Object i = new Object();
+  
+  public l0(Looper paramLooper, k0 paramK0)
+  {
+    a = paramK0;
+    h = new zaq(paramLooper, this);
+  }
+  
+  public final void a()
+  {
+    e = false;
+    f.incrementAndGet();
+  }
+  
+  public final void b()
+  {
+    e = true;
+  }
+  
+  public final void c(b paramB)
+  {
+    s.e(h, "onConnectionFailure must only be called on the Handler thread");
+    h.removeMessages(1);
+    synchronized (i)
+    {
+      Object localObject2 = new ArrayList(d);
+      int j = f.get();
+      localObject2 = ((ArrayList)localObject2).iterator();
+      while (((Iterator)localObject2).hasNext())
+      {
+        GoogleApiClient.c localC = (GoogleApiClient.c)((Iterator)localObject2).next();
+        if ((e) && (f.get() == j))
+        {
+          if (d.contains(localC)) {
+            localC.onConnectionFailed(paramB);
+          }
+        }
+        else {
+          return;
+        }
+      }
+      return;
+    }
+  }
+  
+  public final void d(Bundle paramBundle)
+  {
+    s.e(h, "onConnectionSuccess must only be called on the Handler thread");
+    synchronized (i)
+    {
+      s.n(g ^ true);
+      h.removeMessages(1);
+      g = true;
+      s.n(c.isEmpty());
+      Object localObject2 = new ArrayList(b);
+      int j = f.get();
+      localObject2 = ((ArrayList)localObject2).iterator();
+      while (((Iterator)localObject2).hasNext())
+      {
+        GoogleApiClient.b localB = (GoogleApiClient.b)((Iterator)localObject2).next();
+        if ((!e) || (!a.isConnected()) || (f.get() != j)) {
+          break;
+        }
+        if (!c.contains(localB)) {
+          localB.onConnected(paramBundle);
+        }
+      }
+      c.clear();
+      g = false;
+      return;
+    }
+  }
+  
+  public final void e(int paramInt)
+  {
+    s.e(h, "onUnintentionalDisconnection must only be called on the Handler thread");
+    h.removeMessages(1);
+    synchronized (i)
+    {
+      g = true;
+      Object localObject2 = new ArrayList(b);
+      int j = f.get();
+      localObject2 = ((ArrayList)localObject2).iterator();
+      while (((Iterator)localObject2).hasNext())
+      {
+        GoogleApiClient.b localB = (GoogleApiClient.b)((Iterator)localObject2).next();
+        if ((!e) || (f.get() != j)) {
+          break;
+        }
+        if (b.contains(localB)) {
+          localB.onConnectionSuspended(paramInt);
+        }
+      }
+      c.clear();
+      g = false;
+      return;
+    }
+  }
+  
+  public final void f(GoogleApiClient.b paramB)
+  {
+    s.k(paramB);
+    synchronized (i)
+    {
+      if (b.contains(paramB))
+      {
+        String str = String.valueOf(paramB);
+        StringBuilder localStringBuilder = new StringBuilder(str.length() + 62);
+        localStringBuilder.append("registerConnectionCallbacks(): listener ");
+        localStringBuilder.append(str);
+        localStringBuilder.append(" is already registered");
+        Log.w("GmsClientEvents", localStringBuilder.toString());
+      }
+      else
+      {
+        b.add(paramB);
+      }
+      if (a.isConnected())
+      {
+        ??? = h;
+        ((Handler)???).sendMessage(((Handler)???).obtainMessage(1, paramB));
+      }
+      return;
+    }
+  }
+  
+  public final void g(GoogleApiClient.c paramC)
+  {
+    s.k(paramC);
+    synchronized (i)
+    {
+      if (d.contains(paramC))
+      {
+        paramC = String.valueOf(paramC);
+        StringBuilder localStringBuilder = new StringBuilder(paramC.length() + 67);
+        localStringBuilder.append("registerConnectionFailedListener(): listener ");
+        localStringBuilder.append(paramC);
+        localStringBuilder.append(" is already registered");
+        Log.w("GmsClientEvents", localStringBuilder.toString());
+      }
+      else
+      {
+        d.add(paramC);
+      }
+      return;
+    }
+  }
+  
+  public final void h(GoogleApiClient.c paramC)
+  {
+    s.k(paramC);
+    synchronized (i)
+    {
+      if (!d.remove(paramC))
+      {
+        paramC = String.valueOf(paramC);
+        StringBuilder localStringBuilder = new StringBuilder(paramC.length() + 57);
+        localStringBuilder.append("unregisterConnectionFailedListener(): listener ");
+        localStringBuilder.append(paramC);
+        localStringBuilder.append(" not found");
+        Log.w("GmsClientEvents", localStringBuilder.toString());
+      }
+      return;
+    }
+  }
+  
+  public final boolean handleMessage(Message arg1)
+  {
+    int j = what;
+    if (j == 1)
+    {
+      GoogleApiClient.b localB = (GoogleApiClient.b)obj;
+      synchronized (i)
+      {
+        if ((e) && (a.isConnected()) && (b.contains(localB))) {
+          localB.onConnected(null);
+        }
+        return true;
+      }
+    }
+    ??? = new StringBuilder(45);
+    ???.append("Don't know how to handle message: ");
+    ???.append(j);
+    Exception localException = new Exception();
+    Log.wtf("GmsClientEvents", ???.toString(), localException);
+    return false;
+  }
+}

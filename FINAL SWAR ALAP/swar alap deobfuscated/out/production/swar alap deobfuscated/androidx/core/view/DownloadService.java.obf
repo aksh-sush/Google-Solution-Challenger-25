@@ -1,0 +1,8 @@
+package androidx.core.view;
+
+import android.view.View;
+
+public abstract interface s0
+{
+  public abstract void a(View paramView);
+}

@@ -1,0 +1,11 @@
+package com.google.protobuf;
+
+public abstract class p
+{
+  public p() {}
+  
+  boolean a()
+  {
+    return true;
+  }
+}

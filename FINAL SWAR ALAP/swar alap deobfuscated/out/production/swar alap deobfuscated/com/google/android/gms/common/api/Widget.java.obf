@@ -1,0 +1,20 @@
+package com.google.android.gms.common.api;
+
+import com.google.android.gms.common.api.internal.BasePendingResult;
+
+final class o
+  extends BasePendingResult
+{
+  private final h a;
+  
+  public o(GoogleApiClient paramGoogleApiClient, h paramH)
+  {
+    super(paramGoogleApiClient);
+    a = paramH;
+  }
+  
+  protected final h createFailedResult(Status paramStatus)
+  {
+    return a;
+  }
+}

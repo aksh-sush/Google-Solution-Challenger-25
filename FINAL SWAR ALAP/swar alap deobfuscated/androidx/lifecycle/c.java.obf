@@ -1,0 +1,7 @@
+package androidx.lifecycle;
+
+public abstract interface l
+  extends m
+{
+  public abstract void d(n paramN, i.a paramA);
+}

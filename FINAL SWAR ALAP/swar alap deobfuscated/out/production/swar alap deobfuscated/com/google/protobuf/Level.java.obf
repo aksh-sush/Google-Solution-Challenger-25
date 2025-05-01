@@ -1,0 +1,197 @@
+package com.google.protobuf;
+
+import java.lang.reflect.Type;
+
+public enum w
+{
+  private static final w[] i0;
+  private static final Type[] j0;
+  private final e0 e;
+  private final int f;
+  private final b g;
+  private final Class h;
+  private final boolean i;
+  
+  static
+  {
+    Object localObject2 = b.f;
+    Object localObject9 = e0.l;
+    Object localObject1 = new w("DOUBLE", 0, 0, (b)localObject2, (e0)localObject9);
+    j = (w)localObject1;
+    Object localObject10 = e0.k;
+    w localW1 = new w("FLOAT", 1, 1, (b)localObject2, (e0)localObject10);
+    k = localW1;
+    Object localObject5 = e0.j;
+    w localW2 = new w("INT64", 2, 2, (b)localObject2, (e0)localObject5);
+    l = localW2;
+    w localW3 = new w("UINT64", 3, 3, (b)localObject2, (e0)localObject5);
+    m = localW3;
+    Object localObject8 = e0.i;
+    w localW4 = new w("INT32", 4, 4, (b)localObject2, (e0)localObject8);
+    n = localW4;
+    w localW5 = new w("FIXED64", 5, 5, (b)localObject2, (e0)localObject5);
+    o = localW5;
+    w localW6 = new w("FIXED32", 6, 6, (b)localObject2, (e0)localObject8);
+    p = localW6;
+    Object localObject11 = e0.m;
+    w localW7 = new w("BOOL", 7, 7, (b)localObject2, (e0)localObject11);
+    q = localW7;
+    Object localObject4 = e0.n;
+    w localW8 = new w("STRING", 8, 8, (b)localObject2, (e0)localObject4);
+    r = localW8;
+    Object localObject3 = e0.q;
+    w localW9 = new w("MESSAGE", 9, 9, (b)localObject2, (e0)localObject3);
+    s = localW9;
+    Object localObject7 = e0.o;
+    w localW10 = new w("BYTES", 10, 10, (b)localObject2, (e0)localObject7);
+    t = localW10;
+    w localW11 = new w("UINT32", 11, 11, (b)localObject2, (e0)localObject8);
+    u = localW11;
+    Object localObject12 = e0.p;
+    w localW12 = new w("ENUM", 12, 12, (b)localObject2, (e0)localObject12);
+    v = localW12;
+    w localW13 = new w("SFIXED32", 13, 13, (b)localObject2, (e0)localObject8);
+    w = localW13;
+    w localW14 = new w("SFIXED64", 14, 14, (b)localObject2, (e0)localObject5);
+    x = localW14;
+    w localW15 = new w("SINT32", 15, 15, (b)localObject2, (e0)localObject8);
+    y = localW15;
+    w localW16 = new w("SINT64", 16, 16, (b)localObject2, (e0)localObject5);
+    z = localW16;
+    localObject2 = new w("GROUP", 17, 17, (b)localObject2, (e0)localObject3);
+    A = (w)localObject2;
+    Object localObject6 = b.g;
+    w localW17 = new w("DOUBLE_LIST", 18, 18, (b)localObject6, (e0)localObject9);
+    B = localW17;
+    w localW18 = new w("FLOAT_LIST", 19, 19, (b)localObject6, (e0)localObject10);
+    C = localW18;
+    w localW19 = new w("INT64_LIST", 20, 20, (b)localObject6, (e0)localObject5);
+    D = localW19;
+    w localW20 = new w("UINT64_LIST", 21, 21, (b)localObject6, (e0)localObject5);
+    E = localW20;
+    w localW21 = new w("INT32_LIST", 22, 22, (b)localObject6, (e0)localObject8);
+    F = localW21;
+    w localW22 = new w("FIXED64_LIST", 23, 23, (b)localObject6, (e0)localObject5);
+    G = localW22;
+    w localW23 = new w("FIXED32_LIST", 24, 24, (b)localObject6, (e0)localObject8);
+    H = localW23;
+    w localW24 = new w("BOOL_LIST", 25, 25, (b)localObject6, (e0)localObject11);
+    I = localW24;
+    localObject4 = new w("STRING_LIST", 26, 26, (b)localObject6, (e0)localObject4);
+    J = (w)localObject4;
+    w localW25 = new w("MESSAGE_LIST", 27, 27, (b)localObject6, (e0)localObject3);
+    K = localW25;
+    localObject7 = new w("BYTES_LIST", 28, 28, (b)localObject6, (e0)localObject7);
+    L = (w)localObject7;
+    w localW26 = new w("UINT32_LIST", 29, 29, (b)localObject6, (e0)localObject8);
+    M = localW26;
+    w localW27 = new w("ENUM_LIST", 30, 30, (b)localObject6, (e0)localObject12);
+    N = localW27;
+    w localW28 = new w("SFIXED32_LIST", 31, 31, (b)localObject6, (e0)localObject8);
+    O = localW28;
+    w localW29 = new w("SFIXED64_LIST", 32, 32, (b)localObject6, (e0)localObject5);
+    P = localW29;
+    w localW30 = new w("SINT32_LIST", 33, 33, (b)localObject6, (e0)localObject8);
+    Q = localW30;
+    w localW31 = new w("SINT64_LIST", 34, 34, (b)localObject6, (e0)localObject5);
+    R = localW31;
+    b localB = b.h;
+    localObject9 = new w("DOUBLE_LIST_PACKED", 35, 35, localB, (e0)localObject9);
+    S = (w)localObject9;
+    localObject10 = new w("FLOAT_LIST_PACKED", 36, 36, localB, (e0)localObject10);
+    T = (w)localObject10;
+    w localW32 = new w("INT64_LIST_PACKED", 37, 37, localB, (e0)localObject5);
+    U = localW32;
+    w localW33 = new w("UINT64_LIST_PACKED", 38, 38, localB, (e0)localObject5);
+    V = localW33;
+    w localW34 = new w("INT32_LIST_PACKED", 39, 39, localB, (e0)localObject8);
+    W = localW34;
+    w localW35 = new w("FIXED64_LIST_PACKED", 40, 40, localB, (e0)localObject5);
+    X = localW35;
+    w localW36 = new w("FIXED32_LIST_PACKED", 41, 41, localB, (e0)localObject8);
+    Y = localW36;
+    localObject11 = new w("BOOL_LIST_PACKED", 42, 42, localB, (e0)localObject11);
+    Z = (w)localObject11;
+    w localW37 = new w("UINT32_LIST_PACKED", 43, 43, localB, (e0)localObject8);
+    a0 = localW37;
+    localObject12 = new w("ENUM_LIST_PACKED", 44, 44, localB, (e0)localObject12);
+    b0 = (w)localObject12;
+    w localW38 = new w("SFIXED32_LIST_PACKED", 45, 45, localB, (e0)localObject8);
+    c0 = localW38;
+    w localW39 = new w("SFIXED64_LIST_PACKED", 46, 46, localB, (e0)localObject5);
+    d0 = localW39;
+    localObject8 = new w("SINT32_LIST_PACKED", 47, 47, localB, (e0)localObject8);
+    e0 = (w)localObject8;
+    localObject5 = new w("SINT64_LIST_PACKED", 48, 48, localB, (e0)localObject5);
+    f0 = (w)localObject5;
+    localObject3 = new w("GROUP_LIST", 49, 49, (b)localObject6, (e0)localObject3);
+    g0 = (w)localObject3;
+    localObject6 = new w("MAP", 50, 50, b.i, e0.h);
+    h0 = (w)localObject6;
+    int i1 = 0;
+    k0 = new w[] { localObject1, localW1, localW2, localW3, localW4, localW5, localW6, localW7, localW8, localW9, localW10, localW11, localW12, localW13, localW14, localW15, localW16, localObject2, localW17, localW18, localW19, localW20, localW21, localW22, localW23, localW24, localObject4, localW25, localObject7, localW26, localW27, localW28, localW29, localW30, localW31, localObject9, localObject10, localW32, localW33, localW34, localW35, localW36, localObject11, localW37, localObject12, localW38, localW39, localObject8, localObject5, localObject3, localObject6 };
+    j0 = new Type[0];
+    localObject1 = values();
+    i0 = new w[localObject1.length];
+    int i2 = localObject1.length;
+    while (i1 < i2)
+    {
+      localW1 = localObject1[i1];
+      i0[f] = localW1;
+      i1 += 1;
+    }
+  }
+  
+  private w(int paramInt, b paramB, e0 paramE0)
+  {
+    f = paramInt;
+    g = paramB;
+    e = paramE0;
+    ??? = a.a[paramB.ordinal()];
+    boolean bool = true;
+    if ((??? != 1) && (??? != 2)) {
+      ??? = null;
+    } else {
+      ??? = paramE0.a();
+    }
+    h = ((Class)???);
+    if (paramB == b.f)
+    {
+      ??? = a.b[paramE0.ordinal()];
+      if ((??? != 1) && (??? != 2) && (??? != 3)) {}
+    }
+    else
+    {
+      bool = false;
+    }
+    i = bool;
+  }
+  
+  public int a()
+  {
+    return f;
+  }
+  
+  static enum b
+  {
+    private final boolean e;
+    
+    static
+    {
+      b localB1 = new b("SCALAR", 0, false);
+      f = localB1;
+      b localB2 = new b("VECTOR", 1, true);
+      g = localB2;
+      b localB3 = new b("PACKED_VECTOR", 2, true);
+      h = localB3;
+      b localB4 = new b("MAP", 3, false);
+      i = localB4;
+      j = new b[] { localB1, localB2, localB3, localB4 };
+    }
+    
+    private b(boolean paramBoolean)
+    {
+      e = paramBoolean;
+    }
+  }
+}

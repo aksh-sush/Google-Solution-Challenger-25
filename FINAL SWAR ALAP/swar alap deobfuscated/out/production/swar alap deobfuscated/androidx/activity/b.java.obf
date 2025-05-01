@@ -1,0 +1,45 @@
+package androidx.activity;
+
+import android.window.BackEvent;
+
+public final class b
+{
+  public static final a e = new a(null);
+  private final float a;
+  private final float b;
+  private final float c;
+  private final int d;
+  
+  public b(float paramFloat1, float paramFloat2, float paramFloat3, int paramInt)
+  {
+    a = paramFloat1;
+    b = paramFloat2;
+    c = paramFloat3;
+    d = paramInt;
+  }
+  
+  public b(BackEvent paramBackEvent)
+  {
+    this(localA.d(paramBackEvent), localA.e(paramBackEvent), localA.b(paramBackEvent), localA.c(paramBackEvent));
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("BackEventCompat{touchX=");
+    localStringBuilder.append(a);
+    localStringBuilder.append(", touchY=");
+    localStringBuilder.append(b);
+    localStringBuilder.append(", progress=");
+    localStringBuilder.append(c);
+    localStringBuilder.append(", swipeEdge=");
+    localStringBuilder.append(d);
+    localStringBuilder.append('}');
+    return localStringBuilder.toString();
+  }
+  
+  public static final class a
+  {
+    private a() {}
+  }
+}

@@ -1,0 +1,72 @@
+package db;
+
+import jb.a;
+import jb.d;
+
+public abstract class i
+  extends c
+  implements h, d
+{
+  private final int l;
+  private final int m;
+  
+  public i(int paramInt1, Object paramObject, Class paramClass, String paramString1, String paramString2, int paramInt2)
+  {
+    super(paramObject, paramClass, paramString1, paramString2, bool);
+    l = paramInt1;
+    m = (paramInt2 >> 1);
+  }
+  
+  protected a b()
+  {
+    return u.a(this);
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (paramObject == this) {
+      return true;
+    }
+    if ((paramObject instanceof i))
+    {
+      paramObject = (i)paramObject;
+      return (d().equals(paramObject.d())) && (f().equals(paramObject.f())) && (m == m) && (l == l) && (l.a(c(), paramObject.c())) && (l.a(e(), paramObject.e()));
+    }
+    if ((paramObject instanceof d)) {
+      return paramObject.equals(a());
+    }
+    return false;
+  }
+  
+  public int getArity()
+  {
+    return l;
+  }
+  
+  public int hashCode()
+  {
+    int i;
+    if (e() == null) {
+      i = 0;
+    } else {
+      i = e().hashCode() * 31;
+    }
+    return (i + d().hashCode()) * 31 + f().hashCode();
+  }
+  
+  public String toString()
+  {
+    Object localObject = a();
+    if (localObject != this) {
+      return localObject.toString();
+    }
+    if ("<init>".equals(d())) {
+      return "constructor (Kotlin reflection is not available)";
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("function ");
+    ((StringBuilder)localObject).append(d());
+    ((StringBuilder)localObject).append(" (Kotlin reflection is not available)");
+    return ((StringBuilder)localObject).toString();
+  }
+}

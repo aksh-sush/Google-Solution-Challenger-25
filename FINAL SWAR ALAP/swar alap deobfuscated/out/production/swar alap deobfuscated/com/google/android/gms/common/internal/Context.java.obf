@@ -1,0 +1,748 @@
+package com.google.android.gms.common.internal;
+
+import android.accounts.Account;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.DeadObjectException;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+import android.os.RemoteException;
+import android.util.Log;
+import com.google.android.gms.common.api.Scope;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicInteger;
+import q3.b;
+import q3.d;
+
+public abstract class c
+{
+  public static final int CONNECT_STATE_CONNECTED = 4;
+  public static final int CONNECT_STATE_DISCONNECTED = 1;
+  public static final int CONNECT_STATE_DISCONNECTING = 5;
+  public static final String DEFAULT_ACCOUNT = "<<default account>>";
+  public static final String[] GOOGLE_PLUS_REQUIRED_FEATURES = { "service_esmobile", "service_googleme" };
+  public static final String KEY_PENDING_INTENT = "pendingIntent";
+  private static final d[] zze = new d[0];
+  private volatile String zzA;
+  private b zzB = null;
+  private boolean zzC = false;
+  private volatile u1 zzD = null;
+  f2 zza;
+  final Handler zzb;
+  protected c zzc;
+  protected AtomicInteger zzd = new AtomicInteger(0);
+  private int zzf;
+  private long zzg;
+  private long zzh;
+  private int zzi;
+  private long zzj;
+  private volatile String zzk = null;
+  private final Context zzl;
+  private final Looper zzm;
+  private final i zzn;
+  private final q3.k zzo;
+  private final Object zzp = new Object();
+  private final Object zzq = new Object();
+  private n zzr;
+  private IInterface zzs;
+  private final ArrayList zzt = new ArrayList();
+  private r1 zzu;
+  private int zzv = 1;
+  private final a zzw;
+  private final b zzx;
+  private final int zzy;
+  private final String zzz;
+  
+  protected c(Context paramContext, Looper paramLooper, int paramInt, a paramA, b paramB, String paramString)
+  {
+    this(paramContext, paramLooper, localI, localK, paramInt, paramA, paramB, paramString);
+  }
+  
+  protected c(Context paramContext, Looper paramLooper, i paramI, q3.k paramK, int paramInt, a paramA, b paramB, String paramString)
+  {
+    s.l(paramContext, "Context must not be null");
+    zzl = paramContext;
+    s.l(paramLooper, "Looper must not be null");
+    zzm = paramLooper;
+    s.l(paramI, "Supervisor must not be null");
+    zzn = paramI;
+    s.l(paramK, "API availability must not be null");
+    zzo = paramK;
+    zzb = new o1(this, paramLooper);
+    zzy = paramInt;
+    zzw = paramA;
+    zzx = paramB;
+    zzz = paramString;
+  }
+  
+  private final void e(int paramInt, IInterface paramIInterface)
+  {
+    boolean bool = false;
+    int i;
+    if (paramInt != 4) {
+      i = 0;
+    } else {
+      i = 1;
+    }
+    int j;
+    if (paramIInterface == null) {
+      j = 0;
+    } else {
+      j = 1;
+    }
+    if (i == j) {
+      bool = true;
+    }
+    s.a(bool);
+    synchronized (zzp)
+    {
+      zzv = paramInt;
+      zzs = paramIInterface;
+      Object localObject3;
+      Object localObject2;
+      if (paramInt != 1)
+      {
+        if ((paramInt != 2) && (paramInt != 3))
+        {
+          if (paramInt == 4)
+          {
+            s.k(paramIInterface);
+            onConnectedLocked(paramIInterface);
+          }
+        }
+        else
+        {
+          paramIInterface = zzu;
+          if (paramIInterface != null)
+          {
+            localObject3 = zza;
+            if (localObject3 != null)
+            {
+              localObject2 = ((f2)localObject3).b();
+              localObject3 = ((f2)localObject3).a();
+              localObject4 = new StringBuilder();
+              ((StringBuilder)localObject4).append("Calling connect() while still connected, missing disconnect() for ");
+              ((StringBuilder)localObject4).append((String)localObject2);
+              ((StringBuilder)localObject4).append(" on ");
+              ((StringBuilder)localObject4).append((String)localObject3);
+              Log.e("GmsClient", ((StringBuilder)localObject4).toString());
+              localObject2 = zzn;
+              localObject3 = zza.b();
+              s.k(localObject3);
+              ((i)localObject2).d((String)localObject3, zza.a(), 4225, paramIInterface, zze(), zza.c());
+              zzd.incrementAndGet();
+            }
+          }
+          localObject2 = new r1(this, zzd.get());
+          zzu = ((r1)localObject2);
+          if ((zzv == 3) && (getLocalStartServiceAction() != null)) {
+            paramIInterface = new f2(getContext().getPackageName(), getLocalStartServiceAction(), true, 4225, false);
+          } else {
+            paramIInterface = new f2(getStartServicePackage(), getStartServiceAction(), false, 4225, getUseDynamicLookup());
+          }
+          zza = paramIInterface;
+          if ((paramIInterface.c()) && (getMinApkVersion() < 17895000)) {
+            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf(zza.b())));
+          }
+          paramIInterface = zzn;
+          localObject3 = zza.b();
+          s.k(localObject3);
+          Object localObject4 = zza.a();
+          String str = zze();
+          bool = zza.c();
+          Executor localExecutor = getBindServiceExecutor();
+          if (!paramIInterface.e(new y1((String)localObject3, (String)localObject4, 4225, bool), (ServiceConnection)localObject2, str, localExecutor))
+          {
+            paramIInterface = zza.b();
+            localObject2 = zza.a();
+            localObject3 = new StringBuilder();
+            ((StringBuilder)localObject3).append("unable to connect to service: ");
+            ((StringBuilder)localObject3).append(paramIInterface);
+            ((StringBuilder)localObject3).append(" on ");
+            ((StringBuilder)localObject3).append((String)localObject2);
+            Log.w("GmsClient", ((StringBuilder)localObject3).toString());
+            zzl(16, null, zzd.get());
+          }
+        }
+      }
+      else
+      {
+        paramIInterface = zzu;
+        if (paramIInterface != null)
+        {
+          localObject2 = zzn;
+          localObject3 = zza.b();
+          s.k(localObject3);
+          ((i)localObject2).d((String)localObject3, zza.a(), 4225, paramIInterface, zze(), zza.c());
+          zzu = null;
+        }
+      }
+      return;
+    }
+  }
+  
+  public void checkAvailabilityAndConnect()
+  {
+    int i = zzo.j(zzl, getMinApkVersion());
+    if (i != 0)
+    {
+      e(1, null);
+      triggerNotAvailable(new d(), i, null);
+      return;
+    }
+    connect(new d());
+  }
+  
+  protected final void checkConnected()
+  {
+    if (isConnected()) {
+      return;
+    }
+    throw new IllegalStateException("Not connected. Call connect() and wait for onConnected() to be called.");
+  }
+  
+  public void connect(c paramC)
+  {
+    s.l(paramC, "Connection progress callbacks cannot be null.");
+    zzc = paramC;
+    e(2, null);
+  }
+  
+  protected abstract IInterface createServiceInterface(IBinder paramIBinder);
+  
+  public void disconnect()
+  {
+    zzd.incrementAndGet();
+    synchronized (zzt)
+    {
+      int j = zzt.size();
+      int i = 0;
+      while (i < j)
+      {
+        ((p1)zzt.get(i)).d();
+        i += 1;
+      }
+      zzt.clear();
+      synchronized (zzq)
+      {
+        zzr = null;
+        e(1, null);
+        return;
+      }
+    }
+  }
+  
+  public void disconnect(String paramString)
+  {
+    zzk = paramString;
+    disconnect();
+  }
+  
+  public void dump(String paramString, FileDescriptor arg2, PrintWriter paramPrintWriter, String[] paramArrayOfString)
+  {
+    synchronized (zzp)
+    {
+      int i = zzv;
+      paramArrayOfString = zzs;
+      synchronized (zzq)
+      {
+        Object localObject = zzr;
+        paramPrintWriter.append(paramString).append("mConnectState=");
+        if (i != 1)
+        {
+          if (i != 2)
+          {
+            if (i != 3)
+            {
+              if (i != 4)
+              {
+                if (i != 5) {
+                  ??? = "UNKNOWN";
+                } else {
+                  ??? = "DISCONNECTING";
+                }
+              }
+              else {
+                ??? = "CONNECTED";
+              }
+            }
+            else {
+              ??? = "LOCAL_CONNECTING";
+            }
+          }
+          else {
+            ??? = "REMOTE_CONNECTING";
+          }
+        }
+        else {
+          ??? = "DISCONNECTED";
+        }
+        paramPrintWriter.print(???);
+        paramPrintWriter.append(" mService=");
+        if (paramArrayOfString == null) {
+          paramPrintWriter.append("null");
+        } else {
+          paramPrintWriter.append(getServiceDescriptor()).append("@").append(Integer.toHexString(System.identityHashCode(paramArrayOfString.asBinder())));
+        }
+        paramPrintWriter.append(" mServiceBroker=");
+        if (localObject == null) {
+          paramPrintWriter.println("null");
+        } else {
+          paramPrintWriter.append("IGmsServiceBroker@").println(Integer.toHexString(System.identityHashCode(((IInterface)localObject).asBinder())));
+        }
+        paramArrayOfString = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US);
+        long l;
+        StringBuilder localStringBuilder;
+        if (zzh > 0L)
+        {
+          ??? = paramPrintWriter.append(paramString).append("lastConnectedTime=");
+          l = zzh;
+          localObject = paramArrayOfString.format(new Date(l));
+          localStringBuilder = new StringBuilder();
+          localStringBuilder.append(l);
+          localStringBuilder.append(" ");
+          localStringBuilder.append((String)localObject);
+          ???.println(localStringBuilder.toString());
+        }
+        if (zzg > 0L)
+        {
+          paramPrintWriter.append(paramString).append("lastSuspendedCause=");
+          i = zzf;
+          if (i != 1)
+          {
+            if (i != 2)
+            {
+              if (i != 3) {
+                ??? = String.valueOf(i);
+              } else {
+                ??? = "CAUSE_DEAD_OBJECT_EXCEPTION";
+              }
+            }
+            else {
+              ??? = "CAUSE_NETWORK_LOST";
+            }
+          }
+          else {
+            ??? = "CAUSE_SERVICE_DISCONNECTED";
+          }
+          paramPrintWriter.append(???);
+          ??? = paramPrintWriter.append(" lastSuspendedTime=");
+          l = zzg;
+          localObject = paramArrayOfString.format(new Date(l));
+          localStringBuilder = new StringBuilder();
+          localStringBuilder.append(l);
+          localStringBuilder.append(" ");
+          localStringBuilder.append((String)localObject);
+          ???.println(localStringBuilder.toString());
+        }
+        if (zzj > 0L)
+        {
+          paramPrintWriter.append(paramString).append("lastFailedStatus=").append(com.google.android.gms.common.api.c.a(zzi));
+          paramString = paramPrintWriter.append(" lastFailedTime=");
+          l = zzj;
+          ??? = paramArrayOfString.format(new Date(l));
+          paramPrintWriter = new StringBuilder();
+          paramPrintWriter.append(l);
+          paramPrintWriter.append(" ");
+          paramPrintWriter.append(???);
+          paramString.println(paramPrintWriter.toString());
+        }
+        return;
+      }
+    }
+  }
+  
+  protected boolean enableLocalFallback()
+  {
+    return false;
+  }
+  
+  public Account getAccount()
+  {
+    return null;
+  }
+  
+  public d[] getApiFeatures()
+  {
+    return zze;
+  }
+  
+  public final d[] getAvailableFeatures()
+  {
+    u1 localU1 = zzD;
+    if (localU1 == null) {
+      return null;
+    }
+    return f;
+  }
+  
+  protected Executor getBindServiceExecutor()
+  {
+    return null;
+  }
+  
+  public Bundle getConnectionHint()
+  {
+    return null;
+  }
+  
+  public final Context getContext()
+  {
+    return zzl;
+  }
+  
+  public String getEndpointPackageName()
+  {
+    if (isConnected())
+    {
+      f2 localF2 = zza;
+      if (localF2 != null) {
+        return localF2.a();
+      }
+    }
+    throw new RuntimeException("Failed to connect when checking package");
+  }
+  
+  public int getGCoreServiceId()
+  {
+    return zzy;
+  }
+  
+  protected Bundle getGetServiceRequestExtraArgs()
+  {
+    return new Bundle();
+  }
+  
+  public String getLastDisconnectMessage()
+  {
+    return zzk;
+  }
+  
+  protected String getLocalStartServiceAction()
+  {
+    return null;
+  }
+  
+  public final Looper getLooper()
+  {
+    return zzm;
+  }
+  
+  public abstract int getMinApkVersion();
+  
+  public void getRemoteService(k arg1, Set<Scope> paramSet)
+  {
+    Object localObject1 = getGetServiceRequestExtraArgs();
+    int i = zzy;
+    Object localObject2 = zzA;
+    int j = q3.k.a;
+    Scope[] arrayOfScope = g.s;
+    Bundle localBundle = new Bundle();
+    d[] arrayOfD = g.t;
+    localObject2 = new g(6, i, j, null, null, arrayOfScope, localBundle, null, arrayOfD, arrayOfD, true, 0, false, (String)localObject2);
+    h = zzl.getPackageName();
+    k = ((Bundle)localObject1);
+    if (paramSet != null) {
+      j = ((Scope[])paramSet.toArray(new Scope[0]));
+    }
+    if (requiresSignIn())
+    {
+      localObject1 = getAccount();
+      paramSet = (Set<Scope>)localObject1;
+      if (localObject1 == null) {
+        paramSet = new Account("<<default account>>", "com.google");
+      }
+      l = paramSet;
+      if (??? != null) {
+        i = ???.asBinder();
+      }
+    }
+    else if (requiresAccount())
+    {
+      l = getAccount();
+    }
+    m = zze;
+    n = getApiFeatures();
+    if (usesClientTelemetry()) {
+      q = true;
+    }
+    try
+    {
+      try
+      {
+        synchronized (zzq)
+        {
+          paramSet = zzr;
+          if (paramSet != null) {
+            paramSet.q(new q1(this, zzd.get()), (g)localObject2);
+          } else {
+            Log.w("GmsClient", "mServiceBroker is null, client disconnected");
+          }
+          return;
+        }
+        Log.w("GmsClient", "IGmsServiceBroker.getService failed", ???);
+      }
+      catch (RuntimeException ???) {}catch (RemoteException ???) {}
+      onPostInitHandler(8, null, null, zzd.get());
+      return;
+    }
+    catch (SecurityException ???)
+    {
+      throw ???;
+    }
+    catch (DeadObjectException ???)
+    {
+      Log.w("GmsClient", "IGmsServiceBroker.getService failed", ???);
+      triggerConnectionSuspended(3);
+    }
+  }
+  
+  protected Set getScopes()
+  {
+    return Collections.emptySet();
+  }
+  
+  public final IInterface getService()
+  {
+    synchronized (zzp)
+    {
+      if (zzv != 5)
+      {
+        checkConnected();
+        IInterface localIInterface = zzs;
+        s.l(localIInterface, "Client is connected but service is null");
+        return localIInterface;
+      }
+      throw new DeadObjectException();
+    }
+  }
+  
+  public IBinder getServiceBrokerBinder()
+  {
+    synchronized (zzq)
+    {
+      Object localObject2 = zzr;
+      if (localObject2 == null) {
+        return null;
+      }
+      localObject2 = ((IInterface)localObject2).asBinder();
+      return localObject2;
+    }
+  }
+  
+  protected abstract String getServiceDescriptor();
+  
+  public Intent getSignInIntent()
+  {
+    throw new UnsupportedOperationException("Not a sign in API");
+  }
+  
+  protected abstract String getStartServiceAction();
+  
+  protected String getStartServicePackage()
+  {
+    return "com.google.android.gms";
+  }
+  
+  public e getTelemetryConfiguration()
+  {
+    u1 localU1 = zzD;
+    if (localU1 == null) {
+      return null;
+    }
+    return h;
+  }
+  
+  protected boolean getUseDynamicLookup()
+  {
+    return getMinApkVersion() >= 211700000;
+  }
+  
+  public boolean hasConnectionInfo()
+  {
+    return zzD != null;
+  }
+  
+  public boolean isConnected()
+  {
+    for (;;)
+    {
+      synchronized (zzp)
+      {
+        if (zzv == 4)
+        {
+          bool = true;
+          return bool;
+        }
+      }
+      boolean bool = false;
+    }
+  }
+  
+  public boolean isConnecting()
+  {
+    for (;;)
+    {
+      synchronized (zzp)
+      {
+        int i = zzv;
+        boolean bool2 = true;
+        bool1 = bool2;
+        if (i != 2)
+        {
+          if (i != 3) {
+            break label46;
+          }
+          bool1 = bool2;
+        }
+        return bool1;
+      }
+      label46:
+      boolean bool1 = false;
+    }
+  }
+  
+  protected void onConnectedLocked(IInterface paramIInterface)
+  {
+    zzh = System.currentTimeMillis();
+  }
+  
+  protected void onConnectionFailed(b paramB)
+  {
+    zzi = paramB.U();
+    zzj = System.currentTimeMillis();
+  }
+  
+  protected void onConnectionSuspended(int paramInt)
+  {
+    zzf = paramInt;
+    zzg = System.currentTimeMillis();
+  }
+  
+  protected void onPostInitHandler(int paramInt1, IBinder paramIBinder, Bundle paramBundle, int paramInt2)
+  {
+    Handler localHandler = zzb;
+    localHandler.sendMessage(localHandler.obtainMessage(1, paramInt2, -1, new s1(this, paramInt1, paramIBinder, paramBundle)));
+  }
+  
+  public void onUserSignOut(e paramE)
+  {
+    paramE.a();
+  }
+  
+  public boolean providesSignIn()
+  {
+    return false;
+  }
+  
+  public boolean requiresAccount()
+  {
+    return false;
+  }
+  
+  public boolean requiresGooglePlayServices()
+  {
+    return true;
+  }
+  
+  public boolean requiresSignIn()
+  {
+    return false;
+  }
+  
+  public void setAttributionTag(String paramString)
+  {
+    zzA = paramString;
+  }
+  
+  public void triggerConnectionSuspended(int paramInt)
+  {
+    Handler localHandler = zzb;
+    localHandler.sendMessage(localHandler.obtainMessage(6, zzd.get(), paramInt));
+  }
+  
+  protected void triggerNotAvailable(c paramC, int paramInt, PendingIntent paramPendingIntent)
+  {
+    s.l(paramC, "Connection progress callbacks cannot be null.");
+    zzc = paramC;
+    paramC = zzb;
+    paramC.sendMessage(paramC.obtainMessage(3, zzd.get(), paramInt, paramPendingIntent));
+  }
+  
+  public boolean usesClientTelemetry()
+  {
+    return false;
+  }
+  
+  protected final String zze()
+  {
+    String str2 = zzz;
+    String str1 = str2;
+    if (str2 == null) {
+      str1 = zzl.getClass().getName();
+    }
+    return str1;
+  }
+  
+  protected final void zzl(int paramInt1, Bundle paramBundle, int paramInt2)
+  {
+    paramBundle = zzb;
+    paramBundle.sendMessage(paramBundle.obtainMessage(7, paramInt2, -1, new t1(this, paramInt1, null)));
+  }
+  
+  public static abstract interface a
+  {
+    public abstract void onConnected(Bundle paramBundle);
+    
+    public abstract void onConnectionSuspended(int paramInt);
+  }
+  
+  public static abstract interface b
+  {
+    public abstract void onConnectionFailed(b paramB);
+  }
+  
+  public static abstract interface c
+  {
+    public abstract void b(b paramB);
+  }
+  
+  protected class d
+    implements c.c
+  {
+    public d() {}
+    
+    public final void b(b paramB)
+    {
+      if (paramB.j0())
+      {
+        paramB = c.this;
+        paramB.getRemoteService(null, paramB.getScopes());
+        return;
+      }
+      if (c.zzc(c.this) != null) {
+        c.zzc(c.this).onConnectionFailed(paramB);
+      }
+    }
+  }
+  
+  public static abstract interface e
+  {
+    public abstract void a();
+  }
+}

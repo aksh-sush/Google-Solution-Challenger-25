@@ -1,0 +1,41 @@
+package com.google.android.gms.internal.auth;
+
+final class zzfn
+  implements zzfu
+{
+  private final zzfu[] zza;
+  
+  zzfn(zzfu... paramVarArgs)
+  {
+    zza = paramVarArgs;
+  }
+  
+  public final zzft zzb(Class paramClass)
+  {
+    zzfu[] arrayOfZzfu = zza;
+    int i = 0;
+    while (i < 2)
+    {
+      zzfu localZzfu = arrayOfZzfu[i];
+      if (localZzfu.zzc(paramClass)) {
+        return localZzfu.zzb(paramClass);
+      }
+      i += 1;
+    }
+    throw new UnsupportedOperationException("No factory is available for message type: ".concat(paramClass.getName()));
+  }
+  
+  public final boolean zzc(Class paramClass)
+  {
+    zzfu[] arrayOfZzfu = zza;
+    int i = 0;
+    while (i < 2)
+    {
+      if (arrayOfZzfu[i].zzc(paramClass)) {
+        return true;
+      }
+      i += 1;
+    }
+    return false;
+  }
+}

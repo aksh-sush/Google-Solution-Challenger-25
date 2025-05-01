@@ -1,0 +1,217 @@
+package androidx.core.graphics;
+
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.graphics.Typeface;
+import android.graphics.fonts.FontVariationAxis;
+import android.os.CancellationSignal;
+import android.util.Log;
+import androidx.core.content.res.e.c;
+import androidx.core.provider.g.b;
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
+
+public class h
+  extends f
+{
+  protected final Class g;
+  protected final Constructor h;
+  protected final Method i;
+  protected final Method j;
+  protected final Method k;
+  protected final Method l;
+  protected final Method m;
+  
+  public h()
+  {
+    try
+    {
+      Class localClass = v();
+      localObject2 = w(localClass);
+      localObject3 = s(localClass);
+      localObject4 = t(localClass);
+      localObject5 = x(localClass);
+      localObject6 = r(localClass);
+      localObject7 = u(localClass);
+    }
+    catch (NoSuchMethodException localNoSuchMethodException) {}catch (ClassNotFoundException localClassNotFoundException) {}
+    Object localObject2 = new StringBuilder();
+    ((StringBuilder)localObject2).append("Unable to collect necessary methods for class ");
+    ((StringBuilder)localObject2).append(localClassNotFoundException.getClass().getName());
+    Log.e("TypefaceCompatApi26Impl", ((StringBuilder)localObject2).toString(), localClassNotFoundException);
+    Object localObject9 = null;
+    Object localObject8 = null;
+    Object localObject1 = localObject8;
+    localObject2 = localObject1;
+    Object localObject3 = localObject2;
+    Object localObject4 = localObject3;
+    Object localObject7 = localObject4;
+    Object localObject6 = localObject4;
+    Object localObject5 = localObject3;
+    localObject4 = localObject2;
+    localObject3 = localObject1;
+    localObject2 = localObject8;
+    localObject1 = localObject9;
+    g = localObject1;
+    h = ((Constructor)localObject2);
+    i = ((Method)localObject3);
+    j = ((Method)localObject4);
+    k = ((Method)localObject5);
+    l = ((Method)localObject6);
+    m = ((Method)localObject7);
+  }
+  
+  private Object l()
+  {
+    try
+    {
+      Object localObject = h.newInstance(new Object[0]);
+      return localObject;
+    }
+    catch (IllegalAccessException|InstantiationException|InvocationTargetException localIllegalAccessException)
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+  
+  private void m(Object paramObject)
+  {
+    try
+    {
+      l.invoke(paramObject, new Object[0]);
+      return;
+    }
+    catch (IllegalAccessException|InvocationTargetException paramObject) {}
+  }
+  
+  private boolean n(Context paramContext, Object paramObject, String paramString, int paramInt1, int paramInt2, int paramInt3, FontVariationAxis[] paramArrayOfFontVariationAxis)
+  {
+    try
+    {
+      boolean bool = ((Boolean)i.invoke(paramObject, new Object[] { paramContext.getAssets(), paramString, Integer.valueOf(0), Boolean.FALSE, Integer.valueOf(paramInt1), Integer.valueOf(paramInt2), Integer.valueOf(paramInt3), paramArrayOfFontVariationAxis })).booleanValue();
+      return bool;
+    }
+    catch (IllegalAccessException|InvocationTargetException paramContext) {}
+    return false;
+  }
+  
+  private boolean o(Object paramObject, ByteBuffer paramByteBuffer, int paramInt1, int paramInt2, int paramInt3)
+  {
+    try
+    {
+      boolean bool = ((Boolean)j.invoke(paramObject, new Object[] { paramByteBuffer, Integer.valueOf(paramInt1), null, Integer.valueOf(paramInt2), Integer.valueOf(paramInt3) })).booleanValue();
+      return bool;
+    }
+    catch (IllegalAccessException|InvocationTargetException paramObject) {}
+    return false;
+  }
+  
+  private boolean p(Object paramObject)
+  {
+    try
+    {
+      boolean bool = ((Boolean)k.invoke(paramObject, new Object[0])).booleanValue();
+      return bool;
+    }
+    catch (IllegalAccessException|InvocationTargetException paramObject) {}
+    return false;
+  }
+  
+  private boolean q()
+  {
+    if (i == null) {
+      Log.w("TypefaceCompatApi26Impl", "Unable to collect necessary private methods. Fallback to legacy implementation.");
+    }
+    return i != null;
+  }
+  
+  public Typeface a(Context paramContext, e.c paramC, Resources paramResources, int paramInt)
+  {
+    throw new Runtime("d2j fail translate: java.lang.RuntimeException: can not merge I and Z\n\tat com.googlecode.dex2jar.ir.TypeClass.merge(TypeClass.java:100)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeRef.updateTypeClass(TypeTransformer.java:174)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.provideAs(TypeTransformer.java:780)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.enexpr(TypeTransformer.java:659)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:719)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:703)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.enexpr(TypeTransformer.java:698)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:719)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:703)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.e2expr(TypeTransformer.java:629)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:716)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:703)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.s1stmt(TypeTransformer.java:810)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.sxStmt(TypeTransformer.java:840)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.analyze(TypeTransformer.java:206)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer.transform(TypeTransformer.java:44)\n\tat com.googlecode.d2j.dex.Dex2jar$2.optimize(Dex2jar.java:162)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertCode(Dex2Asm.java:414)\n\tat com.googlecode.d2j.dex.ExDex2Asm.convertCode(ExDex2Asm.java:42)\n\tat com.googlecode.d2j.dex.Dex2jar$2.convertCode(Dex2jar.java:128)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertMethod(Dex2Asm.java:509)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertClass(Dex2Asm.java:406)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertDex(Dex2Asm.java:422)\n\tat com.googlecode.d2j.dex.Dex2jar.doTranslate(Dex2jar.java:172)\n\tat com.googlecode.d2j.dex.Dex2jar.to(Dex2jar.java:272)\n\tat com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:108)\n\tat com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)\n\tat com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)\n");
+  }
+  
+  public Typeface b(Context paramContext, CancellationSignal paramCancellationSignal, g.b[] paramArrayOfB, int paramInt)
+  {
+    throw new Runtime("d2j fail translate: java.lang.RuntimeException: can not merge I and Z\n\tat com.googlecode.dex2jar.ir.TypeClass.merge(TypeClass.java:100)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeRef.updateTypeClass(TypeTransformer.java:174)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.provideAs(TypeTransformer.java:780)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.enexpr(TypeTransformer.java:659)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:719)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:703)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.enexpr(TypeTransformer.java:698)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:719)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:703)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.e2expr(TypeTransformer.java:629)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:716)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:703)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.s1stmt(TypeTransformer.java:810)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.sxStmt(TypeTransformer.java:840)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.analyze(TypeTransformer.java:206)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer.transform(TypeTransformer.java:44)\n\tat com.googlecode.d2j.dex.Dex2jar$2.optimize(Dex2jar.java:162)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertCode(Dex2Asm.java:414)\n\tat com.googlecode.d2j.dex.ExDex2Asm.convertCode(ExDex2Asm.java:42)\n\tat com.googlecode.d2j.dex.Dex2jar$2.convertCode(Dex2jar.java:128)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertMethod(Dex2Asm.java:509)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertClass(Dex2Asm.java:406)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertDex(Dex2Asm.java:422)\n\tat com.googlecode.d2j.dex.Dex2jar.doTranslate(Dex2jar.java:172)\n\tat com.googlecode.d2j.dex.Dex2jar.to(Dex2jar.java:272)\n\tat com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:108)\n\tat com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)\n\tat com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)\n");
+  }
+  
+  public Typeface d(Context paramContext, Resources paramResources, int paramInt1, String paramString, int paramInt2)
+  {
+    if (!q()) {
+      return super.d(paramContext, paramResources, paramInt1, paramString, paramInt2);
+    }
+    paramResources = l();
+    if (paramResources == null) {
+      return null;
+    }
+    if (!n(paramContext, paramResources, paramString, 0, -1, -1, null))
+    {
+      m(paramResources);
+      return null;
+    }
+    if (!p(paramResources)) {
+      return null;
+    }
+    return i(paramResources);
+  }
+  
+  protected Typeface i(Object paramObject)
+  {
+    try
+    {
+      Object localObject = Array.newInstance(g, 1);
+      Array.set(localObject, 0, paramObject);
+      paramObject = (Typeface)m.invoke(null, new Object[] { localObject, Integer.valueOf(-1), Integer.valueOf(-1) });
+      return paramObject;
+    }
+    catch (IllegalAccessException|InvocationTargetException paramObject) {}
+    return null;
+  }
+  
+  protected Method r(Class paramClass)
+  {
+    return paramClass.getMethod("abortCreation", new Class[0]);
+  }
+  
+  protected Method s(Class paramClass)
+  {
+    Class localClass = Integer.TYPE;
+    return paramClass.getMethod("addFontFromAssetManager", new Class[] { AssetManager.class, String.class, localClass, Boolean.TYPE, localClass, localClass, localClass, [Landroid.graphics.fonts.FontVariationAxis.class });
+  }
+  
+  protected Method t(Class paramClass)
+  {
+    Class localClass = Integer.TYPE;
+    return paramClass.getMethod("addFontFromBuffer", new Class[] { ByteBuffer.class, localClass, [Landroid.graphics.fonts.FontVariationAxis.class, localClass, localClass });
+  }
+  
+  protected Method u(Class paramClass)
+  {
+    paramClass = Array.newInstance(paramClass, 1).getClass();
+    Class localClass = Integer.TYPE;
+    paramClass = Typeface.class.getDeclaredMethod("createFromFamiliesWithDefault", new Class[] { paramClass, localClass, localClass });
+    paramClass.setAccessible(true);
+    return paramClass;
+  }
+  
+  protected Class v()
+  {
+    return Class.forName("android.graphics.FontFamily");
+  }
+  
+  protected Constructor w(Class paramClass)
+  {
+    return paramClass.getConstructor(new Class[0]);
+  }
+  
+  protected Method x(Class paramClass)
+  {
+    return paramClass.getMethod("freeze", new Class[0]);
+  }
+}

@@ -1,0 +1,34 @@
+package com.google.android.gms.internal.auth;
+
+import java.lang.reflect.Constructor;
+
+final class zzgc
+{
+  private static final zzgb zza;
+  private static final zzgb zzb = new zzgb();
+  
+  static
+  {
+    try
+    {
+      localZzgb = (zzgb)Class.forName("com.google.protobuf.NewInstanceSchemaFull").getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+    }
+    catch (Exception localException)
+    {
+      zzgb localZzgb;
+      for (;;) {}
+    }
+    localZzgb = null;
+    zza = localZzgb;
+  }
+  
+  static zzgb zza()
+  {
+    return zza;
+  }
+  
+  static zzgb zzb()
+  {
+    return zzb;
+  }
+}

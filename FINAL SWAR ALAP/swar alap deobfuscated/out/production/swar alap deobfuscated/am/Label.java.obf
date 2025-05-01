@@ -1,0 +1,122 @@
+package i3;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import androidx.collection.a;
+import androidx.collection.g;
+import com.google.android.gms.common.server.response.a.a;
+import com.google.android.gms.internal.auth.zzbz;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import s3.c;
+
+public final class e
+  extends zzbz
+{
+  public static final Parcelable.Creator<e> CREATOR = new f();
+  private static final a k;
+  final int e;
+  private List f;
+  private List g;
+  private List h;
+  private List i;
+  private List j;
+  
+  static
+  {
+    a localA = new a();
+    k = localA;
+    localA.put("registered", a.a.l0("registered", 2));
+    localA.put("in_progress", a.a.l0("in_progress", 3));
+    localA.put("success", a.a.l0("success", 4));
+    localA.put("failed", a.a.l0("failed", 5));
+    localA.put("escrowed", a.a.l0("escrowed", 6));
+  }
+  
+  e(int paramInt, List paramList1, List paramList2, List paramList3, List paramList4, List paramList5)
+  {
+    e = paramInt;
+    f = paramList1;
+    g = paramList2;
+    h = paramList3;
+    i = paramList4;
+    j = paramList5;
+  }
+  
+  public final Map getFieldMappings()
+  {
+    return k;
+  }
+  
+  protected final Object getFieldValue(a.a paramA)
+  {
+    switch (paramA.m0())
+    {
+    default: 
+      int m = paramA.m0();
+      paramA = new StringBuilder();
+      paramA.append("Unknown SafeParcelable id=");
+      paramA.append(m);
+      throw new IllegalStateException(paramA.toString());
+    case 6: 
+      return j;
+    case 5: 
+      return i;
+    case 4: 
+      return h;
+    case 3: 
+      return g;
+    case 2: 
+      return f;
+    }
+    return Integer.valueOf(e);
+  }
+  
+  protected final boolean isFieldSet(a.a paramA)
+  {
+    return true;
+  }
+  
+  protected final void setStringsInternal(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    int m = paramA.m0();
+    if (m != 2)
+    {
+      if (m != 3)
+      {
+        if (m != 4)
+        {
+          if (m != 5)
+          {
+            if (m == 6)
+            {
+              j = paramArrayList;
+              return;
+            }
+            throw new IllegalArgumentException(String.format("Field with id=%d is not known to be a string list.", new Object[] { Integer.valueOf(m) }));
+          }
+          i = paramArrayList;
+          return;
+        }
+        h = paramArrayList;
+        return;
+      }
+      g = paramArrayList;
+      return;
+    }
+    f = paramArrayList;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramInt = c.a(paramParcel);
+    c.t(paramParcel, 1, e);
+    c.F(paramParcel, 2, f, false);
+    c.F(paramParcel, 3, g, false);
+    c.F(paramParcel, 4, h, false);
+    c.F(paramParcel, 5, i, false);
+    c.F(paramParcel, 6, j, false);
+    c.b(paramParcel, paramInt);
+  }
+}

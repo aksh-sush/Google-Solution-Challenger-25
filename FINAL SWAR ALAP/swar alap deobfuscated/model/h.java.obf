@@ -1,0 +1,24 @@
+package db;
+
+import jb.a;
+import jb.e;
+
+public abstract class o
+  extends q
+  implements e
+{
+  public o(Object paramObject, Class paramClass, String paramString1, String paramString2, int paramInt)
+  {
+    super(paramObject, paramClass, paramString1, paramString2, paramInt);
+  }
+  
+  protected a b()
+  {
+    return u.d(this);
+  }
+  
+  public Object invoke()
+  {
+    return get();
+  }
+}

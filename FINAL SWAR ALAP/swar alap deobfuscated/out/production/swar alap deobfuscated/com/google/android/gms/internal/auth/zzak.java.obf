@@ -1,0 +1,20 @@
+package com.google.android.gms.internal.auth;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.h;
+
+final class zzak
+  implements h
+{
+  private final Status zza;
+  
+  public zzak(Status paramStatus)
+  {
+    zza = paramStatus;
+  }
+  
+  public final Status getStatus()
+  {
+    return zza;
+  }
+}

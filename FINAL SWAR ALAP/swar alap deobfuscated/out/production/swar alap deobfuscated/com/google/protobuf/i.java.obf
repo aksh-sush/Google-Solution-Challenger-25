@@ -1,0 +1,28 @@
+package com.google.protobuf;
+
+import java.util.Map.Entry;
+
+abstract class s
+{
+  s() {}
+  
+  abstract int a(Map.Entry paramEntry);
+  
+  abstract Object b(r paramR, t0 paramT0, int paramInt);
+  
+  abstract v c(Object paramObject);
+  
+  abstract v d(Object paramObject);
+  
+  abstract boolean e(t0 paramT0);
+  
+  abstract void f(Object paramObject);
+  
+  abstract Object g(j1 paramJ1, Object paramObject1, r paramR, v paramV, Object paramObject2, t1 paramT1);
+  
+  abstract void h(j1 paramJ1, Object paramObject, r paramR, v paramV);
+  
+  abstract void i(j paramJ, Object paramObject, r paramR, v paramV);
+  
+  abstract void j(a2 paramA2, Map.Entry paramEntry);
+}

@@ -1,0 +1,5 @@
+package eb;
+
+public abstract interface c
+  extends b
+{}

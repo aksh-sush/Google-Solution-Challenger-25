@@ -1,0 +1,31 @@
+package com.google.protobuf;
+
+import java.io.OutputStream;
+
+public abstract interface t0
+  extends u0
+{
+  public abstract d1 getParserForType();
+  
+  public abstract int getSerializedSize();
+  
+  public abstract a newBuilderForType();
+  
+  public abstract a toBuilder();
+  
+  public abstract byte[] toByteArray();
+  
+  public abstract void writeTo(m paramM);
+  
+  public abstract void writeTo(OutputStream paramOutputStream);
+  
+  public static abstract interface a
+    extends u0, Cloneable
+  {
+    public abstract t0 build();
+    
+    public abstract t0 buildPartial();
+    
+    public abstract a mergeFrom(t0 paramT0);
+  }
+}

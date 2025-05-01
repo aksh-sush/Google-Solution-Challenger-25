@@ -1,0 +1,95 @@
+package com.google.protobuf;
+
+import java.util.List;
+import java.util.Map;
+
+abstract interface j1
+{
+  public abstract Object A(l1 paramL1, r paramR);
+  
+  public abstract j B();
+  
+  public abstract void C(List paramList);
+  
+  public abstract int D();
+  
+  public abstract int E();
+  
+  public abstract boolean F();
+  
+  public abstract int G();
+  
+  public abstract void H(List paramList);
+  
+  public abstract void I(List paramList);
+  
+  public abstract void J(List paramList);
+  
+  public abstract void K(List paramList);
+  
+  public abstract long L();
+  
+  public abstract String M();
+  
+  public abstract void N(List paramList);
+  
+  public abstract void O(List paramList);
+  
+  public abstract void P(List paramList);
+  
+  public abstract void a(List paramList);
+  
+  public abstract int b();
+  
+  public abstract int c();
+  
+  public abstract long d();
+  
+  public abstract void e(List paramList);
+  
+  public abstract long f();
+  
+  public abstract void g(List paramList);
+  
+  public abstract int h();
+  
+  public abstract void i(List paramList);
+  
+  public abstract void j(List paramList, l1 paramL1, r paramR);
+  
+  public abstract long k();
+  
+  public abstract void l(List paramList);
+  
+  public abstract Object m(Class paramClass, r paramR);
+  
+  public abstract void n(List paramList);
+  
+  public abstract String o();
+  
+  public abstract int p();
+  
+  public abstract Object q(Class paramClass, r paramR);
+  
+  public abstract boolean r();
+  
+  public abstract double readDouble();
+  
+  public abstract float readFloat();
+  
+  public abstract void s(List paramList, l1 paramL1, r paramR);
+  
+  public abstract int t();
+  
+  public abstract void u(List paramList);
+  
+  public abstract long v();
+  
+  public abstract Object w(l1 paramL1, r paramR);
+  
+  public abstract void x(Map paramMap, m0.a paramA, r paramR);
+  
+  public abstract void y(List paramList);
+  
+  public abstract void z(List paramList);
+}

@@ -1,0 +1,93 @@
+package sa;
+
+import db.l;
+
+public final class f
+  implements Comparable
+{
+  public static final a i = new a(null);
+  public static final f j = g.a();
+  private final int e;
+  private final int f;
+  private final int g;
+  private final int h;
+  
+  public f(int paramInt1, int paramInt2, int paramInt3)
+  {
+    e = paramInt1;
+    f = paramInt2;
+    g = paramInt3;
+    h = c(paramInt1, paramInt2, paramInt3);
+  }
+  
+  private final int c(int paramInt1, int paramInt2, int paramInt3)
+  {
+    int m = 0;
+    int k = m;
+    if (new ib.f(0, 255).i(paramInt1))
+    {
+      k = m;
+      if (new ib.f(0, 255).i(paramInt2))
+      {
+        k = m;
+        if (new ib.f(0, 255).i(paramInt3)) {
+          k = 1;
+        }
+      }
+    }
+    if (k != 0) {
+      return (paramInt1 << 16) + (paramInt2 << 8) + paramInt3;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Version components are out of range: ");
+    localStringBuilder.append(paramInt1);
+    localStringBuilder.append('.');
+    localStringBuilder.append(paramInt2);
+    localStringBuilder.append('.');
+    localStringBuilder.append(paramInt3);
+    throw new IllegalArgumentException(localStringBuilder.toString().toString());
+  }
+  
+  public int a(f paramF)
+  {
+    l.e(paramF, "other");
+    return h - h;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if ((paramObject instanceof f)) {
+      paramObject = (f)paramObject;
+    } else {
+      paramObject = null;
+    }
+    if (paramObject == null) {
+      return false;
+    }
+    return h == h;
+  }
+  
+  public int hashCode()
+  {
+    return h;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(e);
+    localStringBuilder.append('.');
+    localStringBuilder.append(f);
+    localStringBuilder.append('.');
+    localStringBuilder.append(g);
+    return localStringBuilder.toString();
+  }
+  
+  public static final class a
+  {
+    private a() {}
+  }
+}

@@ -1,0 +1,19 @@
+package androidx.activity.result;
+
+import e.a;
+
+public abstract class c
+{
+  public c() {}
+  
+  public abstract a a();
+  
+  public void b(Object paramObject)
+  {
+    c(paramObject, null);
+  }
+  
+  public abstract void c(Object paramObject, androidx.core.app.c paramC);
+  
+  public abstract void d();
+}

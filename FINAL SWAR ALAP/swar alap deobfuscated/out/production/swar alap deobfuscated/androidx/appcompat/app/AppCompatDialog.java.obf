@@ -1,0 +1,139 @@
+package androidx.appcompat.app;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.content.res.Resources.Theme;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import androidx.activity.k;
+import androidx.appcompat.view.b;
+import androidx.appcompat.view.b.a;
+import androidx.core.view.p;
+import androidx.core.view.p.a;
+import f.a;
+
+public abstract class x
+  extends k
+  implements e
+{
+  private g h;
+  private final p.a i = new w(this);
+  
+  public x(Context paramContext, int paramInt)
+  {
+    super(paramContext, g(paramContext, paramInt));
+    g localG = f();
+    localG.N(g(paramContext, paramInt));
+    localG.y(null);
+  }
+  
+  private static int g(Context paramContext, int paramInt)
+  {
+    int j = paramInt;
+    if (paramInt == 0)
+    {
+      TypedValue localTypedValue = new TypedValue();
+      paramContext.getTheme().resolveAttribute(a.w, localTypedValue, true);
+      j = resourceId;
+    }
+    return j;
+  }
+  
+  public void addContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
+  {
+    f().e(paramView, paramLayoutParams);
+  }
+  
+  public void b(b paramB) {}
+  
+  public void d(b paramB) {}
+  
+  public void dismiss()
+  {
+    super.dismiss();
+    f().z();
+  }
+  
+  public boolean dispatchKeyEvent(KeyEvent paramKeyEvent)
+  {
+    View localView = getWindow().getDecorView();
+    return p.e(i, localView, this, paramKeyEvent);
+  }
+  
+  public g f()
+  {
+    if (h == null) {
+      h = g.i(this, this);
+    }
+    return h;
+  }
+  
+  public View findViewById(int paramInt)
+  {
+    return f().j(paramInt);
+  }
+  
+  boolean h(KeyEvent paramKeyEvent)
+  {
+    return super.dispatchKeyEvent(paramKeyEvent);
+  }
+  
+  public boolean i(int paramInt)
+  {
+    return f().H(paramInt);
+  }
+  
+  public void invalidateOptionsMenu()
+  {
+    f().u();
+  }
+  
+  public b k(b.a paramA)
+  {
+    return null;
+  }
+  
+  protected void onCreate(Bundle paramBundle)
+  {
+    f().t();
+    super.onCreate(paramBundle);
+    f().y(paramBundle);
+  }
+  
+  protected void onStop()
+  {
+    super.onStop();
+    f().E();
+  }
+  
+  public void setContentView(int paramInt)
+  {
+    f().I(paramInt);
+  }
+  
+  public void setContentView(View paramView)
+  {
+    f().J(paramView);
+  }
+  
+  public void setContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
+  {
+    f().K(paramView, paramLayoutParams);
+  }
+  
+  public void setTitle(int paramInt)
+  {
+    super.setTitle(paramInt);
+    f().O(getContext().getString(paramInt));
+  }
+  
+  public void setTitle(CharSequence paramCharSequence)
+  {
+    super.setTitle(paramCharSequence);
+    f().O(paramCharSequence);
+  }
+}

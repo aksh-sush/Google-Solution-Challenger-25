@@ -1,0 +1,306 @@
+package com.google.android.gms.common.api;
+
+import android.accounts.Account;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import com.google.android.gms.common.api.internal.b;
+import com.google.android.gms.common.api.internal.d0;
+import com.google.android.gms.common.api.internal.e;
+import com.google.android.gms.common.api.internal.g2;
+import com.google.android.gms.common.api.internal.h;
+import com.google.android.gms.common.api.internal.l;
+import com.google.android.gms.common.api.internal.l.a;
+import com.google.android.gms.common.api.internal.m;
+import com.google.android.gms.common.api.internal.n1;
+import com.google.android.gms.common.api.internal.p;
+import com.google.android.gms.common.api.internal.q;
+import com.google.android.gms.common.api.internal.s1;
+import com.google.android.gms.common.api.internal.t;
+import com.google.android.gms.common.api.internal.v;
+import com.google.android.gms.common.api.internal.x;
+import com.google.android.gms.common.internal.s;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Collections;
+import n4.i;
+import n4.j;
+import org.checkerframework.checker.initialization.qual.NotOnlyInitialized;
+
+public abstract class d
+{
+  protected final h zaa;
+  private final Context zab;
+  private final String zac;
+  private final a zad;
+  private final a.d zae;
+  private final com.google.android.gms.common.api.internal.c zaf;
+  private final Looper zag;
+  private final int zah;
+  @NotOnlyInitialized
+  private final GoogleApiClient zai;
+  private final t zaj;
+  
+  public d(Activity paramActivity, a paramA, a.d paramD, a paramA1)
+  {
+    this(paramActivity, paramActivity, paramA, paramD, paramA1);
+  }
+  
+  public d(Activity paramActivity, a paramA, a.d paramD, t paramT)
+  {
+    this(paramActivity, paramA, paramD, localA.a());
+  }
+  
+  private d(Context paramContext, Activity paramActivity, a paramA, a.d paramD, a paramA1)
+  {
+    s.l(paramContext, "Null context is not permitted.");
+    s.l(paramA, "Api must not be null.");
+    s.l(paramA1, "Settings must not be null; use Settings.DEFAULT_SETTINGS instead.");
+    zab = paramContext.getApplicationContext();
+    boolean bool = y3.n.k();
+    localObject2 = null;
+    localObject1 = localObject2;
+    if (bool) {}
+    try
+    {
+      localObject1 = (String)Context.class.getMethod("getAttributionTag", new Class[0]).invoke(paramContext, new Object[0]);
+    }
+    catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException paramContext)
+    {
+      for (;;)
+      {
+        localObject1 = localObject2;
+      }
+    }
+    zac = ((String)localObject1);
+    zad = paramA;
+    zae = paramD;
+    zag = b;
+    paramContext = com.google.android.gms.common.api.internal.c.a(paramA, paramD, (String)localObject1);
+    zaf = paramContext;
+    zai = new s1(this);
+    paramA = h.y(zab);
+    zaa = paramA;
+    zah = paramA.n();
+    zaj = a;
+    if ((paramActivity != null) && (!(paramActivity instanceof GoogleApiActivity)) && (Looper.myLooper() == Looper.getMainLooper())) {
+      d0.j(paramActivity, paramA, paramContext);
+    }
+    paramA.c(this);
+  }
+  
+  public d(Context paramContext, a paramA, a.d paramD, a paramA1)
+  {
+    this(paramContext, null, paramA, paramD, paramA1);
+  }
+  
+  public d(Context paramContext, a paramA, a.d paramD, t paramT)
+  {
+    this(paramContext, paramA, paramD, localA.a());
+  }
+  
+  private final e b(int paramInt, e paramE)
+  {
+    paramE.zak();
+    zaa.G(this, paramInt, paramE);
+    return paramE;
+  }
+  
+  private final i c(int paramInt, v paramV)
+  {
+    j localJ = new j();
+    zaa.H(this, paramInt, paramV, localJ, zaj);
+    return localJ.a();
+  }
+  
+  public GoogleApiClient asGoogleApiClient()
+  {
+    return zai;
+  }
+  
+  protected com.google.android.gms.common.internal.d.a createClientSettingsBuilder()
+  {
+    com.google.android.gms.common.internal.d.a localA = new com.google.android.gms.common.internal.d.a();
+    localA.d(null);
+    localA.c(Collections.emptySet());
+    localA.e(zab.getClass().getName());
+    localA.b(zab.getPackageName());
+    return localA;
+  }
+  
+  protected i disconnectService()
+  {
+    return zaa.A(this);
+  }
+  
+  public <A extends a.b, T extends e> T doBestEffortWrite(T paramT)
+  {
+    b(2, paramT);
+    return paramT;
+  }
+  
+  public <TResult, A extends a.b> i doBestEffortWrite(v paramV)
+  {
+    return c(2, paramV);
+  }
+  
+  public <A extends a.b, T extends e> T doRead(T paramT)
+  {
+    b(0, paramT);
+    return paramT;
+  }
+  
+  public <TResult, A extends a.b> i doRead(v paramV)
+  {
+    return c(0, paramV);
+  }
+  
+  @Deprecated
+  public <A extends a.b, T extends p, U extends x> i doRegisterEventListener(T paramT, U paramU)
+  {
+    s.k(paramT);
+    s.k(paramU);
+    throw null;
+  }
+  
+  public <A extends a.b> i doRegisterEventListener(q paramQ)
+  {
+    s.k(paramQ);
+    throw null;
+  }
+  
+  public i doUnregisterEventListener(l.a paramA)
+  {
+    return doUnregisterEventListener(paramA, 0);
+  }
+  
+  public i doUnregisterEventListener(l.a paramA, int paramInt)
+  {
+    s.l(paramA, "Listener key cannot be null.");
+    return zaa.B(this, paramA, paramInt);
+  }
+  
+  public <A extends a.b, T extends e> T doWrite(T paramT)
+  {
+    b(1, paramT);
+    return paramT;
+  }
+  
+  public <TResult, A extends a.b> i doWrite(v paramV)
+  {
+    return c(1, paramV);
+  }
+  
+  public final com.google.android.gms.common.api.internal.c getApiKey()
+  {
+    return zaf;
+  }
+  
+  public a.d getApiOptions()
+  {
+    return zae;
+  }
+  
+  public Context getApplicationContext()
+  {
+    return zab;
+  }
+  
+  protected String getContextAttributionTag()
+  {
+    return zac;
+  }
+  
+  @Deprecated
+  protected String getContextFeatureId()
+  {
+    return zac;
+  }
+  
+  public Looper getLooper()
+  {
+    return zag;
+  }
+  
+  public <L> l registerListener(L paramL, String paramString)
+  {
+    return m.a(paramL, zag, paramString);
+  }
+  
+  public final int zaa()
+  {
+    return zah;
+  }
+  
+  public final a.f zab(Looper paramLooper, n1 paramN1)
+  {
+    com.google.android.gms.common.internal.d localD = createClientSettingsBuilder().a();
+    paramLooper = ((a.a)s.k(zad.a())).buildClient(zab, paramLooper, localD, zae, paramN1, paramN1);
+    paramN1 = getContextAttributionTag();
+    if ((paramN1 != null) && ((paramLooper instanceof com.google.android.gms.common.internal.c))) {
+      ((com.google.android.gms.common.internal.c)paramLooper).setAttributionTag(paramN1);
+    }
+    if (paramN1 != null)
+    {
+      if (!(paramLooper instanceof com.google.android.gms.common.api.internal.n)) {
+        return paramLooper;
+      }
+      paramLooper = (com.google.android.gms.common.api.internal.n)paramLooper;
+      throw null;
+    }
+    return paramLooper;
+  }
+  
+  public final g2 zac(Context paramContext, Handler paramHandler)
+  {
+    return new g2(paramContext, paramHandler, createClientSettingsBuilder().a());
+  }
+  
+  public static class a
+  {
+    public static final a c = new a().a();
+    public final t a;
+    public final Looper b;
+    
+    private a(t paramT, Account paramAccount, Looper paramLooper)
+    {
+      a = paramT;
+      b = paramLooper;
+    }
+    
+    public static class a
+    {
+      private t a;
+      private Looper b;
+      
+      public a() {}
+      
+      public d.a a()
+      {
+        if (a == null) {
+          a = new b();
+        }
+        if (b == null) {
+          b = Looper.getMainLooper();
+        }
+        return new d.a(a, null, b, null);
+      }
+      
+      public a b(Looper paramLooper)
+      {
+        s.l(paramLooper, "Looper must not be null.");
+        b = paramLooper;
+        return this;
+      }
+      
+      public a c(t paramT)
+      {
+        s.l(paramT, "StatusExceptionMapper must not be null.");
+        a = paramT;
+        return this;
+      }
+    }
+  }
+}

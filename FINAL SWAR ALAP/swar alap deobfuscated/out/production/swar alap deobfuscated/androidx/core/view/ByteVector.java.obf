@@ -1,0 +1,267 @@
+package androidx.core.view;
+
+import android.content.Context;
+import android.os.Build.VERSION;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowInsetsController;
+import android.view.inputmethod.InputMethodManager;
+import androidx.collection.g;
+
+public final class i2
+{
+  private final e a;
+  
+  public i2(Window paramWindow, View paramView)
+  {
+    int i = Build.VERSION.SDK_INT;
+    if (i >= 30)
+    {
+      a = new d(paramWindow, this);
+      return;
+    }
+    if (i >= 26) {
+      paramWindow = new c(paramWindow, paramView);
+    }
+    for (;;)
+    {
+      a = paramWindow;
+      return;
+      if (i >= 23) {
+        paramWindow = new b(paramWindow, paramView);
+      } else {
+        paramWindow = new a(paramWindow, paramView);
+      }
+    }
+  }
+  
+  private i2(WindowInsetsController paramWindowInsetsController)
+  {
+    a = new d(paramWindowInsetsController, this);
+  }
+  
+  public static i2 d(WindowInsetsController paramWindowInsetsController)
+  {
+    return new i2(paramWindowInsetsController);
+  }
+  
+  public void a(boolean paramBoolean)
+  {
+    a.a(paramBoolean);
+  }
+  
+  public void b(boolean paramBoolean)
+  {
+    a.b(paramBoolean);
+  }
+  
+  public void c(int paramInt)
+  {
+    a.c(paramInt);
+  }
+  
+  private static class a
+    extends i2.e
+  {
+    protected final Window a;
+    private final View b;
+    
+    a(Window paramWindow, View paramView)
+    {
+      a = paramWindow;
+      b = paramView;
+    }
+    
+    private void h(int paramInt)
+    {
+      if (paramInt != 1)
+      {
+        if (paramInt != 2)
+        {
+          if (paramInt != 8) {
+            return;
+          }
+          View localView1 = b;
+          if ((!localView1.isInEditMode()) && (!localView1.onCheckIsTextEditor())) {
+            localView1 = a.getCurrentFocus();
+          } else {
+            localView1.requestFocus();
+          }
+          View localView2 = localView1;
+          if (localView1 == null) {
+            localView2 = a.findViewById(16908290);
+          }
+          if ((localView2 != null) && (localView2.hasWindowFocus())) {
+            localView2.post(new h2(localView2));
+          }
+          return;
+        }
+        i(2);
+        return;
+      }
+      i(4);
+      j(1024);
+    }
+    
+    void c(int paramInt)
+    {
+      int i = 1;
+      while (i <= 256)
+      {
+        if ((paramInt & i) != 0) {
+          h(i);
+        }
+        i <<= 1;
+      }
+    }
+    
+    protected void f(int paramInt)
+    {
+      View localView = a.getDecorView();
+      localView.setSystemUiVisibility(paramInt | localView.getSystemUiVisibility());
+    }
+    
+    protected void g(int paramInt)
+    {
+      a.addFlags(paramInt);
+    }
+    
+    protected void i(int paramInt)
+    {
+      View localView = a.getDecorView();
+      localView.setSystemUiVisibility(paramInt & localView.getSystemUiVisibility());
+    }
+    
+    protected void j(int paramInt)
+    {
+      a.clearFlags(paramInt);
+    }
+  }
+  
+  private static class b
+    extends i2.a
+  {
+    b(Window paramWindow, View paramView)
+    {
+      super(paramView);
+    }
+    
+    public void b(boolean paramBoolean)
+    {
+      if (paramBoolean)
+      {
+        j(67108864);
+        g(Integer.MIN_VALUE);
+        f(8192);
+        return;
+      }
+      i(8192);
+    }
+  }
+  
+  private static class c
+    extends i2.b
+  {
+    c(Window paramWindow, View paramView)
+    {
+      super(paramView);
+    }
+    
+    public void a(boolean paramBoolean)
+    {
+      if (paramBoolean)
+      {
+        j(134217728);
+        g(Integer.MIN_VALUE);
+        f(16);
+        return;
+      }
+      i(16);
+    }
+  }
+  
+  private static class d
+    extends i2.e
+  {
+    final i2 a;
+    final WindowInsetsController b;
+    private final g c = new g();
+    protected Window d;
+    
+    d(Window paramWindow, i2 paramI2)
+    {
+      this(k2.a(paramWindow), paramI2);
+      d = paramWindow;
+    }
+    
+    d(WindowInsetsController paramWindowInsetsController, i2 paramI2)
+    {
+      b = paramWindowInsetsController;
+      a = paramI2;
+    }
+    
+    public void a(boolean paramBoolean)
+    {
+      if (paramBoolean)
+      {
+        if (d != null) {
+          d(16);
+        }
+        j2.a(b, 16, 16);
+        return;
+      }
+      if (d != null) {
+        e(16);
+      }
+      j2.a(b, 0, 16);
+    }
+    
+    public void b(boolean paramBoolean)
+    {
+      if (paramBoolean)
+      {
+        if (d != null) {
+          d(8192);
+        }
+        j2.a(b, 8, 8);
+        return;
+      }
+      if (d != null) {
+        e(8192);
+      }
+      j2.a(b, 0, 8);
+    }
+    
+    void c(int paramInt)
+    {
+      Window localWindow = d;
+      if ((localWindow != null) && ((paramInt & 0x8) != 0) && (Build.VERSION.SDK_INT < 32)) {
+        ((InputMethodManager)localWindow.getContext().getSystemService("input_method")).isActive();
+      }
+      l2.a(b, paramInt);
+    }
+    
+    protected void d(int paramInt)
+    {
+      View localView = d.getDecorView();
+      localView.setSystemUiVisibility(paramInt | localView.getSystemUiVisibility());
+    }
+    
+    protected void e(int paramInt)
+    {
+      View localView = d.getDecorView();
+      localView.setSystemUiVisibility(paramInt & localView.getSystemUiVisibility());
+    }
+  }
+  
+  private static abstract class e
+  {
+    e() {}
+    
+    public void a(boolean paramBoolean) {}
+    
+    public void b(boolean paramBoolean) {}
+    
+    abstract void c(int paramInt);
+  }
+}

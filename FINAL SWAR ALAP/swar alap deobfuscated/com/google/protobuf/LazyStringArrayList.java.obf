@@ -1,0 +1,160 @@
+package com.google.protobuf;
+
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.RandomAccess;
+
+public class h0
+  extends c
+  implements i0, RandomAccess
+{
+  private static final h0 g;
+  public static final i0 h;
+  private final List f;
+  
+  static
+  {
+    h0 localH0 = new h0();
+    g = localH0;
+    localH0.c();
+    h = localH0;
+  }
+  
+  public h0()
+  {
+    this(10);
+  }
+  
+  public h0(int paramInt)
+  {
+    this(new ArrayList(paramInt));
+  }
+  
+  private h0(ArrayList paramArrayList)
+  {
+    f = paramArrayList;
+  }
+  
+  private static String e(Object paramObject)
+  {
+    if ((paramObject instanceof String)) {
+      return (String)paramObject;
+    }
+    if ((paramObject instanceof j)) {
+      return ((j)paramObject).L();
+    }
+    return c0.j((byte[])paramObject);
+  }
+  
+  public i0 B()
+  {
+    if (T()) {
+      return new w1(this);
+    }
+    return this;
+  }
+  
+  public Object G(int paramInt)
+  {
+    return f.get(paramInt);
+  }
+  
+  public List R()
+  {
+    return Collections.unmodifiableList(f);
+  }
+  
+  public boolean addAll(int paramInt, Collection paramCollection)
+  {
+    b();
+    Object localObject = paramCollection;
+    if ((paramCollection instanceof i0)) {
+      localObject = ((i0)paramCollection).R();
+    }
+    boolean bool = f.addAll(paramInt, (Collection)localObject);
+    modCount += 1;
+    return bool;
+  }
+  
+  public boolean addAll(Collection paramCollection)
+  {
+    return addAll(size(), paramCollection);
+  }
+  
+  public void clear()
+  {
+    b();
+    f.clear();
+    modCount += 1;
+  }
+  
+  public void d(int paramInt, String paramString)
+  {
+    b();
+    f.add(paramInt, paramString);
+    modCount += 1;
+  }
+  
+  public String f(int paramInt)
+  {
+    Object localObject = f.get(paramInt);
+    if ((localObject instanceof String)) {
+      return (String)localObject;
+    }
+    if ((localObject instanceof j))
+    {
+      localObject = (j)localObject;
+      str = ((j)localObject).L();
+      if (((j)localObject).w()) {
+        f.set(paramInt, str);
+      }
+      return str;
+    }
+    localObject = (byte[])localObject;
+    String str = c0.j((byte[])localObject);
+    if (c0.g((byte[])localObject)) {
+      f.set(paramInt, str);
+    }
+    return str;
+  }
+  
+  public h0 h(int paramInt)
+  {
+    if (paramInt >= size())
+    {
+      ArrayList localArrayList = new ArrayList(paramInt);
+      localArrayList.addAll(f);
+      return new h0(localArrayList);
+    }
+    throw new IllegalArgumentException();
+  }
+  
+  public String i(int paramInt)
+  {
+    b();
+    Object localObject = f.remove(paramInt);
+    modCount += 1;
+    return e(localObject);
+  }
+  
+  public String j(int paramInt, String paramString)
+  {
+    b();
+    return e(f.set(paramInt, paramString));
+  }
+  
+  public void n(j paramJ)
+  {
+    b();
+    f.add(paramJ);
+    modCount += 1;
+  }
+  
+  public int size()
+  {
+    return f.size();
+  }
+}

@@ -1,0 +1,391 @@
+package com.google.protobuf;
+
+import java.util.Arrays;
+
+public final class u1
+{
+  private static final u1 f = new u1(0, new int[0], new Object[0], false);
+  private int a;
+  private int[] b;
+  private Object[] c;
+  private int d = -1;
+  private boolean e;
+  
+  private u1()
+  {
+    this(0, new int[8], new Object[8], true);
+  }
+  
+  private u1(int paramInt, int[] paramArrayOfInt, Object[] paramArrayOfObject, boolean paramBoolean)
+  {
+    a = paramInt;
+    b = paramArrayOfInt;
+    c = paramArrayOfObject;
+    e = paramBoolean;
+  }
+  
+  private void b()
+  {
+    int j = a;
+    int[] arrayOfInt = b;
+    if (j == arrayOfInt.length)
+    {
+      if (j < 4) {
+        i = 8;
+      } else {
+        i = j >> 1;
+      }
+      int i = j + i;
+      b = Arrays.copyOf(arrayOfInt, i);
+      c = Arrays.copyOf(c, i);
+    }
+  }
+  
+  public static u1 c()
+  {
+    return f;
+  }
+  
+  private static int f(int[] paramArrayOfInt, int paramInt)
+  {
+    int j = 17;
+    int i = 0;
+    while (i < paramInt)
+    {
+      j = j * 31 + paramArrayOfInt[i];
+      i += 1;
+    }
+    return j;
+  }
+  
+  private static int g(Object[] paramArrayOfObject, int paramInt)
+  {
+    int j = 17;
+    int i = 0;
+    while (i < paramInt)
+    {
+      j = j * 31 + paramArrayOfObject[i].hashCode();
+      i += 1;
+    }
+    return j;
+  }
+  
+  private u1 j(k paramK)
+  {
+    int i;
+    do
+    {
+      i = paramK.E();
+    } while ((i != 0) && (i(i, paramK)));
+    return this;
+  }
+  
+  static u1 m(u1 paramU11, u1 paramU12)
+  {
+    int i = a + a;
+    int[] arrayOfInt = Arrays.copyOf(b, i);
+    System.arraycopy(b, 0, arrayOfInt, a, a);
+    Object[] arrayOfObject = Arrays.copyOf(c, i);
+    System.arraycopy(c, 0, arrayOfObject, a, a);
+    return new u1(i, arrayOfInt, arrayOfObject, true);
+  }
+  
+  static u1 n()
+  {
+    return new u1();
+  }
+  
+  private static boolean o(Object[] paramArrayOfObject1, Object[] paramArrayOfObject2, int paramInt)
+  {
+    int i = 0;
+    while (i < paramInt)
+    {
+      if (!paramArrayOfObject1[i].equals(paramArrayOfObject2[i])) {
+        return false;
+      }
+      i += 1;
+    }
+    return true;
+  }
+  
+  private static boolean r(int[] paramArrayOfInt1, int[] paramArrayOfInt2, int paramInt)
+  {
+    int i = 0;
+    while (i < paramInt)
+    {
+      if (paramArrayOfInt1[i] != paramArrayOfInt2[i]) {
+        return false;
+      }
+      i += 1;
+    }
+    return true;
+  }
+  
+  private static void t(int paramInt, Object paramObject, a2 paramA2)
+  {
+    int i = z1.a(paramInt);
+    paramInt = z1.b(paramInt);
+    if (paramInt != 0)
+    {
+      if (paramInt != 1)
+      {
+        if (paramInt != 2)
+        {
+          if (paramInt != 3)
+          {
+            if (paramInt == 5)
+            {
+              paramA2.p(i, ((Integer)paramObject).intValue());
+              return;
+            }
+            throw new RuntimeException(d0.d());
+          }
+          if (paramA2.B() == a2.a.e)
+          {
+            paramA2.k(i);
+            ((u1)paramObject).u(paramA2);
+            paramA2.F(i);
+            return;
+          }
+          paramA2.F(i);
+          ((u1)paramObject).u(paramA2);
+          paramA2.k(i);
+          return;
+        }
+        paramA2.l(i, (j)paramObject);
+        return;
+      }
+      paramA2.A(i, ((Long)paramObject).longValue());
+      return;
+    }
+    paramA2.e(i, ((Long)paramObject).longValue());
+  }
+  
+  void a()
+  {
+    if (e) {
+      return;
+    }
+    throw new UnsupportedOperationException();
+  }
+  
+  public int d()
+  {
+    int i = d;
+    if (i != -1) {
+      return i;
+    }
+    int j = 0;
+    int k = 0;
+    while (j < a)
+    {
+      int m = b[j];
+      i = z1.a(m);
+      m = z1.b(m);
+      if (m != 0)
+      {
+        if (m != 1)
+        {
+          if (m != 2)
+          {
+            if (m != 3)
+            {
+              if (m == 5) {
+                i = m.n(i, ((Integer)c[j]).intValue());
+              } else {
+                throw new IllegalStateException(d0.d());
+              }
+            }
+            else {
+              i = m.T(i) * 2 + ((u1)c[j]).d();
+            }
+          }
+          else {
+            i = m.h(i, (j)c[j]);
+          }
+        }
+        else {
+          i = m.p(i, ((Long)c[j]).longValue());
+        }
+      }
+      else {
+        i = m.W(i, ((Long)c[j]).longValue());
+      }
+      k += i;
+      j += 1;
+    }
+    d = k;
+    return k;
+  }
+  
+  public int e()
+  {
+    int i = d;
+    if (i != -1) {
+      return i;
+    }
+    i = 0;
+    int j = 0;
+    while (i < a)
+    {
+      j += m.H(z1.a(b[i]), (j)c[i]);
+      i += 1;
+    }
+    d = j;
+    return j;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (paramObject == null) {
+      return false;
+    }
+    if (!(paramObject instanceof u1)) {
+      return false;
+    }
+    paramObject = (u1)paramObject;
+    int i = a;
+    if ((i == a) && (r(b, b, i))) {
+      return o(c, c, a);
+    }
+    return false;
+  }
+  
+  public void h()
+  {
+    e = false;
+  }
+  
+  public int hashCode()
+  {
+    int i = a;
+    return ((527 + i) * 31 + f(b, i)) * 31 + g(c, a);
+  }
+  
+  boolean i(int paramInt, k paramK)
+  {
+    a();
+    int i = z1.a(paramInt);
+    int j = z1.b(paramInt);
+    if (j != 0)
+    {
+      if (j != 1)
+      {
+        if (j != 2)
+        {
+          if (j != 3)
+          {
+            if (j != 4)
+            {
+              if (j == 5)
+              {
+                q(paramInt, Integer.valueOf(paramK.s()));
+                return true;
+              }
+              throw d0.d();
+            }
+            return false;
+          }
+          u1 localU1 = new u1();
+          localU1.j(paramK);
+          paramK.a(z1.c(i, 4));
+          q(paramInt, localU1);
+          return true;
+        }
+        q(paramInt, paramK.p());
+        return true;
+      }
+      q(paramInt, Long.valueOf(paramK.t()));
+      return true;
+    }
+    q(paramInt, Long.valueOf(paramK.w()));
+    return true;
+  }
+  
+  u1 k(int paramInt, j paramJ)
+  {
+    a();
+    if (paramInt != 0)
+    {
+      q(z1.c(paramInt, 2), paramJ);
+      return this;
+    }
+    throw new IllegalArgumentException("Zero is not a valid field number.");
+  }
+  
+  u1 l(int paramInt1, int paramInt2)
+  {
+    a();
+    if (paramInt1 != 0)
+    {
+      q(z1.c(paramInt1, 0), Long.valueOf(paramInt2));
+      return this;
+    }
+    throw new IllegalArgumentException("Zero is not a valid field number.");
+  }
+  
+  final void p(StringBuilder paramStringBuilder, int paramInt)
+  {
+    int i = 0;
+    while (i < a)
+    {
+      v0.c(paramStringBuilder, paramInt, String.valueOf(z1.a(b[i])), c[i]);
+      i += 1;
+    }
+  }
+  
+  void q(int paramInt, Object paramObject)
+  {
+    a();
+    b();
+    int[] arrayOfInt = b;
+    int i = a;
+    arrayOfInt[i] = paramInt;
+    c[i] = paramObject;
+    a = (i + 1);
+  }
+  
+  void s(a2 paramA2)
+  {
+    if (paramA2.B() == a2.a.f)
+    {
+      i = a - 1;
+      while (i >= 0)
+      {
+        paramA2.h(z1.a(b[i]), c[i]);
+        i -= 1;
+      }
+    }
+    int i = 0;
+    while (i < a)
+    {
+      paramA2.h(z1.a(b[i]), c[i]);
+      i += 1;
+    }
+  }
+  
+  public void u(a2 paramA2)
+  {
+    if (a == 0) {
+      return;
+    }
+    if (paramA2.B() == a2.a.e)
+    {
+      i = 0;
+      while (i < a)
+      {
+        t(b[i], c[i], paramA2);
+        i += 1;
+      }
+    }
+    int i = a - 1;
+    while (i >= 0)
+    {
+      t(b[i], c[i], paramA2);
+      i -= 1;
+    }
+  }
+}

@@ -1,0 +1,344 @@
+package t;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import q.c;
+import q.i.a;
+import u.o;
+
+public class d
+{
+  private HashSet a = null;
+  private int b;
+  private boolean c;
+  public final e d;
+  public final b e;
+  public d f;
+  public int g = 0;
+  int h = Integer.MIN_VALUE;
+  q.i i;
+  
+  public d(e paramE, b paramB)
+  {
+    d = paramE;
+    e = paramB;
+  }
+  
+  public boolean a(d paramD, int paramInt)
+  {
+    return b(paramD, paramInt, Integer.MIN_VALUE, false);
+  }
+  
+  public boolean b(d paramD, int paramInt1, int paramInt2, boolean paramBoolean)
+  {
+    if (paramD == null)
+    {
+      q();
+      return true;
+    }
+    if ((!paramBoolean) && (!p(paramD))) {
+      return false;
+    }
+    f = paramD;
+    if (a == null) {
+      a = new HashSet();
+    }
+    paramD = f.a;
+    if (paramD != null) {
+      paramD.add(this);
+    }
+    g = paramInt1;
+    h = paramInt2;
+    return true;
+  }
+  
+  public void c(int paramInt, ArrayList paramArrayList, o paramO)
+  {
+    Object localObject = a;
+    if (localObject != null)
+    {
+      localObject = ((HashSet)localObject).iterator();
+      while (((Iterator)localObject).hasNext()) {
+        u.i.a(nextd, paramInt, paramArrayList, paramO);
+      }
+    }
+  }
+  
+  public HashSet d()
+  {
+    return a;
+  }
+  
+  public int e()
+  {
+    if (!c) {
+      return 0;
+    }
+    return b;
+  }
+  
+  public int f()
+  {
+    if (d.V() == 8) {
+      return 0;
+    }
+    if (h != Integer.MIN_VALUE)
+    {
+      d localD = f;
+      if ((localD != null) && (d.V() == 8)) {
+        return h;
+      }
+    }
+    return g;
+  }
+  
+  public final d g()
+  {
+    switch (a.a[e.ordinal()])
+    {
+    default: 
+      throw new AssertionError(e.name());
+    case 5: 
+      return d.P;
+    case 4: 
+      return d.R;
+    case 3: 
+      return d.O;
+    case 2: 
+      return d.Q;
+    }
+    return null;
+  }
+  
+  public e h()
+  {
+    return d;
+  }
+  
+  public q.i i()
+  {
+    return i;
+  }
+  
+  public d j()
+  {
+    return f;
+  }
+  
+  public b k()
+  {
+    return e;
+  }
+  
+  public boolean l()
+  {
+    Object localObject = a;
+    if (localObject == null) {
+      return false;
+    }
+    localObject = ((HashSet)localObject).iterator();
+    while (((Iterator)localObject).hasNext()) {
+      if (((d)((Iterator)localObject).next()).g().o()) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean m()
+  {
+    HashSet localHashSet = a;
+    boolean bool = false;
+    if (localHashSet == null) {
+      return false;
+    }
+    if (localHashSet.size() > 0) {
+      bool = true;
+    }
+    return bool;
+  }
+  
+  public boolean n()
+  {
+    return c;
+  }
+  
+  public boolean o()
+  {
+    return f != null;
+  }
+  
+  public boolean p(d paramD)
+  {
+    boolean bool4 = false;
+    boolean bool2 = false;
+    boolean bool3 = false;
+    if (paramD == null) {
+      return false;
+    }
+    b localB1 = paramD.k();
+    b localB2 = e;
+    if (localB1 == localB2) {
+      return (localB2 != b.j) || ((paramD.h().Z()) && (h().Z()));
+    }
+    switch (a.a[localB2.ordinal()])
+    {
+    default: 
+      throw new AssertionError(e.name());
+    case 7: 
+    case 8: 
+    case 9: 
+      return false;
+    case 6: 
+      if (localB1 != b.f) {
+        return localB1 != b.h;
+      }
+      return false;
+    case 4: 
+    case 5: 
+      if ((localB1 != b.g) && (localB1 != b.i)) {
+        bool1 = false;
+      } else {
+        bool1 = true;
+      }
+      bool2 = bool1;
+      if ((paramD.h() instanceof h))
+      {
+        if (!bool1)
+        {
+          bool1 = bool3;
+          if (localB1 != b.m) {}
+        }
+        else
+        {
+          bool1 = true;
+        }
+        bool2 = bool1;
+      }
+      return bool2;
+    case 2: 
+    case 3: 
+      if ((localB1 != b.f) && (localB1 != b.h)) {
+        bool1 = false;
+      } else {
+        bool1 = true;
+      }
+      bool2 = bool1;
+      if ((paramD.h() instanceof h))
+      {
+        if (!bool1)
+        {
+          bool1 = bool4;
+          if (localB1 != b.l) {}
+        }
+        else
+        {
+          bool1 = true;
+        }
+        bool2 = bool1;
+      }
+      return bool2;
+    }
+    boolean bool1 = bool2;
+    if (localB1 != b.j)
+    {
+      bool1 = bool2;
+      if (localB1 != b.l)
+      {
+        bool1 = bool2;
+        if (localB1 != b.m) {
+          bool1 = true;
+        }
+      }
+    }
+    return bool1;
+  }
+  
+  public void q()
+  {
+    Object localObject = f;
+    if (localObject != null)
+    {
+      localObject = a;
+      if (localObject != null)
+      {
+        ((HashSet)localObject).remove(this);
+        if (f.a.size() == 0) {
+          f.a = null;
+        }
+      }
+    }
+    a = null;
+    f = null;
+    g = 0;
+    h = Integer.MIN_VALUE;
+    c = false;
+    b = 0;
+  }
+  
+  public void r()
+  {
+    c = false;
+    b = 0;
+  }
+  
+  public void s(c paramC)
+  {
+    paramC = i;
+    if (paramC == null)
+    {
+      i = new q.i(i.a.e, null);
+      return;
+    }
+    paramC.h();
+  }
+  
+  public void t(int paramInt)
+  {
+    b = paramInt;
+    c = true;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(d.t());
+    localStringBuilder.append(":");
+    localStringBuilder.append(e.toString());
+    return localStringBuilder.toString();
+  }
+  
+  public void u(int paramInt)
+  {
+    if (o()) {
+      h = paramInt;
+    }
+  }
+  
+  public static enum b
+  {
+    static
+    {
+      b localB1 = new b("NONE", 0);
+      e = localB1;
+      b localB2 = new b("LEFT", 1);
+      f = localB2;
+      b localB3 = new b("TOP", 2);
+      g = localB3;
+      b localB4 = new b("RIGHT", 3);
+      h = localB4;
+      b localB5 = new b("BOTTOM", 4);
+      i = localB5;
+      b localB6 = new b("BASELINE", 5);
+      j = localB6;
+      b localB7 = new b("CENTER", 6);
+      k = localB7;
+      b localB8 = new b("CENTER_X", 7);
+      l = localB8;
+      b localB9 = new b("CENTER_Y", 8);
+      m = localB9;
+      n = new b[] { localB1, localB2, localB3, localB4, localB5, localB6, localB7, localB8, localB9 };
+    }
+  }
+}

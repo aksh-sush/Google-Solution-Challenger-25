@@ -1,0 +1,27 @@
+package com.google.android.gms.internal.auth;
+
+import android.net.Uri;
+import androidx.collection.a;
+import androidx.collection.g;
+
+public final class zzcr
+{
+  private static final a zza = new a();
+  
+  public static Uri zza(String paramString)
+  {
+    try
+    {
+      paramString = zza;
+      Uri localUri = (Uri)paramString.get("com.google.android.gms.auth_account");
+      if (localUri == null)
+      {
+        localUri = Uri.parse("content://com.google.android.gms.phenotype/".concat(String.valueOf(Uri.encode("com.google.android.gms.auth_account"))));
+        paramString.put("com.google.android.gms.auth_account", localUri);
+        return localUri;
+      }
+      return localUri;
+    }
+    finally {}
+  }
+}

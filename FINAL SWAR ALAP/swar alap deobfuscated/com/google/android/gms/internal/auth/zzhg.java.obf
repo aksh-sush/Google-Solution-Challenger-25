@@ -1,0 +1,50 @@
+package com.google.android.gms.internal.auth;
+
+import sun.misc.Unsafe;
+
+final class zzhg
+  extends zzhh
+{
+  zzhg(Unsafe paramUnsafe)
+  {
+    super(paramUnsafe);
+  }
+  
+  public final double zza(Object paramObject, long paramLong)
+  {
+    return Double.longBitsToDouble(zzj(paramObject, paramLong));
+  }
+  
+  public final float zzb(Object paramObject, long paramLong)
+  {
+    return Float.intBitsToFloat(zzi(paramObject, paramLong));
+  }
+  
+  public final void zzc(Object paramObject, long paramLong, boolean paramBoolean)
+  {
+    if (zzhi.zza)
+    {
+      zzhi.zzi(paramObject, paramLong, paramBoolean);
+      return;
+    }
+    zzhi.zzj(paramObject, paramLong, paramBoolean);
+  }
+  
+  public final void zzd(Object paramObject, long paramLong, double paramDouble)
+  {
+    zzn(paramObject, paramLong, Double.doubleToLongBits(paramDouble));
+  }
+  
+  public final void zze(Object paramObject, long paramLong, float paramFloat)
+  {
+    zzm(paramObject, paramLong, Float.floatToIntBits(paramFloat));
+  }
+  
+  public final boolean zzf(Object paramObject, long paramLong)
+  {
+    if (zzhi.zza) {
+      return zzhi.zzq(paramObject, paramLong);
+    }
+    return zzhi.zzr(paramObject, paramLong);
+  }
+}

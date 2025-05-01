@@ -1,0 +1,1375 @@
+package com.google.protobuf;
+
+import java.util.List;
+import java.util.Map;
+
+final class l
+  implements j1
+{
+  private final k a;
+  private int b;
+  private int c;
+  private int d = 0;
+  
+  private l(k paramK)
+  {
+    paramK = (k)c0.b(paramK, "input");
+    a = paramK;
+    d = this;
+  }
+  
+  public static l Q(k paramK)
+  {
+    l localL = d;
+    if (localL != null) {
+      return localL;
+    }
+    return new l(paramK);
+  }
+  
+  private Object R(z1.b paramB, Class paramClass, r paramR)
+  {
+    switch (a.a[paramB.ordinal()])
+    {
+    default: 
+      throw new RuntimeException("unsupported field type.");
+    case 17: 
+      return Long.valueOf(d());
+    case 16: 
+      return Integer.valueOf(D());
+    case 15: 
+      return M();
+    case 14: 
+      return Long.valueOf(k());
+    case 13: 
+      return Integer.valueOf(h());
+    case 12: 
+      return Long.valueOf(v());
+    case 11: 
+      return Integer.valueOf(G());
+    case 10: 
+      return m(paramClass, paramR);
+    case 9: 
+      return Long.valueOf(L());
+    case 8: 
+      return Integer.valueOf(E());
+    case 7: 
+      return Float.valueOf(readFloat());
+    case 6: 
+      return Long.valueOf(f());
+    case 5: 
+      return Integer.valueOf(p());
+    case 4: 
+      return Integer.valueOf(b());
+    case 3: 
+      return Double.valueOf(readDouble());
+    case 2: 
+      return B();
+    }
+    return Boolean.valueOf(r());
+  }
+  
+  private Object S(l1 paramL1, r paramR)
+  {
+    int i = c;
+    c = z1.c(z1.a(b), 4);
+    try
+    {
+      Object localObject = paramL1.i();
+      paramL1.e(localObject, this, paramR);
+      paramL1.c(localObject);
+      int j = b;
+      int k = c;
+      if (j == k) {
+        return localObject;
+      }
+      throw d0.g();
+    }
+    finally
+    {
+      c = i;
+    }
+  }
+  
+  private Object T(l1 paramL1, r paramR)
+  {
+    int i = a.F();
+    Object localObject = a;
+    if (a < b)
+    {
+      i = ((k)localObject).n(i);
+      localObject = paramL1.i();
+      k localK = a;
+      a += 1;
+      paramL1.e(localObject, this, paramR);
+      paramL1.c(localObject);
+      a.a(0);
+      paramL1 = a;
+      a -= 1;
+      paramL1.m(i);
+      return localObject;
+    }
+    throw d0.h();
+  }
+  
+  private void V(int paramInt)
+  {
+    if (a.d() == paramInt) {
+      return;
+    }
+    throw d0.k();
+  }
+  
+  private void W(int paramInt)
+  {
+    if (z1.b(b) == paramInt) {
+      return;
+    }
+    throw d0.d();
+  }
+  
+  private void X(int paramInt)
+  {
+    if ((paramInt & 0x3) == 0) {
+      return;
+    }
+    throw d0.g();
+  }
+  
+  private void Y(int paramInt)
+  {
+    if ((paramInt & 0x7) == 0) {
+      return;
+    }
+    throw d0.g();
+  }
+  
+  public Object A(l1 paramL1, r paramR)
+  {
+    W(3);
+    return S(paramL1, paramR);
+  }
+  
+  public j B()
+  {
+    W(2);
+    return a.p();
+  }
+  
+  public void C(List paramList)
+  {
+    if ((paramList instanceof x))
+    {
+      paramList = (x)paramList;
+      i = z1.b(b);
+      if (i != 2)
+      {
+        if (i == 5)
+        {
+          do
+          {
+            paramList.f(a.u());
+            if (a.e()) {
+              return;
+            }
+            i = a.E();
+          } while (i == b);
+          d = i;
+          return;
+        }
+        throw d0.d();
+      }
+      i = a.F();
+      X(i);
+      j = a.d();
+      do
+      {
+        paramList.f(a.u());
+      } while (a.d() < j + i);
+      return;
+    }
+    int i = z1.b(b);
+    if (i != 2)
+    {
+      if (i == 5)
+      {
+        do
+        {
+          paramList.add(Float.valueOf(a.u()));
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+        return;
+      }
+      throw d0.d();
+    }
+    i = a.F();
+    X(i);
+    int j = a.d();
+    do
+    {
+      paramList.add(Float.valueOf(a.u()));
+    } while (a.d() < j + i);
+  }
+  
+  public int D()
+  {
+    W(0);
+    return a.F();
+  }
+  
+  public int E()
+  {
+    W(0);
+    return a.v();
+  }
+  
+  public boolean F()
+  {
+    if (!a.e())
+    {
+      int i = b;
+      if (i != c) {
+        return a.I(i);
+      }
+    }
+    return false;
+  }
+  
+  public int G()
+  {
+    W(5);
+    return a.y();
+  }
+  
+  public void H(List paramList)
+  {
+    if (z1.b(b) == 2)
+    {
+      int i;
+      do
+      {
+        paramList.add(B());
+        if (a.e()) {
+          return;
+        }
+        i = a.E();
+      } while (i == b);
+      d = i;
+      return;
+    }
+    throw d0.d();
+  }
+  
+  public void I(List paramList)
+  {
+    int j;
+    if ((paramList instanceof o))
+    {
+      paramList = (o)paramList;
+      i = z1.b(b);
+      if (i != 1)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          Y(i);
+          j = a.d();
+          do
+          {
+            paramList.f(a.q());
+          } while (a.d() < j + i);
+          return;
+        }
+        throw d0.d();
+      }
+      do
+      {
+        paramList.f(a.q());
+        if (a.e()) {
+          return;
+        }
+        i = a.E();
+      } while (i == b);
+      d = i;
+      return;
+    }
+    int i = z1.b(b);
+    if (i != 1)
+    {
+      if (i == 2)
+      {
+        i = a.F();
+        Y(i);
+        j = a.d();
+        do
+        {
+          paramList.add(Double.valueOf(a.q()));
+        } while (a.d() < j + i);
+        return;
+      }
+      throw d0.d();
+    }
+    do
+    {
+      paramList.add(Double.valueOf(a.q()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public void J(List paramList)
+  {
+    int i;
+    if ((paramList instanceof k0))
+    {
+      paramList = (k0)paramList;
+      i = z1.b(b);
+      if (i != 0)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          i = a.d() + i;
+          do
+          {
+            paramList.h(a.w());
+          } while (a.d() < i);
+        }
+        else
+        {
+          throw d0.d();
+        }
+      }
+      else
+      {
+        do
+        {
+          paramList.h(a.w());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+      }
+    }
+    else
+    {
+      i = z1.b(b);
+      if (i == 0) {
+        break label193;
+      }
+      if (i != 2) {
+        break label189;
+      }
+      i = a.F();
+      i = a.d() + i;
+      do
+      {
+        paramList.add(Long.valueOf(a.w()));
+      } while (a.d() < i);
+    }
+    V(i);
+    return;
+    label189:
+    throw d0.d();
+    label193:
+    do
+    {
+      paramList.add(Long.valueOf(a.w()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public void K(List paramList)
+  {
+    int j;
+    if ((paramList instanceof k0))
+    {
+      paramList = (k0)paramList;
+      i = z1.b(b);
+      if (i != 1)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          Y(i);
+          j = a.d();
+          do
+          {
+            paramList.h(a.z());
+          } while (a.d() < j + i);
+          return;
+        }
+        throw d0.d();
+      }
+      do
+      {
+        paramList.h(a.z());
+        if (a.e()) {
+          return;
+        }
+        i = a.E();
+      } while (i == b);
+      d = i;
+      return;
+    }
+    int i = z1.b(b);
+    if (i != 1)
+    {
+      if (i == 2)
+      {
+        i = a.F();
+        Y(i);
+        j = a.d();
+        do
+        {
+          paramList.add(Long.valueOf(a.z()));
+        } while (a.d() < j + i);
+        return;
+      }
+      throw d0.d();
+    }
+    do
+    {
+      paramList.add(Long.valueOf(a.z()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public long L()
+  {
+    W(0);
+    return a.w();
+  }
+  
+  public String M()
+  {
+    W(2);
+    return a.D();
+  }
+  
+  public void N(List paramList)
+  {
+    int j;
+    if ((paramList instanceof k0))
+    {
+      paramList = (k0)paramList;
+      i = z1.b(b);
+      if (i != 1)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          Y(i);
+          j = a.d();
+          do
+          {
+            paramList.h(a.t());
+          } while (a.d() < j + i);
+          return;
+        }
+        throw d0.d();
+      }
+      do
+      {
+        paramList.h(a.t());
+        if (a.e()) {
+          return;
+        }
+        i = a.E();
+      } while (i == b);
+      d = i;
+      return;
+    }
+    int i = z1.b(b);
+    if (i != 1)
+    {
+      if (i == 2)
+      {
+        i = a.F();
+        Y(i);
+        j = a.d();
+        do
+        {
+          paramList.add(Long.valueOf(a.t()));
+        } while (a.d() < j + i);
+        return;
+      }
+      throw d0.d();
+    }
+    do
+    {
+      paramList.add(Long.valueOf(a.t()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public void O(List paramList)
+  {
+    int i;
+    if ((paramList instanceof b0))
+    {
+      paramList = (b0)paramList;
+      i = z1.b(b);
+      if (i != 0)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          i = a.d() + i;
+          do
+          {
+            paramList.f(a.v());
+          } while (a.d() < i);
+        }
+        else
+        {
+          throw d0.d();
+        }
+      }
+      else
+      {
+        do
+        {
+          paramList.f(a.v());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+      }
+    }
+    else
+    {
+      i = z1.b(b);
+      if (i == 0) {
+        break label193;
+      }
+      if (i != 2) {
+        break label189;
+      }
+      i = a.F();
+      i = a.d() + i;
+      do
+      {
+        paramList.add(Integer.valueOf(a.v()));
+      } while (a.d() < i);
+    }
+    V(i);
+    return;
+    label189:
+    throw d0.d();
+    label193:
+    do
+    {
+      paramList.add(Integer.valueOf(a.v()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public void P(List paramList)
+  {
+    int i;
+    if ((paramList instanceof b0))
+    {
+      paramList = (b0)paramList;
+      i = z1.b(b);
+      if (i != 0)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          i = a.d() + i;
+          do
+          {
+            paramList.f(a.r());
+          } while (a.d() < i);
+        }
+        else
+        {
+          throw d0.d();
+        }
+      }
+      else
+      {
+        do
+        {
+          paramList.f(a.r());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+      }
+    }
+    else
+    {
+      i = z1.b(b);
+      if (i == 0) {
+        break label193;
+      }
+      if (i != 2) {
+        break label189;
+      }
+      i = a.F();
+      i = a.d() + i;
+      do
+      {
+        paramList.add(Integer.valueOf(a.r()));
+      } while (a.d() < i);
+    }
+    V(i);
+    return;
+    label189:
+    throw d0.d();
+    label193:
+    do
+    {
+      paramList.add(Integer.valueOf(a.r()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public void U(List paramList, boolean paramBoolean)
+  {
+    if (z1.b(b) == 2)
+    {
+      int i;
+      if (((paramList instanceof i0)) && (!paramBoolean))
+      {
+        paramList = (i0)paramList;
+        do
+        {
+          paramList.n(B());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+        return;
+      }
+      do
+      {
+        String str;
+        if (paramBoolean) {
+          str = M();
+        } else {
+          str = o();
+        }
+        paramList.add(str);
+        if (a.e()) {
+          return;
+        }
+        i = a.E();
+      } while (i == b);
+      d = i;
+      return;
+    }
+    throw d0.d();
+  }
+  
+  public void a(List paramList)
+  {
+    int i;
+    if ((paramList instanceof b0))
+    {
+      paramList = (b0)paramList;
+      i = z1.b(b);
+      if (i != 0)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          i = a.d() + i;
+          do
+          {
+            paramList.f(a.A());
+          } while (a.d() < i);
+        }
+        else
+        {
+          throw d0.d();
+        }
+      }
+      else
+      {
+        do
+        {
+          paramList.f(a.A());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+      }
+    }
+    else
+    {
+      i = z1.b(b);
+      if (i == 0) {
+        break label193;
+      }
+      if (i != 2) {
+        break label189;
+      }
+      i = a.F();
+      i = a.d() + i;
+      do
+      {
+        paramList.add(Integer.valueOf(a.A()));
+      } while (a.d() < i);
+    }
+    V(i);
+    return;
+    label189:
+    throw d0.d();
+    label193:
+    do
+    {
+      paramList.add(Integer.valueOf(a.A()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public int b()
+  {
+    W(0);
+    return a.r();
+  }
+  
+  public int c()
+  {
+    return b;
+  }
+  
+  public long d()
+  {
+    W(0);
+    return a.G();
+  }
+  
+  public void e(List paramList)
+  {
+    if ((paramList instanceof b0))
+    {
+      paramList = (b0)paramList;
+      i = z1.b(b);
+      if (i != 2)
+      {
+        if (i == 5)
+        {
+          do
+          {
+            paramList.f(a.s());
+            if (a.e()) {
+              return;
+            }
+            i = a.E();
+          } while (i == b);
+          d = i;
+          return;
+        }
+        throw d0.d();
+      }
+      i = a.F();
+      X(i);
+      j = a.d();
+      do
+      {
+        paramList.f(a.s());
+      } while (a.d() < j + i);
+      return;
+    }
+    int i = z1.b(b);
+    if (i != 2)
+    {
+      if (i == 5)
+      {
+        do
+        {
+          paramList.add(Integer.valueOf(a.s()));
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+        return;
+      }
+      throw d0.d();
+    }
+    i = a.F();
+    X(i);
+    int j = a.d();
+    do
+    {
+      paramList.add(Integer.valueOf(a.s()));
+    } while (a.d() < j + i);
+  }
+  
+  public long f()
+  {
+    W(1);
+    return a.t();
+  }
+  
+  public void g(List paramList)
+  {
+    if ((paramList instanceof b0))
+    {
+      paramList = (b0)paramList;
+      i = z1.b(b);
+      if (i != 2)
+      {
+        if (i == 5)
+        {
+          do
+          {
+            paramList.f(a.y());
+            if (a.e()) {
+              return;
+            }
+            i = a.E();
+          } while (i == b);
+          d = i;
+          return;
+        }
+        throw d0.d();
+      }
+      i = a.F();
+      X(i);
+      j = a.d();
+      do
+      {
+        paramList.f(a.y());
+      } while (a.d() < j + i);
+      return;
+    }
+    int i = z1.b(b);
+    if (i != 2)
+    {
+      if (i == 5)
+      {
+        do
+        {
+          paramList.add(Integer.valueOf(a.y()));
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+        return;
+      }
+      throw d0.d();
+    }
+    i = a.F();
+    X(i);
+    int j = a.d();
+    do
+    {
+      paramList.add(Integer.valueOf(a.y()));
+    } while (a.d() < j + i);
+  }
+  
+  public int h()
+  {
+    W(0);
+    return a.A();
+  }
+  
+  public void i(List paramList)
+  {
+    int i;
+    if ((paramList instanceof k0))
+    {
+      paramList = (k0)paramList;
+      i = z1.b(b);
+      if (i != 0)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          i = a.d() + i;
+          do
+          {
+            paramList.h(a.B());
+          } while (a.d() < i);
+        }
+        else
+        {
+          throw d0.d();
+        }
+      }
+      else
+      {
+        do
+        {
+          paramList.h(a.B());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+      }
+    }
+    else
+    {
+      i = z1.b(b);
+      if (i == 0) {
+        break label193;
+      }
+      if (i != 2) {
+        break label189;
+      }
+      i = a.F();
+      i = a.d() + i;
+      do
+      {
+        paramList.add(Long.valueOf(a.B()));
+      } while (a.d() < i);
+    }
+    V(i);
+    return;
+    label189:
+    throw d0.d();
+    label193:
+    do
+    {
+      paramList.add(Long.valueOf(a.B()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public void j(List paramList, l1 paramL1, r paramR)
+  {
+    if (z1.b(b) == 3)
+    {
+      int i = b;
+      int j;
+      do
+      {
+        paramList.add(S(paramL1, paramR));
+        if (a.e()) {
+          break;
+        }
+        if (d != 0) {
+          return;
+        }
+        j = a.E();
+      } while (j == i);
+      d = j;
+      return;
+    }
+    throw d0.d();
+  }
+  
+  public long k()
+  {
+    W(0);
+    return a.B();
+  }
+  
+  public void l(List paramList)
+  {
+    int i;
+    if ((paramList instanceof b0))
+    {
+      paramList = (b0)paramList;
+      i = z1.b(b);
+      if (i != 0)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          i = a.d() + i;
+          do
+          {
+            paramList.f(a.F());
+          } while (a.d() < i);
+        }
+        else
+        {
+          throw d0.d();
+        }
+      }
+      else
+      {
+        do
+        {
+          paramList.f(a.F());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+      }
+    }
+    else
+    {
+      i = z1.b(b);
+      if (i == 0) {
+        break label193;
+      }
+      if (i != 2) {
+        break label189;
+      }
+      i = a.F();
+      i = a.d() + i;
+      do
+      {
+        paramList.add(Integer.valueOf(a.F()));
+      } while (a.d() < i);
+    }
+    V(i);
+    return;
+    label189:
+    throw d0.d();
+    label193:
+    do
+    {
+      paramList.add(Integer.valueOf(a.F()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public Object m(Class paramClass, r paramR)
+  {
+    W(2);
+    return T(g1.a().d(paramClass), paramR);
+  }
+  
+  public void n(List paramList)
+  {
+    int i;
+    if ((paramList instanceof h))
+    {
+      paramList = (h)paramList;
+      i = z1.b(b);
+      if (i != 0)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          i = a.d() + i;
+          do
+          {
+            paramList.h(a.o());
+          } while (a.d() < i);
+        }
+        else
+        {
+          throw d0.d();
+        }
+      }
+      else
+      {
+        do
+        {
+          paramList.h(a.o());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+      }
+    }
+    else
+    {
+      i = z1.b(b);
+      if (i == 0) {
+        break label193;
+      }
+      if (i != 2) {
+        break label189;
+      }
+      i = a.F();
+      i = a.d() + i;
+      do
+      {
+        paramList.add(Boolean.valueOf(a.o()));
+      } while (a.d() < i);
+    }
+    V(i);
+    return;
+    label189:
+    throw d0.d();
+    label193:
+    do
+    {
+      paramList.add(Boolean.valueOf(a.o()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public String o()
+  {
+    W(2);
+    return a.C();
+  }
+  
+  public int p()
+  {
+    W(5);
+    return a.s();
+  }
+  
+  public Object q(Class paramClass, r paramR)
+  {
+    W(3);
+    return S(g1.a().d(paramClass), paramR);
+  }
+  
+  public boolean r()
+  {
+    W(0);
+    return a.o();
+  }
+  
+  public double readDouble()
+  {
+    W(1);
+    return a.q();
+  }
+  
+  public float readFloat()
+  {
+    W(5);
+    return a.u();
+  }
+  
+  public void s(List paramList, l1 paramL1, r paramR)
+  {
+    if (z1.b(b) == 2)
+    {
+      int i = b;
+      int j;
+      do
+      {
+        paramList.add(T(paramL1, paramR));
+        if (a.e()) {
+          break;
+        }
+        if (d != 0) {
+          return;
+        }
+        j = a.E();
+      } while (j == i);
+      d = j;
+      return;
+    }
+    throw d0.d();
+  }
+  
+  public int t()
+  {
+    int i = d;
+    if (i != 0)
+    {
+      b = i;
+      d = 0;
+    }
+    else
+    {
+      b = a.E();
+    }
+    i = b;
+    if ((i != 0) && (i != c)) {
+      return z1.a(i);
+    }
+    return Integer.MAX_VALUE;
+  }
+  
+  public void u(List paramList)
+  {
+    U(paramList, false);
+  }
+  
+  public long v()
+  {
+    W(1);
+    return a.z();
+  }
+  
+  public Object w(l1 paramL1, r paramR)
+  {
+    W(2);
+    return T(paramL1, paramR);
+  }
+  
+  public void x(Map paramMap, m0.a paramA, r paramR)
+  {
+    W(2);
+    i = a.F();
+    i = a.n(i);
+    Object localObject1 = b;
+    Object localObject2 = d;
+    do
+    {
+      for (;;)
+      {
+        try
+        {
+          int j = t();
+          if (j != Integer.MAX_VALUE)
+          {
+            boolean bool = a.e();
+            if (!bool) {
+              if (j != 1) {
+                if (j == 2) {}
+              }
+            }
+          }
+        }
+        finally
+        {
+          Object localObject3;
+          a.m(i);
+        }
+        try
+        {
+          if (F()) {
+            continue;
+          }
+          throw new d0("Unable to parse map entry.");
+        }
+        catch (d0.a localA)
+        {
+          continue;
+        }
+        localObject3 = R(c, d.getClass(), paramR);
+        localObject2 = localObject3;
+        continue;
+        localObject3 = R(a, null, null);
+        localObject1 = localObject3;
+      }
+    } while (F());
+    throw new d0("Unable to parse map entry.");
+    paramMap.put(localObject1, localObject2);
+    a.m(i);
+  }
+  
+  public void y(List paramList)
+  {
+    int i;
+    if ((paramList instanceof k0))
+    {
+      paramList = (k0)paramList;
+      i = z1.b(b);
+      if (i != 0)
+      {
+        if (i == 2)
+        {
+          i = a.F();
+          i = a.d() + i;
+          do
+          {
+            paramList.h(a.G());
+          } while (a.d() < i);
+        }
+        else
+        {
+          throw d0.d();
+        }
+      }
+      else
+      {
+        do
+        {
+          paramList.h(a.G());
+          if (a.e()) {
+            return;
+          }
+          i = a.E();
+        } while (i == b);
+        d = i;
+      }
+    }
+    else
+    {
+      i = z1.b(b);
+      if (i == 0) {
+        break label193;
+      }
+      if (i != 2) {
+        break label189;
+      }
+      i = a.F();
+      i = a.d() + i;
+      do
+      {
+        paramList.add(Long.valueOf(a.G()));
+      } while (a.d() < i);
+    }
+    V(i);
+    return;
+    label189:
+    throw d0.d();
+    label193:
+    do
+    {
+      paramList.add(Long.valueOf(a.G()));
+      if (a.e()) {
+        return;
+      }
+      i = a.E();
+    } while (i == b);
+    d = i;
+  }
+  
+  public void z(List paramList)
+  {
+    U(paramList, true);
+  }
+}

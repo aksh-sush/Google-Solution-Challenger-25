@@ -1,0 +1,23 @@
+package com.google.android.gms.internal.auth;
+
+import android.accounts.Account;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+
+final class zzad
+  extends zzah
+{
+  zzad(zzae paramZzae) {}
+  
+  public final void zzb(Account paramAccount)
+  {
+    zzae localZzae = zza;
+    Status localStatus;
+    if (paramAccount != null) {
+      localStatus = Status.k;
+    } else {
+      localStatus = zzal.zza();
+    }
+    localZzae.setResult(new zzai(localStatus, paramAccount));
+  }
+}

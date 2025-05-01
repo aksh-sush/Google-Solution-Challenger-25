@@ -1,0 +1,13 @@
+package sa;
+
+import cb.a;
+import db.l;
+
+abstract class j
+{
+  public static h a(a paramA)
+  {
+    l.e(paramA, "initializer");
+    return new p(paramA, null, 2, null);
+  }
+}

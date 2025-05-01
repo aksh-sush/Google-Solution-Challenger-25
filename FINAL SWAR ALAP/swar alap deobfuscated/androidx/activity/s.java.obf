@@ -1,0 +1,14 @@
+package androidx.activity;
+
+import android.view.View;
+import db.l;
+
+public abstract class s
+{
+  public static final void a(View paramView, n paramN)
+  {
+    l.e(paramView, "<this>");
+    l.e(paramN, "fullyDrawnReporterOwner");
+    paramView.setTag(r.a, paramN);
+  }
+}

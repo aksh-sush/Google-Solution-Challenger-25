@@ -1,0 +1,10 @@
+package com.google.protobuf;
+
+abstract interface r0
+{
+  public abstract boolean a();
+  
+  public abstract f1 b();
+  
+  public abstract t0 c();
+}

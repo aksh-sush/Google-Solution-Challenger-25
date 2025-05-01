@@ -1,0 +1,29 @@
+package com.google.android.gms.internal.auth;
+
+import android.os.IBinder;
+import android.os.Parcel;
+import m3.b;
+
+public final class zzbh
+  extends zza
+{
+  zzbh(IBinder paramIBinder)
+  {
+    super(paramIBinder, "com.google.android.gms.auth.api.internal.IAuthService");
+  }
+  
+  public final void zzd(zzbg paramZzbg)
+  {
+    Parcel localParcel = zza();
+    zzc.zze(localParcel, paramZzbg);
+    zzc(3, localParcel);
+  }
+  
+  public final void zze(zzbg paramZzbg, b paramB)
+  {
+    Parcel localParcel = zza();
+    zzc.zze(localParcel, paramZzbg);
+    zzc.zzd(localParcel, paramB);
+    zzc(1, localParcel);
+  }
+}

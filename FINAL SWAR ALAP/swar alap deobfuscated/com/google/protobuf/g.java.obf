@@ -1,0 +1,193 @@
+package com.google.protobuf;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+abstract class j0
+{
+  private static final j0 a = new b(null);
+  private static final j0 b = new c(null);
+  
+  private j0() {}
+  
+  static j0 a()
+  {
+    return a;
+  }
+  
+  static j0 b()
+  {
+    return b;
+  }
+  
+  abstract void c(Object paramObject, long paramLong);
+  
+  abstract void d(Object paramObject1, Object paramObject2, long paramLong);
+  
+  abstract List e(Object paramObject, long paramLong);
+  
+  private static final class b
+    extends j0
+  {
+    private static final Class c = Collections.unmodifiableList(Collections.emptyList()).getClass();
+    
+    private b()
+    {
+      super();
+    }
+    
+    static List f(Object paramObject, long paramLong)
+    {
+      return (List)x1.E(paramObject, paramLong);
+    }
+    
+    private static List g(Object paramObject, long paramLong, int paramInt)
+    {
+      List localList = f(paramObject, paramLong);
+      if (localList.isEmpty()) {
+        if ((localList instanceof i0)) {
+          localObject = new h0(paramInt);
+        } else if (((localList instanceof e1)) && ((localList instanceof c0.i))) {
+          localObject = ((c0.i)localList).a(paramInt);
+        }
+      }
+      for (Object localObject = new ArrayList(paramInt);; localObject = ((c0.i)localObject).a(localList.size() + paramInt))
+      {
+        x1.S(paramObject, paramLong, localObject);
+        return localObject;
+        if (c.isAssignableFrom(localList.getClass()))
+        {
+          localObject = new ArrayList(localList.size() + paramInt);
+          ((ArrayList)localObject).addAll(localList);
+        }
+        for (;;)
+        {
+          x1.S(paramObject, paramLong, localObject);
+          return localObject;
+          if (!(localList instanceof w1)) {
+            break;
+          }
+          localObject = new h0(localList.size() + paramInt);
+          ((h0)localObject).addAll((w1)localList);
+        }
+        if ((!(localList instanceof e1)) || (!(localList instanceof c0.i))) {
+          break;
+        }
+        localObject = (c0.i)localList;
+        if (((c0.i)localObject).T()) {
+          break;
+        }
+      }
+      return localList;
+    }
+    
+    void c(Object paramObject, long paramLong)
+    {
+      Object localObject = (List)x1.E(paramObject, paramLong);
+      if ((localObject instanceof i0))
+      {
+        localObject = ((i0)localObject).B();
+      }
+      else
+      {
+        if (c.isAssignableFrom(localObject.getClass())) {
+          return;
+        }
+        if (((localObject instanceof e1)) && ((localObject instanceof c0.i)))
+        {
+          paramObject = (c0.i)localObject;
+          if (paramObject.T()) {
+            paramObject.c();
+          }
+          return;
+        }
+        localObject = Collections.unmodifiableList((List)localObject);
+      }
+      x1.S(paramObject, paramLong, localObject);
+    }
+    
+    void d(Object paramObject1, Object paramObject2, long paramLong)
+    {
+      paramObject2 = f(paramObject2, paramLong);
+      List localList = g(paramObject1, paramLong, paramObject2.size());
+      int i = localList.size();
+      int j = paramObject2.size();
+      if ((i > 0) && (j > 0)) {
+        localList.addAll(paramObject2);
+      }
+      if (i > 0) {
+        paramObject2 = localList;
+      }
+      x1.S(paramObject1, paramLong, paramObject2);
+    }
+    
+    List e(Object paramObject, long paramLong)
+    {
+      return g(paramObject, paramLong, 10);
+    }
+  }
+  
+  private static final class c
+    extends j0
+  {
+    private c()
+    {
+      super();
+    }
+    
+    static c0.i f(Object paramObject, long paramLong)
+    {
+      return (c0.i)x1.E(paramObject, paramLong);
+    }
+    
+    void c(Object paramObject, long paramLong)
+    {
+      f(paramObject, paramLong).c();
+    }
+    
+    void d(Object paramObject1, Object paramObject2, long paramLong)
+    {
+      Object localObject = f(paramObject1, paramLong);
+      c0.i localI = f(paramObject2, paramLong);
+      int i = ((List)localObject).size();
+      int j = localI.size();
+      paramObject2 = localObject;
+      if (i > 0)
+      {
+        paramObject2 = localObject;
+        if (j > 0)
+        {
+          paramObject2 = localObject;
+          if (!((c0.i)localObject).T()) {
+            paramObject2 = ((c0.i)localObject).a(j + i);
+          }
+          paramObject2.addAll(localI);
+        }
+      }
+      localObject = localI;
+      if (i > 0) {
+        localObject = paramObject2;
+      }
+      x1.S(paramObject1, paramLong, localObject);
+    }
+    
+    List e(Object paramObject, long paramLong)
+    {
+      c0.i localI2 = f(paramObject, paramLong);
+      c0.i localI1 = localI2;
+      if (!localI2.T())
+      {
+        int i = localI2.size();
+        if (i == 0) {
+          i = 10;
+        } else {
+          i *= 2;
+        }
+        localI1 = localI2.a(i);
+        x1.S(paramObject, paramLong, localI1);
+      }
+      return localI1;
+    }
+  }
+}

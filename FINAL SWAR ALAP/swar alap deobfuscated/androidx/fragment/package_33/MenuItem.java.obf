@@ -1,0 +1,6 @@
+package androidx.fragment.app;
+
+public abstract interface q
+{
+  public abstract void a(m paramM, Fragment paramFragment);
+}

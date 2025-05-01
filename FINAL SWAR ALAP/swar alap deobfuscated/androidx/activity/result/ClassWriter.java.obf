@@ -1,0 +1,6 @@
+package androidx.activity.result;
+
+public abstract interface b
+{
+  public abstract void a(Object paramObject);
+}

@@ -1,0 +1,10 @@
+package db;
+
+public abstract class p
+  extends o
+{
+  public p(Object paramObject, Class paramClass, String paramString1, String paramString2, int paramInt)
+  {
+    super(paramObject, paramClass, paramString1, paramString2, paramInt);
+  }
+}

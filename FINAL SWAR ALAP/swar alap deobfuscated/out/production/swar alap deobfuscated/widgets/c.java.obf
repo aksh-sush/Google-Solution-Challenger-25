@@ -1,0 +1,20 @@
+package sa;
+
+import db.l;
+
+public abstract class o
+{
+  public static final Object a(Throwable paramThrowable)
+  {
+    l.e(paramThrowable, "exception");
+    return new n.b(paramThrowable);
+  }
+  
+  public static final void b(Object paramObject)
+  {
+    if (!(paramObject instanceof n.b)) {
+      return;
+    }
+    throw e;
+  }
+}

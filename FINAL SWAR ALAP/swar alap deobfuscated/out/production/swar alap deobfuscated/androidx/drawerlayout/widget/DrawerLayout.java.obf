@@ -1,0 +1,2278 @@
+package androidx.drawerlayout.widget;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.ClassLoaderCreator;
+import android.os.Parcelable.Creator;
+import android.os.SystemClock;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.View.OnApplyWindowInsetsListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
+import android.view.ViewParent;
+import android.view.WindowInsets;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityRecord;
+import androidx.core.view.accessibility.h0.a;
+import androidx.core.view.accessibility.k0;
+import androidx.core.view.accessibility.k0.a;
+import androidx.core.view.h1;
+import androidx.core.view.o;
+import e0.c.c;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DrawerLayout
+  extends ViewGroup
+{
+  private static final int[] P = { 16843828 };
+  static final int[] Q = { 16842931 };
+  static final boolean R;
+  private static final boolean S;
+  private static boolean T;
+  private Drawable A;
+  private Drawable B;
+  private Drawable C;
+  private CharSequence D;
+  private CharSequence E;
+  private Object F;
+  private boolean G;
+  private Drawable H = null;
+  private Drawable I = null;
+  private Drawable J = null;
+  private Drawable K = null;
+  private final ArrayList L;
+  private Rect M;
+  private Matrix N;
+  private final k0 O = new a();
+  private final d e = new d();
+  private float f;
+  private int g;
+  private int h = -1728053248;
+  private float i;
+  private Paint j = new Paint();
+  private final e0.c k;
+  private final e0.c l;
+  private final i m;
+  private final i n;
+  private int o;
+  private boolean p;
+  private boolean q = true;
+  private int r = 3;
+  private int s = 3;
+  private int t = 3;
+  private int u = 3;
+  private boolean v;
+  private e w;
+  private List x;
+  private float y;
+  private float z;
+  
+  static
+  {
+    int i1 = Build.VERSION.SDK_INT;
+    boolean bool = true;
+    R = true;
+    S = true;
+    if (i1 < 29) {
+      bool = false;
+    }
+    T = bool;
+  }
+  
+  public DrawerLayout(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, f0.a.a);
+  }
+  
+  public DrawerLayout(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    setDescendantFocusability(262144);
+    float f1 = getResourcesgetDisplayMetricsdensity;
+    g = ((int)(64.0F * f1 + 0.5F));
+    f1 *= 400.0F;
+    Object localObject2 = new i(3);
+    m = ((i)localObject2);
+    Object localObject1 = new i(5);
+    n = ((i)localObject1);
+    e0.c localC = e0.c.n(this, 1.0F, (c.c)localObject2);
+    k = localC;
+    localC.M(1);
+    localC.N(f1);
+    ((i)localObject2).d(localC);
+    localObject2 = e0.c.n(this, 1.0F, (c.c)localObject1);
+    l = ((e0.c)localObject2);
+    ((e0.c)localObject2).M(2);
+    ((e0.c)localObject2).N(f1);
+    ((i)localObject1).d((e0.c)localObject2);
+    setFocusableInTouchMode(true);
+    androidx.core.view.h0.C0(this, 1);
+    androidx.core.view.h0.s0(this, new c());
+    setMotionEventSplittingEnabled(false);
+    if (androidx.core.view.h0.B(this))
+    {
+      setOnApplyWindowInsetsListener(new b());
+      setSystemUiVisibility(1280);
+      localObject1 = paramContext.obtainStyledAttributes(P);
+    }
+    try
+    {
+      A = ((TypedArray)localObject1).getDrawable(0);
+      ((TypedArray)localObject1).recycle();
+    }
+    finally
+    {
+      ((TypedArray)localObject1).recycle();
+    }
+    try
+    {
+      paramInt = f0.c.c;
+      if (paramContext.hasValue(paramInt)) {}
+      for (f1 = paramContext.getDimension(paramInt, 0.0F);; f1 = getResources().getDimension(f0.b.a))
+      {
+        f = f1;
+        break;
+      }
+      paramContext.recycle();
+      L = new ArrayList();
+      return;
+    }
+    finally
+    {
+      paramContext.recycle();
+    }
+  }
+  
+  static boolean A(View paramView)
+  {
+    return (androidx.core.view.h0.C(paramView) != 4) && (androidx.core.view.h0.C(paramView) != 2);
+  }
+  
+  private boolean H(float paramFloat1, float paramFloat2, View paramView)
+  {
+    if (M == null) {
+      M = new Rect();
+    }
+    paramView.getHitRect(M);
+    return M.contains((int)paramFloat1, (int)paramFloat2);
+  }
+  
+  private void I(Drawable paramDrawable, int paramInt)
+  {
+    if ((paramDrawable != null) && (androidx.core.graphics.drawable.a.h(paramDrawable))) {
+      androidx.core.graphics.drawable.a.m(paramDrawable, paramInt);
+    }
+  }
+  
+  private Drawable P()
+  {
+    int i1 = androidx.core.view.h0.E(this);
+    Drawable localDrawable;
+    if (i1 == 0)
+    {
+      localDrawable = H;
+      if (localDrawable != null)
+      {
+        I(localDrawable, i1);
+        return H;
+      }
+    }
+    else
+    {
+      localDrawable = I;
+      if (localDrawable != null)
+      {
+        I(localDrawable, i1);
+        return I;
+      }
+    }
+    return J;
+  }
+  
+  private Drawable Q()
+  {
+    int i1 = androidx.core.view.h0.E(this);
+    Drawable localDrawable;
+    if (i1 == 0)
+    {
+      localDrawable = I;
+      if (localDrawable != null)
+      {
+        I(localDrawable, i1);
+        return I;
+      }
+    }
+    else
+    {
+      localDrawable = H;
+      if (localDrawable != null)
+      {
+        I(localDrawable, i1);
+        return H;
+      }
+    }
+    return K;
+  }
+  
+  private void R()
+  {
+    if (S) {
+      return;
+    }
+    B = P();
+    C = Q();
+  }
+  
+  private void V(View paramView)
+  {
+    h0.a localA = h0.a.y;
+    androidx.core.view.h0.m0(paramView, localA.b());
+    if ((D(paramView)) && (r(paramView) != 2)) {
+      androidx.core.view.h0.o0(paramView, localA, null, O);
+    }
+  }
+  
+  private void W(View paramView, boolean paramBoolean)
+  {
+    int i3 = getChildCount();
+    int i1 = 0;
+    while (i1 < i3)
+    {
+      View localView = getChildAt(i1);
+      int i2;
+      if (((!paramBoolean) && (!E(localView))) || ((paramBoolean) && (localView == paramView))) {
+        i2 = 1;
+      } else {
+        i2 = 4;
+      }
+      androidx.core.view.h0.C0(localView, i2);
+      i1 += 1;
+    }
+  }
+  
+  private boolean m(MotionEvent paramMotionEvent, View paramView)
+  {
+    if (!paramView.getMatrix().isIdentity())
+    {
+      paramMotionEvent = v(paramMotionEvent, paramView);
+      bool = paramView.dispatchGenericMotionEvent(paramMotionEvent);
+      paramMotionEvent.recycle();
+      return bool;
+    }
+    float f1 = getScrollX() - paramView.getLeft();
+    float f2 = getScrollY() - paramView.getTop();
+    paramMotionEvent.offsetLocation(f1, f2);
+    boolean bool = paramView.dispatchGenericMotionEvent(paramMotionEvent);
+    paramMotionEvent.offsetLocation(-f1, -f2);
+    return bool;
+  }
+  
+  private MotionEvent v(MotionEvent paramMotionEvent, View paramView)
+  {
+    float f1 = getScrollX() - paramView.getLeft();
+    float f2 = getScrollY() - paramView.getTop();
+    paramMotionEvent = MotionEvent.obtain(paramMotionEvent);
+    paramMotionEvent.offsetLocation(f1, f2);
+    paramView = paramView.getMatrix();
+    if (!paramView.isIdentity())
+    {
+      if (N == null) {
+        N = new Matrix();
+      }
+      paramView.invert(N);
+      paramMotionEvent.transform(N);
+    }
+    return paramMotionEvent;
+  }
+  
+  static String w(int paramInt)
+  {
+    if ((paramInt & 0x3) == 3) {
+      return "LEFT";
+    }
+    if ((paramInt & 0x5) == 5) {
+      return "RIGHT";
+    }
+    return Integer.toHexString(paramInt);
+  }
+  
+  private static boolean x(View paramView)
+  {
+    paramView = paramView.getBackground();
+    boolean bool2 = false;
+    boolean bool1 = bool2;
+    if (paramView != null)
+    {
+      bool1 = bool2;
+      if (paramView.getOpacity() == -1) {
+        bool1 = true;
+      }
+    }
+    return bool1;
+  }
+  
+  private boolean y()
+  {
+    int i2 = getChildCount();
+    int i1 = 0;
+    while (i1 < i2)
+    {
+      if (getChildAtgetLayoutParamsc) {
+        return true;
+      }
+      i1 += 1;
+    }
+    return false;
+  }
+  
+  private boolean z()
+  {
+    return p() != null;
+  }
+  
+  boolean B(View paramView)
+  {
+    return getLayoutParamsa == 0;
+  }
+  
+  public boolean C(int paramInt)
+  {
+    View localView = n(paramInt);
+    if (localView != null) {
+      return D(localView);
+    }
+    return false;
+  }
+  
+  public boolean D(View paramView)
+  {
+    if (E(paramView)) {
+      return (getLayoutParamsd & 0x1) == 1;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("View ");
+    localStringBuilder.append(paramView);
+    localStringBuilder.append(" is not a drawer");
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  boolean E(View paramView)
+  {
+    int i1 = o.b(getLayoutParamsa, androidx.core.view.h0.E(paramView));
+    if ((i1 & 0x3) != 0) {
+      return true;
+    }
+    return (i1 & 0x5) != 0;
+  }
+  
+  public boolean F(int paramInt)
+  {
+    View localView = n(paramInt);
+    if (localView != null) {
+      return G(localView);
+    }
+    return false;
+  }
+  
+  public boolean G(View paramView)
+  {
+    if (E(paramView)) {
+      return getLayoutParamsb > 0.0F;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("View ");
+    localStringBuilder.append(paramView);
+    localStringBuilder.append(" is not a drawer");
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  void J(View paramView, float paramFloat)
+  {
+    float f1 = u(paramView);
+    float f2 = paramView.getWidth();
+    int i1 = (int)(f1 * f2);
+    i1 = (int)(f2 * paramFloat) - i1;
+    if (!c(paramView, 3)) {
+      i1 = -i1;
+    }
+    paramView.offsetLeftAndRight(i1);
+    U(paramView, paramFloat);
+  }
+  
+  public void K(int paramInt)
+  {
+    L(paramInt, true);
+  }
+  
+  public void L(int paramInt, boolean paramBoolean)
+  {
+    Object localObject = n(paramInt);
+    if (localObject != null)
+    {
+      N((View)localObject, paramBoolean);
+      return;
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("No drawer view found with gravity ");
+    ((StringBuilder)localObject).append(w(paramInt));
+    throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+  }
+  
+  public void M(View paramView)
+  {
+    N(paramView, true);
+  }
+  
+  public void N(View paramView, boolean paramBoolean)
+  {
+    if (E(paramView))
+    {
+      localObject = (f)paramView.getLayoutParams();
+      if (q)
+      {
+        b = 1.0F;
+        d = 1;
+        W(paramView, true);
+        V(paramView);
+      }
+      else if (paramBoolean)
+      {
+        d |= 0x2;
+        if (c(paramView, 3)) {
+          k.Q(paramView, 0, paramView.getTop());
+        } else {
+          l.Q(paramView, getWidth() - paramView.getWidth(), paramView.getTop());
+        }
+      }
+      else
+      {
+        J(paramView, 1.0F);
+        X(0, paramView);
+        paramView.setVisibility(0);
+      }
+      invalidate();
+      return;
+    }
+    Object localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("View ");
+    ((StringBuilder)localObject).append(paramView);
+    ((StringBuilder)localObject).append(" is not a sliding drawer");
+    throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+  }
+  
+  public void O(e paramE)
+  {
+    if (paramE == null) {
+      return;
+    }
+    List localList = x;
+    if (localList == null) {
+      return;
+    }
+    localList.remove(paramE);
+  }
+  
+  public void S(Object paramObject, boolean paramBoolean)
+  {
+    F = paramObject;
+    G = paramBoolean;
+    if ((!paramBoolean) && (getBackground() == null)) {
+      paramBoolean = true;
+    } else {
+      paramBoolean = false;
+    }
+    setWillNotDraw(paramBoolean);
+    requestLayout();
+  }
+  
+  public void T(int paramInt1, int paramInt2)
+  {
+    int i1 = o.b(paramInt2, androidx.core.view.h0.E(this));
+    if (paramInt2 != 3)
+    {
+      if (paramInt2 != 5)
+      {
+        if (paramInt2 != 8388611)
+        {
+          if (paramInt2 == 8388613) {
+            u = paramInt1;
+          }
+        }
+        else {
+          t = paramInt1;
+        }
+      }
+      else {
+        s = paramInt1;
+      }
+    }
+    else {
+      r = paramInt1;
+    }
+    Object localObject;
+    if (paramInt1 != 0)
+    {
+      if (i1 == 3) {
+        localObject = k;
+      } else {
+        localObject = l;
+      }
+      ((e0.c)localObject).a();
+    }
+    if (paramInt1 != 1)
+    {
+      if (paramInt1 != 2) {
+        return;
+      }
+      localObject = n(i1);
+      if (localObject != null) {
+        M((View)localObject);
+      }
+    }
+    else
+    {
+      localObject = n(i1);
+      if (localObject != null) {
+        f((View)localObject);
+      }
+    }
+  }
+  
+  void U(View paramView, float paramFloat)
+  {
+    f localF = (f)paramView.getLayoutParams();
+    if (paramFloat == b) {
+      return;
+    }
+    b = paramFloat;
+    l(paramView, paramFloat);
+  }
+  
+  void X(int paramInt, View paramView)
+  {
+    int i3 = k.A();
+    int i4 = l.A();
+    int i1;
+    if ((i3 != 1) && (i4 != 1))
+    {
+      int i2 = 2;
+      i1 = i2;
+      if (i3 != 2) {
+        if (i4 == 2) {
+          i1 = i2;
+        } else {
+          i1 = 0;
+        }
+      }
+    }
+    else
+    {
+      i1 = 1;
+    }
+    if ((paramView != null) && (paramInt == 0))
+    {
+      float f1 = getLayoutParamsb;
+      if (f1 == 0.0F) {
+        j(paramView);
+      } else if (f1 == 1.0F) {
+        k(paramView);
+      }
+    }
+    if (i1 != o)
+    {
+      o = i1;
+      paramView = x;
+      if (paramView != null)
+      {
+        paramInt = paramView.size() - 1;
+        while (paramInt >= 0)
+        {
+          ((e)x.get(paramInt)).a(i1);
+          paramInt -= 1;
+        }
+      }
+    }
+  }
+  
+  public void a(e paramE)
+  {
+    if (paramE == null) {
+      return;
+    }
+    if (x == null) {
+      x = new ArrayList();
+    }
+    x.add(paramE);
+  }
+  
+  public void addFocusables(ArrayList paramArrayList, int paramInt1, int paramInt2)
+  {
+    if (getDescendantFocusability() == 393216) {
+      return;
+    }
+    int i4 = getChildCount();
+    int i3 = 0;
+    int i1 = 0;
+    int i2 = 0;
+    View localView;
+    while (i1 < i4)
+    {
+      localView = getChildAt(i1);
+      if (E(localView))
+      {
+        if (D(localView))
+        {
+          localView.addFocusables(paramArrayList, paramInt1, paramInt2);
+          i2 = 1;
+        }
+      }
+      else {
+        L.add(localView);
+      }
+      i1 += 1;
+    }
+    if (i2 == 0)
+    {
+      i2 = L.size();
+      i1 = i3;
+      while (i1 < i2)
+      {
+        localView = (View)L.get(i1);
+        if (localView.getVisibility() == 0) {
+          localView.addFocusables(paramArrayList, paramInt1, paramInt2);
+        }
+        i1 += 1;
+      }
+    }
+    L.clear();
+  }
+  
+  public void addView(View paramView, int paramInt, ViewGroup.LayoutParams paramLayoutParams)
+  {
+    super.addView(paramView, paramInt, paramLayoutParams);
+    if ((o() == null) && (!E(paramView))) {
+      paramInt = 1;
+    } else {
+      paramInt = 4;
+    }
+    androidx.core.view.h0.C0(paramView, paramInt);
+    if (!R) {
+      androidx.core.view.h0.s0(paramView, e);
+    }
+  }
+  
+  void b()
+  {
+    if (!v)
+    {
+      long l1 = SystemClock.uptimeMillis();
+      MotionEvent localMotionEvent = MotionEvent.obtain(l1, l1, 3, 0.0F, 0.0F, 0);
+      int i2 = getChildCount();
+      int i1 = 0;
+      while (i1 < i2)
+      {
+        getChildAt(i1).dispatchTouchEvent(localMotionEvent);
+        i1 += 1;
+      }
+      localMotionEvent.recycle();
+      v = true;
+    }
+  }
+  
+  boolean c(View paramView, int paramInt)
+  {
+    return (t(paramView) & paramInt) == paramInt;
+  }
+  
+  protected boolean checkLayoutParams(ViewGroup.LayoutParams paramLayoutParams)
+  {
+    return ((paramLayoutParams instanceof f)) && (super.checkLayoutParams(paramLayoutParams));
+  }
+  
+  public void computeScroll()
+  {
+    int i2 = getChildCount();
+    float f1 = 0.0F;
+    int i1 = 0;
+    while (i1 < i2)
+    {
+      f1 = Math.max(f1, getChildAtgetLayoutParamsb);
+      i1 += 1;
+    }
+    i = f1;
+    boolean bool1 = k.m(true);
+    boolean bool2 = l.m(true);
+    if ((bool1) || (bool2)) {
+      androidx.core.view.h0.j0(this);
+    }
+  }
+  
+  public void d(int paramInt)
+  {
+    e(paramInt, true);
+  }
+  
+  public boolean dispatchGenericMotionEvent(MotionEvent paramMotionEvent)
+  {
+    if (((paramMotionEvent.getSource() & 0x2) != 0) && (paramMotionEvent.getAction() != 10) && (i > 0.0F))
+    {
+      int i1 = getChildCount();
+      if (i1 != 0)
+      {
+        float f1 = paramMotionEvent.getX();
+        float f2 = paramMotionEvent.getY();
+        i1 -= 1;
+        while (i1 >= 0)
+        {
+          View localView = getChildAt(i1);
+          if ((H(f1, f2, localView)) && (!B(localView)) && (m(paramMotionEvent, localView))) {
+            return true;
+          }
+          i1 -= 1;
+        }
+      }
+      return false;
+    }
+    return super.dispatchGenericMotionEvent(paramMotionEvent);
+  }
+  
+  protected boolean drawChild(Canvas paramCanvas, View paramView, long paramLong)
+  {
+    int i8 = getHeight();
+    boolean bool1 = B(paramView);
+    int i1 = getWidth();
+    int i7 = paramCanvas.save();
+    int i3 = 0;
+    int i2 = i1;
+    int i4;
+    if (bool1)
+    {
+      int i9 = getChildCount();
+      i3 = 0;
+      int i5;
+      for (i2 = 0; i3 < i9; i2 = i5)
+      {
+        View localView = getChildAt(i3);
+        i4 = i1;
+        i5 = i2;
+        if (localView != paramView)
+        {
+          i4 = i1;
+          i5 = i2;
+          if (localView.getVisibility() == 0)
+          {
+            i4 = i1;
+            i5 = i2;
+            if (x(localView))
+            {
+              i4 = i1;
+              i5 = i2;
+              if (E(localView)) {
+                if (localView.getHeight() < i8)
+                {
+                  i4 = i1;
+                  i5 = i2;
+                }
+                else
+                {
+                  int i6;
+                  if (c(localView, 3))
+                  {
+                    i6 = localView.getRight();
+                    i4 = i1;
+                    i5 = i2;
+                    if (i6 > i2)
+                    {
+                      i5 = i6;
+                      i4 = i1;
+                    }
+                  }
+                  else
+                  {
+                    i6 = localView.getLeft();
+                    i4 = i1;
+                    i5 = i2;
+                    if (i6 < i1)
+                    {
+                      i4 = i6;
+                      i5 = i2;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        i3 += 1;
+        i1 = i4;
+      }
+      paramCanvas.clipRect(i2, 0, i1, getHeight());
+      i3 = i2;
+      i2 = i1;
+    }
+    boolean bool2 = super.drawChild(paramCanvas, paramView, paramLong);
+    paramCanvas.restoreToCount(i7);
+    float f1 = i;
+    if ((f1 > 0.0F) && (bool1))
+    {
+      i1 = h;
+      i4 = (int)(((0xFF000000 & i1) >>> 24) * f1);
+      j.setColor(i1 & 0xFFFFFF | i4 << 24);
+      paramCanvas.drawRect(i3, 0.0F, i2, getHeight(), j);
+      return bool2;
+    }
+    if ((B != null) && (c(paramView, 3)))
+    {
+      i1 = B.getIntrinsicWidth();
+      i2 = paramView.getRight();
+      i3 = k.x();
+      f1 = Math.max(0.0F, Math.min(i2 / i3, 1.0F));
+      B.setBounds(i2, paramView.getTop(), i1 + i2, paramView.getBottom());
+      B.setAlpha((int)(f1 * 255.0F));
+    }
+    for (paramView = B;; paramView = C)
+    {
+      paramView.draw(paramCanvas);
+      return bool2;
+      if ((C == null) || (!c(paramView, 5))) {
+        break;
+      }
+      i1 = C.getIntrinsicWidth();
+      i2 = paramView.getLeft();
+      i3 = getWidth();
+      i4 = l.x();
+      f1 = Math.max(0.0F, Math.min((i3 - i2) / i4, 1.0F));
+      C.setBounds(i2 - i1, paramView.getTop(), i2, paramView.getBottom());
+      C.setAlpha((int)(f1 * 255.0F));
+    }
+    return bool2;
+  }
+  
+  public void e(int paramInt, boolean paramBoolean)
+  {
+    Object localObject = n(paramInt);
+    if (localObject != null)
+    {
+      g((View)localObject, paramBoolean);
+      return;
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("No drawer view found with gravity ");
+    ((StringBuilder)localObject).append(w(paramInt));
+    throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+  }
+  
+  public void f(View paramView)
+  {
+    g(paramView, true);
+  }
+  
+  public void g(View paramView, boolean paramBoolean)
+  {
+    if (E(paramView))
+    {
+      localObject = (f)paramView.getLayoutParams();
+      if (q)
+      {
+        b = 0.0F;
+        d = 0;
+      }
+      else if (paramBoolean)
+      {
+        d |= 0x4;
+        int i1;
+        if (c(paramView, 3))
+        {
+          localObject = k;
+          i1 = -paramView.getWidth();
+        }
+        else
+        {
+          localObject = l;
+          i1 = getWidth();
+        }
+        ((e0.c)localObject).Q(paramView, i1, paramView.getTop());
+      }
+      else
+      {
+        J(paramView, 0.0F);
+        X(0, paramView);
+        paramView.setVisibility(4);
+      }
+      invalidate();
+      return;
+    }
+    Object localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("View ");
+    ((StringBuilder)localObject).append(paramView);
+    ((StringBuilder)localObject).append(" is not a sliding drawer");
+    throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+  }
+  
+  protected ViewGroup.LayoutParams generateDefaultLayoutParams()
+  {
+    return new f(-1, -1);
+  }
+  
+  public ViewGroup.LayoutParams generateLayoutParams(AttributeSet paramAttributeSet)
+  {
+    return new f(getContext(), paramAttributeSet);
+  }
+  
+  protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams paramLayoutParams)
+  {
+    if ((paramLayoutParams instanceof f)) {
+      return new f((f)paramLayoutParams);
+    }
+    if ((paramLayoutParams instanceof ViewGroup.MarginLayoutParams)) {
+      return new f((ViewGroup.MarginLayoutParams)paramLayoutParams);
+    }
+    return new f(paramLayoutParams);
+  }
+  
+  public float getDrawerElevation()
+  {
+    if (S) {
+      return f;
+    }
+    return 0.0F;
+  }
+  
+  public Drawable getStatusBarBackgroundDrawable()
+  {
+    return A;
+  }
+  
+  public void h()
+  {
+    i(false);
+  }
+  
+  void i(boolean paramBoolean)
+  {
+    int i4 = getChildCount();
+    int i1 = 0;
+    int i3;
+    for (int i2 = 0; i1 < i4; i2 = i3)
+    {
+      View localView = getChildAt(i1);
+      f localF = (f)localView.getLayoutParams();
+      i3 = i2;
+      if (E(localView)) {
+        if ((paramBoolean) && (!c))
+        {
+          i3 = i2;
+        }
+        else
+        {
+          i3 = localView.getWidth();
+          boolean bool;
+          if (c(localView, 3)) {
+            bool = k.Q(localView, -i3, localView.getTop());
+          } else {
+            bool = l.Q(localView, getWidth(), localView.getTop());
+          }
+          i3 = i2 | bool;
+          c = false;
+        }
+      }
+      i1 += 1;
+    }
+    m.c();
+    n.c();
+    if (i2 != 0) {
+      invalidate();
+    }
+  }
+  
+  void j(View paramView)
+  {
+    Object localObject = (f)paramView.getLayoutParams();
+    if ((d & 0x1) == 1)
+    {
+      d = 0;
+      localObject = x;
+      if (localObject != null)
+      {
+        int i1 = ((List)localObject).size() - 1;
+        while (i1 >= 0)
+        {
+          ((e)x.get(i1)).d(paramView);
+          i1 -= 1;
+        }
+      }
+      W(paramView, false);
+      V(paramView);
+      if (hasWindowFocus())
+      {
+        paramView = getRootView();
+        if (paramView != null) {
+          paramView.sendAccessibilityEvent(32);
+        }
+      }
+    }
+  }
+  
+  void k(View paramView)
+  {
+    Object localObject = (f)paramView.getLayoutParams();
+    if ((d & 0x1) == 0)
+    {
+      d = 1;
+      localObject = x;
+      if (localObject != null)
+      {
+        int i1 = ((List)localObject).size() - 1;
+        while (i1 >= 0)
+        {
+          ((e)x.get(i1)).c(paramView);
+          i1 -= 1;
+        }
+      }
+      W(paramView, true);
+      V(paramView);
+      if (hasWindowFocus()) {
+        sendAccessibilityEvent(32);
+      }
+    }
+  }
+  
+  void l(View paramView, float paramFloat)
+  {
+    List localList = x;
+    if (localList != null)
+    {
+      int i1 = localList.size() - 1;
+      while (i1 >= 0)
+      {
+        ((e)x.get(i1)).b(paramView, paramFloat);
+        i1 -= 1;
+      }
+    }
+  }
+  
+  View n(int paramInt)
+  {
+    int i1 = o.b(paramInt, androidx.core.view.h0.E(this));
+    int i2 = getChildCount();
+    paramInt = 0;
+    while (paramInt < i2)
+    {
+      View localView = getChildAt(paramInt);
+      if ((t(localView) & 0x7) == (i1 & 0x7)) {
+        return localView;
+      }
+      paramInt += 1;
+    }
+    return null;
+  }
+  
+  View o()
+  {
+    int i2 = getChildCount();
+    int i1 = 0;
+    while (i1 < i2)
+    {
+      View localView = getChildAt(i1);
+      if ((getLayoutParamsd & 0x1) == 1) {
+        return localView;
+      }
+      i1 += 1;
+    }
+    return null;
+  }
+  
+  protected void onAttachedToWindow()
+  {
+    super.onAttachedToWindow();
+    q = true;
+  }
+  
+  protected void onDetachedFromWindow()
+  {
+    super.onDetachedFromWindow();
+    q = true;
+  }
+  
+  public void onDraw(Canvas paramCanvas)
+  {
+    super.onDraw(paramCanvas);
+    if ((G) && (A != null))
+    {
+      Object localObject = F;
+      int i1;
+      if (localObject != null) {
+        i1 = ((WindowInsets)localObject).getSystemWindowInsetTop();
+      } else {
+        i1 = 0;
+      }
+      if (i1 > 0)
+      {
+        A.setBounds(0, 0, getWidth(), i1);
+        A.draw(paramCanvas);
+      }
+    }
+  }
+  
+  public boolean onInterceptTouchEvent(MotionEvent paramMotionEvent)
+  {
+    int i1 = paramMotionEvent.getActionMasked();
+    boolean bool3 = k.P(paramMotionEvent);
+    boolean bool4 = l.P(paramMotionEvent);
+    boolean bool2 = true;
+    if (i1 != 0)
+    {
+      if (i1 != 1) {
+        if (i1 != 2)
+        {
+          if (i1 != 3) {
+            break label93;
+          }
+        }
+        else
+        {
+          if (!k.d(3)) {
+            break label93;
+          }
+          m.c();
+          n.c();
+          break label93;
+        }
+      }
+      i(true);
+      v = false;
+      label93:
+      i1 = 0;
+    }
+    else
+    {
+      float f1 = paramMotionEvent.getX();
+      float f2 = paramMotionEvent.getY();
+      y = f1;
+      z = f2;
+      if (i > 0.0F)
+      {
+        paramMotionEvent = k.t((int)f1, (int)f2);
+        if ((paramMotionEvent != null) && (B(paramMotionEvent)))
+        {
+          i1 = 1;
+          break label161;
+        }
+      }
+      i1 = 0;
+      label161:
+      v = false;
+    }
+    boolean bool1 = bool2;
+    if (!(bool3 | bool4))
+    {
+      bool1 = bool2;
+      if (i1 == 0)
+      {
+        bool1 = bool2;
+        if (!y())
+        {
+          if (v) {
+            return true;
+          }
+          bool1 = false;
+        }
+      }
+    }
+    return bool1;
+  }
+  
+  public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent)
+  {
+    if ((paramInt == 4) && (z()))
+    {
+      paramKeyEvent.startTracking();
+      return true;
+    }
+    return super.onKeyDown(paramInt, paramKeyEvent);
+  }
+  
+  public boolean onKeyUp(int paramInt, KeyEvent paramKeyEvent)
+  {
+    if (paramInt == 4)
+    {
+      paramKeyEvent = p();
+      if ((paramKeyEvent != null) && (r(paramKeyEvent) == 0)) {
+        h();
+      }
+      return paramKeyEvent != null;
+    }
+    return super.onKeyUp(paramInt, paramKeyEvent);
+  }
+  
+  protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    p = true;
+    int i5 = paramInt3 - paramInt1;
+    int i6 = getChildCount();
+    paramInt3 = 0;
+    Object localObject1;
+    Object localObject2;
+    while (paramInt3 < i6)
+    {
+      localObject1 = getChildAt(paramInt3);
+      if (((View)localObject1).getVisibility() != 8)
+      {
+        localObject2 = (f)((View)localObject1).getLayoutParams();
+        if (B((View)localObject1))
+        {
+          paramInt1 = leftMargin;
+          ((View)localObject1).layout(paramInt1, topMargin, ((View)localObject1).getMeasuredWidth() + paramInt1, topMargin + ((View)localObject1).getMeasuredHeight());
+        }
+        else
+        {
+          int i7 = ((View)localObject1).getMeasuredWidth();
+          int i8 = ((View)localObject1).getMeasuredHeight();
+          float f1;
+          int i1;
+          if (c((View)localObject1, 3))
+          {
+            paramInt1 = -i7;
+            f1 = i7;
+            i1 = paramInt1 + (int)(b * f1);
+            f1 = (i7 + i1) / f1;
+          }
+          else
+          {
+            f1 = i7;
+            i1 = i5 - (int)(b * f1);
+            f1 = (i5 - i1) / f1;
+          }
+          int i2;
+          if (f1 != b) {
+            i2 = 1;
+          } else {
+            i2 = 0;
+          }
+          paramInt1 = a & 0x70;
+          if (paramInt1 != 16)
+          {
+            if (paramInt1 != 80)
+            {
+              i4 = topMargin;
+              paramInt1 = i7 + i1;
+              i3 = i8 + i4;
+            }
+            for (;;)
+            {
+              ((View)localObject1).layout(i1, i4, paramInt1, i3);
+              break;
+              i3 = paramInt4 - paramInt2;
+              i4 = i3 - bottomMargin - ((View)localObject1).getMeasuredHeight();
+              paramInt1 = i7 + i1;
+              i3 -= bottomMargin;
+            }
+          }
+          int i4 = paramInt4 - paramInt2;
+          int i3 = (i4 - i8) / 2;
+          paramInt1 = topMargin;
+          if (i3 >= paramInt1)
+          {
+            int i9 = bottomMargin;
+            paramInt1 = i3;
+            if (i3 + i8 > i4 - i9) {
+              paramInt1 = i4 - i9 - i8;
+            }
+          }
+          ((View)localObject1).layout(i1, paramInt1, i7 + i1, i8 + paramInt1);
+          if (i2 != 0) {
+            U((View)localObject1, f1);
+          }
+          if (b > 0.0F) {
+            paramInt1 = 0;
+          } else {
+            paramInt1 = 4;
+          }
+          if (((View)localObject1).getVisibility() != paramInt1) {
+            ((View)localObject1).setVisibility(paramInt1);
+          }
+        }
+      }
+      paramInt3 += 1;
+    }
+    if (T)
+    {
+      localObject1 = g0.a.a(this);
+      if (localObject1 != null)
+      {
+        localObject1 = h1.v((WindowInsets)localObject1).h();
+        localObject2 = k;
+        ((e0.c)localObject2).L(Math.max(((e0.c)localObject2).w(), a));
+        localObject2 = l;
+        ((e0.c)localObject2).L(Math.max(((e0.c)localObject2).w(), c));
+      }
+    }
+    p = false;
+    q = false;
+  }
+  
+  protected void onMeasure(int paramInt1, int paramInt2)
+  {
+    int i6 = View.MeasureSpec.getMode(paramInt1);
+    int i5 = View.MeasureSpec.getMode(paramInt2);
+    int i1 = View.MeasureSpec.getSize(paramInt1);
+    int i2 = View.MeasureSpec.getSize(paramInt2);
+    int i3;
+    int i4;
+    if (i6 == 1073741824)
+    {
+      i3 = i1;
+      i4 = i2;
+      if (i5 == 1073741824) {}
+    }
+    else
+    {
+      if (!isInEditMode()) {
+        break label751;
+      }
+      if (i6 == 0) {
+        i1 = 300;
+      }
+      i3 = i1;
+      i4 = i2;
+      if (i5 == 0)
+      {
+        i4 = 300;
+        i3 = i1;
+      }
+    }
+    setMeasuredDimension(i3, i4);
+    if ((F != null) && (androidx.core.view.h0.B(this))) {
+      i5 = 1;
+    } else {
+      i5 = 0;
+    }
+    int i8 = androidx.core.view.h0.E(this);
+    int i9 = getChildCount();
+    i6 = 0;
+    i2 = 0;
+    i1 = 0;
+    while (i6 < i9)
+    {
+      View localView = getChildAt(i6);
+      f localF;
+      int i7;
+      Object localObject;
+      if (localView.getVisibility() != 8)
+      {
+        localF = (f)localView.getLayoutParams();
+        if (i5 != 0)
+        {
+          i7 = o.b(a, i8);
+          boolean bool = androidx.core.view.h0.B(localView);
+          WindowInsets localWindowInsets = (WindowInsets)F;
+          if (bool)
+          {
+            if (i7 == 3)
+            {
+              localObject = localWindowInsets.replaceSystemWindowInsets(localWindowInsets.getSystemWindowInsetLeft(), localWindowInsets.getSystemWindowInsetTop(), 0, localWindowInsets.getSystemWindowInsetBottom());
+            }
+            else
+            {
+              localObject = localWindowInsets;
+              if (i7 == 5) {
+                localObject = localWindowInsets.replaceSystemWindowInsets(0, localWindowInsets.getSystemWindowInsetTop(), localWindowInsets.getSystemWindowInsetRight(), localWindowInsets.getSystemWindowInsetBottom());
+              }
+            }
+            localView.dispatchApplyWindowInsets((WindowInsets)localObject);
+          }
+          else
+          {
+            if (i7 == 3)
+            {
+              localObject = localWindowInsets.replaceSystemWindowInsets(localWindowInsets.getSystemWindowInsetLeft(), localWindowInsets.getSystemWindowInsetTop(), 0, localWindowInsets.getSystemWindowInsetBottom());
+            }
+            else
+            {
+              localObject = localWindowInsets;
+              if (i7 == 5) {
+                localObject = localWindowInsets.replaceSystemWindowInsets(0, localWindowInsets.getSystemWindowInsetTop(), localWindowInsets.getSystemWindowInsetRight(), localWindowInsets.getSystemWindowInsetBottom());
+              }
+            }
+            leftMargin = ((WindowInsets)localObject).getSystemWindowInsetLeft();
+            topMargin = ((WindowInsets)localObject).getSystemWindowInsetTop();
+            rightMargin = ((WindowInsets)localObject).getSystemWindowInsetRight();
+            bottomMargin = ((WindowInsets)localObject).getSystemWindowInsetBottom();
+          }
+        }
+        if (B(localView)) {
+          localView.measure(View.MeasureSpec.makeMeasureSpec(i3 - leftMargin - rightMargin, 1073741824), View.MeasureSpec.makeMeasureSpec(i4 - topMargin - bottomMargin, 1073741824));
+        }
+      }
+      else
+      {
+        break label676;
+      }
+      if (E(localView))
+      {
+        if (S)
+        {
+          float f1 = androidx.core.view.h0.y(localView);
+          float f2 = f;
+          if (f1 != f2) {
+            androidx.core.view.h0.A0(localView, f2);
+          }
+        }
+        int i10 = t(localView) & 0x7;
+        if (i10 == 3) {
+          i7 = 1;
+        } else {
+          i7 = 0;
+        }
+        if (((i7 != 0) && (i2 != 0)) || ((i7 == 0) && (i1 != 0)))
+        {
+          localObject = new StringBuilder();
+          ((StringBuilder)localObject).append("Child drawer has absolute gravity ");
+          ((StringBuilder)localObject).append(w(i10));
+          ((StringBuilder)localObject).append(" but this ");
+          ((StringBuilder)localObject).append("DrawerLayout");
+          ((StringBuilder)localObject).append(" already has a drawer view along that edge");
+          throw new IllegalStateException(((StringBuilder)localObject).toString());
+        }
+        if (i7 != 0) {
+          i2 = 1;
+        } else {
+          i1 = 1;
+        }
+        localView.measure(ViewGroup.getChildMeasureSpec(paramInt1, g + leftMargin + rightMargin, width), ViewGroup.getChildMeasureSpec(paramInt2, topMargin + bottomMargin, height));
+        label676:
+        i6 += 1;
+      }
+      else
+      {
+        localObject = new StringBuilder();
+        ((StringBuilder)localObject).append("Child ");
+        ((StringBuilder)localObject).append(localView);
+        ((StringBuilder)localObject).append(" at index ");
+        ((StringBuilder)localObject).append(i6);
+        ((StringBuilder)localObject).append(" does not have a valid layout_gravity - must be Gravity.LEFT, Gravity.RIGHT or Gravity.NO_GRAVITY");
+        throw new IllegalStateException(((StringBuilder)localObject).toString());
+      }
+    }
+    return;
+    label751:
+    throw new IllegalArgumentException("DrawerLayout must be measured with MeasureSpec.EXACTLY.");
+  }
+  
+  protected void onRestoreInstanceState(Parcelable paramParcelable)
+  {
+    if (!(paramParcelable instanceof g))
+    {
+      super.onRestoreInstanceState(paramParcelable);
+      return;
+    }
+    paramParcelable = (g)paramParcelable;
+    super.onRestoreInstanceState(paramParcelable.a());
+    int i1 = g;
+    if (i1 != 0)
+    {
+      View localView = n(i1);
+      if (localView != null) {
+        M(localView);
+      }
+    }
+    i1 = h;
+    if (i1 != 3) {
+      T(i1, 3);
+    }
+    i1 = i;
+    if (i1 != 3) {
+      T(i1, 5);
+    }
+    i1 = j;
+    if (i1 != 3) {
+      T(i1, 8388611);
+    }
+    i1 = k;
+    if (i1 != 3) {
+      T(i1, 8388613);
+    }
+  }
+  
+  public void onRtlPropertiesChanged(int paramInt)
+  {
+    R();
+  }
+  
+  protected Parcelable onSaveInstanceState()
+  {
+    g localG = new g(super.onSaveInstanceState());
+    int i4 = getChildCount();
+    int i1 = 0;
+    while (i1 < i4)
+    {
+      f localF = (f)getChildAt(i1).getLayoutParams();
+      int i5 = d;
+      int i3 = 1;
+      int i2;
+      if (i5 == 1) {
+        i2 = 1;
+      } else {
+        i2 = 0;
+      }
+      if (i5 != 2) {
+        i3 = 0;
+      }
+      if ((i2 == 0) && (i3 == 0)) {
+        i1 += 1;
+      } else {
+        g = a;
+      }
+    }
+    h = r;
+    i = s;
+    j = t;
+    k = u;
+    return localG;
+  }
+  
+  public boolean onTouchEvent(MotionEvent paramMotionEvent)
+  {
+    k.F(paramMotionEvent);
+    l.F(paramMotionEvent);
+    int i1 = paramMotionEvent.getAction() & 0xFF;
+    boolean bool = false;
+    float f2;
+    float f1;
+    if (i1 != 0)
+    {
+      if (i1 != 1)
+      {
+        if (i1 != 3) {
+          return true;
+        }
+        i(true);
+      }
+      else
+      {
+        f2 = paramMotionEvent.getX();
+        f1 = paramMotionEvent.getY();
+        paramMotionEvent = k.t((int)f2, (int)f1);
+        if ((paramMotionEvent != null) && (B(paramMotionEvent)))
+        {
+          f2 -= y;
+          f1 -= z;
+          i1 = k.z();
+          if (f2 * f2 + f1 * f1 < i1 * i1)
+          {
+            paramMotionEvent = o();
+            if ((paramMotionEvent != null) && (r(paramMotionEvent) != 2)) {
+              break label151;
+            }
+          }
+        }
+        bool = true;
+        label151:
+        i(bool);
+        return true;
+      }
+    }
+    else
+    {
+      f1 = paramMotionEvent.getX();
+      f2 = paramMotionEvent.getY();
+      y = f1;
+      z = f2;
+    }
+    v = false;
+    return true;
+  }
+  
+  View p()
+  {
+    int i2 = getChildCount();
+    int i1 = 0;
+    while (i1 < i2)
+    {
+      View localView = getChildAt(i1);
+      if ((E(localView)) && (G(localView))) {
+        return localView;
+      }
+      i1 += 1;
+    }
+    return null;
+  }
+  
+  public int q(int paramInt)
+  {
+    int i1 = androidx.core.view.h0.E(this);
+    if (paramInt != 3)
+    {
+      if (paramInt != 5)
+      {
+        if (paramInt != 8388611)
+        {
+          if (paramInt == 8388613)
+          {
+            paramInt = u;
+            if (paramInt != 3) {
+              return paramInt;
+            }
+            if (i1 == 0) {
+              paramInt = s;
+            } else {
+              paramInt = r;
+            }
+            if (paramInt != 3) {
+              return paramInt;
+            }
+          }
+        }
+        else
+        {
+          paramInt = t;
+          if (paramInt != 3) {
+            return paramInt;
+          }
+          if (i1 == 0) {
+            paramInt = r;
+          } else {
+            paramInt = s;
+          }
+          if (paramInt != 3) {
+            return paramInt;
+          }
+        }
+      }
+      else
+      {
+        paramInt = s;
+        if (paramInt != 3) {
+          return paramInt;
+        }
+        if (i1 == 0) {
+          paramInt = u;
+        } else {
+          paramInt = t;
+        }
+        if (paramInt != 3) {
+          return paramInt;
+        }
+      }
+    }
+    else
+    {
+      paramInt = r;
+      if (paramInt != 3) {
+        return paramInt;
+      }
+      if (i1 == 0) {
+        paramInt = t;
+      } else {
+        paramInt = u;
+      }
+      if (paramInt != 3) {
+        return paramInt;
+      }
+    }
+    return 0;
+  }
+  
+  public int r(View paramView)
+  {
+    if (E(paramView)) {
+      return q(getLayoutParamsa);
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("View ");
+    localStringBuilder.append(paramView);
+    localStringBuilder.append(" is not a drawer");
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  public void requestDisallowInterceptTouchEvent(boolean paramBoolean)
+  {
+    super.requestDisallowInterceptTouchEvent(paramBoolean);
+    if (paramBoolean) {
+      i(true);
+    }
+  }
+  
+  public void requestLayout()
+  {
+    if (!p) {
+      super.requestLayout();
+    }
+  }
+  
+  public CharSequence s(int paramInt)
+  {
+    paramInt = o.b(paramInt, androidx.core.view.h0.E(this));
+    if (paramInt == 3) {
+      return D;
+    }
+    if (paramInt == 5) {
+      return E;
+    }
+    return null;
+  }
+  
+  public void setDrawerElevation(float paramFloat)
+  {
+    f = paramFloat;
+    int i1 = 0;
+    while (i1 < getChildCount())
+    {
+      View localView = getChildAt(i1);
+      if (E(localView)) {
+        androidx.core.view.h0.A0(localView, f);
+      }
+      i1 += 1;
+    }
+  }
+  
+  @Deprecated
+  public void setDrawerListener(e paramE)
+  {
+    e localE = w;
+    if (localE != null) {
+      O(localE);
+    }
+    if (paramE != null) {
+      a(paramE);
+    }
+    w = paramE;
+  }
+  
+  public void setDrawerLockMode(int paramInt)
+  {
+    T(paramInt, 3);
+    T(paramInt, 5);
+  }
+  
+  public void setScrimColor(int paramInt)
+  {
+    h = paramInt;
+    invalidate();
+  }
+  
+  public void setStatusBarBackground(int paramInt)
+  {
+    Drawable localDrawable;
+    if (paramInt != 0) {
+      localDrawable = androidx.core.content.a.e(getContext(), paramInt);
+    } else {
+      localDrawable = null;
+    }
+    A = localDrawable;
+    invalidate();
+  }
+  
+  public void setStatusBarBackground(Drawable paramDrawable)
+  {
+    A = paramDrawable;
+    invalidate();
+  }
+  
+  public void setStatusBarBackgroundColor(int paramInt)
+  {
+    A = new ColorDrawable(paramInt);
+    invalidate();
+  }
+  
+  int t(View paramView)
+  {
+    return o.b(getLayoutParamsa, androidx.core.view.h0.E(this));
+  }
+  
+  float u(View paramView)
+  {
+    return getLayoutParamsb;
+  }
+  
+  class a
+    implements k0
+  {
+    a() {}
+    
+    public boolean a(View paramView, k0.a paramA)
+    {
+      if ((D(paramView)) && (r(paramView) != 2))
+      {
+        f(paramView);
+        return true;
+      }
+      return false;
+    }
+  }
+  
+  class b
+    implements View.OnApplyWindowInsetsListener
+  {
+    b() {}
+    
+    public WindowInsets onApplyWindowInsets(View paramView, WindowInsets paramWindowInsets)
+    {
+      paramView = (DrawerLayout)paramView;
+      boolean bool;
+      if (paramWindowInsets.getSystemWindowInsetTop() > 0) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      paramView.S(paramWindowInsets, bool);
+      return paramWindowInsets.consumeSystemWindowInsets();
+    }
+  }
+  
+  class c
+    extends androidx.core.view.a
+  {
+    private final Rect d = new Rect();
+    
+    c() {}
+    
+    private void n(androidx.core.view.accessibility.h0 paramH0, ViewGroup paramViewGroup)
+    {
+      int j = paramViewGroup.getChildCount();
+      int i = 0;
+      while (i < j)
+      {
+        View localView = paramViewGroup.getChildAt(i);
+        if (DrawerLayout.A(localView)) {
+          paramH0.c(localView);
+        }
+        i += 1;
+      }
+    }
+    
+    private void o(androidx.core.view.accessibility.h0 paramH01, androidx.core.view.accessibility.h0 paramH02)
+    {
+      Rect localRect = d;
+      paramH02.n(localRect);
+      paramH01.Y(localRect);
+      paramH01.B0(paramH02.N());
+      paramH01.o0(paramH02.u());
+      paramH01.b0(paramH02.p());
+      paramH01.f0(paramH02.r());
+      paramH01.g0(paramH02.F());
+      paramH01.j0(paramH02.H());
+      paramH01.V(paramH02.B());
+      paramH01.u0(paramH02.L());
+      paramH01.a(paramH02.k());
+    }
+    
+    public boolean a(View paramView, AccessibilityEvent paramAccessibilityEvent)
+    {
+      if (paramAccessibilityEvent.getEventType() == 32)
+      {
+        paramView = paramAccessibilityEvent.getText();
+        paramAccessibilityEvent = p();
+        if (paramAccessibilityEvent != null)
+        {
+          int i = t(paramAccessibilityEvent);
+          paramAccessibilityEvent = s(i);
+          if (paramAccessibilityEvent != null) {
+            paramView.add(paramAccessibilityEvent);
+          }
+        }
+        return true;
+      }
+      return super.a(paramView, paramAccessibilityEvent);
+    }
+    
+    public void f(View paramView, AccessibilityEvent paramAccessibilityEvent)
+    {
+      super.f(paramView, paramAccessibilityEvent);
+      paramAccessibilityEvent.setClassName("androidx.drawerlayout.widget.DrawerLayout");
+    }
+    
+    public void g(View paramView, androidx.core.view.accessibility.h0 paramH0)
+    {
+      if (DrawerLayout.R)
+      {
+        super.g(paramView, paramH0);
+      }
+      else
+      {
+        androidx.core.view.accessibility.h0 localH0 = androidx.core.view.accessibility.h0.Q(paramH0);
+        super.g(paramView, localH0);
+        paramH0.w0(paramView);
+        ViewParent localViewParent = androidx.core.view.h0.K(paramView);
+        if ((localViewParent instanceof View)) {
+          paramH0.q0((View)localViewParent);
+        }
+        o(paramH0, localH0);
+        localH0.S();
+        n(paramH0, (ViewGroup)paramView);
+      }
+      paramH0.b0("androidx.drawerlayout.widget.DrawerLayout");
+      paramH0.i0(false);
+      paramH0.j0(false);
+      paramH0.T(h0.a.e);
+      paramH0.T(h0.a.f);
+    }
+    
+    public boolean i(ViewGroup paramViewGroup, View paramView, AccessibilityEvent paramAccessibilityEvent)
+    {
+      if ((!DrawerLayout.R) && (!DrawerLayout.A(paramView))) {
+        return false;
+      }
+      return super.i(paramViewGroup, paramView, paramAccessibilityEvent);
+    }
+  }
+  
+  static final class d
+    extends androidx.core.view.a
+  {
+    d() {}
+    
+    public void g(View paramView, androidx.core.view.accessibility.h0 paramH0)
+    {
+      super.g(paramView, paramH0);
+      if (!DrawerLayout.A(paramView)) {
+        paramH0.q0(null);
+      }
+    }
+  }
+  
+  public static abstract interface e
+  {
+    public abstract void a(int paramInt);
+    
+    public abstract void b(View paramView, float paramFloat);
+    
+    public abstract void c(View paramView);
+    
+    public abstract void d(View paramView);
+  }
+  
+  public static class f
+    extends ViewGroup.MarginLayoutParams
+  {
+    public int a = 0;
+    float b;
+    boolean c;
+    int d;
+    
+    public f(int paramInt1, int paramInt2)
+    {
+      super(paramInt2);
+    }
+    
+    public f(Context paramContext, AttributeSet paramAttributeSet)
+    {
+      super(paramAttributeSet);
+      paramContext = paramContext.obtainStyledAttributes(paramAttributeSet, DrawerLayout.Q);
+      a = paramContext.getInt(0, 0);
+      paramContext.recycle();
+    }
+    
+    public f(ViewGroup.LayoutParams paramLayoutParams)
+    {
+      super();
+    }
+    
+    public f(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+    {
+      super();
+    }
+    
+    public f(f paramF)
+    {
+      super();
+      a = a;
+    }
+  }
+  
+  protected static class g
+    extends d0.a
+  {
+    public static final Parcelable.Creator<g> CREATOR = new a();
+    int g = 0;
+    int h;
+    int i;
+    int j;
+    int k;
+    
+    public g(Parcel paramParcel, ClassLoader paramClassLoader)
+    {
+      super(paramClassLoader);
+      g = paramParcel.readInt();
+      h = paramParcel.readInt();
+      i = paramParcel.readInt();
+      j = paramParcel.readInt();
+      k = paramParcel.readInt();
+    }
+    
+    public g(Parcelable paramParcelable)
+    {
+      super();
+    }
+    
+    public void writeToParcel(Parcel paramParcel, int paramInt)
+    {
+      super.writeToParcel(paramParcel, paramInt);
+      paramParcel.writeInt(g);
+      paramParcel.writeInt(h);
+      paramParcel.writeInt(i);
+      paramParcel.writeInt(j);
+      paramParcel.writeInt(k);
+    }
+    
+    class a
+      implements Parcelable.ClassLoaderCreator
+    {
+      a() {}
+      
+      public DrawerLayout.g a(Parcel paramParcel)
+      {
+        return new DrawerLayout.g(paramParcel, null);
+      }
+      
+      public DrawerLayout.g b(Parcel paramParcel, ClassLoader paramClassLoader)
+      {
+        return new DrawerLayout.g(paramParcel, paramClassLoader);
+      }
+      
+      public DrawerLayout.g[] c(int paramInt)
+      {
+        return new DrawerLayout.g[paramInt];
+      }
+    }
+  }
+  
+  public static abstract class h
+    implements DrawerLayout.e
+  {
+    public h() {}
+    
+    public void b(View paramView, float paramFloat) {}
+    
+    public void c(View paramView) {}
+    
+    public void d(View paramView) {}
+  }
+  
+  private class i
+    extends c.c
+  {
+    private final int a;
+    private e0.c b;
+    private final Runnable c = new a();
+    
+    i(int paramInt)
+    {
+      a = paramInt;
+    }
+    
+    private void a()
+    {
+      int j = a;
+      int i = 3;
+      if (j == 3) {
+        i = 5;
+      }
+      View localView = n(i);
+      if (localView != null) {
+        f(localView);
+      }
+    }
+    
+    void b()
+    {
+      int k = b.x();
+      int i = a;
+      int j = 0;
+      if (i == 3) {
+        i = 1;
+      } else {
+        i = 0;
+      }
+      View localView;
+      if (i != 0)
+      {
+        localView = n(3);
+        if (localView != null) {
+          j = -localView.getWidth();
+        }
+        j += k;
+      }
+      else
+      {
+        localView = n(5);
+        j = getWidth() - k;
+      }
+      if ((localView != null) && (((i != 0) && (localView.getLeft() < j)) || ((i == 0) && (localView.getLeft() > j) && (r(localView) == 0))))
+      {
+        DrawerLayout.f localF = (DrawerLayout.f)localView.getLayoutParams();
+        b.Q(localView, j, localView.getTop());
+        c = true;
+        invalidate();
+        a();
+        DrawerLayout.this.b();
+      }
+    }
+    
+    public void c()
+    {
+      removeCallbacks(c);
+    }
+    
+    public int clampViewPositionHorizontal(View paramView, int paramInt1, int paramInt2)
+    {
+      int i;
+      if (c(paramView, 3))
+      {
+        paramInt2 = -paramView.getWidth();
+        i = 0;
+      }
+      for (;;)
+      {
+        return Math.max(paramInt2, Math.min(paramInt1, i));
+        i = getWidth();
+        paramInt2 = i - paramView.getWidth();
+      }
+    }
+    
+    public int clampViewPositionVertical(View paramView, int paramInt1, int paramInt2)
+    {
+      return paramView.getTop();
+    }
+    
+    public void d(e0.c paramC)
+    {
+      b = paramC;
+    }
+    
+    public int getViewHorizontalDragRange(View paramView)
+    {
+      if (E(paramView)) {
+        return paramView.getWidth();
+      }
+      return 0;
+    }
+    
+    public void onEdgeDragStarted(int paramInt1, int paramInt2)
+    {
+      if ((paramInt1 & 0x1) == 1)
+      {
+        localObject = DrawerLayout.this;
+        paramInt1 = 3;
+      }
+      else
+      {
+        localObject = DrawerLayout.this;
+        paramInt1 = 5;
+      }
+      Object localObject = ((DrawerLayout)localObject).n(paramInt1);
+      if ((localObject != null) && (r((View)localObject) == 0)) {
+        b.b((View)localObject, paramInt2);
+      }
+    }
+    
+    public boolean onEdgeLock(int paramInt)
+    {
+      return false;
+    }
+    
+    public void onEdgeTouched(int paramInt1, int paramInt2)
+    {
+      postDelayed(c, 160L);
+    }
+    
+    public void onViewCaptured(View paramView, int paramInt)
+    {
+      getLayoutParamsc = false;
+      a();
+    }
+    
+    public void onViewDragStateChanged(int paramInt)
+    {
+      X(paramInt, b.v());
+    }
+    
+    public void onViewPositionChanged(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+    {
+      paramInt2 = paramView.getWidth();
+      float f;
+      if (c(paramView, 3)) {
+        f = paramInt1 + paramInt2;
+      } else {
+        f = getWidth() - paramInt1;
+      }
+      f /= paramInt2;
+      U(paramView, f);
+      if (f == 0.0F) {
+        paramInt1 = 4;
+      } else {
+        paramInt1 = 0;
+      }
+      paramView.setVisibility(paramInt1);
+      invalidate();
+    }
+    
+    public void onViewReleased(View paramView, float paramFloat1, float paramFloat2)
+    {
+      paramFloat2 = u(paramView);
+      int k = paramView.getWidth();
+      int i;
+      if (c(paramView, 3))
+      {
+        boolean bool = paramFloat1 < 0.0F;
+        if ((!bool) && ((bool) || (paramFloat2 <= 0.5F))) {
+          i = -k;
+        } else {
+          i = 0;
+        }
+      }
+      else
+      {
+        int j = getWidth();
+        if (paramFloat1 >= 0.0F)
+        {
+          i = j;
+          if (paramFloat1 == 0.0F)
+          {
+            i = j;
+            if (paramFloat2 <= 0.5F) {}
+          }
+        }
+        else
+        {
+          i = j - k;
+        }
+      }
+      b.O(i, paramView.getTop());
+      invalidate();
+    }
+    
+    public boolean tryCaptureView(View paramView, int paramInt)
+    {
+      return (E(paramView)) && (c(paramView, a)) && (r(paramView) == 0);
+    }
+    
+    class a
+      implements Runnable
+    {
+      a() {}
+      
+      public void run()
+      {
+        b();
+      }
+    }
+  }
+}

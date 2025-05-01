@@ -1,0 +1,423 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.view.ActionMode;
+import android.view.ActionMode.Callback;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
+import androidx.core.view.h0;
+import f.f;
+import f.j;
+
+public class ActionBarContainer
+  extends FrameLayout
+{
+  private boolean e;
+  private View f;
+  private View g;
+  private View h;
+  Drawable i;
+  Drawable j;
+  Drawable k;
+  boolean l;
+  boolean m;
+  private int n;
+  
+  public ActionBarContainer(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    super(paramContext, paramAttributeSet);
+    h0.w0(this, new b(this));
+    paramContext = paramContext.obtainStyledAttributes(paramAttributeSet, j.a);
+    i = paramContext.getDrawable(j.b);
+    j = paramContext.getDrawable(j.d);
+    n = paramContext.getDimensionPixelSize(j.j, -1);
+    int i1 = getId();
+    int i2 = f.H;
+    boolean bool = true;
+    if (i1 == i2)
+    {
+      l = true;
+      k = paramContext.getDrawable(j.c);
+    }
+    paramContext.recycle();
+    if (l ? k == null : (i != null) || (j != null)) {
+      bool = false;
+    }
+    setWillNotDraw(bool);
+  }
+  
+  private int a(View paramView)
+  {
+    FrameLayout.LayoutParams localLayoutParams = (FrameLayout.LayoutParams)paramView.getLayoutParams();
+    return paramView.getMeasuredHeight() + topMargin + bottomMargin;
+  }
+  
+  private boolean b(View paramView)
+  {
+    return (paramView == null) || (paramView.getVisibility() == 8) || (paramView.getMeasuredHeight() == 0);
+  }
+  
+  protected void drawableStateChanged()
+  {
+    super.drawableStateChanged();
+    Drawable localDrawable = i;
+    if ((localDrawable != null) && (localDrawable.isStateful())) {
+      i.setState(getDrawableState());
+    }
+    localDrawable = j;
+    if ((localDrawable != null) && (localDrawable.isStateful())) {
+      j.setState(getDrawableState());
+    }
+    localDrawable = k;
+    if ((localDrawable != null) && (localDrawable.isStateful())) {
+      k.setState(getDrawableState());
+    }
+  }
+  
+  public View getTabContainer()
+  {
+    return f;
+  }
+  
+  public void jumpDrawablesToCurrentState()
+  {
+    super.jumpDrawablesToCurrentState();
+    Drawable localDrawable = i;
+    if (localDrawable != null) {
+      localDrawable.jumpToCurrentState();
+    }
+    localDrawable = j;
+    if (localDrawable != null) {
+      localDrawable.jumpToCurrentState();
+    }
+    localDrawable = k;
+    if (localDrawable != null) {
+      localDrawable.jumpToCurrentState();
+    }
+  }
+  
+  public void onFinishInflate()
+  {
+    super.onFinishInflate();
+    g = findViewById(f.a);
+    h = findViewById(f.f);
+  }
+  
+  public boolean onHoverEvent(MotionEvent paramMotionEvent)
+  {
+    super.onHoverEvent(paramMotionEvent);
+    return true;
+  }
+  
+  public boolean onInterceptTouchEvent(MotionEvent paramMotionEvent)
+  {
+    return (e) || (super.onInterceptTouchEvent(paramMotionEvent));
+  }
+  
+  public void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    super.onLayout(paramBoolean, paramInt1, paramInt2, paramInt3, paramInt4);
+    View localView = f;
+    paramInt4 = 1;
+    paramInt2 = 0;
+    if ((localView != null) && (localView.getVisibility() != 8)) {
+      paramBoolean = true;
+    } else {
+      paramBoolean = false;
+    }
+    Object localObject;
+    if ((localView != null) && (localView.getVisibility() != 8))
+    {
+      int i1 = getMeasuredHeight();
+      localObject = (FrameLayout.LayoutParams)localView.getLayoutParams();
+      int i2 = localView.getMeasuredHeight();
+      int i3 = bottomMargin;
+      localView.layout(paramInt1, i1 - i2 - i3, paramInt3, i1 - i3);
+    }
+    if (l)
+    {
+      localObject = k;
+      if (localObject != null)
+      {
+        ((Drawable)localObject).setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        paramInt1 = paramInt4;
+      }
+      else
+      {
+        paramInt1 = 0;
+      }
+    }
+    else
+    {
+      paramInt1 = paramInt2;
+      if (i != null)
+      {
+        Drawable localDrawable;
+        if (g.getVisibility() == 0)
+        {
+          localDrawable = i;
+          paramInt2 = g.getLeft();
+          paramInt3 = g.getTop();
+          paramInt1 = g.getRight();
+        }
+        for (localObject = g;; localObject = h)
+        {
+          localDrawable.setBounds(paramInt2, paramInt3, paramInt1, ((View)localObject).getBottom());
+          break label297;
+          localObject = h;
+          if ((localObject == null) || (((View)localObject).getVisibility() != 0)) {
+            break;
+          }
+          localDrawable = i;
+          paramInt2 = h.getLeft();
+          paramInt3 = h.getTop();
+          paramInt1 = h.getRight();
+        }
+        i.setBounds(0, 0, 0, 0);
+        label297:
+        paramInt1 = 1;
+      }
+      m = paramBoolean;
+      if (paramBoolean)
+      {
+        localObject = j;
+        if (localObject != null)
+        {
+          ((Drawable)localObject).setBounds(localView.getLeft(), localView.getTop(), localView.getRight(), localView.getBottom());
+          paramInt1 = paramInt4;
+        }
+      }
+    }
+    if (paramInt1 != 0) {
+      invalidate();
+    }
+  }
+  
+  public void onMeasure(int paramInt1, int paramInt2)
+  {
+    int i1 = paramInt2;
+    if (g == null)
+    {
+      i1 = paramInt2;
+      if (View.MeasureSpec.getMode(paramInt2) == Integer.MIN_VALUE)
+      {
+        int i2 = n;
+        i1 = paramInt2;
+        if (i2 >= 0) {
+          i1 = View.MeasureSpec.makeMeasureSpec(Math.min(i2, View.MeasureSpec.getSize(paramInt2)), Integer.MIN_VALUE);
+        }
+      }
+    }
+    super.onMeasure(paramInt1, i1);
+    if (g == null) {
+      return;
+    }
+    paramInt2 = View.MeasureSpec.getMode(i1);
+    View localView = f;
+    if ((localView != null) && (localView.getVisibility() != 8) && (paramInt2 != 1073741824))
+    {
+      if (!b(g)) {}
+      for (localView = g;; localView = h)
+      {
+        paramInt1 = a(localView);
+        break label143;
+        if (b(h)) {
+          break;
+        }
+      }
+      paramInt1 = 0;
+      label143:
+      if (paramInt2 == Integer.MIN_VALUE) {
+        paramInt2 = View.MeasureSpec.getSize(i1);
+      } else {
+        paramInt2 = Integer.MAX_VALUE;
+      }
+      setMeasuredDimension(getMeasuredWidth(), Math.min(paramInt1 + a(f), paramInt2));
+    }
+  }
+  
+  public boolean onTouchEvent(MotionEvent paramMotionEvent)
+  {
+    super.onTouchEvent(paramMotionEvent);
+    return true;
+  }
+  
+  public void setPrimaryBackground(Drawable paramDrawable)
+  {
+    Drawable localDrawable = i;
+    if (localDrawable != null)
+    {
+      localDrawable.setCallback(null);
+      unscheduleDrawable(i);
+    }
+    i = paramDrawable;
+    if (paramDrawable != null)
+    {
+      paramDrawable.setCallback(this);
+      paramDrawable = g;
+      if (paramDrawable != null) {
+        i.setBounds(paramDrawable.getLeft(), g.getTop(), g.getRight(), g.getBottom());
+      }
+    }
+    boolean bool2 = l;
+    boolean bool1 = true;
+    if (bool2 ? k == null : (i != null) || (j != null)) {
+      bool1 = false;
+    }
+    setWillNotDraw(bool1);
+    invalidate();
+    a.a(this);
+  }
+  
+  public void setSplitBackground(Drawable paramDrawable)
+  {
+    Drawable localDrawable = k;
+    if (localDrawable != null)
+    {
+      localDrawable.setCallback(null);
+      unscheduleDrawable(k);
+    }
+    k = paramDrawable;
+    boolean bool2 = false;
+    if (paramDrawable != null)
+    {
+      paramDrawable.setCallback(this);
+      if (l)
+      {
+        paramDrawable = k;
+        if (paramDrawable != null) {
+          paramDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        }
+      }
+    }
+    boolean bool1;
+    if (l)
+    {
+      bool1 = bool2;
+      if (k != null) {}
+    }
+    else
+    {
+      do
+      {
+        bool1 = true;
+        break;
+        bool1 = bool2;
+        if (i != null) {
+          break;
+        }
+        bool1 = bool2;
+      } while (j == null);
+    }
+    setWillNotDraw(bool1);
+    invalidate();
+    a.a(this);
+  }
+  
+  public void setStackedBackground(Drawable paramDrawable)
+  {
+    Drawable localDrawable = j;
+    if (localDrawable != null)
+    {
+      localDrawable.setCallback(null);
+      unscheduleDrawable(j);
+    }
+    j = paramDrawable;
+    if (paramDrawable != null)
+    {
+      paramDrawable.setCallback(this);
+      if (m)
+      {
+        paramDrawable = j;
+        if (paramDrawable != null) {
+          paramDrawable.setBounds(f.getLeft(), f.getTop(), f.getRight(), f.getBottom());
+        }
+      }
+    }
+    boolean bool2 = l;
+    boolean bool1 = true;
+    if (bool2 ? k == null : (i != null) || (j != null)) {
+      bool1 = false;
+    }
+    setWillNotDraw(bool1);
+    invalidate();
+    a.a(this);
+  }
+  
+  public void setTabContainer(z0 paramZ0)
+  {
+    View localView = f;
+    if (localView != null) {
+      removeView(localView);
+    }
+    f = paramZ0;
+  }
+  
+  public void setTransitioning(boolean paramBoolean)
+  {
+    e = paramBoolean;
+    int i1;
+    if (paramBoolean) {
+      i1 = 393216;
+    } else {
+      i1 = 262144;
+    }
+    setDescendantFocusability(i1);
+  }
+  
+  public void setVisibility(int paramInt)
+  {
+    super.setVisibility(paramInt);
+    boolean bool;
+    if (paramInt == 0) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    Drawable localDrawable = i;
+    if (localDrawable != null) {
+      localDrawable.setVisible(bool, false);
+    }
+    localDrawable = j;
+    if (localDrawable != null) {
+      localDrawable.setVisible(bool, false);
+    }
+    localDrawable = k;
+    if (localDrawable != null) {
+      localDrawable.setVisible(bool, false);
+    }
+  }
+  
+  public ActionMode startActionModeForChild(View paramView, ActionMode.Callback paramCallback)
+  {
+    return null;
+  }
+  
+  public ActionMode startActionModeForChild(View paramView, ActionMode.Callback paramCallback, int paramInt)
+  {
+    if (paramInt != 0) {
+      return super.startActionModeForChild(paramView, paramCallback, paramInt);
+    }
+    return null;
+  }
+  
+  protected boolean verifyDrawable(Drawable paramDrawable)
+  {
+    return ((paramDrawable == i) && (!l)) || ((paramDrawable == j) && (m)) || ((paramDrawable == k) && (l)) || (super.verifyDrawable(paramDrawable));
+  }
+  
+  private static abstract class a
+  {
+    public static void a(ActionBarContainer paramActionBarContainer)
+    {
+      paramActionBarContainer.invalidateOutline();
+    }
+  }
+}

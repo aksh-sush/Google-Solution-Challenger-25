@@ -1,0 +1,17 @@
+package androidx.lifecycle;
+
+import db.l;
+import n0.a;
+import n0.a.a;
+
+public abstract class k0
+{
+  public static final a a(m0 paramM0)
+  {
+    l.e(paramM0, "owner");
+    if ((paramM0 instanceof h)) {
+      return ((h)paramM0).getDefaultViewModelCreationExtras();
+    }
+    return a.a.b;
+  }
+}

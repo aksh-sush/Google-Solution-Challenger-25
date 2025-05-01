@@ -1,0 +1,124 @@
+package androidx.core.view;
+
+import android.support.v4.media.session.b;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import androidx.lifecycle.i;
+import androidx.lifecycle.i.b;
+import androidx.lifecycle.l;
+import androidx.lifecycle.n;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class u
+{
+  private final Runnable a;
+  private final CopyOnWriteArrayList b = new CopyOnWriteArrayList();
+  private final Map c = new HashMap();
+  
+  public u(Runnable paramRunnable)
+  {
+    a = paramRunnable;
+  }
+  
+  public void c(w paramW)
+  {
+    b.add(paramW);
+    a.run();
+  }
+  
+  public void d(w paramW, n paramN)
+  {
+    c(paramW);
+    paramN = paramN.getLifecycle();
+    Object localObject = (a)c.remove(paramW);
+    if (localObject != null) {
+      ((a)localObject).a();
+    }
+    localObject = new s(this, paramW);
+    c.put(paramW, new a(paramN, (l)localObject));
+  }
+  
+  public void e(w paramW, n paramN, i.b paramB)
+  {
+    paramN = paramN.getLifecycle();
+    a localA = (a)c.remove(paramW);
+    if (localA != null) {
+      localA.a();
+    }
+    paramB = new t(this, paramB, paramW);
+    c.put(paramW, new a(paramN, paramB));
+  }
+  
+  public void h(Menu paramMenu, MenuInflater paramMenuInflater)
+  {
+    paramMenu = b.iterator();
+    if (!paramMenu.hasNext()) {
+      return;
+    }
+    b.a(paramMenu.next());
+    throw null;
+  }
+  
+  public void i(Menu paramMenu)
+  {
+    paramMenu = b.iterator();
+    if (!paramMenu.hasNext()) {
+      return;
+    }
+    b.a(paramMenu.next());
+    throw null;
+  }
+  
+  public boolean j(MenuItem paramMenuItem)
+  {
+    paramMenuItem = b.iterator();
+    if (!paramMenuItem.hasNext()) {
+      return false;
+    }
+    b.a(paramMenuItem.next());
+    throw null;
+  }
+  
+  public void k(Menu paramMenu)
+  {
+    paramMenu = b.iterator();
+    if (!paramMenu.hasNext()) {
+      return;
+    }
+    b.a(paramMenu.next());
+    throw null;
+  }
+  
+  public void l(w paramW)
+  {
+    b.remove(paramW);
+    paramW = (a)c.remove(paramW);
+    if (paramW != null) {
+      paramW.a();
+    }
+    a.run();
+  }
+  
+  private static class a
+  {
+    final i a;
+    private l b;
+    
+    a(i paramI, l paramL)
+    {
+      a = paramI;
+      b = paramL;
+      paramI.a(paramL);
+    }
+    
+    void a()
+    {
+      a.c(b);
+      b = null;
+    }
+  }
+}

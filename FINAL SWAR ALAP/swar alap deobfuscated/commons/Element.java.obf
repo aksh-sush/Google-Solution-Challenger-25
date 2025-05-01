@@ -1,0 +1,3 @@
+package jb;
+
+public abstract interface c {}

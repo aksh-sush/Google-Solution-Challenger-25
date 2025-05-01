@@ -1,0 +1,25 @@
+package androidx.core.widget;
+
+import android.widget.AbsListView;
+import android.widget.ListView;
+
+public abstract class g
+{
+  public static void a(ListView paramListView, int paramInt)
+  {
+    a.b(paramListView, paramInt);
+  }
+  
+  static abstract class a
+  {
+    static boolean a(ListView paramListView, int paramInt)
+    {
+      return paramListView.canScrollList(paramInt);
+    }
+    
+    static void b(ListView paramListView, int paramInt)
+    {
+      paramListView.scrollListBy(paramInt);
+    }
+  }
+}

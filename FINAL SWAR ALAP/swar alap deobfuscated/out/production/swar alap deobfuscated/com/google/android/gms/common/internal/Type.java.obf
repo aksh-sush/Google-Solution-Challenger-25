@@ -1,0 +1,273 @@
+package com.google.android.gms.common.internal;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+public class o
+{
+  private static final j b = new j("LibraryVersion", "");
+  private static final o c = new o();
+  private final ConcurrentHashMap a = new ConcurrentHashMap();
+  
+  protected o() {}
+  
+  public static o a()
+  {
+    return c;
+  }
+  
+  /* Error */
+  public String b(String paramString)
+  {
+    // Byte code:
+    //   0: aload_1
+    //   1: ldc 41
+    //   3: invokestatic 47	com/google/android/gms/common/internal/s:h	(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;
+    //   6: pop
+    //   7: aload_0
+    //   8: getfield 35	com/google/android/gms/common/internal/o:a	Ljava/util/concurrent/ConcurrentHashMap;
+    //   11: aload_1
+    //   12: invokevirtual 51	java/util/concurrent/ConcurrentHashMap:containsKey	(Ljava/lang/Object;)Z
+    //   15: ifeq +15 -> 30
+    //   18: aload_0
+    //   19: getfield 35	com/google/android/gms/common/internal/o:a	Ljava/util/concurrent/ConcurrentHashMap;
+    //   22: aload_1
+    //   23: invokevirtual 55	java/util/concurrent/ConcurrentHashMap:get	(Ljava/lang/Object;)Ljava/lang/Object;
+    //   26: checkcast 57	java/lang/String
+    //   29: areturn
+    //   30: new 59	java/util/Properties
+    //   33: dup
+    //   34: invokespecial 60	java/util/Properties:<init>	()V
+    //   37: astore 7
+    //   39: aconst_null
+    //   40: astore 5
+    //   42: aconst_null
+    //   43: astore_2
+    //   44: aconst_null
+    //   45: astore 6
+    //   47: aconst_null
+    //   48: astore_3
+    //   49: ldc 2
+    //   51: ldc 62
+    //   53: iconst_1
+    //   54: anewarray 4	java/lang/Object
+    //   57: dup
+    //   58: iconst_0
+    //   59: aload_1
+    //   60: aastore
+    //   61: invokestatic 66	java/lang/String:format	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    //   64: invokevirtual 72	java/lang/Class:getResourceAsStream	(Ljava/lang/String;)Ljava/io/InputStream;
+    //   67: astore 4
+    //   69: aload 4
+    //   71: ifnull +88 -> 159
+    //   74: aload 5
+    //   76: astore_2
+    //   77: aload 7
+    //   79: aload 4
+    //   81: invokevirtual 76	java/util/Properties:load	(Ljava/io/InputStream;)V
+    //   84: aload 5
+    //   86: astore_2
+    //   87: aload 7
+    //   89: ldc 78
+    //   91: aconst_null
+    //   92: invokevirtual 82	java/util/Properties:getProperty	(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    //   95: astore_3
+    //   96: aload_3
+    //   97: astore_2
+    //   98: getstatic 24	com/google/android/gms/common/internal/o:b	Lcom/google/android/gms/common/internal/j;
+    //   101: astore 5
+    //   103: aload_3
+    //   104: astore_2
+    //   105: new 84	java/lang/StringBuilder
+    //   108: dup
+    //   109: invokespecial 85	java/lang/StringBuilder:<init>	()V
+    //   112: astore 6
+    //   114: aload_3
+    //   115: astore_2
+    //   116: aload 6
+    //   118: aload_1
+    //   119: invokevirtual 89	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   122: pop
+    //   123: aload_3
+    //   124: astore_2
+    //   125: aload 6
+    //   127: ldc 91
+    //   129: invokevirtual 89	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   132: pop
+    //   133: aload_3
+    //   134: astore_2
+    //   135: aload 6
+    //   137: aload_3
+    //   138: invokevirtual 89	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   141: pop
+    //   142: aload_3
+    //   143: astore_2
+    //   144: aload 5
+    //   146: ldc 16
+    //   148: aload 6
+    //   150: invokevirtual 95	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   153: invokevirtual 98	com/google/android/gms/common/internal/j:d	(Ljava/lang/String;Ljava/lang/String;)V
+    //   156: goto +59 -> 215
+    //   159: aload 5
+    //   161: astore_2
+    //   162: getstatic 24	com/google/android/gms/common/internal/o:b	Lcom/google/android/gms/common/internal/j;
+    //   165: astore 6
+    //   167: aload 5
+    //   169: astore_2
+    //   170: new 84	java/lang/StringBuilder
+    //   173: dup
+    //   174: invokespecial 85	java/lang/StringBuilder:<init>	()V
+    //   177: astore 7
+    //   179: aload 5
+    //   181: astore_2
+    //   182: aload 7
+    //   184: ldc 100
+    //   186: invokevirtual 89	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   189: pop
+    //   190: aload 5
+    //   192: astore_2
+    //   193: aload 7
+    //   195: aload_1
+    //   196: invokevirtual 89	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   199: pop
+    //   200: aload 5
+    //   202: astore_2
+    //   203: aload 6
+    //   205: ldc 16
+    //   207: aload 7
+    //   209: invokevirtual 95	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   212: invokevirtual 103	com/google/android/gms/common/internal/j:e	(Ljava/lang/String;Ljava/lang/String;)V
+    //   215: aload_3
+    //   216: astore_2
+    //   217: aload 4
+    //   219: ifnull +107 -> 326
+    //   222: aload 4
+    //   224: invokestatic 108	y3/k:a	(Ljava/io/Closeable;)V
+    //   227: aload_3
+    //   228: astore_2
+    //   229: goto +97 -> 326
+    //   232: astore_1
+    //   233: aload 4
+    //   235: astore_2
+    //   236: goto +121 -> 357
+    //   239: astore 5
+    //   241: aload 4
+    //   243: astore_3
+    //   244: aload_2
+    //   245: astore 4
+    //   247: goto +15 -> 262
+    //   250: astore_1
+    //   251: goto +106 -> 357
+    //   254: astore 5
+    //   256: aconst_null
+    //   257: astore 4
+    //   259: aload 6
+    //   261: astore_3
+    //   262: aload_3
+    //   263: astore_2
+    //   264: getstatic 24	com/google/android/gms/common/internal/o:b	Lcom/google/android/gms/common/internal/j;
+    //   267: astore 6
+    //   269: aload_3
+    //   270: astore_2
+    //   271: new 84	java/lang/StringBuilder
+    //   274: dup
+    //   275: invokespecial 85	java/lang/StringBuilder:<init>	()V
+    //   278: astore 7
+    //   280: aload_3
+    //   281: astore_2
+    //   282: aload 7
+    //   284: ldc 100
+    //   286: invokevirtual 89	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   289: pop
+    //   290: aload_3
+    //   291: astore_2
+    //   292: aload 7
+    //   294: aload_1
+    //   295: invokevirtual 89	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   298: pop
+    //   299: aload_3
+    //   300: astore_2
+    //   301: aload 6
+    //   303: ldc 16
+    //   305: aload 7
+    //   307: invokevirtual 95	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   310: aload 5
+    //   312: invokevirtual 111	com/google/android/gms/common/internal/j:c	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+    //   315: aload_3
+    //   316: ifnull +7 -> 323
+    //   319: aload_3
+    //   320: invokestatic 108	y3/k:a	(Ljava/io/Closeable;)V
+    //   323: aload 4
+    //   325: astore_2
+    //   326: aload_2
+    //   327: astore_3
+    //   328: aload_2
+    //   329: ifnonnull +16 -> 345
+    //   332: getstatic 24	com/google/android/gms/common/internal/o:b	Lcom/google/android/gms/common/internal/j;
+    //   335: ldc 16
+    //   337: ldc 113
+    //   339: invokevirtual 115	com/google/android/gms/common/internal/j:b	(Ljava/lang/String;Ljava/lang/String;)V
+    //   342: ldc 117
+    //   344: astore_3
+    //   345: aload_0
+    //   346: getfield 35	com/google/android/gms/common/internal/o:a	Ljava/util/concurrent/ConcurrentHashMap;
+    //   349: aload_1
+    //   350: aload_3
+    //   351: invokevirtual 121	java/util/concurrent/ConcurrentHashMap:put	(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    //   354: pop
+    //   355: aload_3
+    //   356: areturn
+    //   357: aload_2
+    //   358: ifnull +7 -> 365
+    //   361: aload_2
+    //   362: invokestatic 108	y3/k:a	(Ljava/io/Closeable;)V
+    //   365: aload_1
+    //   366: athrow
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	367	0	this	o
+    //   0	367	1	paramString	String
+    //   43	319	2	localObject1	Object
+    //   48	308	3	localObject2	Object
+    //   67	257	4	localObject3	Object
+    //   40	161	5	localJ	j
+    //   239	1	5	localIOException1	java.io.IOException
+    //   254	57	5	localIOException2	java.io.IOException
+    //   45	257	6	localObject4	Object
+    //   37	269	7	localObject5	Object
+    // Exception table:
+    //   from	to	target	type
+    //   77	84	232	finally
+    //   87	96	232	finally
+    //   98	103	232	finally
+    //   105	114	232	finally
+    //   116	123	232	finally
+    //   125	133	232	finally
+    //   135	142	232	finally
+    //   144	156	232	finally
+    //   162	167	232	finally
+    //   170	179	232	finally
+    //   182	190	232	finally
+    //   193	200	232	finally
+    //   203	215	232	finally
+    //   77	84	239	java/io/IOException
+    //   87	96	239	java/io/IOException
+    //   98	103	239	java/io/IOException
+    //   105	114	239	java/io/IOException
+    //   116	123	239	java/io/IOException
+    //   125	133	239	java/io/IOException
+    //   135	142	239	java/io/IOException
+    //   144	156	239	java/io/IOException
+    //   162	167	239	java/io/IOException
+    //   170	179	239	java/io/IOException
+    //   182	190	239	java/io/IOException
+    //   193	200	239	java/io/IOException
+    //   203	215	239	java/io/IOException
+    //   49	69	250	finally
+    //   264	269	250	finally
+    //   271	280	250	finally
+    //   282	290	250	finally
+    //   292	299	250	finally
+    //   301	315	250	finally
+    //   49	69	254	java/io/IOException
+  }
+}

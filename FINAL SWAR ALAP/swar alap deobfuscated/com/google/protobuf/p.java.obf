@@ -1,0 +1,67 @@
+package com.google.protobuf;
+
+final class i1
+  implements r0
+{
+  private final t0 a;
+  private final String b;
+  private final Object[] c;
+  private final int d;
+  
+  i1(t0 paramT0, String paramString, Object[] paramArrayOfObject)
+  {
+    a = paramT0;
+    b = paramString;
+    c = paramArrayOfObject;
+    int i = paramString.charAt(0);
+    if (i < 55296) {}
+    for (;;)
+    {
+      d = i;
+      return;
+      int k = i & 0x1FFF;
+      int j = 13;
+      i = 1;
+      int m;
+      for (;;)
+      {
+        m = paramString.charAt(i);
+        if (m < 55296) {
+          break;
+        }
+        k |= (m & 0x1FFF) << j;
+        j += 13;
+        i += 1;
+      }
+      i = k | m << j;
+    }
+  }
+  
+  public boolean a()
+  {
+    return (d & 0x2) == 2;
+  }
+  
+  public f1 b()
+  {
+    if ((d & 0x1) == 1) {
+      return f1.e;
+    }
+    return f1.f;
+  }
+  
+  public t0 c()
+  {
+    return a;
+  }
+  
+  Object[] d()
+  {
+    return c;
+  }
+  
+  String e()
+  {
+    return b;
+  }
+}

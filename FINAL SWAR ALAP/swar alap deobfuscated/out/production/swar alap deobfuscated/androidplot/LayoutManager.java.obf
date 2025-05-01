@@ -1,0 +1,10 @@
+package u;
+
+class a
+  extends g
+{
+  public a(p paramP)
+  {
+    super(paramP);
+  }
+}

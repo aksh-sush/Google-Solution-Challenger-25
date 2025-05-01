@@ -1,0 +1,9 @@
+package com.google.android.gms.internal.auth;
+
+public abstract interface zzfv
+  extends Cloneable, zzfx
+{
+  public abstract zzfv zzc(zzfw paramZzfw);
+  
+  public abstract zzfw zzg();
+}

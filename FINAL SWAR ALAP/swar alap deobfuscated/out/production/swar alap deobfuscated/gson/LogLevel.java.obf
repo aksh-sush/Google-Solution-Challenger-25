@@ -1,0 +1,33 @@
+package c8;
+
+public enum b
+{
+  public static final a Companion = new a(null);
+  
+  static
+  {
+    FATAL = new b("FATAL", 1);
+    ERROR = new b("ERROR", 2);
+    WARN = new b("WARN", 3);
+    INFO = new b("INFO", 4);
+    DEBUG = new b("DEBUG", 5);
+    VERBOSE = new b("VERBOSE", 6);
+  }
+  
+  private b() {}
+  
+  public static final b fromInt(int paramInt)
+  {
+    return Companion.fromInt(paramInt);
+  }
+  
+  public static final class a
+  {
+    private a() {}
+    
+    public final b fromInt(int paramInt)
+    {
+      return b.values()[paramInt];
+    }
+  }
+}

@@ -1,0 +1,8 @@
+package com.google.android.gms.internal.auth;
+
+abstract interface zzfu
+{
+  public abstract zzft zzb(Class paramClass);
+  
+  public abstract boolean zzc(Class paramClass);
+}

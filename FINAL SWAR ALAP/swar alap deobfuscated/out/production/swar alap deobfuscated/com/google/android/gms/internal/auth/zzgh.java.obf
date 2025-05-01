@@ -1,0 +1,18 @@
+package com.google.android.gms.internal.auth;
+
+abstract interface zzgh<T>
+{
+  public abstract int zza(Object paramObject);
+  
+  public abstract Object zzd();
+  
+  public abstract void zze(Object paramObject);
+  
+  public abstract void zzf(Object paramObject1, Object paramObject2);
+  
+  public abstract void zzg(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, zzds paramZzds);
+  
+  public abstract boolean zzh(Object paramObject1, Object paramObject2);
+  
+  public abstract boolean zzi(Object paramObject);
+}

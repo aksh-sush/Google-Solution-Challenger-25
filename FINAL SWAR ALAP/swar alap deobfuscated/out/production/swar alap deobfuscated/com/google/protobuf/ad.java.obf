@@ -1,0 +1,376 @@
+package com.google.protobuf;
+
+import android.support.v4.media.session.b;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
+
+final class t
+  extends s
+{
+  t() {}
+  
+  int a(Map.Entry paramEntry)
+  {
+    return ((z.c)paramEntry.getKey()).getNumber();
+  }
+  
+  Object b(r paramR, t0 paramT0, int paramInt)
+  {
+    return paramR.a(paramT0, paramInt);
+  }
+  
+  v c(Object paramObject)
+  {
+    b.a(paramObject);
+    throw null;
+  }
+  
+  v d(Object paramObject)
+  {
+    b.a(paramObject);
+    throw null;
+  }
+  
+  boolean e(t0 paramT0)
+  {
+    return false;
+  }
+  
+  void f(Object paramObject)
+  {
+    c(paramObject).r();
+  }
+  
+  Object g(j1 paramJ1, Object paramObject1, r paramR, v paramV, Object paramObject2, t1 paramT1)
+  {
+    z.d localD = (z.d)paramObject1;
+    int k = localD.d();
+    if ((d.b()) && (d.k()))
+    {
+      switch (a.a[localD.b().ordinal()])
+      {
+      default: 
+        paramJ1 = new StringBuilder();
+        paramJ1.append("Type cannot be packed: ");
+        paramJ1.append(d.e());
+        throw new IllegalStateException(paramJ1.toString());
+      case 14: 
+        paramObject1 = new ArrayList();
+        paramJ1.P(paramObject1);
+        paramObject2 = n1.z(k, paramObject1, d.c(), paramObject2, paramT1);
+        paramJ1 = paramObject1;
+        break;
+      case 13: 
+        paramObject1 = new ArrayList();
+        paramJ1.i(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 12: 
+        paramObject1 = new ArrayList();
+        paramJ1.a(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 11: 
+        paramObject1 = new ArrayList();
+        paramJ1.K(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 10: 
+        paramObject1 = new ArrayList();
+        paramJ1.g(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 9: 
+        paramObject1 = new ArrayList();
+        paramJ1.l(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 8: 
+        paramObject1 = new ArrayList();
+        paramJ1.n(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 7: 
+        paramObject1 = new ArrayList();
+        paramJ1.e(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 6: 
+        paramObject1 = new ArrayList();
+        paramJ1.N(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 5: 
+        paramObject1 = new ArrayList();
+        paramJ1.O(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 4: 
+        paramObject1 = new ArrayList();
+        paramJ1.y(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 3: 
+        paramObject1 = new ArrayList();
+        paramJ1.J(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 2: 
+        paramObject1 = new ArrayList();
+        paramJ1.C(paramObject1);
+        paramJ1 = paramObject1;
+        break;
+      case 1: 
+        paramObject1 = new ArrayList();
+        paramJ1.I(paramObject1);
+        paramJ1 = paramObject1;
+      }
+      paramV.v(d, paramJ1);
+      return paramObject2;
+    }
+    if (localD.b() == z1.b.t)
+    {
+      int j = paramJ1.E();
+      i = j;
+      if (d.c().a(j) != null) {
+        break label791;
+      }
+      return n1.L(k, j, paramObject2, paramT1);
+    }
+    long l;
+    switch (a.a[localD.b().ordinal()])
+    {
+    default: 
+      paramJ1 = null;
+      break;
+    case 18: 
+      paramJ1 = paramJ1.m(localD.c().getClass(), paramR);
+      break;
+    case 17: 
+      paramJ1 = paramJ1.q(localD.c().getClass(), paramR);
+      break;
+    case 16: 
+      paramJ1 = paramJ1.o();
+      break;
+    case 15: 
+      paramJ1 = paramJ1.B();
+      break;
+    case 14: 
+      throw new IllegalStateException("Shouldn't reach here.");
+    case 13: 
+      l = paramJ1.k();
+      break;
+    case 12: 
+      i = paramJ1.h();
+      break;
+    case 11: 
+      l = paramJ1.v();
+      break;
+    case 10: 
+      i = paramJ1.G();
+      break;
+    case 9: 
+      i = paramJ1.D();
+      break;
+    case 8: 
+      paramJ1 = Boolean.valueOf(paramJ1.r());
+      break;
+    case 7: 
+      i = paramJ1.p();
+      break;
+    case 6: 
+      l = paramJ1.f();
+      break;
+    case 5: 
+      i = paramJ1.E();
+      paramJ1 = Integer.valueOf(i);
+      break;
+    case 4: 
+      l = paramJ1.d();
+      break;
+    case 3: 
+      l = paramJ1.L();
+      paramJ1 = Long.valueOf(l);
+      break;
+    case 2: 
+      label791:
+      paramJ1 = Float.valueOf(paramJ1.readFloat());
+      break;
+    }
+    paramJ1 = Double.valueOf(paramJ1.readDouble());
+    if (localD.e())
+    {
+      paramV.a(d, paramJ1);
+      return paramObject2;
+    }
+    int i = a.a[localD.b().ordinal()];
+    if ((i != 17) && (i != 18))
+    {
+      paramObject1 = paramJ1;
+    }
+    else
+    {
+      paramR = paramV.h(d);
+      paramObject1 = paramJ1;
+      if (paramR != null) {
+        paramObject1 = c0.h(paramR, paramJ1);
+      }
+    }
+    paramV.v(d, paramObject1);
+    return paramObject2;
+  }
+  
+  void h(j1 paramJ1, Object paramObject, r paramR, v paramV)
+  {
+    paramObject = (z.d)paramObject;
+    paramJ1 = paramJ1.m(paramObject.c().getClass(), paramR);
+    paramV.v(d, paramJ1);
+  }
+  
+  void i(j paramJ, Object paramObject, r paramR, v paramV)
+  {
+    paramObject = (z.d)paramObject;
+    t0 localT0 = paramObject.c().newBuilderForType().buildPartial();
+    paramJ = g.Q(ByteBuffer.wrap(paramJ.H()), true);
+    g1.a().b(localT0, paramJ, paramR);
+    paramV.v(d, localT0);
+    if (paramJ.t() == Integer.MAX_VALUE) {
+      return;
+    }
+    throw d0.a();
+  }
+  
+  void j(a2 paramA2, Map.Entry paramEntry)
+  {
+    z.c localC = (z.c)paramEntry.getKey();
+    if (localC.b())
+    {
+      List localList;
+      switch (a.a[localC.e().ordinal()])
+      {
+      default: 
+        return;
+      case 18: 
+        localList = (List)paramEntry.getValue();
+        if ((localList == null) || (localList.isEmpty())) {
+          break;
+        }
+        n1.X(localC.getNumber(), (List)paramEntry.getValue(), paramA2, g1.a().d(localList.get(0).getClass()));
+        return;
+      case 17: 
+        localList = (List)paramEntry.getValue();
+        if ((localList == null) || (localList.isEmpty())) {
+          break;
+        }
+        n1.U(localC.getNumber(), (List)paramEntry.getValue(), paramA2, g1.a().d(localList.get(0).getClass()));
+        return;
+      case 16: 
+        n1.c0(localC.getNumber(), (List)paramEntry.getValue(), paramA2);
+        return;
+      case 15: 
+        n1.O(localC.getNumber(), (List)paramEntry.getValue(), paramA2);
+        return;
+      case 13: 
+        n1.b0(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 12: 
+        n1.a0(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 11: 
+        n1.Z(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 10: 
+        n1.Y(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 9: 
+        n1.d0(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 8: 
+        n1.N(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 7: 
+        n1.R(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 6: 
+        n1.S(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 5: 
+      case 14: 
+        n1.V(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 4: 
+        n1.e0(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 3: 
+        n1.W(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 2: 
+        n1.T(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      case 1: 
+        n1.P(localC.getNumber(), (List)paramEntry.getValue(), paramA2, localC.k());
+        return;
+      }
+    }
+    else
+    {
+      switch (a.a[localC.e().ordinal()])
+      {
+      default: 
+        return;
+      case 18: 
+        paramA2.w(localC.getNumber(), paramEntry.getValue(), g1.a().d(paramEntry.getValue().getClass()));
+        return;
+      case 17: 
+        paramA2.i(localC.getNumber(), paramEntry.getValue(), g1.a().d(paramEntry.getValue().getClass()));
+        return;
+      case 16: 
+        paramA2.G(localC.getNumber(), (String)paramEntry.getValue());
+        return;
+      case 15: 
+        paramA2.l(localC.getNumber(), (j)paramEntry.getValue());
+        return;
+      case 13: 
+        paramA2.C(localC.getNumber(), ((Long)paramEntry.getValue()).longValue());
+        return;
+      case 12: 
+        paramA2.N(localC.getNumber(), ((Integer)paramEntry.getValue()).intValue());
+        return;
+      case 11: 
+        paramA2.r(localC.getNumber(), ((Long)paramEntry.getValue()).longValue());
+        return;
+      case 10: 
+        paramA2.j(localC.getNumber(), ((Integer)paramEntry.getValue()).intValue());
+        return;
+      case 9: 
+        paramA2.g(localC.getNumber(), ((Integer)paramEntry.getValue()).intValue());
+        return;
+      case 8: 
+        paramA2.f(localC.getNumber(), ((Boolean)paramEntry.getValue()).booleanValue());
+        return;
+      case 7: 
+        paramA2.p(localC.getNumber(), ((Integer)paramEntry.getValue()).intValue());
+        return;
+      case 6: 
+        paramA2.A(localC.getNumber(), ((Long)paramEntry.getValue()).longValue());
+        return;
+      case 5: 
+      case 14: 
+        paramA2.m(localC.getNumber(), ((Integer)paramEntry.getValue()).intValue());
+        return;
+      case 4: 
+        paramA2.I(localC.getNumber(), ((Long)paramEntry.getValue()).longValue());
+        return;
+      case 3: 
+        paramA2.e(localC.getNumber(), ((Long)paramEntry.getValue()).longValue());
+        return;
+      case 2: 
+        paramA2.D(localC.getNumber(), ((Float)paramEntry.getValue()).floatValue());
+        return;
+      }
+      paramA2.q(localC.getNumber(), ((Double)paramEntry.getValue()).doubleValue());
+    }
+  }
+}

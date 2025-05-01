@@ -1,0 +1,51 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.AbstractSet;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+final class zzgs
+  extends AbstractSet
+{
+  public final void clear()
+  {
+    zza.clear();
+  }
+  
+  public final boolean contains(Object paramObject)
+  {
+    Object localObject = (Map.Entry)paramObject;
+    paramObject = zza.get(((Map.Entry)localObject).getKey());
+    localObject = ((Map.Entry)localObject).getValue();
+    boolean bool = true;
+    if (paramObject != localObject)
+    {
+      if (paramObject != null) {
+        return paramObject.equals(localObject);
+      }
+      bool = false;
+    }
+    return bool;
+  }
+  
+  public final Iterator iterator()
+  {
+    return new zzgq(zza, null);
+  }
+  
+  public final boolean remove(Object paramObject)
+  {
+    paramObject = (Map.Entry)paramObject;
+    if (contains(paramObject))
+    {
+      zza.remove(paramObject.getKey());
+      return true;
+    }
+    return false;
+  }
+  
+  public final int size()
+  {
+    return zza.size();
+  }
+}

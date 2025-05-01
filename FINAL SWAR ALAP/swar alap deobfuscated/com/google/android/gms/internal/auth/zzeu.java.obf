@@ -1,0 +1,189 @@
+package com.google.android.gms.internal.auth;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public abstract class zzeu<MessageType extends zzeu<MessageType, BuilderType>, BuilderType extends zzes<MessageType, BuilderType>>
+  extends zzdp<MessageType, BuilderType>
+{
+  private static final Map zzb = new ConcurrentHashMap();
+  protected zzgz zzc = zzgz.zza();
+  
+  public zzeu() {}
+  
+  static zzeu zza(Class paramClass)
+  {
+    Map localMap = zzb;
+    zzeu localZzeu2 = (zzeu)localMap.get(paramClass);
+    zzeu localZzeu1 = localZzeu2;
+    if (localZzeu2 == null) {
+      try
+      {
+        Class.forName(paramClass.getName(), true, paramClass.getClassLoader());
+        localZzeu1 = (zzeu)localMap.get(paramClass);
+      }
+      catch (ClassNotFoundException paramClass)
+      {
+        throw new IllegalStateException("Class initialization cannot fail.", paramClass);
+      }
+    }
+    if (localZzeu1 == null)
+    {
+      localZzeu1 = (zzeu)((zzeu)zzhi.zze(paramClass)).zzi(6, null, null);
+      if (localZzeu1 != null)
+      {
+        localMap.put(paramClass, localZzeu1);
+        return localZzeu1;
+      }
+      throw new IllegalStateException();
+    }
+    return localZzeu1;
+  }
+  
+  protected static zzeu zzb(zzeu paramZzeu, byte[] paramArrayOfByte)
+  {
+    paramArrayOfByte = zzj(paramZzeu, paramArrayOfByte, 0, paramArrayOfByte.length, zzek.zza);
+    if (paramArrayOfByte != null)
+    {
+      int i = ((Byte)paramArrayOfByte.zzi(1, null, null)).byteValue();
+      if (i == 1) {
+        return paramArrayOfByte;
+      }
+      if (i != 0)
+      {
+        boolean bool = zzge.zza().zzb(paramArrayOfByte.getClass()).zzi(paramArrayOfByte);
+        if (true != bool) {
+          paramZzeu = null;
+        } else {
+          paramZzeu = paramArrayOfByte;
+        }
+        paramArrayOfByte.zzi(2, paramZzeu, null);
+        if (bool) {
+          return paramArrayOfByte;
+        }
+      }
+      paramZzeu = new zzgx(paramArrayOfByte).zza();
+      paramZzeu.zze(paramArrayOfByte);
+      throw paramZzeu;
+    }
+    return paramArrayOfByte;
+  }
+  
+  protected static zzey zzc()
+  {
+    return zzgf.zze();
+  }
+  
+  static Object zze(Method paramMethod, Object paramObject, Object... paramVarArgs)
+  {
+    try
+    {
+      paramMethod = paramMethod.invoke(paramObject, paramVarArgs);
+      return paramMethod;
+    }
+    catch (InvocationTargetException paramMethod)
+    {
+      paramMethod = paramMethod.getCause();
+      if (!(paramMethod instanceof RuntimeException))
+      {
+        if ((paramMethod instanceof Error)) {
+          throw ((Error)paramMethod);
+        }
+        throw new RuntimeException("Unexpected exception thrown by generated accessor method.", paramMethod);
+      }
+      throw ((RuntimeException)paramMethod);
+    }
+    catch (IllegalAccessException paramMethod)
+    {
+      throw new RuntimeException("Couldn't use Java reflection to implement protocol message reflection.", paramMethod);
+    }
+  }
+  
+  protected static Object zzf(zzfw paramZzfw, String paramString, Object[] paramArrayOfObject)
+  {
+    return new zzgg(paramZzfw, "\001\001\000\000\001\001\001\000\001\000\001\032", paramArrayOfObject);
+  }
+  
+  protected static void zzg(Class paramClass, zzeu paramZzeu)
+  {
+    zzb.put(paramClass, paramZzeu);
+  }
+  
+  private static zzeu zzj(zzeu paramZzeu, byte[] paramArrayOfByte, int paramInt1, int paramInt2, zzek paramZzek)
+  {
+    paramZzeu = (zzeu)paramZzeu.zzi(4, null, null);
+    try
+    {
+      zzgh localZzgh = zzge.zza().zzb(paramZzeu.getClass());
+      localZzgh.zzg(paramZzeu, paramArrayOfByte, 0, paramInt2, new zzds(paramZzek));
+      localZzgh.zze(paramZzeu);
+      if (zza == 0) {
+        return paramZzeu;
+      }
+      throw new RuntimeException();
+    }
+    catch (IOException paramArrayOfByte)
+    {
+      if (!(paramArrayOfByte.getCause() instanceof zzfa)) {
+        break label99;
+      }
+      throw ((zzfa)paramArrayOfByte.getCause());
+      paramArrayOfByte = new zzfa(paramArrayOfByte);
+      paramArrayOfByte.zze(paramZzeu);
+      throw paramArrayOfByte;
+    }
+    catch (zzgx paramArrayOfByte)
+    {
+      paramArrayOfByte = paramArrayOfByte.zza();
+      paramArrayOfByte.zze(paramZzeu);
+      throw paramArrayOfByte;
+    }
+    catch (zzfa paramArrayOfByte)
+    {
+      paramArrayOfByte.zze(paramZzeu);
+      throw paramArrayOfByte;
+    }
+    catch (IndexOutOfBoundsException paramArrayOfByte)
+    {
+      for (;;) {}
+    }
+    paramArrayOfByte = zzfa.zzf();
+    paramArrayOfByte.zze(paramZzeu);
+    throw paramArrayOfByte;
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (paramObject == null) {
+      return false;
+    }
+    if (getClass() != paramObject.getClass()) {
+      return false;
+    }
+    return zzge.zza().zzb(getClass()).zzh(this, (zzeu)paramObject);
+  }
+  
+  public final int hashCode()
+  {
+    int i = zza;
+    if (i != 0) {
+      return i;
+    }
+    i = zzge.zza().zzb(getClass()).zza(this);
+    zza = i;
+    return i;
+  }
+  
+  public final String toString()
+  {
+    return zzfy.zza(this, super.toString());
+  }
+  
+  protected abstract Object zzi(int paramInt, Object paramObject1, Object paramObject2);
+}

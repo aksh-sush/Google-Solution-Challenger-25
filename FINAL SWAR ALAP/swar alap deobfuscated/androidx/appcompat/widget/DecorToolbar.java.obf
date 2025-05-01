@@ -1,0 +1,79 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.Menu;
+import android.view.ViewGroup;
+import android.view.Window.Callback;
+import androidx.appcompat.view.menu.g.a;
+import androidx.appcompat.view.menu.m.a;
+import androidx.core.view.p0;
+
+public abstract interface j0
+{
+  public abstract void a(Menu paramMenu, m.a paramA);
+  
+  public abstract boolean b();
+  
+  public abstract void c();
+  
+  public abstract void collapseActionView();
+  
+  public abstract boolean d();
+  
+  public abstract boolean e();
+  
+  public abstract boolean f();
+  
+  public abstract boolean g();
+  
+  public abstract Context getContext();
+  
+  public abstract CharSequence getTitle();
+  
+  public abstract void h();
+  
+  public abstract void i(m.a paramA, g.a paramA1);
+  
+  public abstract void j(int paramInt);
+  
+  public abstract void k(z0 paramZ0);
+  
+  public abstract ViewGroup l();
+  
+  public abstract void m(boolean paramBoolean);
+  
+  public abstract boolean n();
+  
+  public abstract void o(int paramInt);
+  
+  public abstract int p();
+  
+  public abstract Menu q();
+  
+  public abstract void r(int paramInt);
+  
+  public abstract void s(int paramInt);
+  
+  public abstract void setIcon(int paramInt);
+  
+  public abstract void setIcon(Drawable paramDrawable);
+  
+  public abstract void setTitle(CharSequence paramCharSequence);
+  
+  public abstract void setWindowCallback(Window.Callback paramCallback);
+  
+  public abstract void setWindowTitle(CharSequence paramCharSequence);
+  
+  public abstract int t();
+  
+  public abstract p0 u(int paramInt, long paramLong);
+  
+  public abstract void v();
+  
+  public abstract void w();
+  
+  public abstract void x(Drawable paramDrawable);
+  
+  public abstract void y(boolean paramBoolean);
+}

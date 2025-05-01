@@ -1,0 +1,17 @@
+package com.google.android.gms.common.internal;
+
+import android.content.Context;
+import t3.d;
+
+public abstract class x
+{
+  public static y a(Context paramContext)
+  {
+    return b(paramContext, z.f);
+  }
+  
+  public static y b(Context paramContext, z paramZ)
+  {
+    return new d(paramContext, paramZ);
+  }
+}

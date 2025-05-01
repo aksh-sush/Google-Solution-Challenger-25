@@ -1,0 +1,3 @@
+package sa;
+
+public abstract interface c {}

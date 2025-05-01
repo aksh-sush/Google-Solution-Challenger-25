@@ -1,0 +1,24 @@
+package sa;
+
+import java.io.Serializable;
+
+public final class d
+  implements h, Serializable
+{
+  private final Object e;
+  
+  public d(Object paramObject)
+  {
+    e = paramObject;
+  }
+  
+  public Object getValue()
+  {
+    return e;
+  }
+  
+  public String toString()
+  {
+    return String.valueOf(getValue());
+  }
+}

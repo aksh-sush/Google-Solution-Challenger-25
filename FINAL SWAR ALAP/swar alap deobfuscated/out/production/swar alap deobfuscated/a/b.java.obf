@@ -1,0 +1,25 @@
+package n6;
+
+import android.view.MotionEvent;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView.e0;
+import java.util.List;
+import k6.j;
+
+public abstract class k
+  implements b
+{
+  public k() {}
+  
+  public View a(RecyclerView.e0 paramE0)
+  {
+    return null;
+  }
+  
+  public List b(RecyclerView.e0 paramE0)
+  {
+    return null;
+  }
+  
+  public abstract boolean c(View paramView, MotionEvent paramMotionEvent, int paramInt, k6.b paramB, j paramJ);
+}

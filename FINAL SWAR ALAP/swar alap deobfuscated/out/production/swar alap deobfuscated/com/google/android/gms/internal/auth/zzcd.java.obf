@@ -1,0 +1,83 @@
+package com.google.android.gms.internal.auth;
+
+import android.content.Context;
+
+final class zzcd
+  extends zzda
+{
+  private final Context zza;
+  private final zzdj zzb;
+  
+  zzcd(Context paramContext, zzdj paramZzdj)
+  {
+    if (paramContext != null)
+    {
+      zza = paramContext;
+      zzb = paramZzdj;
+      return;
+    }
+    throw new NullPointerException("Null context");
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (paramObject == this) {
+      return true;
+    }
+    if ((paramObject instanceof zzda))
+    {
+      Object localObject = (zzda)paramObject;
+      if (zza.equals(((zzda)localObject).zza()))
+      {
+        paramObject = zzb;
+        localObject = ((zzda)localObject).zzb();
+        if (paramObject == null)
+        {
+          if (localObject == null) {
+            return true;
+          }
+        }
+        else {
+          return paramObject.equals(localObject);
+        }
+      }
+    }
+    return false;
+  }
+  
+  public final int hashCode()
+  {
+    int j = zza.hashCode();
+    zzdj localZzdj = zzb;
+    int i;
+    if (localZzdj == null) {
+      i = 0;
+    } else {
+      i = localZzdj.hashCode();
+    }
+    return (j ^ 0xF4243) * 1000003 ^ i;
+  }
+  
+  public final String toString()
+  {
+    String str1 = zza.toString();
+    String str2 = String.valueOf(zzb);
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("FlagsContext{context=");
+    localStringBuilder.append(str1);
+    localStringBuilder.append(", hermeticFileOverrides=");
+    localStringBuilder.append(str2);
+    localStringBuilder.append("}");
+    return localStringBuilder.toString();
+  }
+  
+  final Context zza()
+  {
+    return zza;
+  }
+  
+  final zzdj zzb()
+  {
+    return zzb;
+  }
+}

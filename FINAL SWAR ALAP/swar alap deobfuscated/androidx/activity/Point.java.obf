@@ -1,0 +1,9 @@
+package androidx.activity;
+
+import androidx.lifecycle.n;
+
+public abstract interface q
+  extends n
+{
+  public abstract OnBackPressedDispatcher getOnBackPressedDispatcher();
+}

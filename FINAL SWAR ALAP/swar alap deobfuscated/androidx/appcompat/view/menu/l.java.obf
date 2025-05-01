@@ -1,0 +1,29 @@
+package androidx.appcompat.view.menu;
+
+import android.content.Context;
+
+public abstract interface m
+{
+  public abstract void a(g paramG, boolean paramBoolean);
+  
+  public abstract void c(Context paramContext, g paramG);
+  
+  public abstract boolean e(r paramR);
+  
+  public abstract void f(boolean paramBoolean);
+  
+  public abstract boolean h();
+  
+  public abstract boolean i(g paramG, i paramI);
+  
+  public abstract boolean j(g paramG, i paramI);
+  
+  public abstract void k(a paramA);
+  
+  public static abstract interface a
+  {
+    public abstract void a(g paramG, boolean paramBoolean);
+    
+    public abstract boolean b(g paramG);
+  }
+}

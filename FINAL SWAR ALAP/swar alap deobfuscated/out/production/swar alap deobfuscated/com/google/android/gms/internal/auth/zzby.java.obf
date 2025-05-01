@@ -1,0 +1,157 @@
+package com.google.android.gms.internal.auth;
+
+public enum zzby
+{
+  private final String zzaj;
+  
+  static
+  {
+    zzby localZzby1 = new zzby("CLIENT_LOGIN_DISABLED", 0, "ClientLoginDisabled");
+    zza = localZzby1;
+    zzby localZzby2 = new zzby("SOCKET_TIMEOUT", 1, "SocketTimeout");
+    zzb = localZzby2;
+    zzby localZzby3 = new zzby("SUCCESS", 2, "Ok");
+    zzc = localZzby3;
+    zzby localZzby4 = new zzby("UNKNOWN_ERROR", 3, "UNKNOWN_ERR");
+    zzd = localZzby4;
+    zzby localZzby5 = new zzby("NETWORK_ERROR", 4, "NetworkError");
+    zze = localZzby5;
+    zzby localZzby6 = new zzby("SERVICE_UNAVAILABLE", 5, "ServiceUnavailable");
+    zzf = localZzby6;
+    zzby localZzby7 = new zzby("INTNERNAL_ERROR", 6, "InternalError");
+    zzg = localZzby7;
+    zzby localZzby8 = new zzby("ILLEGAL_ARGUMENT", 7, "IllegalArgument");
+    zzh = localZzby8;
+    zzby localZzby9 = new zzby("BAD_AUTHENTICATION", 8, "BadAuthentication");
+    zzi = localZzby9;
+    zzby localZzby10 = new zzby("BAD_TOKEN_REQUEST", 9, "BAD_REQUEST");
+    zzj = localZzby10;
+    zzby localZzby11 = new zzby("EMPTY_CONSUMER_PKG_OR_SIG", 10, "EmptyConsumerPackageOrSig");
+    zzk = localZzby11;
+    zzby localZzby12 = new zzby("NEEDS_2F", 11, "InvalidSecondFactor");
+    zzl = localZzby12;
+    zzby localZzby13 = new zzby("NEEDS_POST_SIGN_IN_FLOW", 12, "PostSignInFlowRequired");
+    zzm = localZzby13;
+    zzby localZzby14 = new zzby("NEEDS_BROWSER", 13, "NeedsBrowser");
+    zzn = localZzby14;
+    zzby localZzby15 = new zzby("UNKNOWN", 14, "Unknown");
+    zzo = localZzby15;
+    zzby localZzby16 = new zzby("NOT_VERIFIED", 15, "NotVerified");
+    zzp = localZzby16;
+    zzby localZzby17 = new zzby("TERMS_NOT_AGREED", 16, "TermsNotAgreed");
+    zzq = localZzby17;
+    zzby localZzby18 = new zzby("ACCOUNT_DISABLED", 17, "AccountDisabled");
+    zzr = localZzby18;
+    zzby localZzby19 = new zzby("CAPTCHA", 18, "CaptchaRequired");
+    zzs = localZzby19;
+    zzby localZzby20 = new zzby("ACCOUNT_DELETED", 19, "AccountDeleted");
+    zzt = localZzby20;
+    zzby localZzby21 = new zzby("SERVICE_DISABLED", 20, "ServiceDisabled");
+    zzu = localZzby21;
+    zzby localZzby22 = new zzby("CHALLENGE_REQUIRED", 21, "ChallengeRequired");
+    zzv = localZzby22;
+    zzby localZzby23 = new zzby("NEED_PERMISSION", 22, "NeedPermission");
+    zzw = localZzby23;
+    zzby localZzby24 = new zzby("NEED_REMOTE_CONSENT", 23, "NeedRemoteConsent");
+    zzx = localZzby24;
+    zzby localZzby25 = new zzby("INVALID_SCOPE", 24, "INVALID_SCOPE");
+    zzy = localZzby25;
+    zzby localZzby26 = new zzby("USER_CANCEL", 25, "UserCancel");
+    zzz = localZzby26;
+    zzby localZzby27 = new zzby("PERMISSION_DENIED", 26, "PermissionDenied");
+    zzA = localZzby27;
+    zzby localZzby28 = new zzby("RESTRICTED_CLIENT", 27, "RESTRICTED_CLIENT");
+    zzB = localZzby28;
+    zzby localZzby29 = new zzby("INVALID_AUDIENCE", 28, "INVALID_AUDIENCE");
+    zzC = localZzby29;
+    zzby localZzby30 = new zzby("UNREGISTERED_ON_API_CONSOLE", 29, "UNREGISTERED_ON_API_CONSOLE");
+    zzD = localZzby30;
+    zzby localZzby31 = new zzby("THIRD_PARTY_DEVICE_MANAGEMENT_REQUIRED", 30, "ThirdPartyDeviceManagementRequired");
+    zzE = localZzby31;
+    zzby localZzby32 = new zzby("DM_INTERNAL_ERROR", 31, "DeviceManagementInternalError");
+    zzF = localZzby32;
+    zzby localZzby33 = new zzby("DM_SYNC_DISABLED", 32, "DeviceManagementSyncDisabled");
+    zzG = localZzby33;
+    zzby localZzby34 = new zzby("DM_ADMIN_BLOCKED", 33, "DeviceManagementAdminBlocked");
+    zzH = localZzby34;
+    zzby localZzby35 = new zzby("DM_ADMIN_PENDING_APPROVAL", 34, "DeviceManagementAdminPendingApproval");
+    zzI = localZzby35;
+    zzby localZzby36 = new zzby("DM_STALE_SYNC_REQUIRED", 35, "DeviceManagementStaleSyncRequired");
+    zzJ = localZzby36;
+    zzby localZzby37 = new zzby("DM_DEACTIVATED", 36, "DeviceManagementDeactivated");
+    zzK = localZzby37;
+    zzby localZzby38 = new zzby("DM_SCREENLOCK_REQUIRED", 37, "DeviceManagementScreenlockRequired");
+    zzL = localZzby38;
+    zzby localZzby39 = new zzby("DM_REQUIRED", 38, "DeviceManagementRequired");
+    zzM = localZzby39;
+    zzby localZzby40 = new zzby("DEVICE_MANAGEMENT_REQUIRED", 39, "DeviceManagementRequiredOrSyncDisabled");
+    zzN = localZzby40;
+    zzby localZzby41 = new zzby("ALREADY_HAS_GMAIL", 40, "ALREADY_HAS_GMAIL");
+    zzO = localZzby41;
+    zzby localZzby42 = new zzby("BAD_PASSWORD", 41, "WeakPassword");
+    zzP = localZzby42;
+    zzby localZzby43 = new zzby("BAD_REQUEST", 42, "BadRequest");
+    zzQ = localZzby43;
+    zzby localZzby44 = new zzby("BAD_USERNAME", 43, "BadUsername");
+    zzR = localZzby44;
+    zzby localZzby45 = new zzby("DELETED_GMAIL", 44, "DeletedGmail");
+    zzS = localZzby45;
+    zzby localZzby46 = new zzby("EXISTING_USERNAME", 45, "ExistingUsername");
+    zzT = localZzby46;
+    zzby localZzby47 = new zzby("LOGIN_FAIL", 46, "LoginFail");
+    zzU = localZzby47;
+    zzby localZzby48 = new zzby("NOT_LOGGED_IN", 47, "NotLoggedIn");
+    zzV = localZzby48;
+    zzby localZzby49 = new zzby("NO_GMAIL", 48, "NoGmail");
+    zzW = localZzby49;
+    zzby localZzby50 = new zzby("REQUEST_DENIED", 49, "RequestDenied");
+    zzX = localZzby50;
+    zzby localZzby51 = new zzby("SERVER_ERROR", 50, "ServerError");
+    zzY = localZzby51;
+    zzby localZzby52 = new zzby("USERNAME_UNAVAILABLE", 51, "UsernameUnavailable");
+    zzZ = localZzby52;
+    zzby localZzby53 = new zzby("GPLUS_OTHER", 52, "GPlusOther");
+    zzaa = localZzby53;
+    zzby localZzby54 = new zzby("GPLUS_NICKNAME", 53, "GPlusNickname");
+    zzab = localZzby54;
+    zzby localZzby55 = new zzby("GPLUS_INVALID_CHAR", 54, "GPlusInvalidChar");
+    zzac = localZzby55;
+    zzby localZzby56 = new zzby("GPLUS_INTERSTITIAL", 55, "GPlusInterstitial");
+    zzad = localZzby56;
+    zzby localZzby57 = new zzby("GPLUS_PROFILE_ERROR", 56, "ProfileUpgradeError");
+    zzae = localZzby57;
+    zzby localZzby58 = new zzby("AUTH_SECURITY_ERROR", 57, "AuthSecurityError");
+    zzaf = localZzby58;
+    zzby localZzby59 = new zzby("AUTH_BINDING_ERROR", 58, "AuthBindingError");
+    zzag = localZzby59;
+    zzby localZzby60 = new zzby("ACCOUNT_NOT_PRESENT", 59, "AccountNotPresent");
+    zzah = localZzby60;
+    zzai = new zzby[] { localZzby1, localZzby2, localZzby3, localZzby4, localZzby5, localZzby6, localZzby7, localZzby8, localZzby9, localZzby10, localZzby11, localZzby12, localZzby13, localZzby14, localZzby15, localZzby16, localZzby17, localZzby18, localZzby19, localZzby20, localZzby21, localZzby22, localZzby23, localZzby24, localZzby25, localZzby26, localZzby27, localZzby28, localZzby29, localZzby30, localZzby31, localZzby32, localZzby33, localZzby34, localZzby35, localZzby36, localZzby37, localZzby38, localZzby39, localZzby40, localZzby41, localZzby42, localZzby43, localZzby44, localZzby45, localZzby46, localZzby47, localZzby48, localZzby49, localZzby50, localZzby51, localZzby52, localZzby53, localZzby54, localZzby55, localZzby56, localZzby57, localZzby58, localZzby59, localZzby60 };
+  }
+  
+  private zzby(String paramString)
+  {
+    zzaj = paramString;
+  }
+  
+  public static final zzby zza(String paramString)
+  {
+    zzby[] arrayOfZzby = values();
+    int j = arrayOfZzby.length;
+    int i = 0;
+    while (i < j)
+    {
+      zzby localZzby = arrayOfZzby[i];
+      if (zzaj.equals(paramString)) {
+        return localZzby;
+      }
+      i += 1;
+    }
+    return zzo;
+  }
+  
+  public static boolean zzb(zzby paramZzby)
+  {
+    return (zzi.equals(paramZzby)) || (zzs.equals(paramZzby)) || (zzw.equals(paramZzby)) || (zzx.equals(paramZzby)) || (zzn.equals(paramZzby)) || (zzz.equals(paramZzby)) || (zzN.equals(paramZzby)) || (zzF.equals(paramZzby)) || (zzG.equals(paramZzby)) || (zzH.equals(paramZzby)) || (zzI.equals(paramZzby)) || (zzJ.equals(paramZzby)) || (zzK.equals(paramZzby)) || (zzM.equals(paramZzby)) || (zzE.equals(paramZzby)) || (zzL.equals(paramZzby));
+  }
+}

@@ -1,0 +1,22 @@
+package com.google.android.gms.internal.auth;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.w;
+import n4.j;
+
+final class zzbn
+  extends zzbd
+{
+  zzbn(zzbo paramZzbo, j paramJ) {}
+  
+  public final void zzc(String paramString)
+  {
+    Status localStatus;
+    if (paramString != null) {
+      localStatus = Status.k;
+    } else {
+      localStatus = new Status(3006);
+    }
+    w.a(localStatus, paramString, zza);
+  }
+}

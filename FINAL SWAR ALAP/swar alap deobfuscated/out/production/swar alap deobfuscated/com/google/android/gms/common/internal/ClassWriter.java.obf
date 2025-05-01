@@ -1,0 +1,96 @@
+package com.google.android.gms.common.internal;
+
+import android.accounts.Account;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.api.Scope;
+import q3.d;
+
+public class g
+  extends s3.a
+{
+  public static final Parcelable.Creator<g> CREATOR = new x1();
+  static final Scope[] s = new Scope[0];
+  static final d[] t = new d[0];
+  final int e;
+  final int f;
+  final int g;
+  String h;
+  IBinder i;
+  Scope[] j;
+  Bundle k;
+  Account l;
+  d[] m;
+  d[] n;
+  final boolean o;
+  final int p;
+  boolean q;
+  private final String r;
+  
+  g(int paramInt1, int paramInt2, int paramInt3, String paramString1, IBinder paramIBinder, Scope[] paramArrayOfScope, Bundle paramBundle, Account paramAccount, d[] paramArrayOfD1, d[] paramArrayOfD2, boolean paramBoolean1, int paramInt4, boolean paramBoolean2, String paramString2)
+  {
+    Scope[] arrayOfScope = paramArrayOfScope;
+    if (paramArrayOfScope == null) {
+      arrayOfScope = s;
+    }
+    paramArrayOfScope = paramBundle;
+    if (paramBundle == null) {
+      paramArrayOfScope = new Bundle();
+    }
+    paramBundle = paramArrayOfD1;
+    if (paramArrayOfD1 == null) {
+      paramBundle = t;
+    }
+    paramArrayOfD1 = paramArrayOfD2;
+    if (paramArrayOfD2 == null) {
+      paramArrayOfD1 = t;
+    }
+    e = paramInt1;
+    f = paramInt2;
+    g = paramInt3;
+    if ("com.google.android.gms".equals(paramString1)) {
+      h = "com.google.android.gms";
+    } else {
+      h = paramString1;
+    }
+    if (paramInt1 < 2)
+    {
+      if (paramIBinder != null) {
+        paramString1 = a.Y(k.a.c(paramIBinder));
+      } else {
+        paramString1 = null;
+      }
+      l = paramString1;
+    }
+    else
+    {
+      i = paramIBinder;
+      l = paramAccount;
+    }
+    j = arrayOfScope;
+    k = paramArrayOfScope;
+    m = paramBundle;
+    n = paramArrayOfD1;
+    o = paramBoolean1;
+    p = paramInt4;
+    q = paramBoolean2;
+    r = paramString2;
+  }
+  
+  public Bundle U()
+  {
+    return k;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    x1.a(this, paramParcel, paramInt);
+  }
+  
+  public final String zza()
+  {
+    return r;
+  }
+}

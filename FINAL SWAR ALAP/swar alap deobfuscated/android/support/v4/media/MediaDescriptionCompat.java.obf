@@ -1,0 +1,229 @@
+package android.support.v4.media;
+
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.BaseBundle;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import android.support.v4.media.session.MediaSessionCompat;
+
+public final class MediaDescriptionCompat
+  implements Parcelable
+{
+  public static final Parcelable.Creator<MediaDescriptionCompat> CREATOR = new a();
+  private final String e;
+  private final CharSequence f;
+  private final CharSequence g;
+  private final CharSequence h;
+  private final Bitmap i;
+  private final Uri j;
+  private final Bundle k;
+  private final Uri l;
+  private Object m;
+  
+  MediaDescriptionCompat(String paramString, CharSequence paramCharSequence1, CharSequence paramCharSequence2, CharSequence paramCharSequence3, Bitmap paramBitmap, Uri paramUri1, Bundle paramBundle, Uri paramUri2)
+  {
+    e = paramString;
+    f = paramCharSequence1;
+    g = paramCharSequence2;
+    h = paramCharSequence3;
+    i = paramBitmap;
+    j = paramUri1;
+    k = paramBundle;
+    l = paramUri2;
+  }
+  
+  public static MediaDescriptionCompat a(Object paramObject)
+  {
+    Object localObject1 = null;
+    Object localObject2 = null;
+    if (paramObject != null)
+    {
+      int n = Build.VERSION.SDK_INT;
+      b localB = new b();
+      localB.f(a.f(paramObject));
+      localB.i(a.h(paramObject));
+      localB.h(a.g(paramObject));
+      localB.b(a.b(paramObject));
+      localB.d(a.d(paramObject));
+      localB.e(a.e(paramObject));
+      Bundle localBundle = a.c(paramObject);
+      if (localBundle != null)
+      {
+        MediaSessionCompat.a(localBundle);
+        localObject1 = (Uri)localBundle.getParcelable("android.support.v4.media.description.MEDIA_URI");
+      }
+      else
+      {
+        localObject1 = null;
+      }
+      if (localObject1 != null)
+      {
+        if ((!localBundle.containsKey("android.support.v4.media.description.NULL_BUNDLE_FLAG")) || (localBundle.size() != 2))
+        {
+          localBundle.remove("android.support.v4.media.description.MEDIA_URI");
+          localBundle.remove("android.support.v4.media.description.NULL_BUNDLE_FLAG");
+        }
+      }
+      else {
+        localObject2 = localBundle;
+      }
+      localB.c(localObject2);
+      if (localObject1 != null) {
+        localB.g((Uri)localObject1);
+      } else if (n >= 23) {
+        localB.g(d.a(paramObject));
+      }
+      localObject1 = localB.a();
+      m = paramObject;
+    }
+    return localObject1;
+  }
+  
+  public Object b()
+  {
+    Object localObject2 = m;
+    Object localObject1 = localObject2;
+    if (localObject2 == null)
+    {
+      int n = Build.VERSION.SDK_INT;
+      Object localObject3 = a.a.b();
+      a.a.g(localObject3, e);
+      a.a.i(localObject3, f);
+      a.a.h(localObject3, g);
+      a.a.c(localObject3, h);
+      a.a.e(localObject3, i);
+      a.a.f(localObject3, j);
+      localObject2 = k;
+      localObject1 = localObject2;
+      if (n < 23)
+      {
+        localObject1 = localObject2;
+        if (l != null)
+        {
+          localObject1 = localObject2;
+          if (localObject2 == null)
+          {
+            localObject1 = new Bundle();
+            ((Bundle)localObject1).putBoolean("android.support.v4.media.description.NULL_BUNDLE_FLAG", true);
+          }
+          ((Bundle)localObject1).putParcelable("android.support.v4.media.description.MEDIA_URI", l);
+        }
+      }
+      a.a.d(localObject3, (Bundle)localObject1);
+      if (n >= 23) {
+        d.a.a(localObject3, l);
+      }
+      localObject1 = a.a.a(localObject3);
+      m = localObject1;
+    }
+    return localObject1;
+  }
+  
+  public int describeContents()
+  {
+    return 0;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(f);
+    localStringBuilder.append(", ");
+    localStringBuilder.append(g);
+    localStringBuilder.append(", ");
+    localStringBuilder.append(h);
+    return localStringBuilder.toString();
+  }
+  
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    a.i(b(), paramParcel, paramInt);
+  }
+  
+  static final class a
+    implements Parcelable.Creator
+  {
+    a() {}
+    
+    public MediaDescriptionCompat a(Parcel paramParcel)
+    {
+      return MediaDescriptionCompat.a(a.a(paramParcel));
+    }
+    
+    public MediaDescriptionCompat[] b(int paramInt)
+    {
+      return new MediaDescriptionCompat[paramInt];
+    }
+  }
+  
+  public static final class b
+  {
+    private String a;
+    private CharSequence b;
+    private CharSequence c;
+    private CharSequence d;
+    private Bitmap e;
+    private Uri f;
+    private Bundle g;
+    private Uri h;
+    
+    public b() {}
+    
+    public MediaDescriptionCompat a()
+    {
+      return new MediaDescriptionCompat(a, b, c, d, e, f, g, h);
+    }
+    
+    public b b(CharSequence paramCharSequence)
+    {
+      d = paramCharSequence;
+      return this;
+    }
+    
+    public b c(Bundle paramBundle)
+    {
+      g = paramBundle;
+      return this;
+    }
+    
+    public b d(Bitmap paramBitmap)
+    {
+      e = paramBitmap;
+      return this;
+    }
+    
+    public b e(Uri paramUri)
+    {
+      f = paramUri;
+      return this;
+    }
+    
+    public b f(String paramString)
+    {
+      a = paramString;
+      return this;
+    }
+    
+    public b g(Uri paramUri)
+    {
+      h = paramUri;
+      return this;
+    }
+    
+    public b h(CharSequence paramCharSequence)
+    {
+      c = paramCharSequence;
+      return this;
+    }
+    
+    public b i(CharSequence paramCharSequence)
+    {
+      b = paramCharSequence;
+      return this;
+    }
+  }
+}

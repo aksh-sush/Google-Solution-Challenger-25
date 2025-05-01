@@ -1,0 +1,18 @@
+package androidx.core.app;
+
+import a1.a;
+import android.app.PendingIntent;
+import androidx.core.graphics.drawable.IconCompat;
+
+public final class RemoteActionCompat
+  implements a
+{
+  public IconCompat a;
+  public CharSequence b;
+  public CharSequence c;
+  public PendingIntent d;
+  public boolean e;
+  public boolean f;
+  
+  public RemoteActionCompat() {}
+}

@@ -1,0 +1,78 @@
+package androidx.core.widget;
+
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.view.View;
+import android.widget.ImageView;
+
+public abstract class e
+{
+  public static ColorStateList a(ImageView paramImageView)
+  {
+    return a.a(paramImageView);
+  }
+  
+  public static PorterDuff.Mode b(ImageView paramImageView)
+  {
+    return a.b(paramImageView);
+  }
+  
+  public static void c(ImageView paramImageView, ColorStateList paramColorStateList)
+  {
+    int i = Build.VERSION.SDK_INT;
+    a.c(paramImageView, paramColorStateList);
+    if (i == 21)
+    {
+      paramColorStateList = paramImageView.getDrawable();
+      if ((paramColorStateList != null) && (a.a(paramImageView) != null))
+      {
+        if (paramColorStateList.isStateful()) {
+          paramColorStateList.setState(paramImageView.getDrawableState());
+        }
+        paramImageView.setImageDrawable(paramColorStateList);
+      }
+    }
+  }
+  
+  public static void d(ImageView paramImageView, PorterDuff.Mode paramMode)
+  {
+    int i = Build.VERSION.SDK_INT;
+    a.d(paramImageView, paramMode);
+    if (i == 21)
+    {
+      paramMode = paramImageView.getDrawable();
+      if ((paramMode != null) && (a.a(paramImageView) != null))
+      {
+        if (paramMode.isStateful()) {
+          paramMode.setState(paramImageView.getDrawableState());
+        }
+        paramImageView.setImageDrawable(paramMode);
+      }
+    }
+  }
+  
+  static abstract class a
+  {
+    static ColorStateList a(ImageView paramImageView)
+    {
+      return paramImageView.getImageTintList();
+    }
+    
+    static PorterDuff.Mode b(ImageView paramImageView)
+    {
+      return paramImageView.getImageTintMode();
+    }
+    
+    static void c(ImageView paramImageView, ColorStateList paramColorStateList)
+    {
+      paramImageView.setImageTintList(paramColorStateList);
+    }
+    
+    static void d(ImageView paramImageView, PorterDuff.Mode paramMode)
+    {
+      paramImageView.setImageTintMode(paramMode);
+    }
+  }
+}

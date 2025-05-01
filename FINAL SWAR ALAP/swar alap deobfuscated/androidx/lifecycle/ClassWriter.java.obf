@@ -1,0 +1,129 @@
+package androidx.lifecycle;
+
+import db.l;
+import java.util.concurrent.atomic.AtomicReference;
+
+public abstract class i
+{
+  private AtomicReference a = new AtomicReference();
+  
+  public i() {}
+  
+  public abstract void a(m paramM);
+  
+  public abstract b b();
+  
+  public abstract void c(m paramM);
+  
+  public static enum a
+  {
+    public static final a Companion = new a(null);
+    
+    static
+    {
+      ON_RESUME = new a("ON_RESUME", 2);
+      ON_PAUSE = new a("ON_PAUSE", 3);
+      ON_STOP = new a("ON_STOP", 4);
+      ON_DESTROY = new a("ON_DESTROY", 5);
+      ON_ANY = new a("ON_ANY", 6);
+    }
+    
+    public static final a c(i.b paramB)
+    {
+      return Companion.a(paramB);
+    }
+    
+    public static final a f(i.b paramB)
+    {
+      return Companion.c(paramB);
+    }
+    
+    public final i.b d()
+    {
+      switch (b.a[ordinal()])
+      {
+      default: 
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append(this);
+        localStringBuilder.append(" has no target state");
+        throw new IllegalArgumentException(localStringBuilder.toString());
+      case 6: 
+        return i.b.e;
+      case 5: 
+        return i.b.i;
+      case 3: 
+      case 4: 
+        return i.b.h;
+      }
+      return i.b.g;
+    }
+    
+    public static final class a
+    {
+      private a() {}
+      
+      public final i.a a(i.b paramB)
+      {
+        l.e(paramB, "state");
+        int i = a.a[paramB.ordinal()];
+        if (i != 1)
+        {
+          if (i != 2)
+          {
+            if (i != 3) {
+              return null;
+            }
+            return i.a.ON_PAUSE;
+          }
+          return i.a.ON_STOP;
+        }
+        return i.a.ON_DESTROY;
+      }
+      
+      public final i.a b(i.b paramB)
+      {
+        l.e(paramB, "state");
+        int i = a.a[paramB.ordinal()];
+        if (i != 1)
+        {
+          if (i != 2)
+          {
+            if (i != 5) {
+              return null;
+            }
+            return i.a.ON_CREATE;
+          }
+          return i.a.ON_RESUME;
+        }
+        return i.a.ON_START;
+      }
+      
+      public final i.a c(i.b paramB)
+      {
+        l.e(paramB, "state");
+        int i = a.a[paramB.ordinal()];
+        if (i != 1)
+        {
+          if (i != 2)
+          {
+            if (i != 3) {
+              return null;
+            }
+            return i.a.ON_RESUME;
+          }
+          return i.a.ON_START;
+        }
+        return i.a.ON_CREATE;
+      }
+    }
+  }
+  
+  public static enum b
+  {
+    public final boolean c(b paramB)
+    {
+      l.e(paramB, "state");
+      return compareTo(paramB) >= 0;
+    }
+  }
+}

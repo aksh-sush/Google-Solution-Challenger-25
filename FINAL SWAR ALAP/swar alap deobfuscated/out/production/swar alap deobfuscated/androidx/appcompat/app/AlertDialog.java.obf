@@ -1,0 +1,162 @@
+package androidx.appcompat.app;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface.OnKeyListener;
+import android.content.res.Resources.Theme;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import f.a;
+
+public class c
+  extends x
+  implements DialogInterface
+{
+  final AlertController j = new AlertController(getContext(), this, getWindow());
+  
+  protected c(Context paramContext, int paramInt)
+  {
+    super(paramContext, l(paramContext, paramInt));
+  }
+  
+  static int l(Context paramContext, int paramInt)
+  {
+    if ((paramInt >>> 24 & 0xFF) >= 1) {
+      return paramInt;
+    }
+    TypedValue localTypedValue = new TypedValue();
+    paramContext.getTheme().resolveAttribute(a.l, localTypedValue, true);
+    return resourceId;
+  }
+  
+  public ListView j()
+  {
+    return j.d();
+  }
+  
+  protected void onCreate(Bundle paramBundle)
+  {
+    super.onCreate(paramBundle);
+    j.e();
+  }
+  
+  public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent)
+  {
+    if (j.g(paramInt, paramKeyEvent)) {
+      return true;
+    }
+    return super.onKeyDown(paramInt, paramKeyEvent);
+  }
+  
+  public boolean onKeyUp(int paramInt, KeyEvent paramKeyEvent)
+  {
+    if (j.h(paramInt, paramKeyEvent)) {
+      return true;
+    }
+    return super.onKeyUp(paramInt, paramKeyEvent);
+  }
+  
+  public void setTitle(CharSequence paramCharSequence)
+  {
+    super.setTitle(paramCharSequence);
+    j.q(paramCharSequence);
+  }
+  
+  public static class a
+  {
+    private final AlertController.f a;
+    private final int b;
+    
+    public a(Context paramContext)
+    {
+      this(paramContext, c.l(paramContext, 0));
+    }
+    
+    public a(Context paramContext, int paramInt)
+    {
+      a = new AlertController.f(new ContextThemeWrapper(paramContext, c.l(paramContext, paramInt)));
+      b = paramInt;
+    }
+    
+    public c a()
+    {
+      c localC = new c(a.a, b);
+      a.a(j);
+      localC.setCancelable(a.r);
+      if (a.r) {
+        localC.setCanceledOnTouchOutside(true);
+      }
+      localC.setOnCancelListener(a.s);
+      localC.setOnDismissListener(a.t);
+      DialogInterface.OnKeyListener localOnKeyListener = a.u;
+      if (localOnKeyListener != null) {
+        localC.setOnKeyListener(localOnKeyListener);
+      }
+      return localC;
+    }
+    
+    public Context b()
+    {
+      return a.a;
+    }
+    
+    public a c(ListAdapter paramListAdapter, DialogInterface.OnClickListener paramOnClickListener)
+    {
+      AlertController.f localF = a;
+      w = paramListAdapter;
+      x = paramOnClickListener;
+      return this;
+    }
+    
+    public a d(View paramView)
+    {
+      a.g = paramView;
+      return this;
+    }
+    
+    public a e(Drawable paramDrawable)
+    {
+      a.d = paramDrawable;
+      return this;
+    }
+    
+    public a f(DialogInterface.OnKeyListener paramOnKeyListener)
+    {
+      a.u = paramOnKeyListener;
+      return this;
+    }
+    
+    public a g(ListAdapter paramListAdapter, int paramInt, DialogInterface.OnClickListener paramOnClickListener)
+    {
+      AlertController.f localF = a;
+      w = paramListAdapter;
+      x = paramOnClickListener;
+      I = paramInt;
+      H = true;
+      return this;
+    }
+    
+    public a h(CharSequence paramCharSequence)
+    {
+      a.f = paramCharSequence;
+      return this;
+    }
+    
+    public a i(View paramView)
+    {
+      AlertController.f localF = a;
+      z = paramView;
+      y = 0;
+      E = false;
+      return this;
+    }
+  }
+}

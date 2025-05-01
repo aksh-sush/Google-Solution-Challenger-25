@@ -1,0 +1,48 @@
+package com.google.android.gms.common.internal;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import java.util.ArrayList;
+import java.util.List;
+import s3.a;
+import s3.c;
+
+public class w
+  extends a
+{
+  public static final Parcelable.Creator<w> CREATOR = new b0();
+  private final int e;
+  private List f;
+  
+  public w(int paramInt, List paramList)
+  {
+    e = paramInt;
+    f = paramList;
+  }
+  
+  public final int U()
+  {
+    return e;
+  }
+  
+  public final List V()
+  {
+    return f;
+  }
+  
+  public final void W(p paramP)
+  {
+    if (f == null) {
+      f = new ArrayList();
+    }
+    f.add(paramP);
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramInt = c.a(paramParcel);
+    c.t(paramParcel, 1, e);
+    c.H(paramParcel, 2, f, false);
+    c.b(paramParcel, paramInt);
+  }
+}

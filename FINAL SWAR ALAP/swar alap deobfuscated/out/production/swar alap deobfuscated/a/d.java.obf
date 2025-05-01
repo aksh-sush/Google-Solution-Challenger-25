@@ -1,0 +1,77 @@
+package n6;
+
+import android.util.Log;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView.e0;
+import java.util.List;
+import k6.b;
+import k6.j;
+import k6.o;
+
+public class e
+  implements d
+{
+  public e() {}
+  
+  public void a(RecyclerView.e0 paramE0, int paramInt)
+  {
+    j localJ = b.P(paramE0, paramInt);
+    if (localJ != null) {
+      try
+      {
+        localJ.e(paramE0);
+        return;
+      }
+      catch (AbstractMethodError paramE0)
+      {
+        Log.e("FastAdapter", paramE0.toString());
+      }
+    }
+  }
+  
+  public void b(RecyclerView.e0 paramE0, int paramInt, List paramList)
+  {
+    Object localObject = e.getTag(o.b);
+    if ((localObject instanceof b))
+    {
+      localObject = ((b)localObject).R(paramInt);
+      if (localObject != null)
+      {
+        ((j)localObject).h(paramE0, paramList);
+        e.setTag(o.a, localObject);
+      }
+    }
+  }
+  
+  public boolean c(RecyclerView.e0 paramE0, int paramInt)
+  {
+    j localJ = (j)e.getTag(o.a);
+    if (localJ != null) {
+      return localJ.f(paramE0);
+    }
+    return false;
+  }
+  
+  public void d(RecyclerView.e0 paramE0, int paramInt)
+  {
+    j localJ = b.P(paramE0, paramInt);
+    if (localJ != null) {
+      localJ.s(paramE0);
+    }
+  }
+  
+  public void e(RecyclerView.e0 paramE0, int paramInt)
+  {
+    Object localObject = e;
+    paramInt = o.a;
+    localObject = (j)((View)localObject).getTag(paramInt);
+    if (localObject != null)
+    {
+      ((j)localObject).j(paramE0);
+      e.setTag(paramInt, null);
+      e.setTag(o.b, null);
+      return;
+    }
+    Log.e("FastAdapter", "The bindView method of this item should set the `Tag` on its itemView (https://github.com/mikepenz/FastAdapter/blob/develop/library-core/src/main/java/com/mikepenz/fastadapter/items/AbstractItem.java#L189)");
+  }
+}

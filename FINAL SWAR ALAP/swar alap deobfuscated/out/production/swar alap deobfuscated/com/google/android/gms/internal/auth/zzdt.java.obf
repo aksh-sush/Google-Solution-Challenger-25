@@ -1,0 +1,332 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.List;
+
+final class zzdt
+{
+  static int zza(byte[] paramArrayOfByte, int paramInt, zzds paramZzds)
+  {
+    paramInt = zzj(paramArrayOfByte, paramInt, paramZzds);
+    int i = zza;
+    if (i >= 0)
+    {
+      if (i <= paramArrayOfByte.length - paramInt)
+      {
+        if (i == 0)
+        {
+          zzc = zzee.zzb;
+          return paramInt;
+        }
+        zzc = zzee.zzk(paramArrayOfByte, paramInt, i);
+        return paramInt + i;
+      }
+      throw zzfa.zzf();
+    }
+    throw zzfa.zzc();
+  }
+  
+  static int zzb(byte[] paramArrayOfByte, int paramInt)
+  {
+    int i = paramArrayOfByte[paramInt];
+    int j = paramArrayOfByte[(paramInt + 1)];
+    int k = paramArrayOfByte[(paramInt + 2)];
+    return (paramArrayOfByte[(paramInt + 3)] & 0xFF) << 24 | i & 0xFF | (j & 0xFF) << 8 | (k & 0xFF) << 16;
+  }
+  
+  static int zzc(zzgh paramZzgh, byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3, zzds paramZzds)
+  {
+    paramZzgh = (zzfz)paramZzgh;
+    Object localObject = paramZzgh.zzd();
+    paramInt1 = paramZzgh.zzb(localObject, paramArrayOfByte, paramInt1, paramInt2, paramInt3, paramZzds);
+    paramZzgh.zze(localObject);
+    zzc = localObject;
+    return paramInt1;
+  }
+  
+  static int zzd(zzgh paramZzgh, byte[] paramArrayOfByte, int paramInt1, int paramInt2, zzds paramZzds)
+  {
+    int j = paramInt1 + 1;
+    int k = paramArrayOfByte[paramInt1];
+    paramInt1 = j;
+    int i = k;
+    if (k < 0)
+    {
+      paramInt1 = zzk(k, paramArrayOfByte, j, paramZzds);
+      i = zza;
+    }
+    if ((i >= 0) && (i <= paramInt2 - paramInt1))
+    {
+      Object localObject = paramZzgh.zzd();
+      paramInt2 = i + paramInt1;
+      paramZzgh.zzg(localObject, paramArrayOfByte, paramInt1, paramInt2, paramZzds);
+      paramZzgh.zze(localObject);
+      zzc = localObject;
+      return paramInt2;
+    }
+    throw zzfa.zzf();
+  }
+  
+  static int zze(zzgh paramZzgh, int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, zzey paramZzey, zzds paramZzds)
+  {
+    int i;
+    for (paramInt2 = zzd(paramZzgh, paramArrayOfByte, paramInt2, paramInt3, paramZzds);; paramInt2 = zzd(paramZzgh, paramArrayOfByte, i, paramInt3, paramZzds))
+    {
+      paramZzey.add(zzc);
+      if (paramInt2 >= paramInt3) {
+        break;
+      }
+      i = zzj(paramArrayOfByte, paramInt2, paramZzds);
+      if (paramInt1 != zza) {
+        return paramInt2;
+      }
+    }
+    return paramInt2;
+  }
+  
+  static int zzf(byte[] paramArrayOfByte, int paramInt, zzey paramZzey, zzds paramZzds)
+  {
+    paramZzey = (zzev)paramZzey;
+    paramInt = zzj(paramArrayOfByte, paramInt, paramZzds);
+    int i = zza + paramInt;
+    while (paramInt < i)
+    {
+      paramInt = zzj(paramArrayOfByte, paramInt, paramZzds);
+      paramZzey.zze(zza);
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw zzfa.zzf();
+  }
+  
+  static int zzg(byte[] paramArrayOfByte, int paramInt, zzds paramZzds)
+  {
+    paramInt = zzj(paramArrayOfByte, paramInt, paramZzds);
+    int i = zza;
+    if (i >= 0)
+    {
+      if (i == 0)
+      {
+        zzc = "";
+        return paramInt;
+      }
+      zzc = new String(paramArrayOfByte, paramInt, i, zzez.zzb);
+      return paramInt + i;
+    }
+    throw zzfa.zzc();
+  }
+  
+  static int zzh(byte[] paramArrayOfByte, int paramInt, zzds paramZzds)
+  {
+    paramInt = zzj(paramArrayOfByte, paramInt, paramZzds);
+    int i = zza;
+    if (i >= 0)
+    {
+      if (i == 0)
+      {
+        zzc = "";
+        return paramInt;
+      }
+      zzc = zzhm.zzb(paramArrayOfByte, paramInt, i);
+      return paramInt + i;
+    }
+    throw zzfa.zzc();
+  }
+  
+  static int zzi(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, zzgz paramZzgz, zzds paramZzds)
+  {
+    if (paramInt1 >>> 3 != 0)
+    {
+      int i = paramInt1 & 0x7;
+      if (i != 0)
+      {
+        if (i != 1)
+        {
+          if (i != 2)
+          {
+            if (i != 3)
+            {
+              if (i == 5)
+              {
+                paramZzgz.zzf(paramInt1, Integer.valueOf(zzb(paramArrayOfByte, paramInt2)));
+                return paramInt2 + 4;
+              }
+              throw zzfa.zza();
+            }
+            int k = paramInt1 & 0xFFFFFFF8 | 0x4;
+            zzgz localZzgz = zzgz.zzc();
+            i = 0;
+            int j;
+            for (;;)
+            {
+              j = paramInt2;
+              if (paramInt2 >= paramInt3) {
+                break;
+              }
+              j = zzj(paramArrayOfByte, paramInt2, paramZzds);
+              paramInt2 = zza;
+              i = paramInt2;
+              if (paramInt2 == k)
+              {
+                paramInt2 = j;
+                j = paramInt2;
+                break;
+              }
+              j = zzi(i, paramArrayOfByte, j, paramInt3, localZzgz, paramZzds);
+              i = paramInt2;
+              paramInt2 = j;
+            }
+            if ((j <= paramInt3) && (i == k))
+            {
+              paramZzgz.zzf(paramInt1, localZzgz);
+              return j;
+            }
+            throw zzfa.zzd();
+          }
+          paramInt2 = zzj(paramArrayOfByte, paramInt2, paramZzds);
+          paramInt3 = zza;
+          if (paramInt3 >= 0)
+          {
+            if (paramInt3 <= paramArrayOfByte.length - paramInt2)
+            {
+              if (paramInt3 == 0) {
+                paramArrayOfByte = zzee.zzb;
+              } else {
+                paramArrayOfByte = zzee.zzk(paramArrayOfByte, paramInt2, paramInt3);
+              }
+              paramZzgz.zzf(paramInt1, paramArrayOfByte);
+              return paramInt2 + paramInt3;
+            }
+            throw zzfa.zzf();
+          }
+          throw zzfa.zzc();
+        }
+        paramZzgz.zzf(paramInt1, Long.valueOf(zzn(paramArrayOfByte, paramInt2)));
+        return paramInt2 + 8;
+      }
+      paramInt2 = zzm(paramArrayOfByte, paramInt2, paramZzds);
+      paramZzgz.zzf(paramInt1, Long.valueOf(zzb));
+      return paramInt2;
+    }
+    throw zzfa.zza();
+  }
+  
+  static int zzj(byte[] paramArrayOfByte, int paramInt, zzds paramZzds)
+  {
+    int i = paramInt + 1;
+    paramInt = paramArrayOfByte[paramInt];
+    if (paramInt >= 0)
+    {
+      zza = paramInt;
+      return i;
+    }
+    return zzk(paramInt, paramArrayOfByte, i, paramZzds);
+  }
+  
+  static int zzk(int paramInt1, byte[] paramArrayOfByte, int paramInt2, zzds paramZzds)
+  {
+    int j = paramInt1 & 0x7F;
+    paramInt1 = paramInt2 + 1;
+    paramInt2 = paramArrayOfByte[paramInt2];
+    if (paramInt2 >= 0)
+    {
+      i = paramInt2 << 7;
+      paramInt2 = j;
+      zza = (paramInt2 | i);
+      return paramInt1;
+    }
+    paramInt2 = j | (paramInt2 & 0x7F) << 7;
+    int i = paramInt1 + 1;
+    paramInt1 = paramArrayOfByte[paramInt1];
+    if (paramInt1 >= 0)
+    {
+      j = paramInt1 << 14;
+      paramInt1 = i;
+    }
+    for (i = j;; i = j << 28)
+    {
+      zza = (paramInt2 | i);
+      return paramInt1;
+      paramInt2 |= (paramInt1 & 0x7F) << 14;
+      j = i + 1;
+      paramInt1 = paramArrayOfByte[i];
+      if (paramInt1 >= 0)
+      {
+        i = paramInt1 << 21;
+        paramInt1 = j;
+        break;
+      }
+      paramInt2 |= (paramInt1 & 0x7F) << 21;
+      paramInt1 = j + 1;
+      j = paramArrayOfByte[j];
+      if (j < 0) {
+        break label157;
+      }
+    }
+    for (;;)
+    {
+      label157:
+      i = paramInt1 + 1;
+      if (paramArrayOfByte[paramInt1] >= 0) {
+        break;
+      }
+      paramInt1 = i;
+    }
+    zza = (paramInt2 | (j & 0x7F) << 28);
+    return i;
+  }
+  
+  static int zzl(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, zzey paramZzey, zzds paramZzds)
+  {
+    paramZzey = (zzev)paramZzey;
+    int i;
+    for (paramInt2 = zzj(paramArrayOfByte, paramInt2, paramZzds);; paramInt2 = zzj(paramArrayOfByte, i, paramZzds))
+    {
+      paramZzey.zze(zza);
+      if (paramInt2 >= paramInt3) {
+        break;
+      }
+      i = zzj(paramArrayOfByte, paramInt2, paramZzds);
+      if (paramInt1 != zza) {
+        return paramInt2;
+      }
+    }
+    return paramInt2;
+  }
+  
+  static int zzm(byte[] paramArrayOfByte, int paramInt, zzds paramZzds)
+  {
+    int i = paramInt + 1;
+    long l = paramArrayOfByte[paramInt];
+    if (l >= 0L)
+    {
+      zzb = l;
+      return i;
+    }
+    paramInt = i + 1;
+    int j = paramArrayOfByte[i];
+    l = l & 0x7F | (j & 0x7F) << 7;
+    i = 7;
+    while (j < 0)
+    {
+      j = paramArrayOfByte[paramInt];
+      i += 7;
+      l |= (j & 0x7F) << i;
+      paramInt += 1;
+    }
+    zzb = l;
+    return paramInt;
+  }
+  
+  static long zzn(byte[] paramArrayOfByte, int paramInt)
+  {
+    long l1 = paramArrayOfByte[paramInt];
+    long l2 = paramArrayOfByte[(paramInt + 1)];
+    long l3 = paramArrayOfByte[(paramInt + 2)];
+    long l4 = paramArrayOfByte[(paramInt + 3)];
+    long l5 = paramArrayOfByte[(paramInt + 4)];
+    long l6 = paramArrayOfByte[(paramInt + 5)];
+    long l7 = paramArrayOfByte[(paramInt + 6)];
+    return (paramArrayOfByte[(paramInt + 7)] & 0xFF) << 56 | l1 & 0xFF | (l2 & 0xFF) << 8 | (l3 & 0xFF) << 16 | (l4 & 0xFF) << 24 | (l5 & 0xFF) << 32 | (l6 & 0xFF) << 40 | (l7 & 0xFF) << 48;
+  }
+}

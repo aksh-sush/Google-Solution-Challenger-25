@@ -1,0 +1,50 @@
+package androidx.lifecycle;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+import db.l;
+
+public abstract class p
+  extends Service
+  implements n
+{
+  private final g0 e = new g0(this);
+  
+  public p() {}
+  
+  public i getLifecycle()
+  {
+    return e.a();
+  }
+  
+  public IBinder onBind(Intent paramIntent)
+  {
+    l.e(paramIntent, "intent");
+    e.b();
+    return null;
+  }
+  
+  public void onCreate()
+  {
+    e.c();
+    super.onCreate();
+  }
+  
+  public void onDestroy()
+  {
+    e.d();
+    super.onDestroy();
+  }
+  
+  public void onStart(Intent paramIntent, int paramInt)
+  {
+    e.e();
+    super.onStart(paramIntent, paramInt);
+  }
+  
+  public int onStartCommand(Intent paramIntent, int paramInt1, int paramInt2)
+  {
+    return super.onStartCommand(paramIntent, paramInt1, paramInt2);
+  }
+}

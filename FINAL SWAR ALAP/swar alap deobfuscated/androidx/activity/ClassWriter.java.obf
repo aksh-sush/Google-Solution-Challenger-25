@@ -1,0 +1,77 @@
+package androidx.activity;
+
+import cb.a;
+import db.l;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public abstract class o
+{
+  private boolean a;
+  private final CopyOnWriteArrayList b;
+  private a c;
+  
+  public o(boolean paramBoolean)
+  {
+    a = paramBoolean;
+    b = new CopyOnWriteArrayList();
+  }
+  
+  public final void a(c paramC)
+  {
+    l.e(paramC, "cancellable");
+    b.add(paramC);
+  }
+  
+  public final a b()
+  {
+    return c;
+  }
+  
+  public void c() {}
+  
+  public abstract void d();
+  
+  public void e(b paramB)
+  {
+    l.e(paramB, "backEvent");
+  }
+  
+  public void f(b paramB)
+  {
+    l.e(paramB, "backEvent");
+  }
+  
+  public final boolean g()
+  {
+    return a;
+  }
+  
+  public final void h()
+  {
+    Iterator localIterator = b.iterator();
+    while (localIterator.hasNext()) {
+      ((c)localIterator.next()).cancel();
+    }
+  }
+  
+  public final void i(c paramC)
+  {
+    l.e(paramC, "cancellable");
+    b.remove(paramC);
+  }
+  
+  public final void j(boolean paramBoolean)
+  {
+    a = paramBoolean;
+    a localA = c;
+    if (localA != null) {
+      localA.invoke();
+    }
+  }
+  
+  public final void k(a paramA)
+  {
+    c = paramA;
+  }
+}

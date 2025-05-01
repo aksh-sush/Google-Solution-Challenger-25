@@ -1,0 +1,29 @@
+package com.google.android.gms.common.internal;
+
+import android.accounts.Account;
+import android.os.IBinder;
+import android.os.IInterface;
+import com.google.android.gms.internal.common.zzb;
+
+public abstract interface k
+  extends IInterface
+{
+  public abstract Account zzb();
+  
+  public static abstract class a
+    extends zzb
+    implements k
+  {
+    public static k c(IBinder paramIBinder)
+    {
+      if (paramIBinder == null) {
+        return null;
+      }
+      IInterface localIInterface = paramIBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
+      if ((localIInterface instanceof k)) {
+        return (k)localIInterface;
+      }
+      return new g2(paramIBinder);
+    }
+  }
+}

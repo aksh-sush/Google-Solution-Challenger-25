@@ -1,0 +1,30 @@
+package sa;
+
+import db.l;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import xa.a;
+
+abstract class b
+{
+  public static void a(Throwable paramThrowable1, Throwable paramThrowable2)
+  {
+    l.e(paramThrowable1, "<this>");
+    l.e(paramThrowable2, "exception");
+    if (paramThrowable1 != paramThrowable2) {
+      xa.b.a.a(paramThrowable1, paramThrowable2);
+    }
+  }
+  
+  public static String b(Throwable paramThrowable)
+  {
+    l.e(paramThrowable, "<this>");
+    StringWriter localStringWriter = new StringWriter();
+    PrintWriter localPrintWriter = new PrintWriter(localStringWriter);
+    paramThrowable.printStackTrace(localPrintWriter);
+    localPrintWriter.flush();
+    paramThrowable = localStringWriter.toString();
+    l.d(paramThrowable, "sw.toString()");
+    return paramThrowable;
+  }
+}

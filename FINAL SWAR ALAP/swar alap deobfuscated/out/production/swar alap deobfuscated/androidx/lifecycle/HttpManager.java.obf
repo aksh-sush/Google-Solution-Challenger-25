@@ -1,0 +1,14 @@
+package androidx.lifecycle;
+
+import android.view.View;
+import db.l;
+import m0.a;
+
+public abstract class n0
+{
+  public static final void a(View paramView, n paramN)
+  {
+    l.e(paramView, "<this>");
+    paramView.setTag(a.a, paramN);
+  }
+}

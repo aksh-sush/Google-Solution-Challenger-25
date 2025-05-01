@@ -1,0 +1,405 @@
+package androidx.fragment.app;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationSet;
+import android.view.animation.Transformation;
+import androidx.core.os.e;
+import androidx.core.os.e.b;
+import androidx.core.view.f0;
+import j0.a;
+
+abstract class f
+{
+  static void a(final Fragment paramFragment, d paramD, final v.g paramG)
+  {
+    final View localView = mView;
+    ViewGroup localViewGroup = mContainer;
+    localViewGroup.startViewTransition(localView);
+    final e localE = new e();
+    localE.c(new a());
+    paramG.b(paramFragment, localE);
+    if (a != null)
+    {
+      paramD = new e(a, localViewGroup, localView);
+      paramFragment.setAnimatingAway(mView);
+      paramD.setAnimationListener(new b(localViewGroup, paramFragment, paramG, localE));
+      mView.startAnimation(paramD);
+      return;
+    }
+    paramD = b;
+    paramFragment.setAnimator(paramD);
+    paramD.addListener(new c(localViewGroup, localView, paramFragment, paramG, localE));
+    paramD.setTarget(mView);
+    paramD.start();
+  }
+  
+  private static int b(Fragment paramFragment, boolean paramBoolean1, boolean paramBoolean2)
+  {
+    if (paramBoolean2)
+    {
+      if (paramBoolean1) {
+        return paramFragment.getPopEnterAnim();
+      }
+      return paramFragment.getPopExitAnim();
+    }
+    if (paramBoolean1) {
+      return paramFragment.getEnterAnim();
+    }
+    return paramFragment.getExitAnim();
+  }
+  
+  /* Error */
+  static d c(android.content.Context paramContext, Fragment paramFragment, boolean paramBoolean1, boolean paramBoolean2)
+  {
+    // Byte code:
+    //   0: aload_1
+    //   1: invokevirtual 125	androidx/fragment/app/Fragment:getNextTransition	()I
+    //   4: istore 7
+    //   6: aload_1
+    //   7: iload_2
+    //   8: iload_3
+    //   9: invokestatic 127	androidx/fragment/app/f:b	(Landroidx/fragment/app/Fragment;ZZ)I
+    //   12: istore 5
+    //   14: iconst_0
+    //   15: istore 6
+    //   17: aload_1
+    //   18: iconst_0
+    //   19: iconst_0
+    //   20: iconst_0
+    //   21: iconst_0
+    //   22: invokevirtual 131	androidx/fragment/app/Fragment:setAnimations	(IIII)V
+    //   25: aload_1
+    //   26: getfield 30	androidx/fragment/app/Fragment:mContainer	Landroid/view/ViewGroup;
+    //   29: astore 8
+    //   31: aload 8
+    //   33: ifnull +28 -> 61
+    //   36: getstatic 136	j0/b:c	I
+    //   39: istore 4
+    //   41: aload 8
+    //   43: iload 4
+    //   45: invokevirtual 140	android/view/View:getTag	(I)Ljava/lang/Object;
+    //   48: ifnull +13 -> 61
+    //   51: aload_1
+    //   52: getfield 30	androidx/fragment/app/Fragment:mContainer	Landroid/view/ViewGroup;
+    //   55: iload 4
+    //   57: aconst_null
+    //   58: invokevirtual 144	android/view/View:setTag	(ILjava/lang/Object;)V
+    //   61: aload_1
+    //   62: getfield 30	androidx/fragment/app/Fragment:mContainer	Landroid/view/ViewGroup;
+    //   65: astore 8
+    //   67: aload 8
+    //   69: ifnull +13 -> 82
+    //   72: aload 8
+    //   74: invokevirtual 148	android/view/ViewGroup:getLayoutTransition	()Landroid/animation/LayoutTransition;
+    //   77: ifnull +5 -> 82
+    //   80: aconst_null
+    //   81: areturn
+    //   82: aload_1
+    //   83: iload 7
+    //   85: iload_2
+    //   86: iload 5
+    //   88: invokevirtual 152	androidx/fragment/app/Fragment:onCreateAnimation	(IZI)Landroid/view/animation/Animation;
+    //   91: astore 8
+    //   93: aload 8
+    //   95: ifnull +13 -> 108
+    //   98: new 14	androidx/fragment/app/f$d
+    //   101: dup
+    //   102: aload 8
+    //   104: invokespecial 154	androidx/fragment/app/f$d:<init>	(Landroid/view/animation/Animation;)V
+    //   107: areturn
+    //   108: aload_1
+    //   109: iload 7
+    //   111: iload_2
+    //   112: iload 5
+    //   114: invokevirtual 158	androidx/fragment/app/Fragment:onCreateAnimator	(IZI)Landroid/animation/Animator;
+    //   117: astore_1
+    //   118: aload_1
+    //   119: ifnull +12 -> 131
+    //   122: new 14	androidx/fragment/app/f$d
+    //   125: dup
+    //   126: aload_1
+    //   127: invokespecial 160	androidx/fragment/app/f$d:<init>	(Landroid/animation/Animator;)V
+    //   130: areturn
+    //   131: iload 5
+    //   133: istore 4
+    //   135: iload 5
+    //   137: ifne +20 -> 157
+    //   140: iload 5
+    //   142: istore 4
+    //   144: iload 7
+    //   146: ifeq +11 -> 157
+    //   149: iload 7
+    //   151: iload_2
+    //   152: invokestatic 163	androidx/fragment/app/f:d	(IZ)I
+    //   155: istore 4
+    //   157: iload 4
+    //   159: ifeq +118 -> 277
+    //   162: ldc -91
+    //   164: aload_0
+    //   165: invokevirtual 171	android/content/Context:getResources	()Landroid/content/res/Resources;
+    //   168: iload 4
+    //   170: invokevirtual 177	android/content/res/Resources:getResourceTypeName	(I)Ljava/lang/String;
+    //   173: invokevirtual 183	java/lang/String:equals	(Ljava/lang/Object;)Z
+    //   176: istore_2
+    //   177: iload 6
+    //   179: istore 5
+    //   181: iload_2
+    //   182: ifeq +41 -> 223
+    //   185: aload_0
+    //   186: iload 4
+    //   188: invokestatic 189	android/view/animation/AnimationUtils:loadAnimation	(Landroid/content/Context;I)Landroid/view/animation/Animation;
+    //   191: astore_1
+    //   192: aload_1
+    //   193: ifnull +14 -> 207
+    //   196: new 14	androidx/fragment/app/f$d
+    //   199: dup
+    //   200: aload_1
+    //   201: invokespecial 154	androidx/fragment/app/f$d:<init>	(Landroid/view/animation/Animation;)V
+    //   204: astore_1
+    //   205: aload_1
+    //   206: areturn
+    //   207: iconst_1
+    //   208: istore 5
+    //   210: goto +13 -> 223
+    //   213: iload 6
+    //   215: istore 5
+    //   217: goto +6 -> 223
+    //   220: astore_0
+    //   221: aload_0
+    //   222: athrow
+    //   223: iload 5
+    //   225: ifne +52 -> 277
+    //   228: aload_0
+    //   229: iload 4
+    //   231: invokestatic 195	android/animation/AnimatorInflater:loadAnimator	(Landroid/content/Context;I)Landroid/animation/Animator;
+    //   234: astore_1
+    //   235: aload_1
+    //   236: ifnull +41 -> 277
+    //   239: new 14	androidx/fragment/app/f$d
+    //   242: dup
+    //   243: aload_1
+    //   244: invokespecial 160	androidx/fragment/app/f$d:<init>	(Landroid/animation/Animator;)V
+    //   247: astore_1
+    //   248: aload_1
+    //   249: areturn
+    //   250: astore_1
+    //   251: iload_2
+    //   252: ifne +23 -> 275
+    //   255: aload_0
+    //   256: iload 4
+    //   258: invokestatic 189	android/view/animation/AnimationUtils:loadAnimation	(Landroid/content/Context;I)Landroid/view/animation/Animation;
+    //   261: astore_0
+    //   262: aload_0
+    //   263: ifnull +14 -> 277
+    //   266: new 14	androidx/fragment/app/f$d
+    //   269: dup
+    //   270: aload_0
+    //   271: invokespecial 154	androidx/fragment/app/f$d:<init>	(Landroid/view/animation/Animation;)V
+    //   274: areturn
+    //   275: aload_1
+    //   276: athrow
+    //   277: aconst_null
+    //   278: areturn
+    //   279: astore_1
+    //   280: goto -67 -> 213
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	283	0	paramContext	android.content.Context
+    //   0	283	1	paramFragment	Fragment
+    //   0	283	2	paramBoolean1	boolean
+    //   0	283	3	paramBoolean2	boolean
+    //   39	218	4	i	int
+    //   12	212	5	j	int
+    //   15	199	6	k	int
+    //   4	146	7	m	int
+    //   29	74	8	localObject	Object
+    // Exception table:
+    //   from	to	target	type
+    //   185	192	220	android/content/res/Resources$NotFoundException
+    //   196	205	220	android/content/res/Resources$NotFoundException
+    //   228	235	250	java/lang/RuntimeException
+    //   239	248	250	java/lang/RuntimeException
+    //   185	192	279	java/lang/RuntimeException
+    //   196	205	279	java/lang/RuntimeException
+  }
+  
+  private static int d(int paramInt, boolean paramBoolean)
+  {
+    if (paramInt != 4097)
+    {
+      if (paramInt != 4099)
+      {
+        if (paramInt != 8194) {
+          return -1;
+        }
+        if (paramBoolean) {
+          return a.a;
+        }
+        return a.b;
+      }
+      if (paramBoolean) {
+        return a.c;
+      }
+      return a.d;
+    }
+    if (paramBoolean) {
+      return a.e;
+    }
+    return a.f;
+  }
+  
+  class a
+    implements e.b
+  {
+    a() {}
+    
+    public void a()
+    {
+      if (getAnimatingAway() != null)
+      {
+        View localView = getAnimatingAway();
+        setAnimatingAway(null);
+        localView.clearAnimation();
+      }
+      setAnimator(null);
+    }
+  }
+  
+  class b
+    implements Animation.AnimationListener
+  {
+    b(Fragment paramFragment, v.g paramG, e paramE) {}
+    
+    public void onAnimationEnd(Animation paramAnimation)
+    {
+      post(new a());
+    }
+    
+    public void onAnimationRepeat(Animation paramAnimation) {}
+    
+    public void onAnimationStart(Animation paramAnimation) {}
+    
+    class a
+      implements Runnable
+    {
+      a() {}
+      
+      public void run()
+      {
+        if (b.getAnimatingAway() != null)
+        {
+          b.setAnimatingAway(null);
+          f.b localB = f.b.this;
+          c.a(b, d);
+        }
+      }
+    }
+  }
+  
+  class c
+    extends AnimatorListenerAdapter
+  {
+    c(View paramView, Fragment paramFragment, v.g paramG, e paramE) {}
+    
+    public void onAnimationEnd(Animator paramAnimator)
+    {
+      endViewTransition(localView);
+      paramAnimator = paramFragment.getAnimator();
+      paramFragment.setAnimator(null);
+      if ((paramAnimator != null) && (indexOfChild(localView) < 0)) {
+        paramG.a(paramFragment, localE);
+      }
+    }
+  }
+  
+  static class d
+  {
+    public final Animation a;
+    public final Animator b;
+    
+    d(Animator paramAnimator)
+    {
+      a = null;
+      b = paramAnimator;
+      if (paramAnimator != null) {
+        return;
+      }
+      throw new IllegalStateException("Animator cannot be null");
+    }
+    
+    d(Animation paramAnimation)
+    {
+      a = paramAnimation;
+      b = null;
+      if (paramAnimation != null) {
+        return;
+      }
+      throw new IllegalStateException("Animation cannot be null");
+    }
+  }
+  
+  static class e
+    extends AnimationSet
+    implements Runnable
+  {
+    private final ViewGroup e;
+    private final View f;
+    private boolean g;
+    private boolean h;
+    private boolean i = true;
+    
+    e(Animation paramAnimation, ViewGroup paramViewGroup, View paramView)
+    {
+      super();
+      e = paramViewGroup;
+      f = paramView;
+      addAnimation(paramAnimation);
+      paramViewGroup.post(this);
+    }
+    
+    public boolean getTransformation(long paramLong, Transformation paramTransformation)
+    {
+      i = true;
+      if (g) {
+        return h ^ true;
+      }
+      if (!super.getTransformation(paramLong, paramTransformation))
+      {
+        g = true;
+        f0.a(e, this);
+      }
+      return true;
+    }
+    
+    public boolean getTransformation(long paramLong, Transformation paramTransformation, float paramFloat)
+    {
+      i = true;
+      if (g) {
+        return h ^ true;
+      }
+      if (!super.getTransformation(paramLong, paramTransformation, paramFloat))
+      {
+        g = true;
+        f0.a(e, this);
+      }
+      return true;
+    }
+    
+    public void run()
+    {
+      if ((!g) && (i))
+      {
+        i = false;
+        e.post(this);
+        return;
+      }
+      e.endViewTransition(f);
+      h = true;
+    }
+  }
+}

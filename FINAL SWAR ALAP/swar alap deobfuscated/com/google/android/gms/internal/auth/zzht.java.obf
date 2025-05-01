@@ -1,0 +1,10 @@
+package com.google.android.gms.internal.auth;
+
+public abstract interface zzht
+{
+  public abstract zzhr zza();
+  
+  public abstract boolean zzb();
+  
+  public abstract boolean zzc();
+}

@@ -1,0 +1,11 @@
+package androidx.core.view;
+
+import android.view.MotionEvent;
+
+public abstract class x
+{
+  public static boolean a(MotionEvent paramMotionEvent, int paramInt)
+  {
+    return (paramMotionEvent.getSource() & paramInt) == paramInt;
+  }
+}

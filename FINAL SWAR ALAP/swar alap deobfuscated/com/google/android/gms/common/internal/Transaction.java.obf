@@ -1,0 +1,49 @@
+package com.google.android.gms.common.internal;
+
+public final class t
+{
+  private static t b;
+  private static final u c = new u(0, false, false, 0, 0);
+  private u a;
+  
+  private t() {}
+  
+  public static t b()
+  {
+    try
+    {
+      if (b == null) {
+        b = new t();
+      }
+      t localT = b;
+      return localT;
+    }
+    finally {}
+  }
+  
+  public u a()
+  {
+    return a;
+  }
+  
+  public final void c(u paramU)
+  {
+    if (paramU == null) {}
+    try
+    {
+      a = c;
+      return;
+    }
+    finally {}
+    u localU = a;
+    if (localU != null)
+    {
+      int i = localU.j0();
+      int j = paramU.j0();
+      if (i >= j) {
+        return;
+      }
+    }
+    a = paramU;
+  }
+}

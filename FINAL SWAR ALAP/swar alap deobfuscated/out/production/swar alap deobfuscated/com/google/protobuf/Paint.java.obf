@@ -1,0 +1,22 @@
+package com.google.protobuf;
+
+import java.util.Map;
+
+abstract interface o0
+{
+  public abstract Object a(Object paramObject1, Object paramObject2);
+  
+  public abstract Object b(Object paramObject);
+  
+  public abstract int c(int paramInt, Object paramObject1, Object paramObject2);
+  
+  public abstract boolean d(Object paramObject);
+  
+  public abstract Object e(Object paramObject);
+  
+  public abstract m0.a f(Object paramObject);
+  
+  public abstract Map g(Object paramObject);
+  
+  public abstract Map h(Object paramObject);
+}

@@ -1,0 +1,5 @@
+package cb;
+
+public abstract interface c
+  extends sa.c
+{}

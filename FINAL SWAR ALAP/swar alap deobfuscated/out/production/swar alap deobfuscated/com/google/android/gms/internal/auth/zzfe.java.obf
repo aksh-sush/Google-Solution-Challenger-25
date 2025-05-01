@@ -1,0 +1,11 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.List;
+
+public abstract interface zzfe
+  extends List
+{
+  public abstract zzfe zze();
+  
+  public abstract List zzg();
+}

@@ -1,0 +1,6 @@
+package com.google.android.gms.internal.auth;
+
+public abstract interface zzch
+{
+  public abstract void zza();
+}

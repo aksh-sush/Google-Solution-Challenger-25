@@ -1,0 +1,85 @@
+package c;
+
+import android.os.Binder;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+
+public abstract interface a
+  extends IInterface
+{
+  public abstract void V(int paramInt, Bundle paramBundle);
+  
+  public static abstract class a
+    extends Binder
+    implements a
+  {
+    public a()
+    {
+      attachInterface(this, "android.support.v4.os.IResultReceiver");
+    }
+    
+    public static a c(IBinder paramIBinder)
+    {
+      if (paramIBinder == null) {
+        return null;
+      }
+      IInterface localIInterface = paramIBinder.queryLocalInterface("android.support.v4.os.IResultReceiver");
+      if ((localIInterface != null) && ((localIInterface instanceof a))) {
+        return (a)localIInterface;
+      }
+      return new a(paramIBinder);
+    }
+    
+    public IBinder asBinder()
+    {
+      return this;
+    }
+    
+    public boolean onTransact(int paramInt1, Parcel paramParcel1, Parcel paramParcel2, int paramInt2)
+    {
+      if ((paramInt1 >= 1) && (paramInt1 <= 16777215)) {
+        paramParcel1.enforceInterface("android.support.v4.os.IResultReceiver");
+      }
+      if (paramInt1 != 1598968902)
+      {
+        if (paramInt1 != 1) {
+          return super.onTransact(paramInt1, paramParcel1, paramParcel2, paramInt2);
+        }
+        V(paramParcel1.readInt(), (Bundle)a.b.a(paramParcel1, Bundle.CREATOR));
+        return true;
+      }
+      paramParcel2.writeString("android.support.v4.os.IResultReceiver");
+      return true;
+    }
+    
+    private static class a
+      implements a
+    {
+      private IBinder a;
+      
+      a(IBinder paramIBinder)
+      {
+        a = paramIBinder;
+      }
+      
+      public IBinder asBinder()
+      {
+        return a;
+      }
+    }
+  }
+  
+  public static abstract class b
+  {
+    private static Object b(Parcel paramParcel, Parcelable.Creator paramCreator)
+    {
+      if (paramParcel.readInt() != 0) {
+        return paramCreator.createFromParcel(paramParcel);
+      }
+      return null;
+    }
+  }
+}

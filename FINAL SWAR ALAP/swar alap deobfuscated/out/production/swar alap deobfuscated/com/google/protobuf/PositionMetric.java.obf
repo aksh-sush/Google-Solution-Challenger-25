@@ -1,0 +1,108 @@
+package com.google.protobuf;
+
+class v1
+  extends t1
+{
+  v1() {}
+  
+  u1 A(Object paramObject)
+  {
+    return unknownFields;
+  }
+  
+  int B(u1 paramU1)
+  {
+    return paramU1.d();
+  }
+  
+  int C(u1 paramU1)
+  {
+    return paramU1.e();
+  }
+  
+  u1 D(u1 paramU11, u1 paramU12)
+  {
+    if (paramU12.equals(u1.c())) {
+      return paramU11;
+    }
+    return u1.m(paramU11, paramU12);
+  }
+  
+  u1 E()
+  {
+    return u1.n();
+  }
+  
+  void F(Object paramObject, u1 paramU1)
+  {
+    G(paramObject, paramU1);
+  }
+  
+  void G(Object paramObject, u1 paramU1)
+  {
+    unknownFields = paramU1;
+  }
+  
+  u1 H(u1 paramU1)
+  {
+    paramU1.h();
+    return paramU1;
+  }
+  
+  void I(u1 paramU1, a2 paramA2)
+  {
+    paramU1.s(paramA2);
+  }
+  
+  void J(u1 paramU1, a2 paramA2)
+  {
+    paramU1.u(paramA2);
+  }
+  
+  void j(Object paramObject)
+  {
+    A(paramObject).h();
+  }
+  
+  boolean q(j1 paramJ1)
+  {
+    return false;
+  }
+  
+  void u(u1 paramU1, int paramInt1, int paramInt2)
+  {
+    paramU1.q(z1.c(paramInt1, 5), Integer.valueOf(paramInt2));
+  }
+  
+  void v(u1 paramU1, int paramInt, long paramLong)
+  {
+    paramU1.q(z1.c(paramInt, 1), Long.valueOf(paramLong));
+  }
+  
+  void w(u1 paramU11, int paramInt, u1 paramU12)
+  {
+    paramU11.q(z1.c(paramInt, 3), paramU12);
+  }
+  
+  void x(u1 paramU1, int paramInt, j paramJ)
+  {
+    paramU1.q(z1.c(paramInt, 2), paramJ);
+  }
+  
+  void y(u1 paramU1, int paramInt, long paramLong)
+  {
+    paramU1.q(z1.c(paramInt, 0), Long.valueOf(paramLong));
+  }
+  
+  u1 z(Object paramObject)
+  {
+    u1 localU12 = A(paramObject);
+    u1 localU11 = localU12;
+    if (localU12 == u1.c())
+    {
+      localU11 = u1.n();
+      G(paramObject, localU11);
+    }
+    return localU11;
+  }
+}

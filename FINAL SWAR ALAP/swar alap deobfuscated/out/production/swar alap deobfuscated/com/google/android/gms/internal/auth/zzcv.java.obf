@@ -1,0 +1,10 @@
+package com.google.android.gms.internal.auth;
+
+final class zzcv
+  extends zzdc
+{
+  zzcv(zzcz paramZzcz, String paramString, Long paramLong, boolean paramBoolean)
+  {
+    super(paramZzcz, paramString, paramLong, true, null);
+  }
+}

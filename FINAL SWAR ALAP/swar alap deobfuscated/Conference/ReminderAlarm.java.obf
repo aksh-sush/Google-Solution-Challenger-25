@@ -1,0 +1,49 @@
+package s8;
+
+import android.content.Context;
+import androidx.core.content.a;
+import com.google.android.gms.location.LocationListener;
+import com.huawei.hms.location.LocationCallback;
+import com.onesignal.common.AndroidUtils;
+import db.l;
+
+public final class b
+{
+  public static final b INSTANCE = new b();
+  
+  private b() {}
+  
+  public final boolean hasGMSLocationLibrary()
+  {
+    try
+    {
+      boolean bool = AndroidUtils.INSTANCE.opaqueHasClass(LocationListener.class);
+      return bool;
+    }
+    catch (NoClassDefFoundError localNoClassDefFoundError)
+    {
+      for (;;) {}
+    }
+    return false;
+  }
+  
+  public final boolean hasHMSLocationLibrary()
+  {
+    try
+    {
+      boolean bool = AndroidUtils.INSTANCE.opaqueHasClass(LocationCallback.class);
+      return bool;
+    }
+    catch (NoClassDefFoundError localNoClassDefFoundError)
+    {
+      for (;;) {}
+    }
+    return false;
+  }
+  
+  public final boolean hasLocationPermission(Context paramContext)
+  {
+    l.e(paramContext, "context");
+    return (a.a(paramContext, "android.permission.ACCESS_FINE_LOCATION") == 0) || (a.a(paramContext, "android.permission.ACCESS_COARSE_LOCATION") == 0);
+  }
+}

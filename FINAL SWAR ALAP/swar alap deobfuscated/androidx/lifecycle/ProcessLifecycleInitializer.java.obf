@@ -1,0 +1,32 @@
+package androidx.lifecycle;
+
+import android.content.Context;
+import db.l;
+import java.util.List;
+import ta.m;
+
+public final class ProcessLifecycleInitializer
+  implements x0.a
+{
+  public ProcessLifecycleInitializer() {}
+  
+  public List a()
+  {
+    return m.e();
+  }
+  
+  public n c(Context paramContext)
+  {
+    l.e(paramContext, "context");
+    Object localObject = androidx.startup.a.e(paramContext);
+    l.d(localObject, "getInstance(context)");
+    if (((androidx.startup.a)localObject).g(ProcessLifecycleInitializer.class))
+    {
+      k.a(paramContext);
+      localObject = w.m;
+      ((w.b)localObject).b(paramContext);
+      return ((w.b)localObject).a();
+    }
+    throw new IllegalStateException("ProcessLifecycleInitializer cannot be initialized lazily.\n               Please ensure that you have:\n               <meta-data\n                   android:name='androidx.lifecycle.ProcessLifecycleInitializer'\n                   android:value='androidx.startup' />\n               under InitializationProvider in your AndroidManifest.xml".toString());
+  }
+}

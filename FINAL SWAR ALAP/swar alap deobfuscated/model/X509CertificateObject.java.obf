@@ -1,0 +1,63 @@
+package db;
+
+import jb.a;
+import jb.f;
+
+public abstract class q
+  extends c
+  implements f
+{
+  private final boolean l;
+  
+  public q(Object paramObject, Class paramClass, String paramString1, String paramString2, int paramInt)
+  {
+    super(paramObject, paramClass, paramString1, paramString2, bool1);
+    boolean bool1 = bool2;
+    if ((paramInt & 0x2) == 2) {
+      bool1 = true;
+    }
+    l = bool1;
+  }
+  
+  public a a()
+  {
+    if (l) {
+      return this;
+    }
+    return super.a();
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (paramObject == this) {
+      return true;
+    }
+    if ((paramObject instanceof q))
+    {
+      paramObject = (q)paramObject;
+      return (e().equals(paramObject.e())) && (d().equals(paramObject.d())) && (f().equals(paramObject.f())) && (l.a(c(), paramObject.c()));
+    }
+    if ((paramObject instanceof f)) {
+      return paramObject.equals(a());
+    }
+    return false;
+  }
+  
+  public int hashCode()
+  {
+    return (e().hashCode() * 31 + d().hashCode()) * 31 + f().hashCode();
+  }
+  
+  public String toString()
+  {
+    Object localObject = a();
+    if (localObject != this) {
+      return localObject.toString();
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("property ");
+    ((StringBuilder)localObject).append(d());
+    ((StringBuilder)localObject).append(" (Kotlin reflection is not available)");
+    return ((StringBuilder)localObject).toString();
+  }
+}

@@ -1,0 +1,222 @@
+package androidx.appcompat.view.menu;
+
+import android.content.Context;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import java.util.ArrayList;
+
+public class e
+  implements m, AdapterView.OnItemClickListener
+{
+  Context e;
+  LayoutInflater f;
+  g g;
+  ExpandedMenuView h;
+  int i;
+  int j;
+  int k;
+  private m.a l;
+  a m;
+  
+  public e(int paramInt1, int paramInt2)
+  {
+    k = paramInt1;
+    j = paramInt2;
+  }
+  
+  public e(Context paramContext, int paramInt)
+  {
+    this(paramInt, 0);
+    e = paramContext;
+    f = LayoutInflater.from(paramContext);
+  }
+  
+  public void a(g paramG, boolean paramBoolean)
+  {
+    m.a localA = l;
+    if (localA != null) {
+      localA.a(paramG, paramBoolean);
+    }
+  }
+  
+  public ListAdapter b()
+  {
+    if (m == null) {
+      m = new a();
+    }
+    return m;
+  }
+  
+  public void c(Context paramContext, g paramG)
+  {
+    if (j != 0)
+    {
+      paramContext = new ContextThemeWrapper(paramContext, j);
+      e = paramContext;
+    }
+    for (paramContext = LayoutInflater.from(paramContext);; paramContext = LayoutInflater.from(paramContext))
+    {
+      f = paramContext;
+      break;
+      if (e == null) {
+        break;
+      }
+      e = paramContext;
+      if (f != null) {
+        break;
+      }
+    }
+    g = paramG;
+    paramContext = m;
+    if (paramContext != null) {
+      paramContext.notifyDataSetChanged();
+    }
+  }
+  
+  public n d(ViewGroup paramViewGroup)
+  {
+    if (h == null)
+    {
+      h = ((ExpandedMenuView)f.inflate(f.g.g, paramViewGroup, false));
+      if (m == null) {
+        m = new a();
+      }
+      h.setAdapter(m);
+      h.setOnItemClickListener(this);
+    }
+    return h;
+  }
+  
+  public boolean e(r paramR)
+  {
+    if (!paramR.hasVisibleItems()) {
+      return false;
+    }
+    new h(paramR).d(null);
+    m.a localA = l;
+    if (localA != null) {
+      localA.b(paramR);
+    }
+    return true;
+  }
+  
+  public void f(boolean paramBoolean)
+  {
+    a localA = m;
+    if (localA != null) {
+      localA.notifyDataSetChanged();
+    }
+  }
+  
+  public boolean h()
+  {
+    return false;
+  }
+  
+  public boolean i(g paramG, i paramI)
+  {
+    return false;
+  }
+  
+  public boolean j(g paramG, i paramI)
+  {
+    return false;
+  }
+  
+  public void k(m.a paramA)
+  {
+    l = paramA;
+  }
+  
+  public void onItemClick(AdapterView paramAdapterView, View paramView, int paramInt, long paramLong)
+  {
+    g.M(m.b(paramInt), this, 0);
+  }
+  
+  private class a
+    extends BaseAdapter
+  {
+    private int e = -1;
+    
+    public a()
+    {
+      a();
+    }
+    
+    void a()
+    {
+      i localI = g.v();
+      if (localI != null)
+      {
+        ArrayList localArrayList = g.z();
+        int j = localArrayList.size();
+        int i = 0;
+        while (i < j)
+        {
+          if ((i)localArrayList.get(i) == localI)
+          {
+            e = i;
+            return;
+          }
+          i += 1;
+        }
+      }
+      e = -1;
+    }
+    
+    public i b(int paramInt)
+    {
+      ArrayList localArrayList = g.z();
+      int i = paramInt + e.this.i;
+      int j = e;
+      paramInt = i;
+      if (j >= 0)
+      {
+        paramInt = i;
+        if (i >= j) {
+          paramInt = i + 1;
+        }
+      }
+      return (i)localArrayList.get(paramInt);
+    }
+    
+    public int getCount()
+    {
+      int i = g.z().size() - e.this.i;
+      if (e < 0) {
+        return i;
+      }
+      return i - 1;
+    }
+    
+    public long getItemId(int paramInt)
+    {
+      return paramInt;
+    }
+    
+    public View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
+    {
+      View localView = paramView;
+      if (paramView == null)
+      {
+        paramView = e.this;
+        localView = f.inflate(k, paramViewGroup, false);
+      }
+      ((n.a)localView).e(b(paramInt), 0);
+      return localView;
+    }
+    
+    public void notifyDataSetChanged()
+    {
+      a();
+      super.notifyDataSetChanged();
+    }
+  }
+}

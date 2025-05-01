@@ -1,0 +1,103 @@
+package androidx.appcompat.app;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
+import androidx.appcompat.view.b;
+import androidx.appcompat.view.b.a;
+import f.j;
+
+public abstract class a
+{
+  public a() {}
+  
+  public boolean g()
+  {
+    return false;
+  }
+  
+  public abstract boolean h();
+  
+  public abstract void i(boolean paramBoolean);
+  
+  public abstract int j();
+  
+  public abstract Context k();
+  
+  public boolean l()
+  {
+    return false;
+  }
+  
+  public void m(Configuration paramConfiguration) {}
+  
+  void n() {}
+  
+  public abstract boolean o(int paramInt, KeyEvent paramKeyEvent);
+  
+  public boolean p(KeyEvent paramKeyEvent)
+  {
+    return false;
+  }
+  
+  public boolean q()
+  {
+    return false;
+  }
+  
+  public abstract void r(boolean paramBoolean);
+  
+  public abstract void s(int paramInt);
+  
+  public abstract void t(Drawable paramDrawable);
+  
+  public abstract void u(boolean paramBoolean);
+  
+  public abstract void v(CharSequence paramCharSequence);
+  
+  public abstract void w(CharSequence paramCharSequence);
+  
+  public b x(b.a paramA)
+  {
+    return null;
+  }
+  
+  public static abstract class a
+    extends ViewGroup.MarginLayoutParams
+  {
+    public int a;
+    
+    public a(int paramInt1, int paramInt2)
+    {
+      super(paramInt2);
+      a = 8388627;
+    }
+    
+    public a(Context paramContext, AttributeSet paramAttributeSet)
+    {
+      super(paramAttributeSet);
+      a = 0;
+      paramContext = paramContext.obtainStyledAttributes(paramAttributeSet, j.t);
+      a = paramContext.getInt(j.u, 0);
+      paramContext.recycle();
+    }
+    
+    public a(ViewGroup.LayoutParams paramLayoutParams)
+    {
+      super();
+      a = 0;
+    }
+    
+    public a(a paramA)
+    {
+      super();
+      a = 0;
+      a = a;
+    }
+  }
+}

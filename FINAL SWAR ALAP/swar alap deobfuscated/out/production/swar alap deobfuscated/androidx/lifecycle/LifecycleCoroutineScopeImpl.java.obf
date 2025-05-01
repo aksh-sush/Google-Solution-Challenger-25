@@ -1,0 +1,33 @@
+package androidx.lifecycle;
+
+import mb.s1;
+import va.g;
+
+public final class LifecycleCoroutineScopeImpl
+  extends j
+  implements l
+{
+  private final i e;
+  private final g f;
+  
+  public void d(n paramN, i.a paramA)
+  {
+    db.l.e(paramN, "source");
+    db.l.e(paramA, "event");
+    if (i().b().compareTo(i.b.e) <= 0)
+    {
+      i().c(this);
+      s1.d(f(), null, 1, null);
+    }
+  }
+  
+  public g f()
+  {
+    return f;
+  }
+  
+  public i i()
+  {
+    return e;
+  }
+}

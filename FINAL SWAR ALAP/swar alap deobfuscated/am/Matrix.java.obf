@@ -1,0 +1,143 @@
+package i3;
+
+import android.app.PendingIntent;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.server.response.a.a;
+import com.google.android.gms.internal.auth.zzbz;
+import java.util.HashMap;
+import java.util.Set;
+import s3.c;
+
+public final class i
+  extends zzbz
+{
+  public static final Parcelable.Creator<i> CREATOR = new j();
+  private static final HashMap l;
+  final Set e;
+  final int f;
+  private String g;
+  private int h;
+  private byte[] i;
+  private PendingIntent j;
+  private a k;
+  
+  static
+  {
+    HashMap localHashMap = new HashMap();
+    l = localHashMap;
+    localHashMap.put("accountType", a.a.j0("accountType", 2));
+    localHashMap.put("status", a.a.X("status", 3));
+    localHashMap.put("transferBytes", a.a.U("transferBytes", 4));
+  }
+  
+  i(Set paramSet, int paramInt1, String paramString, int paramInt2, byte[] paramArrayOfByte, PendingIntent paramPendingIntent, a paramA)
+  {
+    e = paramSet;
+    f = paramInt1;
+    g = paramString;
+    h = paramInt2;
+    i = paramArrayOfByte;
+    j = paramPendingIntent;
+    k = paramA;
+  }
+  
+  protected final Object getFieldValue(a.a paramA)
+  {
+    int m = paramA.m0();
+    if (m != 1) {
+      if (m != 2) {
+        if (m != 3)
+        {
+          if (m == 4) {
+            return i;
+          }
+          m = paramA.m0();
+          paramA = new StringBuilder();
+          paramA.append("Unknown SafeParcelable id=");
+          paramA.append(m);
+          throw new IllegalStateException(paramA.toString());
+        }
+      }
+    }
+    for (m = h;; m = f)
+    {
+      return Integer.valueOf(m);
+      return g;
+    }
+  }
+  
+  protected final boolean isFieldSet(a.a paramA)
+  {
+    return e.contains(Integer.valueOf(paramA.m0()));
+  }
+  
+  protected final void setDecodedBytesInternal(a.a paramA, String paramString, byte[] paramArrayOfByte)
+  {
+    int m = paramA.m0();
+    if (m == 4)
+    {
+      i = paramArrayOfByte;
+      e.add(Integer.valueOf(m));
+      return;
+    }
+    paramA = new StringBuilder();
+    paramA.append("Field with id=");
+    paramA.append(m);
+    paramA.append(" is not known to be an byte array.");
+    throw new IllegalArgumentException(paramA.toString());
+  }
+  
+  protected final void setIntegerInternal(a.a paramA, String paramString, int paramInt)
+  {
+    int m = paramA.m0();
+    if (m == 3)
+    {
+      h = paramInt;
+      e.add(Integer.valueOf(m));
+      return;
+    }
+    paramA = new StringBuilder();
+    paramA.append("Field with id=");
+    paramA.append(m);
+    paramA.append(" is not known to be an int.");
+    throw new IllegalArgumentException(paramA.toString());
+  }
+  
+  protected final void setStringInternal(a.a paramA, String paramString1, String paramString2)
+  {
+    int m = paramA.m0();
+    if (m == 2)
+    {
+      g = paramString2;
+      e.add(Integer.valueOf(m));
+      return;
+    }
+    throw new IllegalArgumentException(String.format("Field with id=%d is not known to be a string.", new Object[] { Integer.valueOf(m) }));
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int m = c.a(paramParcel);
+    Set localSet = e;
+    if (localSet.contains(Integer.valueOf(1))) {
+      c.t(paramParcel, 1, f);
+    }
+    if (localSet.contains(Integer.valueOf(2))) {
+      c.D(paramParcel, 2, g, true);
+    }
+    if (localSet.contains(Integer.valueOf(3))) {
+      c.t(paramParcel, 3, h);
+    }
+    if (localSet.contains(Integer.valueOf(4))) {
+      c.k(paramParcel, 4, i, true);
+    }
+    if (localSet.contains(Integer.valueOf(5))) {
+      c.B(paramParcel, 5, j, paramInt, true);
+    }
+    if (localSet.contains(Integer.valueOf(6))) {
+      c.B(paramParcel, 6, k, paramInt, true);
+    }
+    c.b(paramParcel, m);
+  }
+}

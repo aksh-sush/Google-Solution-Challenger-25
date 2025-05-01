@@ -1,0 +1,52 @@
+package androidx.lifecycle;
+
+import androidx.savedstate.a;
+
+public final class SavedStateHandleController
+  implements l
+{
+  private final String e;
+  private final a0 f;
+  private boolean g;
+  
+  public SavedStateHandleController(String paramString, a0 paramA0)
+  {
+    e = paramString;
+    f = paramA0;
+  }
+  
+  public void d(n paramN, i.a paramA)
+  {
+    db.l.e(paramN, "source");
+    db.l.e(paramA, "event");
+    if (paramA == i.a.ON_DESTROY)
+    {
+      g = false;
+      paramN.getLifecycle().c(this);
+    }
+  }
+  
+  public final void f(a paramA, i paramI)
+  {
+    db.l.e(paramA, "registry");
+    db.l.e(paramI, "lifecycle");
+    if ((g ^ true))
+    {
+      g = true;
+      paramI.a(this);
+      paramA.h(e, f.c());
+      return;
+    }
+    throw new IllegalStateException("Already attached to lifecycleOwner".toString());
+  }
+  
+  public final a0 i()
+  {
+    return f;
+  }
+  
+  public final boolean j()
+  {
+    return g;
+  }
+}

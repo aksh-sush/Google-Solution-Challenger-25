@@ -1,0 +1,206 @@
+package y1;
+
+import db.l;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import sa.m;
+import sa.q;
+import ta.c0;
+import ta.i0;
+
+public final class b
+{
+  public static final a m = new a(null);
+  private static final Map n = c0.e(new m[] { q.a("embedding.weight", "embed.weight"), q.a("dense1.weight", "fc1.weight"), q.a("dense2.weight", "fc2.weight"), q.a("dense3.weight", "fc3.weight"), q.a("dense1.bias", "fc1.bias"), q.a("dense2.bias", "fc2.bias"), q.a("dense3.bias", "fc3.bias") });
+  private final a a;
+  private final a b;
+  private final a c;
+  private final a d;
+  private final a e;
+  private final a f;
+  private final a g;
+  private final a h;
+  private final a i;
+  private final a j;
+  private final a k;
+  private final Map l;
+  
+  private b(Map paramMap)
+  {
+    Object localObject = paramMap.get("embed.weight");
+    if (localObject != null)
+    {
+      a = ((a)localObject);
+      localObject = i.a;
+      localObject = paramMap.get("convs.0.weight");
+      if (localObject != null)
+      {
+        b = i.l((a)localObject);
+        localObject = paramMap.get("convs.1.weight");
+        if (localObject != null)
+        {
+          c = i.l((a)localObject);
+          localObject = paramMap.get("convs.2.weight");
+          if (localObject != null)
+          {
+            d = i.l((a)localObject);
+            localObject = paramMap.get("convs.0.bias");
+            if (localObject != null)
+            {
+              e = ((a)localObject);
+              localObject = paramMap.get("convs.1.bias");
+              if (localObject != null)
+              {
+                f = ((a)localObject);
+                localObject = paramMap.get("convs.2.bias");
+                if (localObject != null)
+                {
+                  g = ((a)localObject);
+                  localObject = paramMap.get("fc1.weight");
+                  if (localObject != null)
+                  {
+                    h = i.k((a)localObject);
+                    localObject = paramMap.get("fc2.weight");
+                    if (localObject != null)
+                    {
+                      i = i.k((a)localObject);
+                      localObject = paramMap.get("fc1.bias");
+                      if (localObject != null)
+                      {
+                        j = ((a)localObject);
+                        localObject = paramMap.get("fc2.bias");
+                        if (localObject != null)
+                        {
+                          k = ((a)localObject);
+                          l = new HashMap();
+                          localObject = i0.f(new String[] { f.a.e.c(), f.a.f.c() }).iterator();
+                          while (((Iterator)localObject).hasNext())
+                          {
+                            String str2 = (String)((Iterator)localObject).next();
+                            String str1 = l.l(str2, ".weight");
+                            str2 = l.l(str2, ".bias");
+                            a localA2 = (a)paramMap.get(str1);
+                            a localA1 = (a)paramMap.get(str2);
+                            if (localA2 != null)
+                            {
+                              localA2 = i.k(localA2);
+                              l.put(str1, localA2);
+                            }
+                            if (localA1 != null) {
+                              l.put(str2, localA1);
+                            }
+                          }
+                          return;
+                        }
+                        throw new IllegalStateException("Required value was null.".toString());
+                      }
+                      throw new IllegalStateException("Required value was null.".toString());
+                    }
+                    throw new IllegalStateException("Required value was null.".toString());
+                  }
+                  throw new IllegalStateException("Required value was null.".toString());
+                }
+                throw new IllegalStateException("Required value was null.".toString());
+              }
+              throw new IllegalStateException("Required value was null.".toString());
+            }
+            throw new IllegalStateException("Required value was null.".toString());
+          }
+          throw new IllegalStateException("Required value was null.".toString());
+        }
+        throw new IllegalStateException("Required value was null.".toString());
+      }
+      throw new IllegalStateException("Required value was null.".toString());
+    }
+    throw new IllegalStateException("Required value was null.".toString());
+  }
+  
+  public final a b(a paramA, String[] paramArrayOfString, String paramString)
+  {
+    l.e(paramA, "dense");
+    l.e(paramArrayOfString, "texts");
+    l.e(paramString, "task");
+    Object localObject = i.a;
+    localObject = i.c(i.e(paramArrayOfString, 128, a), b);
+    i.a((a)localObject, e);
+    i.i((a)localObject);
+    paramArrayOfString = i.c((a)localObject, c);
+    i.a(paramArrayOfString, f);
+    i.i(paramArrayOfString);
+    a localA = i.g(paramArrayOfString, 2);
+    paramArrayOfString = i.c(localA, d);
+    i.a(paramArrayOfString, g);
+    i.i(paramArrayOfString);
+    localObject = i.g((a)localObject, ((a)localObject).b(1));
+    localA = i.g(localA, localA.b(1));
+    paramArrayOfString = i.g(paramArrayOfString, paramArrayOfString.b(1));
+    i.f((a)localObject, 1);
+    i.f(localA, 1);
+    i.f(paramArrayOfString, 1);
+    paramA = i.d(i.b(new a[] { localObject, localA, paramArrayOfString, paramA }), h, j);
+    i.i(paramA);
+    paramA = i.d(paramA, i, k);
+    i.i(paramA);
+    paramArrayOfString = (a)l.get(l.l(paramString, ".weight"));
+    paramString = (a)l.get(l.l(paramString, ".bias"));
+    if ((paramArrayOfString != null) && (paramString != null))
+    {
+      paramA = i.d(paramA, paramArrayOfString, paramString);
+      i.j(paramA);
+      return paramA;
+    }
+    return null;
+  }
+  
+  public static final class a
+  {
+    private a() {}
+    
+    private final Map b(File paramFile)
+    {
+      paramFile = j.c(paramFile);
+      if (paramFile != null)
+      {
+        HashMap localHashMap = new HashMap();
+        Map localMap = b.a();
+        Iterator localIterator = paramFile.entrySet().iterator();
+        while (localIterator.hasNext())
+        {
+          Map.Entry localEntry = (Map.Entry)localIterator.next();
+          paramFile = (String)localEntry.getKey();
+          if (localMap.containsKey(localEntry.getKey()))
+          {
+            String str = (String)localMap.get(localEntry.getKey());
+            paramFile = str;
+            if (str == null) {
+              return null;
+            }
+          }
+          localHashMap.put(paramFile, localEntry.getValue());
+        }
+        return localHashMap;
+      }
+      return null;
+    }
+    
+    public final b a(File paramFile)
+    {
+      l.e(paramFile, "file");
+      paramFile = b(paramFile);
+      if (paramFile == null) {
+        return null;
+      }
+      try
+      {
+        paramFile = new b(paramFile, null);
+        return paramFile;
+      }
+      catch (Exception paramFile) {}
+      return null;
+    }
+  }
+}

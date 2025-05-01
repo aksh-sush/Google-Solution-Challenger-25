@@ -1,0 +1,9 @@
+package cb;
+
+import sa.c;
+
+public abstract interface l
+  extends c
+{
+  public abstract Object invoke(Object paramObject);
+}

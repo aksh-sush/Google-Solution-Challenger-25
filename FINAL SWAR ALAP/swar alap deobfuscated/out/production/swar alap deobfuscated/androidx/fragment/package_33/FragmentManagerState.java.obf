@@ -1,0 +1,68 @@
+package androidx.fragment.app;
+
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import java.util.ArrayList;
+
+final class o
+  implements Parcelable
+{
+  public static final Parcelable.Creator<o> CREATOR = new a();
+  ArrayList e;
+  ArrayList f;
+  b[] g;
+  int h;
+  String i = null;
+  ArrayList j = new ArrayList();
+  ArrayList k = new ArrayList();
+  ArrayList l;
+  
+  public o() {}
+  
+  public o(Parcel paramParcel)
+  {
+    e = paramParcel.createTypedArrayList(r.CREATOR);
+    f = paramParcel.createStringArrayList();
+    g = ((b[])paramParcel.createTypedArray(b.CREATOR));
+    h = paramParcel.readInt();
+    i = paramParcel.readString();
+    j = paramParcel.createStringArrayList();
+    k = paramParcel.createTypedArrayList(Bundle.CREATOR);
+    l = paramParcel.createTypedArrayList(m.m.CREATOR);
+  }
+  
+  public int describeContents()
+  {
+    return 0;
+  }
+  
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramParcel.writeTypedList(e);
+    paramParcel.writeStringList(f);
+    paramParcel.writeTypedArray(g, paramInt);
+    paramParcel.writeInt(h);
+    paramParcel.writeString(i);
+    paramParcel.writeStringList(j);
+    paramParcel.writeTypedList(k);
+    paramParcel.writeTypedList(l);
+  }
+  
+  class a
+    implements Parcelable.Creator
+  {
+    a() {}
+    
+    public o a(Parcel paramParcel)
+    {
+      return new o(paramParcel);
+    }
+    
+    public o[] b(int paramInt)
+    {
+      return new o[paramInt];
+    }
+  }
+}

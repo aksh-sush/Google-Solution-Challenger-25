@@ -1,0 +1,52 @@
+package d3;
+
+import android.util.SparseArray;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+import r2.d;
+
+public abstract class a
+{
+  private static SparseArray a = new SparseArray();
+  private static HashMap b;
+  
+  static
+  {
+    Object localObject = new HashMap();
+    b = (HashMap)localObject;
+    ((HashMap)localObject).put(d.e, Integer.valueOf(0));
+    b.put(d.f, Integer.valueOf(1));
+    b.put(d.g, Integer.valueOf(2));
+    localObject = b.keySet().iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      d localD = (d)((Iterator)localObject).next();
+      a.append(((Integer)b.get(localD)).intValue(), localD);
+    }
+  }
+  
+  public static int a(d paramD)
+  {
+    Object localObject = (Integer)b.get(paramD);
+    if (localObject != null) {
+      return ((Integer)localObject).intValue();
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("PriorityMapping is missing known Priority value ");
+    ((StringBuilder)localObject).append(paramD);
+    throw new IllegalStateException(((StringBuilder)localObject).toString());
+  }
+  
+  public static d b(int paramInt)
+  {
+    Object localObject = (d)a.get(paramInt);
+    if (localObject != null) {
+      return localObject;
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("Unknown Priority for value ");
+    ((StringBuilder)localObject).append(paramInt);
+    throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+  }
+}

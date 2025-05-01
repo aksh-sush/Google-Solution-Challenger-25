@@ -1,0 +1,48 @@
+package androidx.lifecycle;
+
+public final class DefaultLifecycleObserverAdapter
+  implements l
+{
+  private final d e;
+  private final l f;
+  
+  public DefaultLifecycleObserverAdapter(d paramD, l paramL)
+  {
+    e = paramD;
+    f = paramL;
+  }
+  
+  public void d(n paramN, i.a paramA)
+  {
+    db.l.e(paramN, "source");
+    db.l.e(paramA, "event");
+    switch (a.a[paramA.ordinal()])
+    {
+    default: 
+      break;
+    case 7: 
+      throw new IllegalArgumentException("ON_ANY must not been send by anybody");
+    case 6: 
+      e.b(paramN);
+      break;
+    case 5: 
+      e.h(paramN);
+      break;
+    case 4: 
+      e.e(paramN);
+      break;
+    case 3: 
+      e.a(paramN);
+      break;
+    case 2: 
+      e.g(paramN);
+      break;
+    case 1: 
+      e.c(paramN);
+    }
+    l localL = f;
+    if (localL != null) {
+      localL.d(paramN, paramA);
+    }
+  }
+}

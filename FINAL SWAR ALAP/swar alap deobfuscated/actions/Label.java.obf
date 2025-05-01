@@ -1,0 +1,11 @@
+package b3;
+
+public abstract interface b
+{
+  public abstract Object a(a paramA);
+  
+  public static abstract interface a
+  {
+    public abstract Object a();
+  }
+}

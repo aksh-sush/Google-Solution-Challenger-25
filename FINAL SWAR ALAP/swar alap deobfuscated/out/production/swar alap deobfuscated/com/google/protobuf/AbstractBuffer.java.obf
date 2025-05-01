@@ -1,0 +1,178 @@
+package com.google.protobuf;
+
+import java.io.InvalidObjectException;
+import java.io.ObjectInputStream;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
+
+final class b1
+  extends j.i
+{
+  private final ByteBuffer i;
+  
+  b1(ByteBuffer paramByteBuffer)
+  {
+    c0.b(paramByteBuffer, "buffer");
+    i = paramByteBuffer.slice().order(ByteOrder.nativeOrder());
+  }
+  
+  private ByteBuffer U(int paramInt1, int paramInt2)
+  {
+    if ((paramInt1 >= i.position()) && (paramInt2 <= i.limit()) && (paramInt1 <= paramInt2))
+    {
+      ByteBuffer localByteBuffer = i.slice();
+      localByteBuffer.position(paramInt1 - i.position());
+      localByteBuffer.limit(paramInt2 - i.position());
+      return localByteBuffer;
+    }
+    throw new IllegalArgumentException(String.format("Invalid indices [%d, %d]", new Object[] { Integer.valueOf(paramInt1), Integer.valueOf(paramInt2) }));
+  }
+  
+  private void readObject(ObjectInputStream paramObjectInputStream)
+  {
+    throw new InvalidObjectException("NioByteString instances are not to be serialized directly");
+  }
+  
+  private Object writeReplace()
+  {
+    return j.l(i.slice());
+  }
+  
+  protected int A(int paramInt1, int paramInt2, int paramInt3)
+  {
+    int j = paramInt2;
+    while (j < paramInt2 + paramInt3)
+    {
+      paramInt1 = paramInt1 * 31 + i.get(j);
+      j += 1;
+    }
+    return paramInt1;
+  }
+  
+  protected int C(int paramInt1, int paramInt2, int paramInt3)
+  {
+    return y1.u(paramInt1, i, paramInt2, paramInt3 + paramInt2);
+  }
+  
+  public j F(int paramInt1, int paramInt2)
+  {
+    try
+    {
+      b1 localB1 = new b1(U(paramInt1, paramInt2));
+      return localB1;
+    }
+    catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+    {
+      throw new ArrayIndexOutOfBoundsException(localIndexOutOfBoundsException.getMessage());
+    }
+    catch (ArrayIndexOutOfBoundsException localArrayIndexOutOfBoundsException)
+    {
+      throw localArrayIndexOutOfBoundsException;
+    }
+  }
+  
+  protected String K(Charset paramCharset)
+  {
+    byte[] arrayOfByte;
+    int j;
+    int k;
+    if (i.hasArray())
+    {
+      arrayOfByte = i.array();
+      j = i.arrayOffset() + i.position();
+      k = i.remaining();
+    }
+    else
+    {
+      arrayOfByte = H();
+      k = arrayOfByte.length;
+      j = 0;
+    }
+    return new String(arrayOfByte, j, k, paramCharset);
+  }
+  
+  void Q(i paramI)
+  {
+    paramI.a(i.slice());
+  }
+  
+  boolean S(j paramJ, int paramInt1, int paramInt2)
+  {
+    return F(0, paramInt2).equals(paramJ.F(paramInt1, paramInt2 + paramInt1));
+  }
+  
+  public ByteBuffer d()
+  {
+    return i.asReadOnlyBuffer();
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (paramObject == this) {
+      return true;
+    }
+    if (!(paramObject instanceof j)) {
+      return false;
+    }
+    j localJ = (j)paramObject;
+    if (size() != localJ.size()) {
+      return false;
+    }
+    if (size() == 0) {
+      return true;
+    }
+    if ((paramObject instanceof b1)) {
+      return i.equals(i);
+    }
+    if ((paramObject instanceof k1)) {
+      return paramObject.equals(this);
+    }
+    return i.equals(localJ.d());
+  }
+  
+  public byte f(int paramInt)
+  {
+    try
+    {
+      byte b = i.get(paramInt);
+      return b;
+    }
+    catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+    {
+      throw new ArrayIndexOutOfBoundsException(localIndexOutOfBoundsException.getMessage());
+    }
+    catch (ArrayIndexOutOfBoundsException localArrayIndexOutOfBoundsException)
+    {
+      throw localArrayIndexOutOfBoundsException;
+    }
+  }
+  
+  protected void s(byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
+  {
+    ByteBuffer localByteBuffer = i.slice();
+    localByteBuffer.position(paramInt1);
+    localByteBuffer.get(paramArrayOfByte, paramInt2, paramInt3);
+  }
+  
+  public int size()
+  {
+    return i.remaining();
+  }
+  
+  public byte u(int paramInt)
+  {
+    return f(paramInt);
+  }
+  
+  public boolean w()
+  {
+    return y1.r(i);
+  }
+  
+  public k z()
+  {
+    return k.i(i, true);
+  }
+}

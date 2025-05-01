@@ -1,0 +1,9 @@
+package db;
+
+import jb.c;
+
+public abstract interface d
+  extends c
+{
+  public abstract Class b();
+}

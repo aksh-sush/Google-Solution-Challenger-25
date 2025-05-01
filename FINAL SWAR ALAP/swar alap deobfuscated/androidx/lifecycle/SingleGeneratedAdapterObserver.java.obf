@@ -1,0 +1,14 @@
+package androidx.lifecycle;
+
+public final class SingleGeneratedAdapterObserver
+  implements l
+{
+  public SingleGeneratedAdapterObserver(f paramF) {}
+  
+  public void d(n paramN, i.a paramA)
+  {
+    db.l.e(paramN, "source");
+    db.l.e(paramA, "event");
+    throw null;
+  }
+}

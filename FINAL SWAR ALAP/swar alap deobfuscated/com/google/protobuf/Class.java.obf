@@ -1,0 +1,2333 @@
+package com.google.protobuf;
+
+import java.io.InputStream;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
+public abstract class k
+{
+  int a;
+  int b = 100;
+  int c = Integer.MAX_VALUE;
+  l d;
+  private boolean e = false;
+  
+  private k() {}
+  
+  public static int b(int paramInt)
+  {
+    return -(paramInt & 0x1) ^ paramInt >>> 1;
+  }
+  
+  public static long c(long paramLong)
+  {
+    return -(paramLong & 1L) ^ paramLong >>> 1;
+  }
+  
+  public static k f(InputStream paramInputStream)
+  {
+    return g(paramInputStream, 4096);
+  }
+  
+  public static k g(InputStream paramInputStream, int paramInt)
+  {
+    if (paramInt > 0)
+    {
+      if (paramInputStream == null) {
+        return j(c0.c);
+      }
+      return new c(paramInputStream, paramInt, null);
+    }
+    throw new IllegalArgumentException("bufferSize must be > 0");
+  }
+  
+  public static k h(ByteBuffer paramByteBuffer)
+  {
+    return i(paramByteBuffer, false);
+  }
+  
+  static k i(ByteBuffer paramByteBuffer, boolean paramBoolean)
+  {
+    if (paramByteBuffer.hasArray()) {
+      return l(paramByteBuffer.array(), paramByteBuffer.arrayOffset() + paramByteBuffer.position(), paramByteBuffer.remaining(), paramBoolean);
+    }
+    if ((paramByteBuffer.isDirect()) && (d.K())) {
+      return new d(paramByteBuffer, paramBoolean, null);
+    }
+    int i = paramByteBuffer.remaining();
+    byte[] arrayOfByte = new byte[i];
+    paramByteBuffer.duplicate().get(arrayOfByte);
+    return l(arrayOfByte, 0, i, true);
+  }
+  
+  public static k j(byte[] paramArrayOfByte)
+  {
+    return k(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  public static k k(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    return l(paramArrayOfByte, paramInt1, paramInt2, false);
+  }
+  
+  static k l(byte[] paramArrayOfByte, int paramInt1, int paramInt2, boolean paramBoolean)
+  {
+    paramArrayOfByte = new b(paramArrayOfByte, paramInt1, paramInt2, paramBoolean, null);
+    try
+    {
+      paramArrayOfByte.n(paramInt2);
+      return paramArrayOfByte;
+    }
+    catch (d0 paramArrayOfByte)
+    {
+      throw new IllegalArgumentException(paramArrayOfByte);
+    }
+  }
+  
+  public static int x(int paramInt, InputStream paramInputStream)
+  {
+    if ((paramInt & 0x80) == 0) {
+      return paramInt;
+    }
+    int i = paramInt & 0x7F;
+    paramInt = 7;
+    int j;
+    for (;;)
+    {
+      j = paramInt;
+      if (paramInt >= 32) {
+        break label67;
+      }
+      j = paramInputStream.read();
+      if (j == -1) {
+        break;
+      }
+      i |= (j & 0x7F) << paramInt;
+      if ((j & 0x80) == 0) {
+        return i;
+      }
+      paramInt += 7;
+    }
+    throw d0.k();
+    label67:
+    while (j < 64)
+    {
+      paramInt = paramInputStream.read();
+      if (paramInt != -1)
+      {
+        if ((paramInt & 0x80) == 0) {
+          return i;
+        }
+        j += 7;
+      }
+      else
+      {
+        throw d0.k();
+      }
+    }
+    throw d0.e();
+  }
+  
+  public abstract int A();
+  
+  public abstract long B();
+  
+  public abstract String C();
+  
+  public abstract String D();
+  
+  public abstract int E();
+  
+  public abstract int F();
+  
+  public abstract long G();
+  
+  public final int H(int paramInt)
+  {
+    if (paramInt >= 0)
+    {
+      int i = c;
+      c = paramInt;
+      return i;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Size limit cannot be negative: ");
+    localStringBuilder.append(paramInt);
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  public abstract boolean I(int paramInt);
+  
+  public abstract void a(int paramInt);
+  
+  public abstract int d();
+  
+  public abstract boolean e();
+  
+  public abstract void m(int paramInt);
+  
+  public abstract int n(int paramInt);
+  
+  public abstract boolean o();
+  
+  public abstract j p();
+  
+  public abstract double q();
+  
+  public abstract int r();
+  
+  public abstract int s();
+  
+  public abstract long t();
+  
+  public abstract float u();
+  
+  public abstract int v();
+  
+  public abstract long w();
+  
+  public abstract int y();
+  
+  public abstract long z();
+  
+  private static final class b
+    extends k
+  {
+    private final byte[] f;
+    private final boolean g;
+    private int h;
+    private int i;
+    private int j;
+    private int k;
+    private int l;
+    private boolean m;
+    private int n = Integer.MAX_VALUE;
+    
+    private b(byte[] paramArrayOfByte, int paramInt1, int paramInt2, boolean paramBoolean)
+    {
+      super();
+      f = paramArrayOfByte;
+      h = (paramInt2 + paramInt1);
+      j = paramInt1;
+      k = paramInt1;
+      g = paramBoolean;
+    }
+    
+    private void Q()
+    {
+      int i1 = h + i;
+      h = i1;
+      int i2 = i1 - k;
+      int i3 = n;
+      if (i2 > i3)
+      {
+        i2 -= i3;
+        i = i2;
+        h = (i1 - i2);
+        return;
+      }
+      i = 0;
+    }
+    
+    private void T()
+    {
+      if (h - j >= 10)
+      {
+        U();
+        return;
+      }
+      V();
+    }
+    
+    private void U()
+    {
+      int i1 = 0;
+      while (i1 < 10)
+      {
+        byte[] arrayOfByte = f;
+        int i2 = j;
+        j = (i2 + 1);
+        if (arrayOfByte[i2] >= 0) {
+          return;
+        }
+        i1 += 1;
+      }
+      throw d0.e();
+    }
+    
+    private void V()
+    {
+      int i1 = 0;
+      while (i1 < 10)
+      {
+        if (J() >= 0) {
+          return;
+        }
+        i1 += 1;
+      }
+      throw d0.e();
+    }
+    
+    public int A()
+    {
+      return k.b(N());
+    }
+    
+    public long B()
+    {
+      return k.c(O());
+    }
+    
+    public String C()
+    {
+      int i1 = N();
+      if (i1 > 0)
+      {
+        int i2 = h;
+        int i3 = j;
+        if (i1 <= i2 - i3)
+        {
+          String str = new String(f, i3, i1, c0.a);
+          j += i1;
+          return str;
+        }
+      }
+      if (i1 == 0) {
+        return "";
+      }
+      if (i1 < 0) {
+        throw d0.f();
+      }
+      throw d0.k();
+    }
+    
+    public String D()
+    {
+      int i1 = N();
+      if (i1 > 0)
+      {
+        int i2 = h;
+        int i3 = j;
+        if (i1 <= i2 - i3)
+        {
+          String str = y1.h(f, i3, i1);
+          j += i1;
+          return str;
+        }
+      }
+      if (i1 == 0) {
+        return "";
+      }
+      if (i1 <= 0) {
+        throw d0.f();
+      }
+      throw d0.k();
+    }
+    
+    public int E()
+    {
+      if (e())
+      {
+        l = 0;
+        return 0;
+      }
+      int i1 = N();
+      l = i1;
+      if (z1.a(i1) != 0) {
+        return l;
+      }
+      throw d0.b();
+    }
+    
+    public int F()
+    {
+      return N();
+    }
+    
+    public long G()
+    {
+      return O();
+    }
+    
+    public boolean I(int paramInt)
+    {
+      int i1 = z1.b(paramInt);
+      if (i1 != 0)
+      {
+        if (i1 != 1)
+        {
+          if (i1 != 2)
+          {
+            if (i1 != 3)
+            {
+              if (i1 != 4)
+              {
+                if (i1 == 5)
+                {
+                  S(4);
+                  return true;
+                }
+                throw d0.d();
+              }
+              return false;
+            }
+            R();
+            a(z1.c(z1.a(paramInt), 4));
+            return true;
+          }
+          S(N());
+          return true;
+        }
+        S(8);
+        return true;
+      }
+      T();
+      return true;
+    }
+    
+    public byte J()
+    {
+      int i1 = j;
+      if (i1 != h)
+      {
+        byte[] arrayOfByte = f;
+        j = (i1 + 1);
+        return arrayOfByte[i1];
+      }
+      throw d0.k();
+    }
+    
+    public byte[] K(int paramInt)
+    {
+      if (paramInt > 0)
+      {
+        int i2 = h;
+        int i1 = j;
+        if (paramInt <= i2 - i1)
+        {
+          paramInt += i1;
+          j = paramInt;
+          return Arrays.copyOfRange(f, i1, paramInt);
+        }
+      }
+      if (paramInt <= 0)
+      {
+        if (paramInt == 0) {
+          return c0.c;
+        }
+        throw d0.f();
+      }
+      throw d0.k();
+    }
+    
+    public int L()
+    {
+      int i1 = j;
+      if (h - i1 >= 4)
+      {
+        byte[] arrayOfByte = f;
+        j = (i1 + 4);
+        int i2 = arrayOfByte[i1];
+        int i3 = arrayOfByte[(i1 + 1)];
+        int i4 = arrayOfByte[(i1 + 2)];
+        return (arrayOfByte[(i1 + 3)] & 0xFF) << 24 | i2 & 0xFF | (i3 & 0xFF) << 8 | (i4 & 0xFF) << 16;
+      }
+      throw d0.k();
+    }
+    
+    public long M()
+    {
+      int i1 = j;
+      if (h - i1 >= 8)
+      {
+        byte[] arrayOfByte = f;
+        j = (i1 + 8);
+        long l1 = arrayOfByte[i1];
+        long l2 = arrayOfByte[(i1 + 1)];
+        long l3 = arrayOfByte[(i1 + 2)];
+        long l4 = arrayOfByte[(i1 + 3)];
+        long l5 = arrayOfByte[(i1 + 4)];
+        long l6 = arrayOfByte[(i1 + 5)];
+        long l7 = arrayOfByte[(i1 + 6)];
+        return (arrayOfByte[(i1 + 7)] & 0xFF) << 56 | l1 & 0xFF | (l2 & 0xFF) << 8 | (l3 & 0xFF) << 16 | (l4 & 0xFF) << 24 | (l5 & 0xFF) << 32 | (l6 & 0xFF) << 40 | (l7 & 0xFF) << 48;
+      }
+      throw d0.k();
+    }
+    
+    public int N()
+    {
+      int i3 = j;
+      int i1 = h;
+      int i2;
+      if (i1 != i3)
+      {
+        byte[] arrayOfByte = f;
+        i2 = i3 + 1;
+        i3 = arrayOfByte[i3];
+        if (i3 >= 0)
+        {
+          j = i2;
+          return i3;
+        }
+        if (i1 - i2 >= 9)
+        {
+          i1 = i2 + 1;
+          i3 ^= arrayOfByte[i2] << 7;
+          if (i3 < 0)
+          {
+            i2 = i3 ^ 0xFFFFFF80;
+            break label267;
+          }
+          i2 = i1 + 1;
+          i3 ^= arrayOfByte[i1] << 14;
+          if (i3 >= 0)
+          {
+            i3 ^= 0x3F80;
+            i1 = i2;
+            i2 = i3;
+          }
+          int i4;
+          int i5;
+          do
+          {
+            do
+            {
+              do
+              {
+                break;
+                i1 = i2 + 1;
+                i2 = i3 ^ arrayOfByte[i2] << 21;
+                if (i2 < 0)
+                {
+                  i2 ^= 0xFFE03F80;
+                  break;
+                }
+                i4 = i1 + 1;
+                i5 = arrayOfByte[i1];
+                i3 = i2 ^ i5 << 28 ^ 0xFE03F80;
+                i2 = i3;
+                i1 = i4;
+              } while (i5 >= 0);
+              i5 = i4 + 1;
+              i2 = i3;
+              i1 = i5;
+              if (arrayOfByte[i4] >= 0) {
+                break;
+              }
+              i4 = i5 + 1;
+              i2 = i3;
+              i1 = i4;
+            } while (arrayOfByte[i5] >= 0);
+            i5 = i4 + 1;
+            i2 = i3;
+            i1 = i5;
+            if (arrayOfByte[i4] >= 0) {
+              break;
+            }
+            i4 = i5 + 1;
+            i2 = i3;
+            i1 = i4;
+          } while (arrayOfByte[i5] >= 0);
+          i1 = i4 + 1;
+          i2 = i3;
+          if (arrayOfByte[i4] >= 0) {
+            break label267;
+          }
+        }
+      }
+      return (int)P();
+      label267:
+      j = i1;
+      return i2;
+    }
+    
+    public long O()
+    {
+      int i3 = j;
+      int i1 = h;
+      int i2;
+      long l1;
+      if (i1 != i3)
+      {
+        byte[] arrayOfByte = f;
+        i2 = i3 + 1;
+        i3 = arrayOfByte[i3];
+        if (i3 >= 0)
+        {
+          j = i2;
+          return i3;
+        }
+        if (i1 - i2 >= 9)
+        {
+          i1 = i2 + 1;
+          i3 ^= arrayOfByte[i2] << 7;
+          if (i3 < 0) {
+            i2 = i3 ^ 0xFFFFFF80;
+          }
+          for (;;)
+          {
+            l1 = i2;
+            break label342;
+            i2 = i1 + 1;
+            i3 ^= arrayOfByte[i1] << 14;
+            if (i3 >= 0)
+            {
+              l1 = i3 ^ 0x3F80;
+              i1 = i2;
+              break label342;
+            }
+            i1 = i2 + 1;
+            i2 = i3 ^ arrayOfByte[i2] << 21;
+            if (i2 >= 0) {
+              break;
+            }
+            i2 ^= 0xFFE03F80;
+          }
+          l1 = i2;
+          i2 = i1 + 1;
+          long l2 = l1 ^ arrayOfByte[i1] << 28;
+          if (l2 >= 0L)
+          {
+            l1 = 266354560L;
+            i1 = i2;
+            l1 = l2 ^ l1;
+            break label342;
+          }
+          i1 = i2 + 1;
+          l1 = l2 ^ arrayOfByte[i2] << 35;
+          if (l1 < 0L) {}
+          for (l2 = -34093383808L;; l2 = -558586000294016L)
+          {
+            l1 ^= l2;
+            break label342;
+            i2 = i1 + 1;
+            l2 = l1 ^ arrayOfByte[i1] << 42;
+            if (l2 >= 0L)
+            {
+              l1 = 4363953127296L;
+              i1 = i2;
+              break;
+            }
+            i1 = i2 + 1;
+            l1 = l2 ^ arrayOfByte[i2] << 49;
+            if (l1 >= 0L) {
+              break label293;
+            }
+          }
+          label293:
+          i2 = i1 + 1;
+          l1 = l1 ^ arrayOfByte[i1] << 56 ^ 0xFE03F80FE03F80;
+          if (l1 >= 0L) {
+            break label340;
+          }
+          i1 = i2 + 1;
+          if (arrayOfByte[i2] >= 0L) {
+            break label342;
+          }
+        }
+      }
+      return P();
+      label340:
+      i1 = i2;
+      label342:
+      j = i1;
+      return l1;
+    }
+    
+    long P()
+    {
+      long l1 = 0L;
+      int i1 = 0;
+      while (i1 < 64)
+      {
+        int i2 = J();
+        l1 |= (i2 & 0x7F) << i1;
+        if ((i2 & 0x80) == 0) {
+          return l1;
+        }
+        i1 += 7;
+      }
+      throw d0.e();
+    }
+    
+    public void R()
+    {
+      int i1;
+      do
+      {
+        i1 = E();
+      } while ((i1 != 0) && (I(i1)));
+    }
+    
+    public void S(int paramInt)
+    {
+      if (paramInt >= 0)
+      {
+        int i1 = h;
+        int i2 = j;
+        if (paramInt <= i1 - i2)
+        {
+          j = (i2 + paramInt);
+          return;
+        }
+      }
+      if (paramInt < 0) {
+        throw d0.f();
+      }
+      throw d0.k();
+    }
+    
+    public void a(int paramInt)
+    {
+      if (l == paramInt) {
+        return;
+      }
+      throw d0.a();
+    }
+    
+    public int d()
+    {
+      return j - k;
+    }
+    
+    public boolean e()
+    {
+      return j == h;
+    }
+    
+    public void m(int paramInt)
+    {
+      n = paramInt;
+      Q();
+    }
+    
+    public int n(int paramInt)
+    {
+      if (paramInt >= 0)
+      {
+        paramInt += d();
+        int i1 = n;
+        if (paramInt <= i1)
+        {
+          n = paramInt;
+          Q();
+          return i1;
+        }
+        throw d0.k();
+      }
+      throw d0.f();
+    }
+    
+    public boolean o()
+    {
+      return O() != 0L;
+    }
+    
+    public j p()
+    {
+      int i1 = N();
+      if (i1 > 0)
+      {
+        int i2 = h;
+        int i3 = j;
+        if (i1 <= i2 - i3)
+        {
+          j localJ;
+          if ((g) && (m)) {
+            localJ = j.P(f, i3, i1);
+          } else {
+            localJ = j.p(f, i3, i1);
+          }
+          j += i1;
+          return localJ;
+        }
+      }
+      if (i1 == 0) {
+        return j.f;
+      }
+      return j.O(K(i1));
+    }
+    
+    public double q()
+    {
+      return Double.longBitsToDouble(M());
+    }
+    
+    public int r()
+    {
+      return N();
+    }
+    
+    public int s()
+    {
+      return L();
+    }
+    
+    public long t()
+    {
+      return M();
+    }
+    
+    public float u()
+    {
+      return Float.intBitsToFloat(L());
+    }
+    
+    public int v()
+    {
+      return N();
+    }
+    
+    public long w()
+    {
+      return O();
+    }
+    
+    public int y()
+    {
+      return L();
+    }
+    
+    public long z()
+    {
+      return M();
+    }
+  }
+  
+  private static final class c
+    extends k
+  {
+    private final InputStream f;
+    private final byte[] g;
+    private int h;
+    private int i;
+    private int j;
+    private int k;
+    private int l;
+    private int m = Integer.MAX_VALUE;
+    
+    private c(InputStream paramInputStream, int paramInt)
+    {
+      super();
+      c0.b(paramInputStream, "input");
+      f = paramInputStream;
+      g = new byte[paramInt];
+      h = 0;
+      j = 0;
+      l = 0;
+    }
+    
+    private j J(int paramInt)
+    {
+      byte[] arrayOfByte1 = M(paramInt);
+      if (arrayOfByte1 != null) {
+        return j.o(arrayOfByte1);
+      }
+      int i1 = j;
+      int i2 = h;
+      int n = i2 - i1;
+      l += i2;
+      j = 0;
+      h = 0;
+      Object localObject = N(paramInt - n);
+      arrayOfByte1 = new byte[paramInt];
+      System.arraycopy(g, i1, arrayOfByte1, 0, n);
+      localObject = ((List)localObject).iterator();
+      paramInt = n;
+      while (((Iterator)localObject).hasNext())
+      {
+        byte[] arrayOfByte2 = (byte[])((Iterator)localObject).next();
+        System.arraycopy(arrayOfByte2, 0, arrayOfByte1, paramInt, arrayOfByte2.length);
+        paramInt += arrayOfByte2.length;
+      }
+      return j.O(arrayOfByte1);
+    }
+    
+    private byte[] L(int paramInt, boolean paramBoolean)
+    {
+      Object localObject2 = M(paramInt);
+      if (localObject2 != null)
+      {
+        localObject1 = localObject2;
+        if (paramBoolean) {
+          localObject1 = (byte[])((byte[])localObject2).clone();
+        }
+        return localObject1;
+      }
+      int i1 = j;
+      int i2 = h;
+      int n = i2 - i1;
+      l += i2;
+      j = 0;
+      h = 0;
+      localObject2 = N(paramInt - n);
+      Object localObject1 = new byte[paramInt];
+      System.arraycopy(g, i1, localObject1, 0, n);
+      localObject2 = ((List)localObject2).iterator();
+      paramInt = n;
+      while (((Iterator)localObject2).hasNext())
+      {
+        byte[] arrayOfByte = (byte[])((Iterator)localObject2).next();
+        System.arraycopy(arrayOfByte, 0, localObject1, paramInt, arrayOfByte.length);
+        paramInt += arrayOfByte.length;
+      }
+      return localObject1;
+    }
+    
+    private byte[] M(int paramInt)
+    {
+      if (paramInt == 0) {
+        return c0.c;
+      }
+      if (paramInt >= 0)
+      {
+        int n = l;
+        int i1 = j;
+        int i2 = n + i1 + paramInt;
+        if (i2 - c <= 0)
+        {
+          int i3 = m;
+          if (i2 <= i3)
+          {
+            n = h - i1;
+            i1 = paramInt - n;
+            if ((i1 >= 4096) && (i1 > f.available())) {
+              return null;
+            }
+            byte[] arrayOfByte = new byte[paramInt];
+            System.arraycopy(g, j, arrayOfByte, 0, n);
+            l += h;
+            j = 0;
+            h = 0;
+            while (n < paramInt)
+            {
+              i1 = f.read(arrayOfByte, n, paramInt - n);
+              if (i1 != -1)
+              {
+                l += i1;
+                n += i1;
+              }
+              else
+              {
+                throw d0.k();
+              }
+            }
+            return arrayOfByte;
+          }
+          W(i3 - n - i1);
+          throw d0.k();
+        }
+        throw d0.j();
+      }
+      throw d0.f();
+    }
+    
+    private List N(int paramInt)
+    {
+      ArrayList localArrayList = new ArrayList();
+      while (paramInt > 0)
+      {
+        int i1 = Math.min(paramInt, 4096);
+        byte[] arrayOfByte = new byte[i1];
+        int n = 0;
+        while (n < i1)
+        {
+          int i2 = f.read(arrayOfByte, n, i1 - n);
+          if (i2 != -1)
+          {
+            l += i2;
+            n += i2;
+          }
+          else
+          {
+            throw d0.k();
+          }
+        }
+        paramInt -= i1;
+        localArrayList.add(arrayOfByte);
+      }
+      return localArrayList;
+    }
+    
+    private void T()
+    {
+      int n = h + i;
+      h = n;
+      int i1 = l + n;
+      int i2 = m;
+      if (i1 > i2)
+      {
+        i1 -= i2;
+        i = i1;
+        h = (n - i1);
+        return;
+      }
+      i = 0;
+    }
+    
+    private void U(int paramInt)
+    {
+      if (!b0(paramInt))
+      {
+        if (paramInt > c - l - j) {
+          throw d0.j();
+        }
+        throw d0.k();
+      }
+    }
+    
+    private void X(int paramInt)
+    {
+      int n;
+      int i3;
+      if (paramInt >= 0)
+      {
+        n = l;
+        int i1 = j;
+        i3 = m;
+        if (n + i1 + paramInt <= i3)
+        {
+          l = (n + i1);
+          n = h - i1;
+          h = 0;
+          j = 0;
+        }
+      }
+      for (;;)
+      {
+        long l2;
+        if (n < paramInt) {
+          try
+          {
+            Object localObject1 = f;
+            long l1 = paramInt - n;
+            l2 = ((InputStream)localObject1).skip(l1);
+            boolean bool = l2 < 0L;
+            if ((!bool) && (l2 <= l1))
+            {
+              if (bool) {
+                break label276;
+              }
+            }
+            else
+            {
+              localObject1 = new StringBuilder();
+              ((StringBuilder)localObject1).append(f.getClass());
+              ((StringBuilder)localObject1).append("#skip returned invalid result: ");
+              ((StringBuilder)localObject1).append(l2);
+              ((StringBuilder)localObject1).append("\nThe InputStream implementation is buggy.");
+              throw new IllegalStateException(((StringBuilder)localObject1).toString());
+            }
+          }
+          finally
+          {
+            l += n;
+            T();
+          }
+        }
+        l += n;
+        T();
+        int i2;
+        if (n < paramInt)
+        {
+          i2 = h;
+          n = i2 - j;
+          for (j = i2;; j = i2)
+          {
+            U(1);
+            i3 = paramInt - n;
+            i2 = h;
+            if (i3 <= i2) {
+              break;
+            }
+            n += i2;
+          }
+          j = i3;
+        }
+        return;
+        W(i3 - n - i2);
+        throw d0.k();
+        throw d0.f();
+        label276:
+        n += (int)l2;
+      }
+    }
+    
+    private void Y()
+    {
+      if (h - j >= 10)
+      {
+        Z();
+        return;
+      }
+      a0();
+    }
+    
+    private void Z()
+    {
+      int n = 0;
+      while (n < 10)
+      {
+        byte[] arrayOfByte = g;
+        int i1 = j;
+        j = (i1 + 1);
+        if (arrayOfByte[i1] >= 0) {
+          return;
+        }
+        n += 1;
+      }
+      throw d0.e();
+    }
+    
+    private void a0()
+    {
+      int n = 0;
+      while (n < 10)
+      {
+        if (K() >= 0) {
+          return;
+        }
+        n += 1;
+      }
+      throw d0.e();
+    }
+    
+    private boolean b0(int paramInt)
+    {
+      int n = j;
+      int i1 = h;
+      if (n + paramInt > i1)
+      {
+        int i2 = c;
+        int i3 = l;
+        if (paramInt > i2 - i3 - n) {
+          return false;
+        }
+        if (i3 + n + paramInt > m) {
+          return false;
+        }
+        if (n > 0)
+        {
+          if (i1 > n)
+          {
+            localObject = g;
+            System.arraycopy(localObject, n, localObject, 0, i1 - n);
+          }
+          l += n;
+          h -= n;
+          j = 0;
+        }
+        localObject = f;
+        byte[] arrayOfByte = g;
+        n = h;
+        n = ((InputStream)localObject).read(arrayOfByte, n, Math.min(arrayOfByte.length - n, c - l - n));
+        if ((n != 0) && (n >= -1) && (n <= g.length))
+        {
+          if (n > 0)
+          {
+            h += n;
+            T();
+            if (h >= paramInt) {
+              return true;
+            }
+            return b0(paramInt);
+          }
+          return false;
+        }
+        localObject = new StringBuilder();
+        ((StringBuilder)localObject).append(f.getClass());
+        ((StringBuilder)localObject).append("#read(byte[]) returned invalid result: ");
+        ((StringBuilder)localObject).append(n);
+        ((StringBuilder)localObject).append("\nThe InputStream implementation is buggy.");
+        throw new IllegalStateException(((StringBuilder)localObject).toString());
+      }
+      Object localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("refillBuffer() called when ");
+      ((StringBuilder)localObject).append(paramInt);
+      ((StringBuilder)localObject).append(" bytes were already available in buffer");
+      throw new IllegalStateException(((StringBuilder)localObject).toString());
+    }
+    
+    public int A()
+    {
+      return k.b(Q());
+    }
+    
+    public long B()
+    {
+      return k.c(R());
+    }
+    
+    public String C()
+    {
+      int n = Q();
+      String str;
+      if (n > 0)
+      {
+        int i1 = h;
+        int i2 = j;
+        if (n <= i1 - i2)
+        {
+          str = new String(g, i2, n, c0.a);
+          j += n;
+          return str;
+        }
+      }
+      if (n == 0) {
+        return "";
+      }
+      if (n <= h)
+      {
+        U(n);
+        str = new String(g, j, n, c0.a);
+        j += n;
+        return str;
+      }
+      return new String(L(n, false), c0.a);
+    }
+    
+    public String D()
+    {
+      int i2 = Q();
+      int n = j;
+      int i3 = h;
+      if ((i2 <= i3 - n) && (i2 > 0)) {
+        arrayOfByte = g;
+      }
+      for (int i1 = n + i2;; i1 = i2 + 0)
+      {
+        j = i1;
+        break label91;
+        if (i2 == 0) {
+          return "";
+        }
+        i1 = 0;
+        n = 0;
+        if (i2 > i3) {
+          break;
+        }
+        U(i2);
+        arrayOfByte = g;
+      }
+      byte[] arrayOfByte = L(i2, false);
+      n = i1;
+      label91:
+      return y1.h(arrayOfByte, n, i2);
+    }
+    
+    public int E()
+    {
+      if (e())
+      {
+        k = 0;
+        return 0;
+      }
+      int n = Q();
+      k = n;
+      if (z1.a(n) != 0) {
+        return k;
+      }
+      throw d0.b();
+    }
+    
+    public int F()
+    {
+      return Q();
+    }
+    
+    public long G()
+    {
+      return R();
+    }
+    
+    public boolean I(int paramInt)
+    {
+      int n = z1.b(paramInt);
+      if (n != 0)
+      {
+        if (n != 1)
+        {
+          if (n != 2)
+          {
+            if (n != 3)
+            {
+              if (n != 4)
+              {
+                if (n == 5)
+                {
+                  W(4);
+                  return true;
+                }
+                throw d0.d();
+              }
+              return false;
+            }
+            V();
+            a(z1.c(z1.a(paramInt), 4));
+            return true;
+          }
+          W(Q());
+          return true;
+        }
+        W(8);
+        return true;
+      }
+      Y();
+      return true;
+    }
+    
+    public byte K()
+    {
+      if (j == h) {
+        U(1);
+      }
+      byte[] arrayOfByte = g;
+      int n = j;
+      j = (n + 1);
+      return arrayOfByte[n];
+    }
+    
+    public int O()
+    {
+      int i1 = j;
+      int n = i1;
+      if (h - i1 < 4)
+      {
+        U(4);
+        n = j;
+      }
+      byte[] arrayOfByte = g;
+      j = (n + 4);
+      i1 = arrayOfByte[n];
+      int i2 = arrayOfByte[(n + 1)];
+      int i3 = arrayOfByte[(n + 2)];
+      return (arrayOfByte[(n + 3)] & 0xFF) << 24 | i1 & 0xFF | (i2 & 0xFF) << 8 | (i3 & 0xFF) << 16;
+    }
+    
+    public long P()
+    {
+      int i1 = j;
+      int n = i1;
+      if (h - i1 < 8)
+      {
+        U(8);
+        n = j;
+      }
+      byte[] arrayOfByte = g;
+      j = (n + 8);
+      long l1 = arrayOfByte[n];
+      long l2 = arrayOfByte[(n + 1)];
+      long l3 = arrayOfByte[(n + 2)];
+      long l4 = arrayOfByte[(n + 3)];
+      long l5 = arrayOfByte[(n + 4)];
+      long l6 = arrayOfByte[(n + 5)];
+      long l7 = arrayOfByte[(n + 6)];
+      return (arrayOfByte[(n + 7)] & 0xFF) << 56 | l1 & 0xFF | (l2 & 0xFF) << 8 | (l3 & 0xFF) << 16 | (l4 & 0xFF) << 24 | (l5 & 0xFF) << 32 | (l6 & 0xFF) << 40 | (l7 & 0xFF) << 48;
+    }
+    
+    public int Q()
+    {
+      int i2 = j;
+      int n = h;
+      int i1;
+      if (n != i2)
+      {
+        byte[] arrayOfByte = g;
+        i1 = i2 + 1;
+        i2 = arrayOfByte[i2];
+        if (i2 >= 0)
+        {
+          j = i1;
+          return i2;
+        }
+        if (n - i1 >= 9)
+        {
+          n = i1 + 1;
+          i2 ^= arrayOfByte[i1] << 7;
+          if (i2 < 0)
+          {
+            i1 = i2 ^ 0xFFFFFF80;
+            break label269;
+          }
+          i1 = n + 1;
+          i2 ^= arrayOfByte[n] << 14;
+          if (i2 >= 0)
+          {
+            i2 ^= 0x3F80;
+            n = i1;
+            i1 = i2;
+          }
+          int i3;
+          int i4;
+          do
+          {
+            do
+            {
+              do
+              {
+                break;
+                n = i1 + 1;
+                i1 = i2 ^ arrayOfByte[i1] << 21;
+                if (i1 < 0)
+                {
+                  i1 ^= 0xFFE03F80;
+                  break;
+                }
+                i3 = n + 1;
+                i4 = arrayOfByte[n];
+                i2 = i1 ^ i4 << 28 ^ 0xFE03F80;
+                i1 = i2;
+                n = i3;
+              } while (i4 >= 0);
+              i4 = i3 + 1;
+              i1 = i2;
+              n = i4;
+              if (arrayOfByte[i3] >= 0) {
+                break;
+              }
+              i3 = i4 + 1;
+              i1 = i2;
+              n = i3;
+            } while (arrayOfByte[i4] >= 0);
+            i4 = i3 + 1;
+            i1 = i2;
+            n = i4;
+            if (arrayOfByte[i3] >= 0) {
+              break;
+            }
+            i3 = i4 + 1;
+            i1 = i2;
+            n = i3;
+          } while (arrayOfByte[i4] >= 0);
+          n = i3 + 1;
+          i1 = i2;
+          if (arrayOfByte[i3] >= 0) {
+            break label269;
+          }
+        }
+      }
+      return (int)S();
+      label269:
+      j = n;
+      return i1;
+    }
+    
+    public long R()
+    {
+      int i2 = j;
+      int n = h;
+      int i1;
+      long l1;
+      if (n != i2)
+      {
+        byte[] arrayOfByte = g;
+        i1 = i2 + 1;
+        i2 = arrayOfByte[i2];
+        if (i2 >= 0)
+        {
+          j = i1;
+          return i2;
+        }
+        if (n - i1 >= 9)
+        {
+          n = i1 + 1;
+          i2 ^= arrayOfByte[i1] << 7;
+          if (i2 < 0) {
+            i1 = i2 ^ 0xFFFFFF80;
+          }
+          for (;;)
+          {
+            l1 = i1;
+            break label343;
+            i1 = n + 1;
+            i2 ^= arrayOfByte[n] << 14;
+            if (i2 >= 0)
+            {
+              l1 = i2 ^ 0x3F80;
+              n = i1;
+              break label343;
+            }
+            n = i1 + 1;
+            i1 = i2 ^ arrayOfByte[i1] << 21;
+            if (i1 >= 0) {
+              break;
+            }
+            i1 ^= 0xFFE03F80;
+          }
+          l1 = i1;
+          i1 = n + 1;
+          long l2 = l1 ^ arrayOfByte[n] << 28;
+          if (l2 >= 0L)
+          {
+            l1 = 266354560L;
+            n = i1;
+            l1 = l2 ^ l1;
+            break label343;
+          }
+          n = i1 + 1;
+          l1 = l2 ^ arrayOfByte[i1] << 35;
+          if (l1 < 0L) {}
+          for (l2 = -34093383808L;; l2 = -558586000294016L)
+          {
+            l1 ^= l2;
+            break label343;
+            i1 = n + 1;
+            l2 = l1 ^ arrayOfByte[n] << 42;
+            if (l2 >= 0L)
+            {
+              l1 = 4363953127296L;
+              n = i1;
+              break;
+            }
+            n = i1 + 1;
+            l1 = l2 ^ arrayOfByte[i1] << 49;
+            if (l1 >= 0L) {
+              break label294;
+            }
+          }
+          label294:
+          i1 = n + 1;
+          l1 = l1 ^ arrayOfByte[n] << 56 ^ 0xFE03F80FE03F80;
+          if (l1 >= 0L) {
+            break label341;
+          }
+          n = i1 + 1;
+          if (arrayOfByte[i1] >= 0L) {
+            break label343;
+          }
+        }
+      }
+      return S();
+      label341:
+      n = i1;
+      label343:
+      j = n;
+      return l1;
+    }
+    
+    long S()
+    {
+      long l1 = 0L;
+      int n = 0;
+      while (n < 64)
+      {
+        int i1 = K();
+        l1 |= (i1 & 0x7F) << n;
+        if ((i1 & 0x80) == 0) {
+          return l1;
+        }
+        n += 7;
+      }
+      throw d0.e();
+    }
+    
+    public void V()
+    {
+      int n;
+      do
+      {
+        n = E();
+      } while ((n != 0) && (I(n)));
+    }
+    
+    public void W(int paramInt)
+    {
+      int n = h;
+      int i1 = j;
+      if ((paramInt <= n - i1) && (paramInt >= 0))
+      {
+        j = (i1 + paramInt);
+        return;
+      }
+      X(paramInt);
+    }
+    
+    public void a(int paramInt)
+    {
+      if (k == paramInt) {
+        return;
+      }
+      throw d0.a();
+    }
+    
+    public int d()
+    {
+      return l + j;
+    }
+    
+    public boolean e()
+    {
+      return (j == h) && (!b0(1));
+    }
+    
+    public void m(int paramInt)
+    {
+      m = paramInt;
+      T();
+    }
+    
+    public int n(int paramInt)
+    {
+      if (paramInt >= 0)
+      {
+        paramInt += l + j;
+        int n = m;
+        if (paramInt <= n)
+        {
+          m = paramInt;
+          T();
+          return n;
+        }
+        throw d0.k();
+      }
+      throw d0.f();
+    }
+    
+    public boolean o()
+    {
+      return R() != 0L;
+    }
+    
+    public j p()
+    {
+      int n = Q();
+      int i1 = h;
+      int i2 = j;
+      if ((n <= i1 - i2) && (n > 0))
+      {
+        j localJ = j.p(g, i2, n);
+        j += n;
+        return localJ;
+      }
+      if (n == 0) {
+        return j.f;
+      }
+      return J(n);
+    }
+    
+    public double q()
+    {
+      return Double.longBitsToDouble(P());
+    }
+    
+    public int r()
+    {
+      return Q();
+    }
+    
+    public int s()
+    {
+      return O();
+    }
+    
+    public long t()
+    {
+      return P();
+    }
+    
+    public float u()
+    {
+      return Float.intBitsToFloat(O());
+    }
+    
+    public int v()
+    {
+      return Q();
+    }
+    
+    public long w()
+    {
+      return R();
+    }
+    
+    public int y()
+    {
+      return O();
+    }
+    
+    public long z()
+    {
+      return P();
+    }
+  }
+  
+  private static final class d
+    extends k
+  {
+    private final ByteBuffer f;
+    private final boolean g;
+    private final long h;
+    private long i;
+    private long j;
+    private long k;
+    private int l;
+    private int m;
+    private boolean n;
+    private int o = Integer.MAX_VALUE;
+    
+    private d(ByteBuffer paramByteBuffer, boolean paramBoolean)
+    {
+      super();
+      f = paramByteBuffer;
+      long l1 = x1.i(paramByteBuffer);
+      h = l1;
+      i = (paramByteBuffer.limit() + l1);
+      l1 += paramByteBuffer.position();
+      j = l1;
+      k = l1;
+      g = paramBoolean;
+    }
+    
+    private int J(long paramLong)
+    {
+      return (int)(paramLong - h);
+    }
+    
+    static boolean K()
+    {
+      return x1.H();
+    }
+    
+    private void R()
+    {
+      long l1 = i + l;
+      i = l1;
+      int i1 = (int)(l1 - k);
+      int i2 = o;
+      if (i1 > i2)
+      {
+        i1 -= i2;
+        l = i1;
+        i = (l1 - i1);
+        return;
+      }
+      l = 0;
+    }
+    
+    private int S()
+    {
+      return (int)(i - j);
+    }
+    
+    private void V()
+    {
+      if (S() >= 10)
+      {
+        W();
+        return;
+      }
+      X();
+    }
+    
+    private void W()
+    {
+      int i1 = 0;
+      while (i1 < 10)
+      {
+        long l1 = j;
+        j = (1L + l1);
+        if (x1.u(l1) >= 0) {
+          return;
+        }
+        i1 += 1;
+      }
+      throw d0.e();
+    }
+    
+    private void X()
+    {
+      int i1 = 0;
+      while (i1 < 10)
+      {
+        if (L() >= 0) {
+          return;
+        }
+        i1 += 1;
+      }
+      throw d0.e();
+    }
+    
+    /* Error */
+    private ByteBuffer Y(long paramLong1, long paramLong2)
+    {
+      // Byte code:
+      //   0: aload_0
+      //   1: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   4: invokevirtual 47	java/nio/Buffer:position	()I
+      //   7: istore 5
+      //   9: aload_0
+      //   10: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   13: invokevirtual 42	java/nio/Buffer:limit	()I
+      //   16: istore 6
+      //   18: aload_0
+      //   19: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   22: aload_0
+      //   23: lload_1
+      //   24: invokespecial 97	com/google/protobuf/k$d:J	(J)I
+      //   27: invokevirtual 100	java/nio/Buffer:position	(I)Ljava/nio/Buffer;
+      //   30: pop
+      //   31: aload_0
+      //   32: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   35: aload_0
+      //   36: lload_3
+      //   37: invokespecial 97	com/google/protobuf/k$d:J	(J)I
+      //   40: invokevirtual 102	java/nio/Buffer:limit	(I)Ljava/nio/Buffer;
+      //   43: pop
+      //   44: aload_0
+      //   45: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   48: invokevirtual 108	java/nio/ByteBuffer:slice	()Ljava/nio/ByteBuffer;
+      //   51: astore 7
+      //   53: aload_0
+      //   54: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   57: iload 5
+      //   59: invokevirtual 100	java/nio/Buffer:position	(I)Ljava/nio/Buffer;
+      //   62: pop
+      //   63: aload_0
+      //   64: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   67: iload 6
+      //   69: invokevirtual 102	java/nio/Buffer:limit	(I)Ljava/nio/Buffer;
+      //   72: pop
+      //   73: aload 7
+      //   75: areturn
+      //   76: astore 7
+      //   78: goto +7 -> 85
+      //   81: invokestatic 110	com/google/protobuf/d0:k	()Lcom/google/protobuf/d0;
+      //   84: athrow
+      //   85: aload_0
+      //   86: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   89: iload 5
+      //   91: invokevirtual 100	java/nio/Buffer:position	(I)Ljava/nio/Buffer;
+      //   94: pop
+      //   95: aload_0
+      //   96: getfield 29	com/google/protobuf/k$d:f	Ljava/nio/ByteBuffer;
+      //   99: iload 6
+      //   101: invokevirtual 102	java/nio/Buffer:limit	(I)Ljava/nio/Buffer;
+      //   104: pop
+      //   105: aload 7
+      //   107: athrow
+      //   108: astore 7
+      //   110: goto -29 -> 81
+      // Local variable table:
+      //   start	length	slot	name	signature
+      //   0	113	0	this	d
+      //   0	113	1	paramLong1	long
+      //   0	113	3	paramLong2	long
+      //   7	83	5	i1	int
+      //   16	84	6	i2	int
+      //   51	23	7	localByteBuffer	ByteBuffer
+      //   76	30	7	localObject	Object
+      //   108	1	7	localIllegalArgumentException	IllegalArgumentException
+      // Exception table:
+      //   from	to	target	type
+      //   18	53	76	finally
+      //   81	85	76	finally
+      //   18	53	108	java/lang/IllegalArgumentException
+    }
+    
+    public int A()
+    {
+      return k.b(O());
+    }
+    
+    public long B()
+    {
+      return k.c(P());
+    }
+    
+    public String C()
+    {
+      int i1 = O();
+      if ((i1 > 0) && (i1 <= S()))
+      {
+        Object localObject = new byte[i1];
+        long l1 = j;
+        long l2 = i1;
+        x1.n(l1, (byte[])localObject, 0L, l2);
+        localObject = new String((byte[])localObject, c0.a);
+        j += l2;
+        return localObject;
+      }
+      if (i1 == 0) {
+        return "";
+      }
+      if (i1 < 0) {
+        throw d0.f();
+      }
+      throw d0.k();
+    }
+    
+    public String D()
+    {
+      int i1 = O();
+      if ((i1 > 0) && (i1 <= S()))
+      {
+        int i2 = J(j);
+        String str = y1.g(f, i2, i1);
+        j += i1;
+        return str;
+      }
+      if (i1 == 0) {
+        return "";
+      }
+      if (i1 <= 0) {
+        throw d0.f();
+      }
+      throw d0.k();
+    }
+    
+    public int E()
+    {
+      if (e())
+      {
+        m = 0;
+        return 0;
+      }
+      int i1 = O();
+      m = i1;
+      if (z1.a(i1) != 0) {
+        return m;
+      }
+      throw d0.b();
+    }
+    
+    public int F()
+    {
+      return O();
+    }
+    
+    public long G()
+    {
+      return P();
+    }
+    
+    public boolean I(int paramInt)
+    {
+      int i1 = z1.b(paramInt);
+      if (i1 != 0)
+      {
+        if (i1 != 1)
+        {
+          if (i1 != 2)
+          {
+            if (i1 != 3)
+            {
+              if (i1 != 4)
+              {
+                if (i1 == 5)
+                {
+                  U(4);
+                  return true;
+                }
+                throw d0.d();
+              }
+              return false;
+            }
+            T();
+            a(z1.c(z1.a(paramInt), 4));
+            return true;
+          }
+          U(O());
+          return true;
+        }
+        U(8);
+        return true;
+      }
+      V();
+      return true;
+    }
+    
+    public byte L()
+    {
+      long l1 = j;
+      if (l1 != i)
+      {
+        j = (1L + l1);
+        return x1.u(l1);
+      }
+      throw d0.k();
+    }
+    
+    public int M()
+    {
+      long l1 = j;
+      if (i - l1 >= 4L)
+      {
+        j = (4L + l1);
+        int i1 = x1.u(l1);
+        int i2 = x1.u(1L + l1);
+        int i3 = x1.u(2L + l1);
+        return (x1.u(l1 + 3L) & 0xFF) << 24 | i1 & 0xFF | (i2 & 0xFF) << 8 | (i3 & 0xFF) << 16;
+      }
+      throw d0.k();
+    }
+    
+    public long N()
+    {
+      long l1 = j;
+      if (i - l1 >= 8L)
+      {
+        j = (8L + l1);
+        long l2 = x1.u(l1);
+        long l3 = x1.u(1L + l1);
+        long l4 = x1.u(2L + l1);
+        long l5 = x1.u(3L + l1);
+        long l6 = x1.u(4L + l1);
+        long l7 = x1.u(5L + l1);
+        long l8 = x1.u(6L + l1);
+        return (x1.u(l1 + 7L) & 0xFF) << 56 | l2 & 0xFF | (l3 & 0xFF) << 8 | (l4 & 0xFF) << 16 | (l5 & 0xFF) << 24 | (l6 & 0xFF) << 32 | (l7 & 0xFF) << 40 | (l8 & 0xFF) << 48;
+      }
+      throw d0.k();
+    }
+    
+    public int O()
+    {
+      long l1 = j;
+      int i1;
+      if (i != l1)
+      {
+        long l2 = l1 + 1L;
+        i1 = x1.u(l1);
+        if (i1 >= 0)
+        {
+          j = l2;
+          return i1;
+        }
+        if (i - l2 >= 9L)
+        {
+          l1 = l2 + 1L;
+          i1 ^= x1.u(l2) << 7;
+          if (i1 < 0)
+          {
+            i1 ^= 0xFFFFFF80;
+            break label286;
+          }
+          l2 = l1 + 1L;
+          i1 ^= x1.u(l1) << 14;
+          if (i1 >= 0)
+          {
+            i1 ^= 0x3F80;
+            l1 = l2;
+          }
+          int i2;
+          long l3;
+          do
+          {
+            do
+            {
+              int i3;
+              do
+              {
+                break;
+                l1 = l2 + 1L;
+                i1 ^= x1.u(l2) << 21;
+                if (i1 < 0)
+                {
+                  i1 ^= 0xFFE03F80;
+                  break;
+                }
+                l2 = l1 + 1L;
+                i3 = x1.u(l1);
+                i2 = i1 ^ i3 << 28 ^ 0xFE03F80;
+                i1 = i2;
+                l1 = l2;
+              } while (i3 >= 0);
+              l3 = l2 + 1L;
+              i1 = i2;
+              l1 = l3;
+              if (x1.u(l2) >= 0) {
+                break;
+              }
+              l2 = l3 + 1L;
+              i1 = i2;
+              l1 = l2;
+            } while (x1.u(l3) >= 0);
+            l3 = l2 + 1L;
+            i1 = i2;
+            l1 = l3;
+            if (x1.u(l2) >= 0) {
+              break;
+            }
+            l2 = l3 + 1L;
+            i1 = i2;
+            l1 = l2;
+          } while (x1.u(l3) >= 0);
+          l1 = l2 + 1L;
+          i1 = i2;
+          if (x1.u(l2) >= 0) {
+            break label286;
+          }
+        }
+      }
+      return (int)Q();
+      label286:
+      j = l1;
+      return i1;
+    }
+    
+    public long P()
+    {
+      long l1 = j;
+      long l3;
+      label191:
+      long l4;
+      if (i != l1)
+      {
+        l2 = l1 + 1L;
+        int i1 = x1.u(l1);
+        if (i1 >= 0)
+        {
+          j = l2;
+          return i1;
+        }
+        if (i - l2 >= 9L)
+        {
+          l1 = l2 + 1L;
+          i1 ^= x1.u(l2) << 7;
+          if (i1 < 0)
+          {
+            i1 ^= 0xFFFFFF80;
+            l2 = l1;
+            l1 = i1;
+            break label386;
+          }
+          l2 = l1 + 1L;
+          i1 ^= x1.u(l1) << 14;
+          if (i1 >= 0) {
+            l1 = i1 ^ 0x3F80;
+          }
+          label325:
+          do
+          {
+            for (;;)
+            {
+              break label386;
+              l1 = l2 + 1L;
+              i1 ^= x1.u(l2) << 21;
+              if (i1 < 0)
+              {
+                i1 ^= 0xFFE03F80;
+                l2 = l1;
+                break;
+              }
+              l3 = i1;
+              l2 = l1 + 1L;
+              l1 = l3 ^ x1.u(l1) << 28;
+              if (l1 < 0L) {
+                break label191;
+              }
+              l3 = 266354560L;
+              l1 ^= l3;
+            }
+            l3 = l2 + 1L;
+            l4 = l1 ^ x1.u(l2) << 35;
+            if (l4 < 0L)
+            {
+              l2 = -34093383808L;
+              l1 = l3;
+              l3 = l2;
+              l2 = l4;
+            }
+            for (;;)
+            {
+              l3 = l2 ^ l3;
+              l2 = l1;
+              l1 = l3;
+              break label386;
+              l2 = l3 + 1L;
+              l3 = l4 ^ x1.u(l3) << 42;
+              if (l3 >= 0L)
+              {
+                l4 = 4363953127296L;
+                l1 = l3;
+                l3 = l4;
+                break;
+              }
+              l1 = l2 + 1L;
+              l2 = l3 ^ x1.u(l2) << 49;
+              if (l2 >= 0L) {
+                break label325;
+              }
+              l3 = -558586000294016L;
+            }
+            l4 = l1 + 1L;
+            l3 = l2 ^ x1.u(l1) << 56 ^ 0xFE03F80FE03F80;
+            l1 = l3;
+            l2 = l4;
+          } while (l3 >= 0L);
+          if (x1.u(l4) >= 0L) {
+            break label377;
+          }
+        }
+      }
+      return Q();
+      label377:
+      long l2 = 1L + l4;
+      l1 = l3;
+      label386:
+      j = l2;
+      return l1;
+    }
+    
+    long Q()
+    {
+      long l1 = 0L;
+      int i1 = 0;
+      while (i1 < 64)
+      {
+        int i2 = L();
+        l1 |= (i2 & 0x7F) << i1;
+        if ((i2 & 0x80) == 0) {
+          return l1;
+        }
+        i1 += 7;
+      }
+      throw d0.e();
+    }
+    
+    public void T()
+    {
+      int i1;
+      do
+      {
+        i1 = E();
+      } while ((i1 != 0) && (I(i1)));
+    }
+    
+    public void U(int paramInt)
+    {
+      if ((paramInt >= 0) && (paramInt <= S()))
+      {
+        j += paramInt;
+        return;
+      }
+      if (paramInt < 0) {
+        throw d0.f();
+      }
+      throw d0.k();
+    }
+    
+    public void a(int paramInt)
+    {
+      if (m == paramInt) {
+        return;
+      }
+      throw d0.a();
+    }
+    
+    public int d()
+    {
+      return (int)(j - k);
+    }
+    
+    public boolean e()
+    {
+      return j == i;
+    }
+    
+    public void m(int paramInt)
+    {
+      o = paramInt;
+      R();
+    }
+    
+    public int n(int paramInt)
+    {
+      if (paramInt >= 0)
+      {
+        paramInt += d();
+        int i1 = o;
+        if (paramInt <= i1)
+        {
+          o = paramInt;
+          R();
+          return i1;
+        }
+        throw d0.k();
+      }
+      throw d0.f();
+    }
+    
+    public boolean o()
+    {
+      return P() != 0L;
+    }
+    
+    public j p()
+    {
+      int i1 = O();
+      if ((i1 > 0) && (i1 <= S()))
+      {
+        if ((g) && (n))
+        {
+          l1 = j;
+          l2 = i1;
+          localObject = Y(l1, l1 + l2);
+          j += l2;
+          return j.N((ByteBuffer)localObject);
+        }
+        Object localObject = new byte[i1];
+        long l1 = j;
+        long l2 = i1;
+        x1.n(l1, (byte[])localObject, 0L, l2);
+        j += l2;
+        return j.O((byte[])localObject);
+      }
+      if (i1 == 0) {
+        return j.f;
+      }
+      if (i1 < 0) {
+        throw d0.f();
+      }
+      throw d0.k();
+    }
+    
+    public double q()
+    {
+      return Double.longBitsToDouble(N());
+    }
+    
+    public int r()
+    {
+      return O();
+    }
+    
+    public int s()
+    {
+      return M();
+    }
+    
+    public long t()
+    {
+      return N();
+    }
+    
+    public float u()
+    {
+      return Float.intBitsToFloat(M());
+    }
+    
+    public int v()
+    {
+      return O();
+    }
+    
+    public long w()
+    {
+      return P();
+    }
+    
+    public int y()
+    {
+      return M();
+    }
+    
+    public long z()
+    {
+      return N();
+    }
+  }
+}

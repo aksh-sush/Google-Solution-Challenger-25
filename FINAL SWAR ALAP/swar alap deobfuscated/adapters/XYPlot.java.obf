@@ -1,0 +1,235 @@
+package t;
+
+import java.util.HashSet;
+import u.b.a;
+import u.b.b;
+
+public abstract class l
+  extends j
+{
+  private int N0 = 0;
+  private int O0 = 0;
+  private int P0 = 0;
+  private int Q0 = 0;
+  private int R0 = 0;
+  private int S0 = 0;
+  private int T0 = 0;
+  private int U0 = 0;
+  private boolean V0 = false;
+  private int W0 = 0;
+  private int X0 = 0;
+  protected b.a Y0 = new b.a();
+  b.b Z0 = null;
+  
+  public l() {}
+  
+  public int A1()
+  {
+    return U0;
+  }
+  
+  public int B1()
+  {
+    return N0;
+  }
+  
+  public abstract void C1(int paramInt1, int paramInt2, int paramInt3, int paramInt4);
+  
+  protected void D1(e paramE, e.b paramB1, int paramInt1, e.b paramB2, int paramInt2)
+  {
+    while ((Z0 == null) && (K() != null)) {
+      Z0 = ((f)K()).I1();
+    }
+    b.a localA = Y0;
+    a = paramB1;
+    b = paramB2;
+    c = paramInt1;
+    d = paramInt2;
+    Z0.a(paramE, localA);
+    paramE.k1(Y0.e);
+    paramE.L0(Y0.f);
+    paramE.K0(Y0.h);
+    paramE.A0(Y0.g);
+  }
+  
+  protected boolean E1()
+  {
+    Object localObject1 = a0;
+    if (localObject1 != null) {
+      localObject1 = ((f)localObject1).I1();
+    } else {
+      localObject1 = null;
+    }
+    if (localObject1 == null) {
+      return false;
+    }
+    int i = 0;
+    for (;;)
+    {
+      int k = M0;
+      int j = 1;
+      if (i >= k) {
+        break;
+      }
+      e localE = L0[i];
+      if ((localE != null) && (!(localE instanceof h)))
+      {
+        Object localObject3 = localE.u(0);
+        Object localObject4 = localE.u(1);
+        e.b localB = e.b.g;
+        if ((localObject3 != localB) || (w == 1) || (localObject4 != localB) || (x == 1)) {
+          j = 0;
+        }
+        if (j == 0)
+        {
+          Object localObject2 = localObject3;
+          if (localObject3 == localB) {
+            localObject2 = e.b.f;
+          }
+          localObject3 = localObject4;
+          if (localObject4 == localB) {
+            localObject3 = e.b.f;
+          }
+          localObject4 = Y0;
+          a = ((e.b)localObject2);
+          b = ((e.b)localObject3);
+          c = localE.W();
+          Y0.d = localE.x();
+          ((b.b)localObject1).a(localE, Y0);
+          localE.k1(Y0.e);
+          localE.L0(Y0.f);
+          localE.A0(Y0.g);
+        }
+      }
+      i += 1;
+    }
+    return true;
+  }
+  
+  public boolean F1()
+  {
+    return V0;
+  }
+  
+  protected void G1(boolean paramBoolean)
+  {
+    V0 = paramBoolean;
+  }
+  
+  public void H1(int paramInt1, int paramInt2)
+  {
+    W0 = paramInt1;
+    X0 = paramInt2;
+  }
+  
+  public void I1(int paramInt)
+  {
+    P0 = paramInt;
+    N0 = paramInt;
+    Q0 = paramInt;
+    O0 = paramInt;
+    R0 = paramInt;
+    S0 = paramInt;
+  }
+  
+  public void J1(int paramInt)
+  {
+    O0 = paramInt;
+  }
+  
+  public void K1(int paramInt)
+  {
+    S0 = paramInt;
+  }
+  
+  public void L1(int paramInt)
+  {
+    P0 = paramInt;
+    T0 = paramInt;
+  }
+  
+  public void M1(int paramInt)
+  {
+    Q0 = paramInt;
+    U0 = paramInt;
+  }
+  
+  public void N1(int paramInt)
+  {
+    R0 = paramInt;
+    T0 = paramInt;
+    U0 = paramInt;
+  }
+  
+  public void O1(int paramInt)
+  {
+    N0 = paramInt;
+  }
+  
+  public void a(f paramF)
+  {
+    u1();
+  }
+  
+  public void t1(boolean paramBoolean)
+  {
+    int i = R0;
+    if ((i > 0) || (S0 > 0))
+    {
+      if (paramBoolean)
+      {
+        T0 = S0;
+        U0 = i;
+        return;
+      }
+      T0 = i;
+      U0 = S0;
+    }
+  }
+  
+  public void u1()
+  {
+    int i = 0;
+    while (i < M0)
+    {
+      e localE = L0[i];
+      if (localE != null) {
+        localE.U0(true);
+      }
+      i += 1;
+    }
+  }
+  
+  public boolean v1(HashSet paramHashSet)
+  {
+    int i = 0;
+    while (i < M0)
+    {
+      if (paramHashSet.contains(L0[i])) {
+        return true;
+      }
+      i += 1;
+    }
+    return false;
+  }
+  
+  public int w1()
+  {
+    return X0;
+  }
+  
+  public int x1()
+  {
+    return W0;
+  }
+  
+  public int y1()
+  {
+    return O0;
+  }
+  
+  public int z1()
+  {
+    return T0;
+  }
+}

@@ -1,0 +1,59 @@
+package com.google.android.gms.common.internal;
+
+import android.os.IBinder;
+import android.os.Parcel;
+import b4.a;
+import com.google.android.gms.internal.common.zza;
+import com.google.android.gms.internal.common.zzc;
+import q3.h0;
+import q3.j0;
+import q3.l0;
+
+public final class g1
+  extends zza
+  implements i1
+{
+  g1(IBinder paramIBinder)
+  {
+    super(paramIBinder, "com.google.android.gms.common.internal.IGoogleCertificatesApi");
+  }
+  
+  public final j0 C(h0 paramH0)
+  {
+    Object localObject = zza();
+    zzc.zzc((Parcel)localObject, paramH0);
+    paramH0 = zzB(6, (Parcel)localObject);
+    localObject = (j0)zzc.zza(paramH0, j0.CREATOR);
+    paramH0.recycle();
+    return localObject;
+  }
+  
+  public final boolean f(l0 paramL0, a paramA)
+  {
+    Parcel localParcel = zza();
+    zzc.zzc(localParcel, paramL0);
+    zzc.zze(localParcel, paramA);
+    paramL0 = zzB(5, localParcel);
+    boolean bool = zzc.zzf(paramL0);
+    paramL0.recycle();
+    return bool;
+  }
+  
+  public final j0 p(h0 paramH0)
+  {
+    Object localObject = zza();
+    zzc.zzc((Parcel)localObject, paramH0);
+    paramH0 = zzB(8, (Parcel)localObject);
+    localObject = (j0)zzc.zza(paramH0, j0.CREATOR);
+    paramH0.recycle();
+    return localObject;
+  }
+  
+  public final boolean zzi()
+  {
+    Parcel localParcel = zzB(7, zza());
+    boolean bool = zzc.zzf(localParcel);
+    localParcel.recycle();
+    return bool;
+  }
+}

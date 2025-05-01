@@ -1,0 +1,147 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.ArrayList;
+import java.util.List;
+
+final class zzep
+{
+  private static final zzep zzb = new zzep(true);
+  final zzgu zza;
+  private boolean zzc;
+  private boolean zzd;
+  
+  private zzep()
+  {
+    zza = new zzgk(16);
+  }
+  
+  private zzep(boolean paramBoolean)
+  {
+    zza = localZzgk;
+    zzb();
+    zzb();
+  }
+  
+  public static zzep zza()
+  {
+    throw null;
+  }
+  
+  private static final void zzd(zzeo paramZzeo, Object paramObject)
+  {
+    zzhn localZzhn = paramZzeo.zzb();
+    zzez.zze(paramObject);
+    Object localObject = zzhn.zza;
+    localObject = zzho.zza;
+    boolean bool;
+    switch (localZzhn.zza().ordinal())
+    {
+    default: 
+      break;
+    case 8: 
+      if ((paramObject instanceof zzfw)) {
+        break label177;
+      }
+      if (!(paramObject instanceof zzfb)) {
+        break label178;
+      }
+      return;
+    case 7: 
+      if ((paramObject instanceof Integer)) {
+        break label177;
+      }
+      if (!(paramObject instanceof zzew)) {
+        break label178;
+      }
+      return;
+    case 6: 
+      if ((paramObject instanceof zzee)) {
+        break label177;
+      }
+      if (!(paramObject instanceof byte[])) {
+        break label178;
+      }
+      return;
+    case 5: 
+      bool = paramObject instanceof String;
+      break;
+    case 4: 
+      bool = paramObject instanceof Boolean;
+      break;
+    case 3: 
+      bool = paramObject instanceof Double;
+      break;
+    case 2: 
+      bool = paramObject instanceof Float;
+      break;
+    case 1: 
+      bool = paramObject instanceof Long;
+      break;
+    case 0: 
+      bool = paramObject instanceof Integer;
+    }
+    if (bool) {
+      label177:
+      return;
+    }
+    label178:
+    throw new IllegalArgumentException(String.format("Wrong object type used with protocol message reflection.\nField number: %d, field java type: %s, value type: %s\n", new Object[] { Integer.valueOf(paramZzeo.zza()), paramZzeo.zzb().zza(), paramObject.getClass().getName() }));
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof zzep)) {
+      return false;
+    }
+    paramObject = (zzep)paramObject;
+    return zza.equals(zza);
+  }
+  
+  public final int hashCode()
+  {
+    return zza.hashCode();
+  }
+  
+  public final void zzb()
+  {
+    if (zzc) {
+      return;
+    }
+    zza.zza();
+    zzc = true;
+  }
+  
+  public final void zzc(zzeo paramZzeo, Object paramObject)
+  {
+    if (paramZzeo.zzc())
+    {
+      if ((paramObject instanceof List))
+      {
+        ArrayList localArrayList = new ArrayList();
+        localArrayList.addAll((List)paramObject);
+        int j = localArrayList.size();
+        int i = 0;
+        while (i < j)
+        {
+          zzd(paramZzeo, localArrayList.get(i));
+          i += 1;
+        }
+        paramObject = localArrayList;
+      }
+      else
+      {
+        throw new IllegalArgumentException("Wrong object type used with protocol message reflection.");
+      }
+    }
+    else {
+      zzd(paramZzeo, paramObject);
+    }
+    if ((paramObject instanceof zzfb)) {
+      zzd = true;
+    }
+    zza.zze(paramZzeo, paramObject);
+  }
+}

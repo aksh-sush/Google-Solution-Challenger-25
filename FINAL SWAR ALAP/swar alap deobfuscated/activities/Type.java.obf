@@ -1,0 +1,40 @@
+package l4;
+
+import android.os.IBinder;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.k;
+import com.google.android.gms.internal.base.zaa;
+import com.google.android.gms.internal.base.zac;
+
+public final class g
+  extends zaa
+{
+  g(IBinder paramIBinder)
+  {
+    super(paramIBinder, "com.google.android.gms.signin.internal.ISignInService");
+  }
+  
+  public final void Y(k paramK, int paramInt, boolean paramBoolean)
+  {
+    Parcel localParcel = zaa();
+    zac.zad(localParcel, paramK);
+    localParcel.writeInt(paramInt);
+    zac.zab(localParcel, paramBoolean);
+    zac(9, localParcel);
+  }
+  
+  public final void Z(j paramJ, f paramF)
+  {
+    Parcel localParcel = zaa();
+    zac.zac(localParcel, paramJ);
+    zac.zad(localParcel, paramF);
+    zac(12, localParcel);
+  }
+  
+  public final void c(int paramInt)
+  {
+    Parcel localParcel = zaa();
+    localParcel.writeInt(paramInt);
+    zac(7, localParcel);
+  }
+}

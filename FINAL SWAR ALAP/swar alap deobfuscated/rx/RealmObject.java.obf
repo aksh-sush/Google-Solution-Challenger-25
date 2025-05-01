@@ -1,0 +1,12 @@
+package s3;
+
+public abstract class a
+  implements d
+{
+  public a() {}
+  
+  public final int describeContents()
+  {
+    return 0;
+  }
+}

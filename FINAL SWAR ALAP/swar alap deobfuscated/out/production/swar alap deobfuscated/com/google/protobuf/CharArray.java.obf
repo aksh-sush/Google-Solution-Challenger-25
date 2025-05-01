@@ -1,0 +1,88 @@
+package com.google.protobuf;
+
+import java.util.AbstractMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+class p0
+  implements o0
+{
+  p0() {}
+  
+  private static int i(int paramInt, Object paramObject1, Object paramObject2)
+  {
+    Object localObject = (n0)paramObject1;
+    paramObject1 = (m0)paramObject2;
+    boolean bool = ((AbstractMap)localObject).isEmpty();
+    int i = 0;
+    if (bool) {
+      return 0;
+    }
+    paramObject2 = ((n0)localObject).entrySet().iterator();
+    while (paramObject2.hasNext())
+    {
+      localObject = (Map.Entry)paramObject2.next();
+      i += paramObject1.a(paramInt, ((Map.Entry)localObject).getKey(), ((Map.Entry)localObject).getValue());
+    }
+    return i;
+  }
+  
+  private static n0 j(Object paramObject1, Object paramObject2)
+  {
+    n0 localN0 = (n0)paramObject1;
+    paramObject2 = (n0)paramObject2;
+    paramObject1 = localN0;
+    if (!paramObject2.isEmpty())
+    {
+      paramObject1 = localN0;
+      if (!localN0.h()) {
+        paramObject1 = localN0.k();
+      }
+      paramObject1.j(paramObject2);
+    }
+    return paramObject1;
+  }
+  
+  public Object a(Object paramObject1, Object paramObject2)
+  {
+    return j(paramObject1, paramObject2);
+  }
+  
+  public Object b(Object paramObject)
+  {
+    return n0.d().k();
+  }
+  
+  public int c(int paramInt, Object paramObject1, Object paramObject2)
+  {
+    return i(paramInt, paramObject1, paramObject2);
+  }
+  
+  public boolean d(Object paramObject)
+  {
+    return ((n0)paramObject).h() ^ true;
+  }
+  
+  public Object e(Object paramObject)
+  {
+    ((n0)paramObject).i();
+    return paramObject;
+  }
+  
+  public m0.a f(Object paramObject)
+  {
+    return ((m0)paramObject).c();
+  }
+  
+  public Map g(Object paramObject)
+  {
+    return (n0)paramObject;
+  }
+  
+  public Map h(Object paramObject)
+  {
+    return (n0)paramObject;
+  }
+}

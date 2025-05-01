@@ -1,0 +1,74 @@
+package com.google.android.gms.common.internal;
+
+import android.util.Log;
+
+public final class j
+{
+  private final String a;
+  private final String b;
+  
+  public j(String paramString)
+  {
+    this(paramString, null);
+  }
+  
+  public j(String paramString1, String paramString2)
+  {
+    s.l(paramString1, "log tag cannot be null");
+    int i = paramString1.length();
+    boolean bool = false;
+    if (i <= 23) {
+      bool = true;
+    }
+    s.c(bool, "tag \"%s\" is longer than the %d character maximum", new Object[] { paramString1, Integer.valueOf(23) });
+    a = paramString1;
+    if ((paramString2 != null) && (paramString2.length() > 0))
+    {
+      b = paramString2;
+      return;
+    }
+    b = null;
+  }
+  
+  private final String f(String paramString)
+  {
+    String str = b;
+    if (str == null) {
+      return paramString;
+    }
+    return str.concat(paramString);
+  }
+  
+  public boolean a(int paramInt)
+  {
+    return Log.isLoggable(a, paramInt);
+  }
+  
+  public void b(String paramString1, String paramString2)
+  {
+    if (a(3)) {
+      Log.d(paramString1, f(paramString2));
+    }
+  }
+  
+  public void c(String paramString1, String paramString2, Throwable paramThrowable)
+  {
+    if (a(6)) {
+      Log.e(paramString1, f(paramString2), paramThrowable);
+    }
+  }
+  
+  public void d(String paramString1, String paramString2)
+  {
+    if (a(2)) {
+      Log.v(paramString1, f(paramString2));
+    }
+  }
+  
+  public void e(String paramString1, String paramString2)
+  {
+    if (a(5)) {
+      Log.w(paramString1, f(paramString2));
+    }
+  }
+}

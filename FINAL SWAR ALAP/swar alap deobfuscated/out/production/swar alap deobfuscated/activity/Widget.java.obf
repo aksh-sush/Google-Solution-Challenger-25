@@ -1,0 +1,19 @@
+package va;
+
+import cb.p;
+import db.l;
+import sa.n;
+import sa.t;
+import wa.b;
+
+public abstract class f
+{
+  public static final void a(p paramP, Object paramObject, d paramD)
+  {
+    l.e(paramP, "<this>");
+    l.e(paramD, "completion");
+    paramP = b.b(b.a(paramP, paramObject, paramD));
+    paramObject = n.e;
+    paramP.resumeWith(n.a(t.a));
+  }
+}

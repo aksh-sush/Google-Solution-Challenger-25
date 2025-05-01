@@ -1,0 +1,32 @@
+package z7;
+
+import java.util.Iterator;
+import java.util.List;
+
+public final class c
+{
+  private final List<a> _bootstrapServices;
+  private final List<b> _startableServices;
+  
+  public c(List<? extends a> paramList, List<? extends b> paramList1)
+  {
+    _bootstrapServices = paramList;
+    _startableServices = paramList1;
+  }
+  
+  public final void bootstrap()
+  {
+    Iterator localIterator = _bootstrapServices.iterator();
+    while (localIterator.hasNext()) {
+      ((a)localIterator.next()).bootstrap();
+    }
+  }
+  
+  public final void start()
+  {
+    Iterator localIterator = _startableServices.iterator();
+    while (localIterator.hasNext()) {
+      ((b)localIterator.next()).start();
+    }
+  }
+}

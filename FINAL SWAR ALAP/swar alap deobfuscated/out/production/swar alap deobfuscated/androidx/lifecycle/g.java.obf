@@ -1,0 +1,46 @@
+package androidx.lifecycle;
+
+import db.l;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class l0
+{
+  private final Map a = new LinkedHashMap();
+  
+  public l0() {}
+  
+  public final void a()
+  {
+    Iterator localIterator = a.values().iterator();
+    while (localIterator.hasNext()) {
+      ((h0)localIterator.next()).a();
+    }
+    a.clear();
+  }
+  
+  public final h0 b(String paramString)
+  {
+    l.e(paramString, "key");
+    return (h0)a.get(paramString);
+  }
+  
+  public final Set c()
+  {
+    return new HashSet(a.keySet());
+  }
+  
+  public final void d(String paramString, h0 paramH0)
+  {
+    l.e(paramString, "key");
+    l.e(paramH0, "viewModel");
+    paramString = (h0)a.put(paramString, paramH0);
+    if (paramString != null) {
+      paramString.d();
+    }
+  }
+}

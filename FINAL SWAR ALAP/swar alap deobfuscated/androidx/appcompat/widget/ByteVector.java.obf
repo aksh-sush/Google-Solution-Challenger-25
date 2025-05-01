@@ -1,0 +1,69 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.text.InputFilter;
+import android.text.method.TransformationMethod;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.TextView;
+import f.j;
+import i0.f;
+
+class m
+{
+  private final TextView a;
+  private final f b;
+  
+  m(TextView paramTextView)
+  {
+    a = paramTextView;
+    b = new f(paramTextView, false);
+  }
+  
+  InputFilter[] a(InputFilter[] paramArrayOfInputFilter)
+  {
+    return b.a(paramArrayOfInputFilter);
+  }
+  
+  public boolean b()
+  {
+    return b.b();
+  }
+  
+  void c(AttributeSet paramAttributeSet, int paramInt)
+  {
+    paramAttributeSet = a.getContext().obtainStyledAttributes(paramAttributeSet, j.g0, paramInt, 0);
+    try
+    {
+      paramInt = j.u0;
+      boolean bool2 = paramAttributeSet.hasValue(paramInt);
+      boolean bool1 = true;
+      if (bool2) {
+        bool1 = paramAttributeSet.getBoolean(paramInt, true);
+      }
+      paramAttributeSet.recycle();
+      e(bool1);
+      return;
+    }
+    finally
+    {
+      paramAttributeSet.recycle();
+    }
+  }
+  
+  void d(boolean paramBoolean)
+  {
+    b.c(paramBoolean);
+  }
+  
+  void e(boolean paramBoolean)
+  {
+    b.d(paramBoolean);
+  }
+  
+  public TransformationMethod f(TransformationMethod paramTransformationMethod)
+  {
+    return b.e(paramTransformationMethod);
+  }
+}

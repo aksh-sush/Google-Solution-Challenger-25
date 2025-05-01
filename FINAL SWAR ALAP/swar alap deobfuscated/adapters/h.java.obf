@@ -1,0 +1,409 @@
+package t;
+
+import q.i;
+
+public class a
+  extends j
+{
+  private int N0 = 0;
+  private boolean O0 = true;
+  private int P0 = 0;
+  boolean Q0 = false;
+  
+  public a() {}
+  
+  public void A1(int paramInt)
+  {
+    N0 = paramInt;
+  }
+  
+  public void B1(int paramInt)
+  {
+    P0 = paramInt;
+  }
+  
+  public void g(q.d paramD, boolean paramBoolean)
+  {
+    Object localObject1 = W;
+    localObject1[0] = O;
+    localObject1[2] = P;
+    localObject1[1] = Q;
+    localObject1[3] = R;
+    int i = 0;
+    for (;;)
+    {
+      localObject1 = W;
+      if (i >= localObject1.length) {
+        break;
+      }
+      localObject1 = localObject1[i];
+      i = paramD.q(localObject1);
+      i += 1;
+    }
+    i = N0;
+    if ((i >= 0) && (i < 4))
+    {
+      localObject1 = localObject1[i];
+      if (!Q0) {
+        t1();
+      }
+      if (Q0)
+      {
+        Q0 = false;
+        i = N0;
+        if ((i != 0) && (i != 1))
+        {
+          if ((i != 2) && (i != 3)) {
+            break label216;
+          }
+          paramD.f(P.i, g0);
+          localObject1 = R.i;
+          i = g0;
+        }
+        else
+        {
+          paramD.f(O.i, f0);
+          localObject1 = Q.i;
+          i = f0;
+        }
+        paramD.f((i)localObject1, i);
+        label216:
+        return;
+      }
+      i = 0;
+      Object localObject2;
+      while (i < M0)
+      {
+        localObject2 = L0[i];
+        if ((O0) || (((e)localObject2).h()))
+        {
+          j = N0;
+          if (((j == 0) || (j == 1)) && (((e)localObject2).A() == e.b.g) && (O.f != null) && (Q.f != null)) {}
+          do
+          {
+            paramBoolean = true;
+            break;
+            j = N0;
+          } while (((j == 2) || (j == 3)) && (((e)localObject2).T() == e.b.g) && (P.f != null) && (R.f != null));
+        }
+        i += 1;
+      }
+      paramBoolean = false;
+      if ((!O.l()) && (!Q.l())) {
+        i = 0;
+      } else {
+        i = 1;
+      }
+      if ((!P.l()) && (!R.l())) {
+        j = 0;
+      } else {
+        j = 1;
+      }
+      int k;
+      if (!paramBoolean)
+      {
+        k = N0;
+        if (((k == 0) && (i != 0)) || ((k == 2) && (j != 0)) || ((k == 1) && (i != 0)) || ((k == 3) && (j != 0)))
+        {
+          i = 1;
+          break label491;
+        }
+      }
+      i = 0;
+      label491:
+      if (i == 0) {
+        i = 4;
+      } else {
+        i = 5;
+      }
+      int j = 0;
+      while (j < M0)
+      {
+        Object localObject3 = L0[j];
+        if ((O0) || (((e)localObject3).h()))
+        {
+          localObject2 = paramD.q(W[N0]);
+          localObject3 = W;
+          int m = N0;
+          localObject3 = localObject3[m];
+          i = ((i)localObject2);
+          d localD = f;
+          if ((localD != null) && (d == this)) {
+            k = g + 0;
+          } else {
+            k = 0;
+          }
+          if ((m != 0) && (m != 2)) {
+            paramD.g(i, (i)localObject2, P0 + k, paramBoolean);
+          } else {
+            paramD.i(i, (i)localObject2, P0 - k, paramBoolean);
+          }
+          paramD.e(i, (i)localObject2, P0 + k, i);
+        }
+        j += 1;
+      }
+      i = N0;
+      if (i == 0)
+      {
+        paramD.e(Q.i, O.i, 0, 8);
+        paramD.e(O.i, a0.Q.i, 0, 4);
+        localObject2 = O.i;
+        localObject1 = a0.O;
+      }
+      for (;;)
+      {
+        paramD.e((i)localObject2, i, 0, 0);
+        return;
+        if (i == 1)
+        {
+          paramD.e(O.i, Q.i, 0, 8);
+          paramD.e(O.i, a0.O.i, 0, 4);
+          localObject2 = O.i;
+          localObject1 = a0.Q;
+        }
+        else if (i == 2)
+        {
+          paramD.e(R.i, P.i, 0, 8);
+          paramD.e(P.i, a0.R.i, 0, 4);
+          localObject2 = P.i;
+          localObject1 = a0.P;
+        }
+        else
+        {
+          if (i != 3) {
+            break;
+          }
+          paramD.e(P.i, R.i, 0, 8);
+          paramD.e(P.i, a0.P.i, 0, 4);
+          localObject2 = P.i;
+          localObject1 = a0.R;
+        }
+      }
+    }
+  }
+  
+  public boolean h()
+  {
+    return true;
+  }
+  
+  public boolean n0()
+  {
+    return Q0;
+  }
+  
+  public boolean o0()
+  {
+    return Q0;
+  }
+  
+  public boolean t1()
+  {
+    int n = 0;
+    int i = 0;
+    int k;
+    Object localObject;
+    int m;
+    for (int j = 1;; j = k)
+    {
+      k = M0;
+      if (i >= k) {
+        break;
+      }
+      localObject = L0[i];
+      if ((!O0) && (!((e)localObject).h()))
+      {
+        k = j;
+      }
+      else
+      {
+        k = N0;
+        if (((k == 0) || (k == 1)) && (!((e)localObject).n0())) {}
+        do
+        {
+          k = 0;
+          break;
+          m = N0;
+          if (m != 2)
+          {
+            k = j;
+            if (m != 3) {
+              break;
+            }
+          }
+          k = j;
+        } while (!((e)localObject).o0());
+      }
+      i += 1;
+    }
+    if ((j != 0) && (k > 0))
+    {
+      i = 0;
+      k = 0;
+      while (n < M0)
+      {
+        e localE = L0[n];
+        if ((O0) || (localE.h()))
+        {
+          m = i;
+          j = k;
+          if (k == 0)
+          {
+            j = N0;
+            if (j == 0) {
+              localObject = d.b.f;
+            }
+            for (;;)
+            {
+              i = localE.o((d.b)localObject).e();
+              break;
+              if (j == 1)
+              {
+                localObject = d.b.h;
+              }
+              else if (j == 2)
+              {
+                localObject = d.b.g;
+              }
+              else
+              {
+                if (j != 3) {
+                  break;
+                }
+                localObject = d.b.i;
+              }
+            }
+            j = 1;
+            m = i;
+          }
+          int i1 = N0;
+          if (i1 == 0)
+          {
+            localObject = d.b.f;
+            i = Math.min(m, localE.o((d.b)localObject).e());
+            k = j;
+          }
+          else
+          {
+            if (i1 == 1) {}
+            for (localObject = d.b.h;; localObject = d.b.i)
+            {
+              i = Math.max(m, localE.o((d.b)localObject).e());
+              k = j;
+              break label345;
+              if (i1 == 2)
+              {
+                localObject = d.b.g;
+                break;
+              }
+              i = m;
+              k = j;
+              if (i1 != 3) {
+                break label345;
+              }
+            }
+          }
+        }
+        label345:
+        n += 1;
+      }
+      i += P0;
+      j = N0;
+      if ((j != 0) && (j != 1)) {
+        I0(i, i);
+      } else {
+        F0(i, i);
+      }
+      Q0 = true;
+      return true;
+    }
+    return false;
+  }
+  
+  public String toString()
+  {
+    Object localObject1 = new StringBuilder();
+    ((StringBuilder)localObject1).append("[Barrier] ");
+    ((StringBuilder)localObject1).append(t());
+    ((StringBuilder)localObject1).append(" {");
+    localObject1 = ((StringBuilder)localObject1).toString();
+    int i = 0;
+    while (i < M0)
+    {
+      e localE = L0[i];
+      localObject2 = localObject1;
+      if (i > 0)
+      {
+        localObject2 = new StringBuilder();
+        ((StringBuilder)localObject2).append((String)localObject1);
+        ((StringBuilder)localObject2).append(", ");
+        localObject2 = ((StringBuilder)localObject2).toString();
+      }
+      localObject1 = new StringBuilder();
+      ((StringBuilder)localObject1).append((String)localObject2);
+      ((StringBuilder)localObject1).append(localE.t());
+      localObject1 = ((StringBuilder)localObject1).toString();
+      i += 1;
+    }
+    Object localObject2 = new StringBuilder();
+    ((StringBuilder)localObject2).append((String)localObject1);
+    ((StringBuilder)localObject2).append("}");
+    return ((StringBuilder)localObject2).toString();
+  }
+  
+  public boolean u1()
+  {
+    return O0;
+  }
+  
+  public int v1()
+  {
+    return N0;
+  }
+  
+  public int w1()
+  {
+    return P0;
+  }
+  
+  public int x1()
+  {
+    int i = N0;
+    if ((i != 0) && (i != 1))
+    {
+      if ((i != 2) && (i != 3)) {
+        return -1;
+      }
+      return 1;
+    }
+    return 0;
+  }
+  
+  protected void y1()
+  {
+    int i = 0;
+    while (i < M0)
+    {
+      e localE = L0[i];
+      if ((O0) || (localE.h()))
+      {
+        int j = N0;
+        if ((j != 0) && (j != 1))
+        {
+          if ((j == 2) || (j == 3)) {
+            localE.S0(1, true);
+          }
+        }
+        else {
+          localE.S0(0, true);
+        }
+      }
+      i += 1;
+    }
+  }
+  
+  public void z1(boolean paramBoolean)
+  {
+    O0 = paramBoolean;
+  }
+}

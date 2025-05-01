@@ -1,0 +1,933 @@
+package androidx.fragment.app;
+
+import android.content.Context;
+import android.graphics.Rect;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.core.view.f0;
+import androidx.core.view.h0;
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+abstract class v
+{
+  private static final int[] a = { 0, 3, 0, 1, 5, 4, 7, 6, 9, 8, 10 };
+  static final x b = new w();
+  static final x c = w();
+  
+  static void A(ArrayList paramArrayList, int paramInt)
+  {
+    if (paramArrayList == null) {
+      return;
+    }
+    int i = paramArrayList.size() - 1;
+    while (i >= 0)
+    {
+      ((View)paramArrayList.get(i)).setVisibility(paramInt);
+      i -= 1;
+    }
+  }
+  
+  static void B(Context paramContext, g paramG, ArrayList paramArrayList1, ArrayList paramArrayList2, int paramInt1, int paramInt2, boolean paramBoolean, g paramG1)
+  {
+    SparseArray localSparseArray = new SparseArray();
+    int i = paramInt1;
+    Object localObject;
+    while (i < paramInt2)
+    {
+      localObject = (a)paramArrayList1.get(i);
+      if (((Boolean)paramArrayList2.get(i)).booleanValue()) {
+        e((a)localObject, localSparseArray, paramBoolean);
+      } else {
+        c((a)localObject, localSparseArray, paramBoolean);
+      }
+      i += 1;
+    }
+    if (localSparseArray.size() != 0)
+    {
+      paramContext = new View(paramContext);
+      int j = localSparseArray.size();
+      i = 0;
+      while (i < j)
+      {
+        int k = localSparseArray.keyAt(i);
+        localObject = d(k, paramArrayList1, paramArrayList2, paramInt1, paramInt2);
+        h localH = (h)localSparseArray.valueAt(i);
+        if (paramG.d())
+        {
+          ViewGroup localViewGroup = (ViewGroup)paramG.c(k);
+          if (localViewGroup != null) {
+            if (paramBoolean) {
+              o(localViewGroup, localH, paramContext, (androidx.collection.a)localObject, paramG1);
+            } else {
+              n(localViewGroup, localH, paramContext, (androidx.collection.a)localObject, paramG1);
+            }
+          }
+        }
+        i += 1;
+      }
+    }
+  }
+  
+  private static void a(ArrayList paramArrayList, androidx.collection.a paramA, Collection paramCollection)
+  {
+    int i = paramA.size() - 1;
+    while (i >= 0)
+    {
+      View localView = (View)paramA.m(i);
+      if (paramCollection.contains(h0.N(localView))) {
+        paramArrayList.add(localView);
+      }
+      i -= 1;
+    }
+  }
+  
+  private static void b(a paramA, u.a paramA1, SparseArray paramSparseArray, boolean paramBoolean1, boolean paramBoolean2)
+  {
+    Fragment localFragment = b;
+    if (localFragment == null) {
+      return;
+    }
+    int m = mContainerId;
+    if (m == 0) {
+      return;
+    }
+    int i;
+    if (paramBoolean1) {
+      i = a[a];
+    } else {
+      i = a;
+    }
+    boolean bool1 = false;
+    boolean bool2 = false;
+    int j = 1;
+    if (i != 1) {
+      if (i != 3) {
+        if (i != 4) {
+          if (i != 5)
+          {
+            if (i == 6) {
+              break label204;
+            }
+            if (i == 7) {
+              break label289;
+            }
+            i = 0;
+            bool1 = bool2;
+          }
+        }
+      }
+    }
+    int k;
+    for (;;)
+    {
+      k = 0;
+      j = 0;
+      break;
+      if (paramBoolean2)
+      {
+        if ((!mHiddenChanged) || (mHidden) || (!mAdded)) {
+          break label326;
+        }
+      }
+      else
+      {
+        bool1 = mHidden;
+        break label329;
+        if (paramBoolean2)
+        {
+          if ((!mHiddenChanged) || (!mAdded) || (!mHidden)) {}
+        }
+        else {
+          for (;;)
+          {
+            break;
+            if ((!mAdded) || (mHidden)) {
+              break label254;
+            }
+            continue;
+            label204:
+            bool2 = mAdded;
+            if (!paramBoolean2) {
+              break label260;
+            }
+            if (bool2) {
+              break label254;
+            }
+            paramA1 = mView;
+            if ((paramA1 == null) || (paramA1.getVisibility() != 0) || (mPostponedAlpha < 0.0F)) {
+              break label254;
+            }
+          }
+        }
+        for (;;)
+        {
+          i = 1;
+          break;
+          label254:
+          label260:
+          do
+          {
+            i = 0;
+            break;
+          } while ((!bool2) || (mHidden));
+        }
+        j = i;
+        k = 1;
+        i = 0;
+        break;
+        label289:
+        if (paramBoolean2)
+        {
+          bool1 = mIsNewlyAdded;
+          break label329;
+        }
+        if ((mAdded) || (mHidden)) {
+          break label326;
+        }
+      }
+      bool1 = true;
+      break label329;
+      label326:
+      bool1 = false;
+      label329:
+      i = j;
+    }
+    Object localObject = (h)paramSparseArray.get(m);
+    paramA1 = (u.a)localObject;
+    if (bool1)
+    {
+      paramA1 = p((h)localObject, paramSparseArray, m);
+      a = localFragment;
+      b = paramBoolean1;
+      c = paramA;
+    }
+    if ((!paramBoolean2) && (i != 0))
+    {
+      if ((paramA1 != null) && (d == localFragment)) {
+        d = null;
+      }
+      if (!r)
+      {
+        localObject = t;
+        s localS = ((m)localObject).v(localFragment);
+        ((m)localObject).r0().p(localS);
+        ((m)localObject).R0(localFragment);
+      }
+    }
+    localObject = paramA1;
+    if (j != 0) {
+      if (paramA1 != null)
+      {
+        localObject = paramA1;
+        if (d != null) {}
+      }
+      else
+      {
+        localObject = p(paramA1, paramSparseArray, m);
+        d = localFragment;
+        e = paramBoolean1;
+        f = paramA;
+      }
+    }
+    if ((!paramBoolean2) && (k != 0) && (localObject != null) && (a == localFragment)) {
+      a = null;
+    }
+  }
+  
+  public static void c(a paramA, SparseArray paramSparseArray, boolean paramBoolean)
+  {
+    int j = c.size();
+    int i = 0;
+    while (i < j)
+    {
+      b(paramA, (u.a)c.get(i), paramSparseArray, false, paramBoolean);
+      i += 1;
+    }
+  }
+  
+  private static androidx.collection.a d(int paramInt1, ArrayList paramArrayList1, ArrayList paramArrayList2, int paramInt2, int paramInt3)
+  {
+    androidx.collection.a localA = new androidx.collection.a();
+    paramInt3 -= 1;
+    while (paramInt3 >= paramInt2)
+    {
+      Object localObject = (a)paramArrayList1.get(paramInt3);
+      if (((a)localObject).x(paramInt1))
+      {
+        boolean bool = ((Boolean)paramArrayList2.get(paramInt3)).booleanValue();
+        ArrayList localArrayList1 = p;
+        if (localArrayList1 != null)
+        {
+          int j = localArrayList1.size();
+          ArrayList localArrayList2;
+          if (bool)
+          {
+            localArrayList2 = p;
+            localArrayList1 = q;
+          }
+          else
+          {
+            localArrayList1 = p;
+            localArrayList2 = q;
+          }
+          int i = 0;
+          while (i < j)
+          {
+            localObject = (String)localArrayList1.get(i);
+            String str1 = (String)localArrayList2.get(i);
+            String str2 = (String)localA.remove(str1);
+            if (str2 != null) {
+              localA.put(localObject, str2);
+            } else {
+              localA.put(localObject, str1);
+            }
+            i += 1;
+          }
+        }
+      }
+      paramInt3 -= 1;
+    }
+    return localA;
+  }
+  
+  public static void e(a paramA, SparseArray paramSparseArray, boolean paramBoolean)
+  {
+    if (!t.o0().d()) {
+      return;
+    }
+    int i = c.size() - 1;
+    while (i >= 0)
+    {
+      b(paramA, (u.a)c.get(i), paramSparseArray, true, paramBoolean);
+      i -= 1;
+    }
+  }
+  
+  static void f(Fragment paramFragment1, Fragment paramFragment2, boolean paramBoolean1, androidx.collection.a paramA, boolean paramBoolean2)
+  {
+    if (paramBoolean1)
+    {
+      paramFragment2.getEnterTransitionCallback();
+      return;
+    }
+    paramFragment1.getEnterTransitionCallback();
+  }
+  
+  private static boolean g(x paramX, List paramList)
+  {
+    int j = paramList.size();
+    int i = 0;
+    while (i < j)
+    {
+      if (!paramX.e(paramList.get(i))) {
+        return false;
+      }
+      i += 1;
+    }
+    return true;
+  }
+  
+  static androidx.collection.a h(x paramX, androidx.collection.a paramA, Object paramObject, h paramH)
+  {
+    Fragment localFragment = a;
+    View localView = localFragment.getView();
+    if ((!paramA.isEmpty()) && (paramObject != null) && (localView != null))
+    {
+      paramObject = new androidx.collection.a();
+      paramX.j(paramObject, localView);
+      paramX = c;
+      if (b)
+      {
+        localFragment.getExitTransitionCallback();
+        paramX = p;
+      }
+      else
+      {
+        localFragment.getEnterTransitionCallback();
+        paramX = q;
+      }
+      if (paramX != null)
+      {
+        paramObject.o(paramX);
+        paramObject.o(paramA.values());
+      }
+      x(paramA, paramObject);
+      return paramObject;
+    }
+    paramA.clear();
+    return null;
+  }
+  
+  private static androidx.collection.a i(x paramX, androidx.collection.a paramA, Object paramObject, h paramH)
+  {
+    if ((!paramA.isEmpty()) && (paramObject != null))
+    {
+      Fragment localFragment = d;
+      paramObject = new androidx.collection.a();
+      paramX.j(paramObject, localFragment.requireView());
+      paramX = f;
+      if (e)
+      {
+        localFragment.getEnterTransitionCallback();
+        paramX = q;
+      }
+      else
+      {
+        localFragment.getExitTransitionCallback();
+        paramX = p;
+      }
+      if (paramX != null) {
+        paramObject.o(paramX);
+      }
+      paramA.o(paramObject.keySet());
+      return paramObject;
+    }
+    paramA.clear();
+    return null;
+  }
+  
+  private static x j(Fragment paramFragment1, Fragment paramFragment2)
+  {
+    ArrayList localArrayList = new ArrayList();
+    if (paramFragment1 != null)
+    {
+      Object localObject = paramFragment1.getExitTransition();
+      if (localObject != null) {
+        localArrayList.add(localObject);
+      }
+      localObject = paramFragment1.getReturnTransition();
+      if (localObject != null) {
+        localArrayList.add(localObject);
+      }
+      paramFragment1 = paramFragment1.getSharedElementReturnTransition();
+      if (paramFragment1 != null) {
+        localArrayList.add(paramFragment1);
+      }
+    }
+    if (paramFragment2 != null)
+    {
+      paramFragment1 = paramFragment2.getEnterTransition();
+      if (paramFragment1 != null) {
+        localArrayList.add(paramFragment1);
+      }
+      paramFragment1 = paramFragment2.getReenterTransition();
+      if (paramFragment1 != null) {
+        localArrayList.add(paramFragment1);
+      }
+      paramFragment1 = paramFragment2.getSharedElementEnterTransition();
+      if (paramFragment1 != null) {
+        localArrayList.add(paramFragment1);
+      }
+    }
+    if (localArrayList.isEmpty()) {
+      return null;
+    }
+    paramFragment1 = b;
+    if ((paramFragment1 != null) && (g(paramFragment1, localArrayList))) {
+      return paramFragment1;
+    }
+    paramFragment2 = c;
+    if ((paramFragment2 != null) && (g(paramFragment2, localArrayList))) {
+      return paramFragment2;
+    }
+    if ((paramFragment1 == null) && (paramFragment2 == null)) {
+      return null;
+    }
+    throw new IllegalArgumentException("Invalid Transition types");
+  }
+  
+  static ArrayList k(x paramX, Object paramObject, Fragment paramFragment, ArrayList paramArrayList, View paramView)
+  {
+    if (paramObject != null)
+    {
+      ArrayList localArrayList = new ArrayList();
+      paramFragment = paramFragment.getView();
+      if (paramFragment != null) {
+        paramX.f(localArrayList, paramFragment);
+      }
+      if (paramArrayList != null) {
+        localArrayList.removeAll(paramArrayList);
+      }
+      paramFragment = localArrayList;
+      if (!localArrayList.isEmpty())
+      {
+        localArrayList.add(paramView);
+        paramX.b(paramObject, localArrayList);
+        return localArrayList;
+      }
+    }
+    else
+    {
+      paramFragment = null;
+    }
+    return paramFragment;
+  }
+  
+  private static Object l(x paramX, ViewGroup paramViewGroup, final View paramView, final androidx.collection.a paramA, final h paramH, final ArrayList paramArrayList1, final ArrayList paramArrayList2, final Object paramObject1, final Object paramObject2)
+  {
+    final Fragment localFragment1 = a;
+    final Fragment localFragment2 = d;
+    if (localFragment1 != null)
+    {
+      if (localFragment2 == null) {
+        return null;
+      }
+      final boolean bool = b;
+      final Object localObject;
+      if (paramA.isEmpty()) {
+        localObject = null;
+      } else {
+        localObject = t(paramX, localFragment1, localFragment2, bool);
+      }
+      androidx.collection.a localA = i(paramX, paramA, localObject, paramH);
+      if (paramA.isEmpty()) {
+        localObject = null;
+      } else {
+        paramArrayList1.addAll(localA.values());
+      }
+      if ((paramObject1 == null) && (paramObject2 == null) && (localObject == null)) {
+        return null;
+      }
+      f(localFragment1, localFragment2, bool, localA, true);
+      if (localObject != null)
+      {
+        Rect localRect = new Rect();
+        paramX.z(localObject, paramView, paramArrayList1);
+        z(paramX, localObject, paramObject2, localA, e, f);
+        paramObject2 = localRect;
+        if (paramObject1 != null)
+        {
+          paramX.u(paramObject1, localRect);
+          paramObject2 = localRect;
+        }
+      }
+      else
+      {
+        paramObject2 = null;
+      }
+      f0.a(paramViewGroup, new f(paramA, localObject, paramH, paramArrayList2, paramView, localFragment1, localFragment2, bool, paramArrayList1, paramObject1, paramObject2));
+      return localObject;
+    }
+    return null;
+  }
+  
+  private static Object m(final x paramX, ViewGroup paramViewGroup, View paramView, androidx.collection.a paramA, final h paramH, final ArrayList paramArrayList1, ArrayList paramArrayList2, Object paramObject1, Object paramObject2)
+  {
+    Fragment localFragment1 = a;
+    final Fragment localFragment2 = d;
+    if (localFragment1 != null) {
+      localFragment1.requireView().setVisibility(0);
+    }
+    if (localFragment1 != null)
+    {
+      if (localFragment2 == null) {
+        return null;
+      }
+      final boolean bool = b;
+      Object localObject;
+      if (paramA.isEmpty()) {
+        localObject = null;
+      } else {
+        localObject = t(paramX, localFragment1, localFragment2, bool);
+      }
+      androidx.collection.a localA2 = i(paramX, paramA, localObject, paramH);
+      final androidx.collection.a localA1 = h(paramX, paramA, localObject, paramH);
+      if (paramA.isEmpty())
+      {
+        if (localA2 != null) {
+          localA2.clear();
+        }
+        if (localA1 != null) {
+          localA1.clear();
+        }
+        paramA = null;
+      }
+      else
+      {
+        a(paramArrayList1, localA2, paramA.keySet());
+        a(paramArrayList2, localA1, paramA.values());
+        paramA = localObject;
+      }
+      if ((paramObject1 == null) && (paramObject2 == null) && (paramA == null)) {
+        return null;
+      }
+      f(localFragment1, localFragment2, bool, localA2, true);
+      if (paramA != null)
+      {
+        paramArrayList2.add(paramView);
+        paramX.z(paramA, paramView, paramArrayList1);
+        z(paramX, paramA, paramObject2, localA2, e, f);
+        paramView = new Rect();
+        paramH = s(localA1, paramH, paramObject1, bool);
+        if (paramH != null) {
+          paramX.u(paramObject1, paramView);
+        }
+        paramArrayList1 = paramView;
+      }
+      else
+      {
+        paramView = null;
+        paramArrayList1 = paramView;
+        paramH = paramView;
+      }
+      f0.a(paramViewGroup, new e(localFragment1, localFragment2, bool, localA1, paramH, paramX, paramArrayList1));
+      return paramA;
+    }
+    return null;
+  }
+  
+  private static void n(ViewGroup paramViewGroup, h paramH, View paramView, androidx.collection.a paramA, g paramG)
+  {
+    Fragment localFragment1 = a;
+    final Fragment localFragment2 = d;
+    x localX = j(localFragment2, localFragment1);
+    if (localX == null) {
+      return;
+    }
+    boolean bool1 = b;
+    boolean bool2 = e;
+    Object localObject2 = q(localX, localFragment1, bool1);
+    Object localObject1 = r(localX, localFragment2, bool2);
+    Object localObject4 = new ArrayList();
+    ArrayList localArrayList1 = new ArrayList();
+    Object localObject3 = l(localX, paramViewGroup, paramView, paramA, paramH, (ArrayList)localObject4, localArrayList1, localObject2, localObject1);
+    if ((localObject2 == null) && (localObject3 == null) && (localObject1 == null)) {
+      return;
+    }
+    ArrayList localArrayList2 = k(localX, localObject1, localFragment2, (ArrayList)localObject4, paramView);
+    if ((localArrayList2 == null) || (localArrayList2.isEmpty())) {
+      localObject1 = null;
+    }
+    localX.a(localObject2, paramView);
+    paramH = u(localX, localObject2, localObject1, localObject3, localFragment1, b);
+    if ((localFragment2 != null) && (localArrayList2 != null) && ((localArrayList2.size() > 0) || (((ArrayList)localObject4).size() > 0)))
+    {
+      localObject4 = new androidx.core.os.e();
+      paramG.b(localFragment2, (androidx.core.os.e)localObject4);
+      localX.w(localFragment2, paramH, (androidx.core.os.e)localObject4, new c(paramG, localFragment2, (androidx.core.os.e)localObject4));
+    }
+    if (paramH != null)
+    {
+      paramG = new ArrayList();
+      localX.t(paramH, localObject2, paramG, localObject1, localArrayList2, localObject3, localArrayList1);
+      y(localX, paramViewGroup, localFragment1, paramView, localArrayList1, localObject2, paramG, localObject1, localArrayList2);
+      localX.x(paramViewGroup, localArrayList1, paramA);
+      localX.c(paramViewGroup, paramH);
+      localX.s(paramViewGroup, localArrayList1, paramA);
+    }
+  }
+  
+  private static void o(ViewGroup paramViewGroup, h paramH, View paramView, androidx.collection.a paramA, g paramG)
+  {
+    Object localObject4 = a;
+    final Fragment localFragment = d;
+    x localX = j(localFragment, (Fragment)localObject4);
+    if (localX == null) {
+      return;
+    }
+    boolean bool1 = b;
+    boolean bool2 = e;
+    ArrayList localArrayList1 = new ArrayList();
+    ArrayList localArrayList2 = new ArrayList();
+    Object localObject2 = q(localX, (Fragment)localObject4, bool1);
+    Object localObject1 = r(localX, localFragment, bool2);
+    Object localObject3 = m(localX, paramViewGroup, paramView, paramA, paramH, localArrayList2, localArrayList1, localObject2, localObject1);
+    if ((localObject2 == null) && (localObject3 == null) && (localObject1 == null)) {
+      return;
+    }
+    paramH = (h)localObject1;
+    localObject1 = k(localX, paramH, localFragment, localArrayList2, paramView);
+    paramView = k(localX, localObject2, (Fragment)localObject4, localArrayList1, paramView);
+    A(paramView, 4);
+    localObject4 = u(localX, localObject2, paramH, localObject3, (Fragment)localObject4, bool1);
+    if ((localFragment != null) && (localObject1 != null) && ((((ArrayList)localObject1).size() > 0) || (localArrayList2.size() > 0)))
+    {
+      final androidx.core.os.e localE = new androidx.core.os.e();
+      paramG.b(localFragment, localE);
+      localX.w(localFragment, localObject4, localE, new a(paramG, localFragment, localE));
+    }
+    if (localObject4 != null)
+    {
+      v(localX, paramH, localFragment, (ArrayList)localObject1);
+      paramG = localX.o(localArrayList1);
+      localX.t(localObject4, localObject2, paramView, paramH, (ArrayList)localObject1, localObject3, localArrayList1);
+      localX.c(paramViewGroup, localObject4);
+      localX.y(paramViewGroup, localArrayList2, localArrayList1, paramG, paramA);
+      A(paramView, 0);
+      localX.A(localObject3, localArrayList2, localArrayList1);
+    }
+  }
+  
+  private static h p(h paramH, SparseArray paramSparseArray, int paramInt)
+  {
+    h localH = paramH;
+    if (paramH == null)
+    {
+      localH = new h();
+      paramSparseArray.put(paramInt, localH);
+    }
+    return localH;
+  }
+  
+  private static Object q(x paramX, Fragment paramFragment, boolean paramBoolean)
+  {
+    if (paramFragment == null) {
+      return null;
+    }
+    if (paramBoolean) {
+      paramFragment = paramFragment.getReenterTransition();
+    } else {
+      paramFragment = paramFragment.getEnterTransition();
+    }
+    return paramX.g(paramFragment);
+  }
+  
+  private static Object r(x paramX, Fragment paramFragment, boolean paramBoolean)
+  {
+    if (paramFragment == null) {
+      return null;
+    }
+    if (paramBoolean) {
+      paramFragment = paramFragment.getReturnTransition();
+    } else {
+      paramFragment = paramFragment.getExitTransition();
+    }
+    return paramX.g(paramFragment);
+  }
+  
+  static View s(androidx.collection.a paramA, h paramH, Object paramObject, boolean paramBoolean)
+  {
+    paramH = c;
+    if ((paramObject != null) && (paramA != null))
+    {
+      paramObject = p;
+      if ((paramObject != null) && (!paramObject.isEmpty()))
+      {
+        if (paramBoolean) {
+          paramH = p;
+        } else {
+          paramH = q;
+        }
+        return (View)paramA.get((String)paramH.get(0));
+      }
+    }
+    return null;
+  }
+  
+  private static Object t(x paramX, Fragment paramFragment1, Fragment paramFragment2, boolean paramBoolean)
+  {
+    if ((paramFragment1 != null) && (paramFragment2 != null))
+    {
+      if (paramBoolean) {
+        paramFragment1 = paramFragment2.getSharedElementReturnTransition();
+      } else {
+        paramFragment1 = paramFragment1.getSharedElementEnterTransition();
+      }
+      return paramX.B(paramX.g(paramFragment1));
+    }
+    return null;
+  }
+  
+  private static Object u(x paramX, Object paramObject1, Object paramObject2, Object paramObject3, Fragment paramFragment, boolean paramBoolean)
+  {
+    if ((paramObject1 != null) && (paramObject2 != null) && (paramFragment != null))
+    {
+      if (paramBoolean) {
+        paramBoolean = paramFragment.getAllowReturnTransitionOverlap();
+      } else {
+        paramBoolean = paramFragment.getAllowEnterTransitionOverlap();
+      }
+    }
+    else {
+      paramBoolean = true;
+    }
+    if (paramBoolean) {
+      return paramX.n(paramObject2, paramObject1, paramObject3);
+    }
+    return paramX.m(paramObject2, paramObject1, paramObject3);
+  }
+  
+  private static void v(x paramX, Object paramObject, Fragment paramFragment, ArrayList paramArrayList)
+  {
+    if ((paramFragment != null) && (paramObject != null) && (mAdded) && (mHidden) && (mHiddenChanged))
+    {
+      paramFragment.setHideReplaced(true);
+      paramX.r(paramObject, paramFragment.getView(), paramArrayList);
+      f0.a(mContainer, new b(paramArrayList));
+    }
+  }
+  
+  private static x w()
+  {
+    try
+    {
+      x localX = (x)z0.e.class.getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+      return localX;
+    }
+    catch (Exception localException)
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+  
+  static void x(androidx.collection.a paramA1, androidx.collection.a paramA2)
+  {
+    int i = paramA1.size() - 1;
+    while (i >= 0)
+    {
+      if (!paramA2.containsKey((String)paramA1.m(i))) {
+        paramA1.k(i);
+      }
+      i -= 1;
+    }
+  }
+  
+  private static void y(final x paramX, ViewGroup paramViewGroup, final Fragment paramFragment, final View paramView, final ArrayList paramArrayList1, Object paramObject1, final ArrayList paramArrayList2, final Object paramObject2, final ArrayList paramArrayList3)
+  {
+    f0.a(paramViewGroup, new d(paramObject1, paramX, paramView, paramFragment, paramArrayList1, paramArrayList2, paramArrayList3, paramObject2));
+  }
+  
+  private static void z(x paramX, Object paramObject1, Object paramObject2, androidx.collection.a paramA, boolean paramBoolean, a paramA1)
+  {
+    ArrayList localArrayList = p;
+    if ((localArrayList != null) && (!localArrayList.isEmpty()))
+    {
+      if (paramBoolean) {
+        paramA1 = q;
+      } else {
+        paramA1 = p;
+      }
+      paramA = (View)paramA.get((String)paramA1.get(0));
+      paramX.v(paramObject1, paramA);
+      if (paramObject2 != null) {
+        paramX.v(paramObject2, paramA);
+      }
+    }
+  }
+  
+  class a
+    implements Runnable
+  {
+    a(Fragment paramFragment, androidx.core.os.e paramE) {}
+    
+    public void run()
+    {
+      a(localFragment, localE);
+    }
+  }
+  
+  class b
+    implements Runnable
+  {
+    b() {}
+    
+    public void run()
+    {
+      v.A(v.this, 4);
+    }
+  }
+  
+  class c
+    implements Runnable
+  {
+    c(Fragment paramFragment, androidx.core.os.e paramE) {}
+    
+    public void run()
+    {
+      a(localFragment2, g);
+    }
+  }
+  
+  class d
+    implements Runnable
+  {
+    d(x paramX, View paramView, Fragment paramFragment, ArrayList paramArrayList1, ArrayList paramArrayList2, ArrayList paramArrayList3, Object paramObject) {}
+    
+    public void run()
+    {
+      Object localObject = v.this;
+      if (localObject != null)
+      {
+        paramX.p(localObject, paramView);
+        localObject = v.k(paramX, v.this, paramFragment, paramArrayList1, paramView);
+        paramArrayList2.addAll((Collection)localObject);
+      }
+      if (paramArrayList3 != null)
+      {
+        if (paramObject2 != null)
+        {
+          localObject = new ArrayList();
+          ((ArrayList)localObject).add(paramView);
+          paramX.q(paramObject2, paramArrayList3, (ArrayList)localObject);
+        }
+        paramArrayList3.clear();
+        paramArrayList3.add(paramView);
+      }
+    }
+  }
+  
+  class e
+    implements Runnable
+  {
+    e(Fragment paramFragment, boolean paramBoolean, androidx.collection.a paramA, View paramView, x paramX, Rect paramRect) {}
+    
+    public void run()
+    {
+      v.f(v.this, localFragment2, bool, localA1, false);
+      View localView = paramH;
+      if (localView != null) {
+        paramX.k(localView, paramArrayList1);
+      }
+    }
+  }
+  
+  class f
+    implements Runnable
+  {
+    f(androidx.collection.a paramA, Object paramObject1, v.h paramH, ArrayList paramArrayList1, View paramView, Fragment paramFragment1, Fragment paramFragment2, boolean paramBoolean, ArrayList paramArrayList2, Object paramObject2, Rect paramRect) {}
+    
+    public void run()
+    {
+      Object localObject1 = v.h(v.this, paramA, localObject, paramH);
+      if (localObject1 != null)
+      {
+        paramArrayList2.addAll(((androidx.collection.a)localObject1).values());
+        paramArrayList2.add(paramView);
+      }
+      v.f(localFragment1, localFragment2, bool, (androidx.collection.a)localObject1, false);
+      Object localObject2 = localObject;
+      if (localObject2 != null)
+      {
+        A(localObject2, paramArrayList1, paramArrayList2);
+        localObject1 = v.s((androidx.collection.a)localObject1, paramH, paramObject1, bool);
+        if (localObject1 != null) {
+          k((View)localObject1, paramObject2);
+        }
+      }
+    }
+  }
+  
+  static abstract interface g
+  {
+    public abstract void a(Fragment paramFragment, androidx.core.os.e paramE);
+    
+    public abstract void b(Fragment paramFragment, androidx.core.os.e paramE);
+  }
+  
+  static class h
+  {
+    public Fragment a;
+    public boolean b;
+    public a c;
+    public Fragment d;
+    public boolean e;
+    public a f;
+    
+    h() {}
+  }
+}

@@ -1,0 +1,1404 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityRecord;
+import android.widget.LinearLayout.LayoutParams;
+import androidx.core.view.h0;
+import androidx.core.view.o;
+import f.j;
+
+public abstract class s0
+  extends ViewGroup
+{
+  private boolean e = true;
+  private int f = -1;
+  private int g = 0;
+  private int h;
+  private int i = 8388659;
+  private int j;
+  private float k;
+  private boolean l;
+  private int[] m;
+  private int[] n;
+  private Drawable o;
+  private int p;
+  private int q;
+  private int r;
+  private int s;
+  
+  public s0(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 0);
+  }
+  
+  public s0(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    int[] arrayOfInt = j.i1;
+    f1 localF1 = f1.v(paramContext, paramAttributeSet, arrayOfInt, paramInt, 0);
+    h0.q0(this, paramContext, arrayOfInt, paramAttributeSet, localF1.r(), paramInt, 0);
+    paramInt = localF1.k(j.k1, -1);
+    if (paramInt >= 0) {
+      setOrientation(paramInt);
+    }
+    paramInt = localF1.k(j.j1, -1);
+    if (paramInt >= 0) {
+      setGravity(paramInt);
+    }
+    boolean bool = localF1.a(j.l1, true);
+    if (!bool) {
+      setBaselineAligned(bool);
+    }
+    k = localF1.i(j.n1, -1.0F);
+    f = localF1.k(j.m1, -1);
+    l = localF1.a(j.q1, false);
+    setDividerDrawable(localF1.g(j.o1));
+    r = localF1.k(j.r1, 0);
+    s = localF1.f(j.p1, 0);
+    localF1.w();
+  }
+  
+  private void A(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    paramView.layout(paramInt1, paramInt2, paramInt3 + paramInt1, paramInt4 + paramInt2);
+  }
+  
+  private void k(int paramInt1, int paramInt2)
+  {
+    int i2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
+    int i1 = 0;
+    while (i1 < paramInt1)
+    {
+      View localView = s(i1);
+      if (localView.getVisibility() != 8)
+      {
+        a localA = (a)localView.getLayoutParams();
+        if (height == -1)
+        {
+          int i3 = width;
+          width = localView.getMeasuredWidth();
+          measureChildWithMargins(localView, paramInt2, 0, i2, 0);
+          width = i3;
+        }
+      }
+      i1 += 1;
+    }
+  }
+  
+  private void l(int paramInt1, int paramInt2)
+  {
+    int i2 = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824);
+    int i1 = 0;
+    while (i1 < paramInt1)
+    {
+      View localView = s(i1);
+      if (localView.getVisibility() != 8)
+      {
+        a localA = (a)localView.getLayoutParams();
+        if (width == -1)
+        {
+          int i3 = height;
+          height = localView.getMeasuredHeight();
+          measureChildWithMargins(localView, i2, 0, paramInt2, 0);
+          height = i3;
+        }
+      }
+      i1 += 1;
+    }
+  }
+  
+  protected boolean checkLayoutParams(ViewGroup.LayoutParams paramLayoutParams)
+  {
+    return paramLayoutParams instanceof a;
+  }
+  
+  void g(Canvas paramCanvas)
+  {
+    int i3 = getVirtualChildCount();
+    boolean bool = q1.b(this);
+    int i1 = 0;
+    View localView;
+    a localA;
+    int i2;
+    while (i1 < i3)
+    {
+      localView = s(i1);
+      if ((localView != null) && (localView.getVisibility() != 8) && (t(i1)))
+      {
+        localA = (a)localView.getLayoutParams();
+        if (bool) {
+          i2 = localView.getRight() + rightMargin;
+        } else {
+          i2 = localView.getLeft() - leftMargin - p;
+        }
+        j(paramCanvas, i2);
+      }
+      i1 += 1;
+    }
+    if (t(i3))
+    {
+      localView = s(i3 - 1);
+      if (localView == null)
+      {
+        if (bool)
+        {
+          i1 = getPaddingLeft();
+          break label211;
+        }
+        i1 = getWidth();
+        i2 = getPaddingRight();
+      }
+      else
+      {
+        localA = (a)localView.getLayoutParams();
+        if (!bool) {
+          break label199;
+        }
+        i1 = localView.getLeft();
+        i2 = leftMargin;
+      }
+      i1 = i1 - i2 - p;
+      break label211;
+      label199:
+      i1 = localView.getRight() + rightMargin;
+      label211:
+      j(paramCanvas, i1);
+    }
+  }
+  
+  public int getBaseline()
+  {
+    if (f < 0) {
+      return super.getBaseline();
+    }
+    int i1 = getChildCount();
+    int i2 = f;
+    if (i1 > i2)
+    {
+      View localView = getChildAt(i2);
+      int i3 = localView.getBaseline();
+      if (i3 == -1)
+      {
+        if (f == 0) {
+          return -1;
+        }
+        throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout points to a View that doesn't know how to get its baseline.");
+      }
+      i2 = g;
+      i1 = i2;
+      if (h == 1)
+      {
+        int i4 = i & 0x70;
+        i1 = i2;
+        if (i4 != 48) {
+          if (i4 != 16)
+          {
+            if (i4 != 80) {
+              i1 = i2;
+            } else {
+              i1 = getBottom() - getTop() - getPaddingBottom() - j;
+            }
+          }
+          else {
+            i1 = i2 + (getBottom() - getTop() - getPaddingTop() - getPaddingBottom() - j) / 2;
+          }
+        }
+      }
+      return i1 + getLayoutParamstopMargin + i3;
+    }
+    throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout set to an index that is out of bounds.");
+  }
+  
+  public int getBaselineAlignedChildIndex()
+  {
+    return f;
+  }
+  
+  public Drawable getDividerDrawable()
+  {
+    return o;
+  }
+  
+  public int getDividerPadding()
+  {
+    return s;
+  }
+  
+  public int getDividerWidth()
+  {
+    return p;
+  }
+  
+  public int getGravity()
+  {
+    return i;
+  }
+  
+  public int getOrientation()
+  {
+    return h;
+  }
+  
+  public int getShowDividers()
+  {
+    return r;
+  }
+  
+  int getVirtualChildCount()
+  {
+    return getChildCount();
+  }
+  
+  public float getWeightSum()
+  {
+    return k;
+  }
+  
+  void h(Canvas paramCanvas)
+  {
+    int i2 = getVirtualChildCount();
+    int i1 = 0;
+    View localView;
+    a localA;
+    while (i1 < i2)
+    {
+      localView = s(i1);
+      if ((localView != null) && (localView.getVisibility() != 8) && (t(i1)))
+      {
+        localA = (a)localView.getLayoutParams();
+        i(paramCanvas, localView.getTop() - topMargin - q);
+      }
+      i1 += 1;
+    }
+    if (t(i2))
+    {
+      localView = s(i2 - 1);
+      if (localView == null)
+      {
+        i1 = getHeight() - getPaddingBottom() - q;
+      }
+      else
+      {
+        localA = (a)localView.getLayoutParams();
+        i1 = localView.getBottom() + bottomMargin;
+      }
+      i(paramCanvas, i1);
+    }
+  }
+  
+  void i(Canvas paramCanvas, int paramInt)
+  {
+    o.setBounds(getPaddingLeft() + s, paramInt, getWidth() - getPaddingRight() - s, q + paramInt);
+    o.draw(paramCanvas);
+  }
+  
+  void j(Canvas paramCanvas, int paramInt)
+  {
+    o.setBounds(paramInt, getPaddingTop() + s, p + paramInt, getHeight() - getPaddingBottom() - s);
+    o.draw(paramCanvas);
+  }
+  
+  protected a m()
+  {
+    int i1 = h;
+    if (i1 == 0) {
+      return new a(-2, -2);
+    }
+    if (i1 == 1) {
+      return new a(-1, -2);
+    }
+    return null;
+  }
+  
+  public a n(AttributeSet paramAttributeSet)
+  {
+    return new a(getContext(), paramAttributeSet);
+  }
+  
+  protected a o(ViewGroup.LayoutParams paramLayoutParams)
+  {
+    return new a(paramLayoutParams);
+  }
+  
+  protected void onDraw(Canvas paramCanvas)
+  {
+    if (o == null) {
+      return;
+    }
+    if (h == 1)
+    {
+      h(paramCanvas);
+      return;
+    }
+    g(paramCanvas);
+  }
+  
+  public void onInitializeAccessibilityEvent(AccessibilityEvent paramAccessibilityEvent)
+  {
+    super.onInitializeAccessibilityEvent(paramAccessibilityEvent);
+    paramAccessibilityEvent.setClassName("androidx.appcompat.widget.LinearLayoutCompat");
+  }
+  
+  public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo paramAccessibilityNodeInfo)
+  {
+    super.onInitializeAccessibilityNodeInfo(paramAccessibilityNodeInfo);
+    paramAccessibilityNodeInfo.setClassName("androidx.appcompat.widget.LinearLayoutCompat");
+  }
+  
+  protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    if (h == 1)
+    {
+      v(paramInt1, paramInt2, paramInt3, paramInt4);
+      return;
+    }
+    u(paramInt1, paramInt2, paramInt3, paramInt4);
+  }
+  
+  protected void onMeasure(int paramInt1, int paramInt2)
+  {
+    if (h == 1)
+    {
+      z(paramInt1, paramInt2);
+      return;
+    }
+    x(paramInt1, paramInt2);
+  }
+  
+  int p(View paramView, int paramInt)
+  {
+    return 0;
+  }
+  
+  int q(View paramView)
+  {
+    return 0;
+  }
+  
+  int r(View paramView)
+  {
+    return 0;
+  }
+  
+  View s(int paramInt)
+  {
+    return getChildAt(paramInt);
+  }
+  
+  public void setBaselineAligned(boolean paramBoolean)
+  {
+    e = paramBoolean;
+  }
+  
+  public void setBaselineAlignedChildIndex(int paramInt)
+  {
+    if ((paramInt >= 0) && (paramInt < getChildCount()))
+    {
+      f = paramInt;
+      return;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("base aligned child index out of range (0, ");
+    localStringBuilder.append(getChildCount());
+    localStringBuilder.append(")");
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  public void setDividerDrawable(Drawable paramDrawable)
+  {
+    if (paramDrawable == o) {
+      return;
+    }
+    o = paramDrawable;
+    boolean bool = false;
+    if (paramDrawable != null)
+    {
+      p = paramDrawable.getIntrinsicWidth();
+      q = paramDrawable.getIntrinsicHeight();
+    }
+    else
+    {
+      p = 0;
+      q = 0;
+    }
+    if (paramDrawable == null) {
+      bool = true;
+    }
+    setWillNotDraw(bool);
+    requestLayout();
+  }
+  
+  public void setDividerPadding(int paramInt)
+  {
+    s = paramInt;
+  }
+  
+  public void setGravity(int paramInt)
+  {
+    if (i != paramInt)
+    {
+      int i1 = paramInt;
+      if ((0x800007 & paramInt) == 0) {
+        i1 = paramInt | 0x800003;
+      }
+      paramInt = i1;
+      if ((i1 & 0x70) == 0) {
+        paramInt = i1 | 0x30;
+      }
+      i = paramInt;
+      requestLayout();
+    }
+  }
+  
+  public void setHorizontalGravity(int paramInt)
+  {
+    paramInt &= 0x800007;
+    int i1 = i;
+    if ((0x800007 & i1) != paramInt)
+    {
+      i = (paramInt | 0xFF7FFFF8 & i1);
+      requestLayout();
+    }
+  }
+  
+  public void setMeasureWithLargestChildEnabled(boolean paramBoolean)
+  {
+    l = paramBoolean;
+  }
+  
+  public void setOrientation(int paramInt)
+  {
+    if (h != paramInt)
+    {
+      h = paramInt;
+      requestLayout();
+    }
+  }
+  
+  public void setShowDividers(int paramInt)
+  {
+    if (paramInt != r) {
+      requestLayout();
+    }
+    r = paramInt;
+  }
+  
+  public void setVerticalGravity(int paramInt)
+  {
+    paramInt &= 0x70;
+    int i1 = i;
+    if ((i1 & 0x70) != paramInt)
+    {
+      i = (paramInt | i1 & 0xFFFFFF8F);
+      requestLayout();
+    }
+  }
+  
+  public void setWeightSum(float paramFloat)
+  {
+    k = Math.max(0.0F, paramFloat);
+  }
+  
+  public boolean shouldDelayChildPressedState()
+  {
+    return false;
+  }
+  
+  protected boolean t(int paramInt)
+  {
+    boolean bool2 = false;
+    boolean bool1 = false;
+    if (paramInt == 0)
+    {
+      if ((r & 0x1) != 0) {
+        bool1 = true;
+      }
+      return bool1;
+    }
+    if (paramInt == getChildCount())
+    {
+      bool1 = bool2;
+      if ((r & 0x4) != 0) {
+        bool1 = true;
+      }
+      return bool1;
+    }
+    if ((r & 0x2) != 0)
+    {
+      paramInt -= 1;
+      while (paramInt >= 0)
+      {
+        if (getChildAt(paramInt).getVisibility() != 8) {
+          return true;
+        }
+        paramInt -= 1;
+      }
+    }
+    return false;
+  }
+  
+  void u(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    boolean bool1 = q1.b(this);
+    int i6 = getPaddingTop();
+    int i8 = paramInt4 - paramInt2;
+    int i9 = getPaddingBottom();
+    int i10 = getPaddingBottom();
+    int i4 = getVirtualChildCount();
+    paramInt2 = i;
+    paramInt4 = paramInt2 & 0x70;
+    boolean bool2 = e;
+    int[] arrayOfInt1 = m;
+    int[] arrayOfInt2 = n;
+    paramInt2 = o.b(0x800007 & paramInt2, h0.E(this));
+    if (paramInt2 != 1)
+    {
+      if (paramInt2 != 5) {
+        paramInt2 = getPaddingLeft();
+      } else {
+        paramInt2 = getPaddingLeft() + paramInt3 - paramInt1 - j;
+      }
+    }
+    else {
+      paramInt2 = getPaddingLeft() + (paramInt3 - paramInt1 - j) / 2;
+    }
+    int i2;
+    int i3;
+    if (bool1)
+    {
+      i2 = i4 - 1;
+      i3 = -1;
+    }
+    else
+    {
+      i2 = 0;
+      i3 = 1;
+    }
+    int i1 = 0;
+    paramInt3 = paramInt4;
+    paramInt4 = i6;
+    while (i1 < i4)
+    {
+      int i12 = i2 + i3 * i1;
+      View localView = s(i12);
+      if (localView == null)
+      {
+        paramInt2 += y(i12);
+      }
+      else if (localView.getVisibility() != 8)
+      {
+        int i11 = localView.getMeasuredWidth();
+        int i13 = localView.getMeasuredHeight();
+        a localA = (a)localView.getLayoutParams();
+        if ((bool2) && (height != -1)) {
+          i5 = localView.getBaseline();
+        } else {
+          i5 = -1;
+        }
+        int i7 = gravity;
+        paramInt1 = i7;
+        if (i7 < 0) {
+          paramInt1 = paramInt3;
+        }
+        paramInt1 &= 0x70;
+        if (paramInt1 != 16)
+        {
+          if (paramInt1 != 48)
+          {
+            if (paramInt1 != 80)
+            {
+              paramInt1 = paramInt4;
+            }
+            else
+            {
+              i7 = i8 - i9 - i13 - bottomMargin;
+              paramInt1 = i7;
+              if (i5 != -1)
+              {
+                paramInt1 = localView.getMeasuredHeight();
+                paramInt1 = i7 - (arrayOfInt2[2] - (paramInt1 - i5));
+              }
+            }
+          }
+          else
+          {
+            i7 = topMargin + paramInt4;
+            paramInt1 = i7;
+            if (i5 != -1)
+            {
+              paramInt1 = i7 + (arrayOfInt1[1] - i5);
+              break label423;
+            }
+          }
+        }
+        else {
+          paramInt1 = (i8 - i6 - i10 - i13) / 2 + paramInt4 + topMargin - bottomMargin;
+        }
+        label423:
+        int i5 = paramInt2;
+        if (t(i12)) {
+          i5 = paramInt2 + p;
+        }
+        paramInt2 = leftMargin + i5;
+        A(localView, paramInt2 + q(localView), paramInt1, i11, i13);
+        paramInt1 = rightMargin;
+        i5 = r(localView);
+        i1 += p(localView, i12);
+        paramInt2 += i11 + paramInt1 + i5;
+      }
+      i1 += 1;
+    }
+  }
+  
+  void v(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    int i1 = getPaddingLeft();
+    int i2 = paramInt3 - paramInt1;
+    int i3 = getPaddingRight();
+    int i4 = getPaddingRight();
+    int i5 = getVirtualChildCount();
+    int i6 = i;
+    paramInt1 = i6 & 0x70;
+    if (paramInt1 != 16)
+    {
+      if (paramInt1 != 80) {
+        paramInt1 = getPaddingTop();
+      } else {
+        paramInt1 = getPaddingTop() + paramInt4 - paramInt2 - j;
+      }
+    }
+    else {
+      paramInt1 = getPaddingTop() + (paramInt4 - paramInt2 - j) / 2;
+    }
+    paramInt2 = 0;
+    while (paramInt2 < i5)
+    {
+      View localView = s(paramInt2);
+      if (localView == null)
+      {
+        paramInt3 = paramInt1 + y(paramInt2);
+        paramInt4 = paramInt2;
+      }
+      else
+      {
+        paramInt3 = paramInt1;
+        paramInt4 = paramInt2;
+        if (localView.getVisibility() != 8)
+        {
+          int i8 = localView.getMeasuredWidth();
+          int i7 = localView.getMeasuredHeight();
+          a localA = (a)localView.getLayoutParams();
+          paramInt4 = gravity;
+          paramInt3 = paramInt4;
+          if (paramInt4 < 0) {
+            paramInt3 = i6 & 0x800007;
+          }
+          paramInt3 = o.b(paramInt3, h0.E(this)) & 0x7;
+          if (paramInt3 != 1)
+          {
+            if (paramInt3 != 5)
+            {
+              paramInt3 = leftMargin + i1;
+              break label268;
+            }
+            paramInt3 = i2 - i3 - i8;
+          }
+          else
+          {
+            paramInt3 = (i2 - i1 - i4 - i8) / 2 + i1 + leftMargin;
+          }
+          paramInt3 -= rightMargin;
+          label268:
+          paramInt4 = paramInt1;
+          if (t(paramInt2)) {
+            paramInt4 = paramInt1 + q;
+          }
+          paramInt1 = paramInt4 + topMargin;
+          A(localView, paramInt3, paramInt1 + q(localView), i8, i7);
+          paramInt3 = bottomMargin;
+          i8 = r(localView);
+          paramInt4 = paramInt2 + p(localView, paramInt2);
+          paramInt3 = paramInt1 + (i7 + paramInt3 + i8);
+        }
+      }
+      paramInt2 = paramInt4 + 1;
+      paramInt1 = paramInt3;
+    }
+  }
+  
+  void w(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5)
+  {
+    measureChildWithMargins(paramView, paramInt2, paramInt3, paramInt4, paramInt5);
+  }
+  
+  void x(int paramInt1, int paramInt2)
+  {
+    j = 0;
+    int i12 = getVirtualChildCount();
+    int i18 = View.MeasureSpec.getMode(paramInt1);
+    int i17 = View.MeasureSpec.getMode(paramInt2);
+    if ((m == null) || (n == null))
+    {
+      m = new int[4];
+      n = new int[4];
+    }
+    int[] arrayOfInt = m;
+    Object localObject = n;
+    arrayOfInt[3] = -1;
+    arrayOfInt[2] = -1;
+    arrayOfInt[1] = -1;
+    arrayOfInt[0] = -1;
+    localObject[3] = -1;
+    localObject[2] = -1;
+    localObject[1] = -1;
+    localObject[0] = -1;
+    boolean bool1 = e;
+    boolean bool2 = l;
+    int i11;
+    if (i18 == 1073741824) {
+      i11 = 1;
+    } else {
+      i11 = 0;
+    }
+    float f1 = 0.0F;
+    int i4 = 0;
+    int i3 = 0;
+    int i9 = 0;
+    int i2 = 0;
+    int i7 = 0;
+    int i8 = 0;
+    int i5 = 0;
+    int i1 = 1;
+    int i6 = 0;
+    View localView;
+    a localA;
+    float f2;
+    while (i4 < i12)
+    {
+      localView = s(i4);
+      if (localView == null) {
+        j += y(i4);
+      }
+      for (;;)
+      {
+        break;
+        if (localView.getVisibility() == 8)
+        {
+          i4 += p(localView, i4);
+        }
+        else
+        {
+          if (t(i4)) {
+            j += p;
+          }
+          localA = (a)localView.getLayoutParams();
+          f2 = weight;
+          f1 += f2;
+          if ((i18 == 1073741824) && (width == 0) && (f2 > 0.0F))
+          {
+            i10 = j;
+            if (i11 != 0) {
+              i10 += leftMargin + rightMargin;
+            } else {
+              i10 = Math.max(i10, leftMargin + i10 + rightMargin);
+            }
+            j = i10;
+            if (bool1)
+            {
+              i10 = View.MeasureSpec.makeMeasureSpec(0, 0);
+              localView.measure(i10, i10);
+              i10 = i3;
+            }
+            else
+            {
+              i8 = 1;
+              break label568;
+            }
+          }
+          else
+          {
+            if ((width == 0) && (f2 > 0.0F))
+            {
+              width = -2;
+              i10 = 0;
+            }
+            else
+            {
+              i10 = Integer.MIN_VALUE;
+            }
+            if (f1 == 0.0F) {
+              i13 = j;
+            } else {
+              i13 = 0;
+            }
+            w(localView, i4, paramInt1, i13, paramInt2, 0);
+            if (i10 != Integer.MIN_VALUE) {
+              width = i10;
+            }
+            i13 = localView.getMeasuredWidth();
+            if (i11 != 0)
+            {
+              i10 = j + (leftMargin + i13 + rightMargin + r(localView));
+            }
+            else
+            {
+              i10 = j;
+              i10 = Math.max(i10, i10 + i13 + leftMargin + rightMargin + r(localView));
+            }
+            j = i10;
+            i10 = i3;
+            if (bool2) {
+              i10 = Math.max(i13, i3);
+            }
+          }
+          i3 = i10;
+          label568:
+          i14 = i4;
+          if ((i17 != 1073741824) && (height == -1))
+          {
+            i4 = 1;
+            i6 = 1;
+          }
+          else
+          {
+            i4 = 0;
+          }
+          i10 = topMargin + bottomMargin;
+          i13 = localView.getMeasuredHeight() + i10;
+          int i15 = View.combineMeasuredStates(i5, localView.getMeasuredState());
+          if (bool1)
+          {
+            int i19 = localView.getBaseline();
+            if (i19 != -1)
+            {
+              int i16 = gravity;
+              i5 = i16;
+              if (i16 < 0) {
+                i5 = i;
+              }
+              i5 = ((i5 & 0x70) >> 4 & 0xFFFFFFFE) >> 1;
+              arrayOfInt[i5] = Math.max(arrayOfInt[i5], i19);
+              localObject[i5] = Math.max(localObject[i5], i13 - i19);
+            }
+          }
+          i9 = Math.max(i9, i13);
+          if ((i1 != 0) && (height == -1)) {
+            i1 = 1;
+          } else {
+            i1 = 0;
+          }
+          if (weight > 0.0F)
+          {
+            if (i4 == 0) {
+              i10 = i13;
+            }
+            i4 = Math.max(i7, i10);
+          }
+          else
+          {
+            if (i4 == 0) {
+              i10 = i13;
+            }
+            i2 = Math.max(i2, i10);
+            i4 = i7;
+          }
+          i10 = p(localView, i14) + i14;
+          i5 = i15;
+          i7 = i4;
+          i4 = i10;
+        }
+      }
+      i4 += 1;
+    }
+    if ((j > 0) && (t(i12))) {
+      j += p;
+    }
+    i4 = arrayOfInt[1];
+    if ((i4 == -1) && (arrayOfInt[0] == -1) && (arrayOfInt[2] == -1) && (arrayOfInt[3] == -1)) {
+      i4 = i9;
+    } else {
+      i4 = Math.max(i9, Math.max(arrayOfInt[3], Math.max(arrayOfInt[0], Math.max(i4, arrayOfInt[2]))) + Math.max(localObject[3], Math.max(localObject[0], Math.max(localObject[1], localObject[2]))));
+    }
+    i9 = i5;
+    int i10 = i4;
+    if (bool2) {
+      if (i18 != Integer.MIN_VALUE)
+      {
+        i10 = i4;
+        if (i18 != 0) {}
+      }
+      else
+      {
+        j = 0;
+        i5 = 0;
+        for (;;)
+        {
+          i10 = i4;
+          if (i5 >= i12) {
+            break;
+          }
+          localView = s(i5);
+          if (localView == null)
+          {
+            j += y(i5);
+          }
+          else
+          {
+            if (localView.getVisibility() != 8) {
+              break label1084;
+            }
+            i5 += p(localView, i5);
+          }
+          for (;;)
+          {
+            break;
+            label1084:
+            localA = (a)localView.getLayoutParams();
+            i10 = j;
+            if (i11 != 0) {
+              j = (i10 + (leftMargin + i3 + rightMargin + r(localView)));
+            } else {
+              j = Math.max(i10, i10 + i3 + leftMargin + rightMargin + r(localView));
+            }
+          }
+          i5 += 1;
+        }
+      }
+    }
+    i4 = j + (getPaddingLeft() + getPaddingRight());
+    j = i4;
+    int i14 = View.resolveSizeAndState(Math.max(i4, getSuggestedMinimumWidth()), paramInt1, 0);
+    int i13 = (0xFFFFFF & i14) - j;
+    if ((i8 == 0) && ((i13 == 0) || (f1 <= 0.0F)))
+    {
+      i5 = Math.max(i2, i7);
+      if ((bool2) && (i18 != 1073741824))
+      {
+        i2 = 0;
+        while (i2 < i12)
+        {
+          localObject = s(i2);
+          if ((localObject != null) && (((View)localObject).getVisibility() != 8) && (getLayoutParamsweight > 0.0F)) {
+            ((View)localObject).measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), View.MeasureSpec.makeMeasureSpec(((View)localObject).getMeasuredHeight(), 1073741824));
+          }
+          i2 += 1;
+        }
+      }
+      i4 = i12;
+      i3 = i10;
+      i2 = i5;
+    }
+    else
+    {
+      f2 = k;
+      if (f2 > 0.0F) {
+        f1 = f2;
+      }
+      arrayOfInt[3] = -1;
+      arrayOfInt[2] = -1;
+      arrayOfInt[1] = -1;
+      arrayOfInt[0] = -1;
+      localObject[3] = -1;
+      localObject[2] = -1;
+      localObject[1] = -1;
+      localObject[0] = -1;
+      j = 0;
+      i3 = i9;
+      i8 = -1;
+      i9 = 0;
+      i5 = i1;
+      i4 = i12;
+      i1 = i3;
+      i7 = i2;
+      i2 = i13;
+      while (i9 < i4)
+      {
+        localView = s(i9);
+        if ((localView != null) && (localView.getVisibility() != 8))
+        {
+          localA = (a)localView.getLayoutParams();
+          f2 = weight;
+          if (f2 > 0.0F)
+          {
+            i10 = (int)(i2 * f2 / f1);
+            i13 = ViewGroup.getChildMeasureSpec(paramInt2, getPaddingTop() + getPaddingBottom() + topMargin + bottomMargin, height);
+            if ((width == 0) && (i18 == 1073741824))
+            {
+              if (i10 > 0)
+              {
+                i3 = i10;
+                break label1610;
+              }
+            }
+            else
+            {
+              i12 = localView.getMeasuredWidth() + i10;
+              i3 = i12;
+              if (i12 >= 0) {
+                break label1610;
+              }
+            }
+            i3 = 0;
+            label1610:
+            localView.measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i13);
+            i1 = View.combineMeasuredStates(i1, localView.getMeasuredState() & 0xFF000000);
+            f1 -= f2;
+            i2 -= i10;
+          }
+          i3 = j;
+          if (i11 != 0) {
+            j = (i3 + (localView.getMeasuredWidth() + leftMargin + rightMargin + r(localView)));
+          } else {
+            j = Math.max(i3, localView.getMeasuredWidth() + i3 + leftMargin + rightMargin + r(localView));
+          }
+          if ((i17 != 1073741824) && (height == -1)) {
+            i3 = 1;
+          } else {
+            i3 = 0;
+          }
+          i12 = topMargin + bottomMargin;
+          i10 = localView.getMeasuredHeight() + i12;
+          i8 = Math.max(i8, i10);
+          if (i3 != 0) {
+            i3 = i12;
+          } else {
+            i3 = i10;
+          }
+          i7 = Math.max(i7, i3);
+          if ((i5 != 0) && (height == -1)) {
+            i3 = 1;
+          } else {
+            i3 = 0;
+          }
+          if (bool1)
+          {
+            i13 = localView.getBaseline();
+            if (i13 != -1)
+            {
+              i12 = gravity;
+              i5 = i12;
+              if (i12 < 0) {
+                i5 = i;
+              }
+              i5 = ((i5 & 0x70) >> 4 & 0xFFFFFFFE) >> 1;
+              arrayOfInt[i5] = Math.max(arrayOfInt[i5], i13);
+              localObject[i5] = Math.max(localObject[i5], i10 - i13);
+            }
+          }
+          i5 = i3;
+        }
+        i9 += 1;
+      }
+      j += getPaddingLeft() + getPaddingRight();
+      i2 = arrayOfInt[1];
+      if ((i2 == -1) && (arrayOfInt[0] == -1) && (arrayOfInt[2] == -1) && (arrayOfInt[3] == -1)) {
+        i2 = i8;
+      } else {
+        i2 = Math.max(i8, Math.max(arrayOfInt[3], Math.max(arrayOfInt[0], Math.max(i2, arrayOfInt[2]))) + Math.max(localObject[3], Math.max(localObject[0], Math.max(localObject[1], localObject[2]))));
+      }
+      i9 = i1;
+      i1 = i5;
+      i3 = i2;
+      i2 = i7;
+    }
+    if ((i1 != 0) || (i17 == 1073741824)) {
+      i2 = i3;
+    }
+    setMeasuredDimension(i14 | i9 & 0xFF000000, View.resolveSizeAndState(Math.max(i2 + (getPaddingTop() + getPaddingBottom()), getSuggestedMinimumHeight()), paramInt2, i9 << 16));
+    if (i6 != 0) {
+      k(i4, paramInt1);
+    }
+  }
+  
+  int y(int paramInt)
+  {
+    return 0;
+  }
+  
+  void z(int paramInt1, int paramInt2)
+  {
+    j = 0;
+    int i8 = getVirtualChildCount();
+    int i16 = View.MeasureSpec.getMode(paramInt1);
+    int i11 = View.MeasureSpec.getMode(paramInt2);
+    int i17 = f;
+    boolean bool = l;
+    float f1 = 0.0F;
+    int i1 = 0;
+    int i10 = 0;
+    int i5 = 0;
+    int i2 = 0;
+    int i4 = 0;
+    int i6 = 0;
+    int i9 = 0;
+    int i3 = 1;
+    int i7 = 0;
+    View localView;
+    a localA;
+    float f2;
+    int i14;
+    int i15;
+    while (i6 < i8)
+    {
+      localView = s(i6);
+      if (localView == null)
+      {
+        j += y(i6);
+      }
+      else if (localView.getVisibility() == 8)
+      {
+        i6 += p(localView, i6);
+      }
+      else
+      {
+        if (t(i6)) {
+          j += q;
+        }
+        localA = (a)localView.getLayoutParams();
+        f2 = weight;
+        f1 += f2;
+        if ((i11 == 1073741824) && (height == 0) && (f2 > 0.0F))
+        {
+          i9 = j;
+          j = Math.max(i9, topMargin + i9 + bottomMargin);
+          i9 = 1;
+        }
+        else
+        {
+          if ((height == 0) && (f2 > 0.0F))
+          {
+            height = -2;
+            i12 = 0;
+          }
+          else
+          {
+            i12 = Integer.MIN_VALUE;
+          }
+          if (f1 == 0.0F) {
+            i13 = j;
+          } else {
+            i13 = 0;
+          }
+          w(localView, i6, paramInt1, 0, paramInt2, i13);
+          if (i12 != Integer.MIN_VALUE) {
+            height = i12;
+          }
+          i12 = localView.getMeasuredHeight();
+          i13 = j;
+          j = Math.max(i13, i13 + i12 + topMargin + bottomMargin + r(localView));
+          if (bool) {
+            i5 = Math.max(i12, i5);
+          }
+        }
+        i14 = i6;
+        if ((i17 >= 0) && (i17 == i14 + 1)) {
+          g = j;
+        }
+        if ((i14 < i17) && (weight > 0.0F)) {
+          throw new RuntimeException("A child of LinearLayout with index less than mBaselineAlignedChildIndex has weight > 0, which won't work.  Either remove the weight, or don't set mBaselineAlignedChildIndex.");
+        }
+        if ((i16 != 1073741824) && (width == -1))
+        {
+          i6 = 1;
+          i7 = 1;
+        }
+        else
+        {
+          i6 = 0;
+        }
+        i12 = leftMargin + rightMargin;
+        i13 = localView.getMeasuredWidth() + i12;
+        i10 = Math.max(i10, i13);
+        i15 = View.combineMeasuredStates(i1, localView.getMeasuredState());
+        if ((i3 != 0) && (width == -1)) {
+          i1 = 1;
+        } else {
+          i1 = 0;
+        }
+        if (weight > 0.0F)
+        {
+          if (i6 == 0) {
+            i12 = i13;
+          }
+          i2 = Math.max(i2, i12);
+          i3 = i4;
+        }
+        else
+        {
+          if (i6 == 0) {
+            i12 = i13;
+          }
+          i3 = Math.max(i4, i12);
+        }
+        i6 = p(localView, i14);
+        i4 = i3;
+        i12 = i15;
+        i6 += i14;
+        i3 = i1;
+        i1 = i12;
+      }
+      i6 += 1;
+    }
+    if ((j > 0) && (t(i8))) {
+      j += q;
+    }
+    int i12 = i8;
+    if ((bool) && ((i11 == Integer.MIN_VALUE) || (i11 == 0)))
+    {
+      j = 0;
+      i6 = 0;
+      while (i6 < i12)
+      {
+        localView = s(i6);
+        if (localView == null) {}
+        for (i8 = j + y(i6);; i8 = Math.max(i8, i8 + i5 + topMargin + bottomMargin + r(localView)))
+        {
+          j = i8;
+          break;
+          if (localView.getVisibility() == 8)
+          {
+            i6 += p(localView, i6);
+            break;
+          }
+          localA = (a)localView.getLayoutParams();
+          i8 = j;
+        }
+        i6 += 1;
+      }
+    }
+    i6 = j + (getPaddingTop() + getPaddingBottom());
+    j = i6;
+    int i13 = View.resolveSizeAndState(Math.max(i6, getSuggestedMinimumHeight()), paramInt2, 0);
+    i6 = (0xFFFFFF & i13) - j;
+    if ((i9 == 0) && ((i6 == 0) || (f1 <= 0.0F)))
+    {
+      i4 = Math.max(i4, i2);
+      if ((bool) && (i11 != 1073741824))
+      {
+        i2 = 0;
+        while (i2 < i12)
+        {
+          localView = s(i2);
+          if ((localView != null) && (localView.getVisibility() != 8) && (getLayoutParamsweight > 0.0F)) {
+            localView.measure(View.MeasureSpec.makeMeasureSpec(localView.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(i5, 1073741824));
+          }
+          i2 += 1;
+        }
+      }
+      i2 = i1;
+      i1 = i4;
+    }
+    else
+    {
+      f2 = k;
+      if (f2 > 0.0F) {
+        f1 = f2;
+      }
+      j = 0;
+      i2 = i6;
+      i5 = 0;
+      while (i5 < i12)
+      {
+        localView = s(i5);
+        if (localView.getVisibility() != 8)
+        {
+          localA = (a)localView.getLayoutParams();
+          f2 = weight;
+          if (f2 > 0.0F)
+          {
+            i8 = (int)(i2 * f2 / f1);
+            i9 = getPaddingLeft();
+            i14 = getPaddingRight();
+            i15 = leftMargin;
+            i17 = rightMargin;
+            int i18 = width;
+            i6 = i2 - i8;
+            i9 = ViewGroup.getChildMeasureSpec(paramInt1, i9 + i14 + i15 + i17, i18);
+            if ((height == 0) && (i11 == 1073741824))
+            {
+              if (i8 > 0)
+              {
+                i2 = i8;
+                break label1200;
+              }
+            }
+            else
+            {
+              i8 = localView.getMeasuredHeight() + i8;
+              i2 = i8;
+              if (i8 >= 0) {
+                break label1200;
+              }
+            }
+            i2 = 0;
+            label1200:
+            localView.measure(i9, View.MeasureSpec.makeMeasureSpec(i2, 1073741824));
+            i1 = View.combineMeasuredStates(i1, localView.getMeasuredState() & 0xFF00);
+            f1 -= f2;
+            i2 = i6;
+          }
+          i8 = leftMargin + rightMargin;
+          i9 = localView.getMeasuredWidth() + i8;
+          i10 = Math.max(i10, i9);
+          if ((i16 != 1073741824) && (width == -1)) {
+            i6 = 1;
+          } else {
+            i6 = 0;
+          }
+          if (i6 != 0) {
+            i6 = i8;
+          } else {
+            i6 = i9;
+          }
+          i4 = Math.max(i4, i6);
+          if ((i3 != 0) && (width == -1)) {
+            i3 = 1;
+          } else {
+            i3 = 0;
+          }
+          i6 = j;
+          j = Math.max(i6, localView.getMeasuredHeight() + i6 + topMargin + bottomMargin + r(localView));
+        }
+        i5 += 1;
+      }
+      j += getPaddingTop() + getPaddingBottom();
+      i2 = i1;
+      i1 = i4;
+    }
+    if ((i3 != 0) || (i16 == 1073741824)) {
+      i1 = i10;
+    }
+    setMeasuredDimension(View.resolveSizeAndState(Math.max(i1 + (getPaddingLeft() + getPaddingRight()), getSuggestedMinimumWidth()), paramInt1, i2), i13);
+    if (i7 != 0) {
+      l(i12, paramInt2);
+    }
+  }
+  
+  public static class a
+    extends LinearLayout.LayoutParams
+  {
+    public a(int paramInt1, int paramInt2)
+    {
+      super(paramInt2);
+    }
+    
+    public a(Context paramContext, AttributeSet paramAttributeSet)
+    {
+      super(paramAttributeSet);
+    }
+    
+    public a(ViewGroup.LayoutParams paramLayoutParams)
+    {
+      super();
+    }
+  }
+}

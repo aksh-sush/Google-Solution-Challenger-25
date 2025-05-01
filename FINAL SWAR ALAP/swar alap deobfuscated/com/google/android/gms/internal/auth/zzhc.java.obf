@@ -1,0 +1,25 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.Iterator;
+import java.util.List;
+
+final class zzhc
+  implements Iterator
+{
+  final Iterator zza;
+  
+  zzhc(zzhd paramZzhd)
+  {
+    zza = zzhd.zza(paramZzhd).iterator();
+  }
+  
+  public final boolean hasNext()
+  {
+    return zza.hasNext();
+  }
+  
+  public final void remove()
+  {
+    throw new UnsupportedOperationException();
+  }
+}

@@ -1,0 +1,5 @@
+package jb;
+
+public abstract interface f
+  extends a
+{}

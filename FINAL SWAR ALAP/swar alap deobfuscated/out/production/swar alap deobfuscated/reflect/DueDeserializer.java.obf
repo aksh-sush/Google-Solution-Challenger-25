@@ -1,0 +1,9 @@
+package k4;
+
+import com.google.android.gms.common.api.a.a;
+
+final class b
+  extends a.a
+{
+  b() {}
+}

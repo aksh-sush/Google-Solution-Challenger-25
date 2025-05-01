@@ -1,0 +1,30 @@
+package androidx.lifecycle;
+
+public final class CompositeGeneratedAdaptersObserver
+  implements l
+{
+  private final f[] e;
+  
+  public CompositeGeneratedAdaptersObserver(f[] paramArrayOfF)
+  {
+    e = paramArrayOfF;
+  }
+  
+  public void d(n paramN, i.a paramA)
+  {
+    db.l.e(paramN, "source");
+    db.l.e(paramA, "event");
+    new r();
+    paramN = e;
+    if (paramN.length <= 0)
+    {
+      if (paramN.length <= 0) {
+        return;
+      }
+      paramN = paramN[0];
+      throw null;
+    }
+    paramN = paramN[0];
+    throw null;
+  }
+}

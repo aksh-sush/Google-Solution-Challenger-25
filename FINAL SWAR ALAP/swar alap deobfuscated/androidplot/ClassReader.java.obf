@@ -1,0 +1,518 @@
+package u;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import t.a;
+import t.d;
+import t.d.b;
+import t.e;
+import t.e.b;
+import t.f;
+import t.g;
+import t.h;
+import t.j;
+import t.m;
+
+public abstract class i
+{
+  public static o a(e paramE, int paramInt, ArrayList paramArrayList, o paramO)
+  {
+    int i;
+    if (paramInt == 0) {
+      i = I0;
+    } else {
+      i = J0;
+    }
+    int k = 0;
+    int j;
+    if ((i != -1) && ((paramO == null) || (i != b)))
+    {
+      j = 0;
+      for (;;)
+      {
+        localObject = paramO;
+        if (j >= paramArrayList.size()) {
+          break;
+        }
+        localObject = (o)paramArrayList.get(j);
+        if (((o)localObject).c() == i)
+        {
+          if (paramO != null)
+          {
+            paramO.g(paramInt, (o)localObject);
+            paramArrayList.remove(paramO);
+          }
+          break;
+        }
+        j += 1;
+      }
+    }
+    Object localObject = paramO;
+    if (i != -1) {
+      return paramO;
+    }
+    paramO = (o)localObject;
+    if (localObject == null)
+    {
+      paramO = (o)localObject;
+      if ((paramE instanceof j))
+      {
+        j = ((j)paramE).s1(paramInt);
+        paramO = (o)localObject;
+        if (j != -1)
+        {
+          i = 0;
+          for (;;)
+          {
+            paramO = (o)localObject;
+            if (i >= paramArrayList.size()) {
+              break;
+            }
+            paramO = (o)paramArrayList.get(i);
+            if (paramO.c() == j) {
+              break;
+            }
+            i += 1;
+          }
+        }
+      }
+      localObject = paramO;
+      if (paramO == null) {
+        localObject = new o(paramInt);
+      }
+      paramArrayList.add(localObject);
+      paramO = (o)localObject;
+    }
+    if (paramO.a(paramE))
+    {
+      if ((paramE instanceof h))
+      {
+        localObject = (h)paramE;
+        d localD = ((h)localObject).r1();
+        i = k;
+        if (((h)localObject).s1() == 0) {
+          i = 1;
+        }
+        localD.c(i, paramArrayList, paramO);
+      }
+      i = paramO.c();
+      if (paramInt == 0)
+      {
+        I0 = i;
+        O.c(paramInt, paramArrayList, paramO);
+        localObject = Q;
+      }
+      else
+      {
+        J0 = i;
+        P.c(paramInt, paramArrayList, paramO);
+        S.c(paramInt, paramArrayList, paramO);
+        localObject = R;
+      }
+      ((d)localObject).c(paramInt, paramArrayList, paramO);
+      V.c(paramInt, paramArrayList, paramO);
+    }
+    return paramO;
+  }
+  
+  private static o b(ArrayList paramArrayList, int paramInt)
+  {
+    int j = paramArrayList.size();
+    int i = 0;
+    while (i < j)
+    {
+      o localO = (o)paramArrayList.get(i);
+      if (paramInt == b) {
+        return localO;
+      }
+      i += 1;
+    }
+    return null;
+  }
+  
+  public static boolean c(f paramF, b.b paramB)
+  {
+    ArrayList localArrayList = paramF.r1();
+    int j = localArrayList.size();
+    int i = 0;
+    while (i < j)
+    {
+      localObject1 = (e)localArrayList.get(i);
+      if (!d(paramF.A(), paramF.T(), ((e)localObject1).A(), ((e)localObject1).T())) {
+        return false;
+      }
+      if ((localObject1 instanceof g)) {
+        return false;
+      }
+      i += 1;
+    }
+    i = 0;
+    Object localObject6 = null;
+    Object localObject1 = null;
+    Object localObject2 = null;
+    Object localObject5 = null;
+    Object localObject4 = null;
+    label469:
+    Object localObject12;
+    for (Object localObject3 = null; i < j; localObject3 = localObject12)
+    {
+      e localE = (e)localArrayList.get(i);
+      if (!d(paramF.A(), paramF.T(), localE.A(), localE.T())) {
+        f.S1(0, localE, paramB, p1, b.a.k);
+      }
+      boolean bool = localE instanceof h;
+      Object localObject9 = localObject6;
+      Object localObject8 = localObject2;
+      if (bool)
+      {
+        localObject10 = (h)localE;
+        localObject7 = localObject2;
+        if (((h)localObject10).s1() == 0)
+        {
+          localObject7 = localObject2;
+          if (localObject2 == null) {
+            localObject7 = new ArrayList();
+          }
+          ((ArrayList)localObject7).add(localObject10);
+        }
+        localObject9 = localObject6;
+        localObject8 = localObject7;
+        if (((h)localObject10).s1() == 1)
+        {
+          localObject2 = localObject6;
+          if (localObject6 == null) {
+            localObject2 = new ArrayList();
+          }
+          ((ArrayList)localObject2).add(localObject10);
+          localObject8 = localObject7;
+          localObject9 = localObject2;
+        }
+      }
+      localObject7 = localObject1;
+      Object localObject10 = localObject5;
+      if ((localE instanceof j))
+      {
+        if ((localE instanceof a))
+        {
+          localObject11 = (a)localE;
+          localObject2 = localObject1;
+          if (((a)localObject11).x1() == 0)
+          {
+            localObject2 = localObject1;
+            if (localObject1 == null) {
+              localObject2 = new ArrayList();
+            }
+            ((ArrayList)localObject2).add(localObject11);
+          }
+          localObject7 = localObject2;
+          localObject10 = localObject5;
+          if (((a)localObject11).x1() != 1) {
+            break label469;
+          }
+          localObject6 = localObject11;
+          localObject7 = localObject2;
+          localObject1 = localObject5;
+          if (localObject5 == null)
+          {
+            localObject1 = new ArrayList();
+            localObject6 = localObject11;
+            localObject7 = localObject2;
+          }
+        }
+        else
+        {
+          localObject10 = (j)localE;
+          localObject2 = localObject1;
+          if (localObject1 == null) {
+            localObject2 = new ArrayList();
+          }
+          ((ArrayList)localObject2).add(localObject10);
+          localObject6 = localObject10;
+          localObject7 = localObject2;
+          localObject1 = localObject5;
+          if (localObject5 == null)
+          {
+            localObject1 = new ArrayList();
+            localObject7 = localObject2;
+            localObject6 = localObject10;
+          }
+        }
+        ((ArrayList)localObject1).add(localObject6);
+        localObject10 = localObject1;
+      }
+      Object localObject11 = localObject4;
+      if (O.f == null)
+      {
+        localObject11 = localObject4;
+        if (Q.f == null)
+        {
+          localObject11 = localObject4;
+          if (!bool)
+          {
+            localObject11 = localObject4;
+            if (!(localE instanceof a))
+            {
+              localObject1 = localObject4;
+              if (localObject4 == null) {
+                localObject1 = new ArrayList();
+              }
+              ((ArrayList)localObject1).add(localE);
+              localObject11 = localObject1;
+            }
+          }
+        }
+      }
+      localObject12 = localObject3;
+      if (P.f == null)
+      {
+        localObject12 = localObject3;
+        if (R.f == null)
+        {
+          localObject12 = localObject3;
+          if (S.f == null)
+          {
+            localObject12 = localObject3;
+            if (!bool)
+            {
+              localObject12 = localObject3;
+              if (!(localE instanceof a))
+              {
+                localObject1 = localObject3;
+                if (localObject3 == null) {
+                  localObject1 = new ArrayList();
+                }
+                ((ArrayList)localObject1).add(localE);
+                localObject12 = localObject1;
+              }
+            }
+          }
+        }
+      }
+      i += 1;
+      localObject6 = localObject9;
+      localObject1 = localObject7;
+      localObject2 = localObject8;
+      localObject5 = localObject10;
+      localObject4 = localObject11;
+    }
+    Object localObject7 = new ArrayList();
+    if (localObject6 != null)
+    {
+      paramB = ((ArrayList)localObject6).iterator();
+      while (paramB.hasNext()) {
+        a((h)paramB.next(), 0, (ArrayList)localObject7, null);
+      }
+    }
+    if (localObject1 != null)
+    {
+      paramB = ((ArrayList)localObject1).iterator();
+      while (paramB.hasNext())
+      {
+        localObject1 = (j)paramB.next();
+        localObject6 = a((e)localObject1, 0, (ArrayList)localObject7, null);
+        ((j)localObject1).r1((ArrayList)localObject7, 0, (o)localObject6);
+        ((o)localObject6).b((ArrayList)localObject7);
+      }
+    }
+    paramB = paramF.o(d.b.f);
+    if (paramB.d() != null)
+    {
+      paramB = paramB.d().iterator();
+      while (paramB.hasNext()) {
+        a(nextd, 0, (ArrayList)localObject7, null);
+      }
+    }
+    paramB = paramF.o(d.b.h);
+    if (paramB.d() != null)
+    {
+      paramB = paramB.d().iterator();
+      while (paramB.hasNext()) {
+        a(nextd, 0, (ArrayList)localObject7, null);
+      }
+    }
+    paramB = paramF.o(d.b.k);
+    if (paramB.d() != null)
+    {
+      paramB = paramB.d().iterator();
+      while (paramB.hasNext()) {
+        a(nextd, 0, (ArrayList)localObject7, null);
+      }
+    }
+    if (localObject4 != null)
+    {
+      paramB = localObject4.iterator();
+      while (paramB.hasNext()) {
+        a((e)paramB.next(), 0, (ArrayList)localObject7, null);
+      }
+    }
+    if (localObject2 != null)
+    {
+      paramB = ((ArrayList)localObject2).iterator();
+      while (paramB.hasNext()) {
+        a((h)paramB.next(), 1, (ArrayList)localObject7, null);
+      }
+    }
+    if (localObject5 != null)
+    {
+      paramB = localObject5.iterator();
+      while (paramB.hasNext())
+      {
+        localObject1 = (j)paramB.next();
+        localObject2 = a((e)localObject1, 1, (ArrayList)localObject7, null);
+        ((j)localObject1).r1((ArrayList)localObject7, 1, (o)localObject2);
+        ((o)localObject2).b((ArrayList)localObject7);
+      }
+    }
+    paramB = paramF.o(d.b.g);
+    if (paramB.d() != null)
+    {
+      paramB = paramB.d().iterator();
+      while (paramB.hasNext()) {
+        a(nextd, 1, (ArrayList)localObject7, null);
+      }
+    }
+    paramB = paramF.o(d.b.j);
+    if (paramB.d() != null)
+    {
+      paramB = paramB.d().iterator();
+      while (paramB.hasNext()) {
+        a(nextd, 1, (ArrayList)localObject7, null);
+      }
+    }
+    paramB = paramF.o(d.b.i);
+    if (paramB.d() != null)
+    {
+      paramB = paramB.d().iterator();
+      while (paramB.hasNext()) {
+        a(nextd, 1, (ArrayList)localObject7, null);
+      }
+    }
+    paramB = paramF.o(d.b.k);
+    if (paramB.d() != null)
+    {
+      paramB = paramB.d().iterator();
+      while (paramB.hasNext()) {
+        a(nextd, 1, (ArrayList)localObject7, null);
+      }
+    }
+    if (localObject3 != null)
+    {
+      paramB = ((ArrayList)localObject3).iterator();
+      while (paramB.hasNext()) {
+        a((e)paramB.next(), 1, (ArrayList)localObject7, null);
+      }
+    }
+    i = 0;
+    while (i < j)
+    {
+      localObject1 = (e)localArrayList.get(i);
+      if (((e)localObject1).s0())
+      {
+        paramB = b((ArrayList)localObject7, I0);
+        localObject1 = b((ArrayList)localObject7, J0);
+        if ((paramB != null) && (localObject1 != null))
+        {
+          paramB.g(0, (o)localObject1);
+          ((o)localObject1).i(2);
+          ((ArrayList)localObject7).remove(paramB);
+        }
+      }
+      i += 1;
+    }
+    if (((ArrayList)localObject7).size() <= 1) {
+      return false;
+    }
+    if (paramF.A() == e.b.f)
+    {
+      localObject2 = ((ArrayList)localObject7).iterator();
+      paramB = null;
+      i = 0;
+      while (((Iterator)localObject2).hasNext())
+      {
+        localObject1 = (o)((Iterator)localObject2).next();
+        if (((o)localObject1).d() != 1)
+        {
+          ((o)localObject1).h(false);
+          j = ((o)localObject1).f(paramF.K1(), 0);
+          if (j > i)
+          {
+            paramB = (b.b)localObject1;
+            i = j;
+          }
+        }
+      }
+      if (paramB != null)
+      {
+        paramF.P0(e.b.e);
+        paramF.k1(i);
+        paramB.h(true);
+        localObject1 = paramB;
+        break label1566;
+      }
+    }
+    localObject1 = null;
+    label1566:
+    if (paramF.T() == e.b.f)
+    {
+      localObject3 = ((ArrayList)localObject7).iterator();
+      paramB = null;
+      i = 0;
+      while (((Iterator)localObject3).hasNext())
+      {
+        localObject2 = (o)((Iterator)localObject3).next();
+        if (((o)localObject2).d() != 0)
+        {
+          ((o)localObject2).h(false);
+          j = ((o)localObject2).f(paramF.K1(), 1);
+          if (j > i)
+          {
+            paramB = (b.b)localObject2;
+            i = j;
+          }
+        }
+      }
+      if (paramB != null)
+      {
+        paramF.g1(e.b.e);
+        paramF.L0(i);
+        paramB.h(true);
+        break label1676;
+      }
+    }
+    paramB = null;
+    label1676:
+    return (localObject1 != null) || (paramB != null);
+  }
+  
+  public static boolean d(e.b paramB1, e.b paramB2, e.b paramB3, e.b paramB4)
+  {
+    e.b localB1 = e.b.e;
+    if (paramB3 != localB1)
+    {
+      e.b localB2 = e.b.f;
+      if ((paramB3 != localB2) && ((paramB3 != e.b.h) || (paramB1 == localB2)))
+      {
+        i = 0;
+        break label47;
+      }
+    }
+    int i = 1;
+    label47:
+    if (paramB4 != localB1)
+    {
+      paramB1 = e.b.f;
+      if ((paramB4 != paramB1) && ((paramB4 != e.b.h) || (paramB2 == paramB1)))
+      {
+        j = 0;
+        break label86;
+      }
+    }
+    int j = 1;
+    label86:
+    if (i == 0) {
+      return j != 0;
+    }
+    return true;
+  }
+}

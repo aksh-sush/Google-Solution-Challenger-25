@@ -1,0 +1,185 @@
+package androidx.appcompat.view;
+
+import android.view.ActionMode;
+import android.view.ActionMode.Callback;
+import android.view.KeyEvent;
+import android.view.KeyboardShortcutGroup;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.SearchEvent;
+import android.view.View;
+import android.view.Window.Callback;
+import android.view.WindowManager.LayoutParams;
+import android.view.accessibility.AccessibilityEvent;
+import java.util.List;
+
+public abstract class i
+  implements Window.Callback
+{
+  final Window.Callback e;
+  
+  public i(Window.Callback paramCallback)
+  {
+    if (paramCallback != null)
+    {
+      e = paramCallback;
+      return;
+    }
+    throw new IllegalArgumentException("Window callback may not be null");
+  }
+  
+  public final Window.Callback a()
+  {
+    return e;
+  }
+  
+  public boolean dispatchGenericMotionEvent(MotionEvent paramMotionEvent)
+  {
+    return e.dispatchGenericMotionEvent(paramMotionEvent);
+  }
+  
+  public boolean dispatchKeyEvent(KeyEvent paramKeyEvent)
+  {
+    return e.dispatchKeyEvent(paramKeyEvent);
+  }
+  
+  public boolean dispatchKeyShortcutEvent(KeyEvent paramKeyEvent)
+  {
+    return e.dispatchKeyShortcutEvent(paramKeyEvent);
+  }
+  
+  public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent paramAccessibilityEvent)
+  {
+    return e.dispatchPopulateAccessibilityEvent(paramAccessibilityEvent);
+  }
+  
+  public boolean dispatchTouchEvent(MotionEvent paramMotionEvent)
+  {
+    return e.dispatchTouchEvent(paramMotionEvent);
+  }
+  
+  public boolean dispatchTrackballEvent(MotionEvent paramMotionEvent)
+  {
+    return e.dispatchTrackballEvent(paramMotionEvent);
+  }
+  
+  public void onActionModeFinished(ActionMode paramActionMode)
+  {
+    e.onActionModeFinished(paramActionMode);
+  }
+  
+  public void onActionModeStarted(ActionMode paramActionMode)
+  {
+    e.onActionModeStarted(paramActionMode);
+  }
+  
+  public void onAttachedToWindow()
+  {
+    e.onAttachedToWindow();
+  }
+  
+  public boolean onCreatePanelMenu(int paramInt, Menu paramMenu)
+  {
+    return e.onCreatePanelMenu(paramInt, paramMenu);
+  }
+  
+  public View onCreatePanelView(int paramInt)
+  {
+    return e.onCreatePanelView(paramInt);
+  }
+  
+  public void onDetachedFromWindow()
+  {
+    e.onDetachedFromWindow();
+  }
+  
+  public boolean onMenuItemSelected(int paramInt, MenuItem paramMenuItem)
+  {
+    return e.onMenuItemSelected(paramInt, paramMenuItem);
+  }
+  
+  public boolean onMenuOpened(int paramInt, Menu paramMenu)
+  {
+    return e.onMenuOpened(paramInt, paramMenu);
+  }
+  
+  public void onPanelClosed(int paramInt, Menu paramMenu)
+  {
+    e.onPanelClosed(paramInt, paramMenu);
+  }
+  
+  public void onPointerCaptureChanged(boolean paramBoolean)
+  {
+    c.a(e, paramBoolean);
+  }
+  
+  public boolean onPreparePanel(int paramInt, View paramView, Menu paramMenu)
+  {
+    return e.onPreparePanel(paramInt, paramView, paramMenu);
+  }
+  
+  public void onProvideKeyboardShortcuts(List paramList, Menu paramMenu, int paramInt)
+  {
+    b.a(e, paramList, paramMenu, paramInt);
+  }
+  
+  public boolean onSearchRequested()
+  {
+    return e.onSearchRequested();
+  }
+  
+  public boolean onSearchRequested(SearchEvent paramSearchEvent)
+  {
+    return a.a(e, paramSearchEvent);
+  }
+  
+  public void onWindowAttributesChanged(WindowManager.LayoutParams paramLayoutParams)
+  {
+    e.onWindowAttributesChanged(paramLayoutParams);
+  }
+  
+  public void onWindowFocusChanged(boolean paramBoolean)
+  {
+    e.onWindowFocusChanged(paramBoolean);
+  }
+  
+  public ActionMode onWindowStartingActionMode(ActionMode.Callback paramCallback)
+  {
+    return e.onWindowStartingActionMode(paramCallback);
+  }
+  
+  public ActionMode onWindowStartingActionMode(ActionMode.Callback paramCallback, int paramInt)
+  {
+    return a.b(e, paramCallback, paramInt);
+  }
+  
+  static abstract class a
+  {
+    static boolean a(Window.Callback paramCallback, SearchEvent paramSearchEvent)
+    {
+      return paramCallback.onSearchRequested(paramSearchEvent);
+    }
+    
+    static ActionMode b(Window.Callback paramCallback, ActionMode.Callback paramCallback1, int paramInt)
+    {
+      return paramCallback.onWindowStartingActionMode(paramCallback1, paramInt);
+    }
+  }
+  
+  static abstract class b
+  {
+    static void a(Window.Callback paramCallback, List<KeyboardShortcutGroup> paramList, Menu paramMenu, int paramInt)
+    {
+      paramCallback.onProvideKeyboardShortcuts(paramList, paramMenu, paramInt);
+    }
+  }
+  
+  static abstract class c
+  {
+    static void a(Window.Callback paramCallback, boolean paramBoolean)
+    {
+      paramCallback.onPointerCaptureChanged(paramBoolean);
+    }
+  }
+}

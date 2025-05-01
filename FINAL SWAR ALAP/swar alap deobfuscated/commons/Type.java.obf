@@ -1,0 +1,7 @@
+package jb;
+
+public abstract interface b
+  extends c
+{
+  public abstract String a();
+}

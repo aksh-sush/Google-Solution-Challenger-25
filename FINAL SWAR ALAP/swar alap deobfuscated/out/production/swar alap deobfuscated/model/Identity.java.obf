@@ -1,0 +1,16 @@
+package db;
+
+import java.io.Serializable;
+
+public final class r
+  implements Serializable
+{
+  public boolean e;
+  
+  public r() {}
+  
+  public String toString()
+  {
+    return String.valueOf(e);
+  }
+}

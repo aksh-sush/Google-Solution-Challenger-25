@@ -1,0 +1,9 @@
+package sa;
+
+public abstract class q
+{
+  public static final m a(Object paramObject1, Object paramObject2)
+  {
+    return new m(paramObject1, paramObject2);
+  }
+}

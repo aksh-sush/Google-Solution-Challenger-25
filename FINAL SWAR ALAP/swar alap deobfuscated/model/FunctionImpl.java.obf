@@ -1,0 +1,9 @@
+package db;
+
+import sa.c;
+
+public abstract interface h
+  extends c
+{
+  public abstract int getArity();
+}

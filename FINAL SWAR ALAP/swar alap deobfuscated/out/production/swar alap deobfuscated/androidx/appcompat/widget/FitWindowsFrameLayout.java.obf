@@ -1,0 +1,31 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.graphics.Rect;
+import android.util.AttributeSet;
+import android.widget.FrameLayout;
+
+public class FitWindowsFrameLayout
+  extends FrameLayout
+{
+  private q0 e;
+  
+  public FitWindowsFrameLayout(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    super(paramContext, paramAttributeSet);
+  }
+  
+  protected boolean fitSystemWindows(Rect paramRect)
+  {
+    q0 localQ0 = e;
+    if (localQ0 != null) {
+      localQ0.a(paramRect);
+    }
+    return super.fitSystemWindows(paramRect);
+  }
+  
+  public void setOnFitSystemWindowsListener(q0 paramQ0)
+  {
+    e = paramQ0;
+  }
+}

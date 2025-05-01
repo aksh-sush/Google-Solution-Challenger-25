@@ -1,0 +1,21 @@
+package com.google.android.gms.internal.auth;
+
+final class zzds
+{
+  public int zza;
+  public long zzb;
+  public Object zzc;
+  public final zzek zzd;
+  
+  zzds()
+  {
+    int i = zzek.zzb;
+    throw null;
+  }
+  
+  zzds(zzek paramZzek)
+  {
+    paramZzek.getClass();
+    zzd = paramZzek;
+  }
+}

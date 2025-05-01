@@ -1,0 +1,7 @@
+package androidx.lifecycle;
+
+import mb.h0;
+
+public abstract class j
+  implements h0
+{}

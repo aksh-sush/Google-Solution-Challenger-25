@@ -1,0 +1,3248 @@
+package com.google.android.gms.internal.auth;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import sun.misc.Unsafe;
+
+final class zzfz<T>
+  implements zzgh<T>
+{
+  private static final int[] zza = new int[0];
+  private static final Unsafe zzb = zzhi.zzg();
+  private final int[] zzc;
+  private final Object[] zzd;
+  private final int zze;
+  private final int zzf;
+  private final zzfw zzg;
+  private final boolean zzh;
+  private final int[] zzi;
+  private final int zzj;
+  private final int zzk;
+  private final zzfk zzl;
+  private final zzgy zzm;
+  private final zzel zzn;
+  private final zzgb zzo;
+  private final zzfr zzp;
+  
+  private zzfz(int[] paramArrayOfInt1, Object[] paramArrayOfObject, int paramInt1, int paramInt2, zzfw paramZzfw, boolean paramBoolean1, boolean paramBoolean2, int[] paramArrayOfInt2, int paramInt3, int paramInt4, zzgb paramZzgb, zzfk paramZzfk, zzgy paramZzgy, zzel paramZzel, zzfr paramZzfr, byte[] paramArrayOfByte)
+  {
+    zzc = paramArrayOfInt1;
+    zzd = paramArrayOfObject;
+    zze = paramInt1;
+    zzf = paramInt2;
+    zzh = paramBoolean1;
+    zzi = paramArrayOfInt2;
+    zzj = paramInt3;
+    zzk = paramInt4;
+    zzo = paramZzgb;
+    zzl = paramZzfk;
+    zzm = paramZzgy;
+    zzn = paramZzel;
+    zzg = paramZzfw;
+    zzp = paramZzfr;
+  }
+  
+  private static Field zzA(Class paramClass, String paramString)
+  {
+    try
+    {
+      localObject1 = paramClass.getDeclaredField(paramString);
+      return localObject1;
+    }
+    catch (NoSuchFieldException localNoSuchFieldException)
+    {
+      Object localObject1;
+      int j;
+      int i;
+      Object localObject2;
+      for (;;) {}
+    }
+    localObject1 = paramClass.getDeclaredFields();
+    j = localObject1.length;
+    i = 0;
+    while (i < j)
+    {
+      localObject2 = localObject1[i];
+      if (paramString.equals(((Field)localObject2).getName())) {
+        return localObject2;
+      }
+      i += 1;
+    }
+    paramClass = paramClass.getName();
+    localObject1 = Arrays.toString((Object[])localObject1);
+    localObject2 = new StringBuilder();
+    ((StringBuilder)localObject2).append("Field ");
+    ((StringBuilder)localObject2).append(paramString);
+    ((StringBuilder)localObject2).append(" for ");
+    ((StringBuilder)localObject2).append(paramClass);
+    ((StringBuilder)localObject2).append(" not found. Known fields are ");
+    ((StringBuilder)localObject2).append((String)localObject1);
+    throw new RuntimeException(((StringBuilder)localObject2).toString());
+  }
+  
+  private final void zzB(Object paramObject1, Object paramObject2, int paramInt)
+  {
+    long l = zzv(paramInt) & 0xFFFFF;
+    if (!zzG(paramObject2, paramInt)) {
+      return;
+    }
+    Object localObject = zzhi.zzf(paramObject1, l);
+    paramObject2 = zzhi.zzf(paramObject2, l);
+    if ((localObject != null) && (paramObject2 != null)) {
+      paramObject2 = zzez.zzg(localObject, paramObject2);
+    }
+    while (paramObject2 != null)
+    {
+      zzhi.zzp(paramObject1, l, paramObject2);
+      zzD(paramObject1, paramInt);
+      return;
+    }
+  }
+  
+  private final void zzC(Object paramObject1, Object paramObject2, int paramInt)
+  {
+    int i = zzv(paramInt);
+    int j = zzc[paramInt];
+    long l = i & 0xFFFFF;
+    if (!zzJ(paramObject2, j, paramInt)) {
+      return;
+    }
+    Object localObject;
+    if (zzJ(paramObject1, j, paramInt)) {
+      localObject = zzhi.zzf(paramObject1, l);
+    } else {
+      localObject = null;
+    }
+    paramObject2 = zzhi.zzf(paramObject2, l);
+    if ((localObject != null) && (paramObject2 != null)) {
+      paramObject2 = zzez.zzg(localObject, paramObject2);
+    }
+    while (paramObject2 != null)
+    {
+      zzhi.zzp(paramObject1, l, paramObject2);
+      zzE(paramObject1, j, paramInt);
+      return;
+    }
+  }
+  
+  private final void zzD(Object paramObject, int paramInt)
+  {
+    paramInt = zzs(paramInt);
+    long l = 0xFFFFF & paramInt;
+    if (l == 1048575L) {
+      return;
+    }
+    zzhi.zzn(paramObject, l, 1 << (paramInt >>> 20) | zzhi.zzc(paramObject, l));
+  }
+  
+  private final void zzE(Object paramObject, int paramInt1, int paramInt2)
+  {
+    zzhi.zzn(paramObject, zzs(paramInt2) & 0xFFFFF, paramInt1);
+  }
+  
+  private final boolean zzF(Object paramObject1, Object paramObject2, int paramInt)
+  {
+    return zzG(paramObject1, paramInt) == zzG(paramObject2, paramInt);
+  }
+  
+  private final boolean zzG(Object paramObject, int paramInt)
+  {
+    int i = zzs(paramInt);
+    long l = i & 0xFFFFF;
+    if (l == 1048575L)
+    {
+      paramInt = zzv(paramInt);
+      l = paramInt & 0xFFFFF;
+      switch (zzu(paramInt))
+      {
+      default: 
+        throw new IllegalArgumentException();
+      case 17: 
+        return zzhi.zzf(paramObject, l) != null;
+      case 16: 
+        return zzhi.zzd(paramObject, l) != 0L;
+      case 15: 
+        return zzhi.zzc(paramObject, l) != 0;
+      case 14: 
+        return zzhi.zzd(paramObject, l) != 0L;
+      case 13: 
+        return zzhi.zzc(paramObject, l) != 0;
+      case 12: 
+        return zzhi.zzc(paramObject, l) != 0;
+      case 11: 
+        return zzhi.zzc(paramObject, l) != 0;
+      case 10: 
+        return !zzee.zzb.equals(zzhi.zzf(paramObject, l));
+      case 9: 
+        return zzhi.zzf(paramObject, l) != null;
+      case 8: 
+        paramObject = zzhi.zzf(paramObject, l);
+        if ((paramObject instanceof String)) {
+          return !((String)paramObject).isEmpty();
+        }
+        if ((paramObject instanceof zzee)) {
+          return !zzee.zzb.equals(paramObject);
+        }
+        throw new IllegalArgumentException();
+      case 7: 
+        return zzhi.zzt(paramObject, l);
+      case 6: 
+        return zzhi.zzc(paramObject, l) != 0;
+      case 5: 
+        return zzhi.zzd(paramObject, l) != 0L;
+      case 4: 
+        return zzhi.zzc(paramObject, l) != 0;
+      case 3: 
+        return zzhi.zzd(paramObject, l) != 0L;
+      case 2: 
+        return zzhi.zzd(paramObject, l) != 0L;
+      case 1: 
+        return Float.floatToRawIntBits(zzhi.zzb(paramObject, l)) != 0;
+      }
+      return Double.doubleToRawLongBits(zzhi.zza(paramObject, l)) != 0L;
+    }
+    return (zzhi.zzc(paramObject, l) & 1 << (i >>> 20)) != 0;
+  }
+  
+  private final boolean zzH(Object paramObject, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    if (paramInt2 == 1048575) {
+      return zzG(paramObject, paramInt1);
+    }
+    return (paramInt3 & paramInt4) != 0;
+  }
+  
+  private static boolean zzI(Object paramObject, int paramInt, zzgh paramZzgh)
+  {
+    return paramZzgh.zzi(zzhi.zzf(paramObject, paramInt & 0xFFFFF));
+  }
+  
+  private final boolean zzJ(Object paramObject, int paramInt1, int paramInt2)
+  {
+    return zzhi.zzc(paramObject, zzs(paramInt2) & 0xFFFFF) == paramInt1;
+  }
+  
+  static zzgz zzc(Object paramObject)
+  {
+    zzeu localZzeu = (zzeu)paramObject;
+    zzgz localZzgz = zzc;
+    paramObject = localZzgz;
+    if (localZzgz == zzgz.zza())
+    {
+      paramObject = zzgz.zzc();
+      zzc = paramObject;
+    }
+    return paramObject;
+  }
+  
+  static zzfz zzj(Class paramClass, zzft paramZzft, zzgb paramZzgb, zzfk paramZzfk, zzgy paramZzgy, zzel paramZzel, zzfr paramZzfr)
+  {
+    if ((paramZzft instanceof zzgg)) {
+      return zzk((zzgg)paramZzft, paramZzgb, paramZzfk, paramZzgy, paramZzel, paramZzfr);
+    }
+    paramClass = (zzgv)paramZzft;
+    throw null;
+  }
+  
+  static zzfz zzk(zzgg paramZzgg, zzgb paramZzgb, zzfk paramZzfk, zzgy paramZzgy, zzel paramZzel, zzfr paramZzfr)
+  {
+    boolean bool;
+    if (paramZzgg.zzc() == 2) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    String str = paramZzgg.zzd();
+    int i8 = str.length();
+    if (str.charAt(0) >= 55296) {
+      for (i = 1;; i = k)
+      {
+        k = i + 1;
+        j = k;
+        if (str.charAt(i) < 55296) {
+          break;
+        }
+      }
+    }
+    int j = 1;
+    int i = j + 1;
+    int m = str.charAt(j);
+    int k = i;
+    j = m;
+    if (m >= 55296)
+    {
+      k = m & 0x1FFF;
+      j = 13;
+      for (m = i;; m = i)
+      {
+        i = m + 1;
+        m = str.charAt(m);
+        if (m < 55296) {
+          break;
+        }
+        k |= (m & 0x1FFF) << j;
+        j += 13;
+      }
+      j = k | m << j;
+      k = i;
+    }
+    int[] arrayOfInt2;
+    int i2;
+    int i3;
+    int n;
+    if (j == 0)
+    {
+      arrayOfInt2 = zza;
+      i1 = 0;
+      i2 = 0;
+      m = 0;
+      i5 = 0;
+      i3 = 0;
+      j = 0;
+      n = 0;
+    }
+    else
+    {
+      j = k + 1;
+      m = str.charAt(k);
+      i = m;
+      k = j;
+      if (m >= 55296)
+      {
+        k = m & 0x1FFF;
+        i = 13;
+        for (m = j;; m = j)
+        {
+          j = m + 1;
+          m = str.charAt(m);
+          if (m < 55296) {
+            break;
+          }
+          k |= (m & 0x1FFF) << i;
+          i += 13;
+        }
+        i = k | m << i;
+        k = j;
+      }
+      j = k + 1;
+      m = str.charAt(k);
+      i3 = m;
+      k = j;
+      if (m >= 55296)
+      {
+        m &= 0x1FFF;
+        k = 13;
+        for (n = j;; n = j)
+        {
+          j = n + 1;
+          n = str.charAt(n);
+          if (n < 55296) {
+            break;
+          }
+          m |= (n & 0x1FFF) << k;
+          k += 13;
+        }
+        i3 = m | n << k;
+        k = j;
+      }
+      j = k + 1;
+      m = str.charAt(k);
+      k = m;
+      n = j;
+      if (m >= 55296)
+      {
+        m &= 0x1FFF;
+        k = 13;
+        for (n = j;; n = j)
+        {
+          j = n + 1;
+          n = str.charAt(n);
+          if (n < 55296) {
+            break;
+          }
+          m |= (n & 0x1FFF) << k;
+          k += 13;
+        }
+        k = m | n << k;
+        n = j;
+      }
+      m = n + 1;
+      n = str.charAt(n);
+      j = n;
+      i1 = m;
+      if (n >= 55296)
+      {
+        n &= 0x1FFF;
+        j = 13;
+        for (i1 = m;; i1 = m)
+        {
+          m = i1 + 1;
+          i1 = str.charAt(i1);
+          if (i1 < 55296) {
+            break;
+          }
+          n |= (i1 & 0x1FFF) << j;
+          j += 13;
+        }
+        j = n | i1 << j;
+        i1 = m;
+      }
+      n = i1 + 1;
+      i1 = str.charAt(i1);
+      m = i1;
+      i2 = n;
+      if (i1 >= 55296)
+      {
+        i1 &= 0x1FFF;
+        m = 13;
+        for (i2 = n;; i2 = n)
+        {
+          n = i2 + 1;
+          i2 = str.charAt(i2);
+          if (i2 < 55296) {
+            break;
+          }
+          i1 |= (i2 & 0x1FFF) << m;
+          m += 13;
+        }
+        m = i1 | i2 << m;
+        i2 = n;
+      }
+      i1 = i2 + 1;
+      i4 = str.charAt(i2);
+      n = i4;
+      i2 = i1;
+      if (i4 >= 55296)
+      {
+        i2 = i4 & 0x1FFF;
+        n = 13;
+        for (i4 = i1;; i4 = i1)
+        {
+          i1 = i4 + 1;
+          i4 = str.charAt(i4);
+          if (i4 < 55296) {
+            break;
+          }
+          i2 |= (i4 & 0x1FFF) << n;
+          n += 13;
+        }
+        n = i2 | i4 << n;
+        i2 = i1;
+      }
+      i1 = i2 + 1;
+      i5 = str.charAt(i2);
+      i4 = i5;
+      i2 = i1;
+      if (i5 >= 55296)
+      {
+        i4 = i5 & 0x1FFF;
+        i2 = 13;
+        for (i5 = i1;; i5 = i1)
+        {
+          i1 = i5 + 1;
+          i5 = str.charAt(i5);
+          if (i5 < 55296) {
+            break;
+          }
+          i4 |= (i5 & 0x1FFF) << i2;
+          i2 += 13;
+        }
+        i4 |= i5 << i2;
+        i2 = i1;
+      }
+      i5 = i2 + 1;
+      i6 = str.charAt(i2);
+      i1 = i6;
+      i2 = i5;
+      if (i6 >= 55296)
+      {
+        i2 = i6 & 0x1FFF;
+        i1 = 13;
+        i6 = i5;
+        i5 = i2;
+        for (;;)
+        {
+          i2 = i6 + 1;
+          i6 = str.charAt(i6);
+          if (i6 < 55296) {
+            break;
+          }
+          i5 |= (i6 & 0x1FFF) << i1;
+          i1 += 13;
+          i6 = i2;
+        }
+        i1 = i5 | i6 << i1;
+      }
+      arrayOfInt2 = new int[i1 + n + i4];
+      i5 = i + i + i3;
+      i4 = i2;
+      i3 = j;
+      i2 = n;
+      n = i5;
+      j = i1;
+      i5 = m;
+      m = i2;
+      i2 = k;
+      i1 = i;
+      k = i4;
+    }
+    Unsafe localUnsafe = zzb;
+    Object[] arrayOfObject2 = paramZzgg.zze();
+    Class localClass = paramZzgg.zza().getClass();
+    int[] arrayOfInt1 = new int[i5 * 3];
+    Object[] arrayOfObject1 = new Object[i5 + i5];
+    int i14 = j + m;
+    i = j;
+    m = i14;
+    int i7 = 0;
+    int i11 = 0;
+    int i4 = j;
+    j = i3;
+    int i5 = i2;
+    int i6 = i1;
+    int i1 = k;
+    k = i8;
+    while (i1 < k)
+    {
+      i8 = i1 + 1;
+      i1 = str.charAt(i1);
+      if (i1 >= 55296)
+      {
+        i3 = i1 & 0x1FFF;
+        i1 = 13;
+        for (;;)
+        {
+          i2 = i8 + 1;
+          i8 = str.charAt(i8);
+          if (i8 < 55296) {
+            break;
+          }
+          i3 |= (i8 & 0x1FFF) << i1;
+          i1 += 13;
+          i8 = i2;
+        }
+        i8 = i3 | i8 << i1;
+      }
+      else
+      {
+        i2 = i8;
+        i8 = i1;
+      }
+      i1 = i2 + 1;
+      int i10 = str.charAt(i2);
+      if (i10 >= 55296)
+      {
+        i2 = i10 & 0x1FFF;
+        i9 = i1;
+        i1 = 13;
+        for (;;)
+        {
+          i3 = i9 + 1;
+          i9 = str.charAt(i9);
+          if (i9 < 55296) {
+            break;
+          }
+          i2 |= (i9 & 0x1FFF) << i1;
+          i1 += 13;
+          i9 = i3;
+        }
+        i10 = i2 | i9 << i1;
+        i1 = i3;
+      }
+      int i15 = i10 & 0xFF;
+      int i9 = i11;
+      if ((i10 & 0x400) != 0)
+      {
+        arrayOfInt2[i11] = i7;
+        i9 = i11 + 1;
+      }
+      label1763:
+      Object localObject;
+      int i13;
+      int i12;
+      if (i15 >= 51)
+      {
+        i2 = i1 + 1;
+        i3 = str.charAt(i1);
+        if (i3 >= 55296)
+        {
+          i3 &= 0x1FFF;
+          i1 = 13;
+          i11 = i2;
+          i2 = i3;
+          for (;;)
+          {
+            i3 = i11 + 1;
+            i11 = str.charAt(i11);
+            if (i11 < 55296) {
+              break;
+            }
+            i2 |= (i11 & 0x1FFF) << i1;
+            i1 += 13;
+            i11 = i3;
+          }
+          i2 |= i11 << i1;
+          i1 = i3;
+          i3 = i2;
+        }
+        else
+        {
+          i1 = i2;
+        }
+        i11 = i15 - 51;
+        i2 = i1;
+        if ((i11 != 9) && (i11 != 17))
+        {
+          i1 = n;
+          if (i11 != 12) {
+            break label1763;
+          }
+          i1 = n;
+          if (bool) {
+            break label1763;
+          }
+          i11 = i7 / 3;
+          i1 = n + 1;
+          arrayOfObject1[(i11 + i11 + 1)] = arrayOfObject2[n];
+          n = i1;
+        }
+        else
+        {
+          i11 = i7 / 3;
+          i1 = n + 1;
+          arrayOfObject1[(i11 + i11 + 1)] = arrayOfObject2[n];
+          n = i1;
+        }
+        i1 = n;
+        n = i3 + i3;
+        localObject = arrayOfObject2[n];
+        if ((localObject instanceof Field))
+        {
+          localObject = (Field)localObject;
+        }
+        else
+        {
+          localObject = zzA(localClass, (String)localObject);
+          arrayOfObject2[n] = localObject;
+        }
+        i13 = (int)localUnsafe.objectFieldOffset((Field)localObject);
+        n += 1;
+        localObject = arrayOfObject2[n];
+        if ((localObject instanceof Field))
+        {
+          localObject = (Field)localObject;
+        }
+        else
+        {
+          localObject = zzA(localClass, (String)localObject);
+          arrayOfObject2[n] = localObject;
+        }
+        i12 = (int)localUnsafe.objectFieldOffset((Field)localObject);
+        i11 = 0;
+        n = i1;
+        i3 = m;
+        m = i2;
+      }
+      else
+      {
+        i11 = j;
+        i2 = n + 1;
+        localObject = zzA(localClass, (String)arrayOfObject2[n]);
+        if ((i15 != 9) && (i15 != 17))
+        {
+          if ((i15 != 27) && (i15 != 49))
+          {
+            if ((i15 != 12) && (i15 != 30) && (i15 != 44))
+            {
+              n = i2;
+              j = i;
+              if (i15 == 50)
+              {
+                j = i + 1;
+                arrayOfInt2[i] = i7;
+                i = i7 / 3;
+                i3 = i + i;
+                n = i2 + 1;
+                arrayOfObject1[i3] = arrayOfObject2[i2];
+                if ((i10 & 0x800) == 0) {
+                  break label2080;
+                }
+                i = n + 1;
+                arrayOfObject1[(i3 + 1)] = arrayOfObject2[n];
+                n = i;
+              }
+            }
+            label2080:
+            do
+            {
+              i = j;
+              break;
+              i = j;
+              j = n;
+              break label2193;
+              n = i2;
+              j = i;
+            } while (bool);
+            n = i7 / 3;
+            j = i2 + 1;
+            arrayOfObject1[(n + n + 1)] = arrayOfObject2[i2];
+          }
+          else
+          {
+            n = i7 / 3;
+            j = i2 + 1;
+            arrayOfObject1[(n + n + 1)] = arrayOfObject2[i2];
+          }
+        }
+        else
+        {
+          j = i7 / 3;
+          arrayOfObject1[(j + j + 1)] = ((Field)localObject).getType();
+          n = i2;
+          j = n;
+        }
+        label2193:
+        i13 = (int)localUnsafe.objectFieldOffset((Field)localObject);
+        if (((i10 & 0x1000) == 4096) && (i15 <= 17))
+        {
+          n = i1 + 1;
+          i1 = str.charAt(i1);
+          if (i1 >= 55296)
+          {
+            i2 = i1 & 0x1FFF;
+            i1 = 13;
+            for (i3 = n;; i3 = n)
+            {
+              n = i3 + 1;
+              i3 = str.charAt(i3);
+              if (i3 < 55296) {
+                break;
+              }
+              i2 |= (i3 & 0x1FFF) << i1;
+              i1 += 13;
+            }
+            i1 = i2 | i3 << i1;
+          }
+          i2 = i6 + i6 + i1 / 32;
+          localObject = arrayOfObject2[i2];
+          if ((localObject instanceof Field))
+          {
+            localObject = (Field)localObject;
+          }
+          else
+          {
+            localObject = zzA(localClass, (String)localObject);
+            arrayOfObject2[i2] = localObject;
+          }
+          i2 = (int)localUnsafe.objectFieldOffset((Field)localObject);
+          i1 %= 32;
+        }
+        else
+        {
+          n = i1;
+          i1 = 0;
+          i2 = 1048575;
+        }
+        i3 = m;
+        if (i15 >= 18)
+        {
+          i3 = m;
+          if (i15 <= 49)
+          {
+            arrayOfInt2[m] = i13;
+            i3 = m + 1;
+          }
+        }
+        i12 = j;
+        j = i11;
+        m = n;
+        n = i12;
+        i12 = i2;
+        i11 = i1;
+      }
+      int i16 = i7 + 1;
+      arrayOfInt1[i7] = i8;
+      i8 = i16 + 1;
+      if ((i10 & 0x200) != 0) {
+        i1 = 536870912;
+      } else {
+        i1 = 0;
+      }
+      if ((i10 & 0x100) != 0) {
+        i2 = 268435456;
+      } else {
+        i2 = 0;
+      }
+      arrayOfInt1[i16] = (i2 | i1 | i15 << 20 | i13);
+      i7 = i8 + 1;
+      arrayOfInt1[i8] = (i11 << 20 | i12);
+      i1 = m;
+      i11 = i9;
+      m = i3;
+    }
+    return new zzfz(arrayOfInt1, arrayOfObject1, i5, j, paramZzgg.zza(), bool, false, arrayOfInt2, i4, i14, paramZzgb, paramZzfk, paramZzgy, paramZzel, paramZzfr, null);
+  }
+  
+  private static int zzl(Object paramObject, long paramLong)
+  {
+    return ((Integer)zzhi.zzf(paramObject, paramLong)).intValue();
+  }
+  
+  private final int zzm(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3, long paramLong, zzds paramZzds)
+  {
+    paramArrayOfByte = zzb;
+    paramZzds = zzz(paramInt3);
+    Object localObject = paramArrayOfByte.getObject(paramObject, paramLong);
+    if (!((zzfq)localObject).zze())
+    {
+      zzfq localZzfq = zzfq.zza().zzb();
+      zzfr.zza(localZzfq, localObject);
+      paramArrayOfByte.putObject(paramObject, paramLong, localZzfq);
+    }
+    paramObject = (zzfp)paramZzds;
+    throw null;
+  }
+  
+  private final int zzn(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5, int paramInt6, int paramInt7, long paramLong, int paramInt8, zzds paramZzds)
+  {
+    Unsafe localUnsafe = zzb;
+    long l2 = zzc[(paramInt8 + 2)] & 0xFFFFF;
+    switch (paramInt7)
+    {
+    default: 
+      break;
+    case 68: 
+      if (paramInt5 != 3) {
+        return paramInt1;
+      }
+      paramInt1 = zzdt.zzc(zzy(paramInt8), paramArrayOfByte, paramInt1, paramInt2, paramInt3 & 0xFFFFFFF8 | 0x4, paramZzds);
+      if (localUnsafe.getInt(paramObject, l2) == paramInt4) {
+        paramArrayOfByte = localUnsafe.getObject(paramObject, paramLong);
+      } else {
+        paramArrayOfByte = null;
+      }
+      paramZzds = zzc;
+      if (paramArrayOfByte == null) {
+        paramArrayOfByte = paramZzds;
+      } else {
+        paramArrayOfByte = zzez.zzg(paramArrayOfByte, paramZzds);
+      }
+      break;
+    case 67: 
+      if (paramInt5 != 0) {
+        return paramInt1;
+      }
+      paramInt1 = zzdt.zzm(paramArrayOfByte, paramInt1, paramZzds);
+    case 66: 
+    case 63: 
+    case 61: 
+    case 60: 
+    case 59: 
+    case 58: 
+    case 57: 
+    case 64: 
+    case 56: 
+    case 65: 
+    case 55: 
+    case 62: 
+    case 53: 
+    case 54: 
+      for (long l1 = zzei.zzc(zzb);; l1 = zzb)
+      {
+        paramArrayOfByte = Long.valueOf(l1);
+        localUnsafe.putObject(paramObject, paramLong, paramArrayOfByte);
+        localUnsafe.putInt(paramObject, l2, paramInt4);
+        return paramInt1;
+        if (paramInt5 != 0) {
+          break;
+        }
+        paramInt1 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+        for (paramInt2 = zzei.zzb(zza);; paramInt2 = zza)
+        {
+          paramArrayOfByte = Integer.valueOf(paramInt2);
+          break;
+          if (paramInt5 != 0) {
+            return paramInt1;
+          }
+          paramInt1 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+          paramInt2 = zza;
+          paramArrayOfByte = zzx(paramInt8);
+          if ((paramArrayOfByte != null) && (!paramArrayOfByte.zza()))
+          {
+            zzc(paramObject).zzf(paramInt3, Long.valueOf(paramInt2));
+          }
+          else
+          {
+            localUnsafe.putObject(paramObject, paramLong, Integer.valueOf(paramInt2));
+            localUnsafe.putInt(paramObject, l2, paramInt4);
+          }
+          return paramInt1;
+          if (paramInt5 != 2) {
+            return paramInt1;
+          }
+          paramInt1 = zzdt.zza(paramArrayOfByte, paramInt1, paramZzds);
+          paramArrayOfByte = zzc;
+          break;
+          if (paramInt5 != 2) {
+            return paramInt1;
+          }
+          paramInt1 = zzdt.zzd(zzy(paramInt8), paramArrayOfByte, paramInt1, paramInt2, paramZzds);
+          if (localUnsafe.getInt(paramObject, l2) == paramInt4) {
+            paramArrayOfByte = localUnsafe.getObject(paramObject, paramLong);
+          } else {
+            paramArrayOfByte = null;
+          }
+          paramZzds = zzc;
+          if (paramArrayOfByte == null)
+          {
+            paramArrayOfByte = paramZzds;
+          }
+          else
+          {
+            paramArrayOfByte = zzez.zzg(paramArrayOfByte, paramZzds);
+            break label500;
+            if (paramInt5 != 2) {
+              return paramInt1;
+            }
+            paramInt1 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+            paramInt2 = zza;
+            if (paramInt2 != 0) {
+              break label512;
+            }
+            paramArrayOfByte = "";
+          }
+          localUnsafe.putObject(paramObject, paramLong, paramArrayOfByte);
+          break label567;
+          if (((paramInt6 & 0x20000000) != 0) && (!zzhm.zzd(paramArrayOfByte, paramInt1, paramInt1 + paramInt2))) {
+            throw zzfa.zzb();
+          }
+          localUnsafe.putObject(paramObject, paramLong, new String(paramArrayOfByte, paramInt1, paramInt2, zzez.zzb));
+          paramInt1 += paramInt2;
+          localUnsafe.putInt(paramObject, l2, paramInt4);
+          return paramInt1;
+          if (paramInt5 != 0) {
+            return paramInt1;
+          }
+          paramInt1 = zzdt.zzm(paramArrayOfByte, paramInt1, paramZzds);
+          boolean bool;
+          if (zzb != 0L) {
+            bool = true;
+          } else {
+            bool = false;
+          }
+          paramArrayOfByte = Boolean.valueOf(bool);
+          break;
+          if (paramInt5 != 5) {
+            return paramInt1;
+          }
+          localUnsafe.putObject(paramObject, paramLong, Integer.valueOf(zzdt.zzb(paramArrayOfByte, paramInt1)));
+          localUnsafe.putInt(paramObject, l2, paramInt4);
+          return paramInt1 + 4;
+          if (paramInt5 != 1) {
+            return paramInt1;
+          }
+          localUnsafe.putObject(paramObject, paramLong, Long.valueOf(zzdt.zzn(paramArrayOfByte, paramInt1)));
+          localUnsafe.putInt(paramObject, l2, paramInt4);
+          return paramInt1 + 8;
+          if (paramInt5 != 0) {
+            return paramInt1;
+          }
+          paramInt1 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+        }
+        if (paramInt5 != 0) {
+          break;
+        }
+        paramInt1 = zzdt.zzm(paramArrayOfByte, paramInt1, paramZzds);
+      }
+    case 52: 
+      label500:
+      label512:
+      label567:
+      if (paramInt5 != 5) {
+        return paramInt1;
+      }
+      localUnsafe.putObject(paramObject, paramLong, Float.valueOf(Float.intBitsToFloat(zzdt.zzb(paramArrayOfByte, paramInt1))));
+      localUnsafe.putInt(paramObject, l2, paramInt4);
+      return paramInt1 + 4;
+    }
+    if (paramInt5 == 1)
+    {
+      localUnsafe.putObject(paramObject, paramLong, Double.valueOf(Double.longBitsToDouble(zzdt.zzn(paramArrayOfByte, paramInt1))));
+      localUnsafe.putInt(paramObject, l2, paramInt4);
+      return paramInt1 + 8;
+    }
+    return paramInt1;
+  }
+  
+  private final int zzo(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, zzds paramZzds)
+  {
+    zzfz localZzfz = this;
+    Object localObject1 = paramObject;
+    byte[] arrayOfByte = paramArrayOfByte;
+    int i1 = paramInt2;
+    Unsafe localUnsafe = zzb;
+    int k = paramInt1;
+    int i = -1;
+    int m = 0;
+    paramInt1 = 0;
+    int j = 1048575;
+    for (;;)
+    {
+      Object localObject2 = paramZzds;
+      if (k >= i1) {
+        break;
+      }
+      int n = k + 1;
+      int i3 = arrayOfByte[k];
+      if (i3 < 0)
+      {
+        k = zzdt.zzk(i3, arrayOfByte, n, (zzds)localObject2);
+        i3 = zza;
+      }
+      else
+      {
+        k = n;
+      }
+      n = i3 >>> 3;
+      int i6 = i3 & 0x7;
+      if (n > i) {
+        i = localZzfz.zzr(n, m / 3);
+      } else {
+        i = localZzfz.zzq(n);
+      }
+      if (i == -1)
+      {
+        i = 0;
+      }
+      else
+      {
+        localObject2 = zzc;
+        int i7 = localObject2[(i + 1)];
+        int i8 = zzu(i7);
+        long l2 = i7 & 0xFFFFF;
+        Object localObject3;
+        if (i8 <= 17)
+        {
+          m = localObject2[(i + 2)];
+          int i5 = 1 << (m >>> 20);
+          int i4 = m & 0xFFFFF;
+          i2 = paramInt1;
+          m = j;
+          if (i4 != j)
+          {
+            if (j != 1048575) {
+              localUnsafe.putInt(localObject1, j, paramInt1);
+            }
+            if (i4 != 1048575) {
+              paramInt1 = localUnsafe.getInt(localObject1, i4);
+            }
+            m = i4;
+            i2 = paramInt1;
+          }
+          long l1;
+          switch (i8)
+          {
+          default: 
+            break;
+          case 16: 
+            if (i6 == 0)
+            {
+              localObject2 = paramZzds;
+              paramInt1 = zzdt.zzm(arrayOfByte, k, (zzds)localObject2);
+              l1 = zzei.zzc(zzb);
+            }
+            break;
+          case 15: 
+            localObject2 = paramZzds;
+            if (i6 == 0)
+            {
+              paramInt1 = zzdt.zzj(arrayOfByte, k, (zzds)localObject2);
+              j = zzei.zzb(zza);
+            }
+            break;
+          case 12: 
+            localObject2 = paramZzds;
+            if (i6 == 0)
+            {
+              paramInt1 = zzdt.zzj(arrayOfByte, k, (zzds)localObject2);
+              j = zza;
+              localUnsafe.putInt(localObject1, l2, j);
+            }
+            break;
+          case 10: 
+            localObject2 = paramZzds;
+            if (i6 == 2)
+            {
+              paramInt1 = zzdt.zza(arrayOfByte, k, (zzds)localObject2);
+              localObject2 = zzc;
+            }
+          case 9: 
+            for (;;)
+            {
+              localUnsafe.putObject(localObject1, l2, localObject2);
+              k = i2 | i5;
+              j = paramInt1;
+              paramInt1 = k;
+              break label1057;
+              localObject2 = paramZzds;
+              if (i6 != 2) {
+                break;
+              }
+              paramInt1 = zzdt.zzd(localZzfz.zzy(i), arrayOfByte, k, i1, (zzds)localObject2);
+              localObject3 = localUnsafe.getObject(localObject1, l2);
+              if (localObject3 == null) {
+                localObject2 = zzc;
+              } else {
+                localObject2 = zzez.zzg(localObject3, zzc);
+              }
+            }
+          case 8: 
+            localObject2 = paramZzds;
+            if (i6 == 2)
+            {
+              if ((0x20000000 & i7) == 0) {
+                paramInt1 = zzdt.zzg(arrayOfByte, k, (zzds)localObject2);
+              } else {
+                paramInt1 = zzdt.zzh(arrayOfByte, k, (zzds)localObject2);
+              }
+              localUnsafe.putObject(localObject1, l2, zzc);
+            }
+            break;
+          case 7: 
+            localObject2 = paramZzds;
+            if (i6 == 0)
+            {
+              paramInt1 = zzdt.zzm(arrayOfByte, k, (zzds)localObject2);
+              boolean bool;
+              if (zzb != 0L) {
+                bool = true;
+              } else {
+                bool = false;
+              }
+              zzhi.zzk(localObject1, l2, bool);
+            }
+            break;
+          case 6: 
+          case 13: 
+            if (i6 == 5)
+            {
+              localUnsafe.putInt(localObject1, l2, zzdt.zzb(arrayOfByte, k));
+              paramInt1 = k + 4;
+            }
+            break;
+          case 5: 
+          case 14: 
+            if (i6 == 1)
+            {
+              localUnsafe.putLong(paramObject, l2, zzdt.zzn(arrayOfByte, k));
+              break label895;
+            }
+            break;
+          case 4: 
+          case 11: 
+            localObject2 = paramZzds;
+            if (i6 != 0) {
+              break label917;
+            }
+            paramInt1 = zzdt.zzj(arrayOfByte, k, (zzds)localObject2);
+            localUnsafe.putInt(localObject1, l2, zza);
+            break;
+          case 2: 
+          case 3: 
+            localObject2 = paramZzds;
+            if (i6 != 0) {
+              break label917;
+            }
+            paramInt1 = zzdt.zzm(arrayOfByte, k, (zzds)localObject2);
+            l1 = zzb;
+            localUnsafe.putLong(paramObject, l2, l1);
+            k = i2 | i5;
+            j = paramInt1;
+            paramInt1 = k;
+            break;
+          case 1: 
+            paramInt1 = k;
+            if (i6 != 5) {
+              break label917;
+            }
+            zzhi.zzm(localObject1, l2, Float.intBitsToFloat(zzdt.zzb(arrayOfByte, paramInt1)));
+            paramInt1 += 4;
+            break;
+          }
+          if (i6 == 1)
+          {
+            zzhi.zzl(localObject1, l2, Double.longBitsToDouble(zzdt.zzn(arrayOfByte, k)));
+            label895:
+            paramInt1 = k + 8;
+            k = i2 | i5;
+            j = paramInt1;
+            paramInt1 = k;
+          }
+          else
+          {
+            label917:
+            paramInt1 = i2;
+            j = m;
+            break label1259;
+          }
+        }
+        else
+        {
+          m = i;
+          i2 = n;
+          if (i8 != 27) {
+            break label1083;
+          }
+          if (i6 != 2) {
+            break label1080;
+          }
+          localObject3 = (zzey)localUnsafe.getObject(localObject1, l2);
+          localObject2 = localObject3;
+          if (!((zzey)localObject3).zzc())
+          {
+            i2 = ((List)localObject3).size();
+            if (i2 == 0) {
+              i2 = 10;
+            } else {
+              i2 += i2;
+            }
+            localObject2 = ((zzey)localObject3).zzd(i2);
+            localUnsafe.putObject(localObject1, l2, localObject2);
+          }
+          k = zzdt.zze(localZzfz.zzy(m), i3, paramArrayOfByte, k, paramInt2, (zzey)localObject2, paramZzds);
+          m = j;
+          j = k;
+        }
+        label1057:
+        int i2 = i;
+        i = n;
+        k = j;
+        n = i2;
+        j = m;
+        break label1306;
+        label1080:
+        break label1214;
+        label1083:
+        if (i8 <= 49)
+        {
+          i1 = zzp(paramObject, paramArrayOfByte, k, paramInt2, i3, i2, i6, m, i7, i8, l2, paramZzds);
+          m = i1;
+          if (i1 != k) {
+            k = i1;
+          }
+        }
+        for (;;)
+        {
+          localObject1 = paramObject;
+          arrayOfByte = paramArrayOfByte;
+          i1 = paramInt2;
+          m = i;
+          localZzfz = this;
+          i = i2;
+          break;
+          label1214:
+          label1217:
+          do
+          {
+            do
+            {
+              k = m;
+              break;
+              i1 = k;
+              if (i8 != 50) {
+                break label1217;
+              }
+              if (i6 != 2) {
+                break;
+              }
+              k = zzm(paramObject, paramArrayOfByte, i1, paramInt2, m, l2, paramZzds);
+              m = k;
+            } while (k == i1);
+            break;
+            break label1259;
+            k = zzn(paramObject, paramArrayOfByte, i1, paramInt2, i3, i2, i6, i7, i8, l2, m, paramZzds);
+            m = k;
+          } while (k == i1);
+        }
+      }
+      label1259:
+      m = zzdt.zzi(i3, paramArrayOfByte, k, paramInt2, zzc(paramObject), paramZzds);
+      localZzfz = this;
+      localObject1 = paramObject;
+      arrayOfByte = paramArrayOfByte;
+      i1 = paramInt2;
+      k = n;
+      n = i;
+      i = k;
+      k = m;
+      label1306:
+      m = n;
+    }
+    if (j != 1048575) {
+      localUnsafe.putInt(paramObject, j, paramInt1);
+    }
+    if (k == paramInt2) {
+      return k;
+    }
+    throw zzfa.zzd();
+  }
+  
+  private final int zzp(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5, int paramInt6, long paramLong1, int paramInt7, long paramLong2, zzds paramZzds)
+  {
+    int i = paramInt1;
+    Unsafe localUnsafe = zzb;
+    zzey localZzey = (zzey)localUnsafe.getObject(paramObject, paramLong2);
+    Object localObject = localZzey;
+    if (!localZzey.zzc())
+    {
+      int j = localZzey.size();
+      if (j == 0) {
+        j = 10;
+      } else {
+        j += j;
+      }
+      localObject = localZzey.zzd(j);
+      localUnsafe.putObject(paramObject, paramLong2, localObject);
+    }
+    switch (paramInt7)
+    {
+    default: 
+      paramInt7 = i;
+      if (paramInt5 == 3)
+      {
+        paramObject = zzy(paramInt6);
+        paramInt4 = paramInt3 & 0xFFFFFFF8 | 0x4;
+      }
+      break;
+    case 34: 
+    case 48: 
+    case 33: 
+    case 47: 
+    case 30: 
+    case 44: 
+    case 28: 
+    case 27: 
+    case 26: 
+    case 25: 
+    case 42: 
+    case 24: 
+    case 31: 
+    case 41: 
+    case 45: 
+    case 23: 
+    case 32: 
+    case 40: 
+    case 46: 
+    case 22: 
+    case 29: 
+    case 39: 
+    case 43: 
+    case 20: 
+    case 21: 
+    case 37: 
+    case 38: 
+    case 19: 
+    case 36: 
+    case 18: 
+    case 35: 
+      for (paramInt1 = zzdt.zzc(paramObject, paramArrayOfByte, paramInt1, paramInt2, paramInt4, paramZzds);; paramInt1 = zzdt.zzc(paramObject, paramArrayOfByte, paramInt5, paramInt2, paramInt4, paramZzds))
+      {
+        ((List)localObject).add(zzc);
+        break label2171;
+        if (paramInt5 == 2)
+        {
+          paramObject = (zzfl)localObject;
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt2 = zza + paramInt1;
+          while (paramInt1 < paramInt2)
+          {
+            paramInt1 = zzdt.zzm(paramArrayOfByte, paramInt1, paramZzds);
+            paramObject.zze(zzei.zzc(zzb));
+          }
+          if (paramInt1 == paramInt2) {
+            return paramInt1;
+          }
+          throw zzfa.zzf();
+        }
+        paramInt7 = i;
+        if (paramInt5 != 0) {
+          break label2217;
+        }
+        paramObject = (zzfl)localObject;
+        do
+        {
+          paramInt1 = zzdt.zzm(paramArrayOfByte, i, paramZzds);
+          paramObject.zze(zzei.zzc(zzb));
+          if (paramInt1 >= paramInt2) {
+            break;
+          }
+          i = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+        } while (paramInt3 == zza);
+        return paramInt1;
+        if (paramInt5 == 2)
+        {
+          paramObject = (zzev)localObject;
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt2 = zza + paramInt1;
+          while (paramInt1 < paramInt2)
+          {
+            paramInt1 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+            paramObject.zze(zzei.zzb(zza));
+          }
+          if (paramInt1 == paramInt2) {
+            return paramInt1;
+          }
+          throw zzfa.zzf();
+        }
+        paramInt7 = i;
+        if (paramInt5 != 0) {
+          break label2217;
+        }
+        paramObject = (zzev)localObject;
+        do
+        {
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramObject.zze(zzei.zzb(zza));
+          if (paramInt1 >= paramInt2) {
+            break;
+          }
+          i = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+        } while (paramInt3 == zza);
+        return paramInt1;
+        if (paramInt5 == 2)
+        {
+          paramInt1 = zzdt.zzf(paramArrayOfByte, i, (zzey)localObject, paramZzds);
+        }
+        else
+        {
+          paramInt7 = i;
+          if (paramInt5 != 0) {
+            break label2217;
+          }
+          paramInt1 = zzdt.zzl(paramInt3, paramArrayOfByte, paramInt1, paramInt2, (zzey)localObject, paramZzds);
+        }
+        paramZzds = (zzeu)paramObject;
+        paramArrayOfByte = zzc;
+        paramObject = paramArrayOfByte;
+        if (paramArrayOfByte == zzgz.zza()) {
+          paramObject = null;
+        }
+        paramObject = zzgj.zzd(paramInt4, (List)localObject, zzx(paramInt6), paramObject, zzm);
+        label830:
+        label834:
+        label1045:
+        label1224:
+        label1228:
+        label1232:
+        boolean bool;
+        if (paramObject != null)
+        {
+          zzc = ((zzgz)paramObject);
+          return paramInt1;
+          paramInt7 = i;
+          if (paramInt5 != 2) {
+            break label2217;
+          }
+          paramInt5 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt6 = zza;
+          if (paramInt6 >= 0)
+          {
+            if (paramInt6 <= paramArrayOfByte.length - paramInt5)
+            {
+              paramInt1 = paramInt5;
+              paramInt4 = paramInt6;
+              paramObject = localObject;
+              if (paramInt6 == 0) {}
+              for (paramInt1 = paramInt5;; paramInt1 = paramInt5)
+              {
+                ((List)localObject).add(zzee.zzb);
+                do
+                {
+                  paramObject.add(zzee.zzk(paramArrayOfByte, paramInt1, paramInt4));
+                  paramInt1 += paramInt4;
+                  localObject = paramObject;
+                  if (paramInt1 >= paramInt2) {
+                    break label834;
+                  }
+                  paramInt4 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+                  if (paramInt3 != zza) {
+                    return paramInt1;
+                  }
+                  paramInt5 = zzdt.zzj(paramArrayOfByte, paramInt4, paramZzds);
+                  paramInt6 = zza;
+                  if (paramInt6 < 0) {
+                    break label830;
+                  }
+                  if (paramInt6 > paramArrayOfByte.length - paramInt5) {
+                    break;
+                  }
+                  paramInt1 = paramInt5;
+                  paramInt4 = paramInt6;
+                  paramObject = localObject;
+                } while (paramInt6 != 0);
+              }
+              throw zzfa.zzf();
+              throw zzfa.zzc();
+              return paramInt1;
+            }
+            throw zzfa.zzf();
+          }
+          throw zzfa.zzc();
+          if (paramInt5 != 2)
+          {
+            paramInt7 = i;
+            break label2217;
+          }
+          return zzdt.zze(zzy(paramInt6), paramInt3, paramArrayOfByte, paramInt1, paramInt2, (zzey)localObject, paramZzds);
+          paramInt7 = i;
+          if (paramInt5 != 2) {
+            break label2217;
+          }
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          if ((paramLong1 & 0x20000000) == 0L)
+          {
+            paramInt4 = zza;
+            if (paramInt4 >= 0)
+            {
+              if (paramInt4 == 0) {
+                ((List)localObject).add("");
+              }
+              for (paramObject = new String(paramArrayOfByte, paramInt1, paramInt4, zzez.zzb);; paramObject = new String(paramArrayOfByte, paramInt1, paramInt4, zzez.zzb))
+              {
+                ((List)localObject).add(paramObject);
+                paramInt1 += paramInt4;
+                paramInt7 = paramInt1;
+                if (paramInt1 >= paramInt2) {
+                  break label2217;
+                }
+                paramInt4 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+                paramInt7 = paramInt1;
+                if (paramInt3 != zza) {
+                  break label2217;
+                }
+                paramInt1 = zzdt.zzj(paramArrayOfByte, paramInt4, paramZzds);
+                paramInt4 = zza;
+                if (paramInt4 < 0) {
+                  break label1045;
+                }
+                if (paramInt4 == 0) {
+                  break;
+                }
+              }
+              throw zzfa.zzc();
+            }
+            throw zzfa.zzc();
+          }
+          paramInt5 = zza;
+          if (paramInt5 >= 0)
+          {
+            if (paramInt5 == 0)
+            {
+              ((List)localObject).add("");
+            }
+            else
+            {
+              paramInt4 = paramInt1 + paramInt5;
+              if (!zzhm.zzd(paramArrayOfByte, paramInt1, paramInt4)) {
+                break label1232;
+              }
+              paramObject = new String(paramArrayOfByte, paramInt1, paramInt5, zzez.zzb);
+            }
+            for (paramInt1 = paramInt4;; paramInt1 = paramInt4)
+            {
+              ((List)localObject).add(paramObject);
+              paramInt7 = paramInt1;
+              if (paramInt1 >= paramInt2) {
+                break label2217;
+              }
+              paramInt4 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+              paramInt7 = paramInt1;
+              if (paramInt3 != zza) {
+                break label2217;
+              }
+              paramInt1 = zzdt.zzj(paramArrayOfByte, paramInt4, paramZzds);
+              paramInt5 = zza;
+              if (paramInt5 < 0) {
+                break label1228;
+              }
+              if (paramInt5 == 0) {
+                break;
+              }
+              paramInt4 = paramInt1 + paramInt5;
+              if (!zzhm.zzd(paramArrayOfByte, paramInt1, paramInt4)) {
+                break label1224;
+              }
+              paramObject = new String(paramArrayOfByte, paramInt1, paramInt5, zzez.zzb);
+            }
+            throw zzfa.zzb();
+            throw zzfa.zzc();
+            throw zzfa.zzb();
+          }
+          throw zzfa.zzc();
+          if (paramInt5 != 2) {
+            break label1324;
+          }
+          paramObject = (zzdu)localObject;
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt2 = zza + paramInt1;
+          while (paramInt1 < paramInt2)
+          {
+            paramInt1 = zzdt.zzm(paramArrayOfByte, paramInt1, paramZzds);
+            if (zzb != 0L) {
+              bool = true;
+            } else {
+              bool = false;
+            }
+            paramObject.zze(bool);
+          }
+          if (paramInt1 != paramInt2) {}
+        }
+        else
+        {
+          return paramInt1;
+        }
+        throw zzfa.zzf();
+        label1324:
+        paramInt7 = i;
+        if (paramInt5 != 0) {
+          break label2217;
+        }
+        paramObject = (zzdu)localObject;
+        paramInt4 = zzdt.zzm(paramArrayOfByte, i, paramZzds);
+        paramInt1 = paramInt4;
+        if (zzb != 0L) {}
+        for (paramInt1 = paramInt4;; paramInt1 = paramInt4)
+        {
+          bool = true;
+          do
+          {
+            bool = false;
+            paramObject.zze(bool);
+            if (paramInt1 >= paramInt2) {
+              break;
+            }
+            paramInt4 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+            if (paramInt3 != zza) {
+              return paramInt1;
+            }
+            paramInt4 = zzdt.zzm(paramArrayOfByte, paramInt4, paramZzds);
+            paramInt1 = paramInt4;
+          } while (zzb == 0L);
+        }
+        return paramInt1;
+        if (paramInt5 == 2)
+        {
+          paramObject = (zzev)localObject;
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt2 = zza + paramInt1;
+          while (paramInt1 < paramInt2)
+          {
+            paramObject.zze(zzdt.zzb(paramArrayOfByte, paramInt1));
+            paramInt1 += 4;
+          }
+          if (paramInt1 == paramInt2) {
+            return paramInt1;
+          }
+          throw zzfa.zzf();
+        }
+        paramInt7 = i;
+        if (paramInt5 != 5) {
+          break label2217;
+        }
+        paramObject = (zzev)localObject;
+        for (paramInt1 = zzdt.zzb(paramArrayOfByte, paramInt1);; paramInt1 = zzdt.zzb(paramArrayOfByte, i))
+        {
+          paramObject.zze(paramInt1);
+          paramInt1 = i + 4;
+          if (paramInt1 >= paramInt2) {
+            break;
+          }
+          i = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+          if (paramInt3 != zza) {
+            return paramInt1;
+          }
+        }
+        return paramInt1;
+        if (paramInt5 == 2)
+        {
+          paramObject = (zzfl)localObject;
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt2 = zza + paramInt1;
+          while (paramInt1 < paramInt2)
+          {
+            paramObject.zze(zzdt.zzn(paramArrayOfByte, paramInt1));
+            paramInt1 += 8;
+          }
+          if (paramInt1 == paramInt2) {
+            return paramInt1;
+          }
+          throw zzfa.zzf();
+        }
+        paramInt7 = i;
+        if (paramInt5 != 1) {
+          break label2217;
+        }
+        paramObject = (zzfl)localObject;
+        for (paramLong1 = zzdt.zzn(paramArrayOfByte, paramInt1);; paramLong1 = zzdt.zzn(paramArrayOfByte, i))
+        {
+          paramObject.zze(paramLong1);
+          paramInt1 = i + 8;
+          if (paramInt1 >= paramInt2) {
+            break;
+          }
+          i = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+          if (paramInt3 != zza) {
+            return paramInt1;
+          }
+        }
+        return paramInt1;
+        if (paramInt5 == 2) {
+          return zzdt.zzf(paramArrayOfByte, i, (zzey)localObject, paramZzds);
+        }
+        if (paramInt5 != 0)
+        {
+          paramInt7 = i;
+          break label2217;
+        }
+        return zzdt.zzl(paramInt3, paramArrayOfByte, paramInt1, paramInt2, (zzey)localObject, paramZzds);
+        if (paramInt5 == 2)
+        {
+          paramObject = (zzfl)localObject;
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt2 = zza + paramInt1;
+          while (paramInt1 < paramInt2)
+          {
+            paramInt1 = zzdt.zzm(paramArrayOfByte, paramInt1, paramZzds);
+            paramObject.zze(zzb);
+          }
+          if (paramInt1 == paramInt2) {
+            return paramInt1;
+          }
+          throw zzfa.zzf();
+        }
+        paramInt7 = i;
+        if (paramInt5 != 0) {
+          break label2217;
+        }
+        paramObject = (zzfl)localObject;
+        do
+        {
+          paramInt1 = zzdt.zzm(paramArrayOfByte, i, paramZzds);
+          paramObject.zze(zzb);
+          if (paramInt1 >= paramInt2) {
+            break;
+          }
+          i = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+        } while (paramInt3 == zza);
+        return paramInt1;
+        if (paramInt5 == 2)
+        {
+          paramObject = (zzeq)localObject;
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt2 = zza + paramInt1;
+          while (paramInt1 < paramInt2)
+          {
+            paramObject.zze(Float.intBitsToFloat(zzdt.zzb(paramArrayOfByte, paramInt1)));
+            paramInt1 += 4;
+          }
+          if (paramInt1 == paramInt2) {
+            return paramInt1;
+          }
+          throw zzfa.zzf();
+        }
+        paramInt7 = i;
+        if (paramInt5 != 5) {
+          break label2217;
+        }
+        paramObject = (zzeq)localObject;
+        for (paramInt1 = zzdt.zzb(paramArrayOfByte, paramInt1);; paramInt1 = zzdt.zzb(paramArrayOfByte, i))
+        {
+          paramObject.zze(Float.intBitsToFloat(paramInt1));
+          paramInt1 = i + 4;
+          if (paramInt1 >= paramInt2) {
+            break;
+          }
+          i = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+          if (paramInt3 != zza) {
+            return paramInt1;
+          }
+        }
+        return paramInt1;
+        if (paramInt5 == 2)
+        {
+          paramObject = (zzej)localObject;
+          paramInt1 = zzdt.zzj(paramArrayOfByte, i, paramZzds);
+          paramInt2 = zza + paramInt1;
+          while (paramInt1 < paramInt2)
+          {
+            paramObject.zze(Double.longBitsToDouble(zzdt.zzn(paramArrayOfByte, paramInt1)));
+            paramInt1 += 8;
+          }
+          if (paramInt1 == paramInt2) {
+            return paramInt1;
+          }
+          throw zzfa.zzf();
+        }
+        paramInt7 = i;
+        if (paramInt5 != 1) {
+          break label2217;
+        }
+        paramObject = (zzej)localObject;
+        for (paramLong1 = zzdt.zzn(paramArrayOfByte, paramInt1);; paramLong1 = zzdt.zzn(paramArrayOfByte, i))
+        {
+          paramObject.zze(Double.longBitsToDouble(paramLong1));
+          paramInt1 = i + 8;
+          if (paramInt1 >= paramInt2) {
+            break;
+          }
+          i = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+          if (paramInt3 != zza) {
+            return paramInt1;
+          }
+        }
+        return paramInt1;
+        label2171:
+        if (paramInt1 >= paramInt2) {
+          break;
+        }
+        paramInt5 = zzdt.zzj(paramArrayOfByte, paramInt1, paramZzds);
+        if (paramInt3 != zza) {
+          return paramInt1;
+        }
+      }
+      return paramInt1;
+    }
+    label2217:
+    return paramInt7;
+  }
+  
+  private final int zzq(int paramInt)
+  {
+    if ((paramInt >= zze) && (paramInt <= zzf)) {
+      return zzt(paramInt, 0);
+    }
+    return -1;
+  }
+  
+  private final int zzr(int paramInt1, int paramInt2)
+  {
+    if ((paramInt1 >= zze) && (paramInt1 <= zzf)) {
+      return zzt(paramInt1, paramInt2);
+    }
+    return -1;
+  }
+  
+  private final int zzs(int paramInt)
+  {
+    return zzc[(paramInt + 2)];
+  }
+  
+  private final int zzt(int paramInt1, int paramInt2)
+  {
+    int i = zzc.length / 3 - 1;
+    while (paramInt2 <= i)
+    {
+      int j = i + paramInt2 >>> 1;
+      int k = j * 3;
+      int m = zzc[k];
+      if (paramInt1 == m) {
+        return k;
+      }
+      if (paramInt1 < m) {
+        i = j - 1;
+      } else {
+        paramInt2 = j + 1;
+      }
+    }
+    return -1;
+  }
+  
+  private static int zzu(int paramInt)
+  {
+    return paramInt >>> 20 & 0xFF;
+  }
+  
+  private final int zzv(int paramInt)
+  {
+    return zzc[(paramInt + 1)];
+  }
+  
+  private static long zzw(Object paramObject, long paramLong)
+  {
+    return ((Long)zzhi.zzf(paramObject, paramLong)).longValue();
+  }
+  
+  private final zzex zzx(int paramInt)
+  {
+    paramInt /= 3;
+    return (zzex)zzd[(paramInt + paramInt + 1)];
+  }
+  
+  private final zzgh zzy(int paramInt)
+  {
+    paramInt /= 3;
+    paramInt += paramInt;
+    zzgh localZzgh = (zzgh)zzd[paramInt];
+    if (localZzgh != null) {
+      return localZzgh;
+    }
+    localZzgh = zzge.zza().zzb((Class)zzd[(paramInt + 1)]);
+    zzd[paramInt] = localZzgh;
+    return localZzgh;
+  }
+  
+  private final Object zzz(int paramInt)
+  {
+    paramInt /= 3;
+    return zzd[(paramInt + paramInt)];
+  }
+  
+  public final int zza(Object paramObject)
+  {
+    int m = zzc.length;
+    int k = 0;
+    int i;
+    for (int j = 0; k < m; j = i)
+    {
+      i = zzv(k);
+      int n = zzc[k];
+      long l = 0xFFFFF & i;
+      int i1 = zzu(i);
+      i = 37;
+      boolean bool;
+      float f;
+      Object localObject;
+      switch (i1)
+      {
+      default: 
+        i = j;
+        break;
+      case 68: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 67: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 66: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 65: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 64: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 63: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 62: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 61: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 60: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 59: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 58: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        i = j * 53;
+        bool = ((Boolean)zzhi.zzf(paramObject, l)).booleanValue();
+        break;
+      case 57: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 56: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 55: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        i = j * 53;
+        j = zzl(paramObject, l);
+        break;
+      case 54: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        break;
+      case 53: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        i = j * 53;
+        l = zzw(paramObject, l);
+        break;
+      case 52: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        i = j * 53;
+        f = ((Float)zzhi.zzf(paramObject, l)).floatValue();
+        break;
+      case 51: 
+        i = j;
+        if (!zzJ(paramObject, n, k)) {
+          break label1003;
+        }
+        i = j * 53;
+        d = ((Double)zzhi.zzf(paramObject, l)).doubleValue();
+        break;
+      case 17: 
+        localObject = zzhi.zzf(paramObject, l);
+        if (localObject == null) {}
+        break;
+      case 10: 
+      case 18: 
+      case 19: 
+      case 20: 
+      case 21: 
+      case 22: 
+      case 23: 
+      case 24: 
+      case 25: 
+      case 26: 
+      case 27: 
+      case 28: 
+      case 29: 
+      case 30: 
+      case 31: 
+      case 32: 
+      case 33: 
+      case 34: 
+      case 35: 
+      case 36: 
+      case 37: 
+      case 38: 
+      case 39: 
+      case 40: 
+      case 41: 
+      case 42: 
+      case 43: 
+      case 44: 
+      case 45: 
+      case 46: 
+      case 47: 
+      case 48: 
+      case 49: 
+      case 50: 
+        i = j * 53;
+        j = zzhi.zzf(paramObject, l).hashCode();
+        break;
+      case 9: 
+        localObject = zzhi.zzf(paramObject, l);
+        if (localObject != null) {
+          i = localObject.hashCode();
+        }
+        i = j * 53 + i;
+        break;
+      case 8: 
+        i = j * 53;
+        j = ((String)zzhi.zzf(paramObject, l)).hashCode();
+        break;
+      case 7: 
+        i = j * 53;
+        bool = zzhi.zzt(paramObject, l);
+        j = zzez.zza(bool);
+        break;
+      case 4: 
+      case 6: 
+      case 11: 
+      case 12: 
+      case 13: 
+      case 15: 
+        i = j * 53;
+        j = zzhi.zzc(paramObject, l);
+        break;
+      case 2: 
+      case 3: 
+      case 5: 
+      case 14: 
+      case 16: 
+        i = j * 53;
+        l = zzhi.zzd(paramObject, l);
+        break;
+      case 1: 
+        i = j * 53;
+        f = zzhi.zzb(paramObject, l);
+        j = Float.floatToIntBits(f);
+        break;
+      }
+      i = j * 53;
+      double d = zzhi.zza(paramObject, l);
+      l = Double.doubleToLongBits(d);
+      j = zzez.zzc(l);
+      i += j;
+      label1003:
+      k += 3;
+    }
+    return j * 53 + zzm.zza(paramObject).hashCode();
+  }
+  
+  final int zzb(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3, zzds paramZzds)
+  {
+    int i1 = paramInt2;
+    int n = paramInt3;
+    Unsafe localUnsafe = zzb;
+    int k = 0;
+    int i2 = -1;
+    int i3 = 0;
+    int i = 0;
+    int j = 1048575;
+    for (;;)
+    {
+      zzfz localZzfz = this;
+      Object localObject2 = paramObject;
+      Object localObject3 = paramArrayOfByte;
+      Object localObject1 = paramZzds;
+      if (paramInt1 >= i1) {
+        break;
+      }
+      k = paramInt1 + 1;
+      m = localObject3[paramInt1];
+      if (m < 0)
+      {
+        paramInt1 = zzdt.zzk(m, (byte[])localObject3, k, (zzds)localObject1);
+        m = zza;
+      }
+      else
+      {
+        paramInt1 = k;
+      }
+      int i4 = m >>> 3;
+      int i6 = m & 0x7;
+      if (i4 > i2) {
+        k = localZzfz.zzr(i4, i3 / 3);
+      } else {
+        k = localZzfz.zzq(i4);
+      }
+      if (k == -1)
+      {
+        k = i;
+        i = n;
+        i1 = 0;
+        n = paramInt1;
+        paramInt1 = i;
+        i = i1;
+      }
+      else
+      {
+        int[] arrayOfInt = zzc;
+        int i7 = arrayOfInt[(k + 1)];
+        int i8 = zzu(i7);
+        n = i4;
+        long l = i7 & 0xFFFFF;
+        int i5;
+        if (i8 <= 17)
+        {
+          i2 = arrayOfInt[(k + 2)];
+          i5 = 1 << (i2 >>> 20);
+          i2 &= 0xFFFFF;
+          i3 = m;
+          if (i2 != j)
+          {
+            if (j != 1048575) {
+              localUnsafe.putInt(localObject2, j, i);
+            }
+            i = localUnsafe.getInt(localObject2, i2);
+            j = i2;
+            i2 = i;
+          }
+          else
+          {
+            i2 = i;
+          }
+          switch (i8)
+          {
+          default: 
+            i = paramInt1;
+            if (i6 != 3) {
+              break label1107;
+            }
+            paramInt1 = zzdt.zzc(localZzfz.zzy(k), paramArrayOfByte, paramInt1, paramInt2, n << 3 | 0x4, paramZzds);
+            if ((i2 & i5) != 0) {
+              break label1074;
+            }
+            localObject1 = zzc;
+            break;
+          case 16: 
+            if (i6 == 0)
+            {
+              i = zzdt.zzm((byte[])localObject3, paramInt1, (zzds)localObject1);
+              localUnsafe.putLong(paramObject, l, zzei.zzc(zzb));
+              paramInt1 = i2 | i5;
+              m = i3;
+            }
+            else
+            {
+              i = paramInt1;
+            }
+            break;
+          case 15: 
+            if (i6 == 0)
+            {
+              paramInt1 = zzdt.zzj((byte[])localObject3, paramInt1, (zzds)localObject1);
+              localUnsafe.putInt(localObject2, l, zzei.zzb(zza));
+            }
+            break;
+          case 12: 
+            if (i6 == 0)
+            {
+              paramInt1 = zzdt.zzj((byte[])localObject3, paramInt1, (zzds)localObject1);
+              i = zza;
+              localObject1 = localZzfz.zzx(k);
+              if ((localObject1 != null) && (!((zzex)localObject1).zza()))
+              {
+                zzc(paramObject).zzf(i3, Long.valueOf(i));
+                m = i3;
+                i = paramInt1;
+                paramInt1 = i2;
+              }
+              else
+              {
+                localUnsafe.putInt(localObject2, l, i);
+              }
+            }
+            break;
+          case 10: 
+            if (i6 == 2) {
+              paramInt1 = zzdt.zza((byte[])localObject3, paramInt1, (zzds)localObject1);
+            }
+          case 9: 
+          case 8: 
+            for (;;)
+            {
+              localObject1 = zzc;
+              for (;;)
+              {
+                localUnsafe.putObject(localObject2, l, localObject1);
+                i2 |= i5;
+                i = paramInt1;
+                break;
+                if (i6 != 2) {
+                  break label883;
+                }
+                paramInt1 = zzdt.zzd(localZzfz.zzy(k), (byte[])localObject3, paramInt1, i1, (zzds)localObject1);
+                if ((i2 & i5) == 0) {
+                  localObject1 = zzc;
+                } else {
+                  localObject1 = zzez.zzg(localUnsafe.getObject(localObject2, l), zzc);
+                }
+              }
+              i = paramInt1;
+              if (i6 != 2) {
+                break label883;
+              }
+              if ((0x20000000 & i7) == 0) {
+                paramInt1 = zzdt.zzg((byte[])localObject3, i, (zzds)localObject1);
+              } else {
+                paramInt1 = zzdt.zzh((byte[])localObject3, i, (zzds)localObject1);
+              }
+            }
+          case 7: 
+            if (i6 == 0)
+            {
+              paramInt1 = zzdt.zzm((byte[])localObject3, paramInt1, (zzds)localObject1);
+              boolean bool;
+              if (zzb != 0L) {
+                bool = true;
+              } else {
+                bool = false;
+              }
+              zzhi.zzk(localObject2, l, bool);
+            }
+            break;
+          case 6: 
+          case 13: 
+            i = paramInt1;
+            if (i6 == 5)
+            {
+              localUnsafe.putInt(localObject2, l, zzdt.zzb((byte[])localObject3, i));
+              paramInt1 = i + 4;
+              i2 |= i5;
+              i = paramInt1;
+              paramInt1 = i2;
+              i3 = k;
+              i2 = i;
+              k = m;
+              i = paramInt1;
+            }
+            break;
+          case 5: 
+          case 14: 
+            i = paramInt1;
+            if (i6 == 1)
+            {
+              localUnsafe.putLong(paramObject, l, zzdt.zzn((byte[])localObject3, i));
+              break label1029;
+            }
+            i = paramInt1;
+            i3 = m;
+            break;
+          case 4: 
+          case 11: 
+            i = paramInt1;
+            if (i6 != 0) {
+              break label1107;
+            }
+            paramInt1 = zzdt.zzj((byte[])localObject3, paramInt1, (zzds)localObject1);
+            localUnsafe.putInt(localObject2, l, zza);
+            break;
+          case 2: 
+          case 3: 
+            i = paramInt1;
+            if (i6 != 0) {
+              break label1107;
+            }
+            paramInt1 = zzdt.zzm((byte[])localObject3, paramInt1, (zzds)localObject1);
+            localUnsafe.putLong(paramObject, l, zzb);
+            i = i2 | i5;
+            break;
+          case 1: 
+            label883:
+            i = paramInt1;
+            if (i6 != 5) {
+              break label1107;
+            }
+            zzhi.zzm(localObject2, l, Float.intBitsToFloat(zzdt.zzb((byte[])localObject3, paramInt1)));
+            paramInt1 += 4;
+            break;
+          }
+          i1 = paramInt1;
+          i = i1;
+          if (i6 == 1)
+          {
+            zzhi.zzl(localObject2, l, Double.longBitsToDouble(zzdt.zzn((byte[])localObject3, i1)));
+            label1029:
+            paramInt1 += 8;
+            for (;;)
+            {
+              i = i2 | i5;
+              i1 = paramInt2;
+              i3 = k;
+              k = m;
+              i2 = paramInt1;
+              m = n;
+              n = paramInt3;
+              paramInt1 = i2;
+              i2 = m;
+              break;
+              label1074:
+              localObject1 = zzez.zzg(localUnsafe.getObject(localObject2, l), zzc);
+              localUnsafe.putObject(localObject2, l, localObject1);
+            }
+          }
+          label1107:
+          paramInt1 = i;
+          m = i3;
+          i = k;
+          k = i2;
+        }
+        else if (i8 == 27)
+        {
+          if (i6 == 2)
+          {
+            localObject3 = (zzey)localUnsafe.getObject(localObject2, l);
+            localObject1 = localObject3;
+            if (!((zzey)localObject3).zzc())
+            {
+              i1 = ((List)localObject3).size();
+              if (i1 == 0) {
+                i1 = 10;
+              } else {
+                i1 += i1;
+              }
+              localObject1 = ((zzey)localObject3).zzd(i1);
+              localUnsafe.putObject(localObject2, l, localObject1);
+            }
+            localObject2 = localZzfz.zzy(k);
+            i2 = m;
+            paramInt1 = zzdt.zze((zzgh)localObject2, i2, paramArrayOfByte, paramInt1, paramInt2, (zzey)localObject1, paramZzds);
+            i1 = paramInt2;
+            m = paramInt3;
+            i3 = k;
+            k = i2;
+            i2 = n;
+            n = m;
+            continue;
+          }
+        }
+        else
+        {
+          i3 = k;
+          i2 = i;
+          i1 = j;
+          if (i8 <= 49)
+          {
+            j = zzp(paramObject, paramArrayOfByte, paramInt1, paramInt2, m, n, i6, i3, i7, i8, l, paramZzds);
+            i = j;
+            if (j != paramInt1) {
+              paramInt1 = j;
+            }
+          }
+        }
+        for (;;)
+        {
+          i4 = paramInt3;
+          k = m;
+          i = i2;
+          j = i1;
+          i2 = n;
+          n = i4;
+          break label1557;
+          label1437:
+          label1450:
+          do
+          {
+            do
+            {
+              paramInt1 = i;
+              i = i3;
+              k = i2;
+              j = i1;
+              break label1437;
+              i5 = paramInt1;
+              if (i8 != 50) {
+                break label1450;
+              }
+              if (i6 != 2) {
+                break;
+              }
+              paramInt1 = zzm(paramObject, paramArrayOfByte, i5, paramInt2, i3, l, paramZzds);
+              i = paramInt1;
+            } while (paramInt1 == i5);
+            break;
+            n = i;
+            i = k;
+            k = n;
+            i1 = paramInt3;
+            n = paramInt1;
+            paramInt1 = i1;
+            break label1489;
+            paramInt1 = zzn(paramObject, paramArrayOfByte, i5, paramInt2, m, n, i6, i7, i8, l, i3, paramZzds);
+            i = paramInt1;
+          } while (paramInt1 == i5);
+        }
+      }
+      label1489:
+      if ((m == paramInt1) && (paramInt1 != 0))
+      {
+        paramInt3 = n;
+        i = k;
+        k = m;
+        m = paramInt1;
+        break label1571;
+      }
+      i1 = zzdt.zzi(m, paramArrayOfByte, n, paramInt2, zzc(paramObject), paramZzds);
+      i2 = i4;
+      i3 = i;
+      i = k;
+      n = paramInt1;
+      k = m;
+      paramInt1 = i1;
+      label1557:
+      i1 = paramInt2;
+    }
+    int m = n;
+    paramInt3 = paramInt1;
+    label1571:
+    if (j != 1048575) {
+      localUnsafe.putInt(paramObject, j, i);
+    }
+    paramInt1 = zzj;
+    while (paramInt1 < zzk)
+    {
+      i = zzi[paramInt1];
+      j = zzc[i];
+      paramArrayOfByte = zzhi.zzf(paramObject, zzv(i) & 0xFFFFF);
+      if ((paramArrayOfByte == null) || (zzx(i) == null))
+      {
+        paramInt1 += 1;
+      }
+      else
+      {
+        paramObject = (zzfq)paramArrayOfByte;
+        paramObject = (zzfp)zzz(i);
+        throw null;
+      }
+    }
+    if (m == 0)
+    {
+      if (paramInt3 == paramInt2) {
+        return paramInt3;
+      }
+      throw zzfa.zzd();
+    }
+    if ((paramInt3 <= paramInt2) && (k == m)) {
+      return paramInt3;
+    }
+    throw zzfa.zzd();
+  }
+  
+  public final Object zzd()
+  {
+    return ((zzeu)zzg).zzi(4, null, null);
+  }
+  
+  public final void zze(Object paramObject)
+  {
+    int i = zzj;
+    int j;
+    for (;;)
+    {
+      j = zzk;
+      if (i >= j) {
+        break;
+      }
+      long l = zzv(zzi[i]) & 0xFFFFF;
+      Object localObject = zzhi.zzf(paramObject, l);
+      if (localObject != null)
+      {
+        ((zzfq)localObject).zzc();
+        zzhi.zzp(paramObject, l, localObject);
+      }
+      i += 1;
+    }
+    int k = zzi.length;
+    i = j;
+    while (i < k)
+    {
+      zzl.zza(paramObject, zzi[i]);
+      i += 1;
+    }
+    zzm.zze(paramObject);
+  }
+  
+  /* Error */
+  public final void zzf(Object paramObject1, Object paramObject2)
+  {
+    // Byte code:
+    //   0: aload_2
+    //   1: invokevirtual 270	java/lang/Object:getClass	()Ljava/lang/Class;
+    //   4: pop
+    //   5: iconst_0
+    //   6: istore_3
+    //   7: iload_3
+    //   8: aload_0
+    //   9: getfield 52	com/google/android/gms/internal/auth/zzfz:zzc	[I
+    //   12: arraylength
+    //   13: if_icmpge +696 -> 709
+    //   16: aload_0
+    //   17: iload_3
+    //   18: invokespecial 137	com/google/android/gms/internal/auth/zzfz:zzv	(I)I
+    //   21: istore 4
+    //   23: ldc -118
+    //   25: iload 4
+    //   27: iand
+    //   28: i2l
+    //   29: lstore 6
+    //   31: aload_0
+    //   32: getfield 52	com/google/android/gms/internal/auth/zzfz:zzc	[I
+    //   35: iload_3
+    //   36: iaload
+    //   37: istore 5
+    //   39: iload 4
+    //   41: invokestatic 182	com/google/android/gms/internal/auth/zzfz:zzu	(I)I
+    //   44: tableswitch	default:+292->336, 0:+631->675, 1:+607->651, 2:+583->627, 3:+571->615, 4:+547->591, 5:+535->579, 6:+523->567, 7:+499->543, 8:+475->519, 9:+465->509, 10:+453->497, 11:+441->485, 12:+429->473, 13:+417->461, 14:+405->449, 15:+393->437, 16:+381->425, 17:+465->509, 18:+367->411, 19:+367->411, 20:+367->411, 21:+367->411, 22:+367->411, 23:+367->411, 24:+367->411, 25:+367->411, 26:+367->411, 27:+367->411, 28:+367->411, 29:+367->411, 30:+367->411, 31:+367->411, 32:+367->411, 33:+367->411, 34:+367->411, 35:+367->411, 36:+367->411, 37:+367->411, 38:+367->411, 39:+367->411, 40:+367->411, 41:+367->411, 42:+367->411, 43:+367->411, 44:+367->411, 45:+367->411, 46:+367->411, 47:+367->411, 48:+367->411, 49:+367->411, 50:+353->397, 51:+319->363, 52:+319->363, 53:+319->363, 54:+319->363, 55:+319->363, 56:+319->363, 57:+319->363, 58:+319->363, 59:+319->363, 60:+309->353, 61:+295->339, 62:+295->339, 63:+295->339, 64:+295->339, 65:+295->339, 66:+295->339, 67:+295->339, 68:+309->353
+    //   336: goto +366 -> 702
+    //   339: aload_0
+    //   340: aload_2
+    //   341: iload 5
+    //   343: iload_3
+    //   344: invokespecial 162	com/google/android/gms/internal/auth/zzfz:zzJ	(Ljava/lang/Object;II)Z
+    //   347: ifeq +355 -> 702
+    //   350: goto +24 -> 374
+    //   353: aload_0
+    //   354: aload_1
+    //   355: aload_2
+    //   356: iload_3
+    //   357: invokespecial 597	com/google/android/gms/internal/auth/zzfz:zzC	(Ljava/lang/Object;Ljava/lang/Object;I)V
+    //   360: goto +342 -> 702
+    //   363: aload_0
+    //   364: aload_2
+    //   365: iload 5
+    //   367: iload_3
+    //   368: invokespecial 162	com/google/android/gms/internal/auth/zzfz:zzJ	(Ljava/lang/Object;II)Z
+    //   371: ifeq +331 -> 702
+    //   374: aload_1
+    //   375: lload 6
+    //   377: aload_2
+    //   378: lload 6
+    //   380: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   383: invokestatic 153	com/google/android/gms/internal/auth/zzhi:zzp	(Ljava/lang/Object;JLjava/lang/Object;)V
+    //   386: aload_0
+    //   387: aload_1
+    //   388: iload 5
+    //   390: iload_3
+    //   391: invokespecial 166	com/google/android/gms/internal/auth/zzfz:zzE	(Ljava/lang/Object;II)V
+    //   394: goto +308 -> 702
+    //   397: aload_0
+    //   398: getfield 78	com/google/android/gms/internal/auth/zzfz:zzp	Lcom/google/android/gms/internal/auth/zzfr;
+    //   401: aload_1
+    //   402: aload_2
+    //   403: lload 6
+    //   405: invokestatic 600	com/google/android/gms/internal/auth/zzgj:zzi	(Lcom/google/android/gms/internal/auth/zzfr;Ljava/lang/Object;Ljava/lang/Object;J)V
+    //   408: goto +294 -> 702
+    //   411: aload_0
+    //   412: getfield 70	com/google/android/gms/internal/auth/zzfz:zzl	Lcom/google/android/gms/internal/auth/zzfk;
+    //   415: aload_1
+    //   416: aload_2
+    //   417: lload 6
+    //   419: invokevirtual 603	com/google/android/gms/internal/auth/zzfk:zzb	(Ljava/lang/Object;Ljava/lang/Object;J)V
+    //   422: goto +280 -> 702
+    //   425: aload_0
+    //   426: aload_2
+    //   427: iload_3
+    //   428: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   431: ifeq +271 -> 702
+    //   434: goto +202 -> 636
+    //   437: aload_0
+    //   438: aload_2
+    //   439: iload_3
+    //   440: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   443: ifeq +259 -> 702
+    //   446: goto +36 -> 482
+    //   449: aload_0
+    //   450: aload_2
+    //   451: iload_3
+    //   452: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   455: ifeq +247 -> 702
+    //   458: goto +178 -> 636
+    //   461: aload_0
+    //   462: aload_2
+    //   463: iload_3
+    //   464: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   467: ifeq +235 -> 702
+    //   470: goto +12 -> 482
+    //   473: aload_0
+    //   474: aload_2
+    //   475: iload_3
+    //   476: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   479: ifeq +223 -> 702
+    //   482: goto +118 -> 600
+    //   485: aload_0
+    //   486: aload_2
+    //   487: iload_3
+    //   488: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   491: ifeq +211 -> 702
+    //   494: goto +106 -> 600
+    //   497: aload_0
+    //   498: aload_2
+    //   499: iload_3
+    //   500: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   503: ifeq +199 -> 702
+    //   506: goto +22 -> 528
+    //   509: aload_0
+    //   510: aload_1
+    //   511: aload_2
+    //   512: iload_3
+    //   513: invokespecial 605	com/google/android/gms/internal/auth/zzfz:zzB	(Ljava/lang/Object;Ljava/lang/Object;I)V
+    //   516: goto +186 -> 702
+    //   519: aload_0
+    //   520: aload_2
+    //   521: iload_3
+    //   522: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   525: ifeq +177 -> 702
+    //   528: aload_1
+    //   529: lload 6
+    //   531: aload_2
+    //   532: lload 6
+    //   534: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   537: invokestatic 153	com/google/android/gms/internal/auth/zzhi:zzp	(Ljava/lang/Object;JLjava/lang/Object;)V
+    //   540: goto +156 -> 696
+    //   543: aload_0
+    //   544: aload_2
+    //   545: iload_3
+    //   546: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   549: ifeq +153 -> 702
+    //   552: aload_1
+    //   553: lload 6
+    //   555: aload_2
+    //   556: lload 6
+    //   558: invokestatic 202	com/google/android/gms/internal/auth/zzhi:zzt	(Ljava/lang/Object;J)Z
+    //   561: invokestatic 442	com/google/android/gms/internal/auth/zzhi:zzk	(Ljava/lang/Object;JZ)V
+    //   564: goto +132 -> 696
+    //   567: aload_0
+    //   568: aload_2
+    //   569: iload_3
+    //   570: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   573: ifeq +129 -> 702
+    //   576: goto +24 -> 600
+    //   579: aload_0
+    //   580: aload_2
+    //   581: iload_3
+    //   582: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   585: ifeq +117 -> 702
+    //   588: goto +48 -> 636
+    //   591: aload_0
+    //   592: aload_2
+    //   593: iload_3
+    //   594: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   597: ifeq +105 -> 702
+    //   600: aload_1
+    //   601: lload 6
+    //   603: aload_2
+    //   604: lload 6
+    //   606: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   609: invokestatic 177	com/google/android/gms/internal/auth/zzhi:zzn	(Ljava/lang/Object;JI)V
+    //   612: goto +84 -> 696
+    //   615: aload_0
+    //   616: aload_2
+    //   617: iload_3
+    //   618: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   621: ifeq +81 -> 702
+    //   624: goto +12 -> 636
+    //   627: aload_0
+    //   628: aload_2
+    //   629: iload_3
+    //   630: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   633: ifeq +69 -> 702
+    //   636: aload_1
+    //   637: lload 6
+    //   639: aload_2
+    //   640: lload 6
+    //   642: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   645: invokestatic 607	com/google/android/gms/internal/auth/zzhi:zzo	(Ljava/lang/Object;JJ)V
+    //   648: goto +48 -> 696
+    //   651: aload_0
+    //   652: aload_2
+    //   653: iload_3
+    //   654: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   657: ifeq +45 -> 702
+    //   660: aload_1
+    //   661: lload 6
+    //   663: aload_2
+    //   664: lload 6
+    //   666: invokestatic 205	com/google/android/gms/internal/auth/zzhi:zzb	(Ljava/lang/Object;J)F
+    //   669: invokestatic 449	com/google/android/gms/internal/auth/zzhi:zzm	(Ljava/lang/Object;JF)V
+    //   672: goto +24 -> 696
+    //   675: aload_0
+    //   676: aload_2
+    //   677: iload_3
+    //   678: invokespecial 142	com/google/android/gms/internal/auth/zzfz:zzG	(Ljava/lang/Object;I)Z
+    //   681: ifeq +21 -> 702
+    //   684: aload_1
+    //   685: lload 6
+    //   687: aload_2
+    //   688: lload 6
+    //   690: invokestatic 214	com/google/android/gms/internal/auth/zzhi:zza	(Ljava/lang/Object;J)D
+    //   693: invokestatic 452	com/google/android/gms/internal/auth/zzhi:zzl	(Ljava/lang/Object;JD)V
+    //   696: aload_0
+    //   697: aload_1
+    //   698: iload_3
+    //   699: invokespecial 157	com/google/android/gms/internal/auth/zzfz:zzD	(Ljava/lang/Object;I)V
+    //   702: iload_3
+    //   703: iconst_3
+    //   704: iadd
+    //   705: istore_3
+    //   706: goto -699 -> 7
+    //   709: aload_0
+    //   710: getfield 72	com/google/android/gms/internal/auth/zzfz:zzm	Lcom/google/android/gms/internal/auth/zzgy;
+    //   713: aload_1
+    //   714: aload_2
+    //   715: invokestatic 610	com/google/android/gms/internal/auth/zzgj:zzf	(Lcom/google/android/gms/internal/auth/zzgy;Ljava/lang/Object;Ljava/lang/Object;)V
+    //   718: return
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	719	0	this	zzfz
+    //   0	719	1	paramObject1	Object
+    //   0	719	2	paramObject2	Object
+    //   6	700	3	i	int
+    //   21	19	4	j	int
+    //   37	352	5	k	int
+    //   29	660	6	l	long
+  }
+  
+  public final void zzg(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, zzds paramZzds)
+  {
+    if (zzh)
+    {
+      zzo(paramObject, paramArrayOfByte, paramInt1, paramInt2, paramZzds);
+      return;
+    }
+    zzb(paramObject, paramArrayOfByte, paramInt1, paramInt2, 0, paramZzds);
+  }
+  
+  /* Error */
+  public final boolean zzh(Object paramObject1, Object paramObject2)
+  {
+    // Byte code:
+    //   0: aload_0
+    //   1: getfield 52	com/google/android/gms/internal/auth/zzfz:zzc	[I
+    //   4: arraylength
+    //   5: istore 4
+    //   7: iconst_0
+    //   8: istore_3
+    //   9: iload_3
+    //   10: iload 4
+    //   12: if_icmpge +924 -> 936
+    //   15: aload_0
+    //   16: iload_3
+    //   17: invokespecial 137	com/google/android/gms/internal/auth/zzfz:zzv	(I)I
+    //   20: istore 5
+    //   22: iload 5
+    //   24: ldc -118
+    //   26: iand
+    //   27: i2l
+    //   28: lstore 6
+    //   30: iload 5
+    //   32: invokestatic 182	com/google/android/gms/internal/auth/zzfz:zzu	(I)I
+    //   35: tableswitch	default:+289->324, 0:+857->892, 1:+823->858, 2:+794->829, 3:+765->800, 4:+737->772, 5:+708->743, 6:+680->715, 7:+652->687, 8:+621->656, 9:+590->625, 10:+559->594, 11:+531->566, 12:+503->538, 13:+475->510, 14:+446->481, 15:+418->453, 16:+389->424, 17:+358->393, 18:+338->373, 19:+338->373, 20:+338->373, 21:+338->373, 22:+338->373, 23:+338->373, 24:+338->373, 25:+338->373, 26:+338->373, 27:+338->373, 28:+338->373, 29:+338->373, 30:+338->373, 31:+338->373, 32:+338->373, 33:+338->373, 34:+338->373, 35:+338->373, 36:+338->373, 37:+338->373, 38:+338->373, 39:+338->373, 40:+338->373, 41:+338->373, 42:+338->373, 43:+338->373, 44:+338->373, 45:+338->373, 46:+338->373, 47:+338->373, 48:+338->373, 49:+338->373, 50:+338->373, 51:+292->327, 52:+292->327, 53:+292->327, 54:+292->327, 55:+292->327, 56:+292->327, 57:+292->327, 58:+292->327, 59:+292->327, 60:+292->327, 61:+292->327, 62:+292->327, 63:+292->327, 64:+292->327, 65:+292->327, 66:+292->327, 67:+292->327, 68:+292->327
+    //   324: goto +605 -> 929
+    //   327: aload_0
+    //   328: iload_3
+    //   329: invokespecial 169	com/google/android/gms/internal/auth/zzfz:zzs	(I)I
+    //   332: ldc -118
+    //   334: iand
+    //   335: i2l
+    //   336: lstore 8
+    //   338: aload_1
+    //   339: lload 8
+    //   341: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   344: aload_2
+    //   345: lload 8
+    //   347: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   350: if_icmpne +577 -> 927
+    //   353: aload_1
+    //   354: lload 6
+    //   356: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   359: aload_2
+    //   360: lload 6
+    //   362: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   365: invokestatic 618	com/google/android/gms/internal/auth/zzgj:zzh	(Ljava/lang/Object;Ljava/lang/Object;)Z
+    //   368: ifne +561 -> 929
+    //   371: iconst_0
+    //   372: ireturn
+    //   373: aload_1
+    //   374: lload 6
+    //   376: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   379: aload_2
+    //   380: lload 6
+    //   382: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   385: invokestatic 618	com/google/android/gms/internal/auth/zzgj:zzh	(Ljava/lang/Object;Ljava/lang/Object;)Z
+    //   388: ifne +541 -> 929
+    //   391: iconst_0
+    //   392: ireturn
+    //   393: aload_0
+    //   394: aload_1
+    //   395: aload_2
+    //   396: iload_3
+    //   397: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   400: ifeq +527 -> 927
+    //   403: aload_1
+    //   404: lload 6
+    //   406: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   409: aload_2
+    //   410: lload 6
+    //   412: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   415: invokestatic 618	com/google/android/gms/internal/auth/zzgj:zzh	(Ljava/lang/Object;Ljava/lang/Object;)Z
+    //   418: ifeq +509 -> 927
+    //   421: goto +508 -> 929
+    //   424: aload_0
+    //   425: aload_1
+    //   426: aload_2
+    //   427: iload_3
+    //   428: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   431: ifeq +496 -> 927
+    //   434: aload_1
+    //   435: lload 6
+    //   437: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   440: aload_2
+    //   441: lload 6
+    //   443: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   446: lcmp
+    //   447: ifne +480 -> 927
+    //   450: goto +479 -> 929
+    //   453: aload_0
+    //   454: aload_1
+    //   455: aload_2
+    //   456: iload_3
+    //   457: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   460: ifeq +467 -> 927
+    //   463: aload_1
+    //   464: lload 6
+    //   466: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   469: aload_2
+    //   470: lload 6
+    //   472: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   475: if_icmpne +452 -> 927
+    //   478: goto +451 -> 929
+    //   481: aload_0
+    //   482: aload_1
+    //   483: aload_2
+    //   484: iload_3
+    //   485: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   488: ifeq +439 -> 927
+    //   491: aload_1
+    //   492: lload 6
+    //   494: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   497: aload_2
+    //   498: lload 6
+    //   500: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   503: lcmp
+    //   504: ifne +423 -> 927
+    //   507: goto +422 -> 929
+    //   510: aload_0
+    //   511: aload_1
+    //   512: aload_2
+    //   513: iload_3
+    //   514: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   517: ifeq +410 -> 927
+    //   520: aload_1
+    //   521: lload 6
+    //   523: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   526: aload_2
+    //   527: lload 6
+    //   529: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   532: if_icmpne +395 -> 927
+    //   535: goto +394 -> 929
+    //   538: aload_0
+    //   539: aload_1
+    //   540: aload_2
+    //   541: iload_3
+    //   542: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   545: ifeq +382 -> 927
+    //   548: aload_1
+    //   549: lload 6
+    //   551: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   554: aload_2
+    //   555: lload 6
+    //   557: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   560: if_icmpne +367 -> 927
+    //   563: goto +366 -> 929
+    //   566: aload_0
+    //   567: aload_1
+    //   568: aload_2
+    //   569: iload_3
+    //   570: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   573: ifeq +354 -> 927
+    //   576: aload_1
+    //   577: lload 6
+    //   579: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   582: aload_2
+    //   583: lload 6
+    //   585: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   588: if_icmpne +339 -> 927
+    //   591: goto +338 -> 929
+    //   594: aload_0
+    //   595: aload_1
+    //   596: aload_2
+    //   597: iload_3
+    //   598: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   601: ifeq +326 -> 927
+    //   604: aload_1
+    //   605: lload 6
+    //   607: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   610: aload_2
+    //   611: lload 6
+    //   613: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   616: invokestatic 618	com/google/android/gms/internal/auth/zzgj:zzh	(Ljava/lang/Object;Ljava/lang/Object;)Z
+    //   619: ifeq +308 -> 927
+    //   622: goto +307 -> 929
+    //   625: aload_0
+    //   626: aload_1
+    //   627: aload_2
+    //   628: iload_3
+    //   629: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   632: ifeq +295 -> 927
+    //   635: aload_1
+    //   636: lload 6
+    //   638: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   641: aload_2
+    //   642: lload 6
+    //   644: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   647: invokestatic 618	com/google/android/gms/internal/auth/zzgj:zzh	(Ljava/lang/Object;Ljava/lang/Object;)Z
+    //   650: ifeq +277 -> 927
+    //   653: goto +276 -> 929
+    //   656: aload_0
+    //   657: aload_1
+    //   658: aload_2
+    //   659: iload_3
+    //   660: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   663: ifeq +264 -> 927
+    //   666: aload_1
+    //   667: lload 6
+    //   669: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   672: aload_2
+    //   673: lload 6
+    //   675: invokestatic 145	com/google/android/gms/internal/auth/zzhi:zzf	(Ljava/lang/Object;J)Ljava/lang/Object;
+    //   678: invokestatic 618	com/google/android/gms/internal/auth/zzgj:zzh	(Ljava/lang/Object;Ljava/lang/Object;)Z
+    //   681: ifeq +246 -> 927
+    //   684: goto +245 -> 929
+    //   687: aload_0
+    //   688: aload_1
+    //   689: aload_2
+    //   690: iload_3
+    //   691: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   694: ifeq +233 -> 927
+    //   697: aload_1
+    //   698: lload 6
+    //   700: invokestatic 202	com/google/android/gms/internal/auth/zzhi:zzt	(Ljava/lang/Object;J)Z
+    //   703: aload_2
+    //   704: lload 6
+    //   706: invokestatic 202	com/google/android/gms/internal/auth/zzhi:zzt	(Ljava/lang/Object;J)Z
+    //   709: if_icmpne +218 -> 927
+    //   712: goto +217 -> 929
+    //   715: aload_0
+    //   716: aload_1
+    //   717: aload_2
+    //   718: iload_3
+    //   719: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   722: ifeq +205 -> 927
+    //   725: aload_1
+    //   726: lload 6
+    //   728: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   731: aload_2
+    //   732: lload 6
+    //   734: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   737: if_icmpne +190 -> 927
+    //   740: goto +189 -> 929
+    //   743: aload_0
+    //   744: aload_1
+    //   745: aload_2
+    //   746: iload_3
+    //   747: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   750: ifeq +177 -> 927
+    //   753: aload_1
+    //   754: lload 6
+    //   756: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   759: aload_2
+    //   760: lload 6
+    //   762: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   765: lcmp
+    //   766: ifne +161 -> 927
+    //   769: goto +160 -> 929
+    //   772: aload_0
+    //   773: aload_1
+    //   774: aload_2
+    //   775: iload_3
+    //   776: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   779: ifeq +148 -> 927
+    //   782: aload_1
+    //   783: lload 6
+    //   785: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   788: aload_2
+    //   789: lload 6
+    //   791: invokestatic 174	com/google/android/gms/internal/auth/zzhi:zzc	(Ljava/lang/Object;J)I
+    //   794: if_icmpne +133 -> 927
+    //   797: goto +132 -> 929
+    //   800: aload_0
+    //   801: aload_1
+    //   802: aload_2
+    //   803: iload_3
+    //   804: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   807: ifeq +120 -> 927
+    //   810: aload_1
+    //   811: lload 6
+    //   813: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   816: aload_2
+    //   817: lload 6
+    //   819: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   822: lcmp
+    //   823: ifne +104 -> 927
+    //   826: goto +103 -> 929
+    //   829: aload_0
+    //   830: aload_1
+    //   831: aload_2
+    //   832: iload_3
+    //   833: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   836: ifeq +91 -> 927
+    //   839: aload_1
+    //   840: lload 6
+    //   842: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   845: aload_2
+    //   846: lload 6
+    //   848: invokestatic 188	com/google/android/gms/internal/auth/zzhi:zzd	(Ljava/lang/Object;J)J
+    //   851: lcmp
+    //   852: ifne +75 -> 927
+    //   855: goto +74 -> 929
+    //   858: aload_0
+    //   859: aload_1
+    //   860: aload_2
+    //   861: iload_3
+    //   862: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   865: ifeq +62 -> 927
+    //   868: aload_1
+    //   869: lload 6
+    //   871: invokestatic 205	com/google/android/gms/internal/auth/zzhi:zzb	(Ljava/lang/Object;J)F
+    //   874: invokestatic 568	java/lang/Float:floatToIntBits	(F)I
+    //   877: aload_2
+    //   878: lload 6
+    //   880: invokestatic 205	com/google/android/gms/internal/auth/zzhi:zzb	(Ljava/lang/Object;J)F
+    //   883: invokestatic 568	java/lang/Float:floatToIntBits	(F)I
+    //   886: if_icmpne +41 -> 927
+    //   889: goto +40 -> 929
+    //   892: aload_0
+    //   893: aload_1
+    //   894: aload_2
+    //   895: iload_3
+    //   896: invokespecial 620	com/google/android/gms/internal/auth/zzfz:zzF	(Ljava/lang/Object;Ljava/lang/Object;I)Z
+    //   899: ifeq +28 -> 927
+    //   902: aload_1
+    //   903: lload 6
+    //   905: invokestatic 214	com/google/android/gms/internal/auth/zzhi:zza	(Ljava/lang/Object;J)D
+    //   908: invokestatic 571	java/lang/Double:doubleToLongBits	(D)J
+    //   911: aload_2
+    //   912: lload 6
+    //   914: invokestatic 214	com/google/android/gms/internal/auth/zzhi:zza	(Ljava/lang/Object;J)D
+    //   917: invokestatic 571	java/lang/Double:doubleToLongBits	(D)J
+    //   920: lcmp
+    //   921: ifne +6 -> 927
+    //   924: goto +5 -> 929
+    //   927: iconst_0
+    //   928: ireturn
+    //   929: iload_3
+    //   930: iconst_3
+    //   931: iadd
+    //   932: istore_3
+    //   933: goto -924 -> 9
+    //   936: aload_0
+    //   937: getfield 72	com/google/android/gms/internal/auth/zzfz:zzm	Lcom/google/android/gms/internal/auth/zzgy;
+    //   940: aload_1
+    //   941: invokevirtual 579	com/google/android/gms/internal/auth/zzgy:zza	(Ljava/lang/Object;)Ljava/lang/Object;
+    //   944: aload_0
+    //   945: getfield 72	com/google/android/gms/internal/auth/zzfz:zzm	Lcom/google/android/gms/internal/auth/zzgy;
+    //   948: aload_2
+    //   949: invokevirtual 579	com/google/android/gms/internal/auth/zzgy:zza	(Ljava/lang/Object;)Ljava/lang/Object;
+    //   952: invokevirtual 621	java/lang/Object:equals	(Ljava/lang/Object;)Z
+    //   955: ifne +5 -> 960
+    //   958: iconst_0
+    //   959: ireturn
+    //   960: iconst_1
+    //   961: ireturn
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	962	0	this	zzfz
+    //   0	962	1	paramObject1	Object
+    //   0	962	2	paramObject2	Object
+    //   8	925	3	i	int
+    //   5	8	4	j	int
+    //   20	11	5	k	int
+    //   28	885	6	l1	long
+    //   336	10	8	l2	long
+  }
+  
+  public final boolean zzi(Object paramObject)
+  {
+    int j = 1048575;
+    int i = 0;
+    int k = 0;
+    while (k < zzj)
+    {
+      int n = zzi[k];
+      int i1 = zzc[n];
+      int i2 = zzv(n);
+      int i3 = zzc[(n + 2)];
+      int m = i3 & 0xFFFFF;
+      i3 = 1 << (i3 >>> 20);
+      if (m != j)
+      {
+        if (m != 1048575) {
+          i = zzb.getInt(paramObject, m);
+        }
+        j = m;
+      }
+      if (((0x10000000 & i2) != 0) && (!zzH(paramObject, n, j, i, i3))) {
+        return false;
+      }
+      m = zzu(i2);
+      List localList;
+      zzgh localZzgh;
+      if ((m != 9) && (m != 17))
+      {
+        if (m != 27) {
+          if ((m != 60) && (m != 68))
+          {
+            if (m != 49)
+            {
+              if ((m != 50) || (((zzfq)zzhi.zzf(paramObject, i2 & 0xFFFFF)).isEmpty())) {
+                break label361;
+              }
+              paramObject = (zzfp)zzz(n);
+              throw null;
+            }
+          }
+          else
+          {
+            if ((!zzJ(paramObject, i1, n)) || (zzI(paramObject, i2, zzy(n)))) {
+              break label361;
+            }
+            return false;
+          }
+        }
+        localList = (List)zzhi.zzf(paramObject, i2 & 0xFFFFF);
+        if (!localList.isEmpty())
+        {
+          localZzgh = zzy(n);
+          m = 0;
+        }
+      }
+      else
+      {
+        while (m < localList.size())
+        {
+          if (!localZzgh.zzi(localList.get(m))) {
+            return false;
+          }
+          m += 1;
+          continue;
+          if ((zzH(paramObject, n, j, i, i3)) && (!zzI(paramObject, i2, zzy(n)))) {
+            return false;
+          }
+        }
+      }
+      label361:
+      k += 1;
+    }
+    return true;
+  }
+}

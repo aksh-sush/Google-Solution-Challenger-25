@@ -1,0 +1,33 @@
+package com.google.protobuf;
+
+import java.lang.reflect.Constructor;
+
+abstract class q0
+{
+  private static final o0 a = ;
+  private static final o0 b = new p0();
+  
+  static o0 a()
+  {
+    return a;
+  }
+  
+  static o0 b()
+  {
+    return b;
+  }
+  
+  private static o0 c()
+  {
+    try
+    {
+      o0 localO0 = (o0)Class.forName("com.google.protobuf.MapFieldSchemaFull").getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+      return localO0;
+    }
+    catch (Exception localException)
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+}

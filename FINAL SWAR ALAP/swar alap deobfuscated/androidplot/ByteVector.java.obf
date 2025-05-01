@@ -1,0 +1,36 @@
+package u;
+
+import java.util.Iterator;
+import java.util.List;
+
+class g
+  extends f
+{
+  public int m;
+  
+  public g(p paramP)
+  {
+    super(paramP);
+    if ((paramP instanceof l)) {
+      paramP = f.a.f;
+    } else {
+      paramP = f.a.g;
+    }
+    e = paramP;
+  }
+  
+  public void d(int paramInt)
+  {
+    if (j) {
+      return;
+    }
+    j = true;
+    g = paramInt;
+    Iterator localIterator = k.iterator();
+    while (localIterator.hasNext())
+    {
+      d localD = (d)localIterator.next();
+      localD.a(localD);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+package com.google.android.gms.internal.auth;
+
+public abstract class zzdo<MessageType extends zzdp<MessageType, BuilderType>, BuilderType extends zzdo<MessageType, BuilderType>>
+  implements zzfv
+{
+  public zzdo() {}
+  
+  public abstract zzdo zza();
+  
+  protected abstract zzdo zzb(zzdp paramZzdp);
+}

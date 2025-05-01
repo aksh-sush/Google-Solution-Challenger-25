@@ -1,0 +1,183 @@
+package x1;
+
+import ab.a;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.util.Base64;
+import android.util.Log;
+import db.t;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.cert.CertificateFactory;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+import ta.m;
+
+public final class l
+{
+  public static final l a = new l();
+  private static final String b = l.class.getSimpleName();
+  private static final String[] c = { "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" };
+  
+  private l() {}
+  
+  public static final String b(String paramString)
+  {
+    return a.d(new File(paramString));
+  }
+  
+  public static final String c(Context paramContext, Long paramLong)
+  {
+    db.l.e(paramContext, "context");
+    Object localObject1 = CertificateFactory.getInstance("X.509");
+    Object localObject2 = c;
+    Object localObject3 = new ArrayList(localObject2.length);
+    int j = localObject2.length;
+    int i = 0;
+    while (i < j)
+    {
+      ((Collection)localObject3).add(((CertificateFactory)localObject1).generateCertificate(new ByteArrayInputStream(Base64.decode(localObject2[i], 0))));
+      i += 1;
+    }
+    localObject2 = m.T((Collection)localObject3);
+    localObject3 = new t();
+    localObject1 = new ReentrantLock();
+    final Condition localCondition = ((ReentrantLock)localObject1).newCondition();
+    ((ReentrantLock)localObject1).lock();
+    try
+    {
+      Object localObject4 = Class.forName("android.content.pm.Checksum").getField("TYPE_WHOLE_MD5");
+      db.l.d(localObject4, "checksumClass.getField(\"TYPE_WHOLE_MD5\")");
+      localObject4 = ((Field)localObject4).get(null);
+      Object localObject5 = Class.forName("android.content.pm.PackageManager$OnChecksumsReadyListener");
+      Object localObject6 = l.class.getClassLoader();
+      a localA = new a(localObject4, (t)localObject3, (ReentrantLock)localObject1, localCondition);
+      localObject6 = Proxy.newProxyInstance((ClassLoader)localObject6, new Class[] { localObject5 }, localA);
+      db.l.d(localObject6, "var resultChecksum: String? = null\n    val lock = ReentrantLock()\n    val checksumReady = lock.newCondition()\n    lock.lock()\n\n    try {\n      val checksumClass = Class.forName(\"android.content.pm.Checksum\")\n      val typeWholeMd5Field: Field = checksumClass.getField(\"TYPE_WHOLE_MD5\")\n      val TYPE_WHOLE_MD5 = typeWholeMd5Field.get(null)\n      val checksumReadyListenerClass =\n          Class.forName(\"android.content.pm.PackageManager\\$OnChecksumsReadyListener\")\n      val listener: Any =\n          Proxy.newProxyInstance(\n              HashUtils::class.java.classLoader,\n              arrayOf(checksumReadyListenerClass),\n              object : InvocationHandler {\n                override operator fun invoke(o: Any?, method: Method, objects: Array<Any>): Any? {\n                  try {\n                    if (method.name == \"onChecksumsReady\" &&\n                        objects.size == 1 &&\n                        objects[0] is List<*>) {\n                      val list = objects[0] as List<*>\n                      for (c in list) {\n                        if (c != null) {\n                          val getSplitNameMethod: Method = c.javaClass.getMethod(\"getSplitName\")\n                          val getTypeMethod: Method = c.javaClass.getMethod(\"getType\")\n                          if (getSplitNameMethod.invoke(c) == null &&\n                              getTypeMethod.invoke(c) == TYPE_WHOLE_MD5) {\n                            val getValueMethod: Method = c.javaClass.getMethod(\"getValue\")\n                            val checksumValue = getValueMethod.invoke(c) as ByteArray\n                            resultChecksum = BigInteger(1, checksumValue).toString(16)\n                            lock.lock()\n                            try {\n                              checksumReady.signalAll()\n                            } finally {\n                              lock.unlock()\n                            }\n                            return null\n                          }\n                        }\n                      }\n                    }\n                  } catch (t: Throwable) {\n                    Log.d(TAG, \"Can't fetch checksum.\", t)\n                  }\n                  return null\n                }\n              })");
+      localObject5 = PackageManager.class.getMethod("requestChecksums", new Class[] { String.class, Boolean.TYPE, Integer.TYPE, List.class, localObject5 });
+      db.l.d(localObject5, "PackageManager::class\n              .java\n              .getMethod(\n                  \"requestChecksums\",\n                  String::class.java,\n                  Boolean::class.javaPrimitiveType,\n                  Int::class.javaPrimitiveType,\n                  MutableList::class.java,\n                  checksumReadyListenerClass)");
+      ((Method)localObject5).invoke(paramContext.getPackageManager(), new Object[] { paramContext.getPackageName(), Boolean.FALSE, localObject4, m.T((Collection)localObject2), localObject6 });
+      if (paramLong == null) {
+        localCondition.await();
+      } else {
+        localCondition.awaitNanos(paramLong.longValue());
+      }
+      paramContext = (String)e;
+      ((ReentrantLock)localObject1).unlock();
+      return paramContext;
+    }
+    finally
+    {
+      for (;;) {}
+    }
+    ((ReentrantLock)localObject1).unlock();
+    return null;
+  }
+  
+  private final String d(File paramFile)
+  {
+    paramFile = new BufferedInputStream(new FileInputStream(paramFile), 1024);
+    try
+    {
+      Object localObject1 = MessageDigest.getInstance("MD5");
+      byte[] arrayOfByte = new byte['?'];
+      int i;
+      do
+      {
+        i = paramFile.read(arrayOfByte);
+        if (i > 0) {
+          ((MessageDigest)localObject1).update(arrayOfByte, 0, i);
+        }
+      } while (i != -1);
+      localObject1 = new BigInteger(1, ((MessageDigest)localObject1).digest()).toString(16);
+      db.l.d(localObject1, "BigInteger(1, md.digest()).toString(16)");
+      a.a(paramFile, null);
+      return localObject1;
+    }
+    finally
+    {
+      try
+      {
+        throw localThrowable;
+      }
+      finally
+      {
+        a.a(paramFile, localThrowable);
+      }
+    }
+  }
+  
+  public static final class a
+    implements InvocationHandler
+  {
+    a(Object paramObject, t paramT, ReentrantLock paramReentrantLock, Condition paramCondition) {}
+    
+    public Object invoke(Object paramObject, Method paramMethod, Object[] paramArrayOfObject)
+    {
+      db.l.e(paramMethod, "method");
+      db.l.e(paramArrayOfObject, "objects");
+      try
+      {
+        if ((db.l.a(paramMethod.getName(), "onChecksumsReady")) && (paramArrayOfObject.length == 1))
+        {
+          paramObject = paramArrayOfObject[0];
+          if ((paramObject instanceof List))
+          {
+            paramMethod = ((List)paramObject).iterator();
+            while (paramMethod.hasNext())
+            {
+              paramObject = paramMethod.next();
+              if (paramObject != null)
+              {
+                paramArrayOfObject = paramObject.getClass().getMethod("getSplitName", new Class[0]);
+                db.l.d(paramArrayOfObject, "c.javaClass.getMethod(\"getSplitName\")");
+                Method localMethod = paramObject.getClass().getMethod("getType", new Class[0]);
+                db.l.d(localMethod, "c.javaClass.getMethod(\"getType\")");
+                if ((paramArrayOfObject.invoke(paramObject, new Object[0]) == null) && (db.l.a(localMethod.invoke(paramObject, new Object[0]), a)))
+                {
+                  paramMethod = paramObject.getClass().getMethod("getValue", new Class[0]);
+                  db.l.d(paramMethod, "c.javaClass.getMethod(\"getValue\")");
+                  paramObject = paramMethod.invoke(paramObject, new Object[0]);
+                  if (paramObject != null)
+                  {
+                    paramObject = (byte[])paramObject;
+                    b.e = new BigInteger(1, paramObject).toString(16);
+                    c.lock();
+                    try
+                    {
+                      localCondition.signalAll();
+                      return null;
+                    }
+                    finally
+                    {
+                      c.unlock();
+                    }
+                  }
+                  throw new NullPointerException("null cannot be cast to non-null type kotlin.ByteArray");
+                }
+              }
+            }
+          }
+        }
+      }
+      finally
+      {
+        Log.d(l.a(), "Can't fetch checksum.", paramObject);
+      }
+      return null;
+    }
+  }
+}

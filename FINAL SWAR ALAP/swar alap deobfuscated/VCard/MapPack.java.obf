@@ -1,0 +1,208 @@
+package s5;
+
+import com.google.protobuf.c0.c;
+import com.google.protobuf.c0.d;
+import com.google.protobuf.d1;
+import com.google.protobuf.u0;
+import com.google.protobuf.z;
+import com.google.protobuf.z.a;
+import com.google.protobuf.z.b;
+import com.google.protobuf.z.e;
+import t5.t;
+
+public final class a
+  extends z
+  implements u0
+{
+  private static final a DEFAULT_INSTANCE;
+  public static final int LIMIT_TYPE_FIELD_NUMBER = 3;
+  public static final int PARENT_FIELD_NUMBER = 1;
+  private static volatile d1 PARSER;
+  public static final int STRUCTURED_QUERY_FIELD_NUMBER = 2;
+  private int limitType_;
+  private String parent_ = "";
+  private int queryTypeCase_ = 0;
+  private Object queryType_;
+  
+  static
+  {
+    a localA = new a();
+    DEFAULT_INSTANCE = localA;
+    z.registerDefaultInstance(a.class, localA);
+  }
+  
+  private a() {}
+  
+  public static b o()
+  {
+    return (b)DEFAULT_INSTANCE.createBuilder();
+  }
+  
+  public static a p(byte[] paramArrayOfByte)
+  {
+    return (a)z.parseFrom(DEFAULT_INSTANCE, paramArrayOfByte);
+  }
+  
+  private void q(c paramC)
+  {
+    limitType_ = paramC.getNumber();
+  }
+  
+  private void r(String paramString)
+  {
+    paramString.getClass();
+    parent_ = paramString;
+  }
+  
+  private void s(t paramT)
+  {
+    paramT.getClass();
+    queryType_ = paramT;
+    queryTypeCase_ = 2;
+  }
+  
+  protected final Object dynamicMethod(z.e paramE, Object paramObject1, Object paramObject2)
+  {
+    switch (a.a[paramE.ordinal()])
+    {
+    default: 
+      throw new UnsupportedOperationException();
+    case 7: 
+      return null;
+    case 6: 
+      return Byte.valueOf((byte)1);
+    case 5: 
+      paramE = PARSER;
+      if (paramE == null) {
+        try
+        {
+          paramObject1 = PARSER;
+          paramE = paramObject1;
+          if (paramObject1 == null)
+          {
+            paramE = new z.b(DEFAULT_INSTANCE);
+            PARSER = paramE;
+          }
+          return paramE;
+        }
+        finally {}
+      }
+      return paramE;
+    case 4: 
+      return DEFAULT_INSTANCE;
+    case 3: 
+      return z.newMessageInfo(DEFAULT_INSTANCE, "\000\003\001\000\001\003\003\000\000\000\001?\002<\000\003\f", new Object[] { "queryType_", "queryTypeCase_", "parent_", t.class, "limitType_" });
+    case 2: 
+      return new b(null);
+    }
+    return new a();
+  }
+  
+  public c l()
+  {
+    c localC2 = c.a(limitType_);
+    c localC1 = localC2;
+    if (localC2 == null) {
+      localC1 = c.h;
+    }
+    return localC1;
+  }
+  
+  public String m()
+  {
+    return parent_;
+  }
+  
+  public t n()
+  {
+    if (queryTypeCase_ == 2) {
+      return (t)queryType_;
+    }
+    return t.s();
+  }
+  
+  public static final class b
+    extends z.a
+    implements u0
+  {
+    private b()
+    {
+      super();
+    }
+    
+    public b e(a.c paramC)
+    {
+      copyOnWrite();
+      a.k((a)instance, paramC);
+      return this;
+    }
+    
+    public b f(String paramString)
+    {
+      copyOnWrite();
+      a.i((a)instance, paramString);
+      return this;
+    }
+    
+    public b g(t paramT)
+    {
+      copyOnWrite();
+      a.j((a)instance, paramT);
+      return this;
+    }
+  }
+  
+  public static enum c
+    implements c0.c
+  {
+    private static final c0.d i = new a();
+    private final int e;
+    
+    static
+    {
+      c localC1 = new c("FIRST", 0, 0);
+      f = localC1;
+      c localC2 = new c("LAST", 1, 1);
+      g = localC2;
+      c localC3 = new c("UNRECOGNIZED", 2, -1);
+      h = localC3;
+      j = new c[] { localC1, localC2, localC3 };
+    }
+    
+    private c(int paramInt)
+    {
+      e = paramInt;
+    }
+    
+    public static c a(int paramInt)
+    {
+      if (paramInt != 0)
+      {
+        if (paramInt != 1) {
+          return null;
+        }
+        return g;
+      }
+      return f;
+    }
+    
+    public final int getNumber()
+    {
+      if (this != h) {
+        return e;
+      }
+      throw new IllegalArgumentException("Can't get the number of an unknown enum value.");
+    }
+    
+    class a
+      implements c0.d
+    {
+      a() {}
+      
+      public a.c b(int paramInt)
+      {
+        return a.c.a(paramInt);
+      }
+    }
+  }
+}

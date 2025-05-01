@@ -1,0 +1,470 @@
+package androidx.fragment.app;
+
+import android.util.Log;
+import android.view.ViewGroup;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+class t
+{
+  private final ArrayList a = new ArrayList();
+  private final HashMap b = new HashMap();
+  private p c;
+  
+  t() {}
+  
+  void a(Fragment paramFragment)
+  {
+    if (!a.contains(paramFragment)) {
+      synchronized (a)
+      {
+        a.add(paramFragment);
+        mAdded = true;
+        return;
+      }
+    }
+    ??? = new StringBuilder();
+    ((StringBuilder)???).append("Fragment already added: ");
+    ((StringBuilder)???).append(paramFragment);
+    throw new IllegalStateException(((StringBuilder)???).toString());
+  }
+  
+  void b()
+  {
+    b.values().removeAll(Collections.singleton(null));
+  }
+  
+  boolean c(String paramString)
+  {
+    return b.get(paramString) != null;
+  }
+  
+  void d(int paramInt)
+  {
+    Iterator localIterator = b.values().iterator();
+    while (localIterator.hasNext())
+    {
+      s localS = (s)localIterator.next();
+      if (localS != null) {
+        localS.t(paramInt);
+      }
+    }
+  }
+  
+  void e(String paramString, FileDescriptor paramFileDescriptor, PrintWriter paramPrintWriter, String[] paramArrayOfString)
+  {
+    Object localObject1 = new StringBuilder();
+    ((StringBuilder)localObject1).append(paramString);
+    ((StringBuilder)localObject1).append("    ");
+    localObject1 = ((StringBuilder)localObject1).toString();
+    if (!b.isEmpty())
+    {
+      paramPrintWriter.print(paramString);
+      paramPrintWriter.println("Active Fragments:");
+      Iterator localIterator = b.values().iterator();
+      while (localIterator.hasNext())
+      {
+        Object localObject2 = (s)localIterator.next();
+        paramPrintWriter.print(paramString);
+        if (localObject2 != null)
+        {
+          localObject2 = ((s)localObject2).k();
+          paramPrintWriter.println(localObject2);
+          ((Fragment)localObject2).dump((String)localObject1, paramFileDescriptor, paramPrintWriter, paramArrayOfString);
+        }
+        else
+        {
+          paramPrintWriter.println("null");
+        }
+      }
+    }
+    int j = a.size();
+    if (j > 0)
+    {
+      paramPrintWriter.print(paramString);
+      paramPrintWriter.println("Added Fragments:");
+      int i = 0;
+      while (i < j)
+      {
+        paramFileDescriptor = (Fragment)a.get(i);
+        paramPrintWriter.print(paramString);
+        paramPrintWriter.print("  #");
+        paramPrintWriter.print(i);
+        paramPrintWriter.print(": ");
+        paramPrintWriter.println(paramFileDescriptor.toString());
+        i += 1;
+      }
+    }
+  }
+  
+  Fragment f(String paramString)
+  {
+    paramString = (s)b.get(paramString);
+    if (paramString != null) {
+      return paramString.k();
+    }
+    return null;
+  }
+  
+  Fragment g(int paramInt)
+  {
+    int i = a.size() - 1;
+    while (i >= 0)
+    {
+      localObject1 = (Fragment)a.get(i);
+      if ((localObject1 != null) && (mFragmentId == paramInt)) {
+        return localObject1;
+      }
+      i -= 1;
+    }
+    Object localObject1 = b.values().iterator();
+    while (((Iterator)localObject1).hasNext())
+    {
+      Object localObject2 = (s)((Iterator)localObject1).next();
+      if (localObject2 != null)
+      {
+        localObject2 = ((s)localObject2).k();
+        if (mFragmentId == paramInt) {
+          return localObject2;
+        }
+      }
+    }
+    return null;
+  }
+  
+  Fragment h(String paramString)
+  {
+    Object localObject1;
+    if (paramString != null)
+    {
+      int i = a.size() - 1;
+      while (i >= 0)
+      {
+        localObject1 = (Fragment)a.get(i);
+        if ((localObject1 != null) && (paramString.equals(mTag))) {
+          return localObject1;
+        }
+        i -= 1;
+      }
+    }
+    if (paramString != null)
+    {
+      localObject1 = b.values().iterator();
+      while (((Iterator)localObject1).hasNext())
+      {
+        Object localObject2 = (s)((Iterator)localObject1).next();
+        if (localObject2 != null)
+        {
+          localObject2 = ((s)localObject2).k();
+          if (paramString.equals(mTag)) {
+            return localObject2;
+          }
+        }
+      }
+    }
+    return null;
+  }
+  
+  Fragment i(String paramString)
+  {
+    Iterator localIterator = b.values().iterator();
+    while (localIterator.hasNext())
+    {
+      Object localObject = (s)localIterator.next();
+      if (localObject != null)
+      {
+        localObject = ((s)localObject).k().findFragmentByWho(paramString);
+        if (localObject != null) {
+          return localObject;
+        }
+      }
+    }
+    return null;
+  }
+  
+  int j(Fragment paramFragment)
+  {
+    ViewGroup localViewGroup = mContainer;
+    if (localViewGroup == null) {
+      return -1;
+    }
+    int k = a.indexOf(paramFragment);
+    int i = k - 1;
+    int j;
+    for (;;)
+    {
+      j = k;
+      if (i < 0) {
+        break;
+      }
+      paramFragment = (Fragment)a.get(i);
+      if (mContainer == localViewGroup)
+      {
+        paramFragment = mView;
+        if (paramFragment != null) {
+          return localViewGroup.indexOfChild(paramFragment) + 1;
+        }
+      }
+      i -= 1;
+    }
+    for (;;)
+    {
+      j += 1;
+      if (j >= a.size()) {
+        break;
+      }
+      paramFragment = (Fragment)a.get(j);
+      if (mContainer == localViewGroup)
+      {
+        paramFragment = mView;
+        if (paramFragment != null) {
+          return localViewGroup.indexOfChild(paramFragment);
+        }
+      }
+    }
+    return -1;
+  }
+  
+  List k()
+  {
+    ArrayList localArrayList = new ArrayList();
+    Iterator localIterator = b.values().iterator();
+    while (localIterator.hasNext())
+    {
+      s localS = (s)localIterator.next();
+      if (localS != null) {
+        localArrayList.add(localS);
+      }
+    }
+    return localArrayList;
+  }
+  
+  List l()
+  {
+    ArrayList localArrayList = new ArrayList();
+    Iterator localIterator = b.values().iterator();
+    while (localIterator.hasNext())
+    {
+      Object localObject = (s)localIterator.next();
+      if (localObject != null) {
+        localObject = ((s)localObject).k();
+      } else {
+        localObject = null;
+      }
+      localArrayList.add(localObject);
+    }
+    return localArrayList;
+  }
+  
+  s m(String paramString)
+  {
+    return (s)b.get(paramString);
+  }
+  
+  List n()
+  {
+    if (a.isEmpty()) {
+      return Collections.emptyList();
+    }
+    synchronized (a)
+    {
+      ArrayList localArrayList2 = new ArrayList(a);
+      return localArrayList2;
+    }
+  }
+  
+  p o()
+  {
+    return c;
+  }
+  
+  void p(s paramS)
+  {
+    Fragment localFragment = paramS.k();
+    if (c(mWho)) {
+      return;
+    }
+    b.put(mWho, paramS);
+    if (mRetainInstanceChangedWhileDetached)
+    {
+      if (mRetainInstance) {
+        c.f(localFragment);
+      } else {
+        c.n(localFragment);
+      }
+      mRetainInstanceChangedWhileDetached = false;
+    }
+    if (m.F0(2))
+    {
+      paramS = new StringBuilder();
+      paramS.append("Added fragment to active set ");
+      paramS.append(localFragment);
+      Log.v("FragmentManager", paramS.toString());
+    }
+  }
+  
+  void q(s paramS)
+  {
+    paramS = paramS.k();
+    if (mRetainInstance) {
+      c.n(paramS);
+    }
+    if ((s)b.put(mWho, null) == null) {
+      return;
+    }
+    if (m.F0(2))
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Removed fragment from active set ");
+      localStringBuilder.append(paramS);
+      Log.v("FragmentManager", localStringBuilder.toString());
+    }
+  }
+  
+  void r()
+  {
+    Iterator localIterator = a.iterator();
+    Object localObject;
+    while (localIterator.hasNext())
+    {
+      localObject = (Fragment)localIterator.next();
+      localObject = (s)b.get(mWho);
+      if (localObject != null) {
+        ((s)localObject).m();
+      }
+    }
+    localIterator = b.values().iterator();
+    while (localIterator.hasNext())
+    {
+      localObject = (s)localIterator.next();
+      if (localObject != null)
+      {
+        ((s)localObject).m();
+        Fragment localFragment = ((s)localObject).k();
+        int i;
+        if ((mRemoving) && (!localFragment.isInBackStack())) {
+          i = 1;
+        } else {
+          i = 0;
+        }
+        if (i != 0) {
+          q((s)localObject);
+        }
+      }
+    }
+  }
+  
+  void s(Fragment paramFragment)
+  {
+    synchronized (a)
+    {
+      a.remove(paramFragment);
+      mAdded = false;
+      return;
+    }
+  }
+  
+  void t()
+  {
+    b.clear();
+  }
+  
+  void u(List paramList)
+  {
+    a.clear();
+    if (paramList != null)
+    {
+      Object localObject = paramList.iterator();
+      while (((Iterator)localObject).hasNext())
+      {
+        paramList = (String)((Iterator)localObject).next();
+        Fragment localFragment = f(paramList);
+        if (localFragment != null)
+        {
+          if (m.F0(2))
+          {
+            StringBuilder localStringBuilder = new StringBuilder();
+            localStringBuilder.append("restoreSaveState: added (");
+            localStringBuilder.append(paramList);
+            localStringBuilder.append("): ");
+            localStringBuilder.append(localFragment);
+            Log.v("FragmentManager", localStringBuilder.toString());
+          }
+          a(localFragment);
+        }
+        else
+        {
+          localObject = new StringBuilder();
+          ((StringBuilder)localObject).append("No instantiated fragment for (");
+          ((StringBuilder)localObject).append(paramList);
+          ((StringBuilder)localObject).append(")");
+          throw new IllegalStateException(((StringBuilder)localObject).toString());
+        }
+      }
+    }
+  }
+  
+  ArrayList v()
+  {
+    ArrayList localArrayList = new ArrayList(b.size());
+    Iterator localIterator = b.values().iterator();
+    while (localIterator.hasNext())
+    {
+      Object localObject = (s)localIterator.next();
+      if (localObject != null)
+      {
+        Fragment localFragment = ((s)localObject).k();
+        localObject = ((s)localObject).r();
+        localArrayList.add(localObject);
+        if (m.F0(2))
+        {
+          StringBuilder localStringBuilder = new StringBuilder();
+          localStringBuilder.append("Saved state of ");
+          localStringBuilder.append(localFragment);
+          localStringBuilder.append(": ");
+          localStringBuilder.append(q);
+          Log.v("FragmentManager", localStringBuilder.toString());
+        }
+      }
+    }
+    return localArrayList;
+  }
+  
+  ArrayList w()
+  {
+    synchronized (a)
+    {
+      if (a.isEmpty()) {
+        return null;
+      }
+      ArrayList localArrayList2 = new ArrayList(a.size());
+      Iterator localIterator = a.iterator();
+      while (localIterator.hasNext())
+      {
+        Fragment localFragment = (Fragment)localIterator.next();
+        localArrayList2.add(mWho);
+        if (m.F0(2))
+        {
+          StringBuilder localStringBuilder = new StringBuilder();
+          localStringBuilder.append("saveAllState: adding fragment (");
+          localStringBuilder.append(mWho);
+          localStringBuilder.append("): ");
+          localStringBuilder.append(localFragment);
+          Log.v("FragmentManager", localStringBuilder.toString());
+        }
+      }
+      return localArrayList2;
+    }
+  }
+  
+  void x(p paramP)
+  {
+    c = paramP;
+  }
+}

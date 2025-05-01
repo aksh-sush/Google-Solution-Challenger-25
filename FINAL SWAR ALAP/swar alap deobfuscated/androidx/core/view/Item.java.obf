@@ -1,0 +1,327 @@
+package androidx.core.view;
+
+import android.content.ClipData;
+import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.view.ContentInfo;
+import android.view.ContentInfo.Builder;
+import java.util.Objects;
+
+public final class d
+{
+  private final f a;
+  
+  d(f paramF)
+  {
+    a = paramF;
+  }
+  
+  static String a(int paramInt)
+  {
+    if ((paramInt & 0x1) != 0) {
+      return "FLAG_CONVERT_TO_PLAIN_TEXT";
+    }
+    return String.valueOf(paramInt);
+  }
+  
+  static String e(int paramInt)
+  {
+    if (paramInt != 0)
+    {
+      if (paramInt != 1)
+      {
+        if (paramInt != 2)
+        {
+          if (paramInt != 3)
+          {
+            if (paramInt != 4)
+            {
+              if (paramInt != 5) {
+                return String.valueOf(paramInt);
+              }
+              return "SOURCE_PROCESS_TEXT";
+            }
+            return "SOURCE_AUTOFILL";
+          }
+          return "SOURCE_DRAG_AND_DROP";
+        }
+        return "SOURCE_INPUT_METHOD";
+      }
+      return "SOURCE_CLIPBOARD";
+    }
+    return "SOURCE_APP";
+  }
+  
+  public static d g(ContentInfo paramContentInfo)
+  {
+    return new d(new e(paramContentInfo));
+  }
+  
+  public ClipData b()
+  {
+    return a.a();
+  }
+  
+  public int c()
+  {
+    return a.b();
+  }
+  
+  public int d()
+  {
+    return a.d();
+  }
+  
+  public ContentInfo f()
+  {
+    ContentInfo localContentInfo = a.c();
+    Objects.requireNonNull(localContentInfo);
+    return c.a(localContentInfo);
+  }
+  
+  public String toString()
+  {
+    return a.toString();
+  }
+  
+  public static final class a
+  {
+    private final d.c a;
+    
+    public a(ClipData paramClipData, int paramInt)
+    {
+      if (Build.VERSION.SDK_INT >= 31) {
+        paramClipData = new d.b(paramClipData, paramInt);
+      } else {
+        paramClipData = new d.d(paramClipData, paramInt);
+      }
+      a = paramClipData;
+    }
+    
+    public d a()
+    {
+      return a.build();
+    }
+    
+    public a b(Bundle paramBundle)
+    {
+      a.a(paramBundle);
+      return this;
+    }
+    
+    public a c(int paramInt)
+    {
+      a.c(paramInt);
+      return this;
+    }
+    
+    public a d(Uri paramUri)
+    {
+      a.b(paramUri);
+      return this;
+    }
+  }
+  
+  private static final class b
+    implements d.c
+  {
+    private final ContentInfo.Builder a;
+    
+    b(ClipData paramClipData, int paramInt)
+    {
+      a = g.a(paramClipData, paramInt);
+    }
+    
+    public void a(Bundle paramBundle)
+    {
+      h.a(a, paramBundle);
+    }
+    
+    public void b(Uri paramUri)
+    {
+      i.a(a, paramUri);
+    }
+    
+    public d build()
+    {
+      return new d(new d.e(f.a(a)));
+    }
+    
+    public void c(int paramInt)
+    {
+      e.a(a, paramInt);
+    }
+  }
+  
+  private static abstract interface c
+  {
+    public abstract void a(Bundle paramBundle);
+    
+    public abstract void b(Uri paramUri);
+    
+    public abstract d build();
+    
+    public abstract void c(int paramInt);
+  }
+  
+  private static final class d
+    implements d.c
+  {
+    ClipData a;
+    int b;
+    int c;
+    Uri d;
+    Bundle e;
+    
+    d(ClipData paramClipData, int paramInt)
+    {
+      a = paramClipData;
+      b = paramInt;
+    }
+    
+    public void a(Bundle paramBundle)
+    {
+      e = paramBundle;
+    }
+    
+    public void b(Uri paramUri)
+    {
+      d = paramUri;
+    }
+    
+    public d build()
+    {
+      return new d(new d.g(this));
+    }
+    
+    public void c(int paramInt)
+    {
+      c = paramInt;
+    }
+  }
+  
+  private static final class e
+    implements d.f
+  {
+    private final ContentInfo a;
+    
+    e(ContentInfo paramContentInfo)
+    {
+      a = c.a(androidx.core.util.h.g(paramContentInfo));
+    }
+    
+    public ClipData a()
+    {
+      return j.a(a);
+    }
+    
+    public int b()
+    {
+      return k.a(a);
+    }
+    
+    public ContentInfo c()
+    {
+      return a;
+    }
+    
+    public int d()
+    {
+      return l.a(a);
+    }
+    
+    public String toString()
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("ContentInfoCompat{");
+      localStringBuilder.append(a);
+      localStringBuilder.append("}");
+      return localStringBuilder.toString();
+    }
+  }
+  
+  private static abstract interface f
+  {
+    public abstract ClipData a();
+    
+    public abstract int b();
+    
+    public abstract ContentInfo c();
+    
+    public abstract int d();
+  }
+  
+  private static final class g
+    implements d.f
+  {
+    private final ClipData a;
+    private final int b;
+    private final int c;
+    private final Uri d;
+    private final Bundle e;
+    
+    g(d.d paramD)
+    {
+      a = ((ClipData)androidx.core.util.h.g(a));
+      b = androidx.core.util.h.c(b, 0, 5, "source");
+      c = androidx.core.util.h.f(c, 1);
+      d = d;
+      e = e;
+    }
+    
+    public ClipData a()
+    {
+      return a;
+    }
+    
+    public int b()
+    {
+      return c;
+    }
+    
+    public ContentInfo c()
+    {
+      return null;
+    }
+    
+    public int d()
+    {
+      return b;
+    }
+    
+    public String toString()
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("ContentInfoCompat{clip=");
+      localStringBuilder.append(a.getDescription());
+      localStringBuilder.append(", source=");
+      localStringBuilder.append(d.e(b));
+      localStringBuilder.append(", flags=");
+      localStringBuilder.append(d.a(c));
+      Object localObject = d;
+      String str = "";
+      if (localObject == null)
+      {
+        localObject = "";
+      }
+      else
+      {
+        localObject = new StringBuilder();
+        ((StringBuilder)localObject).append(", hasLinkUri(");
+        ((StringBuilder)localObject).append(d.toString().length());
+        ((StringBuilder)localObject).append(")");
+        localObject = ((StringBuilder)localObject).toString();
+      }
+      localStringBuilder.append((String)localObject);
+      if (e == null) {
+        localObject = str;
+      } else {
+        localObject = ", hasExtras";
+      }
+      localStringBuilder.append((String)localObject);
+      localStringBuilder.append("}");
+      return localStringBuilder.toString();
+    }
+  }
+}

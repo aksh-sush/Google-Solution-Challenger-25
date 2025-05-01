@@ -1,0 +1,119 @@
+package com.google.android.gms.common.internal;
+
+import java.util.ArrayList;
+
+public abstract class p1
+{
+  private Object a;
+  private boolean b;
+  
+  public p1(c paramC, Object paramObject)
+  {
+    a = paramObject;
+    b = false;
+  }
+  
+  protected abstract void a(Object paramObject);
+  
+  protected abstract void b();
+  
+  /* Error */
+  public final void c()
+  {
+    // Byte code:
+    //   0: aload_0
+    //   1: monitorenter
+    //   2: aload_0
+    //   3: getfield 19	com/google/android/gms/common/internal/p1:a	Ljava/lang/Object;
+    //   6: astore_1
+    //   7: aload_0
+    //   8: getfield 21	com/google/android/gms/common/internal/p1:b	Z
+    //   11: ifeq +46 -> 57
+    //   14: aload_0
+    //   15: invokevirtual 27	java/lang/Object:toString	()Ljava/lang/String;
+    //   18: astore_2
+    //   19: new 29	java/lang/StringBuilder
+    //   22: dup
+    //   23: invokespecial 30	java/lang/StringBuilder:<init>	()V
+    //   26: astore_3
+    //   27: aload_3
+    //   28: ldc 32
+    //   30: invokevirtual 36	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   33: pop
+    //   34: aload_3
+    //   35: aload_2
+    //   36: invokevirtual 36	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   39: pop
+    //   40: aload_3
+    //   41: ldc 38
+    //   43: invokevirtual 36	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   46: pop
+    //   47: ldc 40
+    //   49: aload_3
+    //   50: invokevirtual 41	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   53: invokestatic 47	android/util/Log:w	(Ljava/lang/String;Ljava/lang/String;)I
+    //   56: pop
+    //   57: aload_0
+    //   58: monitorexit
+    //   59: aload_1
+    //   60: ifnull +8 -> 68
+    //   63: aload_0
+    //   64: aload_1
+    //   65: invokevirtual 49	com/google/android/gms/common/internal/p1:a	(Ljava/lang/Object;)V
+    //   68: aload_0
+    //   69: monitorenter
+    //   70: aload_0
+    //   71: iconst_1
+    //   72: putfield 21	com/google/android/gms/common/internal/p1:b	Z
+    //   75: aload_0
+    //   76: monitorexit
+    //   77: aload_0
+    //   78: invokevirtual 52	com/google/android/gms/common/internal/p1:e	()V
+    //   81: return
+    //   82: astore_1
+    //   83: aload_0
+    //   84: monitorexit
+    //   85: aload_1
+    //   86: athrow
+    //   87: astore_1
+    //   88: aload_0
+    //   89: monitorexit
+    //   90: aload_1
+    //   91: athrow
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	92	0	this	p1
+    //   6	59	1	localObject1	Object
+    //   82	4	1	localObject2	Object
+    //   87	4	1	localObject3	Object
+    //   18	18	2	str	String
+    //   26	24	3	localStringBuilder	StringBuilder
+    // Exception table:
+    //   from	to	target	type
+    //   70	77	82	finally
+    //   83	85	82	finally
+    //   2	57	87	finally
+    //   57	59	87	finally
+    //   88	90	87	finally
+  }
+  
+  public final void d()
+  {
+    try
+    {
+      a = null;
+      return;
+    }
+    finally {}
+  }
+  
+  public final void e()
+  {
+    d();
+    synchronized (c.zzf(c))
+    {
+      c.zzf(c).remove(this);
+      return;
+    }
+  }
+}

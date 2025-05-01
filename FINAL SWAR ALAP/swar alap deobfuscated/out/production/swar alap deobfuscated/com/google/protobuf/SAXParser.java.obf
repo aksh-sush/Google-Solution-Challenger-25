@@ -1,0 +1,33 @@
+package com.google.protobuf;
+
+import java.lang.reflect.Constructor;
+
+abstract class a1
+{
+  private static final y0 a = ;
+  private static final y0 b = new z0();
+  
+  static y0 a()
+  {
+    return a;
+  }
+  
+  static y0 b()
+  {
+    return b;
+  }
+  
+  private static y0 c()
+  {
+    try
+    {
+      y0 localY0 = (y0)Class.forName("com.google.protobuf.NewInstanceSchemaFull").getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+      return localY0;
+    }
+    catch (Exception localException)
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+}

@@ -1,0 +1,739 @@
+package androidx.core.app;
+
+import android.app.Notification;
+import android.app.Notification.BigPictureStyle;
+import android.app.Notification.BigTextStyle;
+import android.app.Notification.BubbleMetadata;
+import android.app.Notification.InboxStyle;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Icon;
+import android.media.AudioAttributes.Builder;
+import android.net.Uri;
+import android.os.BaseBundle;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.widget.RemoteViews;
+import androidx.core.graphics.drawable.IconCompat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import x.b;
+
+public abstract class k
+{
+  public static Bundle a(Notification paramNotification)
+  {
+    return extras;
+  }
+  
+  public static boolean b(Notification paramNotification)
+  {
+    return (flags & 0x200) != 0;
+  }
+  
+  public static class a
+  {
+    final Bundle a;
+    private IconCompat b;
+    private final m0[] c;
+    private final m0[] d;
+    private boolean e;
+    boolean f = true;
+    private final int g;
+    private final boolean h;
+    public int i;
+    public CharSequence j;
+    public PendingIntent k;
+    private boolean l;
+    
+    public a(int paramInt, CharSequence paramCharSequence, PendingIntent paramPendingIntent)
+    {
+      this(localIconCompat, paramCharSequence, paramPendingIntent);
+    }
+    
+    public a(IconCompat paramIconCompat, CharSequence paramCharSequence, PendingIntent paramPendingIntent)
+    {
+      this(paramIconCompat, paramCharSequence, paramPendingIntent, new Bundle(), null, null, true, 0, true, false, false);
+    }
+    
+    a(IconCompat paramIconCompat, CharSequence paramCharSequence, PendingIntent paramPendingIntent, Bundle paramBundle, m0[] paramArrayOfM01, m0[] paramArrayOfM02, boolean paramBoolean1, int paramInt, boolean paramBoolean2, boolean paramBoolean3, boolean paramBoolean4)
+    {
+      b = paramIconCompat;
+      if ((paramIconCompat != null) && (paramIconCompat.g() == 2)) {
+        i = paramIconCompat.e();
+      }
+      j = k.e.e(paramCharSequence);
+      k = paramPendingIntent;
+      if (paramBundle == null) {
+        paramBundle = new Bundle();
+      }
+      a = paramBundle;
+      c = paramArrayOfM01;
+      d = paramArrayOfM02;
+      e = paramBoolean1;
+      g = paramInt;
+      f = paramBoolean2;
+      h = paramBoolean3;
+      l = paramBoolean4;
+    }
+    
+    public PendingIntent a()
+    {
+      return k;
+    }
+    
+    public boolean b()
+    {
+      return e;
+    }
+    
+    public Bundle c()
+    {
+      return a;
+    }
+    
+    public IconCompat d()
+    {
+      if (b == null)
+      {
+        int m = i;
+        if (m != 0) {
+          b = IconCompat.c(null, "", m);
+        }
+      }
+      return b;
+    }
+    
+    public m0[] e()
+    {
+      return c;
+    }
+    
+    public int f()
+    {
+      return g;
+    }
+    
+    public boolean g()
+    {
+      return f;
+    }
+    
+    public CharSequence h()
+    {
+      return j;
+    }
+    
+    public boolean i()
+    {
+      return l;
+    }
+    
+    public boolean j()
+    {
+      return h;
+    }
+  }
+  
+  public static class b
+    extends k.h
+  {
+    private IconCompat e;
+    private IconCompat f;
+    private boolean g;
+    private CharSequence h;
+    private boolean i;
+    
+    public b() {}
+    
+    public void b(j paramJ)
+    {
+      int j = Build.VERSION.SDK_INT;
+      Object localObject2 = new Notification.BigPictureStyle(paramJ.a()).setBigContentTitle(b);
+      IconCompat localIconCompat = e;
+      Context localContext = null;
+      Object localObject1 = localObject2;
+      if (localIconCompat != null) {
+        if (j >= 31)
+        {
+          if ((paramJ instanceof h0)) {
+            localObject1 = ((h0)paramJ).f();
+          } else {
+            localObject1 = null;
+          }
+          c.a((Notification.BigPictureStyle)localObject2, e.m((Context)localObject1));
+          localObject1 = localObject2;
+        }
+        else
+        {
+          localObject1 = localObject2;
+          if (localIconCompat.g() == 1) {
+            localObject1 = ((Notification.BigPictureStyle)localObject2).bigPicture(e.d());
+          }
+        }
+      }
+      if (g)
+      {
+        localObject2 = f;
+        if (localObject2 == null) {}
+        do
+        {
+          a.a((Notification.BigPictureStyle)localObject1, null);
+          break;
+          if (j >= 23)
+          {
+            if ((paramJ instanceof h0)) {
+              localContext = ((h0)paramJ).f();
+            }
+            b.a((Notification.BigPictureStyle)localObject1, f.m(localContext));
+            break;
+          }
+        } while (((IconCompat)localObject2).g() != 1);
+        a.a((Notification.BigPictureStyle)localObject1, f.d());
+      }
+      if (d) {
+        a.b((Notification.BigPictureStyle)localObject1, c);
+      }
+      if (j >= 31)
+      {
+        c.c((Notification.BigPictureStyle)localObject1, i);
+        c.b((Notification.BigPictureStyle)localObject1, h);
+      }
+    }
+    
+    protected String c()
+    {
+      return "androidx.core.app.NotificationCompat$BigPictureStyle";
+    }
+    
+    public b h(Bitmap paramBitmap)
+    {
+      if (paramBitmap == null) {
+        paramBitmap = null;
+      } else {
+        paramBitmap = IconCompat.b(paramBitmap);
+      }
+      f = paramBitmap;
+      g = true;
+      return this;
+    }
+    
+    public b i(Bitmap paramBitmap)
+    {
+      if (paramBitmap == null) {
+        paramBitmap = null;
+      } else {
+        paramBitmap = IconCompat.b(paramBitmap);
+      }
+      e = paramBitmap;
+      return this;
+    }
+    
+    public b j(CharSequence paramCharSequence)
+    {
+      c = k.e.e(paramCharSequence);
+      d = true;
+      return this;
+    }
+    
+    private static abstract class a
+    {
+      static void a(Notification.BigPictureStyle paramBigPictureStyle, Bitmap paramBitmap)
+      {
+        paramBigPictureStyle.bigLargeIcon(paramBitmap);
+      }
+      
+      static void b(Notification.BigPictureStyle paramBigPictureStyle, CharSequence paramCharSequence)
+      {
+        paramBigPictureStyle.setSummaryText(paramCharSequence);
+      }
+    }
+    
+    private static abstract class b
+    {
+      static void a(Notification.BigPictureStyle paramBigPictureStyle, Icon paramIcon)
+      {
+        paramBigPictureStyle.bigLargeIcon(paramIcon);
+      }
+    }
+    
+    private static abstract class c
+    {
+      static void a(Notification.BigPictureStyle paramBigPictureStyle, Icon paramIcon)
+      {
+        paramBigPictureStyle.bigPicture(paramIcon);
+      }
+      
+      static void b(Notification.BigPictureStyle paramBigPictureStyle, CharSequence paramCharSequence)
+      {
+        paramBigPictureStyle.setContentDescription(paramCharSequence);
+      }
+      
+      static void c(Notification.BigPictureStyle paramBigPictureStyle, boolean paramBoolean)
+      {
+        paramBigPictureStyle.showBigPictureWhenCollapsed(paramBoolean);
+      }
+    }
+  }
+  
+  public static class c
+    extends k.h
+  {
+    private CharSequence e;
+    
+    public c() {}
+    
+    public void a(Bundle paramBundle)
+    {
+      super.a(paramBundle);
+    }
+    
+    public void b(j paramJ)
+    {
+      paramJ = new Notification.BigTextStyle(paramJ.a()).setBigContentTitle(b).bigText(e);
+      if (d) {
+        paramJ.setSummaryText(c);
+      }
+    }
+    
+    protected String c()
+    {
+      return "androidx.core.app.NotificationCompat$BigTextStyle";
+    }
+    
+    public c h(CharSequence paramCharSequence)
+    {
+      e = k.e.e(paramCharSequence);
+      return this;
+    }
+  }
+  
+  public static final abstract class d
+  {
+    public static Notification.BubbleMetadata a(d paramD)
+    {
+      return null;
+    }
+  }
+  
+  public static class e
+  {
+    boolean A;
+    boolean B;
+    String C;
+    Bundle D;
+    int E = 0;
+    int F = 0;
+    Notification G;
+    RemoteViews H;
+    RemoteViews I;
+    RemoteViews J;
+    String K;
+    int L = 0;
+    String M;
+    long N;
+    int O = 0;
+    int P = 0;
+    boolean Q;
+    Notification R;
+    boolean S;
+    Icon T;
+    public ArrayList U;
+    public Context a;
+    public ArrayList b = new ArrayList();
+    public ArrayList c = new ArrayList();
+    ArrayList d = new ArrayList();
+    CharSequence e;
+    CharSequence f;
+    PendingIntent g;
+    PendingIntent h;
+    RemoteViews i;
+    Bitmap j;
+    CharSequence k;
+    int l;
+    int m;
+    boolean n = true;
+    boolean o;
+    k.h p;
+    CharSequence q;
+    CharSequence r;
+    CharSequence[] s;
+    int t;
+    int u;
+    boolean v;
+    String w;
+    boolean x;
+    String y;
+    boolean z = false;
+    
+    public e(Context paramContext)
+    {
+      this(paramContext, null);
+    }
+    
+    public e(Context paramContext, String paramString)
+    {
+      Notification localNotification = new Notification();
+      R = localNotification;
+      a = paramContext;
+      K = paramString;
+      when = System.currentTimeMillis();
+      R.audioStreamType = -1;
+      m = 0;
+      U = new ArrayList();
+      Q = true;
+    }
+    
+    protected static CharSequence e(CharSequence paramCharSequence)
+    {
+      if (paramCharSequence == null) {
+        return paramCharSequence;
+      }
+      CharSequence localCharSequence = paramCharSequence;
+      if (paramCharSequence.length() > 5120) {
+        localCharSequence = paramCharSequence.subSequence(0, 5120);
+      }
+      return localCharSequence;
+    }
+    
+    private Bitmap f(Bitmap paramBitmap)
+    {
+      Object localObject = paramBitmap;
+      if (paramBitmap != null)
+      {
+        if (Build.VERSION.SDK_INT >= 27) {
+          return paramBitmap;
+        }
+        localObject = a.getResources();
+        int i1 = ((Resources)localObject).getDimensionPixelSize(b.b);
+        int i2 = ((Resources)localObject).getDimensionPixelSize(b.a);
+        if ((paramBitmap.getWidth() <= i1) && (paramBitmap.getHeight() <= i2)) {
+          return paramBitmap;
+        }
+        double d1 = Math.min(i1 / Math.max(1, paramBitmap.getWidth()), i2 / Math.max(1, paramBitmap.getHeight()));
+        localObject = Bitmap.createScaledBitmap(paramBitmap, (int)Math.ceil(paramBitmap.getWidth() * d1), (int)Math.ceil(paramBitmap.getHeight() * d1), true);
+      }
+      return localObject;
+    }
+    
+    private void p(int paramInt, boolean paramBoolean)
+    {
+      Notification localNotification;
+      if (paramBoolean)
+      {
+        localNotification = R;
+        paramInt |= flags;
+      }
+      else
+      {
+        localNotification = R;
+        paramInt &= flags;
+      }
+      flags = paramInt;
+    }
+    
+    public e A(int paramInt)
+    {
+      R.icon = paramInt;
+      return this;
+    }
+    
+    public e B(Uri paramUri)
+    {
+      Notification localNotification = R;
+      sound = paramUri;
+      audioStreamType = -1;
+      audioAttributes = new AudioAttributes.Builder().setContentType(4).setUsage(5).build();
+      return this;
+    }
+    
+    public e C(k.h paramH)
+    {
+      if (p != paramH)
+      {
+        p = paramH;
+        if (paramH != null) {
+          paramH.g(this);
+        }
+      }
+      return this;
+    }
+    
+    public e D(CharSequence paramCharSequence)
+    {
+      R.tickerText = e(paramCharSequence);
+      return this;
+    }
+    
+    public e E(long[] paramArrayOfLong)
+    {
+      R.vibrate = paramArrayOfLong;
+      return this;
+    }
+    
+    public e F(int paramInt)
+    {
+      F = paramInt;
+      return this;
+    }
+    
+    public e G(long paramLong)
+    {
+      R.when = paramLong;
+      return this;
+    }
+    
+    public e a(int paramInt, CharSequence paramCharSequence, PendingIntent paramPendingIntent)
+    {
+      b.add(new k.a(paramInt, paramCharSequence, paramPendingIntent));
+      return this;
+    }
+    
+    public Notification b()
+    {
+      return new h0(this).c();
+    }
+    
+    public e c(k.f paramF)
+    {
+      paramF.a(this);
+      return this;
+    }
+    
+    public Bundle d()
+    {
+      if (D == null) {
+        D = new Bundle();
+      }
+      return D;
+    }
+    
+    public e g(boolean paramBoolean)
+    {
+      p(16, paramBoolean);
+      return this;
+    }
+    
+    public e h(String paramString)
+    {
+      K = paramString;
+      return this;
+    }
+    
+    public e i(int paramInt)
+    {
+      E = paramInt;
+      return this;
+    }
+    
+    public e j(RemoteViews paramRemoteViews)
+    {
+      R.contentView = paramRemoteViews;
+      return this;
+    }
+    
+    public e k(PendingIntent paramPendingIntent)
+    {
+      g = paramPendingIntent;
+      return this;
+    }
+    
+    public e l(CharSequence paramCharSequence)
+    {
+      f = e(paramCharSequence);
+      return this;
+    }
+    
+    public e m(CharSequence paramCharSequence)
+    {
+      e = e(paramCharSequence);
+      return this;
+    }
+    
+    public e n(int paramInt)
+    {
+      Notification localNotification = R;
+      defaults = paramInt;
+      if ((paramInt & 0x4) != 0) {
+        flags |= 0x1;
+      }
+      return this;
+    }
+    
+    public e o(PendingIntent paramPendingIntent)
+    {
+      R.deleteIntent = paramPendingIntent;
+      return this;
+    }
+    
+    public e q(String paramString)
+    {
+      w = paramString;
+      return this;
+    }
+    
+    public e r(int paramInt)
+    {
+      O = paramInt;
+      return this;
+    }
+    
+    public e s(boolean paramBoolean)
+    {
+      x = paramBoolean;
+      return this;
+    }
+    
+    public e t(Bitmap paramBitmap)
+    {
+      j = f(paramBitmap);
+      return this;
+    }
+    
+    public e u(int paramInt1, int paramInt2, int paramInt3)
+    {
+      Notification localNotification = R;
+      ledARGB = paramInt1;
+      ledOnMS = paramInt2;
+      ledOffMS = paramInt3;
+      if ((paramInt2 != 0) && (paramInt3 != 0)) {
+        paramInt1 = 1;
+      } else {
+        paramInt1 = 0;
+      }
+      flags = (paramInt1 | flags & 0xFFFFFFFE);
+      return this;
+    }
+    
+    public e v(boolean paramBoolean)
+    {
+      z = paramBoolean;
+      return this;
+    }
+    
+    public e w(int paramInt)
+    {
+      l = paramInt;
+      return this;
+    }
+    
+    public e x(boolean paramBoolean)
+    {
+      p(8, paramBoolean);
+      return this;
+    }
+    
+    public e y(int paramInt)
+    {
+      m = paramInt;
+      return this;
+    }
+    
+    public e z(boolean paramBoolean)
+    {
+      n = paramBoolean;
+      return this;
+    }
+  }
+  
+  public static abstract interface f
+  {
+    public abstract k.e a(k.e paramE);
+  }
+  
+  public static class g
+    extends k.h
+  {
+    private ArrayList e = new ArrayList();
+    
+    public g() {}
+    
+    public void b(j paramJ)
+    {
+      paramJ = new Notification.InboxStyle(paramJ.a()).setBigContentTitle(b);
+      if (d) {
+        paramJ.setSummaryText(c);
+      }
+      Iterator localIterator = e.iterator();
+      while (localIterator.hasNext()) {
+        paramJ.addLine((CharSequence)localIterator.next());
+      }
+    }
+    
+    protected String c()
+    {
+      return "androidx.core.app.NotificationCompat$InboxStyle";
+    }
+    
+    public g h(CharSequence paramCharSequence)
+    {
+      if (paramCharSequence != null) {
+        e.add(k.e.e(paramCharSequence));
+      }
+      return this;
+    }
+    
+    public g i(CharSequence paramCharSequence)
+    {
+      b = k.e.e(paramCharSequence);
+      return this;
+    }
+  }
+  
+  public static abstract class h
+  {
+    protected k.e a;
+    CharSequence b;
+    CharSequence c;
+    boolean d = false;
+    
+    public h() {}
+    
+    public void a(Bundle paramBundle)
+    {
+      if (d) {
+        paramBundle.putCharSequence("android.summaryText", c);
+      }
+      Object localObject = b;
+      if (localObject != null) {
+        paramBundle.putCharSequence("android.title.big", (CharSequence)localObject);
+      }
+      localObject = c();
+      if (localObject != null) {
+        paramBundle.putString("androidx.core.app.extra.COMPAT_TEMPLATE", (String)localObject);
+      }
+    }
+    
+    public abstract void b(j paramJ);
+    
+    protected abstract String c();
+    
+    public RemoteViews d(j paramJ)
+    {
+      return null;
+    }
+    
+    public RemoteViews e(j paramJ)
+    {
+      return null;
+    }
+    
+    public RemoteViews f(j paramJ)
+    {
+      return null;
+    }
+    
+    public void g(k.e paramE)
+    {
+      if (a != paramE)
+      {
+        a = paramE;
+        if (paramE != null) {
+          paramE.C(this);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+package com.google.android.gms.common.internal;
+
+import n4.i;
+
+public abstract interface y
+{
+  public abstract i a(w paramW);
+}

@@ -1,0 +1,644 @@
+package com.google.protobuf;
+
+import java.io.InputStream;
+import java.io.InvalidObjectException;
+import java.io.ObjectInputStream;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+final class k1
+  extends j
+{
+  static final int[] n = { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, Integer.MAX_VALUE };
+  private final int i;
+  private final j j;
+  private final j k;
+  private final int l;
+  private final int m;
+  
+  private k1(j paramJ1, j paramJ2)
+  {
+    j = paramJ1;
+    k = paramJ2;
+    int i1 = paramJ1.size();
+    l = i1;
+    i = (i1 + paramJ2.size());
+    m = (Math.max(paramJ1.t(), paramJ2.t()) + 1);
+  }
+  
+  static j V(j paramJ1, j paramJ2)
+  {
+    if (paramJ2.size() == 0) {
+      return paramJ1;
+    }
+    if (paramJ1.size() == 0) {
+      return paramJ2;
+    }
+    int i1 = paramJ1.size() + paramJ2.size();
+    if (i1 < 128) {
+      return W(paramJ1, paramJ2);
+    }
+    if ((paramJ1 instanceof k1))
+    {
+      k1 localK1 = (k1)paramJ1;
+      if (k.size() + paramJ2.size() < 128)
+      {
+        paramJ1 = W(k, paramJ2);
+        return new k1(j, paramJ1);
+      }
+      if ((j.t() > k.t()) && (localK1.t() > paramJ2.t()))
+      {
+        paramJ1 = new k1(k, paramJ2);
+        return new k1(j, paramJ1);
+      }
+    }
+    if (i1 >= Y(Math.max(paramJ1.t(), paramJ2.t()) + 1)) {
+      return new k1(paramJ1, paramJ2);
+    }
+    return b.a(new b(null), paramJ1, paramJ2);
+  }
+  
+  private static j W(j paramJ1, j paramJ2)
+  {
+    int i1 = paramJ1.size();
+    int i2 = paramJ2.size();
+    byte[] arrayOfByte = new byte[i1 + i2];
+    paramJ1.r(arrayOfByte, 0, 0, i1);
+    paramJ2.r(arrayOfByte, 0, i1, i2);
+    return j.O(arrayOfByte);
+  }
+  
+  private boolean X(j paramJ)
+  {
+    c localC1 = new c(this, null);
+    j.i localI = (j.i)localC1.next();
+    c localC2 = new c(paramJ, null);
+    paramJ = (j.i)localC2.next();
+    int i2 = 0;
+    int i1 = 0;
+    int i3 = 0;
+    for (;;)
+    {
+      int i6 = localI.size() - i2;
+      int i4 = paramJ.size() - i1;
+      int i5 = Math.min(i6, i4);
+      boolean bool;
+      if (i2 == 0) {
+        bool = localI.S(paramJ, i1, i5);
+      } else {
+        bool = paramJ.S(localI, i2, i5);
+      }
+      if (!bool) {
+        return false;
+      }
+      i3 += i5;
+      int i7 = i;
+      if (i3 >= i7)
+      {
+        if (i3 == i7) {
+          return true;
+        }
+        throw new IllegalStateException();
+      }
+      if (i5 == i6)
+      {
+        localI = (j.i)localC1.next();
+        i2 = 0;
+      }
+      else
+      {
+        i2 += i5;
+      }
+      if (i5 == i4)
+      {
+        paramJ = (j.i)localC2.next();
+        i1 = 0;
+      }
+      else
+      {
+        i1 += i5;
+      }
+    }
+  }
+  
+  static int Y(int paramInt)
+  {
+    int[] arrayOfInt = n;
+    if (paramInt >= arrayOfInt.length) {
+      return Integer.MAX_VALUE;
+    }
+    return arrayOfInt[paramInt];
+  }
+  
+  private void readObject(ObjectInputStream paramObjectInputStream)
+  {
+    throw new InvalidObjectException("RopeByteStream instances are not to be serialized directly");
+  }
+  
+  protected int A(int paramInt1, int paramInt2, int paramInt3)
+  {
+    int i1 = l;
+    if (paramInt2 + paramInt3 <= i1) {
+      return j.A(paramInt1, paramInt2, paramInt3);
+    }
+    if (paramInt2 >= i1) {
+      return k.A(paramInt1, paramInt2 - i1, paramInt3);
+    }
+    i1 -= paramInt2;
+    paramInt1 = j.A(paramInt1, paramInt2, i1);
+    return k.A(paramInt1, 0, paramInt3 - i1);
+  }
+  
+  protected int C(int paramInt1, int paramInt2, int paramInt3)
+  {
+    int i1 = l;
+    if (paramInt2 + paramInt3 <= i1) {
+      return j.C(paramInt1, paramInt2, paramInt3);
+    }
+    if (paramInt2 >= i1) {
+      return k.C(paramInt1, paramInt2 - i1, paramInt3);
+    }
+    i1 -= paramInt2;
+    paramInt1 = j.C(paramInt1, paramInt2, i1);
+    return k.C(paramInt1, 0, paramInt3 - i1);
+  }
+  
+  public j F(int paramInt1, int paramInt2)
+  {
+    int i1 = j.i(paramInt1, paramInt2, i);
+    if (i1 == 0) {
+      return j.f;
+    }
+    if (i1 == i) {
+      return this;
+    }
+    i1 = l;
+    if (paramInt2 <= i1) {
+      return j.F(paramInt1, paramInt2);
+    }
+    if (paramInt1 >= i1) {
+      return k.F(paramInt1 - i1, paramInt2 - i1);
+    }
+    return new k1(j.E(paramInt1), k.F(0, paramInt2 - l));
+  }
+  
+  protected String K(Charset paramCharset)
+  {
+    return new String(H(), paramCharset);
+  }
+  
+  void Q(i paramI)
+  {
+    j.Q(paramI);
+    k.Q(paramI);
+  }
+  
+  public ByteBuffer d()
+  {
+    return ByteBuffer.wrap(H()).asReadOnlyBuffer();
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (paramObject == this) {
+      return true;
+    }
+    if (!(paramObject instanceof j)) {
+      return false;
+    }
+    paramObject = (j)paramObject;
+    if (i != paramObject.size()) {
+      return false;
+    }
+    if (i == 0) {
+      return true;
+    }
+    int i1 = D();
+    int i2 = paramObject.D();
+    if ((i1 != 0) && (i2 != 0) && (i1 != i2)) {
+      return false;
+    }
+    return X(paramObject);
+  }
+  
+  public byte f(int paramInt)
+  {
+    j.h(paramInt, i);
+    return u(paramInt);
+  }
+  
+  protected void s(byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
+  {
+    int i1 = l;
+    j localJ;
+    if (paramInt1 + paramInt3 <= i1) {
+      localJ = j;
+    }
+    for (;;)
+    {
+      localJ.s(paramArrayOfByte, paramInt1, paramInt2, paramInt3);
+      return;
+      if (paramInt1 < i1) {
+        break;
+      }
+      localJ = k;
+      paramInt1 -= i1;
+    }
+    i1 -= paramInt1;
+    j.s(paramArrayOfByte, paramInt1, paramInt2, i1);
+    k.s(paramArrayOfByte, 0, paramInt2 + i1, paramInt3 - i1);
+  }
+  
+  public int size()
+  {
+    return i;
+  }
+  
+  protected int t()
+  {
+    return m;
+  }
+  
+  byte u(int paramInt)
+  {
+    int i1 = l;
+    if (paramInt < i1) {
+      return j.u(paramInt);
+    }
+    return k.u(paramInt - i1);
+  }
+  
+  protected boolean v()
+  {
+    return i >= Y(m);
+  }
+  
+  public boolean w()
+  {
+    j localJ = j;
+    int i1 = l;
+    boolean bool = false;
+    i1 = localJ.C(0, 0, i1);
+    localJ = k;
+    if (localJ.C(i1, 0, localJ.size()) == 0) {
+      bool = true;
+    }
+    return bool;
+  }
+  
+  Object writeReplace()
+  {
+    return j.O(H());
+  }
+  
+  public j.g x()
+  {
+    return new a();
+  }
+  
+  public k z()
+  {
+    return k.f(new d());
+  }
+  
+  class a
+    extends j.c
+  {
+    final k1.c e = new k1.c(k1.this, null);
+    j.g f = c();
+    
+    a() {}
+    
+    private j.g c()
+    {
+      if (e.hasNext()) {
+        return e.d().x();
+      }
+      return null;
+    }
+    
+    public byte a()
+    {
+      j.g localG = f;
+      if (localG != null)
+      {
+        byte b = localG.a();
+        if (!f.hasNext()) {
+          f = c();
+        }
+        return b;
+      }
+      throw new NoSuchElementException();
+    }
+    
+    public boolean hasNext()
+    {
+      return f != null;
+    }
+  }
+  
+  private static class b
+  {
+    private final ArrayDeque a = new ArrayDeque();
+    
+    private b() {}
+    
+    private j b(j paramJ1, j paramJ2)
+    {
+      c(paramJ1);
+      c(paramJ2);
+      for (paramJ1 = (j)a.pop(); !a.isEmpty(); paramJ1 = new k1((j)a.pop(), paramJ1, null)) {}
+      return paramJ1;
+    }
+    
+    private void c(j paramJ)
+    {
+      if (paramJ.v())
+      {
+        e(paramJ);
+        return;
+      }
+      if ((paramJ instanceof k1))
+      {
+        paramJ = (k1)paramJ;
+        c(k1.S(paramJ));
+        c(k1.U(paramJ));
+        return;
+      }
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Has a new type of ByteString been created? Found ");
+      localStringBuilder.append(paramJ.getClass());
+      throw new IllegalArgumentException(localStringBuilder.toString());
+    }
+    
+    private int d(int paramInt)
+    {
+      int i = Arrays.binarySearch(k1.n, paramInt);
+      paramInt = i;
+      if (i < 0) {
+        paramInt = -(i + 1) - 1;
+      }
+      return paramInt;
+    }
+    
+    private void e(j paramJ)
+    {
+      int i = d(paramJ.size());
+      int j = k1.Y(i + 1);
+      if ((!a.isEmpty()) && (((j)a.peek()).size() < j))
+      {
+        i = k1.Y(i);
+        for (Object localObject = (j)a.pop(); (!a.isEmpty()) && (((j)a.peek()).size() < i); localObject = new k1((j)a.pop(), (j)localObject, null)) {}
+        for (paramJ = new k1((j)localObject, paramJ, null); !a.isEmpty(); paramJ = new k1((j)a.pop(), paramJ, null))
+        {
+          i = k1.Y(d(paramJ.size()) + 1);
+          if (((j)a.peek()).size() >= i) {
+            break;
+          }
+        }
+        a.push(paramJ);
+        return;
+      }
+      a.push(paramJ);
+    }
+  }
+  
+  private static final class c
+    implements Iterator
+  {
+    private final ArrayDeque e;
+    private j.i f;
+    
+    private c(j paramJ)
+    {
+      if ((paramJ instanceof k1))
+      {
+        paramJ = (k1)paramJ;
+        ArrayDeque localArrayDeque = new ArrayDeque(paramJ.t());
+        e = localArrayDeque;
+        localArrayDeque.push(paramJ);
+        paramJ = b(k1.S(paramJ));
+      }
+      else
+      {
+        e = null;
+        paramJ = (j.i)paramJ;
+      }
+      f = paramJ;
+    }
+    
+    private j.i b(j paramJ)
+    {
+      while ((paramJ instanceof k1))
+      {
+        paramJ = (k1)paramJ;
+        e.push(paramJ);
+        paramJ = k1.S(paramJ);
+      }
+      return (j.i)paramJ;
+    }
+    
+    private j.i c()
+    {
+      Object localObject;
+      do
+      {
+        localObject = e;
+        if ((localObject == null) || (((ArrayDeque)localObject).isEmpty())) {
+          break;
+        }
+        localObject = b(k1.U((k1)e.pop()));
+      } while (((j)localObject).isEmpty());
+      return localObject;
+      return null;
+    }
+    
+    public j.i d()
+    {
+      j.i localI = f;
+      if (localI != null)
+      {
+        f = c();
+        return localI;
+      }
+      throw new NoSuchElementException();
+    }
+    
+    public boolean hasNext()
+    {
+      return f != null;
+    }
+    
+    public void remove()
+    {
+      throw new UnsupportedOperationException();
+    }
+  }
+  
+  private class d
+    extends InputStream
+  {
+    private k1.c e;
+    private j.i f;
+    private int g;
+    private int h;
+    private int i;
+    private int j;
+    
+    public d()
+    {
+      g();
+    }
+    
+    private void a()
+    {
+      if (f != null)
+      {
+        int m = h;
+        int n = g;
+        if (m == n)
+        {
+          i += n;
+          m = 0;
+          h = 0;
+          if (e.hasNext())
+          {
+            j.i localI = e.d();
+            f = localI;
+            m = localI.size();
+          }
+          else
+          {
+            f = null;
+          }
+          g = m;
+        }
+      }
+    }
+    
+    private int c()
+    {
+      int m = i;
+      int n = h;
+      return size() - (m + n);
+    }
+    
+    private void g()
+    {
+      Object localObject = new k1.c(k1.this, null);
+      e = ((k1.c)localObject);
+      localObject = ((k1.c)localObject).d();
+      f = ((j.i)localObject);
+      g = ((j)localObject).size();
+      h = 0;
+      i = 0;
+    }
+    
+    private int h(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      int n = paramInt2;
+      int m = paramInt1;
+      paramInt1 = n;
+      while (paramInt1 > 0)
+      {
+        a();
+        if (f == null) {
+          break;
+        }
+        int i1 = Math.min(g - h, paramInt1);
+        n = m;
+        if (paramArrayOfByte != null)
+        {
+          f.r(paramArrayOfByte, h, m, i1);
+          n = m + i1;
+        }
+        h += i1;
+        paramInt1 -= i1;
+        m = n;
+      }
+      return paramInt2 - paramInt1;
+    }
+    
+    public int available()
+    {
+      return c();
+    }
+    
+    public void mark(int paramInt)
+    {
+      j = (i + h);
+    }
+    
+    public boolean markSupported()
+    {
+      return true;
+    }
+    
+    public int read()
+    {
+      a();
+      j.i localI = f;
+      if (localI == null) {
+        return -1;
+      }
+      int m = h;
+      h = (m + 1);
+      return localI.f(m) & 0xFF;
+    }
+    
+    public int read(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      paramArrayOfByte.getClass();
+      if ((paramInt1 >= 0) && (paramInt2 >= 0) && (paramInt2 <= paramArrayOfByte.length - paramInt1))
+      {
+        int m = h(paramArrayOfByte, paramInt1, paramInt2);
+        paramInt1 = m;
+        if (m == 0) {
+          if (paramInt2 <= 0)
+          {
+            paramInt1 = m;
+            if (c() != 0) {}
+          }
+          else
+          {
+            paramInt1 = -1;
+          }
+        }
+        return paramInt1;
+      }
+      throw new IndexOutOfBoundsException();
+    }
+    
+    public void reset()
+    {
+      try
+      {
+        g();
+        h(null, 0, j);
+        return;
+      }
+      finally
+      {
+        localObject = finally;
+        throw localObject;
+      }
+    }
+    
+    public long skip(long paramLong)
+    {
+      if (paramLong >= 0L)
+      {
+        long l = paramLong;
+        if (paramLong > 2147483647L) {
+          l = 2147483647L;
+        }
+        return h(null, 0, (int)l);
+      }
+      throw new IndexOutOfBoundsException();
+    }
+  }
+}

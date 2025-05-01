@@ -1,0 +1,494 @@
+package androidx.fragment.app;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
+import android.content.DialogInterface.OnDismissListener;
+import android.os.BaseBundle;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.n;
+import androidx.lifecycle.n0;
+import androidx.lifecycle.o0;
+import androidx.lifecycle.t;
+import u0.e;
+
+public class d
+  extends Fragment
+  implements DialogInterface.OnCancelListener, DialogInterface.OnDismissListener
+{
+  private Handler e;
+  private Runnable f = new a();
+  private DialogInterface.OnCancelListener g = new b();
+  private DialogInterface.OnDismissListener h = new c();
+  private int i = 0;
+  private int j = 0;
+  private boolean k = true;
+  private boolean l = true;
+  private int m = -1;
+  private boolean n;
+  private t o = new d();
+  private Dialog p;
+  private boolean q;
+  private boolean r;
+  private boolean s;
+  private boolean t = false;
+  
+  public d() {}
+  
+  private void m(boolean paramBoolean1, boolean paramBoolean2)
+  {
+    if (r) {
+      return;
+    }
+    r = true;
+    s = false;
+    Object localObject = p;
+    if (localObject != null)
+    {
+      ((Dialog)localObject).setOnDismissListener(null);
+      p.dismiss();
+      if (!paramBoolean2) {
+        if (Looper.myLooper() == e.getLooper()) {
+          onDismiss(p);
+        } else {
+          e.post(f);
+        }
+      }
+    }
+    q = true;
+    if (m >= 0)
+    {
+      getParentFragmentManager().W0(m, 1);
+      m = -1;
+      return;
+    }
+    localObject = getParentFragmentManager().m();
+    ((u)localObject).l(this);
+    if (paramBoolean1)
+    {
+      ((u)localObject).g();
+      return;
+    }
+    ((u)localObject).f();
+  }
+  
+  private void s(Bundle paramBundle)
+  {
+    if (!l) {
+      return;
+    }
+    if (!t) {
+      try
+      {
+        n = true;
+        paramBundle = p(paramBundle);
+        p = paramBundle;
+        if (l)
+        {
+          v(paramBundle, i);
+          paramBundle = getContext();
+          if ((paramBundle instanceof Activity)) {
+            p.setOwnerActivity((Activity)paramBundle);
+          }
+          p.setCancelable(k);
+          p.setOnCancelListener(g);
+          p.setOnDismissListener(h);
+          t = true;
+        }
+        else
+        {
+          p = null;
+        }
+        return;
+      }
+      finally
+      {
+        n = false;
+      }
+    }
+  }
+  
+  g createFragmentContainer()
+  {
+    return new e(super.createFragmentContainer());
+  }
+  
+  public Dialog n()
+  {
+    return p;
+  }
+  
+  public int o()
+  {
+    return j;
+  }
+  
+  public void onAttach(Context paramContext)
+  {
+    super.onAttach(paramContext);
+    getViewLifecycleOwnerLiveData().i(o);
+    if (!s) {
+      r = false;
+    }
+  }
+  
+  public void onCancel(DialogInterface paramDialogInterface) {}
+  
+  public void onCreate(Bundle paramBundle)
+  {
+    super.onCreate(paramBundle);
+    e = new Handler();
+    boolean bool;
+    if (mContainerId == 0) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    l = bool;
+    if (paramBundle != null)
+    {
+      i = paramBundle.getInt("android:style", 0);
+      j = paramBundle.getInt("android:theme", 0);
+      k = paramBundle.getBoolean("android:cancelable", true);
+      l = paramBundle.getBoolean("android:showsDialog", l);
+      m = paramBundle.getInt("android:backStackId", -1);
+    }
+  }
+  
+  public void onDestroyView()
+  {
+    super.onDestroyView();
+    Dialog localDialog = p;
+    if (localDialog != null)
+    {
+      q = true;
+      localDialog.setOnDismissListener(null);
+      p.dismiss();
+      if (!r) {
+        onDismiss(p);
+      }
+      p = null;
+      t = false;
+    }
+  }
+  
+  public void onDetach()
+  {
+    super.onDetach();
+    if ((!s) && (!r)) {
+      r = true;
+    }
+    getViewLifecycleOwnerLiveData().m(o);
+  }
+  
+  public void onDismiss(DialogInterface paramDialogInterface)
+  {
+    if (!q)
+    {
+      if (m.F0(3))
+      {
+        paramDialogInterface = new StringBuilder();
+        paramDialogInterface.append("onDismiss called for DialogFragment ");
+        paramDialogInterface.append(this);
+        Log.d("FragmentManager", paramDialogInterface.toString());
+      }
+      m(true, true);
+    }
+  }
+  
+  public LayoutInflater onGetLayoutInflater(Bundle paramBundle)
+  {
+    LayoutInflater localLayoutInflater = super.onGetLayoutInflater(paramBundle);
+    Object localObject;
+    if ((l) && (!n))
+    {
+      s(paramBundle);
+      if (m.F0(2))
+      {
+        paramBundle = new StringBuilder();
+        paramBundle.append("get layout inflater for DialogFragment ");
+        paramBundle.append(this);
+        paramBundle.append(" from dialog context");
+        Log.d("FragmentManager", paramBundle.toString());
+      }
+      localObject = p;
+      paramBundle = localLayoutInflater;
+      if (localObject != null) {
+        paramBundle = localLayoutInflater.cloneInContext(((Dialog)localObject).getContext());
+      }
+      return paramBundle;
+    }
+    if (m.F0(2))
+    {
+      paramBundle = new StringBuilder();
+      paramBundle.append("getting layout inflater for DialogFragment ");
+      paramBundle.append(this);
+      String str = paramBundle.toString();
+      if (!l)
+      {
+        paramBundle = new StringBuilder();
+        localObject = "mShowsDialog = false: ";
+      }
+      else
+      {
+        paramBundle = new StringBuilder();
+        localObject = "mCreatingDialog = true: ";
+      }
+      paramBundle.append((String)localObject);
+      paramBundle.append(str);
+      Log.d("FragmentManager", paramBundle.toString());
+    }
+    return localLayoutInflater;
+  }
+  
+  public void onSaveInstanceState(Bundle paramBundle)
+  {
+    super.onSaveInstanceState(paramBundle);
+    Object localObject = p;
+    if (localObject != null)
+    {
+      localObject = ((Dialog)localObject).onSaveInstanceState();
+      ((Bundle)localObject).putBoolean("android:dialogShowing", false);
+      paramBundle.putBundle("android:savedDialogState", (Bundle)localObject);
+    }
+    int i1 = i;
+    if (i1 != 0) {
+      paramBundle.putInt("android:style", i1);
+    }
+    i1 = j;
+    if (i1 != 0) {
+      paramBundle.putInt("android:theme", i1);
+    }
+    boolean bool = k;
+    if (!bool) {
+      paramBundle.putBoolean("android:cancelable", bool);
+    }
+    bool = l;
+    if (!bool) {
+      paramBundle.putBoolean("android:showsDialog", bool);
+    }
+    i1 = m;
+    if (i1 != -1) {
+      paramBundle.putInt("android:backStackId", i1);
+    }
+  }
+  
+  public void onStart()
+  {
+    super.onStart();
+    Object localObject = p;
+    if (localObject != null)
+    {
+      q = false;
+      ((Dialog)localObject).show();
+      localObject = p.getWindow().getDecorView();
+      n0.a((View)localObject, this);
+      o0.a((View)localObject, this);
+      e.a((View)localObject, this);
+    }
+  }
+  
+  public void onStop()
+  {
+    super.onStop();
+    Dialog localDialog = p;
+    if (localDialog != null) {
+      localDialog.hide();
+    }
+  }
+  
+  public void onViewStateRestored(Bundle paramBundle)
+  {
+    super.onViewStateRestored(paramBundle);
+    if ((p != null) && (paramBundle != null))
+    {
+      paramBundle = paramBundle.getBundle("android:savedDialogState");
+      if (paramBundle != null) {
+        p.onRestoreInstanceState(paramBundle);
+      }
+    }
+  }
+  
+  public Dialog p(Bundle paramBundle)
+  {
+    if (m.F0(3))
+    {
+      paramBundle = new StringBuilder();
+      paramBundle.append("onCreateDialog called for DialogFragment ");
+      paramBundle.append(this);
+      Log.d("FragmentManager", paramBundle.toString());
+    }
+    return new Dialog(requireContext(), o());
+  }
+  
+  void performCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
+  {
+    super.performCreateView(paramLayoutInflater, paramViewGroup, paramBundle);
+    if ((mView == null) && (p != null) && (paramBundle != null))
+    {
+      paramLayoutInflater = paramBundle.getBundle("android:savedDialogState");
+      if (paramLayoutInflater != null) {
+        p.onRestoreInstanceState(paramLayoutInflater);
+      }
+    }
+  }
+  
+  View q(int paramInt)
+  {
+    Dialog localDialog = p;
+    if (localDialog != null) {
+      return localDialog.findViewById(paramInt);
+    }
+    return null;
+  }
+  
+  boolean r()
+  {
+    return t;
+  }
+  
+  public final Dialog t()
+  {
+    Object localObject = n();
+    if (localObject != null) {
+      return localObject;
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("DialogFragment ");
+    ((StringBuilder)localObject).append(this);
+    ((StringBuilder)localObject).append(" does not have a Dialog.");
+    throw new IllegalStateException(((StringBuilder)localObject).toString());
+  }
+  
+  public void u(boolean paramBoolean)
+  {
+    l = paramBoolean;
+  }
+  
+  public void v(Dialog paramDialog, int paramInt)
+  {
+    if ((paramInt != 1) && (paramInt != 2))
+    {
+      if (paramInt != 3) {
+        return;
+      }
+      Window localWindow = paramDialog.getWindow();
+      if (localWindow != null) {
+        localWindow.addFlags(24);
+      }
+    }
+    paramDialog.requestWindowFeature(1);
+  }
+  
+  public void w(m paramM, String paramString)
+  {
+    r = false;
+    s = true;
+    paramM = paramM.m();
+    paramM.d(this, paramString);
+    paramM.f();
+  }
+  
+  class a
+    implements Runnable
+  {
+    a() {}
+    
+    public void run()
+    {
+      d.k(d.this).onDismiss(d.j(d.this));
+    }
+  }
+  
+  class b
+    implements DialogInterface.OnCancelListener
+  {
+    b() {}
+    
+    public void onCancel(DialogInterface paramDialogInterface)
+    {
+      if (d.j(d.this) != null)
+      {
+        paramDialogInterface = d.this;
+        paramDialogInterface.onCancel(d.j(paramDialogInterface));
+      }
+    }
+  }
+  
+  class c
+    implements DialogInterface.OnDismissListener
+  {
+    c() {}
+    
+    public void onDismiss(DialogInterface paramDialogInterface)
+    {
+      if (d.j(d.this) != null)
+      {
+        paramDialogInterface = d.this;
+        paramDialogInterface.onDismiss(d.j(paramDialogInterface));
+      }
+    }
+  }
+  
+  class d
+    implements t
+  {
+    d() {}
+    
+    public void b(n paramN)
+    {
+      if ((paramN != null) && (d.l(d.this)))
+      {
+        paramN = requireView();
+        if (paramN.getParent() == null)
+        {
+          if (d.j(d.this) != null)
+          {
+            if (m.F0(3))
+            {
+              StringBuilder localStringBuilder = new StringBuilder();
+              localStringBuilder.append("DialogFragment ");
+              localStringBuilder.append(this);
+              localStringBuilder.append(" setting the content view on ");
+              localStringBuilder.append(d.j(d.this));
+              Log.d("FragmentManager", localStringBuilder.toString());
+            }
+            d.j(d.this).setContentView(paramN);
+          }
+        }
+        else {
+          throw new IllegalStateException("DialogFragment can not be attached to a container view");
+        }
+      }
+    }
+  }
+  
+  class e
+    extends g
+  {
+    e(g paramG) {}
+    
+    public View c(int paramInt)
+    {
+      if (e.d()) {
+        return e.c(paramInt);
+      }
+      return q(paramInt);
+    }
+    
+    public boolean d()
+    {
+      return (e.d()) || (r());
+    }
+  }
+}

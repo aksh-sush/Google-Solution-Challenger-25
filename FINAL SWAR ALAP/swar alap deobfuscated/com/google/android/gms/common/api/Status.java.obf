@@ -1,0 +1,140 @@
+package com.google.android.gms.common.api;
+
+import android.app.PendingIntent;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.ReflectedParcelable;
+import com.google.android.gms.common.internal.q.a;
+import q3.b;
+import s3.a;
+
+public final class Status
+  extends a
+  implements h, ReflectedParcelable
+{
+  public static final Parcelable.Creator<Status> CREATOR = new q();
+  public static final Status j = new Status(-1);
+  public static final Status k = new Status(0);
+  public static final Status l = new Status(14);
+  public static final Status m = new Status(8);
+  public static final Status n = new Status(15);
+  public static final Status o = new Status(16);
+  public static final Status p;
+  public static final Status q = new Status(17);
+  final int e;
+  private final int f;
+  private final String g;
+  private final PendingIntent h;
+  private final b i;
+  
+  static
+  {
+    p = new Status(18);
+  }
+  
+  public Status(int paramInt)
+  {
+    this(paramInt, null);
+  }
+  
+  Status(int paramInt1, int paramInt2, String paramString, PendingIntent paramPendingIntent, b paramB)
+  {
+    e = paramInt1;
+    f = paramInt2;
+    g = paramString;
+    h = paramPendingIntent;
+    i = paramB;
+  }
+  
+  public Status(int paramInt, String paramString)
+  {
+    this(1, paramInt, paramString, null, null);
+  }
+  
+  public Status(int paramInt, String paramString, PendingIntent paramPendingIntent)
+  {
+    this(1, paramInt, paramString, paramPendingIntent, null);
+  }
+  
+  public Status(b paramB, String paramString)
+  {
+    this(paramB, paramString, 17);
+  }
+  
+  public Status(b paramB, String paramString, int paramInt)
+  {
+    this(1, paramInt, paramString, paramB.W(), paramB);
+  }
+  
+  public b U()
+  {
+    return i;
+  }
+  
+  public int V()
+  {
+    return f;
+  }
+  
+  public String W()
+  {
+    return g;
+  }
+  
+  public boolean X()
+  {
+    return h != null;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (!(paramObject instanceof Status)) {
+      return false;
+    }
+    paramObject = (Status)paramObject;
+    return (e == e) && (f == f) && (com.google.android.gms.common.internal.q.b(g, g)) && (com.google.android.gms.common.internal.q.b(h, h)) && (com.google.android.gms.common.internal.q.b(i, i));
+  }
+  
+  public Status getStatus()
+  {
+    return this;
+  }
+  
+  public int hashCode()
+  {
+    return com.google.android.gms.common.internal.q.c(new Object[] { Integer.valueOf(e), Integer.valueOf(f), g, h, i });
+  }
+  
+  public boolean j0()
+  {
+    return f <= 0;
+  }
+  
+  public String toString()
+  {
+    q.a localA = com.google.android.gms.common.internal.q.d(this);
+    localA.a("statusCode", zza());
+    localA.a("resolution", h);
+    return localA.toString();
+  }
+  
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int i1 = s3.c.a(paramParcel);
+    s3.c.t(paramParcel, 1, V());
+    s3.c.D(paramParcel, 2, W(), false);
+    s3.c.B(paramParcel, 3, h, paramInt, false);
+    s3.c.B(paramParcel, 4, U(), paramInt, false);
+    s3.c.t(paramParcel, 1000, e);
+    s3.c.b(paramParcel, i1);
+  }
+  
+  public final String zza()
+  {
+    String str = g;
+    if (str != null) {
+      return str;
+    }
+    return c.a(f);
+  }
+}

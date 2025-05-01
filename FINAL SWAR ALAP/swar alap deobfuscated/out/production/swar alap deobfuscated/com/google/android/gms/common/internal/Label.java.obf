@@ -1,0 +1,78 @@
+package com.google.android.gms.common.internal;
+
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import q3.b;
+import s3.a;
+import s3.c;
+
+public final class w0
+  extends a
+{
+  public static final Parcelable.Creator<w0> CREATOR = new x0();
+  final int e;
+  final IBinder f;
+  private final b g;
+  private final boolean h;
+  private final boolean i;
+  
+  w0(int paramInt, IBinder paramIBinder, b paramB, boolean paramBoolean1, boolean paramBoolean2)
+  {
+    e = paramInt;
+    f = paramIBinder;
+    g = paramB;
+    h = paramBoolean1;
+    i = paramBoolean2;
+  }
+  
+  public final b U()
+  {
+    return g;
+  }
+  
+  public final k V()
+  {
+    IBinder localIBinder = f;
+    if (localIBinder == null) {
+      return null;
+    }
+    return k.a.c(localIBinder);
+  }
+  
+  public final boolean W()
+  {
+    return h;
+  }
+  
+  public final boolean X()
+  {
+    return i;
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (paramObject == null) {
+      return false;
+    }
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof w0)) {
+      return false;
+    }
+    paramObject = (w0)paramObject;
+    return (g.equals(g)) && (q.b(V(), paramObject.V()));
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int j = c.a(paramParcel);
+    c.t(paramParcel, 1, e);
+    c.s(paramParcel, 2, f, false);
+    c.B(paramParcel, 3, g, paramInt, false);
+    c.g(paramParcel, 4, h);
+    c.g(paramParcel, 5, i);
+    c.b(paramParcel, j);
+  }
+}

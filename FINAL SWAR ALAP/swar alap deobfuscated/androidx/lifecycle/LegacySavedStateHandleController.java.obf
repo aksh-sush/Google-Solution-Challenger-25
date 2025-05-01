@@ -1,0 +1,92 @@
+package androidx.lifecycle;
+
+import android.os.Bundle;
+import androidx.savedstate.a;
+import androidx.savedstate.a.a;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+import u0.d;
+
+public final class LegacySavedStateHandleController
+{
+  public static final LegacySavedStateHandleController a = new LegacySavedStateHandleController();
+  
+  private LegacySavedStateHandleController() {}
+  
+  public static final void a(h0 paramH0, a paramA, i paramI)
+  {
+    db.l.e(paramH0, "viewModel");
+    db.l.e(paramA, "registry");
+    db.l.e(paramI, "lifecycle");
+    paramH0 = (SavedStateHandleController)paramH0.c("androidx.lifecycle.savedstate.vm.tag");
+    if ((paramH0 != null) && (!paramH0.j()))
+    {
+      paramH0.f(paramA, paramI);
+      a.c(paramA, paramI);
+    }
+  }
+  
+  public static final SavedStateHandleController b(a paramA, i paramI, String paramString, Bundle paramBundle)
+  {
+    db.l.e(paramA, "registry");
+    db.l.e(paramI, "lifecycle");
+    db.l.b(paramString);
+    Bundle localBundle = paramA.b(paramString);
+    paramString = new SavedStateHandleController(paramString, a0.f.a(localBundle, paramBundle));
+    paramString.f(paramA, paramI);
+    a.c(paramA, paramI);
+    return paramString;
+  }
+  
+  private final void c(final a paramA, i paramI)
+  {
+    i.b localB = paramI.b();
+    if ((localB != i.b.f) && (!localB.c(i.b.h)))
+    {
+      paramI.a(new l()
+      {
+        public void d(n paramAnonymousN, i.a paramAnonymousA)
+        {
+          db.l.e(paramAnonymousN, "source");
+          db.l.e(paramAnonymousA, "event");
+          if (paramAnonymousA == i.a.ON_START)
+          {
+            e.c(this);
+            paramA.i(LegacySavedStateHandleController.a.class);
+          }
+        }
+      });
+      return;
+    }
+    paramA.i(a.class);
+  }
+  
+  public static final class a
+    implements a.a
+  {
+    public a() {}
+    
+    public void a(d paramD)
+    {
+      db.l.e(paramD, "owner");
+      if ((paramD instanceof m0))
+      {
+        l0 localL0 = ((m0)paramD).getViewModelStore();
+        a localA = paramD.getSavedStateRegistry();
+        Iterator localIterator = localL0.c().iterator();
+        while (localIterator.hasNext())
+        {
+          h0 localH0 = localL0.b((String)localIterator.next());
+          db.l.b(localH0);
+          LegacySavedStateHandleController.a(localH0, localA, paramD.getLifecycle());
+        }
+        if ((localL0.c().isEmpty() ^ true)) {
+          localA.i(a.class);
+        }
+        return;
+      }
+      throw new IllegalStateException("Internal error: OnRecreation should be registered only on components that implement ViewModelStoreOwner".toString());
+    }
+  }
+}

@@ -1,0 +1,60 @@
+package com.google.android.gms.internal.auth;
+
+public enum zzhn
+{
+  private final zzho zzt;
+  
+  static
+  {
+    zzhn localZzhn1 = new zzhn("DOUBLE", 0, zzho.zzd, 1);
+    zza = localZzhn1;
+    zzhn localZzhn2 = new zzhn("FLOAT", 1, zzho.zzc, 5);
+    zzb = localZzhn2;
+    Object localObject1 = zzho.zzb;
+    zzhn localZzhn3 = new zzhn("INT64", 2, (zzho)localObject1, 0);
+    zzc = localZzhn3;
+    zzhn localZzhn4 = new zzhn("UINT64", 3, (zzho)localObject1, 0);
+    zzd = localZzhn4;
+    Object localObject3 = zzho.zza;
+    zzhn localZzhn5 = new zzhn("INT32", 4, (zzho)localObject3, 0);
+    zze = localZzhn5;
+    zzhn localZzhn6 = new zzhn("FIXED64", 5, (zzho)localObject1, 1);
+    zzf = localZzhn6;
+    zzhn localZzhn7 = new zzhn("FIXED32", 6, (zzho)localObject3, 5);
+    zzg = localZzhn7;
+    zzhn localZzhn8 = new zzhn("BOOL", 7, zzho.zze, 0);
+    zzh = localZzhn8;
+    zzhn localZzhn9 = new zzhn("STRING", 8, zzho.zzf, 2);
+    zzi = localZzhn9;
+    Object localObject2 = zzho.zzi;
+    zzhn localZzhn10 = new zzhn("GROUP", 9, (zzho)localObject2, 3);
+    zzj = localZzhn10;
+    localObject2 = new zzhn("MESSAGE", 10, (zzho)localObject2, 2);
+    zzk = (zzhn)localObject2;
+    zzhn localZzhn11 = new zzhn("BYTES", 11, zzho.zzg, 2);
+    zzl = localZzhn11;
+    zzhn localZzhn12 = new zzhn("UINT32", 12, (zzho)localObject3, 0);
+    zzm = localZzhn12;
+    zzhn localZzhn13 = new zzhn("ENUM", 13, zzho.zzh, 0);
+    zzn = localZzhn13;
+    zzhn localZzhn14 = new zzhn("SFIXED32", 14, (zzho)localObject3, 5);
+    zzo = localZzhn14;
+    zzhn localZzhn15 = new zzhn("SFIXED64", 15, (zzho)localObject1, 1);
+    zzp = localZzhn15;
+    localObject3 = new zzhn("SINT32", 16, (zzho)localObject3, 0);
+    zzq = (zzhn)localObject3;
+    localObject1 = new zzhn("SINT64", 17, (zzho)localObject1, 0);
+    zzr = (zzhn)localObject1;
+    zzs = new zzhn[] { localZzhn1, localZzhn2, localZzhn3, localZzhn4, localZzhn5, localZzhn6, localZzhn7, localZzhn8, localZzhn9, localZzhn10, localObject2, localZzhn11, localZzhn12, localZzhn13, localZzhn14, localZzhn15, localObject3, localObject1 };
+  }
+  
+  private zzhn(zzho paramZzho, int paramInt)
+  {
+    zzt = paramZzho;
+  }
+  
+  public final zzho zza()
+  {
+    return zzt;
+  }
+}

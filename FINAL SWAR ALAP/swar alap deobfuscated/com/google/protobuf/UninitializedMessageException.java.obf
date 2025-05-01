@@ -1,0 +1,19 @@
+package com.google.protobuf;
+
+import java.util.List;
+
+public class s1
+  extends RuntimeException
+{
+  private final List e = null;
+  
+  public s1(t0 paramT0)
+  {
+    super("Message was missing required fields.  (Lite runtime could not determine which fields were missing).");
+  }
+  
+  public d0 a()
+  {
+    return new d0(getMessage());
+  }
+}

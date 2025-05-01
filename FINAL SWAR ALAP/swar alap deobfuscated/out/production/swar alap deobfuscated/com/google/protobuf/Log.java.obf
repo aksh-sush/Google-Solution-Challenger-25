@@ -1,0 +1,1482 @@
+package com.google.protobuf;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public abstract class m
+  extends i
+{
+  private static final Logger c = Logger.getLogger(m.class.getName());
+  private static final boolean d = x1.G();
+  n a;
+  private boolean b;
+  
+  private m() {}
+  
+  static int A(int paramInt)
+  {
+    return V(paramInt) + paramInt;
+  }
+  
+  public static int B(int paramInt, t0 paramT0)
+  {
+    return T(1) * 2 + U(2, paramInt) + C(3, paramT0);
+  }
+  
+  public static int C(int paramInt, t0 paramT0)
+  {
+    return T(paramInt) + E(paramT0);
+  }
+  
+  static int D(int paramInt, t0 paramT0, l1 paramL1)
+  {
+    return T(paramInt) + F(paramT0, paramL1);
+  }
+  
+  public static int E(t0 paramT0)
+  {
+    return A(paramT0.getSerializedSize());
+  }
+  
+  static int F(t0 paramT0, l1 paramL1)
+  {
+    return A(((a)paramT0).getSerializedSize(paramL1));
+  }
+  
+  static int G(int paramInt)
+  {
+    if (paramInt > 4096) {
+      return 4096;
+    }
+    return paramInt;
+  }
+  
+  public static int H(int paramInt, j paramJ)
+  {
+    return T(1) * 2 + U(2, paramInt) + h(3, paramJ);
+  }
+  
+  public static int I(int paramInt)
+  {
+    return V(paramInt);
+  }
+  
+  public static int J(int paramInt1, int paramInt2)
+  {
+    return T(paramInt1) + K(paramInt2);
+  }
+  
+  public static int K(int paramInt)
+  {
+    return 4;
+  }
+  
+  public static int L(int paramInt, long paramLong)
+  {
+    return T(paramInt) + M(paramLong);
+  }
+  
+  public static int M(long paramLong)
+  {
+    return 8;
+  }
+  
+  public static int N(int paramInt1, int paramInt2)
+  {
+    return T(paramInt1) + O(paramInt2);
+  }
+  
+  public static int O(int paramInt)
+  {
+    return V(Y(paramInt));
+  }
+  
+  public static int P(int paramInt, long paramLong)
+  {
+    return T(paramInt) + Q(paramLong);
+  }
+  
+  public static int Q(long paramLong)
+  {
+    return X(Z(paramLong));
+  }
+  
+  public static int R(int paramInt, String paramString)
+  {
+    return T(paramInt) + S(paramString);
+  }
+  
+  public static int S(String paramString)
+  {
+    try
+    {
+      i = y1.j(paramString);
+    }
+    catch (y1.d localD)
+    {
+      int i;
+      for (;;) {}
+    }
+    i = paramString.getBytes(c0.a).length;
+    return A(i);
+  }
+  
+  public static int T(int paramInt)
+  {
+    return V(z1.c(paramInt, 0));
+  }
+  
+  public static int U(int paramInt1, int paramInt2)
+  {
+    return T(paramInt1) + V(paramInt2);
+  }
+  
+  public static int V(int paramInt)
+  {
+    if ((paramInt & 0xFFFFFF80) == 0) {
+      return 1;
+    }
+    if ((paramInt & 0xC000) == 0) {
+      return 2;
+    }
+    if ((0xFFE00000 & paramInt) == 0) {
+      return 3;
+    }
+    if ((paramInt & 0xF0000000) == 0) {
+      return 4;
+    }
+    return 5;
+  }
+  
+  public static int W(int paramInt, long paramLong)
+  {
+    return T(paramInt) + X(paramLong);
+  }
+  
+  public static int X(long paramLong)
+  {
+    if ((0xFFFFFFFFFFFFFF80 & paramLong) == 0L) {
+      return 1;
+    }
+    if (paramLong < 0L) {
+      return 10;
+    }
+    if ((0xFFFFFFF800000000 & paramLong) != 0L)
+    {
+      paramLong >>>= 28;
+      j = 6;
+    }
+    else
+    {
+      j = 2;
+    }
+    int i = j;
+    long l = paramLong;
+    if ((0xFFFFFFFFFFE00000 & paramLong) != 0L)
+    {
+      i = j + 2;
+      l = paramLong >>> 14;
+    }
+    int j = i;
+    if ((l & 0xFFFFFFFFFFFFC000) != 0L) {
+      j = i + 1;
+    }
+    return j;
+  }
+  
+  public static int Y(int paramInt)
+  {
+    return paramInt >> 31 ^ paramInt << 1;
+  }
+  
+  public static long Z(long paramLong)
+  {
+    return paramLong >> 63 ^ paramLong << 1;
+  }
+  
+  public static m d0(OutputStream paramOutputStream, int paramInt)
+  {
+    return new e(paramOutputStream, paramInt);
+  }
+  
+  public static int e(int paramInt, boolean paramBoolean)
+  {
+    return T(paramInt) + f(paramBoolean);
+  }
+  
+  public static m e0(byte[] paramArrayOfByte)
+  {
+    return f0(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  public static int f(boolean paramBoolean)
+  {
+    return 1;
+  }
+  
+  public static m f0(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    return new c(paramArrayOfByte, paramInt1, paramInt2);
+  }
+  
+  public static int g(byte[] paramArrayOfByte)
+  {
+    return A(paramArrayOfByte.length);
+  }
+  
+  public static int h(int paramInt, j paramJ)
+  {
+    return T(paramInt) + i(paramJ);
+  }
+  
+  public static int i(j paramJ)
+  {
+    return A(paramJ.size());
+  }
+  
+  public static int j(int paramInt, double paramDouble)
+  {
+    return T(paramInt) + k(paramDouble);
+  }
+  
+  public static int k(double paramDouble)
+  {
+    return 8;
+  }
+  
+  public static int l(int paramInt1, int paramInt2)
+  {
+    return T(paramInt1) + m(paramInt2);
+  }
+  
+  public static int m(int paramInt)
+  {
+    return x(paramInt);
+  }
+  
+  public static int n(int paramInt1, int paramInt2)
+  {
+    return T(paramInt1) + o(paramInt2);
+  }
+  
+  public static int o(int paramInt)
+  {
+    return 4;
+  }
+  
+  public static int p(int paramInt, long paramLong)
+  {
+    return T(paramInt) + q(paramLong);
+  }
+  
+  public static int q(long paramLong)
+  {
+    return 8;
+  }
+  
+  public static int r(int paramInt, float paramFloat)
+  {
+    return T(paramInt) + s(paramFloat);
+  }
+  
+  public static int s(float paramFloat)
+  {
+    return 4;
+  }
+  
+  static int t(int paramInt, t0 paramT0, l1 paramL1)
+  {
+    return T(paramInt) * 2 + v(paramT0, paramL1);
+  }
+  
+  public static int u(t0 paramT0)
+  {
+    return paramT0.getSerializedSize();
+  }
+  
+  static int v(t0 paramT0, l1 paramL1)
+  {
+    return ((a)paramT0).getSerializedSize(paramL1);
+  }
+  
+  public static int w(int paramInt1, int paramInt2)
+  {
+    return T(paramInt1) + x(paramInt2);
+  }
+  
+  public static int x(int paramInt)
+  {
+    if (paramInt >= 0) {
+      return V(paramInt);
+    }
+    return 10;
+  }
+  
+  public static int y(int paramInt, long paramLong)
+  {
+    return T(paramInt) + z(paramLong);
+  }
+  
+  public static int z(long paramLong)
+  {
+    return X(paramLong);
+  }
+  
+  public final void A0(t0 paramT0)
+  {
+    paramT0.writeTo(this);
+  }
+  
+  final void B0(t0 paramT0, l1 paramL1)
+  {
+    paramL1.b(paramT0, a);
+  }
+  
+  public abstract void C0(int paramInt1, int paramInt2);
+  
+  public abstract void D0(int paramInt);
+  
+  public final void E0(int paramInt, long paramLong)
+  {
+    Y0(paramInt, paramLong);
+  }
+  
+  public final void F0(long paramLong)
+  {
+    Z0(paramLong);
+  }
+  
+  abstract void G0(int paramInt, t0 paramT0, l1 paramL1);
+  
+  public abstract void H0(t0 paramT0);
+  
+  public abstract void I0(int paramInt, t0 paramT0);
+  
+  public abstract void J0(int paramInt, j paramJ);
+  
+  public final void K0(int paramInt)
+  {
+    X0(paramInt);
+  }
+  
+  public final void L0(int paramInt1, int paramInt2)
+  {
+    s0(paramInt1, paramInt2);
+  }
+  
+  public final void M0(int paramInt)
+  {
+    t0(paramInt);
+  }
+  
+  public final void N0(int paramInt, long paramLong)
+  {
+    u0(paramInt, paramLong);
+  }
+  
+  public final void O0(long paramLong)
+  {
+    v0(paramLong);
+  }
+  
+  public final void P0(int paramInt1, int paramInt2)
+  {
+    W0(paramInt1, Y(paramInt2));
+  }
+  
+  public final void Q0(int paramInt)
+  {
+    X0(Y(paramInt));
+  }
+  
+  public final void R0(int paramInt, long paramLong)
+  {
+    Y0(paramInt, Z(paramLong));
+  }
+  
+  public final void S0(long paramLong)
+  {
+    Z0(Z(paramLong));
+  }
+  
+  public abstract void T0(int paramInt, String paramString);
+  
+  public abstract void U0(String paramString);
+  
+  public abstract void V0(int paramInt1, int paramInt2);
+  
+  public abstract void W0(int paramInt1, int paramInt2);
+  
+  public abstract void X0(int paramInt);
+  
+  public abstract void Y0(int paramInt, long paramLong);
+  
+  public abstract void Z0(long paramLong);
+  
+  public abstract void a0();
+  
+  public abstract void b(byte[] paramArrayOfByte, int paramInt1, int paramInt2);
+  
+  final void b0(String paramString, y1.d paramD)
+  {
+    c.log(Level.WARNING, "Converting ill-formed UTF-16. Your Protocol Buffer will not round trip correctly!", paramD);
+    paramString = paramString.getBytes(c0.a);
+    try
+    {
+      X0(paramString.length);
+      b(paramString, 0, paramString.length);
+      return;
+    }
+    catch (d paramString)
+    {
+      throw paramString;
+    }
+    catch (IndexOutOfBoundsException paramString)
+    {
+      throw new d(paramString);
+    }
+  }
+  
+  boolean c0()
+  {
+    return b;
+  }
+  
+  public final void d()
+  {
+    if (g0() == 0) {
+      return;
+    }
+    throw new IllegalStateException("Did not write as much data as expected.");
+  }
+  
+  public abstract int g0();
+  
+  public abstract void h0(byte paramByte);
+  
+  public abstract void i0(int paramInt, boolean paramBoolean);
+  
+  public final void j0(boolean paramBoolean)
+  {
+    h0((byte)paramBoolean);
+  }
+  
+  public final void k0(byte[] paramArrayOfByte)
+  {
+    l0(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  abstract void l0(byte[] paramArrayOfByte, int paramInt1, int paramInt2);
+  
+  public abstract void m0(int paramInt, j paramJ);
+  
+  public abstract void n0(j paramJ);
+  
+  public final void o0(int paramInt, double paramDouble)
+  {
+    u0(paramInt, Double.doubleToRawLongBits(paramDouble));
+  }
+  
+  public final void p0(double paramDouble)
+  {
+    v0(Double.doubleToRawLongBits(paramDouble));
+  }
+  
+  public final void q0(int paramInt1, int paramInt2)
+  {
+    C0(paramInt1, paramInt2);
+  }
+  
+  public final void r0(int paramInt)
+  {
+    D0(paramInt);
+  }
+  
+  public abstract void s0(int paramInt1, int paramInt2);
+  
+  public abstract void t0(int paramInt);
+  
+  public abstract void u0(int paramInt, long paramLong);
+  
+  public abstract void v0(long paramLong);
+  
+  public final void w0(int paramInt, float paramFloat)
+  {
+    s0(paramInt, Float.floatToRawIntBits(paramFloat));
+  }
+  
+  public final void x0(float paramFloat)
+  {
+    t0(Float.floatToRawIntBits(paramFloat));
+  }
+  
+  public final void y0(int paramInt, t0 paramT0)
+  {
+    V0(paramInt, 3);
+    A0(paramT0);
+    V0(paramInt, 4);
+  }
+  
+  final void z0(int paramInt, t0 paramT0, l1 paramL1)
+  {
+    V0(paramInt, 3);
+    B0(paramT0, paramL1);
+    V0(paramInt, 4);
+  }
+  
+  private static abstract class b
+    extends m
+  {
+    final byte[] e;
+    final int f;
+    int g;
+    int h;
+    
+    b(int paramInt)
+    {
+      super();
+      if (paramInt >= 0)
+      {
+        byte[] arrayOfByte = new byte[Math.max(paramInt, 20)];
+        e = arrayOfByte;
+        f = arrayOfByte.length;
+        return;
+      }
+      throw new IllegalArgumentException("bufferSize must be >= 0");
+    }
+    
+    final void a1(byte paramByte)
+    {
+      byte[] arrayOfByte = e;
+      int i = g;
+      g = (i + 1);
+      arrayOfByte[i] = paramByte;
+      h += 1;
+    }
+    
+    final void b1(int paramInt)
+    {
+      byte[] arrayOfByte = e;
+      int j = g;
+      int i = j + 1;
+      arrayOfByte[j] = ((byte)(paramInt & 0xFF));
+      j = i + 1;
+      arrayOfByte[i] = ((byte)(paramInt >> 8 & 0xFF));
+      i = j + 1;
+      arrayOfByte[j] = ((byte)(paramInt >> 16 & 0xFF));
+      g = (i + 1);
+      arrayOfByte[i] = ((byte)(paramInt >> 24 & 0xFF));
+      h += 4;
+    }
+    
+    final void c1(long paramLong)
+    {
+      byte[] arrayOfByte = e;
+      int j = g;
+      int i = j + 1;
+      arrayOfByte[j] = ((byte)(int)(paramLong & 0xFF));
+      j = i + 1;
+      arrayOfByte[i] = ((byte)(int)(paramLong >> 8 & 0xFF));
+      i = j + 1;
+      arrayOfByte[j] = ((byte)(int)(paramLong >> 16 & 0xFF));
+      j = i + 1;
+      arrayOfByte[i] = ((byte)(int)(0xFF & paramLong >> 24));
+      i = j + 1;
+      arrayOfByte[j] = ((byte)((int)(paramLong >> 32) & 0xFF));
+      j = i + 1;
+      arrayOfByte[i] = ((byte)((int)(paramLong >> 40) & 0xFF));
+      i = j + 1;
+      arrayOfByte[j] = ((byte)((int)(paramLong >> 48) & 0xFF));
+      g = (i + 1);
+      arrayOfByte[i] = ((byte)((int)(paramLong >> 56) & 0xFF));
+      h += 8;
+    }
+    
+    final void d1(int paramInt)
+    {
+      if (paramInt >= 0)
+      {
+        f1(paramInt);
+        return;
+      }
+      g1(paramInt);
+    }
+    
+    final void e1(int paramInt1, int paramInt2)
+    {
+      f1(z1.c(paramInt1, paramInt2));
+    }
+    
+    final void f1(int paramInt)
+    {
+      int i = paramInt;
+      byte[] arrayOfByte;
+      if (m.c())
+      {
+        long l = g;
+        for (;;)
+        {
+          if ((paramInt & 0xFFFFFF80) == 0)
+          {
+            arrayOfByte = e;
+            i = g;
+            g = (i + 1);
+            x1.L(arrayOfByte, i, (byte)paramInt);
+            paramInt = (int)(g - l);
+            h += paramInt;
+            return;
+          }
+          arrayOfByte = e;
+          i = g;
+          g = (i + 1);
+          x1.L(arrayOfByte, i, (byte)(paramInt & 0x7F | 0x80));
+          paramInt >>>= 7;
+        }
+      }
+      for (;;)
+      {
+        if ((i & 0xFFFFFF80) == 0)
+        {
+          arrayOfByte = e;
+          paramInt = g;
+          g = (paramInt + 1);
+          arrayOfByte[paramInt] = ((byte)i);
+          h += 1;
+          return;
+        }
+        arrayOfByte = e;
+        paramInt = g;
+        g = (paramInt + 1);
+        arrayOfByte[paramInt] = ((byte)(i & 0x7F | 0x80));
+        h += 1;
+        i >>>= 7;
+      }
+    }
+    
+    public final int g0()
+    {
+      throw new UnsupportedOperationException("spaceLeft() can only be called on CodedOutputStreams that are writing to a flat array or ByteBuffer.");
+    }
+    
+    final void g1(long paramLong)
+    {
+      long l = paramLong;
+      byte[] arrayOfByte;
+      int i;
+      if (m.c())
+      {
+        l = g;
+        for (;;)
+        {
+          if ((paramLong & 0xFFFFFFFFFFFFFF80) == 0L)
+          {
+            arrayOfByte = e;
+            i = g;
+            g = (i + 1);
+            x1.L(arrayOfByte, i, (byte)(int)paramLong);
+            i = (int)(g - l);
+            h += i;
+            return;
+          }
+          arrayOfByte = e;
+          i = g;
+          g = (i + 1);
+          x1.L(arrayOfByte, i, (byte)((int)paramLong & 0x7F | 0x80));
+          paramLong >>>= 7;
+        }
+      }
+      for (;;)
+      {
+        if ((l & 0xFFFFFFFFFFFFFF80) == 0L)
+        {
+          arrayOfByte = e;
+          i = g;
+          g = (i + 1);
+          arrayOfByte[i] = ((byte)(int)l);
+          h += 1;
+          return;
+        }
+        arrayOfByte = e;
+        i = g;
+        g = (i + 1);
+        arrayOfByte[i] = ((byte)((int)l & 0x7F | 0x80));
+        h += 1;
+        l >>>= 7;
+      }
+    }
+  }
+  
+  private static class c
+    extends m
+  {
+    private final byte[] e;
+    private final int f;
+    private final int g;
+    private int h;
+    
+    c(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      super();
+      if (paramArrayOfByte != null)
+      {
+        int i = paramArrayOfByte.length;
+        int j = paramInt1 + paramInt2;
+        if ((paramInt1 | paramInt2 | i - j) >= 0)
+        {
+          e = paramArrayOfByte;
+          f = paramInt1;
+          h = paramInt1;
+          g = j;
+          return;
+        }
+        throw new IllegalArgumentException(String.format("Array range is invalid. Buffer.length=%d, offset=%d, length=%d", new Object[] { Integer.valueOf(paramArrayOfByte.length), Integer.valueOf(paramInt1), Integer.valueOf(paramInt2) }));
+      }
+      throw new NullPointerException("buffer");
+    }
+    
+    public final void C0(int paramInt1, int paramInt2)
+    {
+      V0(paramInt1, 0);
+      D0(paramInt2);
+    }
+    
+    public final void D0(int paramInt)
+    {
+      if (paramInt >= 0)
+      {
+        X0(paramInt);
+        return;
+      }
+      Z0(paramInt);
+    }
+    
+    final void G0(int paramInt, t0 paramT0, l1 paramL1)
+    {
+      V0(paramInt, 2);
+      X0(((a)paramT0).getSerializedSize(paramL1));
+      paramL1.b(paramT0, a);
+    }
+    
+    public final void H0(t0 paramT0)
+    {
+      X0(paramT0.getSerializedSize());
+      paramT0.writeTo(this);
+    }
+    
+    public final void I0(int paramInt, t0 paramT0)
+    {
+      V0(1, 3);
+      W0(2, paramInt);
+      c1(3, paramT0);
+      V0(1, 4);
+    }
+    
+    public final void J0(int paramInt, j paramJ)
+    {
+      V0(1, 3);
+      W0(2, paramInt);
+      m0(3, paramJ);
+      V0(1, 4);
+    }
+    
+    public final void T0(int paramInt, String paramString)
+    {
+      V0(paramInt, 2);
+      U0(paramString);
+    }
+    
+    public final void U0(String paramString)
+    {
+      int j = h;
+      try
+      {
+        int i = m.V(paramString.length() * 3);
+        int k = m.V(paramString.length());
+        if (k == i)
+        {
+          i = j + k;
+          h = i;
+          i = y1.i(paramString, e, i, g0());
+          h = j;
+          X0(i - j - k);
+        }
+        for (;;)
+        {
+          h = i;
+          return;
+          X0(y1.j(paramString));
+          i = y1.i(paramString, e, h, g0());
+        }
+        return;
+      }
+      catch (IndexOutOfBoundsException paramString)
+      {
+        throw new m.d(paramString);
+      }
+      catch (y1.d localD)
+      {
+        h = j;
+        b0(paramString, localD);
+      }
+    }
+    
+    public final void V0(int paramInt1, int paramInt2)
+    {
+      X0(z1.c(paramInt1, paramInt2));
+    }
+    
+    public final void W0(int paramInt1, int paramInt2)
+    {
+      V0(paramInt1, 0);
+      X0(paramInt2);
+    }
+    
+    public final void X0(int paramInt)
+    {
+      int i = paramInt;
+      byte[] arrayOfByte;
+      if (m.c())
+      {
+        i = paramInt;
+        if (!d.c())
+        {
+          i = paramInt;
+          if (g0() >= 5)
+          {
+            if ((paramInt & 0xFFFFFF80) == 0)
+            {
+              arrayOfByte = e;
+              i = h;
+              h = (i + 1);
+              x1.L(arrayOfByte, i, (byte)paramInt);
+              return;
+            }
+            arrayOfByte = e;
+            i = h;
+            h = (i + 1);
+            x1.L(arrayOfByte, i, (byte)(paramInt | 0x80));
+            paramInt >>>= 7;
+            if ((paramInt & 0xFFFFFF80) == 0)
+            {
+              arrayOfByte = e;
+              i = h;
+              h = (i + 1);
+              x1.L(arrayOfByte, i, (byte)paramInt);
+              return;
+            }
+            arrayOfByte = e;
+            i = h;
+            h = (i + 1);
+            x1.L(arrayOfByte, i, (byte)(paramInt | 0x80));
+            paramInt >>>= 7;
+            if ((paramInt & 0xFFFFFF80) == 0)
+            {
+              arrayOfByte = e;
+              i = h;
+              h = (i + 1);
+              x1.L(arrayOfByte, i, (byte)paramInt);
+              return;
+            }
+            arrayOfByte = e;
+            i = h;
+            h = (i + 1);
+            x1.L(arrayOfByte, i, (byte)(paramInt | 0x80));
+            paramInt >>>= 7;
+            if ((paramInt & 0xFFFFFF80) == 0)
+            {
+              arrayOfByte = e;
+              i = h;
+              h = (i + 1);
+              x1.L(arrayOfByte, i, (byte)paramInt);
+              return;
+            }
+            arrayOfByte = e;
+            i = h;
+            h = (i + 1);
+            x1.L(arrayOfByte, i, (byte)(paramInt | 0x80));
+            arrayOfByte = e;
+            i = h;
+            h = (i + 1);
+            x1.L(arrayOfByte, i, (byte)(paramInt >>> 7));
+            return;
+          }
+        }
+      }
+      for (;;)
+      {
+        if ((i & 0xFFFFFF80) == 0) {}
+        try
+        {
+          arrayOfByte = e;
+          paramInt = h;
+          h = (paramInt + 1);
+          arrayOfByte[paramInt] = ((byte)i);
+          return;
+        }
+        catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+        {
+          throw new m.d(String.format("Pos: %d, limit: %d, len: %d", new Object[] { Integer.valueOf(h), Integer.valueOf(g), Integer.valueOf(1) }), localIndexOutOfBoundsException);
+        }
+        arrayOfByte = e;
+        paramInt = h;
+        h = (paramInt + 1);
+        arrayOfByte[paramInt] = ((byte)(i & 0x7F | 0x80));
+        i >>>= 7;
+      }
+    }
+    
+    public final void Y0(int paramInt, long paramLong)
+    {
+      V0(paramInt, 0);
+      Z0(paramLong);
+    }
+    
+    public final void Z0(long paramLong)
+    {
+      long l = paramLong;
+      byte[] arrayOfByte;
+      int i;
+      if (m.c())
+      {
+        l = paramLong;
+        if (g0() >= 10) {
+          for (;;)
+          {
+            if ((paramLong & 0xFFFFFFFFFFFFFF80) == 0L)
+            {
+              arrayOfByte = e;
+              i = h;
+              h = (i + 1);
+              x1.L(arrayOfByte, i, (byte)(int)paramLong);
+              return;
+            }
+            arrayOfByte = e;
+            i = h;
+            h = (i + 1);
+            x1.L(arrayOfByte, i, (byte)((int)paramLong & 0x7F | 0x80));
+            paramLong >>>= 7;
+          }
+        }
+      }
+      for (;;)
+      {
+        if ((l & 0xFFFFFFFFFFFFFF80) == 0L) {}
+        try
+        {
+          arrayOfByte = e;
+          i = h;
+          h = (i + 1);
+          arrayOfByte[i] = ((byte)(int)l);
+          return;
+        }
+        catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+        {
+          throw new m.d(String.format("Pos: %d, limit: %d, len: %d", new Object[] { Integer.valueOf(h), Integer.valueOf(g), Integer.valueOf(1) }), localIndexOutOfBoundsException);
+        }
+        arrayOfByte = e;
+        i = h;
+        h = (i + 1);
+        arrayOfByte[i] = ((byte)((int)l & 0x7F | 0x80));
+        l >>>= 7;
+      }
+    }
+    
+    public final void a(ByteBuffer paramByteBuffer)
+    {
+      a1(paramByteBuffer);
+    }
+    
+    public void a0() {}
+    
+    public final void a1(ByteBuffer paramByteBuffer)
+    {
+      int i = paramByteBuffer.remaining();
+      try
+      {
+        paramByteBuffer.get(e, h, i);
+        h += i;
+        return;
+      }
+      catch (IndexOutOfBoundsException paramByteBuffer)
+      {
+        throw new m.d(String.format("Pos: %d, limit: %d, len: %d", new Object[] { Integer.valueOf(h), Integer.valueOf(g), Integer.valueOf(i) }), paramByteBuffer);
+      }
+    }
+    
+    public final void b(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      b1(paramArrayOfByte, paramInt1, paramInt2);
+    }
+    
+    public final void b1(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      try
+      {
+        System.arraycopy(paramArrayOfByte, paramInt1, e, h, paramInt2);
+        h += paramInt2;
+        return;
+      }
+      catch (IndexOutOfBoundsException paramArrayOfByte)
+      {
+        throw new m.d(String.format("Pos: %d, limit: %d, len: %d", new Object[] { Integer.valueOf(h), Integer.valueOf(g), Integer.valueOf(paramInt2) }), paramArrayOfByte);
+      }
+    }
+    
+    public final void c1(int paramInt, t0 paramT0)
+    {
+      V0(paramInt, 2);
+      H0(paramT0);
+    }
+    
+    public final int g0()
+    {
+      return g - h;
+    }
+    
+    public final void h0(byte paramByte)
+    {
+      try
+      {
+        byte[] arrayOfByte = e;
+        int i = h;
+        h = (i + 1);
+        arrayOfByte[i] = paramByte;
+        return;
+      }
+      catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+      {
+        throw new m.d(String.format("Pos: %d, limit: %d, len: %d", new Object[] { Integer.valueOf(h), Integer.valueOf(g), Integer.valueOf(1) }), localIndexOutOfBoundsException);
+      }
+    }
+    
+    public final void i0(int paramInt, boolean paramBoolean)
+    {
+      V0(paramInt, 0);
+      h0((byte)paramBoolean);
+    }
+    
+    public final void l0(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      X0(paramInt2);
+      b1(paramArrayOfByte, paramInt1, paramInt2);
+    }
+    
+    public final void m0(int paramInt, j paramJ)
+    {
+      V0(paramInt, 2);
+      n0(paramJ);
+    }
+    
+    public final void n0(j paramJ)
+    {
+      X0(paramJ.size());
+      paramJ.Q(this);
+    }
+    
+    public final void s0(int paramInt1, int paramInt2)
+    {
+      V0(paramInt1, 5);
+      t0(paramInt2);
+    }
+    
+    public final void t0(int paramInt)
+    {
+      try
+      {
+        byte[] arrayOfByte = e;
+        int j = h;
+        int i = j + 1;
+        arrayOfByte[j] = ((byte)(paramInt & 0xFF));
+        j = i + 1;
+        arrayOfByte[i] = ((byte)(paramInt >> 8 & 0xFF));
+        i = j + 1;
+        arrayOfByte[j] = ((byte)(paramInt >> 16 & 0xFF));
+        h = (i + 1);
+        arrayOfByte[i] = ((byte)(paramInt >> 24 & 0xFF));
+        return;
+      }
+      catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+      {
+        throw new m.d(String.format("Pos: %d, limit: %d, len: %d", new Object[] { Integer.valueOf(h), Integer.valueOf(g), Integer.valueOf(1) }), localIndexOutOfBoundsException);
+      }
+    }
+    
+    public final void u0(int paramInt, long paramLong)
+    {
+      V0(paramInt, 1);
+      v0(paramLong);
+    }
+    
+    public final void v0(long paramLong)
+    {
+      try
+      {
+        byte[] arrayOfByte = e;
+        int j = h;
+        int i = j + 1;
+        arrayOfByte[j] = ((byte)((int)paramLong & 0xFF));
+        j = i + 1;
+        arrayOfByte[i] = ((byte)((int)(paramLong >> 8) & 0xFF));
+        i = j + 1;
+        arrayOfByte[j] = ((byte)((int)(paramLong >> 16) & 0xFF));
+        j = i + 1;
+        arrayOfByte[i] = ((byte)((int)(paramLong >> 24) & 0xFF));
+        i = j + 1;
+        arrayOfByte[j] = ((byte)((int)(paramLong >> 32) & 0xFF));
+        j = i + 1;
+        arrayOfByte[i] = ((byte)((int)(paramLong >> 40) & 0xFF));
+        i = j + 1;
+        arrayOfByte[j] = ((byte)((int)(paramLong >> 48) & 0xFF));
+        h = (i + 1);
+        arrayOfByte[i] = ((byte)((int)(paramLong >> 56) & 0xFF));
+        return;
+      }
+      catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
+      {
+        throw new m.d(String.format("Pos: %d, limit: %d, len: %d", new Object[] { Integer.valueOf(h), Integer.valueOf(g), Integer.valueOf(1) }), localIndexOutOfBoundsException);
+      }
+    }
+  }
+  
+  public static class d
+    extends IOException
+  {
+    d(String paramString, Throwable paramThrowable)
+    {
+      super(paramThrowable);
+    }
+    
+    d(Throwable paramThrowable)
+    {
+      super(paramThrowable);
+    }
+  }
+  
+  private static final class e
+    extends m.b
+  {
+    private final OutputStream i;
+    
+    e(OutputStream paramOutputStream, int paramInt)
+    {
+      super();
+      if (paramOutputStream != null)
+      {
+        i = paramOutputStream;
+        return;
+      }
+      throw new NullPointerException("out");
+    }
+    
+    private void h1()
+    {
+      i.write(e, 0, g);
+      g = 0;
+    }
+    
+    private void i1(int paramInt)
+    {
+      if (f - g < paramInt) {
+        h1();
+      }
+    }
+    
+    public void C0(int paramInt1, int paramInt2)
+    {
+      i1(20);
+      e1(paramInt1, 0);
+      d1(paramInt2);
+    }
+    
+    public void D0(int paramInt)
+    {
+      if (paramInt >= 0)
+      {
+        X0(paramInt);
+        return;
+      }
+      Z0(paramInt);
+    }
+    
+    void G0(int paramInt, t0 paramT0, l1 paramL1)
+    {
+      V0(paramInt, 2);
+      m1(paramT0, paramL1);
+    }
+    
+    public void H0(t0 paramT0)
+    {
+      X0(paramT0.getSerializedSize());
+      paramT0.writeTo(this);
+    }
+    
+    public void I0(int paramInt, t0 paramT0)
+    {
+      V0(1, 3);
+      W0(2, paramInt);
+      l1(3, paramT0);
+      V0(1, 4);
+    }
+    
+    public void J0(int paramInt, j paramJ)
+    {
+      V0(1, 3);
+      W0(2, paramInt);
+      m0(3, paramJ);
+      V0(1, 4);
+    }
+    
+    public void T0(int paramInt, String paramString)
+    {
+      V0(paramInt, 2);
+      U0(paramString);
+    }
+    
+    public void U0(String paramString)
+    {
+      try
+      {
+        int k = paramString.length() * 3;
+        int j = m.V(k);
+        int m = j + k;
+        int n = f;
+        if (m > n)
+        {
+          byte[] arrayOfByte = new byte[k];
+          j = y1.i(paramString, arrayOfByte, 0, k);
+          X0(j);
+          b(arrayOfByte, 0, j);
+          return;
+        }
+        if (m > n - g) {
+          h1();
+        }
+        m = m.V(paramString.length());
+        k = g;
+        if (m == j) {
+          j = k + m;
+        }
+        try
+        {
+          g = j;
+          n = y1.i(paramString, e, j, f - j);
+          g = k;
+          j = n - k - m;
+          f1(j);
+          g = n;
+          break label175;
+          j = y1.j(paramString);
+          f1(j);
+          g = y1.i(paramString, e, g, j);
+          label175:
+          h += j;
+          return;
+        }
+        catch (ArrayIndexOutOfBoundsException localArrayIndexOutOfBoundsException)
+        {
+          throw new m.d(localArrayIndexOutOfBoundsException);
+        }
+        catch (y1.d localD1)
+        {
+          h -= g - k;
+          g = k;
+          throw localD1;
+        }
+        return;
+      }
+      catch (y1.d localD2)
+      {
+        b0(paramString, localD2);
+      }
+    }
+    
+    public void V0(int paramInt1, int paramInt2)
+    {
+      X0(z1.c(paramInt1, paramInt2));
+    }
+    
+    public void W0(int paramInt1, int paramInt2)
+    {
+      i1(20);
+      e1(paramInt1, 0);
+      f1(paramInt2);
+    }
+    
+    public void X0(int paramInt)
+    {
+      i1(5);
+      f1(paramInt);
+    }
+    
+    public void Y0(int paramInt, long paramLong)
+    {
+      i1(20);
+      e1(paramInt, 0);
+      g1(paramLong);
+    }
+    
+    public void Z0(long paramLong)
+    {
+      i1(10);
+      g1(paramLong);
+    }
+    
+    public void a(ByteBuffer paramByteBuffer)
+    {
+      j1(paramByteBuffer);
+    }
+    
+    public void a0()
+    {
+      if (g > 0) {
+        h1();
+      }
+    }
+    
+    public void b(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      k1(paramArrayOfByte, paramInt1, paramInt2);
+    }
+    
+    public void h0(byte paramByte)
+    {
+      if (g == f) {
+        h1();
+      }
+      a1(paramByte);
+    }
+    
+    public void i0(int paramInt, boolean paramBoolean)
+    {
+      i1(11);
+      e1(paramInt, 0);
+      a1((byte)paramBoolean);
+    }
+    
+    public void j1(ByteBuffer paramByteBuffer)
+    {
+      int j = paramByteBuffer.remaining();
+      int m = f;
+      int k = g;
+      if (m - k >= j) {
+        paramByteBuffer.get(e, k, j);
+      }
+      for (g += j;; g = j)
+      {
+        h += j;
+        return;
+        m -= k;
+        paramByteBuffer.get(e, k, m);
+        j -= m;
+        g = f;
+        h += m;
+        h1();
+        for (;;)
+        {
+          k = f;
+          if (j <= k) {
+            break;
+          }
+          paramByteBuffer.get(e, 0, k);
+          i.write(e, 0, f);
+          k = f;
+          j -= k;
+          h += k;
+        }
+        paramByteBuffer.get(e, 0, j);
+      }
+    }
+    
+    public void k1(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      int j = f;
+      int k = g;
+      if (j - k >= paramInt2)
+      {
+        System.arraycopy(paramArrayOfByte, paramInt1, e, k, paramInt2);
+        g += paramInt2;
+      }
+      for (;;)
+      {
+        h += paramInt2;
+        return;
+        j -= k;
+        System.arraycopy(paramArrayOfByte, paramInt1, e, k, j);
+        paramInt1 += j;
+        paramInt2 -= j;
+        g = f;
+        h += j;
+        h1();
+        if (paramInt2 <= f)
+        {
+          System.arraycopy(paramArrayOfByte, paramInt1, e, 0, paramInt2);
+          g = paramInt2;
+        }
+        else
+        {
+          i.write(paramArrayOfByte, paramInt1, paramInt2);
+        }
+      }
+    }
+    
+    public void l0(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      X0(paramInt2);
+      k1(paramArrayOfByte, paramInt1, paramInt2);
+    }
+    
+    public void l1(int paramInt, t0 paramT0)
+    {
+      V0(paramInt, 2);
+      H0(paramT0);
+    }
+    
+    public void m0(int paramInt, j paramJ)
+    {
+      V0(paramInt, 2);
+      n0(paramJ);
+    }
+    
+    void m1(t0 paramT0, l1 paramL1)
+    {
+      X0(((a)paramT0).getSerializedSize(paramL1));
+      paramL1.b(paramT0, a);
+    }
+    
+    public void n0(j paramJ)
+    {
+      X0(paramJ.size());
+      paramJ.Q(this);
+    }
+    
+    public void s0(int paramInt1, int paramInt2)
+    {
+      i1(14);
+      e1(paramInt1, 5);
+      b1(paramInt2);
+    }
+    
+    public void t0(int paramInt)
+    {
+      i1(4);
+      b1(paramInt);
+    }
+    
+    public void u0(int paramInt, long paramLong)
+    {
+      i1(18);
+      e1(paramInt, 1);
+      c1(paramLong);
+    }
+    
+    public void v0(long paramLong)
+    {
+      i1(8);
+      c1(paramLong);
+    }
+  }
+}

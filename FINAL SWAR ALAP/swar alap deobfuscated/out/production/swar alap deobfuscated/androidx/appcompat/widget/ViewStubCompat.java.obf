@@ -1,0 +1,134 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import f.j;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+
+public final class ViewStubCompat
+  extends View
+{
+  private int e = 0;
+  private int f;
+  private WeakReference g;
+  private LayoutInflater h;
+  
+  public ViewStubCompat(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 0);
+  }
+  
+  public ViewStubCompat(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    paramContext = paramContext.obtainStyledAttributes(paramAttributeSet, j.Y3, paramInt, 0);
+    f = paramContext.getResourceId(j.b4, -1);
+    e = paramContext.getResourceId(j.a4, 0);
+    setId(paramContext.getResourceId(j.Z3, -1));
+    paramContext.recycle();
+    setVisibility(8);
+    setWillNotDraw(true);
+  }
+  
+  public View a()
+  {
+    Object localObject = getParent();
+    if ((localObject instanceof ViewGroup))
+    {
+      if (e != 0)
+      {
+        ViewGroup localViewGroup = (ViewGroup)localObject;
+        localObject = h;
+        if (localObject == null) {
+          localObject = LayoutInflater.from(getContext());
+        }
+        localObject = ((LayoutInflater)localObject).inflate(e, localViewGroup, false);
+        int i = f;
+        if (i != -1) {
+          ((View)localObject).setId(i);
+        }
+        i = localViewGroup.indexOfChild(this);
+        localViewGroup.removeViewInLayout(this);
+        ViewGroup.LayoutParams localLayoutParams = getLayoutParams();
+        if (localLayoutParams != null) {
+          localViewGroup.addView((View)localObject, i, localLayoutParams);
+        } else {
+          localViewGroup.addView((View)localObject, i);
+        }
+        g = new WeakReference(localObject);
+        return localObject;
+      }
+      throw new IllegalArgumentException("ViewStub must have a valid layoutResource");
+    }
+    throw new IllegalStateException("ViewStub must have a non-null ViewGroup viewParent");
+  }
+  
+  protected void dispatchDraw(Canvas paramCanvas) {}
+  
+  public void draw(Canvas paramCanvas) {}
+  
+  public int getInflatedId()
+  {
+    return f;
+  }
+  
+  public LayoutInflater getLayoutInflater()
+  {
+    return h;
+  }
+  
+  public int getLayoutResource()
+  {
+    return e;
+  }
+  
+  protected void onMeasure(int paramInt1, int paramInt2)
+  {
+    setMeasuredDimension(0, 0);
+  }
+  
+  public void setInflatedId(int paramInt)
+  {
+    f = paramInt;
+  }
+  
+  public void setLayoutInflater(LayoutInflater paramLayoutInflater)
+  {
+    h = paramLayoutInflater;
+  }
+  
+  public void setLayoutResource(int paramInt)
+  {
+    e = paramInt;
+  }
+  
+  public void setOnInflateListener(a paramA) {}
+  
+  public void setVisibility(int paramInt)
+  {
+    Object localObject = g;
+    if (localObject != null)
+    {
+      localObject = (View)((Reference)localObject).get();
+      if (localObject != null)
+      {
+        ((View)localObject).setVisibility(paramInt);
+        return;
+      }
+      throw new IllegalStateException("setVisibility called on un-referenced view");
+    }
+    super.setVisibility(paramInt);
+    if ((paramInt == 0) || (paramInt == 4)) {
+      a();
+    }
+  }
+  
+  public static abstract interface a {}
+}

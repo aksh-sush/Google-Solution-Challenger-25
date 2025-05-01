@@ -1,0 +1,16 @@
+package com.google.android.gms.internal.auth;
+
+import com.google.android.gms.common.api.Status;
+import g3.c;
+import n4.j;
+
+final class zzz
+  extends zzl
+{
+  zzz(zzab paramZzab, j paramJ) {}
+  
+  public final void zzb(Status paramStatus, c paramC)
+  {
+    zzab.zzf(paramStatus, paramC, zza);
+  }
+}

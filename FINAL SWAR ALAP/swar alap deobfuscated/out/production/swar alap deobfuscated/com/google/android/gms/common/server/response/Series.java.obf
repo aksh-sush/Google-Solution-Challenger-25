@@ -1,0 +1,73 @@
+package com.google.android.gms.common.server.response;
+
+import com.google.android.gms.common.internal.q;
+import com.google.android.gms.common.internal.s;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+import s3.d;
+
+public abstract class b
+  extends a
+  implements d
+{
+  public b() {}
+  
+  public final int describeContents()
+  {
+    return 0;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (paramObject == null) {
+      return false;
+    }
+    if (this == paramObject) {
+      return true;
+    }
+    if (!getClass().isInstance(paramObject)) {
+      return false;
+    }
+    paramObject = (a)paramObject;
+    Iterator localIterator = getFieldMappings().values().iterator();
+    while (localIterator.hasNext())
+    {
+      a.a localA = (a.a)localIterator.next();
+      if (isFieldSet(localA))
+      {
+        if ((!paramObject.isFieldSet(localA)) || (!q.b(getFieldValue(localA), paramObject.getFieldValue(localA)))) {
+          return false;
+        }
+      }
+      else if (paramObject.isFieldSet(localA)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public Object getValueObject(String paramString)
+  {
+    return null;
+  }
+  
+  public int hashCode()
+  {
+    Iterator localIterator = getFieldMappings().values().iterator();
+    int i = 0;
+    while (localIterator.hasNext())
+    {
+      a.a localA = (a.a)localIterator.next();
+      if (isFieldSet(localA)) {
+        i = i * 31 + s.k(getFieldValue(localA)).hashCode();
+      }
+    }
+    return i;
+  }
+  
+  public boolean isPrimitiveFieldSet(String paramString)
+  {
+    return false;
+  }
+}

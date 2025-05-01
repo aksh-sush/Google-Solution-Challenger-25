@@ -1,0 +1,9 @@
+package jb;
+
+import cb.a;
+
+public abstract interface e
+  extends f, a
+{
+  public abstract Object get();
+}

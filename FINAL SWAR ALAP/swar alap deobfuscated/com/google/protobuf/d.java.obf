@@ -1,0 +1,101 @@
+package com.google.protobuf;
+
+import java.util.List;
+import java.util.Map;
+
+abstract interface a2
+{
+  public abstract void A(int paramInt, long paramLong);
+  
+  public abstract a B();
+  
+  public abstract void C(int paramInt, long paramLong);
+  
+  public abstract void D(int paramInt, float paramFloat);
+  
+  public abstract void E(int paramInt, List paramList);
+  
+  public abstract void F(int paramInt);
+  
+  public abstract void G(int paramInt, String paramString);
+  
+  public abstract void H(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void I(int paramInt, long paramLong);
+  
+  public abstract void J(int paramInt1, int paramInt2);
+  
+  public abstract void K(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void L(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void M(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void N(int paramInt1, int paramInt2);
+  
+  public abstract void O(int paramInt, List paramList);
+  
+  public abstract void a(int paramInt, List paramList, l1 paramL1);
+  
+  public abstract void b(int paramInt, List paramList, l1 paramL1);
+  
+  public abstract void c(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void d(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void e(int paramInt, long paramLong);
+  
+  public abstract void f(int paramInt, boolean paramBoolean);
+  
+  public abstract void g(int paramInt1, int paramInt2);
+  
+  public abstract void h(int paramInt, Object paramObject);
+  
+  public abstract void i(int paramInt, Object paramObject, l1 paramL1);
+  
+  public abstract void j(int paramInt1, int paramInt2);
+  
+  public abstract void k(int paramInt);
+  
+  public abstract void l(int paramInt, j paramJ);
+  
+  public abstract void m(int paramInt1, int paramInt2);
+  
+  public abstract void n(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void o(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void p(int paramInt1, int paramInt2);
+  
+  public abstract void q(int paramInt, double paramDouble);
+  
+  public abstract void r(int paramInt, long paramLong);
+  
+  public abstract void s(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void t(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void u(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void v(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void w(int paramInt, Object paramObject, l1 paramL1);
+  
+  public abstract void x(int paramInt, m0.a paramA, Map paramMap);
+  
+  public abstract void y(int paramInt, List paramList, boolean paramBoolean);
+  
+  public abstract void z(int paramInt, List paramList, boolean paramBoolean);
+  
+  public static enum a
+  {
+    static
+    {
+      a localA1 = new a("ASCENDING", 0);
+      e = localA1;
+      a localA2 = new a("DESCENDING", 1);
+      f = localA2;
+      g = new a[] { localA1, localA2 };
+    }
+  }
+}

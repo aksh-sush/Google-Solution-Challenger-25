@@ -1,0 +1,279 @@
+package androidx.lifecycle;
+
+import android.app.Application;
+import db.l;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import n0.a.b;
+import n0.d;
+
+public class i0
+{
+  private final l0 a;
+  private final b b;
+  private final n0.a c;
+  
+  public i0(l0 paramL0, b paramB)
+  {
+    this(paramL0, paramB, null, 4, null);
+  }
+  
+  public i0(l0 paramL0, b paramB, n0.a paramA)
+  {
+    a = paramL0;
+    b = paramB;
+    c = paramA;
+  }
+  
+  public i0(m0 paramM0, b paramB)
+  {
+    this(paramM0.getViewModelStore(), paramB, k0.a(paramM0));
+  }
+  
+  public h0 a(Class paramClass)
+  {
+    l.e(paramClass, "modelClass");
+    String str = paramClass.getCanonicalName();
+    if (str != null)
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("androidx.lifecycle.ViewModelProvider.DefaultKey:");
+      localStringBuilder.append(str);
+      return b(localStringBuilder.toString(), paramClass);
+    }
+    throw new IllegalArgumentException("Local and anonymous classes can not be ViewModels");
+  }
+  
+  public h0 b(String paramString, Class paramClass)
+  {
+    l.e(paramString, "key");
+    l.e(paramClass, "modelClass");
+    Object localObject = a.b(paramString);
+    if (paramClass.isInstance(localObject))
+    {
+      paramString = b;
+      if ((paramString instanceof d)) {
+        paramString = (d)paramString;
+      } else {
+        paramString = null;
+      }
+      if (paramString != null)
+      {
+        l.b(localObject);
+        paramString.c((h0)localObject);
+      }
+      l.c(localObject, "null cannot be cast to non-null type T of androidx.lifecycle.ViewModelProvider.get");
+      return localObject;
+    }
+    localObject = new d(c);
+    ((d)localObject).c(c.c, paramString);
+    try
+    {
+      localObject = b.b(paramClass, (n0.a)localObject);
+      paramClass = (Class)localObject;
+    }
+    catch (AbstractMethodError localAbstractMethodError)
+    {
+      for (;;) {}
+    }
+    paramClass = b.a(paramClass);
+    a.d(paramString, paramClass);
+    return paramClass;
+  }
+  
+  public static class a
+    extends i0.c
+  {
+    public static final a e = new a(null);
+    private static a f;
+    public static final a.b g = i0.a.a.a.a;
+    private final Application d;
+    
+    public a()
+    {
+      this(null, 0);
+    }
+    
+    public a(Application paramApplication)
+    {
+      this(paramApplication, 0);
+    }
+    
+    private a(Application paramApplication, int paramInt)
+    {
+      d = paramApplication;
+    }
+    
+    private final h0 g(Class paramClass, Application paramApplication)
+    {
+      if (a.class.isAssignableFrom(paramClass)) {
+        try
+        {
+          paramApplication = (h0)paramClass.getConstructor(new Class[] { Application.class }).newInstance(new Object[] { paramApplication });
+          l.d(paramApplication, "{\n                try {\n?          }\n            }");
+          return paramApplication;
+        }
+        catch (InvocationTargetException paramApplication)
+        {
+          localStringBuilder = new StringBuilder();
+          localStringBuilder.append("Cannot create an instance of ");
+          localStringBuilder.append(paramClass);
+          throw new RuntimeException(localStringBuilder.toString(), paramApplication);
+        }
+        catch (InstantiationException paramApplication)
+        {
+          localStringBuilder = new StringBuilder();
+          localStringBuilder.append("Cannot create an instance of ");
+          localStringBuilder.append(paramClass);
+          throw new RuntimeException(localStringBuilder.toString(), paramApplication);
+        }
+        catch (IllegalAccessException paramApplication)
+        {
+          localStringBuilder = new StringBuilder();
+          localStringBuilder.append("Cannot create an instance of ");
+          localStringBuilder.append(paramClass);
+          throw new RuntimeException(localStringBuilder.toString(), paramApplication);
+        }
+        catch (NoSuchMethodException paramApplication)
+        {
+          StringBuilder localStringBuilder = new StringBuilder();
+          localStringBuilder.append("Cannot create an instance of ");
+          localStringBuilder.append(paramClass);
+          throw new RuntimeException(localStringBuilder.toString(), paramApplication);
+        }
+      }
+      return super.a(paramClass);
+    }
+    
+    public h0 a(Class paramClass)
+    {
+      l.e(paramClass, "modelClass");
+      Application localApplication = d;
+      if (localApplication != null) {
+        return g(paramClass, localApplication);
+      }
+      throw new UnsupportedOperationException("AndroidViewModelFactory constructed with empty constructor works only with create(modelClass: Class<T>, extras: CreationExtras).");
+    }
+    
+    public h0 b(Class paramClass, n0.a paramA)
+    {
+      l.e(paramClass, "modelClass");
+      l.e(paramA, "extras");
+      if (d != null) {
+        return a(paramClass);
+      }
+      paramA = (Application)paramA.a(g);
+      if (paramA != null) {
+        return g(paramClass, paramA);
+      }
+      if (!a.class.isAssignableFrom(paramClass)) {
+        return super.a(paramClass);
+      }
+      throw new IllegalArgumentException("CreationExtras must have an application by `APPLICATION_KEY`");
+    }
+    
+    public static final class a
+    {
+      private a() {}
+      
+      public final i0.a a(Application paramApplication)
+      {
+        l.e(paramApplication, "application");
+        if (i0.a.e() == null) {
+          i0.a.f(new i0.a(paramApplication));
+        }
+        paramApplication = i0.a.e();
+        l.b(paramApplication);
+        return paramApplication;
+      }
+      
+      private static final class a
+        implements a.b
+      {
+        public static final a a = new a();
+        
+        private a() {}
+      }
+    }
+  }
+  
+  public static abstract interface b
+  {
+    public abstract h0 a(Class paramClass);
+    
+    public abstract h0 b(Class paramClass, n0.a paramA);
+  }
+  
+  public static class c
+    implements i0.b
+  {
+    public static final a a = new a(null);
+    private static c b;
+    public static final a.b c = i0.c.a.a.a;
+    
+    public c() {}
+    
+    public h0 a(Class paramClass)
+    {
+      l.e(paramClass, "modelClass");
+      try
+      {
+        Object localObject = paramClass.getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+        l.d(localObject, "{\n                modelC?wInstance()\n            }");
+        localObject = (h0)localObject;
+        return localObject;
+      }
+      catch (IllegalAccessException localIllegalAccessException)
+      {
+        localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Cannot create an instance of ");
+        localStringBuilder.append(paramClass);
+        throw new RuntimeException(localStringBuilder.toString(), localIllegalAccessException);
+      }
+      catch (InstantiationException localInstantiationException)
+      {
+        localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Cannot create an instance of ");
+        localStringBuilder.append(paramClass);
+        throw new RuntimeException(localStringBuilder.toString(), localInstantiationException);
+      }
+      catch (NoSuchMethodException localNoSuchMethodException)
+      {
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Cannot create an instance of ");
+        localStringBuilder.append(paramClass);
+        throw new RuntimeException(localStringBuilder.toString(), localNoSuchMethodException);
+      }
+    }
+    
+    public static final class a
+    {
+      private a() {}
+      
+      public final i0.c a()
+      {
+        if (i0.c.c() == null) {
+          i0.c.d(new i0.c());
+        }
+        i0.c localC = i0.c.c();
+        l.b(localC);
+        return localC;
+      }
+      
+      private static final class a
+        implements a.b
+      {
+        public static final a a = new a();
+        
+        private a() {}
+      }
+    }
+  }
+  
+  public static abstract class d
+  {
+    public d() {}
+    
+    public abstract void c(h0 paramH0);
+  }
+}

@@ -1,0 +1,21 @@
+package com.google.android.gms.internal.auth;
+
+abstract class zzfk
+{
+  private static final zzfk zza = new zzfg(null);
+  private static final zzfk zzb = new zzfi(null);
+  
+  static zzfk zzc()
+  {
+    return zza;
+  }
+  
+  static zzfk zzd()
+  {
+    return zzb;
+  }
+  
+  abstract void zza(Object paramObject, long paramLong);
+  
+  abstract void zzb(Object paramObject1, Object paramObject2, long paramLong);
+}

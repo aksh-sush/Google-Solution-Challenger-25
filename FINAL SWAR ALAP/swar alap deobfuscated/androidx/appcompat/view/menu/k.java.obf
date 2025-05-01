@@ -1,0 +1,144 @@
+package androidx.appcompat.view.menu;
+
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.FrameLayout;
+import android.widget.HeaderViewListAdapter;
+import android.widget.ListAdapter;
+import android.widget.PopupWindow.OnDismissListener;
+
+abstract class k
+  implements p, m, AdapterView.OnItemClickListener
+{
+  private Rect e;
+  
+  k() {}
+  
+  protected static int o(ListAdapter paramListAdapter, ViewGroup paramViewGroup, Context paramContext, int paramInt)
+  {
+    int i = 0;
+    int i1 = View.MeasureSpec.makeMeasureSpec(0, 0);
+    int i2 = View.MeasureSpec.makeMeasureSpec(0, 0);
+    int i3 = paramListAdapter.getCount();
+    Object localObject2 = null;
+    int j = 0;
+    int m = 0;
+    Object localObject1 = paramViewGroup;
+    paramViewGroup = (ViewGroup)localObject2;
+    while (i < i3)
+    {
+      int n = paramListAdapter.getItemViewType(i);
+      int k = m;
+      if (n != m)
+      {
+        paramViewGroup = null;
+        k = n;
+      }
+      localObject2 = localObject1;
+      if (localObject1 == null) {
+        localObject2 = new FrameLayout(paramContext);
+      }
+      paramViewGroup = paramListAdapter.getView(i, paramViewGroup, (ViewGroup)localObject2);
+      paramViewGroup.measure(i1, i2);
+      n = paramViewGroup.getMeasuredWidth();
+      if (n >= paramInt) {
+        return paramInt;
+      }
+      m = j;
+      if (n > j) {
+        m = n;
+      }
+      i += 1;
+      j = m;
+      m = k;
+      localObject1 = localObject2;
+    }
+    return j;
+  }
+  
+  protected static boolean x(g paramG)
+  {
+    int j = paramG.size();
+    int i = 0;
+    while (i < j)
+    {
+      MenuItem localMenuItem = paramG.getItem(i);
+      if ((localMenuItem.isVisible()) && (localMenuItem.getIcon() != null)) {
+        return true;
+      }
+      i += 1;
+    }
+    return false;
+  }
+  
+  protected static f y(ListAdapter paramListAdapter)
+  {
+    if ((paramListAdapter instanceof HeaderViewListAdapter)) {
+      return (f)((HeaderViewListAdapter)paramListAdapter).getWrappedAdapter();
+    }
+    return (f)paramListAdapter;
+  }
+  
+  public void c(Context paramContext, g paramG) {}
+  
+  public boolean i(g paramG, i paramI)
+  {
+    return false;
+  }
+  
+  public boolean j(g paramG, i paramI)
+  {
+    return false;
+  }
+  
+  public abstract void l(g paramG);
+  
+  protected boolean m()
+  {
+    return true;
+  }
+  
+  public Rect n()
+  {
+    return e;
+  }
+  
+  public void onItemClick(AdapterView paramAdapterView, View paramView, int paramInt, long paramLong)
+  {
+    paramView = (ListAdapter)paramAdapterView.getAdapter();
+    paramAdapterView = ye;
+    paramView = (MenuItem)paramView.getItem(paramInt);
+    if (m()) {
+      paramInt = 0;
+    } else {
+      paramInt = 4;
+    }
+    paramAdapterView.M(paramView, this, paramInt);
+  }
+  
+  public abstract void p(View paramView);
+  
+  public void q(Rect paramRect)
+  {
+    e = paramRect;
+  }
+  
+  public abstract void r(boolean paramBoolean);
+  
+  public abstract void s(int paramInt);
+  
+  public abstract void t(int paramInt);
+  
+  public abstract void u(PopupWindow.OnDismissListener paramOnDismissListener);
+  
+  public abstract void v(boolean paramBoolean);
+  
+  public abstract void w(int paramInt);
+}

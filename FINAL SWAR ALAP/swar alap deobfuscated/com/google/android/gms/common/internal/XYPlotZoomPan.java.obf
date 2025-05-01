@@ -1,0 +1,72 @@
+package com.google.android.gms.common.internal;
+
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.RemoteException;
+import android.util.Log;
+import q3.b;
+
+public final class s1
+  extends b1
+{
+  public final IBinder g;
+  
+  public s1(c paramC, int paramInt, IBinder paramIBinder, Bundle paramBundle)
+  {
+    super(paramC, paramInt, paramBundle);
+    g = paramIBinder;
+  }
+  
+  protected final void f(b paramB)
+  {
+    if (c.zzc(h) != null) {
+      c.zzc(h).onConnectionFailed(paramB);
+    }
+    h.onConnectionFailed(paramB);
+  }
+  
+  protected final boolean g()
+  {
+    for (;;)
+    {
+      try
+      {
+        localObject1 = g;
+        s.k(localObject1);
+        localObject1 = ((IBinder)localObject1).getInterfaceDescriptor();
+        Object localObject2;
+        if (!h.getServiceDescriptor().equals(localObject1))
+        {
+          localObject2 = h.getServiceDescriptor();
+          StringBuilder localStringBuilder = new StringBuilder();
+          localStringBuilder.append("service descriptor mismatch: ");
+          localStringBuilder.append((String)localObject2);
+          localStringBuilder.append(" vs. ");
+          localStringBuilder.append((String)localObject1);
+          localObject1 = localStringBuilder.toString();
+          Log.w("GmsClient", (String)localObject1);
+          return false;
+        }
+        localObject1 = h.createServiceInterface(g);
+        if ((localObject1 != null) && ((c.zzn(h, 2, 4, (IInterface)localObject1)) || (c.zzn(h, 3, 4, (IInterface)localObject1))))
+        {
+          c.zzg(h, null);
+          localObject1 = h.getConnectionHint();
+          localObject2 = h;
+          if (c.zzb((c)localObject2) != null) {
+            c.zzb((c)localObject2).onConnected((Bundle)localObject1);
+          }
+          return true;
+        }
+        return false;
+      }
+      catch (RemoteException localRemoteException)
+      {
+        Object localObject1;
+        continue;
+      }
+      localObject1 = "service probably died";
+    }
+  }
+}

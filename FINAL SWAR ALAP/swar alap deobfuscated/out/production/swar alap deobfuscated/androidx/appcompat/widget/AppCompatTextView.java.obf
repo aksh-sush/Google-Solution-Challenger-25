@@ -1,0 +1,245 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.view.ActionMode.Callback;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.CheckedTextView;
+import androidx.core.widget.j;
+
+public class g
+  extends CheckedTextView
+  implements androidx.core.widget.n
+{
+  private final h e;
+  private final e f;
+  private final b0 g;
+  private m h;
+  
+  public g(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, f.a.p);
+  }
+  
+  public g(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(c1.b(paramContext), paramAttributeSet, paramInt);
+    b1.a(this, getContext());
+    paramContext = new b0(this);
+    g = paramContext;
+    paramContext.m(paramAttributeSet, paramInt);
+    paramContext.b();
+    paramContext = new e(this);
+    f = paramContext;
+    paramContext.e(paramAttributeSet, paramInt);
+    paramContext = new h(this);
+    e = paramContext;
+    paramContext.d(paramAttributeSet, paramInt);
+    getEmojiTextViewHelper().c(paramAttributeSet, paramInt);
+  }
+  
+  private m getEmojiTextViewHelper()
+  {
+    if (h == null) {
+      h = new m(this);
+    }
+    return h;
+  }
+  
+  protected void drawableStateChanged()
+  {
+    super.drawableStateChanged();
+    Object localObject = g;
+    if (localObject != null) {
+      ((b0)localObject).b();
+    }
+    localObject = f;
+    if (localObject != null) {
+      ((e)localObject).b();
+    }
+    localObject = e;
+    if (localObject != null) {
+      ((h)localObject).a();
+    }
+  }
+  
+  public ActionMode.Callback getCustomSelectionActionModeCallback()
+  {
+    return j.p(super.getCustomSelectionActionModeCallback());
+  }
+  
+  public ColorStateList getSupportBackgroundTintList()
+  {
+    e localE = f;
+    if (localE != null) {
+      return localE.c();
+    }
+    return null;
+  }
+  
+  public PorterDuff.Mode getSupportBackgroundTintMode()
+  {
+    e localE = f;
+    if (localE != null) {
+      return localE.d();
+    }
+    return null;
+  }
+  
+  public ColorStateList getSupportCheckMarkTintList()
+  {
+    h localH = e;
+    if (localH != null) {
+      return localH.b();
+    }
+    return null;
+  }
+  
+  public PorterDuff.Mode getSupportCheckMarkTintMode()
+  {
+    h localH = e;
+    if (localH != null) {
+      return localH.c();
+    }
+    return null;
+  }
+  
+  public ColorStateList getSupportCompoundDrawablesTintList()
+  {
+    return g.j();
+  }
+  
+  public PorterDuff.Mode getSupportCompoundDrawablesTintMode()
+  {
+    return g.k();
+  }
+  
+  public InputConnection onCreateInputConnection(EditorInfo paramEditorInfo)
+  {
+    return n.a(super.onCreateInputConnection(paramEditorInfo), paramEditorInfo, this);
+  }
+  
+  public void setAllCaps(boolean paramBoolean)
+  {
+    super.setAllCaps(paramBoolean);
+    getEmojiTextViewHelper().d(paramBoolean);
+  }
+  
+  public void setBackgroundDrawable(Drawable paramDrawable)
+  {
+    super.setBackgroundDrawable(paramDrawable);
+    e localE = f;
+    if (localE != null) {
+      localE.f(paramDrawable);
+    }
+  }
+  
+  public void setBackgroundResource(int paramInt)
+  {
+    super.setBackgroundResource(paramInt);
+    e localE = f;
+    if (localE != null) {
+      localE.g(paramInt);
+    }
+  }
+  
+  public void setCheckMarkDrawable(int paramInt)
+  {
+    setCheckMarkDrawable(g.a.b(getContext(), paramInt));
+  }
+  
+  public void setCheckMarkDrawable(Drawable paramDrawable)
+  {
+    super.setCheckMarkDrawable(paramDrawable);
+    paramDrawable = e;
+    if (paramDrawable != null) {
+      paramDrawable.e();
+    }
+  }
+  
+  public void setCompoundDrawables(Drawable paramDrawable1, Drawable paramDrawable2, Drawable paramDrawable3, Drawable paramDrawable4)
+  {
+    super.setCompoundDrawables(paramDrawable1, paramDrawable2, paramDrawable3, paramDrawable4);
+    paramDrawable1 = g;
+    if (paramDrawable1 != null) {
+      paramDrawable1.p();
+    }
+  }
+  
+  public void setCompoundDrawablesRelative(Drawable paramDrawable1, Drawable paramDrawable2, Drawable paramDrawable3, Drawable paramDrawable4)
+  {
+    super.setCompoundDrawablesRelative(paramDrawable1, paramDrawable2, paramDrawable3, paramDrawable4);
+    paramDrawable1 = g;
+    if (paramDrawable1 != null) {
+      paramDrawable1.p();
+    }
+  }
+  
+  public void setCustomSelectionActionModeCallback(ActionMode.Callback paramCallback)
+  {
+    super.setCustomSelectionActionModeCallback(j.q(this, paramCallback));
+  }
+  
+  public void setEmojiCompatEnabled(boolean paramBoolean)
+  {
+    getEmojiTextViewHelper().e(paramBoolean);
+  }
+  
+  public void setSupportBackgroundTintList(ColorStateList paramColorStateList)
+  {
+    e localE = f;
+    if (localE != null) {
+      localE.i(paramColorStateList);
+    }
+  }
+  
+  public void setSupportBackgroundTintMode(PorterDuff.Mode paramMode)
+  {
+    e localE = f;
+    if (localE != null) {
+      localE.j(paramMode);
+    }
+  }
+  
+  public void setSupportCheckMarkTintList(ColorStateList paramColorStateList)
+  {
+    h localH = e;
+    if (localH != null) {
+      localH.f(paramColorStateList);
+    }
+  }
+  
+  public void setSupportCheckMarkTintMode(PorterDuff.Mode paramMode)
+  {
+    h localH = e;
+    if (localH != null) {
+      localH.g(paramMode);
+    }
+  }
+  
+  public void setSupportCompoundDrawablesTintList(ColorStateList paramColorStateList)
+  {
+    g.w(paramColorStateList);
+    g.b();
+  }
+  
+  public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode paramMode)
+  {
+    g.x(paramMode);
+    g.b();
+  }
+  
+  public void setTextAppearance(Context paramContext, int paramInt)
+  {
+    super.setTextAppearance(paramContext, paramInt);
+    b0 localB0 = g;
+    if (localB0 != null) {
+      localB0.q(paramContext, paramInt);
+    }
+  }
+}

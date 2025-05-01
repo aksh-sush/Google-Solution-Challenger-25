@@ -1,0 +1,317 @@
+package androidx.appcompat.widget;
+
+import a0.c;
+import a0.f;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.text.Editable;
+import android.text.method.KeyListener;
+import android.util.AttributeSet;
+import android.view.ActionMode.Callback;
+import android.view.DragEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.view.textclassifier.TextClassifier;
+import android.widget.EditText;
+import android.widget.TextView;
+import androidx.core.view.d;
+import androidx.core.view.e0;
+import androidx.core.view.h0;
+import androidx.core.widget.j;
+import f.a;
+
+public class k
+  extends EditText
+  implements e0, androidx.core.widget.n
+{
+  private final e e;
+  private final b0 f;
+  private final a0 g;
+  private final androidx.core.widget.l h;
+  private final l i;
+  private a j;
+  
+  public k(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, a.z);
+  }
+  
+  public k(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(c1.b(paramContext), paramAttributeSet, paramInt);
+    b1.a(this, getContext());
+    paramContext = new e(this);
+    e = paramContext;
+    paramContext.e(paramAttributeSet, paramInt);
+    paramContext = new b0(this);
+    f = paramContext;
+    paramContext.m(paramAttributeSet, paramInt);
+    paramContext.b();
+    g = new a0(this);
+    h = new androidx.core.widget.l();
+    paramContext = new l(this);
+    i = paramContext;
+    paramContext.c(paramAttributeSet, paramInt);
+    d(paramContext);
+  }
+  
+  private a getSuperCaller()
+  {
+    if (j == null) {
+      j = new a();
+    }
+    return j;
+  }
+  
+  public d a(d paramD)
+  {
+    return h.a(this, paramD);
+  }
+  
+  void d(l paramL)
+  {
+    KeyListener localKeyListener = getKeyListener();
+    if (paramL.b(localKeyListener))
+    {
+      boolean bool1 = super.isFocusable();
+      boolean bool2 = super.isClickable();
+      boolean bool3 = super.isLongClickable();
+      int k = super.getInputType();
+      paramL = paramL.a(localKeyListener);
+      if (paramL == localKeyListener) {
+        return;
+      }
+      super.setKeyListener(paramL);
+      super.setRawInputType(k);
+      super.setFocusable(bool1);
+      super.setClickable(bool2);
+      super.setLongClickable(bool3);
+    }
+  }
+  
+  protected void drawableStateChanged()
+  {
+    super.drawableStateChanged();
+    Object localObject = e;
+    if (localObject != null) {
+      ((e)localObject).b();
+    }
+    localObject = f;
+    if (localObject != null) {
+      ((b0)localObject).b();
+    }
+  }
+  
+  public ActionMode.Callback getCustomSelectionActionModeCallback()
+  {
+    return j.p(super.getCustomSelectionActionModeCallback());
+  }
+  
+  public ColorStateList getSupportBackgroundTintList()
+  {
+    e localE = e;
+    if (localE != null) {
+      return localE.c();
+    }
+    return null;
+  }
+  
+  public PorterDuff.Mode getSupportBackgroundTintMode()
+  {
+    e localE = e;
+    if (localE != null) {
+      return localE.d();
+    }
+    return null;
+  }
+  
+  public ColorStateList getSupportCompoundDrawablesTintList()
+  {
+    return f.j();
+  }
+  
+  public PorterDuff.Mode getSupportCompoundDrawablesTintMode()
+  {
+    return f.k();
+  }
+  
+  public Editable getText()
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return super.getText();
+    }
+    return super.getEditableText();
+  }
+  
+  public TextClassifier getTextClassifier()
+  {
+    if (Build.VERSION.SDK_INT < 28)
+    {
+      a0 localA0 = g;
+      if (localA0 != null) {
+        return localA0.a();
+      }
+    }
+    return getSuperCaller().a();
+  }
+  
+  public InputConnection onCreateInputConnection(EditorInfo paramEditorInfo)
+  {
+    Object localObject = super.onCreateInputConnection(paramEditorInfo);
+    f.r(this, (InputConnection)localObject, paramEditorInfo);
+    InputConnection localInputConnection = n.a((InputConnection)localObject, paramEditorInfo, this);
+    localObject = localInputConnection;
+    if (localInputConnection != null)
+    {
+      localObject = localInputConnection;
+      if (Build.VERSION.SDK_INT <= 30)
+      {
+        String[] arrayOfString = h0.H(this);
+        localObject = localInputConnection;
+        if (arrayOfString != null)
+        {
+          c.d(paramEditorInfo, arrayOfString);
+          localObject = f.c(this, localInputConnection, paramEditorInfo);
+        }
+      }
+    }
+    return i.d((InputConnection)localObject, paramEditorInfo);
+  }
+  
+  public boolean onDragEvent(DragEvent paramDragEvent)
+  {
+    if (u.a(this, paramDragEvent)) {
+      return true;
+    }
+    return super.onDragEvent(paramDragEvent);
+  }
+  
+  public boolean onTextContextMenuItem(int paramInt)
+  {
+    if (u.b(this, paramInt)) {
+      return true;
+    }
+    return super.onTextContextMenuItem(paramInt);
+  }
+  
+  public void setBackgroundDrawable(Drawable paramDrawable)
+  {
+    super.setBackgroundDrawable(paramDrawable);
+    e localE = e;
+    if (localE != null) {
+      localE.f(paramDrawable);
+    }
+  }
+  
+  public void setBackgroundResource(int paramInt)
+  {
+    super.setBackgroundResource(paramInt);
+    e localE = e;
+    if (localE != null) {
+      localE.g(paramInt);
+    }
+  }
+  
+  public void setCompoundDrawables(Drawable paramDrawable1, Drawable paramDrawable2, Drawable paramDrawable3, Drawable paramDrawable4)
+  {
+    super.setCompoundDrawables(paramDrawable1, paramDrawable2, paramDrawable3, paramDrawable4);
+    paramDrawable1 = f;
+    if (paramDrawable1 != null) {
+      paramDrawable1.p();
+    }
+  }
+  
+  public void setCompoundDrawablesRelative(Drawable paramDrawable1, Drawable paramDrawable2, Drawable paramDrawable3, Drawable paramDrawable4)
+  {
+    super.setCompoundDrawablesRelative(paramDrawable1, paramDrawable2, paramDrawable3, paramDrawable4);
+    paramDrawable1 = f;
+    if (paramDrawable1 != null) {
+      paramDrawable1.p();
+    }
+  }
+  
+  public void setCustomSelectionActionModeCallback(ActionMode.Callback paramCallback)
+  {
+    super.setCustomSelectionActionModeCallback(j.q(this, paramCallback));
+  }
+  
+  public void setEmojiCompatEnabled(boolean paramBoolean)
+  {
+    i.e(paramBoolean);
+  }
+  
+  public void setKeyListener(KeyListener paramKeyListener)
+  {
+    super.setKeyListener(i.a(paramKeyListener));
+  }
+  
+  public void setSupportBackgroundTintList(ColorStateList paramColorStateList)
+  {
+    e localE = e;
+    if (localE != null) {
+      localE.i(paramColorStateList);
+    }
+  }
+  
+  public void setSupportBackgroundTintMode(PorterDuff.Mode paramMode)
+  {
+    e localE = e;
+    if (localE != null) {
+      localE.j(paramMode);
+    }
+  }
+  
+  public void setSupportCompoundDrawablesTintList(ColorStateList paramColorStateList)
+  {
+    f.w(paramColorStateList);
+    f.b();
+  }
+  
+  public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode paramMode)
+  {
+    f.x(paramMode);
+    f.b();
+  }
+  
+  public void setTextAppearance(Context paramContext, int paramInt)
+  {
+    super.setTextAppearance(paramContext, paramInt);
+    b0 localB0 = f;
+    if (localB0 != null) {
+      localB0.q(paramContext, paramInt);
+    }
+  }
+  
+  public void setTextClassifier(TextClassifier paramTextClassifier)
+  {
+    if (Build.VERSION.SDK_INT < 28)
+    {
+      a0 localA0 = g;
+      if (localA0 != null)
+      {
+        localA0.b(paramTextClassifier);
+        return;
+      }
+    }
+    getSuperCaller().b(paramTextClassifier);
+  }
+  
+  class a
+  {
+    a() {}
+    
+    public TextClassifier a()
+    {
+      return k.b(k.this);
+    }
+    
+    public void b(TextClassifier paramTextClassifier)
+    {
+      k.c(k.this, paramTextClassifier);
+    }
+  }
+}

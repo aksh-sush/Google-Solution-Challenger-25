@@ -1,0 +1,91 @@
+package com.google.protobuf;
+
+abstract class t1
+{
+  t1() {}
+  
+  abstract void a(Object paramObject, int paramInt1, int paramInt2);
+  
+  abstract void b(Object paramObject, int paramInt, long paramLong);
+  
+  abstract void c(Object paramObject1, int paramInt, Object paramObject2);
+  
+  abstract void d(Object paramObject, int paramInt, j paramJ);
+  
+  abstract void e(Object paramObject, int paramInt, long paramLong);
+  
+  abstract Object f(Object paramObject);
+  
+  abstract Object g(Object paramObject);
+  
+  abstract int h(Object paramObject);
+  
+  abstract int i(Object paramObject);
+  
+  abstract void j(Object paramObject);
+  
+  abstract Object k(Object paramObject1, Object paramObject2);
+  
+  final void l(Object paramObject, j1 paramJ1)
+  {
+    while ((paramJ1.t() != Integer.MAX_VALUE) && (m(paramObject, paramJ1))) {}
+  }
+  
+  final boolean m(Object paramObject, j1 paramJ1)
+  {
+    int j = paramJ1.c();
+    int i = z1.a(j);
+    j = z1.b(j);
+    if (j != 0)
+    {
+      if (j != 1)
+      {
+        if (j != 2)
+        {
+          if (j != 3)
+          {
+            if (j != 4)
+            {
+              if (j == 5)
+              {
+                a(paramObject, i, paramJ1.p());
+                return true;
+              }
+              throw d0.d();
+            }
+            return false;
+          }
+          Object localObject = n();
+          j = z1.c(i, 4);
+          l(localObject, paramJ1);
+          if (j == paramJ1.c())
+          {
+            c(paramObject, i, r(localObject));
+            return true;
+          }
+          throw d0.a();
+        }
+        d(paramObject, i, paramJ1.B());
+        return true;
+      }
+      b(paramObject, i, paramJ1.f());
+      return true;
+    }
+    e(paramObject, i, paramJ1.L());
+    return true;
+  }
+  
+  abstract Object n();
+  
+  abstract void o(Object paramObject1, Object paramObject2);
+  
+  abstract void p(Object paramObject1, Object paramObject2);
+  
+  abstract boolean q(j1 paramJ1);
+  
+  abstract Object r(Object paramObject);
+  
+  abstract void s(Object paramObject, a2 paramA2);
+  
+  abstract void t(Object paramObject, a2 paramA2);
+}

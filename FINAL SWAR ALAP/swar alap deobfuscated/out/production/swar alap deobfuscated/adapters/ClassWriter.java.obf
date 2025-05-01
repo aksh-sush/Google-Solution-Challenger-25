@@ -1,0 +1,200 @@
+package t;
+
+import java.util.ArrayList;
+
+public class c
+{
+  protected e a;
+  protected e b;
+  protected e c;
+  protected e d;
+  protected e e;
+  protected e f;
+  protected e g;
+  protected ArrayList h;
+  protected int i;
+  protected int j;
+  protected float k = 0.0F;
+  int l;
+  int m;
+  int n;
+  boolean o;
+  private int p;
+  private boolean q;
+  protected boolean r;
+  protected boolean s;
+  protected boolean t;
+  protected boolean u;
+  private boolean v;
+  
+  public c(e paramE, int paramInt, boolean paramBoolean)
+  {
+    a = paramE;
+    p = paramInt;
+    q = paramBoolean;
+  }
+  
+  private void b()
+  {
+    int i2 = p * 2;
+    Object localObject1 = a;
+    boolean bool = true;
+    o = true;
+    Object localObject2 = localObject1;
+    int i1 = 0;
+    while (i1 == 0)
+    {
+      i += 1;
+      Object localObject4 = F0;
+      int i3 = p;
+      Object localObject3 = null;
+      localObject4[i3] = null;
+      E0[i3] = null;
+      Object localObject5;
+      if (((e)localObject1).V() != 8)
+      {
+        l += 1;
+        localObject5 = ((e)localObject1).u(p);
+        localObject4 = e.b.g;
+        if (localObject5 != localObject4) {
+          m += ((e)localObject1).E(p);
+        }
+        int i4 = m + W[i2].f();
+        m = i4;
+        localObject5 = W;
+        i3 = i2 + 1;
+        m = (i4 + localObject5[i3].f());
+        i4 = n + W[i2].f();
+        n = i4;
+        n = (i4 + W[i3].f());
+        if (b == null) {
+          b = ((e)localObject1);
+        }
+        d = ((e)localObject1);
+        localObject5 = Z;
+        i3 = p;
+        if (localObject5[i3] == localObject4)
+        {
+          i4 = y[i3];
+          if ((i4 == 0) || (i4 == 3) || (i4 == 2))
+          {
+            j += 1;
+            float f1 = D0[i3];
+            if (f1 > 0.0F) {
+              k += f1;
+            }
+            if (c((e)localObject1, i3))
+            {
+              if (f1 < 0.0F) {
+                r = true;
+              } else {
+                s = true;
+              }
+              if (h == null) {
+                h = new ArrayList();
+              }
+              h.add(localObject1);
+            }
+            if (f == null) {
+              f = ((e)localObject1);
+            }
+            localObject4 = g;
+            if (localObject4 != null) {
+              E0[p] = localObject1;
+            }
+            g = ((e)localObject1);
+          }
+          if (p == 0)
+          {
+            if ((w == 0) && (z == 0)) {
+              if (A == 0) {
+                break label499;
+              }
+            }
+          }
+          else {
+            if (x == 0) {
+              break label480;
+            }
+          }
+          label480:
+          while ((C != 0) || (D != 0))
+          {
+            o = false;
+            break;
+          }
+          label499:
+          if (d0 != 0.0F)
+          {
+            o = false;
+            u = true;
+          }
+        }
+      }
+      if (localObject2 != localObject1) {
+        F0[p] = localObject1;
+      }
+      localObject4 = W[(i2 + 1)].f;
+      localObject2 = localObject3;
+      if (localObject4 != null)
+      {
+        localObject4 = d;
+        localObject5 = W[i2].f;
+        localObject2 = localObject3;
+        if (localObject5 != null) {
+          if (d != localObject1) {
+            localObject2 = localObject3;
+          } else {
+            localObject2 = localObject4;
+          }
+        }
+      }
+      if (localObject2 == null)
+      {
+        localObject2 = localObject1;
+        i1 = 1;
+      }
+      localObject3 = localObject1;
+      localObject1 = localObject2;
+      localObject2 = localObject3;
+    }
+    localObject2 = b;
+    if (localObject2 != null) {
+      m -= W[i2].f();
+    }
+    localObject2 = d;
+    if (localObject2 != null) {
+      m -= W[(i2 + 1)].f();
+    }
+    c = ((e)localObject1);
+    if ((p == 0) && (q)) {
+      e = ((e)localObject1);
+    } else {
+      e = a;
+    }
+    if ((!s) || (!r)) {
+      bool = false;
+    }
+    t = bool;
+  }
+  
+  private static boolean c(e paramE, int paramInt)
+  {
+    if ((paramE.V() != 8) && (Z[paramInt] == e.b.g))
+    {
+      paramInt = y[paramInt];
+      if ((paramInt == 0) || (paramInt == 3)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public void a()
+  {
+    if (!v) {
+      b();
+    }
+    v = true;
+  }
+}

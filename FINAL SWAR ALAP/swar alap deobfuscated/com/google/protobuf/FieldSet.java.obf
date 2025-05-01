@@ -1,0 +1,575 @@
+package com.google.protobuf;
+
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
+
+final class v
+{
+  private static final v d = new v(true);
+  private final o1 a;
+  private boolean b;
+  private boolean c;
+  
+  private v()
+  {
+    a = o1.q(16);
+  }
+  
+  private v(o1 paramO1)
+  {
+    a = paramO1;
+    r();
+  }
+  
+  private v(boolean paramBoolean)
+  {
+    this(o1.q(0));
+    r();
+  }
+  
+  private static Object c(Object paramObject)
+  {
+    if ((paramObject instanceof byte[]))
+    {
+      paramObject = (byte[])paramObject;
+      byte[] arrayOfByte = new byte[paramObject.length];
+      System.arraycopy(paramObject, 0, arrayOfByte, 0, paramObject.length);
+      return arrayOfByte;
+    }
+    return paramObject;
+  }
+  
+  static int d(z1.b paramB, int paramInt, Object paramObject)
+  {
+    int i = m.T(paramInt);
+    paramInt = i;
+    if (paramB == z1.b.p) {
+      paramInt = i * 2;
+    }
+    return paramInt + e(paramB, paramObject);
+  }
+  
+  static int e(z1.b paramB, Object paramObject)
+  {
+    switch (a.b[paramB.ordinal()])
+    {
+    default: 
+      throw new RuntimeException("There is no way to get here, but the compiler thinks otherwise.");
+    case 18: 
+      if ((paramObject instanceof c0.c)) {
+        return m.m(((c0.c)paramObject).getNumber());
+      }
+      return m.m(((Integer)paramObject).intValue());
+    case 17: 
+      return m.Q(((Long)paramObject).longValue());
+    case 16: 
+      return m.O(((Integer)paramObject).intValue());
+    case 15: 
+      return m.M(((Long)paramObject).longValue());
+    case 14: 
+      return m.K(((Integer)paramObject).intValue());
+    case 13: 
+      return m.V(((Integer)paramObject).intValue());
+    case 12: 
+      if ((paramObject instanceof j)) {
+        return m.i((j)paramObject);
+      }
+      return m.g((byte[])paramObject);
+    case 11: 
+      if ((paramObject instanceof j)) {
+        return m.i((j)paramObject);
+      }
+      return m.S((String)paramObject);
+    case 10: 
+      return m.E((t0)paramObject);
+    case 9: 
+      return m.u((t0)paramObject);
+    case 8: 
+      return m.f(((Boolean)paramObject).booleanValue());
+    case 7: 
+      return m.o(((Integer)paramObject).intValue());
+    case 6: 
+      return m.q(((Long)paramObject).longValue());
+    case 5: 
+      return m.x(((Integer)paramObject).intValue());
+    case 4: 
+      return m.X(((Long)paramObject).longValue());
+    case 3: 
+      return m.z(((Long)paramObject).longValue());
+    case 2: 
+      return m.s(((Float)paramObject).floatValue());
+    }
+    return m.k(((Double)paramObject).doubleValue());
+  }
+  
+  public static int f(b paramB, Object paramObject)
+  {
+    z1.b localB = paramB.e();
+    int k = paramB.getNumber();
+    if (paramB.b())
+    {
+      boolean bool = paramB.k();
+      int j = 0;
+      int i = 0;
+      paramB = (List)paramObject;
+      if (bool)
+      {
+        paramB = paramB.iterator();
+        while (paramB.hasNext()) {
+          i += e(localB, paramB.next());
+        }
+        return m.T(k) + i + m.I(i);
+      }
+      paramB = paramB.iterator();
+      i = j;
+      while (paramB.hasNext()) {
+        i += d(localB, k, paramB.next());
+      }
+      return i;
+    }
+    return d(localB, k, paramObject);
+  }
+  
+  private int j(Map.Entry paramEntry)
+  {
+    b localB = (b)paramEntry.getKey();
+    Object localObject = paramEntry.getValue();
+    if ((localB.j() == z1.c.n) && (!localB.b()) && (!localB.k())) {
+      return m.B(((b)paramEntry.getKey()).getNumber(), (t0)localObject);
+    }
+    return f(localB, localObject);
+  }
+  
+  static int l(z1.b paramB, boolean paramBoolean)
+  {
+    if (paramBoolean) {
+      return 2;
+    }
+    return paramB.c();
+  }
+  
+  private static boolean o(Map.Entry paramEntry)
+  {
+    b localB = (b)paramEntry.getKey();
+    if (localB.j() == z1.c.n)
+    {
+      boolean bool = localB.b();
+      paramEntry = paramEntry.getValue();
+      if (bool)
+      {
+        paramEntry = ((List)paramEntry).iterator();
+        do
+        {
+          if (!paramEntry.hasNext()) {
+            break;
+          }
+        } while (((t0)paramEntry.next()).isInitialized());
+        return false;
+      }
+      if ((paramEntry instanceof t0))
+      {
+        if (!((t0)paramEntry).isInitialized()) {
+          return false;
+        }
+      }
+      else {
+        throw new IllegalArgumentException("Wrong object type used with protocol message reflection.");
+      }
+    }
+    return true;
+  }
+  
+  private static boolean p(z1.b paramB, Object paramObject)
+  {
+    c0.a(paramObject);
+    int i = a.a[paramB.a().ordinal()];
+    boolean bool2 = true;
+    boolean bool3 = true;
+    boolean bool1 = true;
+    switch (i)
+    {
+    default: 
+      return false;
+    case 9: 
+      if (!(paramObject instanceof t0)) {
+        bool1 = false;
+      }
+      return bool1;
+    case 8: 
+      bool1 = bool2;
+      if (!(paramObject instanceof Integer))
+      {
+        if ((paramObject instanceof c0.c)) {
+          return true;
+        }
+        bool1 = false;
+      }
+      return bool1;
+    case 7: 
+      bool1 = bool3;
+      if (!(paramObject instanceof j))
+      {
+        if ((paramObject instanceof byte[])) {
+          return true;
+        }
+        bool1 = false;
+      }
+      return bool1;
+    case 6: 
+      return paramObject instanceof String;
+    case 5: 
+      return paramObject instanceof Boolean;
+    case 4: 
+      return paramObject instanceof Double;
+    case 3: 
+      return paramObject instanceof Float;
+    case 2: 
+      return paramObject instanceof Long;
+    }
+    return paramObject instanceof Integer;
+  }
+  
+  private void t(Map.Entry paramEntry)
+  {
+    b localB = (b)paramEntry.getKey();
+    Object localObject2 = paramEntry.getValue();
+    if (localB.b())
+    {
+      localObject1 = h(localB);
+      paramEntry = (Map.Entry)localObject1;
+      if (localObject1 == null) {
+        paramEntry = new ArrayList();
+      }
+      localObject1 = ((List)localObject2).iterator();
+      while (((Iterator)localObject1).hasNext())
+      {
+        localObject2 = ((Iterator)localObject1).next();
+        ((List)paramEntry).add(c(localObject2));
+      }
+      a.r(localB, paramEntry);
+      return;
+    }
+    if (localB.j() == z1.c.n)
+    {
+      paramEntry = h(localB);
+      if (paramEntry != null)
+      {
+        localObject1 = localB.g(((t0)paramEntry).toBuilder(), (t0)localObject2).build();
+        paramEntry = a;
+        break label174;
+      }
+    }
+    paramEntry = a;
+    Object localObject1 = c(localObject2);
+    label174:
+    paramEntry.r(localB, localObject1);
+  }
+  
+  public static v u()
+  {
+    return new v();
+  }
+  
+  private void w(z1.b paramB, Object paramObject)
+  {
+    if (p(paramB, paramObject)) {
+      return;
+    }
+    throw new IllegalArgumentException("Wrong object type used with protocol message reflection.");
+  }
+  
+  static void x(m paramM, z1.b paramB, int paramInt, Object paramObject)
+  {
+    if (paramB == z1.b.p)
+    {
+      paramM.y0(paramInt, (t0)paramObject);
+      return;
+    }
+    paramM.V0(paramInt, l(paramB, false));
+    y(paramM, paramB, paramObject);
+  }
+  
+  static void y(m paramM, z1.b paramB, Object paramObject)
+  {
+    switch (a.b[paramB.ordinal()])
+    {
+    default: 
+      return;
+    case 18: 
+      int i;
+      if ((paramObject instanceof c0.c)) {
+        i = ((c0.c)paramObject).getNumber();
+      } else {
+        i = ((Integer)paramObject).intValue();
+      }
+      paramM.r0(i);
+      return;
+    case 17: 
+      paramM.S0(((Long)paramObject).longValue());
+      return;
+    case 16: 
+      paramM.Q0(((Integer)paramObject).intValue());
+      return;
+    case 15: 
+      paramM.O0(((Long)paramObject).longValue());
+      return;
+    case 14: 
+      paramM.M0(((Integer)paramObject).intValue());
+      return;
+    case 13: 
+      paramM.X0(((Integer)paramObject).intValue());
+      return;
+    case 12: 
+      if (!(paramObject instanceof j))
+      {
+        paramM.k0((byte[])paramObject);
+        return;
+      }
+    case 11: 
+      if ((paramObject instanceof j))
+      {
+        paramM.n0((j)paramObject);
+        return;
+      }
+      paramM.U0((String)paramObject);
+      return;
+    case 10: 
+      paramM.H0((t0)paramObject);
+      return;
+    case 9: 
+      paramM.A0((t0)paramObject);
+      return;
+    case 8: 
+      paramM.j0(((Boolean)paramObject).booleanValue());
+      return;
+    case 7: 
+      paramM.t0(((Integer)paramObject).intValue());
+      return;
+    case 6: 
+      paramM.v0(((Long)paramObject).longValue());
+      return;
+    case 5: 
+      paramM.D0(((Integer)paramObject).intValue());
+      return;
+    case 4: 
+      paramM.Z0(((Long)paramObject).longValue());
+      return;
+    case 3: 
+      paramM.F0(((Long)paramObject).longValue());
+      return;
+    case 2: 
+      paramM.x0(((Float)paramObject).floatValue());
+      return;
+    }
+    paramM.p0(((Double)paramObject).doubleValue());
+  }
+  
+  public void a(b paramB, Object paramObject)
+  {
+    if (paramB.b())
+    {
+      w(paramB.e(), paramObject);
+      Object localObject = h(paramB);
+      if (localObject == null)
+      {
+        localObject = new ArrayList();
+        a.r(paramB, localObject);
+        paramB = (b)localObject;
+      }
+      else
+      {
+        paramB = (List)localObject;
+      }
+      paramB.add(paramObject);
+      return;
+    }
+    throw new IllegalArgumentException("addRepeatedField() can only be called on repeated fields.");
+  }
+  
+  public v b()
+  {
+    v localV = u();
+    int i = 0;
+    while (i < a.k())
+    {
+      localObject = a.j(i);
+      localV.v((b)((Map.Entry)localObject).getKey(), ((Map.Entry)localObject).getValue());
+      i += 1;
+    }
+    Object localObject = a.m().iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      Map.Entry localEntry = (Map.Entry)((Iterator)localObject).next();
+      localV.v((b)localEntry.getKey(), localEntry.getValue());
+    }
+    c = c;
+    return localV;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof v)) {
+      return false;
+    }
+    paramObject = (v)paramObject;
+    return a.equals(a);
+  }
+  
+  Iterator g()
+  {
+    if (c) {
+      return new f0.b(a.h().iterator());
+    }
+    return a.h().iterator();
+  }
+  
+  public Object h(b paramB)
+  {
+    return a.get(paramB);
+  }
+  
+  public int hashCode()
+  {
+    return a.hashCode();
+  }
+  
+  public int i()
+  {
+    int j = 0;
+    int i = 0;
+    while (j < a.k())
+    {
+      i += j(a.j(j));
+      j += 1;
+    }
+    Iterator localIterator = a.m().iterator();
+    while (localIterator.hasNext()) {
+      i += j((Map.Entry)localIterator.next());
+    }
+    return i;
+  }
+  
+  public int k()
+  {
+    int j = 0;
+    int i = 0;
+    while (j < a.k())
+    {
+      localObject = a.j(j);
+      i += f((b)((Map.Entry)localObject).getKey(), ((Map.Entry)localObject).getValue());
+      j += 1;
+    }
+    Object localObject = a.m().iterator();
+    while (((Iterator)localObject).hasNext())
+    {
+      Map.Entry localEntry = (Map.Entry)((Iterator)localObject).next();
+      i += f((b)localEntry.getKey(), localEntry.getValue());
+    }
+    return i;
+  }
+  
+  boolean m()
+  {
+    return a.isEmpty();
+  }
+  
+  public boolean n()
+  {
+    int i = 0;
+    while (i < a.k())
+    {
+      if (!o(a.j(i))) {
+        return false;
+      }
+      i += 1;
+    }
+    Iterator localIterator = a.m().iterator();
+    while (localIterator.hasNext()) {
+      if (!o((Map.Entry)localIterator.next())) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public Iterator q()
+  {
+    if (c) {
+      return new f0.b(a.entrySet().iterator());
+    }
+    return a.entrySet().iterator();
+  }
+  
+  public void r()
+  {
+    if (b) {
+      return;
+    }
+    a.p();
+    b = true;
+  }
+  
+  public void s(v paramV)
+  {
+    int i = 0;
+    while (i < a.k())
+    {
+      t(a.j(i));
+      i += 1;
+    }
+    paramV = a.m().iterator();
+    while (paramV.hasNext()) {
+      t((Map.Entry)paramV.next());
+    }
+  }
+  
+  public void v(b paramB, Object paramObject)
+  {
+    if (paramB.b())
+    {
+      if ((paramObject instanceof List))
+      {
+        ArrayList localArrayList = new ArrayList();
+        localArrayList.addAll((List)paramObject);
+        paramObject = localArrayList.iterator();
+        while (paramObject.hasNext())
+        {
+          Object localObject = paramObject.next();
+          w(paramB.e(), localObject);
+        }
+        paramObject = localArrayList;
+      }
+      else
+      {
+        throw new IllegalArgumentException("Wrong object type used with protocol message reflection.");
+      }
+    }
+    else {
+      w(paramB.e(), paramObject);
+    }
+    a.r(paramB, paramObject);
+  }
+  
+  public static abstract interface b
+    extends Comparable
+  {
+    public abstract boolean b();
+    
+    public abstract z1.b e();
+    
+    public abstract t0.a g(t0.a paramA, t0 paramT0);
+    
+    public abstract int getNumber();
+    
+    public abstract z1.c j();
+    
+    public abstract boolean k();
+  }
+}

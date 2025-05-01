@@ -1,0 +1,218 @@
+package androidx.core.graphics;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Typeface;
+import android.os.CancellationSignal;
+import androidx.core.content.res.e.c;
+import androidx.core.provider.g.b;
+import java.util.concurrent.ConcurrentHashMap;
+
+abstract class k
+{
+  private ConcurrentHashMap a = new ConcurrentHashMap();
+  
+  k() {}
+  
+  private static Object e(Object[] paramArrayOfObject, int paramInt, b paramB)
+  {
+    int i;
+    if ((paramInt & 0x1) == 0) {
+      i = 400;
+    } else {
+      i = 700;
+    }
+    boolean bool;
+    if ((paramInt & 0x2) != 0) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    return f(paramArrayOfObject, i, bool, paramB);
+  }
+  
+  private static Object f(Object[] paramArrayOfObject, int paramInt, boolean paramBoolean, b paramB)
+  {
+    int n = paramArrayOfObject.length;
+    Object localObject1 = null;
+    int j = Integer.MAX_VALUE;
+    int i = 0;
+    while (i < n)
+    {
+      Object localObject2 = paramArrayOfObject[i];
+      int m = Math.abs(paramB.a(localObject2) - paramInt);
+      int k;
+      if (paramB.b(localObject2) == paramBoolean) {
+        k = 0;
+      } else {
+        k = 1;
+      }
+      m = m * 2 + k;
+      if (localObject1 != null)
+      {
+        k = j;
+        if (j <= m) {}
+      }
+      else
+      {
+        localObject1 = localObject2;
+        k = m;
+      }
+      i += 1;
+      j = k;
+    }
+    return localObject1;
+  }
+  
+  public abstract Typeface a(Context paramContext, e.c paramC, Resources paramResources, int paramInt);
+  
+  public abstract Typeface b(Context paramContext, CancellationSignal paramCancellationSignal, g.b[] paramArrayOfB, int paramInt);
+  
+  /* Error */
+  protected Typeface c(Context paramContext, java.io.InputStream paramInputStream)
+  {
+    // Byte code:
+    //   0: aload_1
+    //   1: invokestatic 51	androidx/core/graphics/l:e	(Landroid/content/Context;)Ljava/io/File;
+    //   4: astore_1
+    //   5: aload_1
+    //   6: ifnonnull +5 -> 11
+    //   9: aconst_null
+    //   10: areturn
+    //   11: aload_1
+    //   12: aload_2
+    //   13: invokestatic 55	androidx/core/graphics/l:d	(Ljava/io/File;Ljava/io/InputStream;)Z
+    //   16: istore_3
+    //   17: iload_3
+    //   18: ifne +10 -> 28
+    //   21: aload_1
+    //   22: invokevirtual 61	java/io/File:delete	()Z
+    //   25: pop
+    //   26: aconst_null
+    //   27: areturn
+    //   28: aload_1
+    //   29: invokevirtual 65	java/io/File:getPath	()Ljava/lang/String;
+    //   32: invokestatic 71	android/graphics/Typeface:createFromFile	(Ljava/lang/String;)Landroid/graphics/Typeface;
+    //   35: astore_2
+    //   36: aload_1
+    //   37: invokevirtual 61	java/io/File:delete	()Z
+    //   40: pop
+    //   41: aload_2
+    //   42: areturn
+    //   43: astore_2
+    //   44: aload_1
+    //   45: invokevirtual 61	java/io/File:delete	()Z
+    //   48: pop
+    //   49: aload_2
+    //   50: athrow
+    //   51: aload_1
+    //   52: invokevirtual 61	java/io/File:delete	()Z
+    //   55: pop
+    //   56: aconst_null
+    //   57: areturn
+    //   58: astore_2
+    //   59: goto -8 -> 51
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	62	0	this	k
+    //   0	62	1	paramContext	Context
+    //   0	62	2	paramInputStream	java.io.InputStream
+    //   16	2	3	bool	boolean
+    // Exception table:
+    //   from	to	target	type
+    //   11	17	43	finally
+    //   28	36	43	finally
+    //   11	17	58	java/lang/RuntimeException
+    //   28	36	58	java/lang/RuntimeException
+  }
+  
+  /* Error */
+  public Typeface d(Context paramContext, Resources paramResources, int paramInt1, String paramString, int paramInt2)
+  {
+    // Byte code:
+    //   0: aload_1
+    //   1: invokestatic 51	androidx/core/graphics/l:e	(Landroid/content/Context;)Ljava/io/File;
+    //   4: astore_1
+    //   5: aload_1
+    //   6: ifnonnull +5 -> 11
+    //   9: aconst_null
+    //   10: areturn
+    //   11: aload_1
+    //   12: aload_2
+    //   13: iload_3
+    //   14: invokestatic 75	androidx/core/graphics/l:c	(Ljava/io/File;Landroid/content/res/Resources;I)Z
+    //   17: istore 6
+    //   19: iload 6
+    //   21: ifne +10 -> 31
+    //   24: aload_1
+    //   25: invokevirtual 61	java/io/File:delete	()Z
+    //   28: pop
+    //   29: aconst_null
+    //   30: areturn
+    //   31: aload_1
+    //   32: invokevirtual 65	java/io/File:getPath	()Ljava/lang/String;
+    //   35: invokestatic 71	android/graphics/Typeface:createFromFile	(Ljava/lang/String;)Landroid/graphics/Typeface;
+    //   38: astore_2
+    //   39: aload_1
+    //   40: invokevirtual 61	java/io/File:delete	()Z
+    //   43: pop
+    //   44: aload_2
+    //   45: areturn
+    //   46: astore_2
+    //   47: aload_1
+    //   48: invokevirtual 61	java/io/File:delete	()Z
+    //   51: pop
+    //   52: aload_2
+    //   53: athrow
+    //   54: aload_1
+    //   55: invokevirtual 61	java/io/File:delete	()Z
+    //   58: pop
+    //   59: aconst_null
+    //   60: areturn
+    //   61: astore_2
+    //   62: goto -8 -> 54
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	65	0	this	k
+    //   0	65	1	paramContext	Context
+    //   0	65	2	paramResources	Resources
+    //   0	65	3	paramInt1	int
+    //   0	65	4	paramString	String
+    //   0	65	5	paramInt2	int
+    //   17	3	6	bool	boolean
+    // Exception table:
+    //   from	to	target	type
+    //   11	19	46	finally
+    //   31	39	46	finally
+    //   11	19	61	java/lang/RuntimeException
+    //   31	39	61	java/lang/RuntimeException
+  }
+  
+  protected g.b g(g.b[] paramArrayOfB, int paramInt)
+  {
+    return (g.b)e(paramArrayOfB, paramInt, new a());
+  }
+  
+  class a
+    implements k.b
+  {
+    a() {}
+    
+    public int c(g.b paramB)
+    {
+      return paramB.e();
+    }
+    
+    public boolean d(g.b paramB)
+    {
+      return paramB.f();
+    }
+  }
+  
+  private static abstract interface b
+  {
+    public abstract int a(Object paramObject);
+    
+    public abstract boolean b(Object paramObject);
+  }
+}

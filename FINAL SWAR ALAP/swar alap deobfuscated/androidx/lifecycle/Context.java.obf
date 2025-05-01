@@ -1,0 +1,6 @@
+package androidx.lifecycle;
+
+public abstract interface t
+{
+  public abstract void a(Object paramObject);
+}

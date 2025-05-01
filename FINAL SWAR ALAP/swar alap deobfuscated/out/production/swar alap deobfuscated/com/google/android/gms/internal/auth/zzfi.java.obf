@@ -1,0 +1,42 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.List;
+
+final class zzfi
+  extends zzfk
+{
+  private zzfi()
+  {
+    super(null);
+  }
+  
+  final void zza(Object paramObject, long paramLong)
+  {
+    ((zzey)zzhi.zzf(paramObject, paramLong)).zzb();
+  }
+  
+  final void zzb(Object paramObject1, Object paramObject2, long paramLong)
+  {
+    zzey localZzey1 = (zzey)zzhi.zzf(paramObject1, paramLong);
+    zzey localZzey2 = (zzey)zzhi.zzf(paramObject2, paramLong);
+    int i = localZzey1.size();
+    int j = localZzey2.size();
+    paramObject2 = localZzey1;
+    if (i > 0)
+    {
+      paramObject2 = localZzey1;
+      if (j > 0)
+      {
+        paramObject2 = localZzey1;
+        if (!localZzey1.zzc()) {
+          paramObject2 = localZzey1.zzd(j + i);
+        }
+        paramObject2.addAll(localZzey2);
+      }
+    }
+    if (i <= 0) {
+      paramObject2 = localZzey2;
+    }
+    zzhi.zzp(paramObject1, paramLong, paramObject2);
+  }
+}

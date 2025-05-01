@@ -1,0 +1,6 @@
+package androidx.activity;
+
+public abstract interface c
+{
+  public abstract void cancel();
+}

@@ -1,0 +1,72 @@
+package com.google.android.gms.internal.auth;
+
+import android.accounts.Account;
+import android.content.Context;
+import android.os.Bundle;
+import com.google.android.gms.common.api.a.a;
+import com.google.android.gms.common.api.a.d;
+import com.google.android.gms.common.api.a.g;
+import com.google.android.gms.common.api.d.a;
+import com.google.android.gms.common.api.internal.v;
+import com.google.android.gms.common.api.internal.v.a;
+import com.google.android.gms.common.internal.s;
+import g3.b;
+import g3.g;
+import g3.h;
+import n4.i;
+
+final class zzab
+  extends com.google.android.gms.common.api.d
+  implements zzg
+{
+  private static final a.g zza;
+  private static final a.a zzb;
+  private static final com.google.android.gms.common.api.a zzc;
+  private static final u3.a zzd = g.a(new String[] { "GoogleAuthServiceClient" });
+  private final Context zze;
+  
+  static
+  {
+    a.g localG = new a.g();
+    zza = localG;
+    zzv localZzv = new zzv();
+    zzb = localZzv;
+    zzc = new com.google.android.gms.common.api.a("GoogleAuthService.API", localZzv, localG);
+  }
+  
+  zzab(Context paramContext)
+  {
+    super(paramContext, zzc, a.d.a, d.a.c);
+    zze = paramContext;
+  }
+  
+  public final i zza(zzbw paramZzbw)
+  {
+    return doWrite(v.a().d(new q3.d[] { h.j }).b(new zzt(this, paramZzbw)).e(1513).a());
+  }
+  
+  public final i zzb(b paramB)
+  {
+    s.l(paramB, "request cannot be null.");
+    return doWrite(v.a().d(new q3.d[] { h.i }).b(new zzu(this, paramB)).e(1515).a());
+  }
+  
+  public final i zzc(Account paramAccount, String paramString, Bundle paramBundle)
+  {
+    s.l(paramAccount, "Account name cannot be null!");
+    s.h(paramString, "Scope cannot be null!");
+    return doWrite(v.a().d(new q3.d[] { h.j }).b(new zzs(this, paramAccount, paramString, paramBundle)).e(1512).a());
+  }
+  
+  public final i zzd(Account paramAccount)
+  {
+    s.l(paramAccount, "account cannot be null.");
+    return doWrite(v.a().d(new q3.d[] { h.i }).b(new zzr(this, paramAccount)).e(1517).a());
+  }
+  
+  public final i zze(String paramString)
+  {
+    s.l(paramString, "Client package name cannot be null!");
+    return doWrite(v.a().d(new q3.d[] { h.i }).b(new zzq(this, paramString)).e(1514).a());
+  }
+}

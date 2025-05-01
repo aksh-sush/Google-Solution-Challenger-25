@@ -1,0 +1,61 @@
+package x1;
+
+import android.content.Context;
+import com.facebook.u0;
+import db.l;
+import e2.a;
+import e2.e0;
+import e2.e0.a;
+import e2.s0;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Map;
+import org.json.JSONObject;
+import p1.o;
+import p1.o.a;
+import sa.m;
+import sa.q;
+import ta.c0;
+
+public final class h
+{
+  public static final h a = new h();
+  private static final Map b = c0.e(new m[] { q.a(a.e, "MOBILE_APP_INSTALL"), q.a(a.f, "CUSTOM_APP_EVENTS") });
+  
+  private h() {}
+  
+  public static final JSONObject a(a paramA, a paramA1, String paramString, boolean paramBoolean, Context paramContext)
+  {
+    l.e(paramA, "activityType");
+    l.e(paramContext, "context");
+    JSONObject localJSONObject = new JSONObject();
+    localJSONObject.put("event", b.get(paramA));
+    paramA = o.b.d();
+    if (paramA != null) {
+      localJSONObject.put("app_user_id", paramA);
+    }
+    s0.C0(localJSONObject, paramA1, paramString, paramBoolean, paramContext);
+    try
+    {
+      s0.D0(localJSONObject, paramContext);
+    }
+    catch (Exception paramA)
+    {
+      e0.e.c(u0.i, "AppEvents", "Fetching extended device info parameters failed: '%s'", new Object[] { paramA.toString() });
+    }
+    paramA = s0.C();
+    if (paramA != null)
+    {
+      paramA1 = paramA.keys();
+      while (paramA1.hasNext())
+      {
+        paramString = (String)paramA1.next();
+        localJSONObject.put(paramString, paramA.get(paramString));
+      }
+    }
+    localJSONObject.put("application_package_name", paramContext.getPackageName());
+    return localJSONObject;
+  }
+  
+  public static enum a {}
+}

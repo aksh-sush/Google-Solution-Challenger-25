@@ -1,0 +1,29 @@
+package l4;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.u0;
+import s3.a;
+import s3.c;
+
+public final class j
+  extends a
+{
+  public static final Parcelable.Creator<j> CREATOR = new k();
+  final int e;
+  final u0 f;
+  
+  j(int paramInt, u0 paramU0)
+  {
+    e = paramInt;
+    f = paramU0;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int i = c.a(paramParcel);
+    c.t(paramParcel, 1, e);
+    c.B(paramParcel, 2, f, paramInt, false);
+    c.b(paramParcel, i);
+  }
+}

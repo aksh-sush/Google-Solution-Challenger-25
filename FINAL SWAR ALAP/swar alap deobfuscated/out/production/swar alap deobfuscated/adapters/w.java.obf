@@ -1,0 +1,53 @@
+package t;
+
+public abstract class k
+{
+  static boolean[] a = new boolean[3];
+  
+  static void a(f paramF, q.d paramD, e paramE)
+  {
+    t = -1;
+    u = -1;
+    Object localObject = Z[0];
+    e.b localB = e.b.f;
+    int i;
+    int j;
+    if ((localObject != localB) && (Z[0] == e.b.h))
+    {
+      i = O.g;
+      j = paramF.W() - Q.g;
+      localObject = O;
+      i = paramD.q(localObject);
+      localObject = Q;
+      i = paramD.q(localObject);
+      paramD.f(O.i, i);
+      paramD.f(Q.i, j);
+      t = 2;
+      paramE.O0(i, j);
+    }
+    if ((Z[1] != localB) && (Z[1] == e.b.h))
+    {
+      i = P.g;
+      j = paramF.x() - R.g;
+      paramF = P;
+      paramF.i = paramD.q(paramF);
+      paramF = R;
+      paramF.i = paramD.q(paramF);
+      paramD.f(P.i, i);
+      paramD.f(R.i, j);
+      if ((l0 > 0) || (paramE.V() == 8))
+      {
+        paramF = S;
+        paramF.i = paramD.q(paramF);
+        paramD.f(S.i, l0 + i);
+      }
+      u = 2;
+      paramE.f1(i, j);
+    }
+  }
+  
+  public static final boolean b(int paramInt1, int paramInt2)
+  {
+    return (paramInt1 & paramInt2) == paramInt2;
+  }
+}

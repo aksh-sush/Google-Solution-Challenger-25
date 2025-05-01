@@ -1,0 +1,249 @@
+package androidx.lifecycle;
+
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import lb.g;
+
+public final class q
+{
+  public static final q a = new q();
+  private static final Map b = new HashMap();
+  private static final Map c = new HashMap();
+  
+  private q() {}
+  
+  private final f a(Constructor paramConstructor, Object paramObject)
+  {
+    try
+    {
+      paramConstructor = paramConstructor.newInstance(new Object[] { paramObject });
+      db.l.d(paramConstructor, "{\n            constructo?tance(`object`)\n        }");
+      android.support.v4.media.session.b.a(paramConstructor);
+      return null;
+    }
+    catch (InvocationTargetException paramConstructor)
+    {
+      throw new RuntimeException(paramConstructor);
+    }
+    catch (InstantiationException paramConstructor)
+    {
+      throw new RuntimeException(paramConstructor);
+    }
+    catch (IllegalAccessException paramConstructor)
+    {
+      throw new RuntimeException(paramConstructor);
+    }
+  }
+  
+  private final Constructor b(Class paramClass)
+  {
+    try
+    {
+      localObject = paramClass.getPackage();
+      str = paramClass.getCanonicalName();
+      if (localObject == null) {
+        break label194;
+      }
+      localObject = ((Package)localObject).getName();
+    }
+    catch (NoSuchMethodException paramClass)
+    {
+      StringBuilder localStringBuilder;
+      throw new RuntimeException(paramClass);
+      paramClass = null;
+      return paramClass;
+    }
+    catch (ClassNotFoundException paramClass)
+    {
+      for (;;)
+      {
+        String str;
+        continue;
+        label194:
+        Object localObject = "";
+        continue;
+        int i = 0;
+        label202:
+        if (i != 0)
+        {
+          continue;
+          label209:
+          i = 0;
+          label211:
+          if (i != 0) {
+            localObject = str;
+          }
+        }
+      }
+    }
+    db.l.d(localObject, "fullPackage");
+    if (((CharSequence)localObject).length() == 0)
+    {
+      i = 1;
+      break label202;
+      db.l.d(str, "name");
+      str = str.substring(((String)localObject).length() + 1);
+      db.l.d(str, "this as java.lang.String).substring(startIndex)");
+      db.l.d(str, "if (fullPackage.isEmpty(?g(fullPackage.length + 1)");
+      str = c(str);
+      if (((CharSequence)localObject).length() != 0) {
+        break label209;
+      }
+      i = 1;
+      break label211;
+      localStringBuilder = new StringBuilder();
+      localStringBuilder.append((String)localObject);
+      localStringBuilder.append('.');
+      localStringBuilder.append(str);
+      localObject = localStringBuilder.toString();
+      localObject = Class.forName((String)localObject);
+      db.l.c(localObject, "null cannot be cast to non-null type java.lang.Class<out androidx.lifecycle.GeneratedAdapter>");
+      localObject = ((Class)localObject).getDeclaredConstructor(new Class[] { paramClass });
+      paramClass = (Class)localObject;
+      if (!((AccessibleObject)localObject).isAccessible())
+      {
+        ((AccessibleObject)localObject).setAccessible(true);
+        return localObject;
+      }
+    }
+  }
+  
+  public static final String c(String paramString)
+  {
+    db.l.e(paramString, "className");
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(g.r(paramString, ".", "_", false, 4, null));
+    localStringBuilder.append("_LifecycleAdapter");
+    return localStringBuilder.toString();
+  }
+  
+  private final int d(Class paramClass)
+  {
+    Map localMap = b;
+    Integer localInteger = (Integer)localMap.get(paramClass);
+    if (localInteger != null) {
+      return localInteger.intValue();
+    }
+    int i = g(paramClass);
+    localMap.put(paramClass, Integer.valueOf(i));
+    return i;
+  }
+  
+  private final boolean e(Class paramClass)
+  {
+    return (paramClass != null) && (m.class.isAssignableFrom(paramClass));
+  }
+  
+  public static final l f(Object paramObject)
+  {
+    db.l.e(paramObject, "object");
+    boolean bool1 = paramObject instanceof l;
+    boolean bool2 = paramObject instanceof d;
+    if ((bool1) && (bool2)) {
+      return new DefaultLifecycleObserverAdapter((d)paramObject, (l)paramObject);
+    }
+    if (bool2) {
+      return new DefaultLifecycleObserverAdapter((d)paramObject, null);
+    }
+    if (bool1) {
+      return (l)paramObject;
+    }
+    Object localObject2 = paramObject.getClass();
+    Object localObject1 = a;
+    if (((q)localObject1).d((Class)localObject2) == 2)
+    {
+      localObject2 = c.get(localObject2);
+      db.l.b(localObject2);
+      localObject2 = (List)localObject2;
+      int j = ((List)localObject2).size();
+      int i = 0;
+      if (j == 1)
+      {
+        ((q)localObject1).a((Constructor)((List)localObject2).get(0), paramObject);
+        return new SingleGeneratedAdapterObserver(null);
+      }
+      j = ((List)localObject2).size();
+      localObject1 = new f[j];
+      while (i < j)
+      {
+        a.a((Constructor)((List)localObject2).get(i), paramObject);
+        localObject1[i] = null;
+        i += 1;
+      }
+      return new CompositeGeneratedAdaptersObserver((f[])localObject1);
+    }
+    return new ReflectiveGenericLifecycleObserver(paramObject);
+  }
+  
+  private final int g(Class paramClass)
+  {
+    if (paramClass.getCanonicalName() == null) {
+      return 1;
+    }
+    Object localObject1 = b(paramClass);
+    if (localObject1 != null)
+    {
+      c.put(paramClass, ta.m.b(localObject1));
+      return 2;
+    }
+    if (b.c.d(paramClass)) {
+      return 1;
+    }
+    localObject1 = paramClass.getSuperclass();
+    Object localObject2;
+    if (e((Class)localObject1))
+    {
+      db.l.d(localObject1, "superclass");
+      if (d((Class)localObject1) == 1) {
+        return 1;
+      }
+      localObject1 = c.get(localObject1);
+      db.l.b(localObject1);
+      localObject2 = new ArrayList((Collection)localObject1);
+    }
+    else
+    {
+      localObject2 = null;
+    }
+    Class[] arrayOfClass = paramClass.getInterfaces();
+    db.l.d(arrayOfClass, "klass.interfaces");
+    int j = arrayOfClass.length;
+    int i = 0;
+    while (i < j)
+    {
+      Class localClass = arrayOfClass[i];
+      if (!e(localClass))
+      {
+        localObject1 = localObject2;
+      }
+      else
+      {
+        db.l.d(localClass, "intrface");
+        if (d(localClass) == 1) {
+          return 1;
+        }
+        localObject1 = localObject2;
+        if (localObject2 == null) {
+          localObject1 = new ArrayList();
+        }
+        localObject2 = c.get(localClass);
+        db.l.b(localObject2);
+        ((List)localObject1).addAll((Collection)localObject2);
+      }
+      i += 1;
+      localObject2 = localObject1;
+    }
+    if (localObject2 != null)
+    {
+      c.put(paramClass, localObject2);
+      return 2;
+    }
+    return 1;
+  }
+}

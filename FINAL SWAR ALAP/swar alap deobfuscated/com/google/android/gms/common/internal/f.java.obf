@@ -1,0 +1,60 @@
+package com.google.android.gms.common.internal;
+
+import android.content.Context;
+import android.content.ServiceConnection;
+import android.os.HandlerThread;
+import java.util.concurrent.Executor;
+
+public abstract class i
+{
+  private static final Object a = new Object();
+  private static d2 b;
+  static HandlerThread c;
+  private static Executor d;
+  private static boolean e = false;
+  
+  public i() {}
+  
+  public static i a(Context paramContext)
+  {
+    synchronized (a)
+    {
+      if (b == null)
+      {
+        Context localContext = paramContext.getApplicationContext();
+        if (e) {
+          paramContext = b().getLooper();
+        } else {
+          paramContext = paramContext.getMainLooper();
+        }
+        b = new d2(localContext, paramContext, d);
+      }
+      return b;
+    }
+  }
+  
+  public static HandlerThread b()
+  {
+    synchronized (a)
+    {
+      HandlerThread localHandlerThread = c;
+      if (localHandlerThread != null) {
+        return localHandlerThread;
+      }
+      localHandlerThread = new HandlerThread("GoogleApiHandler", 9);
+      c = localHandlerThread;
+      localHandlerThread.start();
+      localHandlerThread = c;
+      return localHandlerThread;
+    }
+  }
+  
+  protected abstract void c(y1 paramY1, ServiceConnection paramServiceConnection, String paramString);
+  
+  public final void d(String paramString1, String paramString2, int paramInt, ServiceConnection paramServiceConnection, String paramString3, boolean paramBoolean)
+  {
+    c(new y1(paramString1, paramString2, 4225, paramBoolean), paramServiceConnection, paramString3);
+  }
+  
+  protected abstract boolean e(y1 paramY1, ServiceConnection paramServiceConnection, String paramString, Executor paramExecutor);
+}

@@ -1,0 +1,873 @@
+package com.google.protobuf;
+
+import android.support.v4.media.session.b;
+import java.util.List;
+
+abstract class f
+{
+  static int A(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (k0)paramI;
+    int i;
+    for (paramInt2 = K(paramArrayOfByte, paramInt2, paramA);; paramInt2 = K(paramArrayOfByte, i, paramA))
+    {
+      paramI.h(k.c(b));
+      if (paramInt2 >= paramInt3) {
+        break;
+      }
+      i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+    }
+    return paramInt2;
+  }
+  
+  static int B(byte[] paramArrayOfByte, int paramInt, a paramA)
+  {
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a;
+    if (i >= 0)
+    {
+      if (i == 0)
+      {
+        c = "";
+        return paramInt;
+      }
+      c = new String(paramArrayOfByte, paramInt, i, c0.a);
+      return paramInt + i;
+    }
+    throw d0.f();
+  }
+  
+  static int C(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramInt2 = H(paramArrayOfByte, paramInt2, paramA);
+    int j = a;
+    if (j >= 0)
+    {
+      String str;
+      int i;
+      if (j == 0)
+      {
+        paramI.add("");
+      }
+      else
+      {
+        str = new String(paramArrayOfByte, paramInt2, j, c0.a);
+        i = paramInt2;
+        paramInt2 = j;
+      }
+      for (;;)
+      {
+        paramI.add(str);
+        paramInt2 = i + paramInt2;
+        if (paramInt2 >= paramInt3) {
+          break label153;
+        }
+        i = H(paramArrayOfByte, paramInt2, paramA);
+        if (paramInt1 != a) {
+          return paramInt2;
+        }
+        i = H(paramArrayOfByte, i, paramA);
+        paramInt2 = a;
+        if (paramInt2 < 0) {
+          break label149;
+        }
+        if (paramInt2 == 0)
+        {
+          paramInt2 = i;
+          break;
+        }
+        str = new String(paramArrayOfByte, i, paramInt2, c0.a);
+      }
+      label149:
+      throw d0.f();
+      label153:
+      return paramInt2;
+    }
+    throw d0.f();
+  }
+  
+  static int D(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramInt2 = H(paramArrayOfByte, paramInt2, paramA);
+    int j = a;
+    if (j >= 0)
+    {
+      int i;
+      String str;
+      if (j == 0)
+      {
+        paramI.add("");
+      }
+      else
+      {
+        i = paramInt2 + j;
+        if (!y1.t(paramArrayOfByte, paramInt2, i)) {
+          break label185;
+        }
+        str = new String(paramArrayOfByte, paramInt2, j, c0.a);
+      }
+      for (paramInt2 = i;; paramInt2 = i)
+      {
+        paramI.add(str);
+        if (paramInt2 >= paramInt3) {
+          break label183;
+        }
+        i = H(paramArrayOfByte, paramInt2, paramA);
+        if (paramInt1 != a) {
+          return paramInt2;
+        }
+        paramInt2 = H(paramArrayOfByte, i, paramA);
+        j = a;
+        if (j < 0) {
+          break label179;
+        }
+        if (j == 0) {
+          break;
+        }
+        i = paramInt2 + j;
+        if (!y1.t(paramArrayOfByte, paramInt2, i)) {
+          break label175;
+        }
+        str = new String(paramArrayOfByte, paramInt2, j, c0.a);
+      }
+      label175:
+      throw d0.c();
+      label179:
+      throw d0.f();
+      label183:
+      return paramInt2;
+      label185:
+      throw d0.c();
+    }
+    throw d0.f();
+  }
+  
+  static int E(byte[] paramArrayOfByte, int paramInt, a paramA)
+  {
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a;
+    if (i >= 0)
+    {
+      if (i == 0)
+      {
+        c = "";
+        return paramInt;
+      }
+      c = y1.h(paramArrayOfByte, paramInt, i);
+      return paramInt + i;
+    }
+    throw d0.f();
+  }
+  
+  static int F(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, u1 paramU1, a paramA)
+  {
+    if (z1.a(paramInt1) != 0)
+    {
+      int i = z1.b(paramInt1);
+      if (i != 0)
+      {
+        if (i != 1)
+        {
+          if (i != 2)
+          {
+            if (i != 3)
+            {
+              if (i == 5)
+              {
+                paramU1.q(paramInt1, Integer.valueOf(g(paramArrayOfByte, paramInt2)));
+                return paramInt2 + 4;
+              }
+              throw d0.b();
+            }
+            u1 localU1 = u1.n();
+            int k = paramInt1 & 0xFFFFFFF8 | 0x4;
+            i = 0;
+            int j;
+            for (;;)
+            {
+              j = paramInt2;
+              if (paramInt2 >= paramInt3) {
+                break;
+              }
+              j = H(paramArrayOfByte, paramInt2, paramA);
+              paramInt2 = a;
+              i = paramInt2;
+              if (paramInt2 == k)
+              {
+                paramInt2 = j;
+                j = paramInt2;
+                break;
+              }
+              j = F(i, paramArrayOfByte, j, paramInt3, localU1, paramA);
+              i = paramInt2;
+              paramInt2 = j;
+            }
+            if ((j <= paramInt3) && (i == k))
+            {
+              paramU1.q(paramInt1, localU1);
+              return j;
+            }
+            throw d0.g();
+          }
+          paramInt2 = H(paramArrayOfByte, paramInt2, paramA);
+          paramInt3 = a;
+          if (paramInt3 >= 0)
+          {
+            if (paramInt3 <= paramArrayOfByte.length - paramInt2)
+            {
+              if (paramInt3 == 0) {
+                paramArrayOfByte = j.f;
+              } else {
+                paramArrayOfByte = j.p(paramArrayOfByte, paramInt2, paramInt3);
+              }
+              paramU1.q(paramInt1, paramArrayOfByte);
+              return paramInt2 + paramInt3;
+            }
+            throw d0.k();
+          }
+          throw d0.f();
+        }
+        paramU1.q(paramInt1, Long.valueOf(i(paramArrayOfByte, paramInt2)));
+        return paramInt2 + 8;
+      }
+      paramInt2 = K(paramArrayOfByte, paramInt2, paramA);
+      paramU1.q(paramInt1, Long.valueOf(b));
+      return paramInt2;
+    }
+    throw d0.b();
+  }
+  
+  static int G(int paramInt1, byte[] paramArrayOfByte, int paramInt2, a paramA)
+  {
+    int j = paramInt1 & 0x7F;
+    paramInt1 = paramInt2 + 1;
+    paramInt2 = paramArrayOfByte[paramInt2];
+    if (paramInt2 >= 0)
+    {
+      i = paramInt2 << 7;
+      paramInt2 = j;
+      a = (paramInt2 | i);
+      return paramInt1;
+    }
+    paramInt2 = j | (paramInt2 & 0x7F) << 7;
+    int i = paramInt1 + 1;
+    paramInt1 = paramArrayOfByte[paramInt1];
+    if (paramInt1 >= 0)
+    {
+      j = paramInt1 << 14;
+      paramInt1 = i;
+    }
+    for (i = j;; i = j << 28)
+    {
+      a = (paramInt2 | i);
+      return paramInt1;
+      paramInt2 |= (paramInt1 & 0x7F) << 14;
+      j = i + 1;
+      paramInt1 = paramArrayOfByte[i];
+      if (paramInt1 >= 0)
+      {
+        i = paramInt1 << 21;
+        paramInt1 = j;
+        break;
+      }
+      paramInt2 |= (paramInt1 & 0x7F) << 21;
+      paramInt1 = j + 1;
+      j = paramArrayOfByte[j];
+      if (j < 0) {
+        break label157;
+      }
+    }
+    for (;;)
+    {
+      label157:
+      i = paramInt1 + 1;
+      if (paramArrayOfByte[paramInt1] >= 0) {
+        break;
+      }
+      paramInt1 = i;
+    }
+    a = (paramInt2 | (j & 0x7F) << 28);
+    return i;
+  }
+  
+  static int H(byte[] paramArrayOfByte, int paramInt, a paramA)
+  {
+    int i = paramInt + 1;
+    paramInt = paramArrayOfByte[paramInt];
+    if (paramInt >= 0)
+    {
+      a = paramInt;
+      return i;
+    }
+    return G(paramInt, paramArrayOfByte, i, paramA);
+  }
+  
+  static int I(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (b0)paramI;
+    int i;
+    for (paramInt2 = H(paramArrayOfByte, paramInt2, paramA);; paramInt2 = H(paramArrayOfByte, i, paramA))
+    {
+      paramI.f(a);
+      if (paramInt2 >= paramInt3) {
+        break;
+      }
+      i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+    }
+    return paramInt2;
+  }
+  
+  static int J(long paramLong, byte[] paramArrayOfByte, int paramInt, a paramA)
+  {
+    int k = paramInt + 1;
+    int j = paramArrayOfByte[paramInt];
+    paramLong = paramLong & 0x7F | (j & 0x7F) << 7;
+    int i = 7;
+    paramInt = k;
+    while (j < 0)
+    {
+      j = paramArrayOfByte[paramInt];
+      i += 7;
+      paramLong |= (j & 0x7F) << i;
+      paramInt += 1;
+    }
+    b = paramLong;
+    return paramInt;
+  }
+  
+  static int K(byte[] paramArrayOfByte, int paramInt, a paramA)
+  {
+    int i = paramInt + 1;
+    long l = paramArrayOfByte[paramInt];
+    if (l >= 0L)
+    {
+      b = l;
+      return i;
+    }
+    return J(l, paramArrayOfByte, i, paramA);
+  }
+  
+  static int L(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (k0)paramI;
+    int i;
+    for (paramInt2 = K(paramArrayOfByte, paramInt2, paramA);; paramInt2 = K(paramArrayOfByte, i, paramA))
+    {
+      paramI.h(b);
+      if (paramInt2 >= paramInt3) {
+        break;
+      }
+      i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+    }
+    return paramInt2;
+  }
+  
+  static int M(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, a paramA)
+  {
+    if (z1.a(paramInt1) != 0)
+    {
+      int i = z1.b(paramInt1);
+      if (i != 0)
+      {
+        if (i != 1)
+        {
+          if (i != 2)
+          {
+            if (i != 3)
+            {
+              if (i == 5) {
+                return paramInt2 + 4;
+              }
+              throw d0.b();
+            }
+            int j = paramInt1 & 0xFFFFFFF8 | 0x4;
+            paramInt1 = 0;
+            for (;;)
+            {
+              i = paramInt2;
+              if (paramInt2 >= paramInt3) {
+                break;
+              }
+              i = H(paramArrayOfByte, paramInt2, paramA);
+              paramInt1 = a;
+              if (paramInt1 == j) {
+                break;
+              }
+              paramInt2 = M(paramInt1, paramArrayOfByte, i, paramInt3, paramA);
+            }
+            if ((i <= paramInt3) && (paramInt1 == j)) {
+              return i;
+            }
+            throw d0.g();
+          }
+          return H(paramArrayOfByte, paramInt2, paramA) + a;
+        }
+        return paramInt2 + 8;
+      }
+      return K(paramArrayOfByte, paramInt2, paramA);
+    }
+    throw d0.b();
+  }
+  
+  static int a(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (h)paramI;
+    int i = K(paramArrayOfByte, paramInt2, paramA);
+    paramInt2 = i;
+    if (b != 0L) {}
+    for (paramInt2 = i;; paramInt2 = i)
+    {
+      boolean bool = true;
+      do
+      {
+        bool = false;
+        paramI.h(bool);
+        if (paramInt2 >= paramInt3) {
+          break;
+        }
+        i = H(paramArrayOfByte, paramInt2, paramA);
+        if (paramInt1 != a) {
+          return paramInt2;
+        }
+        i = K(paramArrayOfByte, i, paramA);
+        paramInt2 = i;
+      } while (b == 0L);
+    }
+    return paramInt2;
+  }
+  
+  static int b(byte[] paramArrayOfByte, int paramInt, a paramA)
+  {
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a;
+    if (i >= 0)
+    {
+      if (i <= paramArrayOfByte.length - paramInt)
+      {
+        if (i == 0)
+        {
+          c = j.f;
+          return paramInt;
+        }
+        c = j.p(paramArrayOfByte, paramInt, i);
+        return paramInt + i;
+      }
+      throw d0.k();
+    }
+    throw d0.f();
+  }
+  
+  static int c(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    int j = H(paramArrayOfByte, paramInt2, paramA);
+    int k = a;
+    if (k >= 0)
+    {
+      if (k <= paramArrayOfByte.length - j)
+      {
+        paramInt2 = k;
+        int i = j;
+        if (k == 0) {}
+        for (paramInt2 = j;; paramInt2 = j)
+        {
+          paramI.add(j.f);
+          do
+          {
+            paramI.add(j.p(paramArrayOfByte, i, paramInt2));
+            paramInt2 = i + paramInt2;
+            if (paramInt2 >= paramInt3) {
+              break label163;
+            }
+            i = H(paramArrayOfByte, paramInt2, paramA);
+            if (paramInt1 != a) {
+              return paramInt2;
+            }
+            j = H(paramArrayOfByte, i, paramA);
+            k = a;
+            if (k < 0) {
+              break label159;
+            }
+            if (k > paramArrayOfByte.length - j) {
+              break;
+            }
+            paramInt2 = k;
+            i = j;
+          } while (k != 0);
+        }
+        throw d0.k();
+        label159:
+        throw d0.f();
+        label163:
+        return paramInt2;
+      }
+      throw d0.k();
+    }
+    throw d0.f();
+  }
+  
+  static double d(byte[] paramArrayOfByte, int paramInt)
+  {
+    return Double.longBitsToDouble(i(paramArrayOfByte, paramInt));
+  }
+  
+  static int e(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (o)paramI;
+    paramI.f(d(paramArrayOfByte, paramInt2));
+    paramInt2 += 8;
+    while (paramInt2 < paramInt3)
+    {
+      int i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+      paramI.f(d(paramArrayOfByte, i));
+      paramInt2 = i + 8;
+    }
+    return paramInt2;
+  }
+  
+  static int f(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, Object paramObject, t0 paramT0, t1 paramT1, a paramA)
+  {
+    if (d.a(paramT0, paramInt1 >>> 3) == null) {
+      return F(paramInt1, paramArrayOfByte, paramInt2, paramInt3, w0.v(paramObject), paramA);
+    }
+    b.a(paramObject);
+    throw null;
+  }
+  
+  static int g(byte[] paramArrayOfByte, int paramInt)
+  {
+    int i = paramArrayOfByte[paramInt];
+    int j = paramArrayOfByte[(paramInt + 1)];
+    int k = paramArrayOfByte[(paramInt + 2)];
+    return (paramArrayOfByte[(paramInt + 3)] & 0xFF) << 24 | i & 0xFF | (j & 0xFF) << 8 | (k & 0xFF) << 16;
+  }
+  
+  static int h(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (b0)paramI;
+    paramI.f(g(paramArrayOfByte, paramInt2));
+    paramInt2 += 4;
+    while (paramInt2 < paramInt3)
+    {
+      int i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+      paramI.f(g(paramArrayOfByte, i));
+      paramInt2 = i + 4;
+    }
+    return paramInt2;
+  }
+  
+  static long i(byte[] paramArrayOfByte, int paramInt)
+  {
+    long l1 = paramArrayOfByte[paramInt];
+    long l2 = paramArrayOfByte[(paramInt + 1)];
+    long l3 = paramArrayOfByte[(paramInt + 2)];
+    long l4 = paramArrayOfByte[(paramInt + 3)];
+    long l5 = paramArrayOfByte[(paramInt + 4)];
+    long l6 = paramArrayOfByte[(paramInt + 5)];
+    long l7 = paramArrayOfByte[(paramInt + 6)];
+    return (paramArrayOfByte[(paramInt + 7)] & 0xFF) << 56 | l1 & 0xFF | (l2 & 0xFF) << 8 | (l3 & 0xFF) << 16 | (l4 & 0xFF) << 24 | (l5 & 0xFF) << 32 | (l6 & 0xFF) << 40 | (l7 & 0xFF) << 48;
+  }
+  
+  static int j(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (k0)paramI;
+    paramI.h(i(paramArrayOfByte, paramInt2));
+    paramInt2 += 8;
+    while (paramInt2 < paramInt3)
+    {
+      int i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+      paramI.h(i(paramArrayOfByte, i));
+      paramInt2 = i + 8;
+    }
+    return paramInt2;
+  }
+  
+  static float k(byte[] paramArrayOfByte, int paramInt)
+  {
+    return Float.intBitsToFloat(g(paramArrayOfByte, paramInt));
+  }
+  
+  static int l(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (x)paramI;
+    paramI.f(k(paramArrayOfByte, paramInt2));
+    paramInt2 += 4;
+    while (paramInt2 < paramInt3)
+    {
+      int i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+      paramI.f(k(paramArrayOfByte, i));
+      paramInt2 = i + 4;
+    }
+    return paramInt2;
+  }
+  
+  static int m(l1 paramL1, byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3, a paramA)
+  {
+    paramL1 = (w0)paramL1;
+    Object localObject = paramL1.i();
+    paramInt1 = paramL1.c0(localObject, paramArrayOfByte, paramInt1, paramInt2, paramInt3, paramA);
+    paramL1.c(localObject);
+    c = localObject;
+    return paramInt1;
+  }
+  
+  static int n(l1 paramL1, int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    int i = paramInt1 & 0xFFFFFFF8 | 0x4;
+    int j;
+    for (paramInt2 = m(paramL1, paramArrayOfByte, paramInt2, paramInt3, i, paramA);; paramInt2 = m(paramL1, paramArrayOfByte, j, paramInt3, i, paramA))
+    {
+      paramI.add(c);
+      if (paramInt2 >= paramInt3) {
+        break;
+      }
+      j = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+    }
+    return paramInt2;
+  }
+  
+  static int o(l1 paramL1, byte[] paramArrayOfByte, int paramInt1, int paramInt2, a paramA)
+  {
+    int j = paramInt1 + 1;
+    int k = paramArrayOfByte[paramInt1];
+    paramInt1 = j;
+    int i = k;
+    if (k < 0)
+    {
+      paramInt1 = G(k, paramArrayOfByte, j, paramA);
+      i = a;
+    }
+    if ((i >= 0) && (i <= paramInt2 - paramInt1))
+    {
+      Object localObject = paramL1.i();
+      paramInt2 = i + paramInt1;
+      paramL1.g(localObject, paramArrayOfByte, paramInt1, paramInt2, paramA);
+      paramL1.c(localObject);
+      c = localObject;
+      return paramInt2;
+    }
+    throw d0.k();
+  }
+  
+  static int p(l1 paramL1, int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    int i;
+    for (paramInt2 = o(paramL1, paramArrayOfByte, paramInt2, paramInt3, paramA);; paramInt2 = o(paramL1, paramArrayOfByte, i, paramInt3, paramA))
+    {
+      paramI.add(c);
+      if (paramInt2 >= paramInt3) {
+        break;
+      }
+      i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+    }
+    return paramInt2;
+  }
+  
+  static int q(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (h)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramInt = K(paramArrayOfByte, paramInt, paramA);
+      boolean bool;
+      if (b != 0L) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      paramI.h(bool);
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int r(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (o)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramI.f(d(paramArrayOfByte, paramInt));
+      paramInt += 8;
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int s(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (b0)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramI.f(g(paramArrayOfByte, paramInt));
+      paramInt += 4;
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int t(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (k0)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramI.h(i(paramArrayOfByte, paramInt));
+      paramInt += 8;
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int u(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (x)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramI.f(k(paramArrayOfByte, paramInt));
+      paramInt += 4;
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int v(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (b0)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramInt = H(paramArrayOfByte, paramInt, paramA);
+      paramI.f(k.b(a));
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int w(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (k0)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramInt = K(paramArrayOfByte, paramInt, paramA);
+      paramI.h(k.c(b));
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int x(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (b0)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramInt = H(paramArrayOfByte, paramInt, paramA);
+      paramI.f(a);
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int y(byte[] paramArrayOfByte, int paramInt, c0.i paramI, a paramA)
+  {
+    paramI = (k0)paramI;
+    paramInt = H(paramArrayOfByte, paramInt, paramA);
+    int i = a + paramInt;
+    while (paramInt < i)
+    {
+      paramInt = K(paramArrayOfByte, paramInt, paramA);
+      paramI.h(b);
+    }
+    if (paramInt == i) {
+      return paramInt;
+    }
+    throw d0.k();
+  }
+  
+  static int z(int paramInt1, byte[] paramArrayOfByte, int paramInt2, int paramInt3, c0.i paramI, a paramA)
+  {
+    paramI = (b0)paramI;
+    int i;
+    for (paramInt2 = H(paramArrayOfByte, paramInt2, paramA);; paramInt2 = H(paramArrayOfByte, i, paramA))
+    {
+      paramI.f(k.b(a));
+      if (paramInt2 >= paramInt3) {
+        break;
+      }
+      i = H(paramArrayOfByte, paramInt2, paramA);
+      if (paramInt1 != a) {
+        return paramInt2;
+      }
+    }
+    return paramInt2;
+  }
+  
+  static final class a
+  {
+    public int a;
+    public long b;
+    public Object c;
+    public final r d;
+    
+    a(r paramR)
+    {
+      paramR.getClass();
+      d = paramR;
+    }
+  }
+}

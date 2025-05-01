@@ -1,0 +1,623 @@
+package com.google.protobuf;
+
+import java.util.AbstractMap;
+import java.util.AbstractSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+abstract class o1
+  extends AbstractMap
+{
+  private final int e;
+  private List f;
+  private Map g;
+  private boolean h;
+  private volatile g i;
+  private Map j;
+  private volatile c k;
+  
+  private o1(int paramInt)
+  {
+    e = paramInt;
+    f = Collections.emptyList();
+    g = Collections.emptyMap();
+    j = Collections.emptyMap();
+  }
+  
+  private int f(Comparable paramComparable)
+  {
+    int n = f.size() - 1;
+    if (n >= 0)
+    {
+      m = paramComparable.compareTo(((e)f.get(n)).d());
+      if (m > 0) {
+        return -(n + 2);
+      }
+      if (m == 0) {
+        return n;
+      }
+    }
+    int m = 0;
+    while (m <= n)
+    {
+      int i1 = (m + n) / 2;
+      int i2 = paramComparable.compareTo(((e)f.get(i1)).d());
+      if (i2 < 0) {
+        n = i1 - 1;
+      } else if (i2 > 0) {
+        m = i1 + 1;
+      } else {
+        return i1;
+      }
+    }
+    return -(m + 1);
+  }
+  
+  private void g()
+  {
+    if (!h) {
+      return;
+    }
+    throw new UnsupportedOperationException();
+  }
+  
+  private void i()
+  {
+    g();
+    if ((f.isEmpty()) && (!(f instanceof ArrayList))) {
+      f = new ArrayList(e);
+    }
+  }
+  
+  private SortedMap n()
+  {
+    g();
+    if ((g.isEmpty()) && (!(g instanceof TreeMap)))
+    {
+      TreeMap localTreeMap = new TreeMap();
+      g = localTreeMap;
+      j = localTreeMap.descendingMap();
+    }
+    return (SortedMap)g;
+  }
+  
+  static o1 q(int paramInt)
+  {
+    return new a(paramInt);
+  }
+  
+  private Object s(int paramInt)
+  {
+    g();
+    Object localObject = ((e)f.remove(paramInt)).getValue();
+    if (!g.isEmpty())
+    {
+      Iterator localIterator = n().entrySet().iterator();
+      f.add(new e((Map.Entry)localIterator.next()));
+      localIterator.remove();
+    }
+    return localObject;
+  }
+  
+  public void clear()
+  {
+    g();
+    if (!f.isEmpty()) {
+      f.clear();
+    }
+    if (!g.isEmpty()) {
+      g.clear();
+    }
+  }
+  
+  public boolean containsKey(Object paramObject)
+  {
+    paramObject = (Comparable)paramObject;
+    return (f(paramObject) >= 0) || (g.containsKey(paramObject));
+  }
+  
+  public Set entrySet()
+  {
+    if (i == null) {
+      i = new g(null);
+    }
+    return i;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof o1)) {
+      return super.equals(paramObject);
+    }
+    paramObject = (o1)paramObject;
+    int n = size();
+    if (n != paramObject.size()) {
+      return false;
+    }
+    int i1 = k();
+    if (i1 != paramObject.k()) {
+      return entrySet().equals(paramObject.entrySet());
+    }
+    int m = 0;
+    while (m < i1)
+    {
+      if (!j(m).equals(paramObject.j(m))) {
+        return false;
+      }
+      m += 1;
+    }
+    if (i1 != n) {
+      return g.equals(g);
+    }
+    return true;
+  }
+  
+  public Object get(Object paramObject)
+  {
+    paramObject = (Comparable)paramObject;
+    int m = f(paramObject);
+    if (m >= 0) {
+      return ((e)f.get(m)).getValue();
+    }
+    return g.get(paramObject);
+  }
+  
+  Set h()
+  {
+    if (k == null) {
+      k = new c(null);
+    }
+    return k;
+  }
+  
+  public int hashCode()
+  {
+    int i1 = k();
+    int n = 0;
+    int m = 0;
+    while (n < i1)
+    {
+      m += ((e)f.get(n)).hashCode();
+      n += 1;
+    }
+    n = m;
+    if (l() > 0) {
+      n = m + g.hashCode();
+    }
+    return n;
+  }
+  
+  public Map.Entry j(int paramInt)
+  {
+    return (Map.Entry)f.get(paramInt);
+  }
+  
+  public int k()
+  {
+    return f.size();
+  }
+  
+  public int l()
+  {
+    return g.size();
+  }
+  
+  public Iterable m()
+  {
+    if (g.isEmpty()) {
+      return d.b();
+    }
+    return g.entrySet();
+  }
+  
+  public boolean o()
+  {
+    return h;
+  }
+  
+  public void p()
+  {
+    if (!h)
+    {
+      Map localMap;
+      if (g.isEmpty()) {
+        localMap = Collections.emptyMap();
+      } else {
+        localMap = Collections.unmodifiableMap(g);
+      }
+      g = localMap;
+      if (j.isEmpty()) {
+        localMap = Collections.emptyMap();
+      } else {
+        localMap = Collections.unmodifiableMap(j);
+      }
+      j = localMap;
+      h = true;
+    }
+  }
+  
+  public Object r(Comparable paramComparable, Object paramObject)
+  {
+    g();
+    int m = f(paramComparable);
+    if (m >= 0) {
+      return ((e)f.get(m)).setValue(paramObject);
+    }
+    i();
+    m = -(m + 1);
+    if (m >= e) {
+      return n().put(paramComparable, paramObject);
+    }
+    int n = f.size();
+    int i1 = e;
+    if (n == i1)
+    {
+      e localE = (e)f.remove(i1 - 1);
+      n().put(localE.d(), localE.getValue());
+    }
+    f.add(m, new e(paramComparable, paramObject));
+    return null;
+  }
+  
+  public Object remove(Object paramObject)
+  {
+    g();
+    paramObject = (Comparable)paramObject;
+    int m = f(paramObject);
+    if (m >= 0) {
+      return s(m);
+    }
+    if (g.isEmpty()) {
+      return null;
+    }
+    return g.remove(paramObject);
+  }
+  
+  public int size()
+  {
+    return f.size() + g.size();
+  }
+  
+  static final class a
+    extends o1
+  {
+    a(int paramInt)
+    {
+      super(null);
+    }
+    
+    public void p()
+    {
+      if (!o())
+      {
+        int i = 0;
+        while (i < k())
+        {
+          localObject = j(i);
+          if (((v.b)((Map.Entry)localObject).getKey()).b()) {
+            ((Map.Entry)localObject).setValue(Collections.unmodifiableList((List)((Map.Entry)localObject).getValue()));
+          }
+          i += 1;
+        }
+        Object localObject = m().iterator();
+        while (((Iterator)localObject).hasNext())
+        {
+          Map.Entry localEntry = (Map.Entry)((Iterator)localObject).next();
+          if (((v.b)localEntry.getKey()).b()) {
+            localEntry.setValue(Collections.unmodifiableList((List)localEntry.getValue()));
+          }
+        }
+      }
+      super.p();
+    }
+  }
+  
+  private class b
+    implements Iterator
+  {
+    private int e = o1.b(o1.this).size();
+    private Iterator f;
+    
+    private b() {}
+    
+    private Iterator b()
+    {
+      if (f == null) {
+        f = o1.e(o1.this).entrySet().iterator();
+      }
+      return f;
+    }
+    
+    public Map.Entry c()
+    {
+      if (b().hasNext()) {}
+      int i;
+      for (Object localObject = b().next();; localObject = ((List)localObject).get(i))
+      {
+        return (Map.Entry)localObject;
+        localObject = o1.b(o1.this);
+        i = e - 1;
+        e = i;
+      }
+    }
+    
+    public boolean hasNext()
+    {
+      int i = e;
+      return ((i > 0) && (i <= o1.b(o1.this).size())) || (b().hasNext());
+    }
+    
+    public void remove()
+    {
+      throw new UnsupportedOperationException();
+    }
+  }
+  
+  private class c
+    extends o1.g
+  {
+    private c()
+    {
+      super(null);
+    }
+    
+    public Iterator iterator()
+    {
+      return new o1.b(o1.this, null);
+    }
+  }
+  
+  private static abstract class d
+  {
+    private static final Iterator a = new a();
+    private static final Iterable b = new b();
+    
+    static Iterable b()
+    {
+      return b;
+    }
+    
+    static final class a
+      implements Iterator
+    {
+      a() {}
+      
+      public boolean hasNext()
+      {
+        return false;
+      }
+      
+      public Object next()
+      {
+        throw new NoSuchElementException();
+      }
+      
+      public void remove()
+      {
+        throw new UnsupportedOperationException();
+      }
+    }
+    
+    static final class b
+      implements Iterable
+    {
+      b() {}
+      
+      public Iterator iterator()
+      {
+        return o1.d.a();
+      }
+    }
+  }
+  
+  private class e
+    implements Map.Entry, Comparable
+  {
+    private final Comparable e;
+    private Object f;
+    
+    e(Comparable paramComparable, Object paramObject)
+    {
+      e = paramComparable;
+      f = paramObject;
+    }
+    
+    e(Map.Entry paramEntry)
+    {
+      this((Comparable)paramEntry.getKey(), paramEntry.getValue());
+    }
+    
+    private boolean c(Object paramObject1, Object paramObject2)
+    {
+      if (paramObject1 == null) {
+        return paramObject2 == null;
+      }
+      return paramObject1.equals(paramObject2);
+    }
+    
+    public int a(e paramE)
+    {
+      return d().compareTo(paramE.d());
+    }
+    
+    public Comparable d()
+    {
+      return e;
+    }
+    
+    public boolean equals(Object paramObject)
+    {
+      if (paramObject == this) {
+        return true;
+      }
+      if (!(paramObject instanceof Map.Entry)) {
+        return false;
+      }
+      paramObject = (Map.Entry)paramObject;
+      return (c(e, paramObject.getKey())) && (c(f, paramObject.getValue()));
+    }
+    
+    public Object getValue()
+    {
+      return f;
+    }
+    
+    public int hashCode()
+    {
+      Object localObject = e;
+      int j = 0;
+      int i;
+      if (localObject == null) {
+        i = 0;
+      } else {
+        i = localObject.hashCode();
+      }
+      localObject = f;
+      if (localObject != null) {
+        j = localObject.hashCode();
+      }
+      return i ^ j;
+    }
+    
+    public Object setValue(Object paramObject)
+    {
+      o1.a(o1.this);
+      Object localObject = f;
+      f = paramObject;
+      return localObject;
+    }
+    
+    public String toString()
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append(e);
+      localStringBuilder.append("=");
+      localStringBuilder.append(f);
+      return localStringBuilder.toString();
+    }
+  }
+  
+  private class f
+    implements Iterator
+  {
+    private int e = -1;
+    private boolean f;
+    private Iterator g;
+    
+    private f() {}
+    
+    private Iterator b()
+    {
+      if (g == null) {
+        g = o1.c(o1.this).entrySet().iterator();
+      }
+      return g;
+    }
+    
+    public Map.Entry c()
+    {
+      f = true;
+      int i = e + 1;
+      e = i;
+      if (i < o1.b(o1.this).size()) {}
+      for (Object localObject = o1.b(o1.this).get(e);; localObject = b().next()) {
+        return (Map.Entry)localObject;
+      }
+    }
+    
+    public boolean hasNext()
+    {
+      int i = e;
+      boolean bool = true;
+      if (i + 1 >= o1.b(o1.this).size())
+      {
+        if ((!o1.c(o1.this).isEmpty()) && (b().hasNext())) {
+          return true;
+        }
+        bool = false;
+      }
+      return bool;
+    }
+    
+    public void remove()
+    {
+      if (f)
+      {
+        f = false;
+        o1.a(o1.this);
+        if (e < o1.b(o1.this).size())
+        {
+          o1 localO1 = o1.this;
+          int i = e;
+          e = (i - 1);
+          o1.d(localO1, i);
+          return;
+        }
+        b().remove();
+        return;
+      }
+      throw new IllegalStateException("remove() was called before next()");
+    }
+  }
+  
+  private class g
+    extends AbstractSet
+  {
+    private g() {}
+    
+    public boolean b(Map.Entry paramEntry)
+    {
+      if (!contains(paramEntry))
+      {
+        r((Comparable)paramEntry.getKey(), paramEntry.getValue());
+        return true;
+      }
+      return false;
+    }
+    
+    public void clear()
+    {
+      o1.this.clear();
+    }
+    
+    public boolean contains(Object paramObject)
+    {
+      Object localObject = (Map.Entry)paramObject;
+      paramObject = get(((Map.Entry)localObject).getKey());
+      localObject = ((Map.Entry)localObject).getValue();
+      return (paramObject == localObject) || ((paramObject != null) && (paramObject.equals(localObject)));
+    }
+    
+    public Iterator iterator()
+    {
+      return new o1.f(o1.this, null);
+    }
+    
+    public boolean remove(Object paramObject)
+    {
+      paramObject = (Map.Entry)paramObject;
+      if (contains(paramObject))
+      {
+        remove(paramObject.getKey());
+        return true;
+      }
+      return false;
+    }
+    
+    public int size()
+    {
+      return o1.this.size();
+    }
+  }
+}

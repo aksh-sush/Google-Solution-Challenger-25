@@ -1,0 +1,213 @@
+package com.google.android.gms.common.internal;
+
+import android.content.ComponentName;
+import android.content.ServiceConnection;
+import android.os.Handler;
+import android.os.IBinder;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import x3.b;
+
+final class a2
+  implements ServiceConnection, e2
+{
+  private final Map a;
+  private int b;
+  private boolean c;
+  private IBinder d;
+  private final y1 e;
+  private ComponentName f;
+  
+  public a2(d2 paramD2, y1 paramY1)
+  {
+    e = paramY1;
+    a = new HashMap();
+    b = 2;
+  }
+  
+  public final int a()
+  {
+    return b;
+  }
+  
+  public final ComponentName b()
+  {
+    return f;
+  }
+  
+  public final IBinder c()
+  {
+    return d;
+  }
+  
+  public final void d(ServiceConnection paramServiceConnection1, ServiceConnection paramServiceConnection2, String paramString)
+  {
+    a.put(paramServiceConnection1, paramServiceConnection2);
+  }
+  
+  /* Error */
+  public final void e(String paramString, java.util.concurrent.Executor paramExecutor)
+  {
+    // Byte code:
+    //   0: aload_0
+    //   1: iconst_3
+    //   2: putfield 38	com/google/android/gms/common/internal/a2:b	I
+    //   5: invokestatic 62	android/os/StrictMode:getVmPolicy	()Landroid/os/StrictMode$VmPolicy;
+    //   8: astore 4
+    //   10: invokestatic 68	y3/n:l	()Z
+    //   13: ifeq +21 -> 34
+    //   16: new 70	android/os/StrictMode$VmPolicy$Builder
+    //   19: dup
+    //   20: aload 4
+    //   22: invokespecial 73	android/os/StrictMode$VmPolicy$Builder:<init>	(Landroid/os/StrictMode$VmPolicy;)V
+    //   25: invokestatic 78	com/google/android/gms/common/internal/z1:a	(Landroid/os/StrictMode$VmPolicy$Builder;)Landroid/os/StrictMode$VmPolicy$Builder;
+    //   28: invokevirtual 81	android/os/StrictMode$VmPolicy$Builder:build	()Landroid/os/StrictMode$VmPolicy;
+    //   31: invokestatic 84	android/os/StrictMode:setVmPolicy	(Landroid/os/StrictMode$VmPolicy;)V
+    //   34: aload_0
+    //   35: getfield 26	com/google/android/gms/common/internal/a2:g	Lcom/google/android/gms/common/internal/d2;
+    //   38: astore 5
+    //   40: aload 5
+    //   42: invokestatic 90	com/google/android/gms/common/internal/d2:i	(Lcom/google/android/gms/common/internal/d2;)Lx3/b;
+    //   45: aload 5
+    //   47: invokestatic 93	com/google/android/gms/common/internal/d2:g	(Lcom/google/android/gms/common/internal/d2;)Landroid/content/Context;
+    //   50: aload_1
+    //   51: aload_0
+    //   52: getfield 31	com/google/android/gms/common/internal/a2:e	Lcom/google/android/gms/common/internal/y1;
+    //   55: aload 5
+    //   57: invokestatic 93	com/google/android/gms/common/internal/d2:g	(Lcom/google/android/gms/common/internal/d2;)Landroid/content/Context;
+    //   60: invokevirtual 98	com/google/android/gms/common/internal/y1:b	(Landroid/content/Context;)Landroid/content/Intent;
+    //   63: aload_0
+    //   64: sipush 4225
+    //   67: aload_2
+    //   68: invokevirtual 103	x3/b:d	(Landroid/content/Context;Ljava/lang/String;Landroid/content/Intent;Landroid/content/ServiceConnection;ILjava/util/concurrent/Executor;)Z
+    //   71: istore_3
+    //   72: aload_0
+    //   73: iload_3
+    //   74: putfield 105	com/google/android/gms/common/internal/a2:c	Z
+    //   77: iload_3
+    //   78: ifeq +41 -> 119
+    //   81: aload_0
+    //   82: getfield 26	com/google/android/gms/common/internal/a2:g	Lcom/google/android/gms/common/internal/d2;
+    //   85: invokestatic 109	com/google/android/gms/common/internal/d2:h	(Lcom/google/android/gms/common/internal/d2;)Landroid/os/Handler;
+    //   88: iconst_1
+    //   89: aload_0
+    //   90: getfield 31	com/google/android/gms/common/internal/a2:e	Lcom/google/android/gms/common/internal/y1;
+    //   93: invokevirtual 115	android/os/Handler:obtainMessage	(ILjava/lang/Object;)Landroid/os/Message;
+    //   96: astore_1
+    //   97: aload_0
+    //   98: getfield 26	com/google/android/gms/common/internal/a2:g	Lcom/google/android/gms/common/internal/d2;
+    //   101: invokestatic 109	com/google/android/gms/common/internal/d2:h	(Lcom/google/android/gms/common/internal/d2;)Landroid/os/Handler;
+    //   104: aload_1
+    //   105: aload_0
+    //   106: getfield 26	com/google/android/gms/common/internal/a2:g	Lcom/google/android/gms/common/internal/d2;
+    //   109: invokestatic 118	com/google/android/gms/common/internal/d2:f	(Lcom/google/android/gms/common/internal/d2;)J
+    //   112: invokevirtual 122	android/os/Handler:sendMessageDelayed	(Landroid/os/Message;J)Z
+    //   115: pop
+    //   116: goto +25 -> 141
+    //   119: aload_0
+    //   120: iconst_2
+    //   121: putfield 38	com/google/android/gms/common/internal/a2:b	I
+    //   124: aload_0
+    //   125: getfield 26	com/google/android/gms/common/internal/a2:g	Lcom/google/android/gms/common/internal/d2;
+    //   128: astore_1
+    //   129: aload_1
+    //   130: invokestatic 90	com/google/android/gms/common/internal/d2:i	(Lcom/google/android/gms/common/internal/d2;)Lx3/b;
+    //   133: aload_1
+    //   134: invokestatic 93	com/google/android/gms/common/internal/d2:g	(Lcom/google/android/gms/common/internal/d2;)Landroid/content/Context;
+    //   137: aload_0
+    //   138: invokevirtual 125	x3/b:c	(Landroid/content/Context;Landroid/content/ServiceConnection;)V
+    //   141: aload 4
+    //   143: invokestatic 84	android/os/StrictMode:setVmPolicy	(Landroid/os/StrictMode$VmPolicy;)V
+    //   146: return
+    //   147: astore_1
+    //   148: aload 4
+    //   150: invokestatic 84	android/os/StrictMode:setVmPolicy	(Landroid/os/StrictMode$VmPolicy;)V
+    //   153: aload_1
+    //   154: athrow
+    //   155: astore_1
+    //   156: goto -15 -> 141
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	159	0	this	a2
+    //   0	159	1	paramString	String
+    //   0	159	2	paramExecutor	java.util.concurrent.Executor
+    //   71	7	3	bool	boolean
+    //   8	141	4	localVmPolicy	android.os.StrictMode.VmPolicy
+    //   38	18	5	localD2	d2
+    // Exception table:
+    //   from	to	target	type
+    //   34	77	147	finally
+    //   81	116	147	finally
+    //   119	124	147	finally
+    //   124	141	147	finally
+    //   124	141	155	java/lang/IllegalArgumentException
+  }
+  
+  public final void f(ServiceConnection paramServiceConnection, String paramString)
+  {
+    a.remove(paramServiceConnection);
+  }
+  
+  public final void g(String paramString)
+  {
+    d2.h(g).removeMessages(1, e);
+    paramString = g;
+    d2.i(paramString).c(d2.g(paramString), this);
+    c = false;
+    b = 2;
+  }
+  
+  public final boolean h(ServiceConnection paramServiceConnection)
+  {
+    return a.containsKey(paramServiceConnection);
+  }
+  
+  public final boolean i()
+  {
+    return a.isEmpty();
+  }
+  
+  public final boolean j()
+  {
+    return c;
+  }
+  
+  public final void onBindingDied(ComponentName paramComponentName)
+  {
+    onServiceDisconnected(paramComponentName);
+  }
+  
+  public final void onServiceConnected(ComponentName paramComponentName, IBinder paramIBinder)
+  {
+    synchronized (d2.j(g))
+    {
+      d2.h(g).removeMessages(1, e);
+      d = paramIBinder;
+      f = paramComponentName;
+      Iterator localIterator = a.values().iterator();
+      while (localIterator.hasNext()) {
+        ((ServiceConnection)localIterator.next()).onServiceConnected(paramComponentName, paramIBinder);
+      }
+      b = 1;
+      return;
+    }
+  }
+  
+  public final void onServiceDisconnected(ComponentName paramComponentName)
+  {
+    synchronized (d2.j(g))
+    {
+      d2.h(g).removeMessages(1, e);
+      d = null;
+      f = paramComponentName;
+      Iterator localIterator = a.values().iterator();
+      while (localIterator.hasNext()) {
+        ((ServiceConnection)localIterator.next()).onServiceDisconnected(paramComponentName);
+      }
+      b = 2;
+      return;
+    }
+  }
+}

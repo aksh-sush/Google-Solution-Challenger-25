@@ -1,0 +1,42 @@
+package l4;
+
+import android.content.Intent;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.h;
+import s3.a;
+
+public final class b
+  extends a
+  implements h
+{
+  public static final Parcelable.Creator<b> CREATOR = new c();
+  final int e;
+  private int f;
+  private Intent g;
+  
+  b(int paramInt1, int paramInt2, Intent paramIntent)
+  {
+    e = paramInt1;
+    f = paramInt2;
+    g = paramIntent;
+  }
+  
+  public final Status getStatus()
+  {
+    if (f == 0) {
+      return Status.k;
+    }
+    return Status.o;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int i = s3.c.a(paramParcel);
+    s3.c.t(paramParcel, 1, e);
+    s3.c.t(paramParcel, 2, f);
+    s3.c.B(paramParcel, 3, g, paramInt, false);
+    s3.c.b(paramParcel, i);
+  }
+}

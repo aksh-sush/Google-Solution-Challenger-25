@@ -1,0 +1,15 @@
+package com.google.android.gms.internal.auth;
+
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import m3.c;
+
+final class zzbp
+  extends zzbd
+{
+  zzbp(zzbq paramZzbq) {}
+  
+  public final void zzb(c paramC)
+  {
+    zza.setResult(new zzbu(paramC));
+  }
+}

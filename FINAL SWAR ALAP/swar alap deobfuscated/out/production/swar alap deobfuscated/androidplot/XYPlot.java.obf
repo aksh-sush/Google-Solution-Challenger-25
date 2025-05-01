@@ -1,0 +1,690 @@
+package u;
+
+import java.util.List;
+import t.d.b;
+import t.e;
+import t.e.b;
+import t.i;
+
+public class l
+  extends p
+{
+  private static int[] k = new int[2];
+  
+  public l(e paramE)
+  {
+    super(paramE);
+    h.e = f.a.h;
+    i.e = f.a.i;
+    f = 0;
+  }
+  
+  private void q(int[] paramArrayOfInt, int paramInt1, int paramInt2, int paramInt3, int paramInt4, float paramFloat, int paramInt5)
+  {
+    paramInt1 = paramInt2 - paramInt1;
+    paramInt2 = paramInt4 - paramInt3;
+    if (paramInt5 != -1)
+    {
+      if (paramInt5 != 0)
+      {
+        if (paramInt5 != 1) {
+          return;
+        }
+        paramInt2 = (int)(paramInt1 * paramFloat + 0.5F);
+        paramArrayOfInt[0] = paramInt1;
+        paramArrayOfInt[1] = paramInt2;
+        return;
+      }
+      paramArrayOfInt[0] = ((int)(paramInt2 * paramFloat + 0.5F));
+      paramArrayOfInt[1] = paramInt2;
+      return;
+    }
+    paramInt3 = (int)(paramInt2 * paramFloat + 0.5F);
+    paramInt4 = (int)(paramInt1 / paramFloat + 0.5F);
+    if (paramInt3 <= paramInt1)
+    {
+      paramArrayOfInt[0] = paramInt3;
+      paramArrayOfInt[1] = paramInt2;
+      return;
+    }
+    if (paramInt4 <= paramInt2)
+    {
+      paramArrayOfInt[0] = paramInt1;
+      paramArrayOfInt[1] = paramInt4;
+    }
+  }
+  
+  public void a(d paramD)
+  {
+    int i = a.a[this.j.ordinal()];
+    Object localObject1;
+    if (i != 1)
+    {
+      if (i != 2)
+      {
+        if (i == 3)
+        {
+          localObject1 = b;
+          n(paramD, O, Q, 0);
+        }
+      }
+      else {
+        o(paramD);
+      }
+    }
+    else {
+      p(paramD);
+    }
+    float f;
+    label201:
+    label207:
+    int j;
+    int m;
+    if ((!e.j) && (d == e.b.g))
+    {
+      Object localObject2 = b;
+      i = w;
+      if (i != 2)
+      {
+        if (i != 3) {
+          break label1465;
+        }
+        i = x;
+        if ((i != 0) && (i != 3))
+        {
+          i = ((e)localObject2).w();
+          if (i != -1) {
+            if (i != 0)
+            {
+              if (i != 1)
+              {
+                i = 0;
+                break label207;
+              }
+            }
+            else
+            {
+              paramD = b;
+              f = f.e.g / paramD.v();
+              break label201;
+            }
+          }
+          paramD = b;
+          f = f.e.g * paramD.v();
+        }
+      }
+      for (i = (int)(f + 0.5F);; i = (int)(g * f + 0.5F))
+      {
+        e.d(i);
+        break;
+        localObject1 = f;
+        paramD = h;
+        localObject1 = i;
+        if (O.f != null) {
+          i = 1;
+        } else {
+          i = 0;
+        }
+        if (P.f != null) {
+          j = 1;
+        } else {
+          j = 0;
+        }
+        if (Q.f != null) {
+          m = 1;
+        } else {
+          m = 0;
+        }
+        int n;
+        if (R.f != null) {
+          n = 1;
+        } else {
+          n = 0;
+        }
+        int i1 = ((e)localObject2).w();
+        if ((i != 0) && (j != 0) && (m != 0) && (n != 0))
+        {
+          f = b.v();
+          int i2;
+          int i3;
+          int i4;
+          int i5;
+          if ((j) && (j))
+          {
+            localObject2 = h;
+            if (c)
+            {
+              if (!ic) {
+                return;
+              }
+              i = l.get(0)).g;
+              j = h.f;
+              m = il.get(0)).g;
+              n = if;
+              i2 = g;
+              i3 = f;
+              i4 = g;
+              i5 = f;
+              q(k, i + j, m - n, i2 + i3, i4 - i5, f, i1);
+              e.d(k[0]);
+              b.f.e.d(k[1]);
+            }
+            return;
+          }
+          localObject2 = h;
+          if (j)
+          {
+            f localF = this.i;
+            if (j) {
+              if (c)
+              {
+                if (!c) {
+                  return;
+                }
+                i = g;
+                j = f;
+                m = g;
+                n = f;
+                i2 = l.get(0)).g;
+                i3 = f;
+                i4 = l.get(0)).g;
+                i5 = f;
+                q(k, i + j, m - n, i2 + i3, i4 - i5, f, i1);
+                e.d(k[0]);
+                b.f.e.d(k[1]);
+              }
+              else
+              {
+                return;
+              }
+            }
+          }
+          localObject2 = h;
+          if ((c) && (ic) && (c))
+          {
+            if (!c) {
+              return;
+            }
+            i = l.get(0)).g;
+            j = h.f;
+            m = il.get(0)).g;
+            n = if;
+            i2 = l.get(0)).g;
+            i3 = f;
+            i4 = l.get(0)).g;
+            i5 = f;
+            q(k, i + j, m - n, i2 + i3, i4 - i5, f, i1);
+            e.d(k[0]);
+            paramD = b.f.e;
+            i = k[1];
+          }
+        }
+        else
+        {
+          if ((i != 0) && (m != 0))
+          {
+            if (h.c)
+            {
+              if (!ic) {
+                return;
+              }
+              f = b.v();
+              i = h.l.get(0)).g + h.f;
+              j = il.get(0)).g - if;
+              if ((i1 != -1) && (i1 != 0))
+              {
+                if (i1 != 1) {
+                  break;
+                }
+                j = g(j - i, 0);
+                n = (int)(j / f + 0.5F);
+                m = g(n, 1);
+                i = m;
+                if (n == m) {
+                  break label1151;
+                }
+                f = m * f;
+                i = m;
+              }
+              else
+              {
+                j = g(j - i, 0);
+                n = (int)(j * f + 0.5F);
+                m = g(n, 1);
+                i = m;
+                if (n == m) {
+                  break label1151;
+                }
+                f = m / f;
+                i = m;
+              }
+              j = (int)(f + 0.5F);
+              label1151:
+              e.d(j);
+              b.f.e.d(i);
+              break;
+            }
+            return;
+          }
+          if ((j == 0) || (n == 0)) {
+            break;
+          }
+          if (!c) {
+            break label1416;
+          }
+          if (!c) {
+            return;
+          }
+          f = b.v();
+          i = l.get(0)).g + f;
+          j = l.get(0)).g - f;
+          if (i1 != -1) {
+            if (i1 != 0)
+            {
+              if (i1 != 1) {
+                break;
+              }
+            }
+            else
+            {
+              i = g(j - i, 1);
+              n = (int)(i * f + 0.5F);
+              m = g(n, 0);
+              j = m;
+              if (n == m) {
+                break label1388;
+              }
+              f = m / f;
+              j = m;
+              break label1382;
+            }
+          }
+          i = g(j - i, 1);
+          n = (int)(i / f + 0.5F);
+          m = g(n, 0);
+          j = m;
+          if (n != m)
+          {
+            f = m * f;
+            j = m;
+            label1382:
+            i = (int)(f + 0.5F);
+          }
+          label1388:
+          e.d(j);
+          paramD = b.f.e;
+        }
+        paramD.d(i);
+        break;
+        label1416:
+        return;
+        paramD = ((e)localObject2).K();
+        if (paramD == null) {
+          break;
+        }
+        paramD = e.e;
+        if (!j) {
+          break;
+        }
+        f = b.B;
+      }
+    }
+    label1465:
+    paramD = h;
+    if (c)
+    {
+      localObject1 = this.i;
+      if (!c) {
+        return;
+      }
+      if ((j) && (j) && (e.j)) {
+        return;
+      }
+      if ((!e.j) && (d == e.b.g))
+      {
+        paramD = b;
+        if ((w == 0) && (!paramD.i0()))
+        {
+          localObject1 = (f)h.l.get(0);
+          paramD = (f)il.get(0);
+          i = g;
+          localObject1 = h;
+          i += f;
+          j = g + if;
+          ((f)localObject1).d(i);
+          this.i.d(j);
+          e.d(j - i);
+          return;
+        }
+      }
+      if ((!e.j) && (d == e.b.g) && (a == 1) && (h.l.size() > 0) && (il.size() > 0))
+      {
+        paramD = (f)h.l.get(0);
+        localObject1 = (f)il.get(0);
+        i = g;
+        j = h.f;
+        i = Math.min(g + if - (i + j), e.m);
+        paramD = b;
+        m = A;
+        j = Math.max(z, i);
+        i = j;
+        if (m > 0) {
+          i = Math.min(m, j);
+        }
+        e.d(i);
+      }
+      if (!e.j) {
+        return;
+      }
+      paramD = (f)h.l.get(0);
+      localObject1 = (f)il.get(0);
+      i = g + h.f;
+      j = g + if;
+      f = b.y();
+      if (paramD == localObject1)
+      {
+        i = g;
+        j = g;
+        f = 0.5F;
+      }
+      m = e.g;
+      h.d((int)(i + 0.5F + (j - i - m) * f));
+      this.i.d(h.g + e.g);
+    }
+  }
+  
+  void d()
+  {
+    Object localObject1 = b;
+    if (a) {
+      e.d(((e)localObject1).W());
+    }
+    int i;
+    if (!e.j)
+    {
+      localObject2 = b.A();
+      d = ((e.b)localObject2);
+      if (localObject2 != e.b.g)
+      {
+        localObject1 = e.b.h;
+        if (localObject2 == localObject1)
+        {
+          localObject2 = b.K();
+          if ((localObject2 != null) && ((((e)localObject2).A() == e.b.e) || (((e)localObject2).A() == localObject1)))
+          {
+            i = ((e)localObject2).W();
+            int j = b.O.f();
+            int m = b.Q.f();
+            b(h, e.h, b.O.f());
+            b(this.i, e.i, -b.Q.f());
+            e.d(i - j - m);
+            return;
+          }
+        }
+        if (d == e.b.e) {
+          e.d(b.W());
+        }
+      }
+    }
+    else
+    {
+      localObject2 = d;
+      localObject1 = e.b.h;
+      if (localObject2 == localObject1)
+      {
+        localObject2 = b.K();
+        if ((localObject2 != null) && ((((e)localObject2).A() == e.b.e) || (((e)localObject2).A() == localObject1)))
+        {
+          b(h, e.h, b.O.f());
+          b(this.i, e.i, -b.Q.f());
+          return;
+        }
+      }
+    }
+    Object localObject2 = e;
+    if (j)
+    {
+      localObject1 = b;
+      if (a)
+      {
+        localObject2 = W;
+        localObject3 = localObject2[0];
+        localD = f;
+        if ((localD != null) && (1f != null))
+        {
+          if (((e)localObject1).i0())
+          {
+            h.f = b.W[0].f();
+            localObject1 = this.i;
+            localObject2 = b.W[1];
+            break label1436;
+          }
+          localObject1 = h(b.W[0]);
+          if (localObject1 != null) {
+            b(h, (f)localObject1, b.W[0].f());
+          }
+          localObject1 = h(b.W[1]);
+          if (localObject1 != null) {
+            b(this.i, (f)localObject1, -b.W[1].f());
+          }
+          h.b = true;
+          ib = true;
+          return;
+        }
+        if (localD != null)
+        {
+          localObject1 = h((t.d)localObject3);
+          if (localObject1 == null) {
+            return;
+          }
+          localObject2 = h;
+          i = b.W[0].f();
+        }
+        else
+        {
+          localObject2 = localObject2[1];
+          if (f != null)
+          {
+            localObject1 = h((t.d)localObject2);
+            if (localObject1 == null) {
+              return;
+            }
+            b(this.i, (f)localObject1, -b.W[1].f());
+            localObject1 = h;
+            localObject2 = this.i;
+            i = -e.g;
+            break label750;
+          }
+          if (((localObject1 instanceof i)) || (((e)localObject1).K() == null) || (b.o(d.b.k).f != null)) {
+            return;
+          }
+          localObject1 = b.K().e.h;
+          localObject2 = h;
+          i = b.X();
+        }
+        b((f)localObject2, (f)localObject1, i);
+        localObject1 = this.i;
+        localObject2 = h;
+        i = e.g;
+        label750:
+        b((f)localObject1, (f)localObject2, i);
+        return;
+      }
+    }
+    if (d == e.b.g)
+    {
+      localObject1 = b;
+      i = w;
+      if (i != 2)
+      {
+        if (i != 3) {
+          break label1351;
+        }
+        if (x == 3)
+        {
+          h.a = this;
+          ia = this;
+          localObject3 = f;
+          h.a = this;
+          i.a = this;
+          a = this;
+          if (((e)localObject1).k0())
+          {
+            e.l.add(b.f.e);
+            b.f.e.k.add(e);
+            localObject1 = b.f;
+            e.a = this;
+            e.l.add(h);
+            e.l.add(b.f.i);
+            b.f.h.k.add(e);
+            localObject1 = b.f.i.k;
+            break label1235;
+          }
+          if (b.i0())
+          {
+            b.f.e.l.add(e);
+            localObject1 = e.k;
+            localObject2 = b.f.e;
+            break label1341;
+          }
+          localObject1 = b.f.e;
+        }
+        else
+        {
+          localObject1 = f.e;
+          l.add(localObject1);
+          k.add(e);
+          b.f.h.k.add(e);
+          b.f.i.k.add(e);
+          localObject1 = e;
+          b = true;
+          k.add(h);
+          e.k.add(this.i);
+          h.l.add(e);
+          localObject1 = this.i;
+        }
+        localObject1 = l;
+        label1235:
+        localObject2 = e;
+      }
+      else
+      {
+        localObject1 = ((e)localObject1).K();
+        if (localObject1 == null) {
+          break label1351;
+        }
+        localObject1 = f.e;
+        e.l.add(localObject1);
+        k.add(e);
+        localObject1 = e;
+        b = true;
+        k.add(h);
+        localObject1 = e.k;
+        localObject2 = this.i;
+      }
+      label1341:
+      ((List)localObject1).add(localObject2);
+    }
+    label1351:
+    localObject1 = b;
+    localObject2 = W;
+    Object localObject3 = localObject2[0];
+    t.d localD = f;
+    if ((localD != null) && (1f != null))
+    {
+      if (((e)localObject1).i0())
+      {
+        h.f = b.W[0].f();
+        localObject1 = this.i;
+        localObject2 = b.W[1];
+        label1436:
+        f = (-((t.d)localObject2).f());
+        return;
+      }
+      localObject1 = h(b.W[0]);
+      localObject2 = h(b.W[1]);
+      if (localObject1 != null) {
+        ((f)localObject1).b(this);
+      }
+      if (localObject2 != null) {
+        ((f)localObject2).b(this);
+      }
+      this.j = p.b.h;
+      return;
+    }
+    if (localD != null)
+    {
+      localObject1 = h((t.d)localObject3);
+      if (localObject1 == null) {
+        return;
+      }
+      localObject2 = h;
+      i = b.W[0].f();
+    }
+    else
+    {
+      localObject2 = localObject2[1];
+      if (f != null)
+      {
+        localObject1 = h((t.d)localObject2);
+        if (localObject1 == null) {
+          return;
+        }
+        b(this.i, (f)localObject1, -b.W[1].f());
+        c(h, this.i, -1, e);
+        return;
+      }
+      if (((localObject1 instanceof i)) || (((e)localObject1).K() == null)) {
+        return;
+      }
+      localObject1 = b.K().e.h;
+      localObject2 = h;
+      i = b.X();
+    }
+    b((f)localObject2, (f)localObject1, i);
+    c(this.i, h, 1, e);
+  }
+  
+  public void e()
+  {
+    f localF = h;
+    if (j) {
+      b.m1(g);
+    }
+  }
+  
+  void f()
+  {
+    c = null;
+    h.c();
+    i.c();
+    e.c();
+    g = false;
+  }
+  
+  boolean m()
+  {
+    if (d == e.b.g) {
+      return b.w == 0;
+    }
+    return true;
+  }
+  
+  void r()
+  {
+    g = false;
+    h.c();
+    h.j = false;
+    i.c();
+    i.j = false;
+    e.j = false;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("HorizontalRun ");
+    localStringBuilder.append(b.t());
+    return localStringBuilder.toString();
+  }
+}

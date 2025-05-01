@@ -1,0 +1,10 @@
+package t;
+
+public abstract interface i
+{
+  public abstract void a(f paramF);
+  
+  public abstract void b(e paramE);
+  
+  public abstract void c();
+}

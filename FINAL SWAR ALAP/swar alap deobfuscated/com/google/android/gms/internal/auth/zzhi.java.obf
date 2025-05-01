@@ -1,0 +1,506 @@
+package com.google.android.gms.internal.auth;
+
+import java.lang.reflect.Field;
+import java.nio.Buffer;
+import java.security.AccessController;
+import sun.misc.Unsafe;
+
+final class zzhi
+{
+  static final boolean zza;
+  private static final Unsafe zzb;
+  private static final Class zzc;
+  private static final boolean zzd;
+  private static final zzhh zze;
+  private static final boolean zzf;
+  private static final boolean zzg;
+  
+  /* Error */
+  static
+  {
+    // Byte code:
+    //   0: invokestatic 20	com/google/android/gms/internal/auth/zzhi:zzg	()Lsun/misc/Unsafe;
+    //   3: astore 4
+    //   5: aload 4
+    //   7: putstatic 22	com/google/android/gms/internal/auth/zzhi:zzb	Lsun/misc/Unsafe;
+    //   10: invokestatic 27	com/google/android/gms/internal/auth/zzdr:zza	()Ljava/lang/Class;
+    //   13: putstatic 29	com/google/android/gms/internal/auth/zzhi:zzc	Ljava/lang/Class;
+    //   16: getstatic 34	java/lang/Long:TYPE	Ljava/lang/Class;
+    //   19: astore_3
+    //   20: aload_3
+    //   21: invokestatic 38	com/google/android/gms/internal/auth/zzhi:zzs	(Ljava/lang/Class;)Z
+    //   24: istore_0
+    //   25: iload_0
+    //   26: putstatic 40	com/google/android/gms/internal/auth/zzhi:zzd	Z
+    //   29: getstatic 43	java/lang/Integer:TYPE	Ljava/lang/Class;
+    //   32: invokestatic 38	com/google/android/gms/internal/auth/zzhi:zzs	(Ljava/lang/Class;)Z
+    //   35: istore_1
+    //   36: aconst_null
+    //   37: astore_2
+    //   38: aload 4
+    //   40: ifnonnull +6 -> 46
+    //   43: goto +34 -> 77
+    //   46: iload_0
+    //   47: ifeq +16 -> 63
+    //   50: new 45	com/google/android/gms/internal/auth/zzhg
+    //   53: dup
+    //   54: aload 4
+    //   56: invokespecial 49	com/google/android/gms/internal/auth/zzhg:<init>	(Lsun/misc/Unsafe;)V
+    //   59: astore_2
+    //   60: goto +17 -> 77
+    //   63: iload_1
+    //   64: ifeq +13 -> 77
+    //   67: new 51	com/google/android/gms/internal/auth/zzhf
+    //   70: dup
+    //   71: aload 4
+    //   73: invokespecial 52	com/google/android/gms/internal/auth/zzhf:<init>	(Lsun/misc/Unsafe;)V
+    //   76: astore_2
+    //   77: aload_2
+    //   78: putstatic 54	com/google/android/gms/internal/auth/zzhi:zze	Lcom/google/android/gms/internal/auth/zzhh;
+    //   81: iconst_1
+    //   82: istore_1
+    //   83: aload_2
+    //   84: ifnonnull +8 -> 92
+    //   87: iconst_0
+    //   88: istore_0
+    //   89: goto +73 -> 162
+    //   92: aload_2
+    //   93: getfield 58	com/google/android/gms/internal/auth/zzhh:zza	Lsun/misc/Unsafe;
+    //   96: astore_2
+    //   97: aload_2
+    //   98: invokevirtual 61	java/lang/Object:getClass	()Ljava/lang/Class;
+    //   101: astore_2
+    //   102: aload_2
+    //   103: ldc 63
+    //   105: iconst_1
+    //   106: anewarray 65	java/lang/Class
+    //   109: dup
+    //   110: iconst_0
+    //   111: ldc 67
+    //   113: aastore
+    //   114: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   117: pop
+    //   118: aload_2
+    //   119: ldc 73
+    //   121: iconst_2
+    //   122: anewarray 65	java/lang/Class
+    //   125: dup
+    //   126: iconst_0
+    //   127: ldc 4
+    //   129: aastore
+    //   130: dup
+    //   131: iconst_1
+    //   132: aload_3
+    //   133: aastore
+    //   134: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   137: pop
+    //   138: invokestatic 77	com/google/android/gms/internal/auth/zzhi:zzy	()Ljava/lang/reflect/Field;
+    //   141: astore_2
+    //   142: aload_2
+    //   143: ifnonnull +6 -> 149
+    //   146: goto -59 -> 87
+    //   149: iconst_1
+    //   150: istore_0
+    //   151: goto +11 -> 162
+    //   154: astore_2
+    //   155: aload_2
+    //   156: invokestatic 81	com/google/android/gms/internal/auth/zzhi:zzh	(Ljava/lang/Throwable;)V
+    //   159: goto -72 -> 87
+    //   162: iload_0
+    //   163: putstatic 83	com/google/android/gms/internal/auth/zzhi:zzf	Z
+    //   166: getstatic 54	com/google/android/gms/internal/auth/zzhi:zze	Lcom/google/android/gms/internal/auth/zzhh;
+    //   169: astore_2
+    //   170: aload_2
+    //   171: ifnonnull +8 -> 179
+    //   174: iconst_0
+    //   175: istore_0
+    //   176: goto +213 -> 389
+    //   179: aload_2
+    //   180: getfield 58	com/google/android/gms/internal/auth/zzhh:zza	Lsun/misc/Unsafe;
+    //   183: astore_2
+    //   184: aload_2
+    //   185: invokevirtual 61	java/lang/Object:getClass	()Ljava/lang/Class;
+    //   188: astore_2
+    //   189: aload_2
+    //   190: ldc 63
+    //   192: iconst_1
+    //   193: anewarray 65	java/lang/Class
+    //   196: dup
+    //   197: iconst_0
+    //   198: ldc 67
+    //   200: aastore
+    //   201: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   204: pop
+    //   205: aload_2
+    //   206: ldc 85
+    //   208: iconst_1
+    //   209: anewarray 65	java/lang/Class
+    //   212: dup
+    //   213: iconst_0
+    //   214: ldc 65
+    //   216: aastore
+    //   217: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   220: pop
+    //   221: aload_2
+    //   222: ldc 87
+    //   224: iconst_1
+    //   225: anewarray 65	java/lang/Class
+    //   228: dup
+    //   229: iconst_0
+    //   230: ldc 65
+    //   232: aastore
+    //   233: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   236: pop
+    //   237: getstatic 34	java/lang/Long:TYPE	Ljava/lang/Class;
+    //   240: astore_3
+    //   241: aload_2
+    //   242: ldc 89
+    //   244: iconst_2
+    //   245: anewarray 65	java/lang/Class
+    //   248: dup
+    //   249: iconst_0
+    //   250: ldc 4
+    //   252: aastore
+    //   253: dup
+    //   254: iconst_1
+    //   255: aload_3
+    //   256: aastore
+    //   257: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   260: pop
+    //   261: aload_2
+    //   262: ldc 91
+    //   264: iconst_3
+    //   265: anewarray 65	java/lang/Class
+    //   268: dup
+    //   269: iconst_0
+    //   270: ldc 4
+    //   272: aastore
+    //   273: dup
+    //   274: iconst_1
+    //   275: aload_3
+    //   276: aastore
+    //   277: dup
+    //   278: iconst_2
+    //   279: getstatic 43	java/lang/Integer:TYPE	Ljava/lang/Class;
+    //   282: aastore
+    //   283: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   286: pop
+    //   287: aload_2
+    //   288: ldc 73
+    //   290: iconst_2
+    //   291: anewarray 65	java/lang/Class
+    //   294: dup
+    //   295: iconst_0
+    //   296: ldc 4
+    //   298: aastore
+    //   299: dup
+    //   300: iconst_1
+    //   301: aload_3
+    //   302: aastore
+    //   303: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   306: pop
+    //   307: aload_2
+    //   308: ldc 93
+    //   310: iconst_3
+    //   311: anewarray 65	java/lang/Class
+    //   314: dup
+    //   315: iconst_0
+    //   316: ldc 4
+    //   318: aastore
+    //   319: dup
+    //   320: iconst_1
+    //   321: aload_3
+    //   322: aastore
+    //   323: dup
+    //   324: iconst_2
+    //   325: aload_3
+    //   326: aastore
+    //   327: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   330: pop
+    //   331: aload_2
+    //   332: ldc 95
+    //   334: iconst_2
+    //   335: anewarray 65	java/lang/Class
+    //   338: dup
+    //   339: iconst_0
+    //   340: ldc 4
+    //   342: aastore
+    //   343: dup
+    //   344: iconst_1
+    //   345: aload_3
+    //   346: aastore
+    //   347: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   350: pop
+    //   351: aload_2
+    //   352: ldc 97
+    //   354: iconst_3
+    //   355: anewarray 65	java/lang/Class
+    //   358: dup
+    //   359: iconst_0
+    //   360: ldc 4
+    //   362: aastore
+    //   363: dup
+    //   364: iconst_1
+    //   365: aload_3
+    //   366: aastore
+    //   367: dup
+    //   368: iconst_2
+    //   369: ldc 4
+    //   371: aastore
+    //   372: invokevirtual 71	java/lang/Class:getMethod	(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    //   375: pop
+    //   376: iconst_1
+    //   377: istore_0
+    //   378: goto +11 -> 389
+    //   381: astore_2
+    //   382: aload_2
+    //   383: invokestatic 81	com/google/android/gms/internal/auth/zzhi:zzh	(Ljava/lang/Throwable;)V
+    //   386: goto -212 -> 174
+    //   389: iload_0
+    //   390: putstatic 99	com/google/android/gms/internal/auth/zzhi:zzg	Z
+    //   393: ldc 101
+    //   395: invokestatic 105	com/google/android/gms/internal/auth/zzhi:zzw	(Ljava/lang/Class;)I
+    //   398: pop
+    //   399: ldc 107
+    //   401: invokestatic 105	com/google/android/gms/internal/auth/zzhi:zzw	(Ljava/lang/Class;)I
+    //   404: pop
+    //   405: ldc 107
+    //   407: invokestatic 110	com/google/android/gms/internal/auth/zzhi:zzx	(Ljava/lang/Class;)I
+    //   410: pop
+    //   411: ldc 112
+    //   413: invokestatic 105	com/google/android/gms/internal/auth/zzhi:zzw	(Ljava/lang/Class;)I
+    //   416: pop
+    //   417: ldc 112
+    //   419: invokestatic 110	com/google/android/gms/internal/auth/zzhi:zzx	(Ljava/lang/Class;)I
+    //   422: pop
+    //   423: ldc 114
+    //   425: invokestatic 105	com/google/android/gms/internal/auth/zzhi:zzw	(Ljava/lang/Class;)I
+    //   428: pop
+    //   429: ldc 114
+    //   431: invokestatic 110	com/google/android/gms/internal/auth/zzhi:zzx	(Ljava/lang/Class;)I
+    //   434: pop
+    //   435: ldc 116
+    //   437: invokestatic 105	com/google/android/gms/internal/auth/zzhi:zzw	(Ljava/lang/Class;)I
+    //   440: pop
+    //   441: ldc 116
+    //   443: invokestatic 110	com/google/android/gms/internal/auth/zzhi:zzx	(Ljava/lang/Class;)I
+    //   446: pop
+    //   447: ldc 118
+    //   449: invokestatic 105	com/google/android/gms/internal/auth/zzhi:zzw	(Ljava/lang/Class;)I
+    //   452: pop
+    //   453: ldc 118
+    //   455: invokestatic 110	com/google/android/gms/internal/auth/zzhi:zzx	(Ljava/lang/Class;)I
+    //   458: pop
+    //   459: ldc 120
+    //   461: invokestatic 105	com/google/android/gms/internal/auth/zzhi:zzw	(Ljava/lang/Class;)I
+    //   464: pop
+    //   465: ldc 120
+    //   467: invokestatic 110	com/google/android/gms/internal/auth/zzhi:zzx	(Ljava/lang/Class;)I
+    //   470: pop
+    //   471: invokestatic 77	com/google/android/gms/internal/auth/zzhi:zzy	()Ljava/lang/reflect/Field;
+    //   474: astore_2
+    //   475: aload_2
+    //   476: ifnull +17 -> 493
+    //   479: getstatic 54	com/google/android/gms/internal/auth/zzhi:zze	Lcom/google/android/gms/internal/auth/zzhh;
+    //   482: astore_3
+    //   483: aload_3
+    //   484: ifnull +9 -> 493
+    //   487: aload_3
+    //   488: aload_2
+    //   489: invokevirtual 124	com/google/android/gms/internal/auth/zzhh:zzk	(Ljava/lang/reflect/Field;)J
+    //   492: pop2
+    //   493: invokestatic 130	java/nio/ByteOrder:nativeOrder	()Ljava/nio/ByteOrder;
+    //   496: getstatic 134	java/nio/ByteOrder:BIG_ENDIAN	Ljava/nio/ByteOrder;
+    //   499: if_acmpne +8 -> 507
+    //   502: iload_1
+    //   503: istore_0
+    //   504: goto +5 -> 509
+    //   507: iconst_0
+    //   508: istore_0
+    //   509: iload_0
+    //   510: putstatic 136	com/google/android/gms/internal/auth/zzhi:zza	Z
+    //   513: return
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   24	486	0	bool1	boolean
+    //   35	468	1	bool2	boolean
+    //   37	106	2	localObject1	Object
+    //   154	2	2	localThrowable1	Throwable
+    //   169	183	2	localObject2	Object
+    //   381	2	2	localThrowable2	Throwable
+    //   474	15	2	localField	Field
+    //   19	469	3	localObject3	Object
+    //   3	69	4	localUnsafe	Unsafe
+    // Exception table:
+    //   from	to	target	type
+    //   97	142	154	finally
+    //   184	376	381	finally
+  }
+  
+  private zzhi() {}
+  
+  static double zza(Object paramObject, long paramLong)
+  {
+    return zze.zza(paramObject, paramLong);
+  }
+  
+  static float zzb(Object paramObject, long paramLong)
+  {
+    return zze.zzb(paramObject, paramLong);
+  }
+  
+  static int zzc(Object paramObject, long paramLong)
+  {
+    return zze.zzi(paramObject, paramLong);
+  }
+  
+  static long zzd(Object paramObject, long paramLong)
+  {
+    return zze.zzj(paramObject, paramLong);
+  }
+  
+  static Object zze(Class paramClass)
+  {
+    try
+    {
+      paramClass = zzb.allocateInstance(paramClass);
+      return paramClass;
+    }
+    catch (InstantiationException paramClass)
+    {
+      throw new IllegalStateException(paramClass);
+    }
+  }
+  
+  static Object zzf(Object paramObject, long paramLong)
+  {
+    return zze.zzl(paramObject, paramLong);
+  }
+  
+  static Unsafe zzg()
+  {
+    try
+    {
+      Unsafe localUnsafe = (Unsafe)AccessController.doPrivileged(new zzhe());
+      return localUnsafe;
+    }
+    finally
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+  
+  static void zzk(Object paramObject, long paramLong, boolean paramBoolean)
+  {
+    zze.zzc(paramObject, paramLong, paramBoolean);
+  }
+  
+  static void zzl(Object paramObject, long paramLong, double paramDouble)
+  {
+    zze.zzd(paramObject, paramLong, paramDouble);
+  }
+  
+  static void zzm(Object paramObject, long paramLong, float paramFloat)
+  {
+    zze.zze(paramObject, paramLong, paramFloat);
+  }
+  
+  static void zzn(Object paramObject, long paramLong, int paramInt)
+  {
+    zze.zzm(paramObject, paramLong, paramInt);
+  }
+  
+  static void zzo(Object paramObject, long paramLong1, long paramLong2)
+  {
+    zze.zzn(paramObject, paramLong1, paramLong2);
+  }
+  
+  static void zzp(Object paramObject1, long paramLong, Object paramObject2)
+  {
+    zze.zzo(paramObject1, paramLong, paramObject2);
+  }
+  
+  static boolean zzs(Class paramClass)
+  {
+    int i = zzdr.zza;
+    try
+    {
+      Class localClass1 = zzc;
+      Class localClass2 = Boolean.TYPE;
+      localClass1.getMethod("peekLong", new Class[] { paramClass, localClass2 });
+      localClass1.getMethod("pokeLong", new Class[] { paramClass, Long.TYPE, localClass2 });
+      Class localClass3 = Integer.TYPE;
+      localClass1.getMethod("pokeInt", new Class[] { paramClass, localClass3, localClass2 });
+      localClass1.getMethod("peekInt", new Class[] { paramClass, localClass2 });
+      localClass1.getMethod("pokeByte", new Class[] { paramClass, Byte.TYPE });
+      localClass1.getMethod("peekByte", new Class[] { paramClass });
+      localClass1.getMethod("pokeByteArray", new Class[] { paramClass, [B.class, localClass3, localClass3 });
+      localClass1.getMethod("peekByteArray", new Class[] { paramClass, [B.class, localClass3, localClass3 });
+      return true;
+    }
+    finally {}
+    return false;
+  }
+  
+  static boolean zzt(Object paramObject, long paramLong)
+  {
+    return zze.zzf(paramObject, paramLong);
+  }
+  
+  static boolean zzu()
+  {
+    return zzg;
+  }
+  
+  static boolean zzv()
+  {
+    return zzf;
+  }
+  
+  private static int zzw(Class paramClass)
+  {
+    if (zzg) {
+      return zze.zzg(paramClass);
+    }
+    return -1;
+  }
+  
+  private static int zzx(Class paramClass)
+  {
+    if (zzg) {
+      return zze.zzh(paramClass);
+    }
+    return -1;
+  }
+  
+  private static Field zzy()
+  {
+    int i = zzdr.zza;
+    Field localField2 = zzz(Buffer.class, "effectiveDirectAddress");
+    Field localField1 = localField2;
+    if (localField2 == null)
+    {
+      localField1 = zzz(Buffer.class, "address");
+      if ((localField1 != null) && (localField1.getType() == Long.TYPE)) {
+        return localField1;
+      }
+      localField1 = null;
+    }
+    return localField1;
+  }
+  
+  private static Field zzz(Class paramClass, String paramString)
+  {
+    try
+    {
+      paramClass = paramClass.getDeclaredField(paramString);
+      return paramClass;
+    }
+    finally
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+}

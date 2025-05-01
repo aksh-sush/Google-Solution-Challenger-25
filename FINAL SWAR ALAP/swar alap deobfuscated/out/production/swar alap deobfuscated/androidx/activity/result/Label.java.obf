@@ -1,0 +1,119 @@
+package androidx.activity.result;
+
+import android.content.Intent;
+import android.content.IntentSender;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import db.l;
+
+public final class e
+  implements Parcelable
+{
+  public static final Parcelable.Creator<e> CREATOR = new b();
+  public static final c i = new c(null);
+  private final IntentSender e;
+  private final Intent f;
+  private final int g;
+  private final int h;
+  
+  public e(IntentSender paramIntentSender, Intent paramIntent, int paramInt1, int paramInt2)
+  {
+    e = paramIntentSender;
+    f = paramIntent;
+    g = paramInt1;
+    h = paramInt2;
+  }
+  
+  public e(Parcel paramParcel)
+  {
+    this((IntentSender)localParcelable, (Intent)paramParcel.readParcelable(Intent.class.getClassLoader()), paramParcel.readInt(), paramParcel.readInt());
+  }
+  
+  public final Intent a()
+  {
+    return f;
+  }
+  
+  public final int b()
+  {
+    return g;
+  }
+  
+  public final int c()
+  {
+    return h;
+  }
+  
+  public final IntentSender d()
+  {
+    return e;
+  }
+  
+  public int describeContents()
+  {
+    return 0;
+  }
+  
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    l.e(paramParcel, "dest");
+    paramParcel.writeParcelable(e, paramInt);
+    paramParcel.writeParcelable(f, paramInt);
+    paramParcel.writeInt(g);
+    paramParcel.writeInt(h);
+  }
+  
+  public static final class a
+  {
+    private final IntentSender a;
+    private Intent b;
+    private int c;
+    private int d;
+    
+    public a(IntentSender paramIntentSender)
+    {
+      a = paramIntentSender;
+    }
+    
+    public final e a()
+    {
+      return new e(a, b, c, d);
+    }
+    
+    public final a b(Intent paramIntent)
+    {
+      b = paramIntent;
+      return this;
+    }
+    
+    public final a c(int paramInt1, int paramInt2)
+    {
+      d = paramInt1;
+      c = paramInt2;
+      return this;
+    }
+  }
+  
+  public static final class b
+    implements Parcelable.Creator
+  {
+    b() {}
+    
+    public e a(Parcel paramParcel)
+    {
+      l.e(paramParcel, "inParcel");
+      return new e(paramParcel);
+    }
+    
+    public e[] b(int paramInt)
+    {
+      return new e[paramInt];
+    }
+  }
+  
+  public static final class c
+  {
+    private c() {}
+  }
+}

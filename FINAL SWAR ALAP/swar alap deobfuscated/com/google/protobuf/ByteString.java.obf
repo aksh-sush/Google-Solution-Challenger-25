@@ -1,0 +1,654 @@
+package com.google.protobuf;
+
+import java.io.InvalidObjectException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.NoSuchElementException;
+
+public abstract class j
+  implements Iterable, Serializable
+{
+  public static final j f = new j(c0.c);
+  private static final f g;
+  private static final Comparator h = new b();
+  private int e = 0;
+  
+  static
+  {
+    Object localObject;
+    if (d.c()) {
+      localObject = new k(null);
+    } else {
+      localObject = new d(null);
+    }
+    g = (f)localObject;
+  }
+  
+  j() {}
+  
+  private static int I(byte paramByte)
+  {
+    return paramByte & 0xFF;
+  }
+  
+  private String M()
+  {
+    if (size() <= 50) {
+      return q1.a(this);
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(q1.a(F(0, 47)));
+    localStringBuilder.append("...");
+    return localStringBuilder.toString();
+  }
+  
+  static j N(ByteBuffer paramByteBuffer)
+  {
+    if (paramByteBuffer.hasArray())
+    {
+      int i = paramByteBuffer.arrayOffset();
+      return P(paramByteBuffer.array(), i + paramByteBuffer.position(), paramByteBuffer.remaining());
+    }
+    return new b1(paramByteBuffer);
+  }
+  
+  static j O(byte[] paramArrayOfByte)
+  {
+    return new j(paramArrayOfByte);
+  }
+  
+  static j P(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    return new e(paramArrayOfByte, paramInt1, paramInt2);
+  }
+  
+  private static j e(Iterator paramIterator, int paramInt)
+  {
+    if (paramInt >= 1)
+    {
+      if (paramInt == 1) {
+        return (j)paramIterator.next();
+      }
+      int i = paramInt >>> 1;
+      return e(paramIterator, i).j(e(paramIterator, paramInt - i));
+    }
+    throw new IllegalArgumentException(String.format("length (%s) must be >= 1", new Object[] { Integer.valueOf(paramInt) }));
+  }
+  
+  static void h(int paramInt1, int paramInt2)
+  {
+    if ((paramInt2 - (paramInt1 + 1) | paramInt1) < 0)
+    {
+      if (paramInt1 < 0)
+      {
+        localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Index < 0: ");
+        localStringBuilder.append(paramInt1);
+        throw new ArrayIndexOutOfBoundsException(localStringBuilder.toString());
+      }
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Index > length: ");
+      localStringBuilder.append(paramInt1);
+      localStringBuilder.append(", ");
+      localStringBuilder.append(paramInt2);
+      throw new ArrayIndexOutOfBoundsException(localStringBuilder.toString());
+    }
+  }
+  
+  static int i(int paramInt1, int paramInt2, int paramInt3)
+  {
+    int i = paramInt2 - paramInt1;
+    if ((paramInt1 | paramInt2 | i | paramInt3 - paramInt2) < 0)
+    {
+      if (paramInt1 >= 0)
+      {
+        if (paramInt2 < paramInt1)
+        {
+          localStringBuilder = new StringBuilder();
+          localStringBuilder.append("Beginning index larger than ending index: ");
+          localStringBuilder.append(paramInt1);
+          localStringBuilder.append(", ");
+          localStringBuilder.append(paramInt2);
+          throw new IndexOutOfBoundsException(localStringBuilder.toString());
+        }
+        localStringBuilder = new StringBuilder();
+        localStringBuilder.append("End index: ");
+        localStringBuilder.append(paramInt2);
+        localStringBuilder.append(" >= ");
+        localStringBuilder.append(paramInt3);
+        throw new IndexOutOfBoundsException(localStringBuilder.toString());
+      }
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Beginning index: ");
+      localStringBuilder.append(paramInt1);
+      localStringBuilder.append(" < 0");
+      throw new IndexOutOfBoundsException(localStringBuilder.toString());
+    }
+    return i;
+  }
+  
+  public static j k(Iterable paramIterable)
+  {
+    if (!(paramIterable instanceof Collection))
+    {
+      Iterator localIterator = paramIterable.iterator();
+      int i = 0;
+      for (;;)
+      {
+        j = i;
+        if (!localIterator.hasNext()) {
+          break;
+        }
+        localIterator.next();
+        i += 1;
+      }
+    }
+    int j = ((Collection)paramIterable).size();
+    if (j == 0) {
+      return f;
+    }
+    return e(paramIterable.iterator(), j);
+  }
+  
+  public static j l(ByteBuffer paramByteBuffer)
+  {
+    return m(paramByteBuffer, paramByteBuffer.remaining());
+  }
+  
+  public static j m(ByteBuffer paramByteBuffer, int paramInt)
+  {
+    i(0, paramInt, paramByteBuffer.remaining());
+    byte[] arrayOfByte = new byte[paramInt];
+    paramByteBuffer.get(arrayOfByte);
+    return new j(arrayOfByte);
+  }
+  
+  public static j o(byte[] paramArrayOfByte)
+  {
+    return p(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  public static j p(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    i(paramInt1, paramInt1 + paramInt2, paramArrayOfByte.length);
+    return new j(g.a(paramArrayOfByte, paramInt1, paramInt2));
+  }
+  
+  public static j q(String paramString)
+  {
+    return new j(paramString.getBytes(c0.a));
+  }
+  
+  static h y(int paramInt)
+  {
+    return new h(paramInt, null);
+  }
+  
+  protected abstract int A(int paramInt1, int paramInt2, int paramInt3);
+  
+  protected abstract int C(int paramInt1, int paramInt2, int paramInt3);
+  
+  protected final int D()
+  {
+    return e;
+  }
+  
+  public final j E(int paramInt)
+  {
+    return F(paramInt, size());
+  }
+  
+  public abstract j F(int paramInt1, int paramInt2);
+  
+  public final byte[] H()
+  {
+    int i = size();
+    if (i == 0) {
+      return c0.c;
+    }
+    byte[] arrayOfByte = new byte[i];
+    s(arrayOfByte, 0, 0, i);
+    return arrayOfByte;
+  }
+  
+  public final String J(Charset paramCharset)
+  {
+    if (size() == 0) {
+      return "";
+    }
+    return K(paramCharset);
+  }
+  
+  protected abstract String K(Charset paramCharset);
+  
+  public final String L()
+  {
+    return J(c0.a);
+  }
+  
+  abstract void Q(i paramI);
+  
+  public abstract ByteBuffer d();
+  
+  public abstract boolean equals(Object paramObject);
+  
+  public abstract byte f(int paramInt);
+  
+  public final int hashCode()
+  {
+    int j = e;
+    int i = j;
+    if (j == 0)
+    {
+      i = size();
+      j = A(i, 0, i);
+      i = j;
+      if (j == 0) {
+        i = 1;
+      }
+      e = i;
+    }
+    return i;
+  }
+  
+  public final boolean isEmpty()
+  {
+    return size() == 0;
+  }
+  
+  public final j j(j paramJ)
+  {
+    if (Integer.MAX_VALUE - size() >= paramJ.size()) {
+      return k1.V(this, paramJ);
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("ByteString would be too long: ");
+    localStringBuilder.append(size());
+    localStringBuilder.append("+");
+    localStringBuilder.append(paramJ.size());
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  public final void r(byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
+  {
+    i(paramInt1, paramInt1 + paramInt3, size());
+    i(paramInt2, paramInt2 + paramInt3, paramArrayOfByte.length);
+    if (paramInt3 > 0) {
+      s(paramArrayOfByte, paramInt1, paramInt2, paramInt3);
+    }
+  }
+  
+  protected abstract void s(byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3);
+  
+  public abstract int size();
+  
+  protected abstract int t();
+  
+  public final String toString()
+  {
+    return String.format(Locale.ROOT, "<ByteString@%s size=%d contents=\"%s\">", new Object[] { Integer.toHexString(System.identityHashCode(this)), Integer.valueOf(size()), M() });
+  }
+  
+  abstract byte u(int paramInt);
+  
+  protected abstract boolean v();
+  
+  public abstract boolean w();
+  
+  public g x()
+  {
+    return new a();
+  }
+  
+  public abstract k z();
+  
+  class a
+    extends j.c
+  {
+    private int e = 0;
+    private final int f = size();
+    
+    a() {}
+    
+    public byte a()
+    {
+      int i = e;
+      if (i < f)
+      {
+        e = (i + 1);
+        return u(i);
+      }
+      throw new NoSuchElementException();
+    }
+    
+    public boolean hasNext()
+    {
+      return e < f;
+    }
+  }
+  
+  static final class b
+    implements Comparator
+  {
+    b() {}
+    
+    public int a(j paramJ1, j paramJ2)
+    {
+      j.g localG1 = paramJ1.x();
+      j.g localG2 = paramJ2.x();
+      while ((localG1.hasNext()) && (localG2.hasNext()))
+      {
+        int i = Integer.compare(j.b(localG1.a()), j.b(localG2.a()));
+        if (i != 0) {
+          return i;
+        }
+      }
+      return Integer.compare(paramJ1.size(), paramJ2.size());
+    }
+  }
+  
+  static abstract class c
+    implements j.g
+  {
+    c() {}
+    
+    public final Byte b()
+    {
+      return Byte.valueOf(a());
+    }
+    
+    public final void remove()
+    {
+      throw new UnsupportedOperationException();
+    }
+  }
+  
+  private static final class d
+    implements j.f
+  {
+    private d() {}
+    
+    public byte[] a(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      return Arrays.copyOfRange(paramArrayOfByte, paramInt1, paramInt2 + paramInt1);
+    }
+  }
+  
+  private static final class e
+    extends j.j
+  {
+    private final int j;
+    private final int k;
+    
+    e(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      super();
+      j.i(paramInt1, paramInt1 + paramInt2, paramArrayOfByte.length);
+      j = paramInt1;
+      k = paramInt2;
+    }
+    
+    private void readObject(ObjectInputStream paramObjectInputStream)
+    {
+      throw new InvalidObjectException("BoundedByteStream instances are not to be serialized directly");
+    }
+    
+    protected int U()
+    {
+      return j;
+    }
+    
+    public byte f(int paramInt)
+    {
+      j.h(paramInt, size());
+      return i[(j + paramInt)];
+    }
+    
+    protected void s(byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
+    {
+      System.arraycopy(i, U() + paramInt1, paramArrayOfByte, paramInt2, paramInt3);
+    }
+    
+    public int size()
+    {
+      return k;
+    }
+    
+    byte u(int paramInt)
+    {
+      return i[(j + paramInt)];
+    }
+    
+    Object writeReplace()
+    {
+      return j.O(H());
+    }
+  }
+  
+  private static abstract interface f
+  {
+    public abstract byte[] a(byte[] paramArrayOfByte, int paramInt1, int paramInt2);
+  }
+  
+  public static abstract interface g
+    extends Iterator
+  {
+    public abstract byte a();
+  }
+  
+  static final class h
+  {
+    private final m a;
+    private final byte[] b;
+    
+    private h(int paramInt)
+    {
+      byte[] arrayOfByte = new byte[paramInt];
+      b = arrayOfByte;
+      a = m.e0(arrayOfByte);
+    }
+    
+    public j a()
+    {
+      a.d();
+      return new j.j(b);
+    }
+    
+    public m b()
+    {
+      return a;
+    }
+  }
+  
+  static abstract class i
+    extends j
+  {
+    i() {}
+    
+    abstract boolean S(j paramJ, int paramInt1, int paramInt2);
+    
+    protected final int t()
+    {
+      return 0;
+    }
+    
+    protected final boolean v()
+    {
+      return true;
+    }
+  }
+  
+  private static class j
+    extends j.i
+  {
+    protected final byte[] i;
+    
+    j(byte[] paramArrayOfByte)
+    {
+      paramArrayOfByte.getClass();
+      i = paramArrayOfByte;
+    }
+    
+    protected final int A(int paramInt1, int paramInt2, int paramInt3)
+    {
+      return c0.i(paramInt1, i, U() + paramInt2, paramInt3);
+    }
+    
+    protected final int C(int paramInt1, int paramInt2, int paramInt3)
+    {
+      paramInt2 = U() + paramInt2;
+      return y1.v(paramInt1, i, paramInt2, paramInt3 + paramInt2);
+    }
+    
+    public final j F(int paramInt1, int paramInt2)
+    {
+      paramInt2 = j.i(paramInt1, paramInt2, size());
+      if (paramInt2 == 0) {
+        return j.f;
+      }
+      return new j.e(i, U() + paramInt1, paramInt2);
+    }
+    
+    protected final String K(Charset paramCharset)
+    {
+      return new String(i, U(), size(), paramCharset);
+    }
+    
+    final void Q(i paramI)
+    {
+      paramI.b(i, U(), size());
+    }
+    
+    final boolean S(j paramJ, int paramInt1, int paramInt2)
+    {
+      if (paramInt2 <= paramJ.size())
+      {
+        int j = paramInt1 + paramInt2;
+        if (j <= paramJ.size())
+        {
+          if ((paramJ instanceof j))
+          {
+            paramJ = (j)paramJ;
+            localObject = i;
+            byte[] arrayOfByte = i;
+            int k = U();
+            j = U();
+            paramInt1 = paramJ.U() + paramInt1;
+            while (j < k + paramInt2)
+            {
+              if (localObject[j] != arrayOfByte[paramInt1]) {
+                return false;
+              }
+              j += 1;
+              paramInt1 += 1;
+            }
+            return true;
+          }
+          return paramJ.F(paramInt1, j).equals(F(0, paramInt2));
+        }
+        Object localObject = new StringBuilder();
+        ((StringBuilder)localObject).append("Ran off end of other: ");
+        ((StringBuilder)localObject).append(paramInt1);
+        ((StringBuilder)localObject).append(", ");
+        ((StringBuilder)localObject).append(paramInt2);
+        ((StringBuilder)localObject).append(", ");
+        ((StringBuilder)localObject).append(paramJ.size());
+        throw new IllegalArgumentException(((StringBuilder)localObject).toString());
+      }
+      paramJ = new StringBuilder();
+      paramJ.append("Length too large: ");
+      paramJ.append(paramInt2);
+      paramJ.append(size());
+      throw new IllegalArgumentException(paramJ.toString());
+    }
+    
+    protected int U()
+    {
+      return 0;
+    }
+    
+    public final ByteBuffer d()
+    {
+      return ByteBuffer.wrap(i, U(), size()).asReadOnlyBuffer();
+    }
+    
+    public final boolean equals(Object paramObject)
+    {
+      if (paramObject == this) {
+        return true;
+      }
+      if (!(paramObject instanceof j)) {
+        return false;
+      }
+      if (size() != ((j)paramObject).size()) {
+        return false;
+      }
+      if (size() == 0) {
+        return true;
+      }
+      if ((paramObject instanceof j))
+      {
+        paramObject = (j)paramObject;
+        int j = D();
+        int k = paramObject.D();
+        if ((j != 0) && (k != 0) && (j != k)) {
+          return false;
+        }
+        return S(paramObject, 0, size());
+      }
+      return paramObject.equals(this);
+    }
+    
+    public byte f(int paramInt)
+    {
+      return i[paramInt];
+    }
+    
+    protected void s(byte[] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
+    {
+      System.arraycopy(i, paramInt1, paramArrayOfByte, paramInt2, paramInt3);
+    }
+    
+    public int size()
+    {
+      return i.length;
+    }
+    
+    byte u(int paramInt)
+    {
+      return i[paramInt];
+    }
+    
+    public final boolean w()
+    {
+      int j = U();
+      return y1.t(i, j, size() + j);
+    }
+    
+    public final k z()
+    {
+      return k.l(i, U(), size(), true);
+    }
+  }
+  
+  private static final class k
+    implements j.f
+  {
+    private k() {}
+    
+    public byte[] a(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+    {
+      byte[] arrayOfByte = new byte[paramInt2];
+      System.arraycopy(paramArrayOfByte, paramInt1, arrayOfByte, 0, paramInt2);
+      return arrayOfByte;
+    }
+  }
+}

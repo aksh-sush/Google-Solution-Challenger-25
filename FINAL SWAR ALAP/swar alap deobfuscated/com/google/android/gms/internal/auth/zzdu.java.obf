@@ -1,0 +1,175 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.AbstractList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.RandomAccess;
+
+final class zzdu
+  extends zzdq
+  implements RandomAccess, zzgd
+{
+  private static final zzdu zza;
+  private boolean[] zzb;
+  private int zzc;
+  
+  static
+  {
+    zzdu localZzdu = new zzdu(new boolean[0], 0);
+    zza = localZzdu;
+    localZzdu.zzb();
+  }
+  
+  zzdu()
+  {
+    this(new boolean[10], 0);
+  }
+  
+  private zzdu(boolean[] paramArrayOfBoolean, int paramInt)
+  {
+    zzb = paramArrayOfBoolean;
+    zzc = paramInt;
+  }
+  
+  private final String zzf(int paramInt)
+  {
+    int i = zzc;
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Index:");
+    localStringBuilder.append(paramInt);
+    localStringBuilder.append(", Size:");
+    localStringBuilder.append(i);
+    return localStringBuilder.toString();
+  }
+  
+  private final void zzg(int paramInt)
+  {
+    if ((paramInt >= 0) && (paramInt < zzc)) {
+      return;
+    }
+    throw new IndexOutOfBoundsException(zzf(paramInt));
+  }
+  
+  public final boolean addAll(Collection paramCollection)
+  {
+    zza();
+    zzez.zze(paramCollection);
+    if (!(paramCollection instanceof zzdu)) {
+      return super.addAll(paramCollection);
+    }
+    paramCollection = (zzdu)paramCollection;
+    int i = zzc;
+    if (i == 0) {
+      return false;
+    }
+    int j = zzc;
+    if (Integer.MAX_VALUE - j >= i)
+    {
+      i = j + i;
+      boolean[] arrayOfBoolean = zzb;
+      if (i > arrayOfBoolean.length) {
+        zzb = Arrays.copyOf(arrayOfBoolean, i);
+      }
+      System.arraycopy(zzb, 0, zzb, zzc, zzc);
+      zzc = i;
+      modCount += 1;
+      return true;
+    }
+    throw new OutOfMemoryError();
+  }
+  
+  public final boolean contains(Object paramObject)
+  {
+    return indexOf(paramObject) != -1;
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof zzdu)) {
+      return super.equals(paramObject);
+    }
+    paramObject = (zzdu)paramObject;
+    if (zzc != zzc) {
+      return false;
+    }
+    paramObject = zzb;
+    int i = 0;
+    while (i < zzc)
+    {
+      if (zzb[i] != paramObject[i]) {
+        return false;
+      }
+      i += 1;
+    }
+    return true;
+  }
+  
+  public final int hashCode()
+  {
+    int j = 1;
+    int i = 0;
+    while (i < zzc)
+    {
+      j = j * 31 + zzez.zza(zzb[i]);
+      i += 1;
+    }
+    return j;
+  }
+  
+  public final int indexOf(Object paramObject)
+  {
+    if (!(paramObject instanceof Boolean)) {
+      return -1;
+    }
+    int k = ((Boolean)paramObject).booleanValue();
+    int j = zzc;
+    int i = 0;
+    while (i < j)
+    {
+      if (zzb[i] == k) {
+        return i;
+      }
+      i += 1;
+    }
+    return -1;
+  }
+  
+  protected final void removeRange(int paramInt1, int paramInt2)
+  {
+    zza();
+    if (paramInt2 >= paramInt1)
+    {
+      boolean[] arrayOfBoolean = zzb;
+      System.arraycopy(arrayOfBoolean, paramInt2, arrayOfBoolean, paramInt1, zzc - paramInt2);
+      zzc -= paramInt2 - paramInt1;
+      modCount += 1;
+      return;
+    }
+    throw new IndexOutOfBoundsException("toIndex < fromIndex");
+  }
+  
+  public final int size()
+  {
+    return zzc;
+  }
+  
+  public final void zze(boolean paramBoolean)
+  {
+    zza();
+    int i = zzc;
+    boolean[] arrayOfBoolean1 = zzb;
+    if (i == arrayOfBoolean1.length)
+    {
+      boolean[] arrayOfBoolean2 = new boolean[i * 3 / 2 + 1];
+      System.arraycopy(arrayOfBoolean1, 0, arrayOfBoolean2, 0, i);
+      zzb = arrayOfBoolean2;
+    }
+    arrayOfBoolean1 = zzb;
+    i = zzc;
+    zzc = (i + 1);
+    arrayOfBoolean1[i] = paramBoolean;
+  }
+}

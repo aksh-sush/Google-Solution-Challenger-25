@@ -1,0 +1,12 @@
+package com.google.android.gms.internal.auth;
+
+final class zzha
+  extends zzgy
+{
+  zzha() {}
+  
+  final void zze(Object paramObject)
+  {
+    zzc.zzd();
+  }
+}

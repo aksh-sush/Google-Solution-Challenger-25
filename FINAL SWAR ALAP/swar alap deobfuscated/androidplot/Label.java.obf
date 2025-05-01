@@ -1,0 +1,156 @@
+package u;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import t.e;
+
+public class f
+  implements d
+{
+  public d a = null;
+  public boolean b = false;
+  public boolean c = false;
+  p d;
+  a e = a.e;
+  int f;
+  public int g;
+  int h = 1;
+  g i = null;
+  public boolean j = false;
+  List k = new ArrayList();
+  List l = new ArrayList();
+  
+  public f(p paramP)
+  {
+    d = paramP;
+  }
+  
+  public void a(d paramD)
+  {
+    paramD = l.iterator();
+    while (paramD.hasNext()) {
+      if (!nextj) {
+        return;
+      }
+    }
+    c = true;
+    paramD = a;
+    if (paramD != null) {
+      paramD.a(this);
+    }
+    if (b)
+    {
+      d.a(this);
+      return;
+    }
+    Iterator localIterator = l.iterator();
+    paramD = null;
+    int m = 0;
+    Object localObject;
+    while (localIterator.hasNext())
+    {
+      localObject = (f)localIterator.next();
+      if (!(localObject instanceof g))
+      {
+        m += 1;
+        paramD = (d)localObject;
+      }
+    }
+    if ((paramD != null) && (m == 1) && (j))
+    {
+      localObject = i;
+      if (localObject != null) {
+        if (j) {
+          f = (h * g);
+        } else {
+          return;
+        }
+      }
+      d(g + f);
+    }
+    paramD = a;
+    if (paramD != null) {
+      paramD.a(this);
+    }
+  }
+  
+  public void b(d paramD)
+  {
+    k.add(paramD);
+    if (j) {
+      paramD.a(paramD);
+    }
+  }
+  
+  public void c()
+  {
+    l.clear();
+    k.clear();
+    j = false;
+    g = 0;
+    c = false;
+    b = false;
+  }
+  
+  public void d(int paramInt)
+  {
+    if (j) {
+      return;
+    }
+    j = true;
+    g = paramInt;
+    Iterator localIterator = k.iterator();
+    while (localIterator.hasNext())
+    {
+      d localD = (d)localIterator.next();
+      localD.a(localD);
+    }
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(d.b.t());
+    localStringBuilder.append(":");
+    localStringBuilder.append(e);
+    localStringBuilder.append("(");
+    Object localObject;
+    if (j) {
+      localObject = Integer.valueOf(g);
+    } else {
+      localObject = "unresolved";
+    }
+    localStringBuilder.append(localObject);
+    localStringBuilder.append(") <t=");
+    localStringBuilder.append(l.size());
+    localStringBuilder.append(":d=");
+    localStringBuilder.append(k.size());
+    localStringBuilder.append(">");
+    return localStringBuilder.toString();
+  }
+  
+  static enum a
+  {
+    static
+    {
+      a localA1 = new a("UNKNOWN", 0);
+      e = localA1;
+      a localA2 = new a("HORIZONTAL_DIMENSION", 1);
+      f = localA2;
+      a localA3 = new a("VERTICAL_DIMENSION", 2);
+      g = localA3;
+      a localA4 = new a("LEFT", 3);
+      h = localA4;
+      a localA5 = new a("RIGHT", 4);
+      i = localA5;
+      a localA6 = new a("TOP", 5);
+      j = localA6;
+      a localA7 = new a("BOTTOM", 6);
+      k = localA7;
+      a localA8 = new a("BASELINE", 7);
+      l = localA8;
+      m = new a[] { localA1, localA2, localA3, localA4, localA5, localA6, localA7, localA8 };
+    }
+  }
+}

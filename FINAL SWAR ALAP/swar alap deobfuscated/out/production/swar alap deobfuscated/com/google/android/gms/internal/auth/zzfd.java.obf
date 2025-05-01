@@ -1,0 +1,116 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.RandomAccess;
+
+public final class zzfd
+  extends zzdq
+  implements RandomAccess, zzfe
+{
+  public static final zzfe zza;
+  private static final zzfd zzb;
+  private final List zzc;
+  
+  static
+  {
+    zzfd localZzfd = new zzfd(10);
+    zzb = localZzfd;
+    localZzfd.zzb();
+    zza = localZzfd;
+  }
+  
+  public zzfd()
+  {
+    this(10);
+  }
+  
+  public zzfd(int paramInt)
+  {
+    zzc = localArrayList;
+  }
+  
+  private zzfd(ArrayList paramArrayList)
+  {
+    zzc = paramArrayList;
+  }
+  
+  private static String zzh(Object paramObject)
+  {
+    if ((paramObject instanceof String)) {
+      return (String)paramObject;
+    }
+    if ((paramObject instanceof zzee)) {
+      return ((zzee)paramObject).zzm(zzez.zzb);
+    }
+    return zzez.zzh((byte[])paramObject);
+  }
+  
+  public final boolean addAll(int paramInt, Collection paramCollection)
+  {
+    zza();
+    Object localObject = paramCollection;
+    if ((paramCollection instanceof zzfe)) {
+      localObject = ((zzfe)paramCollection).zzg();
+    }
+    boolean bool = zzc.addAll(paramInt, (Collection)localObject);
+    modCount += 1;
+    return bool;
+  }
+  
+  public final boolean addAll(Collection paramCollection)
+  {
+    return addAll(size(), paramCollection);
+  }
+  
+  public final void clear()
+  {
+    zza();
+    zzc.clear();
+    modCount += 1;
+  }
+  
+  public final int size()
+  {
+    return zzc.size();
+  }
+  
+  public final zzfe zze()
+  {
+    if (zzc()) {
+      return new zzhd(this);
+    }
+    return this;
+  }
+  
+  public final String zzf(int paramInt)
+  {
+    Object localObject = zzc.get(paramInt);
+    if ((localObject instanceof String)) {
+      return (String)localObject;
+    }
+    if ((localObject instanceof zzee))
+    {
+      localObject = (zzee)localObject;
+      str = ((zzee)localObject).zzm(zzez.zzb);
+      if (((zzee)localObject).zzh()) {
+        zzc.set(paramInt, str);
+      }
+      return str;
+    }
+    localObject = (byte[])localObject;
+    String str = zzez.zzh((byte[])localObject);
+    if (zzez.zzi((byte[])localObject)) {
+      zzc.set(paramInt, str);
+    }
+    return str;
+  }
+  
+  public final List zzg()
+  {
+    return Collections.unmodifiableList(zzc);
+  }
+}

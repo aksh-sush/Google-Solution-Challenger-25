@@ -1,0 +1,354 @@
+package x1;
+
+import android.app.Activity;
+import android.app.Application;
+import android.app.Application.ActivityLifecycleCallbacks;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import com.facebook.i0;
+import com.facebook.u0;
+import db.l;
+import e2.e0;
+import e2.e0.a;
+import e2.n.b;
+import e2.r;
+import e2.s0;
+import e2.w;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+import java.util.UUID;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import p1.o;
+import p1.o.a;
+import sa.t;
+import v1.k;
+
+public final class f
+{
+  public static final f a = new f();
+  private static final String b;
+  private static final ScheduledExecutorService c = Executors.newSingleThreadScheduledExecutor();
+  private static volatile ScheduledFuture d;
+  private static final Object e = new Object();
+  private static final AtomicInteger f = new AtomicInteger(0);
+  private static volatile m g;
+  private static final AtomicBoolean h = new AtomicBoolean(false);
+  private static String i;
+  private static long j;
+  private static int k;
+  private static WeakReference l;
+  
+  static
+  {
+    String str2 = f.class.getCanonicalName();
+    String str1 = str2;
+    if (str2 == null) {
+      str1 = "com.facebook.appevents.internal.ActivityLifecycleTracker";
+    }
+    b = str1;
+  }
+  
+  private f() {}
+  
+  private final void k()
+  {
+    synchronized (e)
+    {
+      if (d != null)
+      {
+        localObject2 = d;
+        if (localObject2 != null) {
+          ((Future)localObject2).cancel(false);
+        }
+      }
+      d = null;
+      Object localObject2 = t.a;
+      return;
+    }
+  }
+  
+  public static final Activity l()
+  {
+    WeakReference localWeakReference = l;
+    Activity localActivity = null;
+    if (localWeakReference != null)
+    {
+      if (localWeakReference == null) {
+        return null;
+      }
+      localActivity = (Activity)localWeakReference.get();
+    }
+    return localActivity;
+  }
+  
+  public static final UUID m()
+  {
+    m localM = g;
+    Object localObject = null;
+    if (localM != null)
+    {
+      localObject = g;
+      if (localObject == null) {
+        return null;
+      }
+      localObject = ((m)localObject).d();
+    }
+    return localObject;
+  }
+  
+  private final int n()
+  {
+    Object localObject = w.a;
+    localObject = w.f(i0.m());
+    if (localObject == null) {
+      return j.a();
+    }
+    return ((r)localObject).m();
+  }
+  
+  public static final boolean o()
+  {
+    return k == 0;
+  }
+  
+  public static final void p(Activity paramActivity)
+  {
+    c.execute(new d());
+  }
+  
+  private static final void q()
+  {
+    if (g == null) {
+      g = m.g.b();
+    }
+  }
+  
+  private final void r(Activity paramActivity)
+  {
+    s1.e.j(paramActivity);
+  }
+  
+  private final void s(Activity paramActivity)
+  {
+    Object localObject = f;
+    if (((AtomicInteger)localObject).decrementAndGet() < 0)
+    {
+      ((AtomicInteger)localObject).set(0);
+      Log.w(b, "Unexpected activity pause without a matching activity resume. Logging data may be incorrect. Make sure you call activateApp from your Application's onCreate method");
+    }
+    k();
+    long l1 = System.currentTimeMillis();
+    localObject = s0.t(paramActivity);
+    s1.e.k(paramActivity);
+    paramActivity = new b(l1, (String)localObject);
+    c.execute(paramActivity);
+  }
+  
+  private static final void t(long paramLong, String paramString)
+  {
+    l.e(paramString, "$activityName");
+    if (g == null) {
+      g = new m(Long.valueOf(paramLong), null, null, 4, null);
+    }
+    ??? = g;
+    if (??? != null) {
+      ((m)???).k(Long.valueOf(paramLong));
+    }
+    if (f.get() <= 0)
+    {
+      Object localObject2 = new e(paramLong, paramString);
+      synchronized (e)
+      {
+        d = c.schedule((Runnable)localObject2, a.n(), TimeUnit.SECONDS);
+        localObject2 = t.a;
+      }
+    }
+    long l2 = j;
+    long l1 = 0L;
+    if (l2 > 0L) {
+      l1 = (paramLong - l2) / '?';
+    }
+    i.e(paramString, l1);
+    paramString = g;
+    if (paramString == null) {
+      return;
+    }
+    paramString.m();
+  }
+  
+  private static final void u(long paramLong, String arg2)
+  {
+    l.e(???, "$activityName");
+    if (g == null) {
+      g = new m(Long.valueOf(paramLong), null, null, 4, null);
+    }
+    Object localObject1;
+    if (f.get() <= 0)
+    {
+      localObject1 = n.a;
+      n.e(???, g, i);
+      m.g.a();
+      g = null;
+    }
+    synchronized (e)
+    {
+      d = null;
+      localObject1 = t.a;
+      return;
+    }
+  }
+  
+  public static final void v(Activity paramActivity)
+  {
+    l.e(paramActivity, "activity");
+    l = new WeakReference(paramActivity);
+    f.incrementAndGet();
+    a.k();
+    long l1 = System.currentTimeMillis();
+    j = l1;
+    String str = s0.t(paramActivity);
+    s1.e.l(paramActivity);
+    q1.b.d(paramActivity);
+    b2.e.h(paramActivity);
+    k.b();
+    paramActivity = new c(l1, str, paramActivity.getApplicationContext());
+    c.execute(paramActivity);
+  }
+  
+  private static final void w(long paramLong, String paramString, Context paramContext)
+  {
+    l.e(paramString, "$activityName");
+    Object localObject = g;
+    if (localObject == null) {
+      localObject = null;
+    } else {
+      localObject = ((m)localObject).e();
+    }
+    if (g == null)
+    {
+      g = new m(Long.valueOf(paramLong), null, null, 4, null);
+      localObject = n.a;
+      localObject = i;
+      l.d(paramContext, "appContext");
+      n.c(paramString, null, (String)localObject, paramContext);
+    }
+    else if (localObject != null)
+    {
+      long l1 = paramLong - ((Long)localObject).longValue();
+      if (l1 > a.n() * 1000)
+      {
+        localObject = n.a;
+        n.e(paramString, g, i);
+        localObject = i;
+        l.d(paramContext, "appContext");
+        n.c(paramString, null, (String)localObject, paramContext);
+        g = new m(Long.valueOf(paramLong), null, null, 4, null);
+      }
+      else if (l1 > 1000L)
+      {
+        paramString = g;
+        if (paramString != null) {
+          paramString.h();
+        }
+      }
+    }
+    paramString = g;
+    if (paramString != null) {
+      paramString.k(Long.valueOf(paramLong));
+    }
+    paramString = g;
+    if (paramString == null) {
+      return;
+    }
+    paramString.m();
+  }
+  
+  public static final void x(Application paramApplication, String paramString)
+  {
+    l.e(paramApplication, "application");
+    if (!h.compareAndSet(false, true)) {
+      return;
+    }
+    e2.n localN = e2.n.a;
+    e2.n.a(n.b.j, new a());
+    i = paramString;
+    paramApplication.registerActivityLifecycleCallbacks(new a());
+  }
+  
+  private static final void y(boolean paramBoolean)
+  {
+    if (paramBoolean)
+    {
+      s1.e.f();
+      return;
+    }
+    s1.e.e();
+  }
+  
+  public static final class a
+    implements Application.ActivityLifecycleCallbacks
+  {
+    a() {}
+    
+    public void onActivityCreated(Activity paramActivity, Bundle paramBundle)
+    {
+      l.e(paramActivity, "activity");
+      e0.e.b(u0.i, f.g(), "onActivityCreated");
+      g.a();
+      f.p(paramActivity);
+    }
+    
+    public void onActivityDestroyed(Activity paramActivity)
+    {
+      l.e(paramActivity, "activity");
+      e0.e.b(u0.i, f.g(), "onActivityDestroyed");
+      f.h(f.a, paramActivity);
+    }
+    
+    public void onActivityPaused(Activity paramActivity)
+    {
+      l.e(paramActivity, "activity");
+      e0.e.b(u0.i, f.g(), "onActivityPaused");
+      g.a();
+      f.i(f.a, paramActivity);
+    }
+    
+    public void onActivityResumed(Activity paramActivity)
+    {
+      l.e(paramActivity, "activity");
+      e0.e.b(u0.i, f.g(), "onActivityResumed");
+      g.a();
+      f.v(paramActivity);
+    }
+    
+    public void onActivitySaveInstanceState(Activity paramActivity, Bundle paramBundle)
+    {
+      l.e(paramActivity, "activity");
+      l.e(paramBundle, "outState");
+      e0.e.b(u0.i, f.g(), "onActivitySaveInstanceState");
+    }
+    
+    public void onActivityStarted(Activity paramActivity)
+    {
+      l.e(paramActivity, "activity");
+      f.j(f.f() + 1);
+      e0.e.b(u0.i, f.g(), "onActivityStarted");
+    }
+    
+    public void onActivityStopped(Activity paramActivity)
+    {
+      l.e(paramActivity, "activity");
+      e0.e.b(u0.i, f.g(), "onActivityStopped");
+      o.b.g();
+      f.j(f.f() - 1);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+package com.google.android.gms.internal.auth;
+
+import android.app.Activity;
+import android.content.Context;
+import com.google.android.gms.common.api.a;
+import com.google.android.gms.common.api.d;
+import com.google.android.gms.common.api.d.a;
+import com.google.android.gms.common.api.internal.v;
+import com.google.android.gms.common.api.internal.v.a;
+import h3.c;
+import m3.b;
+import n4.i;
+
+public final class zzbo
+  extends d
+{
+  public zzbo(Activity paramActivity, c paramC)
+  {
+    super(paramActivity, localA, localC, d.a.c);
+  }
+  
+  public zzbo(Context paramContext, c paramC)
+  {
+    super(paramContext, localA, localC, d.a.c);
+  }
+  
+  public final i getSpatulaHeader()
+  {
+    return doRead(v.a().b(new zzbk(this)).e(1520).a());
+  }
+  
+  public final i performProxyRequest(b paramB)
+  {
+    return doWrite(v.a().b(new zzbl(this, paramB)).e(1518).a());
+  }
+}

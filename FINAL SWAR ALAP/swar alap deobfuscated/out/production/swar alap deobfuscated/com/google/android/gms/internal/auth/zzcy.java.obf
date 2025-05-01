@@ -1,0 +1,37 @@
+package com.google.android.gms.internal.auth;
+
+import android.util.Base64;
+import android.util.Log;
+import java.io.IOException;
+
+final class zzcy
+  extends zzdc
+{
+  zzcy(zzcz paramZzcz, String paramString, Object paramObject, boolean paramBoolean, zzhu paramZzhu, byte[] paramArrayOfByte)
+  {
+    super(paramZzcz, "getTokenRefactor__blocked_packages", paramObject, true, null);
+  }
+  
+  final Object zza(Object paramObject)
+  {
+    try
+    {
+      localObject = zzhr.zzk(Base64.decode((String)paramObject, 3));
+      return localObject;
+    }
+    catch (IOException|IllegalArgumentException localIOException)
+    {
+      Object localObject;
+      StringBuilder localStringBuilder;
+      for (;;) {}
+    }
+    localObject = super.zzc();
+    localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Invalid byte[] value for ");
+    localStringBuilder.append((String)localObject);
+    localStringBuilder.append(": ");
+    localStringBuilder.append((String)paramObject);
+    Log.e("PhenotypeFlag", localStringBuilder.toString());
+    return null;
+  }
+}

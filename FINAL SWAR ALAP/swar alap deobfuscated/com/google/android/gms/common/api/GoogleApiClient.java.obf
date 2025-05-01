@@ -1,0 +1,257 @@
+package com.google.android.gms.common.api;
+
+import android.accounts.Account;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
+import com.google.android.gms.common.api.internal.a3;
+import com.google.android.gms.common.api.internal.b1;
+import com.google.android.gms.common.api.internal.e;
+import com.google.android.gms.common.api.internal.g;
+import com.google.android.gms.common.api.internal.o;
+import com.google.android.gms.common.api.internal.t2;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
+import q3.b;
+
+@Deprecated
+public abstract class GoogleApiClient
+{
+  private static final Set a = Collections.newSetFromMap(new WeakHashMap());
+  
+  public GoogleApiClient() {}
+  
+  public static Set h()
+  {
+    synchronized (a)
+    {
+      return ???;
+    }
+  }
+  
+  public abstract void connect();
+  
+  public abstract b d(long paramLong, TimeUnit paramTimeUnit);
+  
+  public abstract void disconnect();
+  
+  public abstract void e(String paramString, FileDescriptor paramFileDescriptor, PrintWriter paramPrintWriter, String[] paramArrayOfString);
+  
+  public e f(e paramE)
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public e g(e paramE)
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public a.f i(a.c paramC)
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public Context j()
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public Looper k()
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public abstract boolean l();
+  
+  public boolean m(com.google.android.gms.common.api.internal.s paramS)
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public void n()
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public abstract void o(c paramC);
+  
+  public abstract void p(c paramC);
+  
+  public static final class a
+  {
+    private Account a;
+    private final Set b = new HashSet();
+    private final Set c = new HashSet();
+    private int d;
+    private View e;
+    private String f;
+    private String g;
+    private final Map h = new androidx.collection.a();
+    private final Context i;
+    private final Map j = new androidx.collection.a();
+    private com.google.android.gms.common.api.internal.j k;
+    private int l = -1;
+    private GoogleApiClient.c m;
+    private Looper n;
+    private q3.j o = q3.j.q();
+    private a.a p = k4.d.c;
+    private final ArrayList q = new ArrayList();
+    private final ArrayList r = new ArrayList();
+    
+    public a(Context paramContext)
+    {
+      i = paramContext;
+      n = paramContext.getMainLooper();
+      f = paramContext.getPackageName();
+      g = paramContext.getClass().getName();
+    }
+    
+    public a a(a paramA)
+    {
+      com.google.android.gms.common.internal.s.l(paramA, "Api must not be null");
+      j.put(paramA, null);
+      paramA = ((a.e)com.google.android.gms.common.internal.s.l(paramA.c(), "Base client builder must not be null")).getImpliedScopes(null);
+      c.addAll(paramA);
+      b.addAll(paramA);
+      return this;
+    }
+    
+    public a b(GoogleApiClient.b paramB)
+    {
+      com.google.android.gms.common.internal.s.l(paramB, "Listener must not be null");
+      q.add(paramB);
+      return this;
+    }
+    
+    public a c(GoogleApiClient.c paramC)
+    {
+      com.google.android.gms.common.internal.s.l(paramC, "Listener must not be null");
+      r.add(paramC);
+      return this;
+    }
+    
+    public GoogleApiClient d()
+    {
+      com.google.android.gms.common.internal.s.b(j.isEmpty() ^ true, "must call addApi() to add at least one API");
+      Object localObject4 = f();
+      Map localMap = ((com.google.android.gms.common.internal.d)localObject4).k();
+      androidx.collection.a localA1 = new androidx.collection.a();
+      androidx.collection.a localA2 = new androidx.collection.a();
+      ArrayList localArrayList = new ArrayList();
+      Iterator localIterator = j.keySet().iterator();
+      ??? = null;
+      int i2 = 0;
+      boolean bool;
+      while (localIterator.hasNext())
+      {
+        localObject2 = (a)localIterator.next();
+        Object localObject5 = j.get(localObject2);
+        if (localMap.get(localObject2) != null) {
+          bool = true;
+        } else {
+          bool = false;
+        }
+        localA1.put(localObject2, Boolean.valueOf(bool));
+        Object localObject6 = new a3((a)localObject2, bool);
+        localArrayList.add(localObject6);
+        a.a localA = (a.a)com.google.android.gms.common.internal.s.k(((a)localObject2).a());
+        localObject6 = localA.buildClient(i, n, (com.google.android.gms.common.internal.d)localObject4, localObject5, (GoogleApiClient.b)localObject6, (GoogleApiClient.c)localObject6);
+        localA2.put(((a)localObject2).b(), localObject6);
+        i1 = i2;
+        if (localA.getPriority() == 1) {
+          if (localObject5 != null) {
+            i1 = 1;
+          } else {
+            i1 = 0;
+          }
+        }
+        i2 = i1;
+        if (((a.f)localObject6).providesSignIn()) {
+          if (??? == null)
+          {
+            ??? = localObject2;
+            i2 = i1;
+          }
+          else
+          {
+            localObject2 = ((a)localObject2).d();
+            ??? = ((a)???).d();
+            localObject4 = new StringBuilder(String.valueOf(localObject2).length() + 21 + String.valueOf(???).length());
+            ((StringBuilder)localObject4).append((String)localObject2);
+            ((StringBuilder)localObject4).append(" cannot be used with ");
+            ((StringBuilder)localObject4).append((String)???);
+            throw new IllegalStateException(((StringBuilder)localObject4).toString());
+          }
+        }
+      }
+      if (??? != null) {
+        if (i2 == 0)
+        {
+          if (a == null) {
+            bool = true;
+          } else {
+            bool = false;
+          }
+          com.google.android.gms.common.internal.s.p(bool, "Must not set an account in GoogleApiClient.Builder when using %s. Set account in GoogleSignInOptions.Builder instead", new Object[] { ((a)???).d() });
+          com.google.android.gms.common.internal.s.p(b.equals(c), "Must not set scopes in GoogleApiClient.Builder when using %s. Set account in GoogleSignInOptions.Builder instead.", new Object[] { ((a)???).d() });
+        }
+        else
+        {
+          ??? = ((a)???).d();
+          localObject2 = new StringBuilder(String.valueOf(???).length() + 82);
+          ((StringBuilder)localObject2).append("With using ");
+          ((StringBuilder)localObject2).append((String)???);
+          ((StringBuilder)localObject2).append(", GamesOptions can only be specified within GoogleSignInOptions.Builder");
+          throw new IllegalStateException(((StringBuilder)localObject2).toString());
+        }
+      }
+      int i1 = b1.r(localA2.values(), true);
+      Object localObject2 = new b1(i, new ReentrantLock(), n, (com.google.android.gms.common.internal.d)localObject4, o, p, localA1, q, r, localA2, l, i1, localArrayList);
+      synchronized (GoogleApiClient.q())
+      {
+        GoogleApiClient.q().add(localObject2);
+        if (l >= 0) {
+          t2.i(k).j(l, (GoogleApiClient)localObject2, m);
+        }
+        return localObject2;
+      }
+    }
+    
+    public a e(Handler paramHandler)
+    {
+      com.google.android.gms.common.internal.s.l(paramHandler, "Handler must not be null");
+      n = paramHandler.getLooper();
+      return this;
+    }
+    
+    public final com.google.android.gms.common.internal.d f()
+    {
+      k4.a localA = k4.a.n;
+      Map localMap = j;
+      a localA1 = k4.d.g;
+      if (localMap.containsKey(localA1)) {
+        localA = (k4.a)j.get(localA1);
+      }
+      return new com.google.android.gms.common.internal.d(a, b, h, d, e, f, g, localA, false);
+    }
+  }
+  
+  public static abstract interface b
+    extends g
+  {}
+  
+  public static abstract interface c
+    extends o
+  {}
+}

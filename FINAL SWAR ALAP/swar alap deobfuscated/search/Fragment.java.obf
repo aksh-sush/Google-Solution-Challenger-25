@@ -1,0 +1,13 @@
+package u0;
+
+import android.view.View;
+import db.l;
+
+public abstract class e
+{
+  public static final void a(View paramView, d paramD)
+  {
+    l.e(paramView, "<this>");
+    paramView.setTag(a.a, paramD);
+  }
+}

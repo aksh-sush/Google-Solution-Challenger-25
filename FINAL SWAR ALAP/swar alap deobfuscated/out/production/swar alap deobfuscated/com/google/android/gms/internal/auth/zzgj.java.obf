@@ -1,0 +1,188 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.RandomAccess;
+
+final class zzgj
+{
+  private static final Class zza;
+  private static final zzgy zzb = zzj(false);
+  private static final zzgy zzc = zzj(true);
+  private static final zzgy zzd = new zzha();
+  
+  static
+  {
+    try
+    {
+      localClass = Class.forName("com.google.protobuf.GeneratedMessage");
+    }
+    finally
+    {
+      Class localClass;
+      for (;;) {}
+    }
+    localClass = null;
+    zza = localClass;
+  }
+  
+  public static zzgy zza()
+  {
+    return zzb;
+  }
+  
+  public static zzgy zzb()
+  {
+    return zzc;
+  }
+  
+  public static zzgy zzc()
+  {
+    return zzd;
+  }
+  
+  static Object zzd(int paramInt, List paramList, zzex paramZzex, Object paramObject, zzgy paramZzgy)
+  {
+    if (paramZzex == null) {
+      return paramObject;
+    }
+    int i;
+    if ((paramList instanceof RandomAccess))
+    {
+      int k = paramList.size();
+      i = 0;
+      int j = 0;
+      while (i < k)
+      {
+        int m = ((Integer)paramList.get(i)).intValue();
+        if (paramZzex.zza())
+        {
+          if (i != j) {
+            paramList.set(j, Integer.valueOf(m));
+          }
+          j += 1;
+        }
+        else
+        {
+          paramObject = zze(paramInt, m, paramObject, paramZzgy);
+        }
+        i += 1;
+      }
+      if (j == k) {
+        return paramObject;
+      }
+      paramList.subList(j, k).clear();
+      return paramObject;
+    }
+    paramList = paramList.iterator();
+    while (paramList.hasNext())
+    {
+      i = ((Integer)paramList.next()).intValue();
+      if (!paramZzex.zza())
+      {
+        paramObject = zze(paramInt, i, paramObject, paramZzgy);
+        paramList.remove();
+      }
+    }
+    return paramObject;
+  }
+  
+  static Object zze(int paramInt1, int paramInt2, Object paramObject, zzgy paramZzgy)
+  {
+    Object localObject = paramObject;
+    if (paramObject == null) {
+      localObject = paramZzgy.zzc();
+    }
+    paramZzgy.zzd(localObject, paramInt1, paramInt2);
+    return localObject;
+  }
+  
+  static void zzf(zzgy paramZzgy, Object paramObject1, Object paramObject2)
+  {
+    paramZzgy.zzf(paramObject1, paramZzgy.zzb(paramZzgy.zza(paramObject1), paramZzgy.zza(paramObject2)));
+  }
+  
+  public static void zzg(Class paramClass)
+  {
+    if (!zzeu.class.isAssignableFrom(paramClass))
+    {
+      Class localClass = zza;
+      if (localClass != null)
+      {
+        if (localClass.isAssignableFrom(paramClass)) {
+          return;
+        }
+        throw new IllegalArgumentException("Message classes must extend GeneratedMessage or GeneratedMessageLite");
+      }
+    }
+  }
+  
+  static boolean zzh(Object paramObject1, Object paramObject2)
+  {
+    boolean bool = true;
+    if (paramObject1 != paramObject2)
+    {
+      if (paramObject1 != null) {
+        return paramObject1.equals(paramObject2);
+      }
+      bool = false;
+    }
+    return bool;
+  }
+  
+  static void zzi(zzfr paramZzfr, Object paramObject1, Object paramObject2, long paramLong)
+  {
+    zzhi.zzp(paramObject1, paramLong, zzfr.zza(zzhi.zzf(paramObject1, paramLong), zzhi.zzf(paramObject2, paramLong)));
+  }
+  
+  /* Error */
+  private static zzgy zzj(boolean paramBoolean)
+  {
+    // Byte code:
+    //   0: ldc -103
+    //   2: invokestatic 20	java/lang/Class:forName	(Ljava/lang/String;)Ljava/lang/Class;
+    //   5: astore_1
+    //   6: goto +5 -> 11
+    //   9: aconst_null
+    //   10: astore_1
+    //   11: aload_1
+    //   12: ifnonnull +5 -> 17
+    //   15: aconst_null
+    //   16: areturn
+    //   17: aload_1
+    //   18: iconst_1
+    //   19: anewarray 16	java/lang/Class
+    //   22: dup
+    //   23: iconst_0
+    //   24: getstatic 158	java/lang/Boolean:TYPE	Ljava/lang/Class;
+    //   27: aastore
+    //   28: invokevirtual 162	java/lang/Class:getConstructor	([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
+    //   31: iconst_1
+    //   32: anewarray 4	java/lang/Object
+    //   35: dup
+    //   36: iconst_0
+    //   37: iload_0
+    //   38: invokestatic 165	java/lang/Boolean:valueOf	(Z)Ljava/lang/Boolean;
+    //   41: aastore
+    //   42: invokevirtual 171	java/lang/reflect/Constructor:newInstance	([Ljava/lang/Object;)Ljava/lang/Object;
+    //   45: checkcast 99	com/google/android/gms/internal/auth/zzgy
+    //   48: astore_1
+    //   49: aload_1
+    //   50: areturn
+    //   51: astore_1
+    //   52: goto -43 -> 9
+    //   55: astore_1
+    //   56: aconst_null
+    //   57: areturn
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	58	0	paramBoolean	boolean
+    //   5	45	1	localObject1	Object
+    //   51	1	1	localObject2	Object
+    //   55	1	1	localObject3	Object
+    // Exception table:
+    //   from	to	target	type
+    //   0	6	51	finally
+    //   17	49	55	finally
+  }
+}

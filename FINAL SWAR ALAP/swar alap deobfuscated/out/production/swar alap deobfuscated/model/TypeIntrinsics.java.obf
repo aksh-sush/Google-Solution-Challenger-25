@@ -1,0 +1,120 @@
+package db;
+
+import cb.p;
+import eb.b;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map.Entry;
+
+public abstract class x
+{
+  public static Collection a(Object paramObject)
+  {
+    if (((paramObject instanceof eb.a)) && (!(paramObject instanceof b))) {
+      k(paramObject, "kotlin.collections.MutableCollection");
+    }
+    return d(paramObject);
+  }
+  
+  public static List b(Object paramObject)
+  {
+    if (((paramObject instanceof eb.a)) && (!(paramObject instanceof eb.c))) {
+      k(paramObject, "kotlin.collections.MutableList");
+    }
+    return e(paramObject);
+  }
+  
+  public static Object c(Object paramObject, int paramInt)
+  {
+    if ((paramObject != null) && (!g(paramObject, paramInt)))
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("kotlin.jvm.functions.Function");
+      localStringBuilder.append(paramInt);
+      k(paramObject, localStringBuilder.toString());
+    }
+    return paramObject;
+  }
+  
+  public static Collection d(Object paramObject)
+  {
+    try
+    {
+      paramObject = (Collection)paramObject;
+      return paramObject;
+    }
+    catch (ClassCastException paramObject)
+    {
+      throw j(paramObject);
+    }
+  }
+  
+  public static List e(Object paramObject)
+  {
+    try
+    {
+      paramObject = (List)paramObject;
+      return paramObject;
+    }
+    catch (ClassCastException paramObject)
+    {
+      throw j(paramObject);
+    }
+  }
+  
+  public static int f(Object paramObject)
+  {
+    if ((paramObject instanceof h)) {
+      return ((h)paramObject).getArity();
+    }
+    if ((paramObject instanceof cb.a)) {
+      return 0;
+    }
+    if ((paramObject instanceof cb.l)) {
+      return 1;
+    }
+    if ((paramObject instanceof p)) {
+      return 2;
+    }
+    return -1;
+  }
+  
+  public static boolean g(Object paramObject, int paramInt)
+  {
+    return ((paramObject instanceof sa.c)) && (f(paramObject) == paramInt);
+  }
+  
+  public static boolean h(Object paramObject)
+  {
+    return ((paramObject instanceof Map.Entry)) && (!(paramObject instanceof eb.a));
+  }
+  
+  private static Throwable i(Throwable paramThrowable)
+  {
+    return l.k(paramThrowable, x.class.getName());
+  }
+  
+  public static ClassCastException j(ClassCastException paramClassCastException)
+  {
+    throw ((ClassCastException)i(paramClassCastException));
+  }
+  
+  public static void k(Object paramObject, String paramString)
+  {
+    if (paramObject == null) {
+      paramObject = "null";
+    } else {
+      paramObject = paramObject.getClass().getName();
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(paramObject);
+    localStringBuilder.append(" cannot be cast to ");
+    localStringBuilder.append(paramString);
+    l(localStringBuilder.toString());
+  }
+  
+  public static void l(String paramString)
+  {
+    throw j(new ClassCastException(paramString));
+  }
+}

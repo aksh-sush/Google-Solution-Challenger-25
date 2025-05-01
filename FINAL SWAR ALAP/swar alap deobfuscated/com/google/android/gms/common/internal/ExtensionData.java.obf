@@ -1,0 +1,35 @@
+package com.google.android.gms.common.internal;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.api.Scope;
+import s3.a;
+import s3.c;
+
+public final class y0
+  extends a
+{
+  public static final Parcelable.Creator<y0> CREATOR = new z0();
+  final int e;
+  private final int f;
+  private final int g;
+  private final Scope[] h;
+  
+  y0(int paramInt1, int paramInt2, int paramInt3, Scope[] paramArrayOfScope)
+  {
+    e = paramInt1;
+    f = paramInt2;
+    g = paramInt3;
+    h = paramArrayOfScope;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int i = c.a(paramParcel);
+    c.t(paramParcel, 1, e);
+    c.t(paramParcel, 2, f);
+    c.t(paramParcel, 3, g);
+    c.G(paramParcel, 4, h, paramInt, false);
+    c.b(paramParcel, i);
+  }
+}

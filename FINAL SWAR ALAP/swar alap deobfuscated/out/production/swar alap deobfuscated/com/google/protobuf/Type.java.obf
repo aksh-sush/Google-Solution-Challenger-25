@@ -1,0 +1,57 @@
+package com.google.protobuf;
+
+public class m0
+{
+  private final a a;
+  private final Object b;
+  private final Object c;
+  
+  private m0(z1.b paramB1, Object paramObject1, z1.b paramB2, Object paramObject2)
+  {
+    a = new a(paramB1, paramObject1, paramB2, paramObject2);
+    b = paramObject1;
+    c = paramObject2;
+  }
+  
+  static int b(a paramA, Object paramObject1, Object paramObject2)
+  {
+    return v.d(a, 1, paramObject1) + v.d(c, 2, paramObject2);
+  }
+  
+  public static m0 d(z1.b paramB1, Object paramObject1, z1.b paramB2, Object paramObject2)
+  {
+    return new m0(paramB1, paramObject1, paramB2, paramObject2);
+  }
+  
+  static void e(m paramM, a paramA, Object paramObject1, Object paramObject2)
+  {
+    v.x(paramM, a, 1, paramObject1);
+    v.x(paramM, c, 2, paramObject2);
+  }
+  
+  public int a(int paramInt, Object paramObject1, Object paramObject2)
+  {
+    return m.T(paramInt) + m.A(b(a, paramObject1, paramObject2));
+  }
+  
+  a c()
+  {
+    return a;
+  }
+  
+  static class a
+  {
+    public final z1.b a;
+    public final Object b;
+    public final z1.b c;
+    public final Object d;
+    
+    public a(z1.b paramB1, Object paramObject1, z1.b paramB2, Object paramObject2)
+    {
+      a = paramB1;
+      b = paramObject1;
+      c = paramB2;
+      d = paramObject2;
+    }
+  }
+}

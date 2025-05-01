@@ -1,0 +1,15 @@
+package androidx.core.app;
+
+import android.content.res.Configuration;
+
+public final class l0
+{
+  private final boolean a;
+  private final Configuration b;
+  
+  public l0(boolean paramBoolean, Configuration paramConfiguration)
+  {
+    a = paramBoolean;
+    b = paramConfiguration;
+  }
+}

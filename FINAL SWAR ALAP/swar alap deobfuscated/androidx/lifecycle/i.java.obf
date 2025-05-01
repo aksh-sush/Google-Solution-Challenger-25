@@ -1,0 +1,17 @@
+package androidx.lifecycle;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public final class d0
+  extends h0
+{
+  private final Map d = new LinkedHashMap();
+  
+  public d0() {}
+  
+  public final Map f()
+  {
+    return d;
+  }
+}

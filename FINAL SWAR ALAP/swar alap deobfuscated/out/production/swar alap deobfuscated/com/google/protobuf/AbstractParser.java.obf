@@ -1,0 +1,34 @@
+package com.google.protobuf;
+
+public abstract class b
+  implements d1
+{
+  private static final r a = ;
+  
+  public b() {}
+  
+  private t0 c(t0 paramT0)
+  {
+    if (paramT0 != null)
+    {
+      if (paramT0.isInitialized()) {
+        return paramT0;
+      }
+      throw d(paramT0).a().i(paramT0);
+    }
+    return paramT0;
+  }
+  
+  private s1 d(t0 paramT0)
+  {
+    if ((paramT0 instanceof a)) {
+      return ((a)paramT0).newUninitializedMessageException();
+    }
+    return new s1(paramT0);
+  }
+  
+  public t0 e(k paramK, r paramR)
+  {
+    return c((t0)b(paramK, paramR));
+  }
+}

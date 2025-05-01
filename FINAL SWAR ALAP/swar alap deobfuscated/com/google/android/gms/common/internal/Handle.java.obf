@@ -1,0 +1,115 @@
+package com.google.android.gms.common.internal;
+
+import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.net.Uri.Builder;
+import android.os.BaseBundle;
+import android.os.Bundle;
+import android.util.Log;
+
+public final class y1
+{
+  private static final Uri f = new Uri.Builder().scheme("content").authority("com.google.android.gms.chimera").build();
+  private final String a;
+  private final String b;
+  private final ComponentName c;
+  private final int d;
+  private final boolean e;
+  
+  public y1(String paramString1, String paramString2, int paramInt, boolean paramBoolean)
+  {
+    s.g(paramString1);
+    a = paramString1;
+    s.g(paramString2);
+    b = paramString2;
+    c = null;
+    d = 4225;
+    e = paramBoolean;
+  }
+  
+  public final ComponentName a()
+  {
+    return c;
+  }
+  
+  public final Intent b(Context paramContext)
+  {
+    if (a != null)
+    {
+      boolean bool = e;
+      Object localObject1 = null;
+      Object localObject2 = null;
+      if (bool)
+      {
+        localObject1 = new Bundle();
+        ((BaseBundle)localObject1).putString("serviceActionBundleKey", a);
+        try
+        {
+          paramContext = paramContext.getContentResolver().call(f, "serviceIntentCall", null, (Bundle)localObject1);
+        }
+        catch (IllegalArgumentException paramContext)
+        {
+          Log.w("ConnectionStatusConfig", "Dynamic intent resolution failed: ".concat(paramContext.toString()));
+          paramContext = null;
+        }
+        if (paramContext == null) {
+          paramContext = localObject2;
+        } else {
+          paramContext = (Intent)paramContext.getParcelable("serviceResponseIntentKey");
+        }
+        localObject1 = paramContext;
+        if (paramContext == null)
+        {
+          Log.w("ConnectionStatusConfig", "Dynamic lookup for intent failed for action: ".concat(String.valueOf(a)));
+          localObject1 = paramContext;
+        }
+      }
+      paramContext = (Context)localObject1;
+      if (localObject1 == null) {
+        return new Intent(a).setPackage(b);
+      }
+    }
+    else
+    {
+      paramContext = new Intent().setComponent(c);
+    }
+    return paramContext;
+  }
+  
+  public final String c()
+  {
+    return b;
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof y1)) {
+      return false;
+    }
+    paramObject = (y1)paramObject;
+    return (q.b(a, a)) && (q.b(b, b)) && (q.b(c, c)) && (e == e);
+  }
+  
+  public final int hashCode()
+  {
+    return q.c(new Object[] { a, b, c, Integer.valueOf(4225), Boolean.valueOf(e) });
+  }
+  
+  public final String toString()
+  {
+    String str2 = a;
+    String str1 = str2;
+    if (str2 == null)
+    {
+      s.k(c);
+      str1 = c.flattenToString();
+    }
+    return str1;
+  }
+}

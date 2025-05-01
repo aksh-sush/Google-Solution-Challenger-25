@@ -1,0 +1,66 @@
+package com.google.android.gms.internal.auth;
+
+final class zzgg
+  implements zzft
+{
+  private final zzfw zza;
+  private final String zzb;
+  private final Object[] zzc;
+  private final int zzd;
+  
+  zzgg(zzfw paramZzfw, String paramString, Object[] paramArrayOfObject)
+  {
+    zza = paramZzfw;
+    zzb = "\001\001\000\000\001\001\001\000\001\000\001\032";
+    zzc = paramArrayOfObject;
+    int i = "\001\001\000\000\001\001\001\000\001\000\001\032".charAt(0);
+    if (i < 55296)
+    {
+      zzd = i;
+      return;
+    }
+    int k = i & 0x1FFF;
+    int j = 13;
+    i = 1;
+    int m;
+    for (;;)
+    {
+      m = "\001\001\000\000\001\001\001\000\001\000\001\032".charAt(i);
+      if (m < 55296) {
+        break;
+      }
+      k |= (m & 0x1FFF) << j;
+      j += 13;
+      i += 1;
+    }
+    zzd = (m << j | k);
+  }
+  
+  public final zzfw zza()
+  {
+    return zza;
+  }
+  
+  public final boolean zzb()
+  {
+    return (zzd & 0x2) == 2;
+  }
+  
+  public final int zzc()
+  {
+    if ((zzd & 0x1) == 1) {
+      return 1;
+    }
+    return 2;
+  }
+  
+  final String zzd()
+  {
+    return zzb;
+  }
+  
+  final Object[] zze()
+  {
+    return zzc;
+  }
+}

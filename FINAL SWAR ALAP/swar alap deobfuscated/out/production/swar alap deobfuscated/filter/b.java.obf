@@ -1,0 +1,51 @@
+package d;
+
+import android.content.Context;
+import db.l;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+public final class a
+{
+  private final Set a = new CopyOnWriteArraySet();
+  private volatile Context b;
+  
+  public a() {}
+  
+  public final void a(b paramB)
+  {
+    l.e(paramB, "listener");
+    Context localContext = b;
+    if (localContext != null) {
+      paramB.a(localContext);
+    }
+    a.add(paramB);
+  }
+  
+  public final void b()
+  {
+    b = null;
+  }
+  
+  public final void c(Context paramContext)
+  {
+    l.e(paramContext, "context");
+    b = paramContext;
+    Iterator localIterator = a.iterator();
+    while (localIterator.hasNext()) {
+      ((b)localIterator.next()).a(paramContext);
+    }
+  }
+  
+  public final Context d()
+  {
+    return b;
+  }
+  
+  public final void e(b paramB)
+  {
+    l.e(paramB, "listener");
+    a.remove(paramB);
+  }
+}

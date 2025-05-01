@@ -1,0 +1,381 @@
+package androidx.activity.result;
+
+import android.content.Intent;
+import android.os.BaseBundle;
+import android.os.Bundle;
+import android.util.Log;
+import androidx.lifecycle.i;
+import androidx.lifecycle.i.a;
+import androidx.lifecycle.i.b;
+import androidx.lifecycle.l;
+import androidx.lifecycle.n;
+import gb.c.a;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+public abstract class ActivityResultRegistry
+{
+  private final Map a = new HashMap();
+  final Map b = new HashMap();
+  private final Map c = new HashMap();
+  ArrayList d = new ArrayList();
+  final transient Map e = new HashMap();
+  final Map f = new HashMap();
+  final Bundle g = new Bundle();
+  
+  public ActivityResultRegistry() {}
+  
+  private void a(int paramInt, String paramString)
+  {
+    a.put(Integer.valueOf(paramInt), paramString);
+    b.put(paramString, Integer.valueOf(paramInt));
+  }
+  
+  private void d(String paramString, int paramInt, Intent paramIntent, c paramC)
+  {
+    if ((paramC != null) && (a != null) && (d.contains(paramString)))
+    {
+      a.a(b.c(paramInt, paramIntent));
+      d.remove(paramString);
+      return;
+    }
+    f.remove(paramString);
+    g.putParcelable(paramString, new a(paramInt, paramIntent));
+  }
+  
+  private int e()
+  {
+    for (int i = gb.c.e.d(2147418112);; i = gb.c.e.d(2147418112))
+    {
+      i += 65536;
+      if (!a.containsKey(Integer.valueOf(i))) {
+        break;
+      }
+    }
+    return i;
+  }
+  
+  private void k(String paramString)
+  {
+    if ((Integer)b.get(paramString) != null) {
+      return;
+    }
+    a(e(), paramString);
+  }
+  
+  public final boolean b(int paramInt1, int paramInt2, Intent paramIntent)
+  {
+    String str = (String)a.get(Integer.valueOf(paramInt1));
+    if (str == null) {
+      return false;
+    }
+    d(str, paramInt2, paramIntent, (c)e.get(str));
+    return true;
+  }
+  
+  public final boolean c(int paramInt, Object paramObject)
+  {
+    String str = (String)a.get(Integer.valueOf(paramInt));
+    if (str == null) {
+      return false;
+    }
+    Object localObject = (c)e.get(str);
+    if (localObject != null)
+    {
+      localObject = a;
+      if (localObject != null)
+      {
+        if (!d.remove(str)) {
+          break label100;
+        }
+        ((b)localObject).a(paramObject);
+        break label100;
+      }
+    }
+    g.remove(str);
+    f.put(str, paramObject);
+    label100:
+    return true;
+  }
+  
+  public abstract void f(int paramInt, e.a paramA, Object paramObject, androidx.core.app.c paramC);
+  
+  public final void g(Bundle paramBundle)
+  {
+    if (paramBundle == null) {
+      return;
+    }
+    ArrayList localArrayList1 = paramBundle.getIntegerArrayList("KEY_COMPONENT_ACTIVITY_REGISTERED_RCS");
+    ArrayList localArrayList2 = paramBundle.getStringArrayList("KEY_COMPONENT_ACTIVITY_REGISTERED_KEYS");
+    if (localArrayList2 != null)
+    {
+      if (localArrayList1 == null) {
+        return;
+      }
+      d = paramBundle.getStringArrayList("KEY_COMPONENT_ACTIVITY_LAUNCHED_KEYS");
+      g.putAll(paramBundle.getBundle("KEY_COMPONENT_ACTIVITY_PENDING_RESULT"));
+      int i = 0;
+      while (i < localArrayList2.size())
+      {
+        paramBundle = (String)localArrayList2.get(i);
+        if (b.containsKey(paramBundle))
+        {
+          Integer localInteger = (Integer)b.remove(paramBundle);
+          if (!g.containsKey(paramBundle)) {
+            a.remove(localInteger);
+          }
+        }
+        a(((Integer)localArrayList1.get(i)).intValue(), (String)localArrayList2.get(i));
+        i += 1;
+      }
+    }
+  }
+  
+  public final void h(Bundle paramBundle)
+  {
+    paramBundle.putIntegerArrayList("KEY_COMPONENT_ACTIVITY_REGISTERED_RCS", new ArrayList(b.values()));
+    paramBundle.putStringArrayList("KEY_COMPONENT_ACTIVITY_REGISTERED_KEYS", new ArrayList(b.keySet()));
+    paramBundle.putStringArrayList("KEY_COMPONENT_ACTIVITY_LAUNCHED_KEYS", new ArrayList(d));
+    paramBundle.putBundle("KEY_COMPONENT_ACTIVITY_PENDING_RESULT", (Bundle)g.clone());
+  }
+  
+  public final c i(final String paramString, n paramN, final e.a paramA, final b paramB)
+  {
+    i localI = paramN.getLifecycle();
+    if (!localI.b().c(i.b.h))
+    {
+      k(paramString);
+      d localD = (d)c.get(paramString);
+      paramN = localD;
+      if (localD == null) {
+        paramN = new d(localI);
+      }
+      paramN.a(new l()
+      {
+        public void d(n paramAnonymousN, i.a paramAnonymousA)
+        {
+          if (i.a.ON_START.equals(paramAnonymousA))
+          {
+            e.put(paramString, new ActivityResultRegistry.c(paramB, paramA));
+            if (f.containsKey(paramString))
+            {
+              paramAnonymousN = f.get(paramString);
+              f.remove(paramString);
+              paramB.a(paramAnonymousN);
+            }
+            paramAnonymousN = (a)g.getParcelable(paramString);
+            if (paramAnonymousN != null)
+            {
+              g.remove(paramString);
+              paramB.a(paramA.c(paramAnonymousN.b(), paramAnonymousN.a()));
+            }
+          }
+          else
+          {
+            if (i.a.ON_STOP.equals(paramAnonymousA))
+            {
+              e.remove(paramString);
+              return;
+            }
+            if (i.a.ON_DESTROY.equals(paramAnonymousA)) {
+              l(paramString);
+            }
+          }
+        }
+      });
+      c.put(paramString, paramN);
+      return new a(paramString, paramA);
+    }
+    paramString = new StringBuilder();
+    paramString.append("LifecycleOwner ");
+    paramString.append(paramN);
+    paramString.append(" is attempting to register while current state is ");
+    paramString.append(localI.b());
+    paramString.append(". LifecycleOwners must call register before they are STARTED.");
+    throw new IllegalStateException(paramString.toString());
+  }
+  
+  public final c j(final String paramString, final e.a paramA, b paramB)
+  {
+    k(paramString);
+    e.put(paramString, new c(paramB, paramA));
+    if (f.containsKey(paramString))
+    {
+      localObject = f.get(paramString);
+      f.remove(paramString);
+      paramB.a(localObject);
+    }
+    Object localObject = (a)g.getParcelable(paramString);
+    if (localObject != null)
+    {
+      g.remove(paramString);
+      paramB.a(paramA.c(((a)localObject).b(), ((a)localObject).a()));
+    }
+    return new b(paramString, paramA);
+  }
+  
+  final void l(String paramString)
+  {
+    if (!d.contains(paramString))
+    {
+      localObject = (Integer)b.remove(paramString);
+      if (localObject != null) {
+        a.remove(localObject);
+      }
+    }
+    e.remove(paramString);
+    if (f.containsKey(paramString))
+    {
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Dropping pending result for request ");
+      ((StringBuilder)localObject).append(paramString);
+      ((StringBuilder)localObject).append(": ");
+      ((StringBuilder)localObject).append(f.get(paramString));
+      Log.w("ActivityResultRegistry", ((StringBuilder)localObject).toString());
+      f.remove(paramString);
+    }
+    if (g.containsKey(paramString))
+    {
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Dropping pending result for request ");
+      ((StringBuilder)localObject).append(paramString);
+      ((StringBuilder)localObject).append(": ");
+      ((StringBuilder)localObject).append(g.getParcelable(paramString));
+      Log.w("ActivityResultRegistry", ((StringBuilder)localObject).toString());
+      g.remove(paramString);
+    }
+    Object localObject = (d)c.get(paramString);
+    if (localObject != null)
+    {
+      ((d)localObject).b();
+      c.remove(paramString);
+    }
+  }
+  
+  class a
+    extends c
+  {
+    a(String paramString, e.a paramA) {}
+    
+    public e.a a()
+    {
+      return paramA;
+    }
+    
+    public void c(Object paramObject, androidx.core.app.c paramC)
+    {
+      Integer localInteger = (Integer)b.get(paramString);
+      if (localInteger != null)
+      {
+        d.add(paramString);
+        try
+        {
+          f(localInteger.intValue(), paramA, paramObject, paramC);
+          return;
+        }
+        catch (Exception paramObject)
+        {
+          d.remove(paramString);
+          throw paramObject;
+        }
+      }
+      paramC = new StringBuilder();
+      paramC.append("Attempting to launch an unregistered ActivityResultLauncher with contract ");
+      paramC.append(paramA);
+      paramC.append(" and input ");
+      paramC.append(paramObject);
+      paramC.append(". You must ensure the ActivityResultLauncher is registered before calling launch().");
+      throw new IllegalStateException(paramC.toString());
+    }
+    
+    public void d()
+    {
+      l(paramString);
+    }
+  }
+  
+  class b
+    extends c
+  {
+    b(String paramString, e.a paramA) {}
+    
+    public e.a a()
+    {
+      return paramA;
+    }
+    
+    public void c(Object paramObject, androidx.core.app.c paramC)
+    {
+      Integer localInteger = (Integer)b.get(paramString);
+      if (localInteger != null)
+      {
+        d.add(paramString);
+        try
+        {
+          f(localInteger.intValue(), paramA, paramObject, paramC);
+          return;
+        }
+        catch (Exception paramObject)
+        {
+          d.remove(paramString);
+          throw paramObject;
+        }
+      }
+      paramC = new StringBuilder();
+      paramC.append("Attempting to launch an unregistered ActivityResultLauncher with contract ");
+      paramC.append(paramA);
+      paramC.append(" and input ");
+      paramC.append(paramObject);
+      paramC.append(". You must ensure the ActivityResultLauncher is registered before calling launch().");
+      throw new IllegalStateException(paramC.toString());
+    }
+    
+    public void d()
+    {
+      l(paramString);
+    }
+  }
+  
+  private static class c
+  {
+    final b a;
+    final e.a b;
+    
+    c(b paramB, e.a paramA)
+    {
+      a = paramB;
+      b = paramA;
+    }
+  }
+  
+  private static class d
+  {
+    final i a;
+    private final ArrayList b;
+    
+    d(i paramI)
+    {
+      a = paramI;
+      b = new ArrayList();
+    }
+    
+    void a(l paramL)
+    {
+      a.a(paramL);
+      b.add(paramL);
+    }
+    
+    void b()
+    {
+      Iterator localIterator = b.iterator();
+      while (localIterator.hasNext())
+      {
+        l localL = (l)localIterator.next();
+        a.c(localL);
+      }
+      b.clear();
+    }
+  }
+}

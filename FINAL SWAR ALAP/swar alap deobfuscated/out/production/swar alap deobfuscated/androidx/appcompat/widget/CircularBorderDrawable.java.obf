@@ -1,0 +1,78 @@
+package androidx.appcompat.widget;
+
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Outline;
+import android.graphics.drawable.Drawable;
+
+class b
+  extends Drawable
+{
+  final ActionBarContainer a;
+  
+  public b(ActionBarContainer paramActionBarContainer)
+  {
+    a = paramActionBarContainer;
+  }
+  
+  public void draw(Canvas paramCanvas)
+  {
+    Object localObject = a;
+    if (l)
+    {
+      localObject = k;
+      if (localObject != null) {
+        ((Drawable)localObject).draw(paramCanvas);
+      }
+    }
+    else
+    {
+      localObject = i;
+      if (localObject != null) {
+        ((Drawable)localObject).draw(paramCanvas);
+      }
+      localObject = a;
+      Drawable localDrawable = j;
+      if ((localDrawable != null) && (m)) {
+        localDrawable.draw(paramCanvas);
+      }
+    }
+  }
+  
+  public int getOpacity()
+  {
+    return 0;
+  }
+  
+  public void getOutline(Outline paramOutline)
+  {
+    Object localObject = a;
+    if (l)
+    {
+      if (k == null) {
+        return;
+      }
+      localObject = i;
+    }
+    else
+    {
+      localObject = i;
+      if (localObject == null) {
+        return;
+      }
+    }
+    a.a((Drawable)localObject, paramOutline);
+  }
+  
+  public void setAlpha(int paramInt) {}
+  
+  public void setColorFilter(ColorFilter paramColorFilter) {}
+  
+  private static abstract class a
+  {
+    public static void a(Drawable paramDrawable, Outline paramOutline)
+    {
+      paramDrawable.getOutline(paramOutline);
+    }
+  }
+}

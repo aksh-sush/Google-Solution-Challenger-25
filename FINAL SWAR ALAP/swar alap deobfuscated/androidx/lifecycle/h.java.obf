@@ -1,0 +1,98 @@
+package androidx.lifecycle;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+
+public abstract class h0
+{
+  private final Map a = new HashMap();
+  private final Set b = new LinkedHashSet();
+  private volatile boolean c = false;
+  
+  public h0() {}
+  
+  private static void b(Object paramObject)
+  {
+    if ((paramObject instanceof Closeable)) {
+      try
+      {
+        ((Closeable)paramObject).close();
+        return;
+      }
+      catch (IOException paramObject)
+      {
+        throw new RuntimeException(paramObject);
+      }
+    }
+  }
+  
+  final void a()
+  {
+    c = true;
+    Object localObject1 = a;
+    if (localObject1 != null) {
+      try
+      {
+        Iterator localIterator1 = a.values().iterator();
+        while (localIterator1.hasNext()) {
+          b(localIterator1.next());
+        }
+      }
+      finally {}
+    }
+    localObject1 = b;
+    if (localObject1 != null) {
+      try
+      {
+        Iterator localIterator2 = b.iterator();
+        while (localIterator2.hasNext()) {
+          b((Closeable)localIterator2.next());
+        }
+      }
+      finally {}
+    }
+    d();
+  }
+  
+  Object c(String paramString)
+  {
+    Map localMap = a;
+    if (localMap == null) {
+      return null;
+    }
+    try
+    {
+      paramString = a.get(paramString);
+      return paramString;
+    }
+    finally {}
+  }
+  
+  protected void d() {}
+  
+  Object e(String paramString, Object paramObject)
+  {
+    synchronized (a)
+    {
+      Object localObject = a.get(paramString);
+      if (localObject == null) {
+        a.put(paramString, paramObject);
+      }
+      if (localObject == null) {
+        paramString = paramObject;
+      } else {
+        paramString = localObject;
+      }
+      if (c) {
+        b(paramString);
+      }
+      return paramString;
+    }
+  }
+}

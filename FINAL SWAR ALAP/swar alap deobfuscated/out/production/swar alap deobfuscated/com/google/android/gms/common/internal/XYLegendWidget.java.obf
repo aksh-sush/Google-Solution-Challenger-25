@@ -1,0 +1,40 @@
+package com.google.android.gms.common.internal;
+
+import android.content.Context;
+import android.view.View;
+import b4.a;
+import b4.b;
+import b4.c;
+import b4.c.a;
+
+public final class a1
+  extends c
+{
+  private static final a1 c = new a1();
+  
+  private a1()
+  {
+    super("com.google.android.gms.common.ui.SignInButtonCreatorImpl");
+  }
+  
+  public static View c(Context paramContext, int paramInt1, int paramInt2)
+  {
+    Object localObject = c;
+    try
+    {
+      y0 localY0 = new y0(1, paramInt1, paramInt2, null);
+      a localA = b.Z(paramContext);
+      paramContext = (View)b.Y(((n0)((c)localObject).b(paramContext)).c(localA, localY0));
+      return paramContext;
+    }
+    catch (Exception paramContext)
+    {
+      localObject = new StringBuilder(64);
+      ((StringBuilder)localObject).append("Could not get button with size ");
+      ((StringBuilder)localObject).append(paramInt1);
+      ((StringBuilder)localObject).append(" and color ");
+      ((StringBuilder)localObject).append(paramInt2);
+      throw new c.a(((StringBuilder)localObject).toString(), paramContext);
+    }
+  }
+}

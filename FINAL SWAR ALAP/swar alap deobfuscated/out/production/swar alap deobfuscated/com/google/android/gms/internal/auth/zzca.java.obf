@@ -1,0 +1,19 @@
+package com.google.android.gms.internal.auth;
+
+import android.database.ContentObserver;
+import android.os.Handler;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+final class zzca
+  extends ContentObserver
+{
+  zzca(Handler paramHandler)
+  {
+    super(null);
+  }
+  
+  public final void onChange(boolean paramBoolean)
+  {
+    zzcb.zzb().set(true);
+  }
+}

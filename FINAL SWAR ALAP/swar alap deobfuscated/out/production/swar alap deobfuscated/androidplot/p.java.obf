@@ -1,0 +1,123 @@
+package u;
+
+import java.util.List;
+import t.e;
+import t.h;
+
+class j
+  extends p
+{
+  public j(e paramE)
+  {
+    super(paramE);
+    e.f();
+    f.f();
+    f = ((h)paramE).s1();
+  }
+  
+  private void q(f paramF)
+  {
+    h.k.add(paramF);
+    l.add(h);
+  }
+  
+  public void a(d paramD)
+  {
+    paramD = h;
+    if (!c) {
+      return;
+    }
+    if (j) {
+      return;
+    }
+    paramD = (f)l.get(0);
+    h localH = (h)b;
+    int i = (int)(g * localH.v1() + 0.5F);
+    h.d(i);
+  }
+  
+  void d()
+  {
+    Object localObject = (h)b;
+    int i = ((h)localObject).t1();
+    int j = ((h)localObject).u1();
+    ((h)localObject).v1();
+    if (((h)localObject).s1() == 1)
+    {
+      localObject = h;
+      if (i != -1)
+      {
+        l.add(b.a0.e.h);
+        b.a0.e.h.k.add(h);
+        localObject = h;
+      }
+      for (;;)
+      {
+        f = i;
+        break label222;
+        if (j == -1) {
+          break;
+        }
+        l.add(b.a0.e.i);
+        b.a0.e.i.k.add(h);
+        localObject = h;
+        i = -j;
+      }
+      b = true;
+      l.add(b.a0.e.i);
+      b.a0.e.i.k.add(h);
+      label222:
+      q(b.e.h);
+      localObject = b.e;
+    }
+    else
+    {
+      localObject = h;
+      if (i != -1)
+      {
+        l.add(b.a0.f.h);
+        b.a0.f.h.k.add(h);
+        localObject = h;
+      }
+      for (;;)
+      {
+        f = i;
+        break label438;
+        if (j == -1) {
+          break;
+        }
+        l.add(b.a0.f.i);
+        b.a0.f.i.k.add(h);
+        localObject = h;
+        i = -j;
+      }
+      b = true;
+      l.add(b.a0.f.i);
+      b.a0.f.i.k.add(h);
+      label438:
+      q(b.f.h);
+      localObject = b.f;
+    }
+    q(i);
+  }
+  
+  public void e()
+  {
+    if (((h)b).s1() == 1)
+    {
+      b.m1(h.g);
+      return;
+    }
+    b.n1(h.g);
+  }
+  
+  void f()
+  {
+    h.c();
+  }
+  
+  boolean m()
+  {
+    return false;
+  }
+}

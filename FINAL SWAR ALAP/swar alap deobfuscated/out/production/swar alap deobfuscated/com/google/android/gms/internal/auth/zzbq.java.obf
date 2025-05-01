@@ -1,0 +1,19 @@
+package com.google.android.gms.internal.auth;
+
+import android.content.Context;
+import com.google.android.gms.common.api.GoogleApiClient;
+import m3.b;
+
+final class zzbq
+  extends zzbi
+{
+  zzbq(zzbt paramZzbt, GoogleApiClient paramGoogleApiClient, b paramB)
+  {
+    super(paramGoogleApiClient);
+  }
+  
+  protected final void zza(Context paramContext, zzbh paramZzbh)
+  {
+    paramZzbh.zze(new zzbp(this), zza);
+  }
+}

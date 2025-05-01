@@ -1,0 +1,209 @@
+package u;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Iterator;
+import q.d;
+import t.b;
+import t.e;
+import t.f;
+
+public class o
+{
+  static int g;
+  ArrayList a = new ArrayList();
+  int b;
+  boolean c = false;
+  int d;
+  ArrayList e = null;
+  private int f = -1;
+  
+  public o(int paramInt)
+  {
+    int i = g;
+    g = i + 1;
+    b = i;
+    d = paramInt;
+  }
+  
+  private String e()
+  {
+    int i = d;
+    if (i == 0) {
+      return "Horizontal";
+    }
+    if (i == 1) {
+      return "Vertical";
+    }
+    if (i == 2) {
+      return "Both";
+    }
+    return "Unknown";
+  }
+  
+  private int j(d paramD, ArrayList paramArrayList, int paramInt)
+  {
+    int j = 0;
+    f localF = (f)((e)paramArrayList.get(0)).K();
+    paramD.D();
+    localF.g(paramD, false);
+    int i = 0;
+    while (i < paramArrayList.size())
+    {
+      ((e)paramArrayList.get(i)).g(paramD, false);
+      i += 1;
+    }
+    if ((paramInt == 0) && (W0 > 0)) {
+      b.b(localF, paramD, paramArrayList, 0);
+    }
+    if ((paramInt == 1) && (X0 > 0)) {
+      b.b(localF, paramD, paramArrayList, 1);
+    }
+    try
+    {
+      paramD.z();
+    }
+    catch (Exception localException)
+    {
+      localException.printStackTrace();
+    }
+    e = new ArrayList();
+    i = j;
+    while (i < paramArrayList.size())
+    {
+      a localA = new a((e)paramArrayList.get(i), paramD, paramInt);
+      e.add(localA);
+      i += 1;
+    }
+    if (paramInt == 0) {
+      paramInt = paramD.x(O);
+    }
+    for (paramArrayList = Q;; paramArrayList = R)
+    {
+      i = paramD.x(paramArrayList);
+      paramD.D();
+      return i - paramInt;
+      paramInt = paramD.x(P);
+    }
+  }
+  
+  public boolean a(e paramE)
+  {
+    if (a.contains(paramE)) {
+      return false;
+    }
+    a.add(paramE);
+    return true;
+  }
+  
+  public void b(ArrayList paramArrayList)
+  {
+    int j = a.size();
+    if ((f != -1) && (j > 0))
+    {
+      int i = 0;
+      while (i < paramArrayList.size())
+      {
+        o localO = (o)paramArrayList.get(i);
+        if (f == b) {
+          g(d, localO);
+        }
+        i += 1;
+      }
+    }
+    if (j == 0) {
+      paramArrayList.remove(this);
+    }
+  }
+  
+  public int c()
+  {
+    return b;
+  }
+  
+  public int d()
+  {
+    return d;
+  }
+  
+  public int f(d paramD, int paramInt)
+  {
+    if (a.size() == 0) {
+      return 0;
+    }
+    return j(paramD, a, paramInt);
+  }
+  
+  public void g(int paramInt, o paramO)
+  {
+    Iterator localIterator = a.iterator();
+    while (localIterator.hasNext())
+    {
+      e localE = (e)localIterator.next();
+      paramO.a(localE);
+      int i = paramO.c();
+      if (paramInt == 0) {
+        I0 = i;
+      } else {
+        J0 = i;
+      }
+    }
+    f = b;
+  }
+  
+  public void h(boolean paramBoolean)
+  {
+    c = paramBoolean;
+  }
+  
+  public void i(int paramInt)
+  {
+    d = paramInt;
+  }
+  
+  public String toString()
+  {
+    Object localObject1 = new StringBuilder();
+    ((StringBuilder)localObject1).append(e());
+    ((StringBuilder)localObject1).append(" [");
+    ((StringBuilder)localObject1).append(b);
+    ((StringBuilder)localObject1).append("] <");
+    localObject1 = ((StringBuilder)localObject1).toString();
+    Object localObject2 = a.iterator();
+    while (((Iterator)localObject2).hasNext())
+    {
+      e localE = (e)((Iterator)localObject2).next();
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append((String)localObject1);
+      localStringBuilder.append(" ");
+      localStringBuilder.append(localE.t());
+      localObject1 = localStringBuilder.toString();
+    }
+    localObject2 = new StringBuilder();
+    ((StringBuilder)localObject2).append((String)localObject1);
+    ((StringBuilder)localObject2).append(" >");
+    return ((StringBuilder)localObject2).toString();
+  }
+  
+  class a
+  {
+    WeakReference a;
+    int b;
+    int c;
+    int d;
+    int e;
+    int f;
+    int g;
+    
+    public a(e paramE, d paramD, int paramInt)
+    {
+      a = new WeakReference(paramE);
+      b = paramD.x(O);
+      c = paramD.x(P);
+      d = paramD.x(Q);
+      e = paramD.x(R);
+      f = paramD.x(S);
+      g = paramInt;
+    }
+  }
+}

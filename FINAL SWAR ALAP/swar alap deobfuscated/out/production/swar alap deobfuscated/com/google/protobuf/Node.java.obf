@@ -1,0 +1,99 @@
+package com.google.protobuf;
+
+abstract class q1
+{
+  static String a(j paramJ)
+  {
+    return b(new a(paramJ));
+  }
+  
+  static String b(b paramB)
+  {
+    StringBuilder localStringBuilder = new StringBuilder(paramB.size());
+    int i = 0;
+    while (i < paramB.size())
+    {
+      int j = paramB.a(i);
+      String str;
+      if (j != 34) {
+        if (j != 39) {
+          if (j != 92) {
+            switch (j)
+            {
+            default: 
+              if ((j < 32) || (j > 126))
+              {
+                localStringBuilder.append('\\');
+                localStringBuilder.append((char)((j >>> 6 & 0x3) + 48));
+                localStringBuilder.append((char)((j >>> 3 & 0x7) + 48));
+                j = (j & 0x7) + 48;
+              }
+              localStringBuilder.append((char)j);
+              break;
+            case 13: 
+              str = "\\r";
+              break;
+            case 12: 
+              str = "\\f";
+              break;
+            case 11: 
+              str = "\\v";
+              break;
+            case 10: 
+              str = "\\n";
+              break;
+            case 9: 
+              str = "\\t";
+              break;
+            case 8: 
+              str = "\\b";
+              break;
+            case 7: 
+              str = "\\a";
+            }
+          }
+        }
+      }
+      for (;;)
+      {
+        localStringBuilder.append(str);
+        break;
+        str = "\\\\";
+        continue;
+        str = "\\'";
+        continue;
+        str = "\\\"";
+      }
+      i += 1;
+    }
+    return localStringBuilder.toString();
+  }
+  
+  static String c(String paramString)
+  {
+    return a(j.q(paramString));
+  }
+  
+  static final class a
+    implements q1.b
+  {
+    a(j paramJ) {}
+    
+    public byte a(int paramInt)
+    {
+      return a.f(paramInt);
+    }
+    
+    public int size()
+    {
+      return a.size();
+    }
+  }
+  
+  private static abstract interface b
+  {
+    public abstract byte a(int paramInt);
+    
+    public abstract int size();
+  }
+}

@@ -1,0 +1,18 @@
+package com.google.android.gms.common.internal;
+
+import android.app.Activity;
+import android.content.Intent;
+
+final class f0
+  extends h0
+{
+  f0(Intent paramIntent, Activity paramActivity, int paramInt) {}
+  
+  public final void a()
+  {
+    Intent localIntent = e;
+    if (localIntent != null) {
+      f.startActivityForResult(localIntent, g);
+    }
+  }
+}

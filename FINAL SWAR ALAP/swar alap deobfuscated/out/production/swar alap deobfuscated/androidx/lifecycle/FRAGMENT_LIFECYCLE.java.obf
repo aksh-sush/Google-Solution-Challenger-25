@@ -1,0 +1,5 @@
+package androidx.lifecycle;
+
+public abstract class a
+  extends h0
+{}

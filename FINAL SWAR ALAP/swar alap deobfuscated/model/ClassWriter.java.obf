@@ -1,0 +1,45 @@
+package db;
+
+import jb.b;
+import jb.c;
+import jb.d;
+
+public class v
+{
+  public v() {}
+  
+  public d a(i paramI)
+  {
+    return paramI;
+  }
+  
+  public b b(Class paramClass)
+  {
+    return new e(paramClass);
+  }
+  
+  public c c(Class paramClass, String paramString)
+  {
+    return new n(paramClass, paramString);
+  }
+  
+  public jb.e d(o paramO)
+  {
+    return paramO;
+  }
+  
+  public String e(h paramH)
+  {
+    String str = paramH.getClass().getGenericInterfaces()[0].toString();
+    paramH = str;
+    if (str.startsWith("kotlin.jvm.functions.")) {
+      paramH = str.substring(21);
+    }
+    return paramH;
+  }
+  
+  public String f(m paramM)
+  {
+    return e(paramM);
+  }
+}

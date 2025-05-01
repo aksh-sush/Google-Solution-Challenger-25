@@ -1,0 +1,108 @@
+package i3;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.server.response.a;
+import com.google.android.gms.common.server.response.a.a;
+import com.google.android.gms.internal.auth.zzbz;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+
+public final class b
+  extends zzbz
+{
+  public static final Parcelable.Creator<b> CREATOR = new c();
+  private static final HashMap j;
+  final Set e;
+  final int f;
+  private ArrayList g;
+  private int h;
+  private e i;
+  
+  static
+  {
+    HashMap localHashMap = new HashMap();
+    j = localHashMap;
+    localHashMap.put("authenticatorData", a.a.W("authenticatorData", 2, g.class));
+    localHashMap.put("progress", a.a.V("progress", 4, e.class));
+  }
+  
+  b(Set paramSet, int paramInt1, ArrayList paramArrayList, int paramInt2, e paramE)
+  {
+    e = paramSet;
+    f = paramInt1;
+    g = paramArrayList;
+    h = paramInt2;
+    i = paramE;
+  }
+  
+  public final void addConcreteTypeArrayInternal(a.a paramA, String paramString, ArrayList paramArrayList)
+  {
+    int k = paramA.m0();
+    if (k == 2)
+    {
+      g = paramArrayList;
+      e.add(Integer.valueOf(k));
+      return;
+    }
+    throw new IllegalArgumentException(String.format("Field with id=%d is not a known ConcreteTypeArray type. Found %s", new Object[] { Integer.valueOf(k), paramArrayList.getClass().getCanonicalName() }));
+  }
+  
+  public final void addConcreteTypeInternal(a.a paramA, String paramString, a paramA1)
+  {
+    int k = paramA.m0();
+    if (k == 4)
+    {
+      i = ((e)paramA1);
+      e.add(Integer.valueOf(k));
+      return;
+    }
+    throw new IllegalArgumentException(String.format("Field with id=%d is not a known custom type. Found %s", new Object[] { Integer.valueOf(k), paramA1.getClass().getCanonicalName() }));
+  }
+  
+  protected final Object getFieldValue(a.a paramA)
+  {
+    int k = paramA.m0();
+    if (k != 1)
+    {
+      if (k != 2)
+      {
+        if (k == 4) {
+          return i;
+        }
+        k = paramA.m0();
+        paramA = new StringBuilder();
+        paramA.append("Unknown SafeParcelable id=");
+        paramA.append(k);
+        throw new IllegalStateException(paramA.toString());
+      }
+      return g;
+    }
+    return Integer.valueOf(f);
+  }
+  
+  protected final boolean isFieldSet(a.a paramA)
+  {
+    return e.contains(Integer.valueOf(paramA.m0()));
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int k = s3.c.a(paramParcel);
+    Set localSet = e;
+    if (localSet.contains(Integer.valueOf(1))) {
+      s3.c.t(paramParcel, 1, f);
+    }
+    if (localSet.contains(Integer.valueOf(2))) {
+      s3.c.H(paramParcel, 2, g, true);
+    }
+    if (localSet.contains(Integer.valueOf(3))) {
+      s3.c.t(paramParcel, 3, h);
+    }
+    if (localSet.contains(Integer.valueOf(4))) {
+      s3.c.B(paramParcel, 4, i, paramInt, true);
+    }
+    s3.c.b(paramParcel, k);
+  }
+}

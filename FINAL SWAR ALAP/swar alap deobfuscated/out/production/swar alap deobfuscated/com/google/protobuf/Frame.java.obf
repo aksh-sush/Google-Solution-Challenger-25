@@ -1,0 +1,220 @@
+package com.google.protobuf;
+
+import android.support.v4.media.session.b;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+final class x0
+  implements l1
+{
+  private final t0 a;
+  private final t1 b;
+  private final boolean c;
+  private final s d;
+  
+  private x0(t1 paramT1, s paramS, t0 paramT0)
+  {
+    b = paramT1;
+    c = paramS.e(paramT0);
+    d = paramS;
+    a = paramT0;
+  }
+  
+  private int k(t1 paramT1, Object paramObject)
+  {
+    return paramT1.i(paramT1.g(paramObject));
+  }
+  
+  private void l(t1 paramT1, s paramS, Object paramObject, j1 paramJ1, r paramR)
+  {
+    Object localObject = paramT1.f(paramObject);
+    v localV = paramS.d(paramObject);
+    try
+    {
+      boolean bool;
+      do
+      {
+        int i = paramJ1.t();
+        if (i == Integer.MAX_VALUE) {
+          return;
+        }
+        bool = n(paramJ1, paramR, paramS, localV, paramT1, localObject);
+      } while (bool);
+      return;
+    }
+    finally
+    {
+      paramT1.o(paramObject, localObject);
+    }
+  }
+  
+  static x0 m(t1 paramT1, s paramS, t0 paramT0)
+  {
+    return new x0(paramT1, paramS, paramT0);
+  }
+  
+  private boolean n(j1 paramJ1, r paramR, s paramS, v paramV, t1 paramT1, Object paramObject)
+  {
+    int i = paramJ1.c();
+    if (i != z1.a)
+    {
+      if (z1.b(i) == 2)
+      {
+        localObject1 = paramS.b(paramR, a, z1.a(i));
+        if (localObject1 != null)
+        {
+          paramS.h(paramJ1, localObject1, paramR, paramV);
+          return true;
+        }
+        return paramT1.m(paramObject, paramJ1);
+      }
+      return paramJ1.F();
+    }
+    Object localObject2 = null;
+    Object localObject1 = null;
+    i = 0;
+    do
+    {
+      for (;;)
+      {
+        if (paramJ1.t() == Integer.MAX_VALUE) {
+          break label183;
+        }
+        int j = paramJ1.c();
+        if (j == z1.c)
+        {
+          i = paramJ1.D();
+          localObject2 = paramS.b(paramR, a, i);
+        }
+        else
+        {
+          if (j != z1.d) {
+            break;
+          }
+          if (localObject2 != null) {
+            paramS.h(paramJ1, localObject2, paramR, paramV);
+          } else {
+            localObject1 = paramJ1.B();
+          }
+        }
+      }
+    } while (paramJ1.F());
+    label183:
+    if (paramJ1.c() == z1.b)
+    {
+      if (localObject1 != null)
+      {
+        if (localObject2 != null)
+        {
+          paramS.i((j)localObject1, localObject2, paramR, paramV);
+          return true;
+        }
+        paramT1.d(paramObject, i, (j)localObject1);
+      }
+      return true;
+    }
+    throw d0.a();
+  }
+  
+  private void o(t1 paramT1, Object paramObject, a2 paramA2)
+  {
+    paramT1.s(paramT1.g(paramObject), paramA2);
+  }
+  
+  public void a(Object paramObject1, Object paramObject2)
+  {
+    n1.G(b, paramObject1, paramObject2);
+    if (c) {
+      n1.E(d, paramObject1, paramObject2);
+    }
+  }
+  
+  public void b(Object paramObject, a2 paramA2)
+  {
+    Iterator localIterator = d.c(paramObject).q();
+    while (localIterator.hasNext())
+    {
+      Map.Entry localEntry = (Map.Entry)localIterator.next();
+      v.b localB = (v.b)localEntry.getKey();
+      if ((localB.j() == z1.c.n) && (!localB.b()) && (!localB.k()))
+      {
+        if (!(localEntry instanceof f0.a))
+        {
+          paramA2.h(localB.getNumber(), localEntry.getValue());
+        }
+        else
+        {
+          localB.getNumber();
+          ((f0.a)localEntry).a();
+          throw null;
+        }
+      }
+      else {
+        throw new IllegalStateException("Found invalid MessageSet item.");
+      }
+    }
+    o(b, paramObject, paramA2);
+  }
+  
+  public void c(Object paramObject)
+  {
+    b.j(paramObject);
+    d.f(paramObject);
+  }
+  
+  public final boolean d(Object paramObject)
+  {
+    return d.c(paramObject).n();
+  }
+  
+  public void e(Object paramObject, j1 paramJ1, r paramR)
+  {
+    l(b, d, paramObject, paramJ1, paramR);
+  }
+  
+  public boolean f(Object paramObject1, Object paramObject2)
+  {
+    if (!b.g(paramObject1).equals(b.g(paramObject2))) {
+      return false;
+    }
+    if (c) {
+      return d.c(paramObject1).equals(d.c(paramObject2));
+    }
+    return true;
+  }
+  
+  public void g(Object paramObject, byte[] paramArrayOfByte, int paramInt1, int paramInt2, f.a paramA)
+  {
+    paramArrayOfByte = (z)paramObject;
+    if (unknownFields == u1.c()) {
+      unknownFields = u1.n();
+    }
+    b.a(paramObject);
+    throw null;
+  }
+  
+  public int h(Object paramObject)
+  {
+    int j = k(b, paramObject) + 0;
+    int i = j;
+    if (c) {
+      i = j + d.c(paramObject).i();
+    }
+    return i;
+  }
+  
+  public Object i()
+  {
+    return a.newBuilderForType().buildPartial();
+  }
+  
+  public int j(Object paramObject)
+  {
+    int j = b.g(paramObject).hashCode();
+    int i = j;
+    if (c) {
+      i = j * 53 + d.c(paramObject).hashCode();
+    }
+    return i;
+  }
+}

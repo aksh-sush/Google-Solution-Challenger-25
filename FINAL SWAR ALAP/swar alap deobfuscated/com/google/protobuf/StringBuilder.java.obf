@@ -1,0 +1,155 @@
+package com.google.protobuf;
+
+public abstract class z1
+{
+  static final int a = c(1, 3);
+  static final int b = c(1, 4);
+  static final int c = c(2, 0);
+  static final int d = c(3, 2);
+  
+  public static int a(int paramInt)
+  {
+    return paramInt >>> 3;
+  }
+  
+  public static int b(int paramInt)
+  {
+    return paramInt & 0x7;
+  }
+  
+  static int c(int paramInt1, int paramInt2)
+  {
+    return paramInt1 << 3 | paramInt2;
+  }
+  
+  public static enum b
+  {
+    private final z1.c e;
+    private final int f;
+    
+    static
+    {
+      b localB1 = new b("DOUBLE", 0, z1.c.i, 1);
+      g = localB1;
+      b localB2 = new b("FLOAT", 1, z1.c.h, 5);
+      h = localB2;
+      Object localObject1 = z1.c.g;
+      b localB3 = new b("INT64", 2, (z1.c)localObject1, 0);
+      i = localB3;
+      b localB4 = new b("UINT64", 3, (z1.c)localObject1, 0);
+      j = localB4;
+      Object localObject3 = z1.c.f;
+      b localB5 = new b("INT32", 4, (z1.c)localObject3, 0);
+      k = localB5;
+      b localB6 = new b("FIXED64", 5, (z1.c)localObject1, 1);
+      l = localB6;
+      b localB7 = new b("FIXED32", 6, (z1.c)localObject3, 5);
+      m = localB7;
+      b localB8 = new b("BOOL", 7, z1.c.j, 0);
+      n = localB8;
+      a localA = new a("STRING", 8, z1.c.k, 2);
+      o = localA;
+      Object localObject2 = z1.c.n;
+      b localB = new b("GROUP", 9, (z1.c)localObject2, 3);
+      p = localB;
+      localObject2 = new c("MESSAGE", 10, (z1.c)localObject2, 2);
+      q = (b)localObject2;
+      d localD = new d("BYTES", 11, z1.c.l, 2);
+      r = localD;
+      b localB9 = new b("UINT32", 12, (z1.c)localObject3, 0);
+      s = localB9;
+      b localB10 = new b("ENUM", 13, z1.c.m, 0);
+      t = localB10;
+      b localB11 = new b("SFIXED32", 14, (z1.c)localObject3, 5);
+      u = localB11;
+      b localB12 = new b("SFIXED64", 15, (z1.c)localObject1, 1);
+      v = localB12;
+      localObject3 = new b("SINT32", 16, (z1.c)localObject3, 0);
+      w = (b)localObject3;
+      localObject1 = new b("SINT64", 17, (z1.c)localObject1, 0);
+      x = (b)localObject1;
+      y = new b[] { localB1, localB2, localB3, localB4, localB5, localB6, localB7, localB8, localA, localB, localObject2, localD, localB9, localB10, localB11, localB12, localObject3, localObject1 };
+    }
+    
+    private b(z1.c paramC, int paramInt)
+    {
+      e = paramC;
+      f = paramInt;
+    }
+    
+    public z1.c a()
+    {
+      return e;
+    }
+    
+    public int c()
+    {
+      return f;
+    }
+    
+    static enum a
+    {
+      a(z1.c paramC, int paramInt)
+      {
+        super(???, paramC, paramInt, null);
+      }
+    }
+    
+    static enum b
+    {
+      b(z1.c paramC, int paramInt)
+      {
+        super(???, paramC, paramInt, null);
+      }
+    }
+    
+    static enum c
+    {
+      c(z1.c paramC, int paramInt)
+      {
+        super(???, paramC, paramInt, null);
+      }
+    }
+    
+    static enum d
+    {
+      d(z1.c paramC, int paramInt)
+      {
+        super(???, paramC, paramInt, null);
+      }
+    }
+  }
+  
+  public static enum c
+  {
+    private final Object e;
+    
+    static
+    {
+      c localC1 = new c("INT", 0, Integer.valueOf(0));
+      f = localC1;
+      c localC2 = new c("LONG", 1, Long.valueOf(0L));
+      g = localC2;
+      c localC3 = new c("FLOAT", 2, Float.valueOf(0.0F));
+      h = localC3;
+      c localC4 = new c("DOUBLE", 3, Double.valueOf(0.0D));
+      i = localC4;
+      c localC5 = new c("BOOLEAN", 4, Boolean.FALSE);
+      j = localC5;
+      c localC6 = new c("STRING", 5, "");
+      k = localC6;
+      c localC7 = new c("BYTE_STRING", 6, j.f);
+      l = localC7;
+      c localC8 = new c("ENUM", 7, null);
+      m = localC8;
+      c localC9 = new c("MESSAGE", 8, null);
+      n = localC9;
+      o = new c[] { localC1, localC2, localC3, localC4, localC5, localC6, localC7, localC8, localC9 };
+    }
+    
+    private c(Object paramObject)
+    {
+      e = paramObject;
+    }
+  }
+}

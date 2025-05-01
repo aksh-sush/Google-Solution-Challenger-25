@@ -1,0 +1,17 @@
+package androidx.appcompat.widget;
+
+import android.view.View;
+import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+
+abstract class n
+{
+  static InputConnection a(InputConnection paramInputConnection, EditorInfo paramEditorInfo, View paramView)
+  {
+    if ((paramInputConnection != null) && (hintText == null)) {
+      for (paramEditorInfo = paramView.getParent(); (paramEditorInfo instanceof View); paramEditorInfo = paramEditorInfo.getParent()) {}
+    }
+    return paramInputConnection;
+  }
+}

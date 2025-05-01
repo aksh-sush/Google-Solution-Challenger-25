@@ -1,0 +1,50 @@
+package androidx.core.view;
+
+import android.content.Context;
+import android.view.MenuItem;
+import android.view.SubMenu;
+import android.view.View;
+
+public abstract class b
+{
+  private final Context a;
+  private a b;
+  private b c;
+  
+  public b(Context paramContext)
+  {
+    a = paramContext;
+  }
+  
+  public abstract boolean a();
+  
+  public abstract boolean b();
+  
+  public abstract View c(MenuItem paramMenuItem);
+  
+  public abstract boolean d();
+  
+  public abstract void e(SubMenu paramSubMenu);
+  
+  public abstract boolean f();
+  
+  public void g()
+  {
+    c = null;
+    b = null;
+  }
+  
+  public void h(a paramA)
+  {
+    b = paramA;
+  }
+  
+  public abstract void i(b paramB);
+  
+  public static abstract interface a {}
+  
+  public static abstract interface b
+  {
+    public abstract void onActionProviderVisibilityChanged(boolean paramBoolean);
+  }
+}

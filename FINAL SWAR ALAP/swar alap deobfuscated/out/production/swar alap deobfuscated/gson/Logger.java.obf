@@ -1,0 +1,12 @@
+package c8;
+
+public abstract interface a
+{
+  public abstract b getAlertLevel();
+  
+  public abstract b getLogLevel();
+  
+  public abstract void setAlertLevel(b paramB);
+  
+  public abstract void setLogLevel(b paramB);
+}

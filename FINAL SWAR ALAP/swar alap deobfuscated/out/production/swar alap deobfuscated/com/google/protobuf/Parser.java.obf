@@ -1,0 +1,8 @@
+package com.google.protobuf;
+
+public abstract interface d1
+{
+  public abstract Object a(k paramK, r paramR);
+  
+  public abstract Object b(k paramK, r paramR);
+}

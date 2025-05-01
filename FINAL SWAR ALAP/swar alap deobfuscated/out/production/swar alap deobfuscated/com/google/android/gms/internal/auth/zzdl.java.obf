@@ -1,0 +1,55 @@
+package com.google.android.gms.internal.auth;
+
+final class zzdl
+  implements zzdj
+{
+  volatile zzdj zza;
+  volatile boolean zzb;
+  Object zzc;
+  
+  zzdl(zzdj paramZzdj)
+  {
+    paramZzdj.getClass();
+    zza = paramZzdj;
+  }
+  
+  public final String toString()
+  {
+    zzdj localZzdj = zza;
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Suppliers.memoize(");
+    Object localObject = localZzdj;
+    if (localZzdj == null)
+    {
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("<supplier that returned ");
+      ((StringBuilder)localObject).append(zzc);
+      ((StringBuilder)localObject).append(">");
+      localObject = ((StringBuilder)localObject).toString();
+    }
+    localStringBuilder.append(localObject);
+    localStringBuilder.append(")");
+    return localStringBuilder.toString();
+  }
+  
+  public final Object zza()
+  {
+    if (!zzb) {
+      try
+      {
+        if (!zzb)
+        {
+          Object localObject1 = zza;
+          localObject1.getClass();
+          localObject1 = ((zzdj)localObject1).zza();
+          zzc = localObject1;
+          zzb = true;
+          zza = null;
+          return localObject1;
+        }
+      }
+      finally {}
+    }
+    return zzc;
+  }
+}

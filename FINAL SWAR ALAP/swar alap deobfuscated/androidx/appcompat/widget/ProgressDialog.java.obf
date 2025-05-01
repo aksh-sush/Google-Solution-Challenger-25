@@ -1,0 +1,46 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.view.View;
+import android.view.textclassifier.TextClassificationManager;
+import android.view.textclassifier.TextClassifier;
+import android.widget.TextView;
+import androidx.core.util.h;
+
+final class a0
+{
+  private TextView a;
+  private TextClassifier b;
+  
+  a0(TextView paramTextView)
+  {
+    a = ((TextView)h.g(paramTextView));
+  }
+  
+  public TextClassifier a()
+  {
+    TextClassifier localTextClassifier2 = b;
+    TextClassifier localTextClassifier1 = localTextClassifier2;
+    if (localTextClassifier2 == null) {
+      localTextClassifier1 = a.a(a);
+    }
+    return localTextClassifier1;
+  }
+  
+  public void b(TextClassifier paramTextClassifier)
+  {
+    b = paramTextClassifier;
+  }
+  
+  private static final abstract class a
+  {
+    static TextClassifier a(TextView paramTextView)
+    {
+      paramTextView = (TextClassificationManager)paramTextView.getContext().getSystemService(TextClassificationManager.class);
+      if (paramTextView != null) {
+        return paramTextView.getTextClassifier();
+      }
+      return TextClassifier.NO_OP;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+package com.google.protobuf;
+
+abstract interface y0
+{
+  public abstract Object a(Object paramObject);
+}

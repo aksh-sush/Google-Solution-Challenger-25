@@ -1,0 +1,122 @@
+package com.google.android.gms.common.internal;
+
+import android.content.Context;
+import android.content.ServiceConnection;
+import android.os.Handler;
+import android.os.Looper;
+import com.google.android.gms.internal.common.zzi;
+import java.util.HashMap;
+import java.util.concurrent.Executor;
+import x3.b;
+
+final class d2
+  extends i
+{
+  private final HashMap f = new HashMap();
+  private final Context g;
+  private volatile Handler h;
+  private final c2 i;
+  private final b j;
+  private final long k;
+  private final long l;
+  private volatile Executor m;
+  
+  d2(Context paramContext, Looper paramLooper, Executor paramExecutor)
+  {
+    c2 localC2 = new c2(this, null);
+    i = localC2;
+    g = paramContext.getApplicationContext();
+    h = new zzi(paramLooper, localC2);
+    j = b.b();
+    k = 5000L;
+    l = 300000L;
+    m = paramExecutor;
+  }
+  
+  protected final void c(y1 paramY1, ServiceConnection paramServiceConnection, String paramString)
+  {
+    s.l(paramServiceConnection, "ServiceConnection must not be null");
+    synchronized (f)
+    {
+      a2 localA2 = (a2)f.get(paramY1);
+      if (localA2 != null)
+      {
+        if (localA2.h(paramServiceConnection))
+        {
+          localA2.f(paramServiceConnection, paramString);
+          if (localA2.i())
+          {
+            paramY1 = h.obtainMessage(0, paramY1);
+            h.sendMessageDelayed(paramY1, k);
+          }
+          return;
+        }
+        paramY1 = paramY1.toString();
+        paramServiceConnection = new StringBuilder();
+        paramServiceConnection.append("Trying to unbind a GmsServiceConnection  that was not bound before.  config=");
+        paramServiceConnection.append(paramY1);
+        throw new IllegalStateException(paramServiceConnection.toString());
+      }
+      paramY1 = paramY1.toString();
+      paramServiceConnection = new StringBuilder();
+      paramServiceConnection.append("Nonexistent connection status for service config: ");
+      paramServiceConnection.append(paramY1);
+      throw new IllegalStateException(paramServiceConnection.toString());
+    }
+  }
+  
+  protected final boolean e(y1 paramY1, ServiceConnection paramServiceConnection, String paramString, Executor paramExecutor)
+  {
+    s.l(paramServiceConnection, "ServiceConnection must not be null");
+    synchronized (f)
+    {
+      a2 localA2 = (a2)f.get(paramY1);
+      Executor localExecutor = paramExecutor;
+      if (paramExecutor == null) {
+        localExecutor = m;
+      }
+      if (localA2 == null)
+      {
+        paramExecutor = new a2(this, paramY1);
+        paramExecutor.d(paramServiceConnection, paramServiceConnection, paramString);
+        paramExecutor.e(paramString, localExecutor);
+        f.put(paramY1, paramExecutor);
+        paramY1 = paramExecutor;
+      }
+      else
+      {
+        h.removeMessages(0, paramY1);
+        if (localA2.h(paramServiceConnection)) {
+          break label189;
+        }
+        localA2.d(paramServiceConnection, paramServiceConnection, paramString);
+        int n = localA2.a();
+        if (n != 1)
+        {
+          if (n != 2)
+          {
+            paramY1 = localA2;
+          }
+          else
+          {
+            localA2.e(paramString, localExecutor);
+            paramY1 = localA2;
+          }
+        }
+        else
+        {
+          paramServiceConnection.onServiceConnected(localA2.b(), localA2.c());
+          paramY1 = localA2;
+        }
+      }
+      boolean bool = paramY1.j();
+      return bool;
+      label189:
+      paramY1 = paramY1.toString();
+      paramServiceConnection = new StringBuilder();
+      paramServiceConnection.append("Trying to bind a GmsServiceConnection that was already connected before.  config=");
+      paramServiceConnection.append(paramY1);
+      throw new IllegalStateException(paramServiceConnection.toString());
+    }
+  }
+}

@@ -1,0 +1,140 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.AbstractCollection;
+import java.util.AbstractList;
+import java.util.Collection;
+import java.util.List;
+import java.util.RandomAccess;
+
+abstract class zzdq
+  extends AbstractList
+  implements zzey
+{
+  private boolean zza = true;
+  
+  zzdq() {}
+  
+  public void add(int paramInt, Object paramObject)
+  {
+    zza();
+    super.add(paramInt, paramObject);
+  }
+  
+  public boolean add(Object paramObject)
+  {
+    zza();
+    return super.add(paramObject);
+  }
+  
+  public boolean addAll(int paramInt, Collection paramCollection)
+  {
+    zza();
+    return super.addAll(paramInt, paramCollection);
+  }
+  
+  public boolean addAll(Collection paramCollection)
+  {
+    zza();
+    return super.addAll(paramCollection);
+  }
+  
+  public void clear()
+  {
+    zza();
+    super.clear();
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (paramObject == this) {
+      return true;
+    }
+    if (!(paramObject instanceof List)) {
+      return false;
+    }
+    if (!(paramObject instanceof RandomAccess)) {
+      return super.equals(paramObject);
+    }
+    paramObject = (List)paramObject;
+    int j = size();
+    if (j == paramObject.size())
+    {
+      int i = 0;
+      while (i < j)
+      {
+        if (!get(i).equals(paramObject.get(i))) {
+          return false;
+        }
+        i += 1;
+      }
+      return true;
+    }
+    return false;
+  }
+  
+  public int hashCode()
+  {
+    int k = size();
+    int j = 1;
+    int i = 0;
+    while (i < k)
+    {
+      j = j * 31 + get(i).hashCode();
+      i += 1;
+    }
+    return j;
+  }
+  
+  public Object remove(int paramInt)
+  {
+    zza();
+    return super.remove(paramInt);
+  }
+  
+  public final boolean remove(Object paramObject)
+  {
+    zza();
+    int i = indexOf(paramObject);
+    if (i == -1) {
+      return false;
+    }
+    remove(i);
+    return true;
+  }
+  
+  public final boolean removeAll(Collection paramCollection)
+  {
+    zza();
+    return super.removeAll(paramCollection);
+  }
+  
+  public final boolean retainAll(Collection paramCollection)
+  {
+    zza();
+    return super.retainAll(paramCollection);
+  }
+  
+  public Object set(int paramInt, Object paramObject)
+  {
+    zza();
+    return super.set(paramInt, paramObject);
+  }
+  
+  protected final void zza()
+  {
+    if (zza) {
+      return;
+    }
+    throw new UnsupportedOperationException();
+  }
+  
+  public final void zzb()
+  {
+    zza = false;
+  }
+  
+  public final boolean zzc()
+  {
+    return zza;
+  }
+}

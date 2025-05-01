@@ -1,0 +1,123 @@
+package i3;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.server.response.a;
+import com.google.android.gms.common.server.response.a.a;
+import com.google.android.gms.internal.auth.zzbz;
+import java.util.HashMap;
+import java.util.Set;
+import s3.c;
+
+public final class g
+  extends zzbz
+{
+  public static final Parcelable.Creator<g> CREATOR = new h();
+  private static final HashMap k;
+  final Set e;
+  final int f;
+  private i g;
+  private String h;
+  private String i;
+  private String j;
+  
+  static
+  {
+    HashMap localHashMap = new HashMap();
+    k = localHashMap;
+    localHashMap.put("authenticatorInfo", a.a.V("authenticatorInfo", 2, i.class));
+    localHashMap.put("signature", a.a.j0("signature", 3));
+    localHashMap.put("package", a.a.j0("package", 4));
+  }
+  
+  g(Set paramSet, int paramInt, i paramI, String paramString1, String paramString2, String paramString3)
+  {
+    e = paramSet;
+    f = paramInt;
+    g = paramI;
+    h = paramString1;
+    i = paramString2;
+    j = paramString3;
+  }
+  
+  public final void addConcreteTypeInternal(a.a paramA, String paramString, a paramA1)
+  {
+    int m = paramA.m0();
+    if (m == 2)
+    {
+      g = ((i)paramA1);
+      e.add(Integer.valueOf(m));
+      return;
+    }
+    throw new IllegalArgumentException(String.format("Field with id=%d is not a known custom type. Found %s", new Object[] { Integer.valueOf(m), paramA1.getClass().getCanonicalName() }));
+  }
+  
+  protected final Object getFieldValue(a.a paramA)
+  {
+    int m = paramA.m0();
+    if (m != 1)
+    {
+      if (m != 2)
+      {
+        if (m != 3)
+        {
+          if (m == 4) {
+            return i;
+          }
+          m = paramA.m0();
+          paramA = new StringBuilder();
+          paramA.append("Unknown SafeParcelable id=");
+          paramA.append(m);
+          throw new IllegalStateException(paramA.toString());
+        }
+        return h;
+      }
+      return g;
+    }
+    return Integer.valueOf(f);
+  }
+  
+  protected final boolean isFieldSet(a.a paramA)
+  {
+    return e.contains(Integer.valueOf(paramA.m0()));
+  }
+  
+  protected final void setStringInternal(a.a paramA, String paramString1, String paramString2)
+  {
+    int m = paramA.m0();
+    if (m != 3)
+    {
+      if (m == 4) {
+        i = paramString2;
+      } else {
+        throw new IllegalArgumentException(String.format("Field with id=%d is not known to be a string.", new Object[] { Integer.valueOf(m) }));
+      }
+    }
+    else {
+      h = paramString2;
+    }
+    e.add(Integer.valueOf(m));
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int m = c.a(paramParcel);
+    Set localSet = e;
+    if (localSet.contains(Integer.valueOf(1))) {
+      c.t(paramParcel, 1, f);
+    }
+    if (localSet.contains(Integer.valueOf(2))) {
+      c.B(paramParcel, 2, g, paramInt, true);
+    }
+    if (localSet.contains(Integer.valueOf(3))) {
+      c.D(paramParcel, 3, h, true);
+    }
+    if (localSet.contains(Integer.valueOf(4))) {
+      c.D(paramParcel, 4, i, true);
+    }
+    if (localSet.contains(Integer.valueOf(5))) {
+      c.D(paramParcel, 5, j, true);
+    }
+    c.b(paramParcel, m);
+  }
+}

@@ -1,0 +1,21 @@
+package android.support.v4.media;
+
+import android.media.MediaDescription;
+import android.media.MediaDescription.Builder;
+import android.net.Uri;
+
+abstract class d
+{
+  public static Uri a(Object paramObject)
+  {
+    return b.a((MediaDescription)paramObject);
+  }
+  
+  static abstract class a
+  {
+    public static void a(Object paramObject, Uri paramUri)
+    {
+      c.a((MediaDescription.Builder)paramObject, paramUri);
+    }
+  }
+}

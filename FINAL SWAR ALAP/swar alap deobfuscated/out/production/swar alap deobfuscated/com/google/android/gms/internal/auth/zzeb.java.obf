@@ -1,0 +1,119 @@
+package com.google.android.gms.internal.auth;
+
+import java.nio.charset.Charset;
+
+class zzeb
+  extends zzea
+{
+  protected final byte[] zza;
+  
+  zzeb(byte[] paramArrayOfByte)
+  {
+    paramArrayOfByte.getClass();
+    zza = paramArrayOfByte;
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (paramObject == this) {
+      return true;
+    }
+    if (!(paramObject instanceof zzee)) {
+      return false;
+    }
+    if (zzd() != ((zzee)paramObject).zzd()) {
+      return false;
+    }
+    if (zzd() == 0) {
+      return true;
+    }
+    if ((paramObject instanceof zzeb))
+    {
+      paramObject = (zzeb)paramObject;
+      int i = zzj();
+      int j = paramObject.zzj();
+      if ((i != 0) && (j != 0) && (i != j)) {
+        return false;
+      }
+      int k = zzd();
+      if (k <= paramObject.zzd())
+      {
+        if (k <= paramObject.zzd())
+        {
+          byte[] arrayOfByte1 = zza;
+          byte[] arrayOfByte2 = zza;
+          paramObject.zzc();
+          j = 0;
+          i = 0;
+          while (j < k)
+          {
+            if (arrayOfByte1[j] != arrayOfByte2[i]) {
+              return false;
+            }
+            j += 1;
+            i += 1;
+          }
+          return true;
+        }
+        i = paramObject.zzd();
+        paramObject = new StringBuilder();
+        paramObject.append("Ran off end of other: 0, ");
+        paramObject.append(k);
+        paramObject.append(", ");
+        paramObject.append(i);
+        throw new IllegalArgumentException(paramObject.toString());
+      }
+      i = zzd();
+      paramObject = new StringBuilder();
+      paramObject.append("Length too large: ");
+      paramObject.append(k);
+      paramObject.append(i);
+      throw new IllegalArgumentException(paramObject.toString());
+    }
+    return paramObject.equals(this);
+  }
+  
+  public byte zza(int paramInt)
+  {
+    return zza[paramInt];
+  }
+  
+  byte zzb(int paramInt)
+  {
+    return zza[paramInt];
+  }
+  
+  protected int zzc()
+  {
+    return 0;
+  }
+  
+  public int zzd()
+  {
+    return zza.length;
+  }
+  
+  protected final int zze(int paramInt1, int paramInt2, int paramInt3)
+  {
+    return zzez.zzd(paramInt1, zza, 0, paramInt3);
+  }
+  
+  public final zzee zzf(int paramInt1, int paramInt2)
+  {
+    paramInt1 = zzee.zzi(0, paramInt2, zzd());
+    if (paramInt1 == 0) {
+      return zzee.zzb;
+    }
+    return new zzdy(zza, 0, paramInt1);
+  }
+  
+  protected final String zzg(Charset paramCharset)
+  {
+    return new String(zza, 0, zzd(), paramCharset);
+  }
+  
+  public final boolean zzh()
+  {
+    return zzhm.zzd(zza, 0, zzd());
+  }
+}

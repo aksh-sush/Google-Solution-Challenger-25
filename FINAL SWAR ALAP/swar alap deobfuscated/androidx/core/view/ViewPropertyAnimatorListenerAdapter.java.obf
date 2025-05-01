@@ -1,0 +1,13 @@
+package androidx.core.view;
+
+import android.view.View;
+
+public abstract class r0
+  implements q0
+{
+  public r0() {}
+  
+  public void a(View paramView) {}
+  
+  public void c(View paramView) {}
+}

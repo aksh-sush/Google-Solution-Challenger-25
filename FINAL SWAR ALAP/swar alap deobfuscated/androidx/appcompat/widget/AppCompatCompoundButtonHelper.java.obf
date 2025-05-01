@@ -1,0 +1,142 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources.NotFoundException;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.CompoundButton;
+import androidx.core.view.h0;
+import androidx.core.widget.c;
+import f.j;
+
+class i
+{
+  private final CompoundButton a;
+  private ColorStateList b = null;
+  private PorterDuff.Mode c = null;
+  private boolean d = false;
+  private boolean e = false;
+  private boolean f;
+  
+  i(CompoundButton paramCompoundButton)
+  {
+    a = paramCompoundButton;
+  }
+  
+  void a()
+  {
+    Drawable localDrawable = c.a(a);
+    if ((localDrawable != null) && ((d) || (e)))
+    {
+      localDrawable = androidx.core.graphics.drawable.a.r(localDrawable).mutate();
+      if (d) {
+        androidx.core.graphics.drawable.a.o(localDrawable, b);
+      }
+      if (e) {
+        androidx.core.graphics.drawable.a.p(localDrawable, c);
+      }
+      if (localDrawable.isStateful()) {
+        localDrawable.setState(a.getDrawableState());
+      }
+      a.setButtonDrawable(localDrawable);
+    }
+  }
+  
+  int b(int paramInt)
+  {
+    return paramInt;
+  }
+  
+  ColorStateList c()
+  {
+    return b;
+  }
+  
+  PorterDuff.Mode d()
+  {
+    return c;
+  }
+  
+  void e(AttributeSet paramAttributeSet, int paramInt)
+  {
+    localObject = a.getContext();
+    int[] arrayOfInt = j.U0;
+    localObject = f1.v((Context)localObject, paramAttributeSet, arrayOfInt, paramInt, 0);
+    CompoundButton localCompoundButton = a;
+    h0.q0(localCompoundButton, localCompoundButton.getContext(), arrayOfInt, paramAttributeSet, ((f1)localObject).r(), paramInt, 0);
+    for (;;)
+    {
+      try
+      {
+        paramInt = j.W0;
+        if (((f1)localObject).s(paramInt))
+        {
+          paramInt = ((f1)localObject).n(paramInt, 0);
+          if (paramInt == 0) {}
+        }
+      }
+      finally
+      {
+        ((f1)localObject).w();
+      }
+      try
+      {
+        paramAttributeSet = a;
+        paramAttributeSet.setButtonDrawable(g.a.b(paramAttributeSet.getContext(), paramInt));
+        paramInt = 1;
+      }
+      catch (Resources.NotFoundException paramAttributeSet) {}
+    }
+    paramInt = 0;
+    if (paramInt == 0)
+    {
+      paramInt = j.V0;
+      if (((f1)localObject).s(paramInt))
+      {
+        paramInt = ((f1)localObject).n(paramInt, 0);
+        if (paramInt != 0)
+        {
+          paramAttributeSet = a;
+          paramAttributeSet.setButtonDrawable(g.a.b(paramAttributeSet.getContext(), paramInt));
+        }
+      }
+    }
+    paramInt = j.X0;
+    if (((f1)localObject).s(paramInt)) {
+      c.d(a, ((f1)localObject).c(paramInt));
+    }
+    paramInt = j.Y0;
+    if (((f1)localObject).s(paramInt)) {
+      c.e(a, o0.e(((f1)localObject).k(paramInt, -1), null));
+    }
+    ((f1)localObject).w();
+  }
+  
+  void f()
+  {
+    if (f)
+    {
+      f = false;
+      return;
+    }
+    f = true;
+    a();
+  }
+  
+  void g(ColorStateList paramColorStateList)
+  {
+    b = paramColorStateList;
+    d = true;
+    a();
+  }
+  
+  void h(PorterDuff.Mode paramMode)
+  {
+    c = paramMode;
+    e = true;
+    a();
+  }
+}

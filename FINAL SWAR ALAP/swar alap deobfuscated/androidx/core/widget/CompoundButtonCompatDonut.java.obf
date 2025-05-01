@@ -1,0 +1,102 @@
+package androidx.core.widget;
+
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.util.Log;
+import android.widget.CompoundButton;
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Field;
+
+public abstract class c
+{
+  private static Field a;
+  private static boolean b;
+  
+  public static Drawable a(CompoundButton paramCompoundButton)
+  {
+    if (Build.VERSION.SDK_INT >= 23) {
+      return b.a(paramCompoundButton);
+    }
+    if (!b)
+    {
+      try
+      {
+        Field localField1 = CompoundButton.class.getDeclaredField("mButtonDrawable");
+        a = localField1;
+        localField1.setAccessible(true);
+      }
+      catch (NoSuchFieldException localNoSuchFieldException)
+      {
+        Log.i("CompoundButtonCompat", "Failed to retrieve mButtonDrawable field", localNoSuchFieldException);
+      }
+      b = true;
+    }
+    Field localField2 = a;
+    if (localField2 != null) {
+      try
+      {
+        paramCompoundButton = (Drawable)localField2.get(paramCompoundButton);
+        return paramCompoundButton;
+      }
+      catch (IllegalAccessException paramCompoundButton)
+      {
+        Log.i("CompoundButtonCompat", "Failed to get button drawable via reflection", paramCompoundButton);
+        a = null;
+      }
+    }
+    return null;
+  }
+  
+  public static ColorStateList b(CompoundButton paramCompoundButton)
+  {
+    return a.a(paramCompoundButton);
+  }
+  
+  public static PorterDuff.Mode c(CompoundButton paramCompoundButton)
+  {
+    return a.b(paramCompoundButton);
+  }
+  
+  public static void d(CompoundButton paramCompoundButton, ColorStateList paramColorStateList)
+  {
+    a.c(paramCompoundButton, paramColorStateList);
+  }
+  
+  public static void e(CompoundButton paramCompoundButton, PorterDuff.Mode paramMode)
+  {
+    a.d(paramCompoundButton, paramMode);
+  }
+  
+  static abstract class a
+  {
+    static ColorStateList a(CompoundButton paramCompoundButton)
+    {
+      return paramCompoundButton.getButtonTintList();
+    }
+    
+    static PorterDuff.Mode b(CompoundButton paramCompoundButton)
+    {
+      return paramCompoundButton.getButtonTintMode();
+    }
+    
+    static void c(CompoundButton paramCompoundButton, ColorStateList paramColorStateList)
+    {
+      paramCompoundButton.setButtonTintList(paramColorStateList);
+    }
+    
+    static void d(CompoundButton paramCompoundButton, PorterDuff.Mode paramMode)
+    {
+      paramCompoundButton.setButtonTintMode(paramMode);
+    }
+  }
+  
+  static abstract class b
+  {
+    static Drawable a(CompoundButton paramCompoundButton)
+    {
+      return paramCompoundButton.getButtonDrawable();
+    }
+  }
+}

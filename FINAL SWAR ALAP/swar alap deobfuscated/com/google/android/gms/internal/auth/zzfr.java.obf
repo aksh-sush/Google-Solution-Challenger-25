@@ -1,0 +1,24 @@
+package com.google.android.gms.internal.auth;
+
+import java.util.AbstractMap;
+
+final class zzfr
+{
+  zzfr() {}
+  
+  public static final Object zza(Object paramObject1, Object paramObject2)
+  {
+    zzfq localZzfq = (zzfq)paramObject1;
+    paramObject2 = (zzfq)paramObject2;
+    paramObject1 = localZzfq;
+    if (!paramObject2.isEmpty())
+    {
+      paramObject1 = localZzfq;
+      if (!localZzfq.zze()) {
+        paramObject1 = localZzfq.zzb();
+      }
+      paramObject1.zzd(paramObject2);
+    }
+    return paramObject1;
+  }
+}

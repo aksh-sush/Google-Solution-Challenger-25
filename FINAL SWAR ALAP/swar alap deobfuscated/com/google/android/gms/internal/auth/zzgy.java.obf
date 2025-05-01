@@ -1,0 +1,18 @@
+package com.google.android.gms.internal.auth;
+
+abstract class zzgy
+{
+  zzgy() {}
+  
+  abstract Object zza(Object paramObject);
+  
+  abstract Object zzb(Object paramObject1, Object paramObject2);
+  
+  abstract Object zzc();
+  
+  abstract void zzd(Object paramObject, int paramInt, long paramLong);
+  
+  abstract void zze(Object paramObject);
+  
+  abstract void zzf(Object paramObject1, Object paramObject2);
+}

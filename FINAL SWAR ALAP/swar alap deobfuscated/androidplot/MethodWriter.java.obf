@@ -1,0 +1,174 @@
+package u;
+
+import java.util.Iterator;
+import java.util.List;
+import t.a;
+import t.e;
+import t.j;
+
+class k
+  extends p
+{
+  public k(e paramE)
+  {
+    super(paramE);
+  }
+  
+  private void q(f paramF)
+  {
+    h.k.add(paramF);
+    l.add(h);
+  }
+  
+  public void a(d paramD)
+  {
+    paramD = (a)b;
+    int n = paramD.v1();
+    Iterator localIterator = h.l.iterator();
+    int i = 0;
+    int j = -1;
+    while (localIterator.hasNext())
+    {
+      int k = nextg;
+      int m;
+      if (j != -1)
+      {
+        m = j;
+        if (k >= j) {}
+      }
+      else
+      {
+        m = k;
+      }
+      j = m;
+      if (i < k)
+      {
+        i = k;
+        j = m;
+      }
+    }
+    if ((n != 0) && (n != 2))
+    {
+      h.d(i + paramD.w1());
+      return;
+    }
+    h.d(j + paramD.w1());
+  }
+  
+  void d()
+  {
+    Object localObject1 = b;
+    if ((localObject1 instanceof a))
+    {
+      h.b = true;
+      localObject1 = (a)localObject1;
+      int n = ((a)localObject1).v1();
+      boolean bool = ((a)localObject1).u1();
+      int j = 0;
+      int k = 0;
+      int m = 0;
+      int i = 0;
+      Object localObject2;
+      if (n != 0)
+      {
+        if (n != 1)
+        {
+          if (n != 2)
+          {
+            if (n != 3) {
+              return;
+            }
+            h.e = f.a.k;
+            while (i < M0)
+            {
+              localObject2 = L0[i];
+              if ((bool) || (((e)localObject2).V() != 8))
+              {
+                localObject2 = f.i;
+                k.add(h);
+                h.l.add(localObject2);
+              }
+              i += 1;
+            }
+          }
+          h.e = f.a.j;
+          i = j;
+          while (i < M0)
+          {
+            localObject2 = L0[i];
+            if ((bool) || (((e)localObject2).V() != 8))
+            {
+              localObject2 = f.h;
+              k.add(h);
+              h.l.add(localObject2);
+            }
+            i += 1;
+          }
+          q(b.f.h);
+          localObject1 = b.f;
+        }
+        else
+        {
+          h.e = f.a.i;
+          i = k;
+          while (i < M0)
+          {
+            localObject2 = L0[i];
+            if ((bool) || (((e)localObject2).V() != 8))
+            {
+              localObject2 = e.i;
+              k.add(h);
+              h.l.add(localObject2);
+            }
+            i += 1;
+          }
+        }
+      }
+      else
+      {
+        h.e = f.a.h;
+        i = m;
+        while (i < M0)
+        {
+          localObject2 = L0[i];
+          if ((bool) || (((e)localObject2).V() != 8))
+          {
+            localObject2 = e.h;
+            k.add(h);
+            h.l.add(localObject2);
+          }
+          i += 1;
+        }
+        q(b.e.h);
+        localObject1 = b.e;
+      }
+      q(i);
+    }
+  }
+  
+  public void e()
+  {
+    e localE = b;
+    if ((localE instanceof a))
+    {
+      int i = ((a)localE).v1();
+      if ((i != 0) && (i != 1))
+      {
+        b.n1(h.g);
+        return;
+      }
+      b.m1(h.g);
+    }
+  }
+  
+  void f()
+  {
+    c = null;
+    h.c();
+  }
+  
+  boolean m()
+  {
+    return false;
+  }
+}

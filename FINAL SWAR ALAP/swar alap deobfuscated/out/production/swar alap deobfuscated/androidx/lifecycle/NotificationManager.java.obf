@@ -1,0 +1,39 @@
+package androidx.lifecycle;
+
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
+import android.os.Bundle;
+import db.l;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public final class k
+{
+  public static final k a = new k();
+  private static final AtomicBoolean b = new AtomicBoolean(false);
+  
+  private k() {}
+  
+  public static final void a(Context paramContext)
+  {
+    l.e(paramContext, "context");
+    if (b.getAndSet(true)) {
+      return;
+    }
+    paramContext = paramContext.getApplicationContext();
+    l.c(paramContext, "null cannot be cast to non-null type android.app.Application");
+    ((Application)paramContext).registerActivityLifecycleCallbacks(new a());
+  }
+  
+  public static final class a
+    extends e
+  {
+    public a() {}
+    
+    public void onActivityCreated(Activity paramActivity, Bundle paramBundle)
+    {
+      l.e(paramActivity, "activity");
+      x.f.c(paramActivity);
+    }
+  }
+}

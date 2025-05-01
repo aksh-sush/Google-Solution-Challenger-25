@@ -1,0 +1,1815 @@
+package t;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class g
+  extends l
+{
+  private int a1 = -1;
+  private int b1 = -1;
+  private int c1 = -1;
+  private int d1 = -1;
+  private int e1 = -1;
+  private int f1 = -1;
+  private float g1 = 0.5F;
+  private float h1 = 0.5F;
+  private float i1 = 0.5F;
+  private float j1 = 0.5F;
+  private float k1 = 0.5F;
+  private float l1 = 0.5F;
+  private int m1 = 0;
+  private int n1 = 0;
+  private int o1 = 2;
+  private int p1 = 2;
+  private int q1 = 0;
+  private int r1 = -1;
+  private int s1 = 0;
+  private ArrayList t1 = new ArrayList();
+  private e[] u1 = null;
+  private e[] v1 = null;
+  private int[] w1 = null;
+  private e[] x1;
+  private int y1 = 0;
+  
+  public g() {}
+  
+  private void j2(boolean paramBoolean)
+  {
+    if ((w1 != null) && (v1 != null))
+    {
+      if (u1 == null) {
+        return;
+      }
+      int i = 0;
+      while (i < y1)
+      {
+        x1[i].u0();
+        i += 1;
+      }
+      Object localObject1 = w1;
+      int m = localObject1[0];
+      int n = localObject1[1];
+      float f = g1;
+      localObject1 = null;
+      i = 0;
+      int j;
+      e localE;
+      Object localObject2;
+      while (i < m)
+      {
+        if (paramBoolean)
+        {
+          j = m - i - 1;
+          f = 1.0F - g1;
+        }
+        else
+        {
+          j = i;
+        }
+        localE = v1[j];
+        localObject2 = localObject1;
+        if (localE != null) {
+          if (localE.V() == 8)
+          {
+            localObject2 = localObject1;
+          }
+          else
+          {
+            if (i == 0)
+            {
+              localE.k(O, O, z1());
+              localE.N0(a1);
+              localE.M0(f);
+            }
+            if (i == m - 1) {
+              localE.k(Q, Q, A1());
+            }
+            if ((i > 0) && (localObject1 != null))
+            {
+              localE.k(O, Q, m1);
+              ((e)localObject1).k(Q, O, 0);
+            }
+            localObject2 = localE;
+          }
+        }
+        i += 1;
+        localObject1 = localObject2;
+      }
+      i = 0;
+      while (i < n)
+      {
+        localE = u1[i];
+        localObject2 = localObject1;
+        if (localE != null) {
+          if (localE.V() == 8)
+          {
+            localObject2 = localObject1;
+          }
+          else
+          {
+            if (i == 0)
+            {
+              localE.k(P, P, B1());
+              localE.e1(b1);
+              localE.d1(h1);
+            }
+            if (i == n - 1) {
+              localE.k(R, R, y1());
+            }
+            if ((i > 0) && (localObject1 != null))
+            {
+              localE.k(P, R, n1);
+              ((e)localObject1).k(R, P, 0);
+            }
+            localObject2 = localE;
+          }
+        }
+        i += 1;
+        localObject1 = localObject2;
+      }
+      i = 0;
+      while (i < m)
+      {
+        j = 0;
+        while (j < n)
+        {
+          int k = j * m + i;
+          if (s1 == 1) {
+            k = i * n + j;
+          }
+          localObject1 = x1;
+          if (k < localObject1.length)
+          {
+            localObject1 = localObject1[k];
+            if ((localObject1 != null) && (((e)localObject1).V() != 8))
+            {
+              localObject2 = v1[i];
+              localE = u1[j];
+              if (localObject1 != localObject2)
+              {
+                ((e)localObject1).k(O, O, 0);
+                ((e)localObject1).k(Q, Q, 0);
+              }
+              if (localObject1 != localE)
+              {
+                ((e)localObject1).k(P, P, 0);
+                ((e)localObject1).k(R, R, 0);
+              }
+            }
+          }
+          j += 1;
+        }
+        i += 1;
+      }
+    }
+  }
+  
+  private final int k2(e paramE, int paramInt)
+  {
+    if (paramE == null) {
+      return 0;
+    }
+    if (paramE.T() == e.b.g)
+    {
+      int i = x;
+      if (i == 0) {
+        return 0;
+      }
+      if (i == 2)
+      {
+        paramInt = (int)(E * paramInt);
+        if (paramInt != paramE.x())
+        {
+          paramE.Y0(true);
+          D1(paramE, paramE.A(), paramE.W(), e.b.e, paramInt);
+        }
+        return paramInt;
+      }
+      if (i == 1) {
+        return paramE.x();
+      }
+      if (i == 3) {
+        return (int)(paramE.W() * d0 + 0.5F);
+      }
+    }
+    return paramE.x();
+  }
+  
+  private final int l2(e paramE, int paramInt)
+  {
+    if (paramE == null) {
+      return 0;
+    }
+    if (paramE.A() == e.b.g)
+    {
+      int i = w;
+      if (i == 0) {
+        return 0;
+      }
+      if (i == 2)
+      {
+        paramInt = (int)(B * paramInt);
+        if (paramInt != paramE.W())
+        {
+          paramE.Y0(true);
+          D1(paramE, e.b.e, paramInt, paramE.T(), paramE.x());
+        }
+        return paramInt;
+      }
+      if (i == 1) {
+        return paramE.W();
+      }
+      if (i == 3) {
+        return (int)(paramE.x() * d0 + 0.5F);
+      }
+    }
+    return paramE.W();
+  }
+  
+  private void m2(e[] paramArrayOfE, int paramInt1, int paramInt2, int paramInt3, int[] paramArrayOfInt)
+  {
+    int i = r1;
+    int k;
+    int m;
+    Object localObject;
+    if (paramInt2 == 0)
+    {
+      k = i;
+      if (i <= 0)
+      {
+        i = 0;
+        m = 0;
+        j = 0;
+        for (;;)
+        {
+          k = i;
+          if (m >= paramInt1) {
+            break;
+          }
+          k = j;
+          if (m > 0) {
+            k = j + m1;
+          }
+          localObject = paramArrayOfE[m];
+          if (localObject == null)
+          {
+            j = k;
+          }
+          else
+          {
+            j = k + l2((e)localObject, paramInt3);
+            if (j > paramInt3)
+            {
+              k = i;
+              break;
+            }
+            i += 1;
+          }
+          m += 1;
+        }
+      }
+      j = k;
+      i = 0;
+    }
+    else
+    {
+      k = i;
+      if (i <= 0)
+      {
+        i = 0;
+        m = 0;
+        j = 0;
+        for (;;)
+        {
+          k = i;
+          if (m >= paramInt1) {
+            break;
+          }
+          k = j;
+          if (m > 0) {
+            k = j + n1;
+          }
+          localObject = paramArrayOfE[m];
+          if (localObject == null)
+          {
+            j = k;
+          }
+          else
+          {
+            j = k + k2((e)localObject, paramInt3);
+            if (j > paramInt3)
+            {
+              k = i;
+              break;
+            }
+            i += 1;
+          }
+          m += 1;
+        }
+      }
+      j = 0;
+      i = k;
+    }
+    if (w1 == null) {
+      w1 = new int[2];
+    }
+    int i2;
+    if (i == 0)
+    {
+      i2 = i;
+      m = j;
+      if (paramInt2 == 1) {}
+    }
+    else
+    {
+      if ((j != 0) || (paramInt2 != 0)) {
+        break label302;
+      }
+      m = j;
+      i2 = i;
+    }
+    int i3 = 1;
+    i = i2;
+    int j = m;
+    break label305;
+    label302:
+    i3 = 0;
+    for (;;)
+    {
+      label305:
+      if (i3 != 0) {
+        break label838;
+      }
+      if (paramInt2 == 0) {
+        i = (int)Math.ceil(paramInt1 / j);
+      } else {
+        j = (int)Math.ceil(paramInt1 / i);
+      }
+      localObject = v1;
+      if ((localObject != null) && (localObject.length >= j)) {
+        Arrays.fill((Object[])localObject, null);
+      } else {
+        v1 = new e[j];
+      }
+      localObject = u1;
+      if ((localObject != null) && (localObject.length >= i)) {
+        Arrays.fill((Object[])localObject, null);
+      } else {
+        u1 = new e[i];
+      }
+      k = 0;
+      while (k < j)
+      {
+        m = 0;
+        while (m < i)
+        {
+          n = m * j + k;
+          if (paramInt2 == 1) {
+            n = k * i + m;
+          }
+          if (n < paramArrayOfE.length)
+          {
+            localObject = paramArrayOfE[n];
+            if (localObject != null)
+            {
+              n = l2((e)localObject, paramInt3);
+              e localE = v1[k];
+              if ((localE == null) || (localE.W() < n)) {
+                v1[k] = localObject;
+              }
+              n = k2((e)localObject, paramInt3);
+              localE = u1[m];
+              if ((localE == null) || (localE.x() < n)) {
+                u1[m] = localObject;
+              }
+            }
+          }
+          m += 1;
+        }
+        k += 1;
+      }
+      m = 0;
+      for (k = 0; m < j; k = n)
+      {
+        localObject = v1[m];
+        n = k;
+        if (localObject != null)
+        {
+          n = k;
+          if (m > 0) {
+            n = k + m1;
+          }
+          n += l2((e)localObject, paramInt3);
+        }
+        m += 1;
+      }
+      m = 0;
+      for (int n = 0; m < i; n = i2)
+      {
+        localObject = u1[m];
+        i2 = n;
+        if (localObject != null)
+        {
+          i2 = n;
+          if (m > 0) {
+            i2 = n + n1;
+          }
+          i2 += k2((e)localObject, paramInt3);
+        }
+        m += 1;
+      }
+      paramArrayOfInt[0] = k;
+      paramArrayOfInt[1] = n;
+      if (paramInt2 == 0)
+      {
+        i2 = i;
+        m = j;
+        if (k <= paramInt3) {
+          break;
+        }
+        i2 = i;
+        m = j;
+        if (j <= 1) {
+          break;
+        }
+        j -= 1;
+        continue;
+      }
+      i2 = i;
+      m = j;
+      if (n <= paramInt3) {
+        break;
+      }
+      i2 = i;
+      m = j;
+      if (i <= 1) {
+        break;
+      }
+      i -= 1;
+    }
+    label838:
+    paramArrayOfE = w1;
+    paramArrayOfE[0] = j;
+    paramArrayOfE[1] = i;
+  }
+  
+  private void n2(e[] paramArrayOfE, int paramInt1, int paramInt2, int paramInt3, int[] paramArrayOfInt)
+  {
+    if (paramInt1 == 0) {
+      return;
+    }
+    t1.clear();
+    Object localObject2 = new a(paramInt2, O, P, Q, R, paramInt3);
+    t1.add(localObject2);
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int n = 0;
+    int m = 0;
+    int i2 = 0;
+    Object localObject1 = localObject2;
+    if (paramInt2 == 0)
+    {
+      m = i2;
+      localObject1 = localObject2;
+      k = n;
+      for (i = j;; i = j)
+      {
+        j = i;
+        if (m >= paramInt1) {
+          break;
+        }
+        localObject3 = paramArrayOfE[m];
+        i2 = l2((e)localObject3, paramInt3);
+        j = i;
+        if (((e)localObject3).A() == e.b.g) {
+          j = i + 1;
+        }
+        if (((k == paramInt3) || (m1 + k + i2 > paramInt3)) && (a.a((a)localObject1) != null)) {
+          i = 1;
+        } else {
+          i = 0;
+        }
+        n = i;
+        if (i == 0)
+        {
+          n = i;
+          if (m > 0)
+          {
+            i3 = r1;
+            n = i;
+            if (i3 > 0)
+            {
+              n = i;
+              if (m % i3 == 0) {
+                n = 1;
+              }
+            }
+          }
+        }
+        if (n != 0)
+        {
+          localObject2 = new a(paramInt2, O, P, Q, R, paramInt3);
+          ((a)localObject2).i(m);
+          t1.add(localObject2);
+        }
+        do
+        {
+          k = i2;
+          localObject1 = localObject2;
+          break;
+          localObject2 = localObject1;
+        } while (m <= 0);
+        k += m1 + i2;
+        ((a)localObject1).b((e)localObject3);
+        m += 1;
+      }
+    }
+    for (;;)
+    {
+      j = i;
+      if (m >= paramInt1) {
+        break;
+      }
+      localObject3 = paramArrayOfE[m];
+      i2 = k2((e)localObject3, paramInt3);
+      j = i;
+      if (((e)localObject3).T() == e.b.g) {
+        j = i + 1;
+      }
+      if (((k == paramInt3) || (n1 + k + i2 > paramInt3)) && (a.a((a)localObject1) != null)) {
+        i = 1;
+      } else {
+        i = 0;
+      }
+      n = i;
+      if (i == 0)
+      {
+        n = i;
+        if (m > 0)
+        {
+          i3 = r1;
+          n = i;
+          if (i3 > 0)
+          {
+            n = i;
+            if (m % i3 == 0) {
+              n = 1;
+            }
+          }
+        }
+      }
+      if (n != 0)
+      {
+        localObject2 = new a(paramInt2, O, P, Q, R, paramInt3);
+        ((a)localObject2).i(m);
+        t1.add(localObject2);
+      }
+      do
+      {
+        k = i2;
+        localObject1 = localObject2;
+        break;
+        localObject2 = localObject1;
+      } while (m <= 0);
+      k += n1 + i2;
+      ((a)localObject1).b((e)localObject3);
+      m += 1;
+      i = j;
+    }
+    int i4 = t1.size();
+    paramArrayOfE = O;
+    Object localObject3 = P;
+    localObject1 = Q;
+    localObject2 = R;
+    k = z1();
+    m = B1();
+    i2 = A1();
+    n = y1();
+    Object localObject4 = A();
+    Object localObject5 = e.b.f;
+    if ((localObject4 != localObject5) && (T() != localObject5)) {
+      paramInt1 = 0;
+    } else {
+      paramInt1 = 1;
+    }
+    if ((j > 0) && (paramInt1 != 0))
+    {
+      paramInt1 = 0;
+      while (paramInt1 < i4)
+      {
+        localObject4 = (a)t1.get(paramInt1);
+        if (paramInt2 == 0) {
+          i = ((a)localObject4).f();
+        } else {
+          i = ((a)localObject4).e();
+        }
+        ((a)localObject4).g(paramInt3 - i);
+        paramInt1 += 1;
+      }
+    }
+    j = 0;
+    int i3 = 0;
+    paramInt1 = 0;
+    while (paramInt1 < i4)
+    {
+      localObject5 = (a)t1.get(paramInt1);
+      if (paramInt2 == 0)
+      {
+        if (paramInt1 < i4 - 1)
+        {
+          localObject2 = at1.get(paramInt1 + 1)).P;
+          i = 0;
+        }
+        else
+        {
+          localObject2 = R;
+          i = y1();
+        }
+        localObject4 = aR;
+        ((a)localObject5).j(paramInt2, paramArrayOfE, (d)localObject3, (d)localObject1, (d)localObject2, k, m, i2, i, paramInt3);
+        m = Math.max(i3, ((a)localObject5).f());
+        n = j + ((a)localObject5).e();
+        j = n;
+        if (paramInt1 > 0) {
+          j = n + n1;
+        }
+        localObject3 = localObject4;
+        i3 = 0;
+        n = i;
+        i = m;
+        m = i3;
+      }
+      else
+      {
+        i2 = paramInt1;
+        if (i2 < i4 - 1)
+        {
+          localObject1 = at1.get(i2 + 1)).O;
+          i = 0;
+        }
+        else
+        {
+          localObject1 = Q;
+          i = A1();
+        }
+        localObject4 = aQ;
+        ((a)localObject5).j(paramInt2, paramArrayOfE, (d)localObject3, (d)localObject1, (d)localObject2, k, m, i, n, paramInt3);
+        k = i3 + ((a)localObject5).f();
+        i3 = Math.max(j, ((a)localObject5).e());
+        j = k;
+        if (i2 > 0) {
+          j = k + m1;
+        }
+        k = i3;
+        i2 = i;
+        paramArrayOfE = (e[])localObject4;
+        i3 = 0;
+        i = j;
+        j = k;
+        k = i3;
+      }
+      paramInt1 += 1;
+      i3 = i;
+    }
+    paramArrayOfInt[0] = i3;
+    paramArrayOfInt[1] = j;
+  }
+  
+  private void o2(e[] paramArrayOfE, int paramInt1, int paramInt2, int paramInt3, int[] paramArrayOfInt)
+  {
+    if (paramInt1 == 0) {
+      return;
+    }
+    t1.clear();
+    Object localObject1 = new a(paramInt2, O, P, Q, R, paramInt3);
+    t1.add(localObject1);
+    int m = 0;
+    int n = 0;
+    int j = 0;
+    int i = 0;
+    if (paramInt2 == 0)
+    {
+      k = 0;
+      m = 0;
+      for (;;)
+      {
+        j = i;
+        if (m >= paramInt1) {
+          break;
+        }
+        i3 = n + 1;
+        localObject2 = paramArrayOfE[m];
+        n = l2((e)localObject2, paramInt3);
+        j = i;
+        if (((e)localObject2).A() == e.b.g) {
+          j = i + 1;
+        }
+        if (((k == paramInt3) || (m1 + k + n > paramInt3)) && (a.a((a)localObject1) != null)) {
+          i = 1;
+        } else {
+          i = 0;
+        }
+        i2 = i;
+        if (i == 0)
+        {
+          i2 = i;
+          if (m > 0)
+          {
+            i4 = r1;
+            i2 = i;
+            if (i4 > 0)
+            {
+              i2 = i;
+              if (i3 > i4) {
+                i2 = 1;
+              }
+            }
+          }
+        }
+        if (i2 != 0)
+        {
+          localObject1 = new a(paramInt2, O, P, Q, R, paramInt3);
+          ((a)localObject1).i(m);
+          t1.add(localObject1);
+          i = i3;
+          k = n;
+        }
+        else
+        {
+          if (m > 0) {
+            k += m1 + n;
+          } else {
+            k = n;
+          }
+          i = 0;
+        }
+        ((a)localObject1).b((e)localObject2);
+        m += 1;
+        n = i;
+        i = j;
+      }
+    }
+    int k = 0;
+    for (i = j;; i = j)
+    {
+      j = i;
+      if (k >= paramInt1) {
+        break;
+      }
+      localObject3 = paramArrayOfE[k];
+      i2 = k2((e)localObject3, paramInt3);
+      j = i;
+      if (((e)localObject3).T() == e.b.g) {
+        j = i + 1;
+      }
+      if (((m == paramInt3) || (n1 + m + i2 > paramInt3)) && (a.a((a)localObject1) != null)) {
+        i = 1;
+      } else {
+        i = 0;
+      }
+      n = i;
+      if (i == 0)
+      {
+        n = i;
+        if (k > 0)
+        {
+          i3 = r1;
+          n = i;
+          if (i3 > 0)
+          {
+            n = i;
+            if (i3 < 0) {
+              n = 1;
+            }
+          }
+        }
+      }
+      if (n != 0)
+      {
+        localObject2 = new a(paramInt2, O, P, Q, R, paramInt3);
+        ((a)localObject2).i(k);
+        t1.add(localObject2);
+      }
+      do
+      {
+        i = i2;
+        localObject1 = localObject2;
+        break;
+        localObject2 = localObject1;
+      } while (k <= 0);
+      i = m + (n1 + i2);
+      ((a)localObject1).b((e)localObject3);
+      k += 1;
+      m = i;
+    }
+    int i4 = t1.size();
+    paramArrayOfE = O;
+    Object localObject3 = P;
+    localObject1 = Q;
+    Object localObject2 = R;
+    k = z1();
+    m = B1();
+    int i2 = A1();
+    n = y1();
+    Object localObject4 = A();
+    Object localObject5 = e.b.f;
+    if ((localObject4 != localObject5) && (T() != localObject5)) {
+      paramInt1 = 0;
+    } else {
+      paramInt1 = 1;
+    }
+    if ((j > 0) && (paramInt1 != 0))
+    {
+      paramInt1 = 0;
+      while (paramInt1 < i4)
+      {
+        localObject4 = (a)t1.get(paramInt1);
+        if (paramInt2 == 0) {
+          i = ((a)localObject4).f();
+        } else {
+          i = ((a)localObject4).e();
+        }
+        ((a)localObject4).g(paramInt3 - i);
+        paramInt1 += 1;
+      }
+    }
+    j = 0;
+    int i3 = 0;
+    paramInt1 = 0;
+    while (paramInt1 < i4)
+    {
+      localObject5 = (a)t1.get(paramInt1);
+      if (paramInt2 == 0)
+      {
+        if (paramInt1 < i4 - 1)
+        {
+          localObject2 = at1.get(paramInt1 + 1)).P;
+          i = 0;
+        }
+        else
+        {
+          localObject2 = R;
+          i = y1();
+        }
+        localObject4 = aR;
+        ((a)localObject5).j(paramInt2, paramArrayOfE, (d)localObject3, (d)localObject1, (d)localObject2, k, m, i2, i, paramInt3);
+        m = Math.max(i3, ((a)localObject5).f());
+        n = j + ((a)localObject5).e();
+        j = n;
+        if (paramInt1 > 0) {
+          j = n + n1;
+        }
+        localObject3 = localObject4;
+        i3 = 0;
+        n = i;
+        i = m;
+        m = i3;
+      }
+      else
+      {
+        i2 = paramInt1;
+        if (i2 < i4 - 1)
+        {
+          localObject1 = at1.get(i2 + 1)).O;
+          i = 0;
+        }
+        else
+        {
+          localObject1 = Q;
+          i = A1();
+        }
+        localObject4 = aQ;
+        ((a)localObject5).j(paramInt2, paramArrayOfE, (d)localObject3, (d)localObject1, (d)localObject2, k, m, i, n, paramInt3);
+        k = i3 + ((a)localObject5).f();
+        i3 = Math.max(j, ((a)localObject5).e());
+        j = k;
+        if (i2 > 0) {
+          j = k + m1;
+        }
+        k = i3;
+        i2 = i;
+        paramArrayOfE = (e[])localObject4;
+        i3 = 0;
+        i = j;
+        j = k;
+        k = i3;
+      }
+      paramInt1 += 1;
+      i3 = i;
+    }
+    paramArrayOfInt[0] = i3;
+    paramArrayOfInt[1] = j;
+  }
+  
+  private void p2(e[] paramArrayOfE, int paramInt1, int paramInt2, int paramInt3, int[] paramArrayOfInt)
+  {
+    if (paramInt1 == 0) {
+      return;
+    }
+    a localA;
+    if (t1.size() == 0)
+    {
+      localA = new a(paramInt2, O, P, Q, R, paramInt3);
+      t1.add(localA);
+    }
+    else
+    {
+      localA = (a)t1.get(0);
+      localA.c();
+      d localD1 = O;
+      d localD2 = P;
+      d localD3 = Q;
+      d localD4 = R;
+      int i = z1();
+      int j = B1();
+      int k = A1();
+      int m = y1();
+      localA.j(paramInt2, localD1, localD2, localD3, localD4, i, j, k, m, paramInt3);
+    }
+    paramInt2 = 0;
+    while (paramInt2 < paramInt1)
+    {
+      localA.b(paramArrayOfE[paramInt2]);
+      paramInt2 += 1;
+    }
+    paramArrayOfInt[0] = localA.f();
+    paramArrayOfInt[1] = localA.e();
+  }
+  
+  public void A2(float paramFloat)
+  {
+    l1 = paramFloat;
+  }
+  
+  public void B2(int paramInt)
+  {
+    f1 = paramInt;
+  }
+  
+  public void C1(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    if ((M0 > 0) && (!E1()))
+    {
+      H1(0, 0);
+      G1(false);
+      return;
+    }
+    int i3 = z1();
+    int i4 = A1();
+    int n = B1();
+    int i2 = y1();
+    int[] arrayOfInt = new int[2];
+    int j = paramInt2 - i3 - i4;
+    int i = s1;
+    if (i == 1) {
+      j = paramInt4 - n - i2;
+    }
+    if (i == 0)
+    {
+      if (a1 == -1) {
+        a1 = 0;
+      }
+      if (b1 != -1) {
+        break label141;
+      }
+    }
+    else
+    {
+      if (a1 == -1) {
+        a1 = 0;
+      }
+      if (b1 != -1) {
+        break label141;
+      }
+    }
+    b1 = 0;
+    label141:
+    e[] arrayOfE = L0;
+    i = 0;
+    int m;
+    for (int k = 0;; k = m)
+    {
+      m = M0;
+      if (i >= m) {
+        break;
+      }
+      m = k;
+      if (L0[i].V() == 8) {
+        m = k + 1;
+      }
+      i += 1;
+    }
+    if (k > 0)
+    {
+      arrayOfE = new e[m - k];
+      k = 0;
+      for (i = 0; k < M0; i = m)
+      {
+        e localE = L0[k];
+        m = i;
+        if (localE.V() != 8)
+        {
+          arrayOfE[i] = localE;
+          m = i + 1;
+        }
+        k += 1;
+      }
+    }
+    else
+    {
+      i = m;
+    }
+    x1 = arrayOfE;
+    y1 = i;
+    k = q1;
+    if (k != 0)
+    {
+      if (k != 1)
+      {
+        if (k != 2)
+        {
+          if (k == 3) {
+            o2(arrayOfE, i, s1, j, arrayOfInt);
+          }
+        }
+        else {
+          m2(arrayOfE, i, s1, j, arrayOfInt);
+        }
+      }
+      else {
+        n2(arrayOfE, i, s1, j, arrayOfInt);
+      }
+    }
+    else {
+      p2(arrayOfE, i, s1, j, arrayOfInt);
+    }
+    boolean bool = true;
+    j = arrayOfInt[0] + i3 + i4;
+    i = arrayOfInt[1] + n + i2;
+    if (paramInt1 == 1073741824) {
+      paramInt1 = paramInt2;
+    } else if (paramInt1 == Integer.MIN_VALUE) {
+      paramInt1 = Math.min(j, paramInt2);
+    } else if (paramInt1 == 0) {
+      paramInt1 = j;
+    } else {
+      paramInt1 = 0;
+    }
+    if (paramInt3 == 1073741824) {
+      paramInt2 = paramInt4;
+    } else if (paramInt3 == Integer.MIN_VALUE) {
+      paramInt2 = Math.min(i, paramInt4);
+    } else if (paramInt3 == 0) {
+      paramInt2 = i;
+    } else {
+      paramInt2 = 0;
+    }
+    H1(paramInt1, paramInt2);
+    k1(paramInt1);
+    L0(paramInt2);
+    if (M0 <= 0) {
+      bool = false;
+    }
+    G1(bool);
+  }
+  
+  public void C2(int paramInt)
+  {
+    r1 = paramInt;
+  }
+  
+  public void D2(int paramInt)
+  {
+    s1 = paramInt;
+  }
+  
+  public void E2(int paramInt)
+  {
+    p1 = paramInt;
+  }
+  
+  public void F2(float paramFloat)
+  {
+    h1 = paramFloat;
+  }
+  
+  public void G2(int paramInt)
+  {
+    n1 = paramInt;
+  }
+  
+  public void H2(int paramInt)
+  {
+    b1 = paramInt;
+  }
+  
+  public void I2(int paramInt)
+  {
+    q1 = paramInt;
+  }
+  
+  public void g(q.d paramD, boolean paramBoolean)
+  {
+    super.g(paramD, paramBoolean);
+    if ((K() != null) && (((f)K()).P1())) {
+      paramBoolean = true;
+    } else {
+      paramBoolean = false;
+    }
+    int i = q1;
+    if (i != 0)
+    {
+      int j;
+      boolean bool;
+      if (i != 1)
+      {
+        if (i != 2)
+        {
+          if (i == 3)
+          {
+            j = t1.size();
+            i = 0;
+            while (i < j)
+            {
+              paramD = (a)t1.get(i);
+              if (i == j - 1) {
+                bool = true;
+              } else {
+                bool = false;
+              }
+              paramD.d(paramBoolean, i, bool);
+              i += 1;
+            }
+          }
+        }
+        else {
+          j2(paramBoolean);
+        }
+      }
+      else
+      {
+        j = t1.size();
+        i = 0;
+        while (i < j)
+        {
+          paramD = (a)t1.get(i);
+          if (i == j - 1) {
+            bool = true;
+          } else {
+            bool = false;
+          }
+          paramD.d(paramBoolean, i, bool);
+          i += 1;
+        }
+      }
+    }
+    else if (t1.size() > 0)
+    {
+      ((a)t1.get(0)).d(paramBoolean, 0, true);
+    }
+    G1(false);
+  }
+  
+  public void q2(float paramFloat)
+  {
+    i1 = paramFloat;
+  }
+  
+  public void r2(int paramInt)
+  {
+    c1 = paramInt;
+  }
+  
+  public void s2(float paramFloat)
+  {
+    j1 = paramFloat;
+  }
+  
+  public void t2(int paramInt)
+  {
+    d1 = paramInt;
+  }
+  
+  public void u2(int paramInt)
+  {
+    o1 = paramInt;
+  }
+  
+  public void v2(float paramFloat)
+  {
+    g1 = paramFloat;
+  }
+  
+  public void w2(int paramInt)
+  {
+    m1 = paramInt;
+  }
+  
+  public void x2(int paramInt)
+  {
+    a1 = paramInt;
+  }
+  
+  public void y2(float paramFloat)
+  {
+    k1 = paramFloat;
+  }
+  
+  public void z2(int paramInt)
+  {
+    e1 = paramInt;
+  }
+  
+  private class a
+  {
+    private int a;
+    private e b = null;
+    int c = 0;
+    private d d;
+    private d e;
+    private d f;
+    private d g;
+    private int h = 0;
+    private int i = 0;
+    private int j = 0;
+    private int k = 0;
+    private int l = 0;
+    private int m = 0;
+    private int n = 0;
+    private int o = 0;
+    private int p = 0;
+    private int q = 0;
+    
+    public a(int paramInt1, d paramD1, d paramD2, d paramD3, d paramD4, int paramInt2)
+    {
+      a = paramInt1;
+      d = paramD1;
+      e = paramD2;
+      f = paramD3;
+      g = paramD4;
+      h = z1();
+      i = B1();
+      j = A1();
+      k = y1();
+      q = paramInt2;
+    }
+    
+    private void h()
+    {
+      l = 0;
+      m = 0;
+      b = null;
+      c = 0;
+      int i3 = o;
+      int i1 = 0;
+      while (i1 < i3)
+      {
+        if (n + i1 >= g.d2(g.this)) {
+          return;
+        }
+        e localE = g.e2(g.this)[(n + i1)];
+        int i4;
+        int i2;
+        if (a == 0)
+        {
+          i4 = localE.W();
+          i2 = g.P1(g.this);
+          if (localE.V() == 8) {
+            i2 = 0;
+          }
+          l += i4 + i2;
+          i2 = g.c2(g.this, localE, q);
+          if ((b == null) || (c < i2))
+          {
+            b = localE;
+            c = i2;
+            m = i2;
+          }
+        }
+        else
+        {
+          i4 = g.b2(g.this, localE, q);
+          int i5 = g.c2(g.this, localE, q);
+          i2 = g.Q1(g.this);
+          if (localE.V() == 8) {
+            i2 = 0;
+          }
+          m += i5 + i2;
+          if ((b == null) || (c < i4))
+          {
+            b = localE;
+            c = i4;
+            l = i4;
+          }
+        }
+        i1 += 1;
+      }
+    }
+    
+    public void b(e paramE)
+    {
+      int i1 = a;
+      int i2 = 0;
+      int i3 = 0;
+      if (i1 == 0)
+      {
+        i1 = g.b2(g.this, paramE, q);
+        if (paramE.A() == e.b.g)
+        {
+          p += 1;
+          i1 = 0;
+        }
+        i2 = g.P1(g.this);
+        if (paramE.V() == 8) {
+          i2 = i3;
+        }
+        l += i1 + i2;
+        i1 = g.c2(g.this, paramE, q);
+        if ((b == null) || (c < i1))
+        {
+          b = paramE;
+          c = i1;
+          m = i1;
+        }
+      }
+      else
+      {
+        int i4 = g.b2(g.this, paramE, q);
+        i1 = g.c2(g.this, paramE, q);
+        if (paramE.T() == e.b.g)
+        {
+          p += 1;
+          i1 = 0;
+        }
+        i3 = g.Q1(g.this);
+        if (paramE.V() != 8) {
+          i2 = i3;
+        }
+        m += i1 + i2;
+        if ((b == null) || (c < i4))
+        {
+          b = paramE;
+          c = i4;
+          l = i4;
+        }
+      }
+      o += 1;
+    }
+    
+    public void c()
+    {
+      c = 0;
+      b = null;
+      l = 0;
+      m = 0;
+      n = 0;
+      o = 0;
+      p = 0;
+    }
+    
+    public void d(boolean paramBoolean1, int paramInt, boolean paramBoolean2)
+    {
+      int i7 = o;
+      int i1 = 0;
+      Object localObject1;
+      while ((i1 < i7) && (n + i1 < g.d2(g.this)))
+      {
+        localObject1 = g.e2(g.this)[(n + i1)];
+        if (localObject1 != null) {
+          ((e)localObject1).u0();
+        }
+        i1 += 1;
+      }
+      if (i7 != 0)
+      {
+        if (b == null) {
+          return;
+        }
+        int i4;
+        if ((paramBoolean2) && (paramInt == 0)) {
+          i4 = 1;
+        } else {
+          i4 = 0;
+        }
+        i1 = 0;
+        int i2 = -1;
+        for (int i3 = -1; i1 < i7; i3 = i5)
+        {
+          if (paramBoolean1) {
+            i5 = i7 - 1 - i1;
+          } else {
+            i5 = i1;
+          }
+          if (n + i5 >= g.d2(g.this)) {
+            break;
+          }
+          localObject1 = g.e2(g.this)[(n + i5)];
+          int i6 = i2;
+          i5 = i3;
+          if (localObject1 != null)
+          {
+            i6 = i2;
+            i5 = i3;
+            if (((e)localObject1).V() == 0)
+            {
+              i3 = i2;
+              if (i2 == -1) {
+                i3 = i1;
+              }
+              i5 = i1;
+              i6 = i3;
+            }
+          }
+          i1 += 1;
+          i2 = i6;
+        }
+        i1 = a;
+        Object localObject2 = null;
+        localObject1 = null;
+        label468:
+        float f2;
+        float f1;
+        label725:
+        d localD;
+        if (i1 == 0)
+        {
+          e localE2 = b;
+          localE2.e1(g.f2(g.this));
+          i5 = i;
+          i1 = i5;
+          if (paramInt > 0) {
+            i1 = i5 + g.Q1(g.this);
+          }
+          P.a(e, i1);
+          if (paramBoolean2) {
+            R.a(g, k);
+          }
+          if (paramInt > 0) {
+            e.d.R.a(P, 0);
+          }
+          if ((g.g2(g.this) == 3) && (!localE2.Z()))
+          {
+            paramInt = 0;
+            while (paramInt < i7)
+            {
+              if (paramBoolean1) {
+                i1 = i7 - 1 - paramInt;
+              } else {
+                i1 = paramInt;
+              }
+              if (n + i1 >= g.d2(g.this)) {
+                break;
+              }
+              localObject2 = g.e2(g.this)[(n + i1)];
+              if (((e)localObject2).Z()) {
+                break label468;
+              }
+              paramInt += 1;
+            }
+          }
+          localObject2 = localE2;
+          i1 = 0;
+          while (i1 < i7)
+          {
+            if (paramBoolean1) {
+              paramInt = i7 - 1 - i1;
+            } else {
+              paramInt = i1;
+            }
+            if (n + paramInt >= g.d2(g.this)) {
+              return;
+            }
+            localE1 = g.e2(g.this)[(n + paramInt)];
+            if (localE1 != null)
+            {
+              do
+              {
+                if (i1 == 0) {
+                  localE1.k(O, d, h);
+                }
+                if (paramInt == 0)
+                {
+                  i5 = g.h2(g.this);
+                  f2 = g.i2(g.this);
+                  f1 = f2;
+                  if (paramBoolean1) {
+                    f1 = 1.0F - f2;
+                  }
+                  if ((n == 0) && (g.R1(g.this) != -1))
+                  {
+                    paramInt = g.R1(g.this);
+                    if (paramBoolean1)
+                    {
+                      f1 = g.S1(g.this);
+                      f1 = 1.0F - f1;
+                    }
+                  }
+                  for (f1 = g.S1(g.this);; f1 = g.U1(g.this))
+                  {
+                    f2 = f1;
+                    break label725;
+                    paramInt = i5;
+                    f2 = f1;
+                    if (!paramBoolean2) {
+                      break label725;
+                    }
+                    paramInt = i5;
+                    f2 = f1;
+                    if (g.T1(g.this) == -1) {
+                      break label725;
+                    }
+                    paramInt = g.T1(g.this);
+                    if (paramBoolean1)
+                    {
+                      f1 = g.U1(g.this);
+                      break;
+                    }
+                  }
+                  localE1.N0(paramInt);
+                  localE1.M0(f2);
+                }
+                if (i1 == i7 - 1) {
+                  localE1.k(Q, f, j);
+                }
+                if (localObject1 != null)
+                {
+                  O.a(Q, g.P1(g.this));
+                  if (i1 == i2) {
+                    O.u(h);
+                  }
+                  Q.a(O, 0);
+                  if (i1 == i3 + 1) {
+                    Q.u(j);
+                  }
+                }
+                localObject1 = localE1;
+              } while (localE1 == localE2);
+              if ((g.g2(g.this) == 3) && (((e)localObject2).Z()) && (localE1 != localObject2) && (localE1.Z()))
+              {
+                localObject1 = S;
+                localD = S;
+              }
+              else
+              {
+                paramInt = g.g2(g.this);
+                if (paramInt != 0)
+                {
+                  if (paramInt != 1)
+                  {
+                    localObject1 = P;
+                    if (i4 != 0)
+                    {
+                      ((d)localObject1).a(e, i);
+                      R.a(g, k);
+                      localObject1 = localE1;
+                      break label1031;
+                    }
+                    ((d)localObject1).a(P, 0);
+                  }
+                  localObject1 = R;
+                  localD = R;
+                }
+                else
+                {
+                  localObject1 = P;
+                  localD = P;
+                }
+              }
+              ((d)localObject1).a(localD, 0);
+              localObject1 = localE1;
+            }
+            label1031:
+            i1 += 1;
+          }
+        }
+        e localE1 = b;
+        localE1.N0(g.h2(g.this));
+        int i5 = h;
+        i1 = i5;
+        if (paramInt > 0) {
+          i1 = i5 + g.P1(g.this);
+        }
+        if (paramBoolean1)
+        {
+          Q.a(f, i1);
+          if (paramBoolean2) {
+            O.a(d, j);
+          }
+          if (paramInt <= 0) {
+            break label1218;
+          }
+          localObject1 = f.d.O;
+          localD = Q;
+        }
+        else
+        {
+          O.a(d, i1);
+          if (paramBoolean2) {
+            Q.a(f, j);
+          }
+          if (paramInt <= 0) {
+            break label1218;
+          }
+          localObject1 = d.d.Q;
+          localD = O;
+        }
+        ((d)localObject1).a(localD, 0);
+        label1218:
+        i1 = 0;
+        localObject1 = localObject2;
+        while (i1 < i7)
+        {
+          if (n + i1 >= g.d2(g.this)) {
+            return;
+          }
+          localObject2 = g.e2(g.this)[(n + i1)];
+          if (localObject2 != null)
+          {
+            if (i1 == 0)
+            {
+              ((e)localObject2).k(P, e, i);
+              i5 = g.f2(g.this);
+              f2 = g.V1(g.this);
+              if ((n == 0) && (g.W1(g.this) != -1))
+              {
+                paramInt = g.W1(g.this);
+                f1 = g.X1(g.this);
+              }
+              else
+              {
+                paramInt = i5;
+                f1 = f2;
+                if (paramBoolean2)
+                {
+                  paramInt = i5;
+                  f1 = f2;
+                  if (g.Y1(g.this) != -1)
+                  {
+                    paramInt = g.Y1(g.this);
+                    f1 = g.Z1(g.this);
+                  }
+                }
+              }
+              ((e)localObject2).e1(paramInt);
+              ((e)localObject2).d1(f1);
+            }
+            if (i1 == i7 - 1) {
+              ((e)localObject2).k(R, g, k);
+            }
+            if (localObject1 != null)
+            {
+              P.a(R, g.Q1(g.this));
+              if (i1 == i2) {
+                P.u(i);
+              }
+              R.a(P, 0);
+              if (i1 == i3 + 1) {
+                R.u(k);
+              }
+            }
+            if (localObject2 != localE1)
+            {
+              paramInt = g.a2(g.this);
+              if (paramBoolean1)
+              {
+                if (paramInt != 0) {
+                  if (paramInt != 1)
+                  {
+                    if (paramInt != 2) {
+                      break label1736;
+                    }
+                    O.a(O, 0);
+                  }
+                  else
+                  {
+                    localObject1 = O;
+                    localD = O;
+                    break label1606;
+                  }
+                }
+                localObject1 = Q;
+                localD = Q;
+                label1606:
+                ((d)localObject1).a(localD, 0);
+              }
+              else
+              {
+                if (paramInt != 0)
+                {
+                  if (paramInt != 1)
+                  {
+                    if (paramInt != 2) {
+                      break label1736;
+                    }
+                    localObject1 = O;
+                    if (i4 != 0)
+                    {
+                      ((d)localObject1).a(d, h);
+                      Q.a(f, j);
+                      break label1736;
+                    }
+                    ((d)localObject1).a(O, 0);
+                  }
+                  localObject1 = Q;
+                  localD = Q;
+                }
+                else
+                {
+                  localObject1 = O;
+                  localD = O;
+                }
+                ((d)localObject1).a(localD, 0);
+              }
+            }
+            label1736:
+            localObject1 = localObject2;
+          }
+          i1 += 1;
+        }
+      }
+    }
+    
+    public int e()
+    {
+      if (a == 1) {
+        return m - g.Q1(g.this);
+      }
+      return m;
+    }
+    
+    public int f()
+    {
+      if (a == 0) {
+        return l - g.P1(g.this);
+      }
+      return l;
+    }
+    
+    public void g(int paramInt)
+    {
+      int i1 = p;
+      if (i1 == 0) {
+        return;
+      }
+      int i4 = o;
+      paramInt /= i1;
+      i1 = 0;
+      while ((i1 < i4) && (n + i1 < g.d2(g.this)))
+      {
+        e localE = g.e2(g.this)[(n + i1)];
+        g localG;
+        e.b localB1;
+        e.b localB2;
+        int i3;
+        int i2;
+        if (a == 0)
+        {
+          if ((localE == null) || (localE.A() != e.b.g) || (w != 0)) {
+            break label189;
+          }
+          localG = g.this;
+          localB1 = e.b.e;
+          localB2 = localE.T();
+          i3 = localE.x();
+          i2 = paramInt;
+        }
+        else
+        {
+          if ((localE == null) || (localE.T() != e.b.g) || (x != 0)) {
+            break label189;
+          }
+          localG = g.this;
+          localB1 = localE.A();
+          i2 = localE.W();
+          localB2 = e.b.e;
+          i3 = paramInt;
+        }
+        localG.D1(localE, localB1, i2, localB2, i3);
+        label189:
+        i1 += 1;
+      }
+      h();
+    }
+    
+    public void i(int paramInt)
+    {
+      n = paramInt;
+    }
+    
+    public void j(int paramInt1, d paramD1, d paramD2, d paramD3, d paramD4, int paramInt2, int paramInt3, int paramInt4, int paramInt5, int paramInt6)
+    {
+      a = paramInt1;
+      d = paramD1;
+      e = paramD2;
+      f = paramD3;
+      g = paramD4;
+      h = paramInt2;
+      i = paramInt3;
+      j = paramInt4;
+      k = paramInt5;
+      q = paramInt6;
+    }
+  }
+}

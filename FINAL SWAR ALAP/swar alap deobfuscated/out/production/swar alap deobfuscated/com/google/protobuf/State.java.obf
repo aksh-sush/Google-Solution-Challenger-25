@@ -1,0 +1,49 @@
+package com.google.protobuf;
+
+public enum c1
+  implements c0.c
+{
+  private static final c0.d h = new a();
+  private final int e;
+  
+  static
+  {
+    c1 localC11 = new c1("NULL_VALUE", 0, 0);
+    f = localC11;
+    c1 localC12 = new c1("UNRECOGNIZED", 1, -1);
+    g = localC12;
+    i = new c1[] { localC11, localC12 };
+  }
+  
+  private c1(int paramInt)
+  {
+    e = paramInt;
+  }
+  
+  public static c1 a(int paramInt)
+  {
+    if (paramInt != 0) {
+      return null;
+    }
+    return f;
+  }
+  
+  public final int getNumber()
+  {
+    if (this != g) {
+      return e;
+    }
+    throw new IllegalArgumentException("Can't get the number of an unknown enum value.");
+  }
+  
+  static final class a
+    implements c0.d
+  {
+    a() {}
+    
+    public c1 b(int paramInt)
+    {
+      return c1.a(paramInt);
+    }
+  }
+}

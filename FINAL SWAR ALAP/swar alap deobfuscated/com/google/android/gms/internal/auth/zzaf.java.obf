@@ -1,0 +1,22 @@
+package com.google.android.gms.internal.auth;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+
+final class zzaf
+  extends zzah
+{
+  zzaf(zzag paramZzag) {}
+  
+  public final void zzc(boolean paramBoolean)
+  {
+    zzag localZzag = zza;
+    Status localStatus;
+    if (paramBoolean) {
+      localStatus = Status.k;
+    } else {
+      localStatus = zzal.zza();
+    }
+    localZzag.setResult(new zzak(localStatus));
+  }
+}

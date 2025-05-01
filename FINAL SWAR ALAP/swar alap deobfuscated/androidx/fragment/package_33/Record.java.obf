@@ -1,0 +1,8 @@
+package androidx.fragment.app;
+
+import android.view.ViewGroup;
+
+abstract interface b0
+{
+  public abstract a0 a(ViewGroup paramViewGroup);
+}

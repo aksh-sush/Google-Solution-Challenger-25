@@ -1,0 +1,38 @@
+package com.google.android.gms.common.server.response;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import s3.a;
+import s3.c;
+
+public final class g
+  extends a
+{
+  public static final Parcelable.Creator<g> CREATOR = new e();
+  final int e;
+  final String f;
+  final a.a g;
+  
+  g(int paramInt, String paramString, a.a paramA)
+  {
+    e = paramInt;
+    f = paramString;
+    g = paramA;
+  }
+  
+  g(String paramString, a.a paramA)
+  {
+    e = 1;
+    f = paramString;
+    g = paramA;
+  }
+  
+  public final void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    int i = c.a(paramParcel);
+    c.t(paramParcel, 1, e);
+    c.D(paramParcel, 2, f, false);
+    c.B(paramParcel, 3, g, paramInt, false);
+    c.b(paramParcel, i);
+  }
+}

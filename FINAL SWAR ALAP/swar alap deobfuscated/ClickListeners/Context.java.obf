@@ -1,0 +1,51 @@
+package c0;
+
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.core.view.l0;
+import androidx.core.view.m0;
+import db.l;
+import java.util.Iterator;
+
+public abstract class a
+{
+  private static final int a = c.b;
+  private static final int b = c.a;
+  
+  public static final void a(View paramView)
+  {
+    l.e(paramView, "<this>");
+    paramView = m0.a(paramView).iterator();
+    while (paramView.hasNext()) {
+      c((View)paramView.next()).a();
+    }
+  }
+  
+  public static final void b(ViewGroup paramViewGroup)
+  {
+    l.e(paramViewGroup, "<this>");
+    paramViewGroup = l0.a(paramViewGroup).iterator();
+    while (paramViewGroup.hasNext()) {
+      c((View)paramViewGroup.next()).a();
+    }
+  }
+  
+  private static final b c(View paramView)
+  {
+    int i = a;
+    b localB2 = (b)paramView.getTag(i);
+    b localB1 = localB2;
+    if (localB2 == null)
+    {
+      localB1 = new b();
+      paramView.setTag(i, localB1);
+    }
+    return localB1;
+  }
+  
+  public static final void d(View paramView, boolean paramBoolean)
+  {
+    l.e(paramView, "<this>");
+    paramView.setTag(b, Boolean.valueOf(paramBoolean));
+  }
+}

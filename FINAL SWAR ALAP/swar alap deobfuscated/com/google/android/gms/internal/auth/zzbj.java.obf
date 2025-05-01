@@ -1,0 +1,17 @@
+package com.google.android.gms.internal.auth;
+
+import android.content.Context;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.internal.e;
+import h3.b;
+
+abstract class zzbj
+  extends e
+{
+  public zzbj(GoogleApiClient paramGoogleApiClient)
+  {
+    super(b.a, paramGoogleApiClient);
+  }
+  
+  protected abstract void zza(Context paramContext, zzbh paramZzbh);
+}

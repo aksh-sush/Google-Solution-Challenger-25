@@ -1,0 +1,171 @@
+package db;
+
+import java.util.Arrays;
+import sa.s;
+
+public abstract class l
+{
+  public static boolean a(Object paramObject1, Object paramObject2)
+  {
+    if (paramObject1 == null) {
+      return paramObject2 == null;
+    }
+    return paramObject1.equals(paramObject2);
+  }
+  
+  public static void b(Object paramObject)
+  {
+    if (paramObject == null) {
+      m();
+    }
+  }
+  
+  public static void c(Object paramObject, String paramString)
+  {
+    if (paramObject == null) {
+      n(paramString);
+    }
+  }
+  
+  public static void d(Object paramObject, String paramString)
+  {
+    if (paramObject != null) {
+      return;
+    }
+    paramObject = new StringBuilder();
+    paramObject.append(paramString);
+    paramObject.append(" must not be null");
+    throw ((NullPointerException)j(new NullPointerException(paramObject.toString())));
+  }
+  
+  public static void e(Object paramObject, String paramString)
+  {
+    if (paramObject == null) {
+      o(paramString);
+    }
+  }
+  
+  public static int f(int paramInt1, int paramInt2)
+  {
+    if (paramInt1 < paramInt2) {
+      return -1;
+    }
+    if (paramInt1 == paramInt2) {
+      return 0;
+    }
+    return 1;
+  }
+  
+  public static int g(long paramLong1, long paramLong2)
+  {
+    boolean bool = paramLong1 < paramLong2;
+    if (bool) {
+      return -1;
+    }
+    if (!bool) {
+      return 0;
+    }
+    return 1;
+  }
+  
+  private static String h(String paramString)
+  {
+    Object localObject = Thread.currentThread().getStackTrace();
+    String str = l.class.getName();
+    int i = 0;
+    int j;
+    for (;;)
+    {
+      j = i;
+      if (localObject[i].getClassName().equals(str)) {
+        break;
+      }
+      i += 1;
+    }
+    while (localObject[j].getClassName().equals(str)) {
+      j += 1;
+    }
+    str = localObject[j];
+    localObject = str.getClassName();
+    str = str.getMethodName();
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Parameter specified as non-null is null: method ");
+    localStringBuilder.append((String)localObject);
+    localStringBuilder.append(".");
+    localStringBuilder.append(str);
+    localStringBuilder.append(", parameter ");
+    localStringBuilder.append(paramString);
+    return localStringBuilder.toString();
+  }
+  
+  public static void i(int paramInt, String paramString) {}
+  
+  private static Throwable j(Throwable paramThrowable)
+  {
+    return k(paramThrowable, l.class.getName());
+  }
+  
+  static Throwable k(Throwable paramThrowable, String paramString)
+  {
+    StackTraceElement[] arrayOfStackTraceElement = paramThrowable.getStackTrace();
+    int k = arrayOfStackTraceElement.length;
+    int j = -1;
+    int i = 0;
+    while (i < k)
+    {
+      if (paramString.equals(arrayOfStackTraceElement[i].getClassName())) {
+        j = i;
+      }
+      i += 1;
+    }
+    paramThrowable.setStackTrace((StackTraceElement[])Arrays.copyOfRange(arrayOfStackTraceElement, j + 1, k));
+    return paramThrowable;
+  }
+  
+  public static String l(String paramString, Object paramObject)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(paramString);
+    localStringBuilder.append(paramObject);
+    return localStringBuilder.toString();
+  }
+  
+  public static void m()
+  {
+    throw ((NullPointerException)j(new NullPointerException()));
+  }
+  
+  public static void n(String paramString)
+  {
+    throw ((NullPointerException)j(new NullPointerException(paramString)));
+  }
+  
+  private static void o(String paramString)
+  {
+    throw ((NullPointerException)j(new NullPointerException(h(paramString))));
+  }
+  
+  public static void p()
+  {
+    q("This function has a reified type parameter and thus can only be inlined at compilation time, not called directly.");
+  }
+  
+  public static void q(String paramString)
+  {
+    throw new UnsupportedOperationException(paramString);
+  }
+  
+  public static void r(String paramString)
+  {
+    throw ((s)j(new s(paramString)));
+  }
+  
+  public static void s(String paramString)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("lateinit property ");
+    localStringBuilder.append(paramString);
+    localStringBuilder.append(" has not been initialized");
+    r(localStringBuilder.toString());
+  }
+}

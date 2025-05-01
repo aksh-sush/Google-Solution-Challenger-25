@@ -1,0 +1,10 @@
+package sa;
+
+public final class s
+  extends RuntimeException
+{
+  public s(String paramString)
+  {
+    super(paramString);
+  }
+}

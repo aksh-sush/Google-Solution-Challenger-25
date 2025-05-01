@@ -1,0 +1,131 @@
+package androidx.lifecycle;
+
+import android.app.Application;
+import android.os.Bundle;
+import db.l;
+import java.lang.reflect.Constructor;
+import java.util.List;
+import u0.d;
+
+public final class e0
+  extends i0.d
+  implements i0.b
+{
+  private Application a;
+  private final i0.b b;
+  private Bundle c;
+  private i d;
+  private androidx.savedstate.a e;
+  
+  public e0(Application paramApplication, d paramD, Bundle paramBundle)
+  {
+    e = paramD.getSavedStateRegistry();
+    d = paramD.getLifecycle();
+    c = paramBundle;
+    a = paramApplication;
+    if (paramApplication != null) {
+      paramApplication = i0.a.e.a(paramApplication);
+    } else {
+      paramApplication = new i0.a();
+    }
+    b = paramApplication;
+  }
+  
+  public h0 a(Class paramClass)
+  {
+    l.e(paramClass, "modelClass");
+    String str = paramClass.getCanonicalName();
+    if (str != null) {
+      return d(str, paramClass);
+    }
+    throw new IllegalArgumentException("Local and anonymous classes can not be ViewModels");
+  }
+  
+  public h0 b(Class paramClass, n0.a paramA)
+  {
+    l.e(paramClass, "modelClass");
+    l.e(paramA, "extras");
+    Object localObject = (String)paramA.a(i0.c.c);
+    if (localObject != null)
+    {
+      if ((paramA.a(b0.a) != null) && (paramA.a(b0.b) != null))
+      {
+        Application localApplication = (Application)paramA.a(i0.a.g);
+        boolean bool = a.class.isAssignableFrom(paramClass);
+        if ((bool) && (localApplication != null)) {
+          localObject = f0.a();
+        } else {
+          localObject = f0.b();
+        }
+        localObject = f0.c(paramClass, (List)localObject);
+        if (localObject == null) {
+          return b.b(paramClass, paramA);
+        }
+        if ((bool) && (localApplication != null)) {
+          return f0.d(paramClass, (Constructor)localObject, new Object[] { localApplication, b0.a(paramA) });
+        }
+        return f0.d(paramClass, (Constructor)localObject, new Object[] { b0.a(paramA) });
+      }
+      if (d != null) {
+        return d((String)localObject, paramClass);
+      }
+      throw new IllegalStateException("SAVED_STATE_REGISTRY_OWNER_KEY andVIEW_MODEL_STORE_OWNER_KEY must be provided in the creation extras tosuccessfully create a ViewModel.");
+    }
+    throw new IllegalStateException("VIEW_MODEL_KEY must always be provided by ViewModelProvider");
+  }
+  
+  public void c(h0 paramH0)
+  {
+    l.e(paramH0, "viewModel");
+    if (d != null)
+    {
+      androidx.savedstate.a localA = e;
+      l.b(localA);
+      i localI = d;
+      l.b(localI);
+      LegacySavedStateHandleController.a(paramH0, localA, localI);
+    }
+  }
+  
+  public final h0 d(String paramString, Class paramClass)
+  {
+    l.e(paramString, "key");
+    l.e(paramClass, "modelClass");
+    Object localObject2 = d;
+    if (localObject2 != null)
+    {
+      boolean bool = a.class.isAssignableFrom(paramClass);
+      if ((bool) && (a != null)) {
+        localObject1 = f0.a();
+      } else {
+        localObject1 = f0.b();
+      }
+      Object localObject1 = f0.c(paramClass, (List)localObject1);
+      if (localObject1 == null)
+      {
+        if (a != null) {
+          return b.a(paramClass);
+        }
+        return i0.c.a.a().a(paramClass);
+      }
+      androidx.savedstate.a localA = e;
+      l.b(localA);
+      localObject2 = LegacySavedStateHandleController.b(localA, (i)localObject2, paramString, c);
+      if (bool)
+      {
+        paramString = a;
+        if (paramString != null)
+        {
+          l.b(paramString);
+          paramString = f0.d(paramClass, (Constructor)localObject1, new Object[] { paramString, ((SavedStateHandleController)localObject2).i() });
+          break label183;
+        }
+      }
+      paramString = f0.d(paramClass, (Constructor)localObject1, new Object[] { ((SavedStateHandleController)localObject2).i() });
+      label183:
+      paramString.e("androidx.lifecycle.savedstate.vm.tag", localObject2);
+      return paramString;
+    }
+    throw new UnsupportedOperationException("SavedStateViewModelFactory constructed with empty constructor supports only calls to create(modelClass: Class<T>, extras: CreationExtras).");
+  }
+}

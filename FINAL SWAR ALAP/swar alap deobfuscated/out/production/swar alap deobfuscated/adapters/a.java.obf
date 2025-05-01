@@ -1,0 +1,546 @@
+package t;
+
+import java.util.ArrayList;
+import q.i;
+
+public abstract class b
+{
+  static void a(f paramF, q.d paramD, int paramInt1, int paramInt2, c paramC)
+  {
+    int i5 = paramInt1;
+    Object localObject4 = a;
+    e localE3 = c;
+    e localE1 = b;
+    e localE2 = d;
+    Object localObject2 = e;
+    float f1 = k;
+    int i1;
+    if (Z[i5] == e.b.f) {
+      i1 = 1;
+    } else {
+      i1 = 0;
+    }
+    int j;
+    int k;
+    if (i5 == 0)
+    {
+      n = z0;
+      if (n == 0) {
+        i = 1;
+      } else {
+        i = 0;
+      }
+      if (n == 1) {
+        j = 1;
+      } else {
+        j = 0;
+      }
+      k = i;
+      m = j;
+      if (n != 2) {
+        break label189;
+      }
+    }
+    else
+    {
+      n = A0;
+      if (n == 0) {
+        i = 1;
+      } else {
+        i = 0;
+      }
+      if (n == 1) {
+        j = 1;
+      } else {
+        j = 0;
+      }
+      k = i;
+      m = j;
+      if (n != 2) {
+        break label189;
+      }
+    }
+    int i2 = 1;
+    int m = i;
+    int n = j;
+    break label200;
+    label189:
+    i2 = 0;
+    n = m;
+    m = k;
+    label200:
+    int i = 0;
+    Object localObject3 = localObject4;
+    Object localObject7;
+    Object localObject5;
+    Object localObject1;
+    Object localObject6;
+    for (;;)
+    {
+      localObject7 = null;
+      localObject5 = null;
+      if (i != 0) {
+        break;
+      }
+      localObject1 = W[paramInt2];
+      if (i2 != 0) {
+        j = 1;
+      } else {
+        j = 4;
+      }
+      k = ((d)localObject1).f();
+      localObject7 = Z[i5];
+      localObject6 = e.b.g;
+      int i4;
+      if ((localObject7 == localObject6) && (y[i5] == 0)) {
+        i4 = 1;
+      } else {
+        i4 = 0;
+      }
+      localObject7 = f;
+      int i3 = k;
+      if (localObject7 != null)
+      {
+        i3 = k;
+        if (localObject3 != localObject4) {
+          i3 = k + ((d)localObject7).f();
+        }
+      }
+      if ((i2 != 0) && (localObject3 != localObject4) && (localObject3 != localE1)) {
+        j = 8;
+      }
+      localObject7 = f;
+      if (localObject7 != null)
+      {
+        if (localObject3 == localE1) {
+          paramD.h(i, i, i3, 6);
+        } else {
+          paramD.h(i, i, i3, 8);
+        }
+        k = j;
+        if (i4 != 0)
+        {
+          k = j;
+          if (i2 == 0) {
+            k = 5;
+          }
+        }
+        if ((localObject3 == localE1) && (i2 != 0) && (((e)localObject3).h0(i5))) {
+          k = 5;
+        }
+        paramD.e(i, f.i, i3, k);
+      }
+      if (i1 != 0)
+      {
+        if ((((e)localObject3).V() != 8) && (Z[i5] == localObject6))
+        {
+          localObject1 = W;
+          paramD.h(1i, i, 0, 5);
+        }
+        paramD.h(W[paramInt2].i, W[paramInt2].i, 0, 8);
+      }
+      localObject6 = W[(paramInt2 + 1)].f;
+      localObject1 = localObject5;
+      if (localObject6 != null)
+      {
+        localObject6 = d;
+        localObject7 = W[paramInt2].f;
+        localObject1 = localObject5;
+        if (localObject7 != null) {
+          if (d != localObject3) {
+            localObject1 = localObject5;
+          } else {
+            localObject1 = localObject6;
+          }
+        }
+      }
+      if (localObject1 != null) {
+        localObject3 = localObject1;
+      } else {
+        i = 1;
+      }
+    }
+    if (localE2 != null)
+    {
+      localObject1 = W;
+      j = paramInt2 + 1;
+      if (f != null)
+      {
+        localObject1 = W[j];
+        if ((Z[i5] == e.b.g) && (y[i5] == 0)) {
+          i = 1;
+        } else {
+          i = 0;
+        }
+        if ((i != 0) && (i2 == 0))
+        {
+          localObject3 = f;
+          if (d == paramF)
+          {
+            paramD.e(i, i, -((d)localObject1).f(), 5);
+            break label824;
+          }
+        }
+        if (i2 != 0)
+        {
+          localObject3 = f;
+          if (d == paramF) {
+            paramD.e(i, i, -((d)localObject1).f(), 4);
+          }
+        }
+        label824:
+        paramD.j(i, W[j].f.i, -((d)localObject1).f(), 6);
+      }
+    }
+    if (i1 != 0)
+    {
+      paramF = W;
+      i = paramInt2 + 1;
+      paramF = i;
+      localObject1 = W[i];
+      paramD.h(paramF, i, ((d)localObject1).f(), 8);
+    }
+    paramF = h;
+    label1090:
+    Object localObject8;
+    Object localObject9;
+    if (paramF != null)
+    {
+      i = paramF.size();
+      if (i > 1)
+      {
+        float f2;
+        if ((r) && (!t)) {
+          f2 = j;
+        } else {
+          f2 = f1;
+        }
+        localObject1 = null;
+        j = 0;
+        for (float f3 = 0.0F; j < i; f3 = f1)
+        {
+          localObject3 = (e)paramF.get(j);
+          f1 = D0[i5];
+          if (f1 < 0.0F)
+          {
+            if (t)
+            {
+              localObject3 = W;
+              paramD.e(1i, i, 0, 4);
+              break label1090;
+            }
+            f1 = 1.0F;
+          }
+          if (f1 == 0.0F)
+          {
+            localObject3 = W;
+            paramD.e(1i, i, 0, 8);
+            f1 = f3;
+          }
+          else
+          {
+            if (localObject1 != null)
+            {
+              localObject5 = W;
+              localObject1 = i;
+              k = paramInt2 + 1;
+              localObject5 = i;
+              localObject8 = W;
+              localObject6 = i;
+              localObject8 = i;
+              localObject9 = paramD.r();
+              ((q.b)localObject9).l(f3, f2, f1, (i)localObject1, (i)localObject5, (i)localObject6, (i)localObject8);
+              paramD.d((q.b)localObject9);
+            }
+            localObject1 = localObject3;
+          }
+          j += 1;
+        }
+      }
+    }
+    if ((localE1 != null) && ((localE1 == localE2) || (i2 != 0)))
+    {
+      paramF = W[paramInt2];
+      paramC = W;
+      paramInt1 = paramInt2 + 1;
+      localObject1 = paramC[paramInt1];
+      paramF = f;
+      if (paramF != null) {
+        paramF = paramF.i;
+      } else {
+        paramF = null;
+      }
+      paramC = f;
+      if (paramC != null) {
+        paramC = i;
+      } else {
+        paramC = null;
+      }
+      localObject3 = W[paramInt2];
+      if (localE2 != null) {
+        localObject1 = W[paramInt1];
+      }
+      if ((paramF != null) && (paramC != null))
+      {
+        if (i5 == 0) {
+          f1 = o0;
+        } else {
+          f1 = p0;
+        }
+        paramInt1 = ((d)localObject3).f();
+        i = ((d)localObject1).f();
+        paramD.c(i, paramF, paramInt1, f1, paramC, i, i, 7);
+      }
+    }
+    else
+    {
+      if ((m != 0) && (localE1 != null))
+      {
+        paramInt1 = j;
+        if ((paramInt1 > 0) && (i == paramInt1)) {
+          i = 1;
+        } else {
+          i = 0;
+        }
+        paramC = localE1;
+        localObject1 = paramC;
+      }
+      while (localObject1 != null)
+      {
+        for (paramF = F0[i5]; (paramF != null) && (paramF.V() == 8); paramF = F0[i5]) {}
+        if ((paramF == null) && (localObject1 != localE2)) {}
+        for (;;)
+        {
+          break;
+          localObject3 = W[paramInt2];
+          localObject8 = i;
+          localObject2 = f;
+          if (localObject2 != null) {
+            localObject2 = i;
+          } else {
+            localObject2 = null;
+          }
+          if (paramC != localObject1) {
+            localObject2 = W[(paramInt2 + 1)];
+          }
+          do
+          {
+            localObject2 = i;
+            break;
+            if (localObject1 != localE1) {
+              break;
+            }
+            localObject2 = W[paramInt2].f;
+          } while (localObject2 != null);
+          localObject2 = null;
+          i1 = ((d)localObject3).f();
+          localObject3 = W;
+          k = paramInt2 + 1;
+          j = localObject3[k].f();
+          if (paramF != null) {}
+          for (localObject3 = W[paramInt2];; localObject3 = localObject5)
+          {
+            localObject6 = i;
+            localObject5 = localObject3;
+            localObject3 = localObject6;
+            break label1678;
+            localObject5 = W[k].f;
+            if (localObject5 == null) {
+              break;
+            }
+          }
+          localObject3 = null;
+          label1678:
+          localObject6 = W[k].i;
+          paramInt1 = j;
+          if (localObject5 != null) {
+            paramInt1 = j + ((d)localObject5).f();
+          }
+          j = i1 + W[k].f();
+          if ((localObject8 != null) && (localObject2 != null) && (localObject3 != null) && (localObject6 != null))
+          {
+            if (localObject1 == localE1) {
+              j = W[paramInt2].f();
+            }
+            if (localObject1 == localE2) {
+              paramInt1 = W[k].f();
+            }
+            if (i != 0) {
+              k = 8;
+            } else {
+              k = 5;
+            }
+            paramD.c((i)localObject8, (i)localObject2, j, 0.5F, (i)localObject3, (i)localObject6, paramInt1, k);
+            break;
+          }
+        }
+        if (((e)localObject1).V() == 8) {
+          localObject1 = paramC;
+        }
+        paramC = (c)localObject1;
+        localObject1 = paramF;
+        continue;
+        if ((n != 0) && (localE1 != null))
+        {
+          i = j;
+          if ((i > 0) && (i == i)) {
+            i = 1;
+          } else {
+            i = 0;
+          }
+          paramC = localE1;
+          for (localObject1 = paramC;; localObject1 = paramF)
+          {
+            j = paramInt1;
+            if (localObject1 == null) {
+              break;
+            }
+            for (paramF = F0[j]; (paramF != null) && (paramF.V() == 8); paramF = F0[j]) {}
+            if ((localObject1 != localE1) && (localObject1 != localE2) && (paramF != null))
+            {
+              if (paramF == localE2) {
+                paramF = null;
+              }
+              localObject2 = W[paramInt2];
+              localObject8 = i;
+              localObject3 = f;
+              if (localObject3 != null) {
+                localObject3 = i;
+              }
+              localObject3 = W;
+              i2 = paramInt2 + 1;
+              localObject9 = i;
+              i1 = ((d)localObject2).f();
+              k = W[i2].f();
+              if (paramF != null)
+              {
+                localObject3 = W[paramInt2];
+                localObject5 = i;
+                localObject2 = f;
+                if (localObject2 != null) {
+                  localObject2 = i;
+                } else {
+                  localObject2 = null;
+                }
+                localObject6 = localObject2;
+              }
+              else
+              {
+                localObject3 = W[paramInt2];
+                if (localObject3 != null) {
+                  localObject2 = i;
+                } else {
+                  localObject2 = null;
+                }
+                localObject6 = W[i2].i;
+                localObject5 = localObject2;
+              }
+              j = k;
+              if (localObject3 != null) {
+                j = k + ((d)localObject3).f();
+              }
+              i2 = W[i2].f();
+              if (i != 0) {
+                k = 8;
+              } else {
+                k = 4;
+              }
+              if ((localObject8 != null) && (localObject9 != null) && (localObject5 != null) && (localObject6 != null)) {
+                paramD.c((i)localObject8, (i)localObject9, i2 + i1, 0.5F, (i)localObject5, (i)localObject6, j, k);
+              }
+            }
+            if (((e)localObject1).V() != 8) {
+              paramC = (c)localObject1;
+            }
+          }
+          paramF = W[paramInt2];
+          paramC = W[paramInt2].f;
+          localObject1 = W;
+          paramInt1 = paramInt2 + 1;
+          localObject1 = localObject1[paramInt1];
+          localObject2 = W[paramInt1].f;
+          if (paramC != null) {
+            if (localE1 != localE2) {
+              paramD.e(paramF.i, i, paramF.f(), 5);
+            } else if (localObject2 != null) {
+              paramD.c(paramF.i, i, paramF.f(), 0.5F, i, i, ((d)localObject1).f(), 5);
+            }
+          }
+          if ((localObject2 != null) && (localE1 != localE2)) {
+            paramD.e(i, i, -((d)localObject1).f(), 5);
+          }
+        }
+      }
+    }
+    if (((m != 0) || (n != 0)) && (localE1 != null) && (localE1 != localE2))
+    {
+      localObject4 = W;
+      localObject3 = localObject4[paramInt2];
+      paramC = localE2;
+      if (localE2 == null) {
+        paramC = localE1;
+      }
+      paramF = W;
+      paramInt2 += 1;
+      localObject2 = paramF[paramInt2];
+      paramF = f;
+      if (paramF != null) {
+        localObject1 = paramF.i;
+      } else {
+        localObject1 = null;
+      }
+      paramF = f;
+      if (paramF != null) {
+        paramF = paramF.i;
+      } else {
+        paramF = null;
+      }
+      if (localE3 != paramC)
+      {
+        localObject5 = W[paramInt2].f;
+        paramF = (f)localObject7;
+        if (localObject5 != null) {
+          paramF = i;
+        }
+      }
+      if (localE1 == paramC) {
+        localObject2 = localObject4[paramInt2];
+      }
+      if ((localObject1 != null) && (paramF != null))
+      {
+        paramInt1 = ((d)localObject3).f();
+        paramInt2 = W[paramInt2].f();
+        paramD.c(i, (i)localObject1, paramInt1, 0.5F, paramF, i, paramInt2, 5);
+      }
+    }
+  }
+  
+  public static void b(f paramF, q.d paramD, ArrayList paramArrayList, int paramInt)
+  {
+    int k = 0;
+    int i;
+    c[] arrayOfC;
+    int j;
+    if (paramInt == 0)
+    {
+      i = W0;
+      arrayOfC = Z0;
+      j = 0;
+    }
+    else
+    {
+      i = X0;
+      arrayOfC = Y0;
+      j = 2;
+    }
+    while (k < i)
+    {
+      c localC = arrayOfC[k];
+      localC.a();
+      if ((paramArrayList == null) || (paramArrayList.contains(a))) {
+        a(paramF, paramD, paramInt, j, localC);
+      }
+      k += 1;
+    }
+  }
+}

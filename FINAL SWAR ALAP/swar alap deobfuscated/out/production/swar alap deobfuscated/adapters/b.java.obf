@@ -1,0 +1,89 @@
+package t;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import u.o;
+
+public abstract class j
+  extends e
+  implements i
+{
+  public e[] L0 = new e[4];
+  public int M0 = 0;
+  
+  public j() {}
+  
+  public void a(f paramF) {}
+  
+  public void b(e paramE)
+  {
+    if (paramE != this)
+    {
+      if (paramE == null) {
+        return;
+      }
+      int i = M0;
+      e[] arrayOfE = L0;
+      if (i + 1 > arrayOfE.length) {
+        L0 = ((e[])Arrays.copyOf(arrayOfE, arrayOfE.length * 2));
+      }
+      arrayOfE = L0;
+      i = M0;
+      arrayOfE[i] = paramE;
+      M0 = (i + 1);
+    }
+  }
+  
+  public void c()
+  {
+    M0 = 0;
+    Arrays.fill(L0, null);
+  }
+  
+  public void r1(ArrayList paramArrayList, int paramInt, o paramO)
+  {
+    int k = 0;
+    int i = 0;
+    int j;
+    for (;;)
+    {
+      j = k;
+      if (i >= M0) {
+        break;
+      }
+      paramO.a(L0[i]);
+      i += 1;
+    }
+    while (j < M0)
+    {
+      u.i.a(L0[j], paramInt, paramArrayList, paramO);
+      j += 1;
+    }
+  }
+  
+  public int s1(int paramInt)
+  {
+    int i = 0;
+    while (i < M0)
+    {
+      e localE = L0[i];
+      int j;
+      if (paramInt == 0)
+      {
+        j = I0;
+        if (j != -1) {
+          return j;
+        }
+      }
+      if (paramInt == 1)
+      {
+        j = J0;
+        if (j != -1) {
+          return j;
+        }
+      }
+      i += 1;
+    }
+    return -1;
+  }
+}

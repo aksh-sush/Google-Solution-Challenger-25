@@ -1,0 +1,614 @@
+package androidx.core.view;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
+import android.animation.ValueAnimator.AnimatorUpdateListener;
+import android.os.Build.VERSION;
+import android.view.View;
+import android.view.View.OnApplyWindowInsetsListener;
+import android.view.ViewGroup;
+import android.view.WindowInsets;
+import android.view.WindowInsetsAnimation;
+import android.view.WindowInsetsAnimation.Bounds;
+import android.view.WindowInsetsAnimation.Callback;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+import androidx.core.graphics.b;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import x.c;
+
+public final class u0
+{
+  private e a;
+  
+  public u0(int paramInt, Interpolator paramInterpolator, long paramLong)
+  {
+    if (Build.VERSION.SDK_INT >= 30) {}
+    for (paramInterpolator = new d(paramInt, paramInterpolator, paramLong);; paramInterpolator = new c(paramInt, paramInterpolator, paramLong))
+    {
+      a = paramInterpolator;
+      return;
+    }
+  }
+  
+  private u0(WindowInsetsAnimation paramWindowInsetsAnimation)
+  {
+    this(0, null, 0L);
+    if (Build.VERSION.SDK_INT >= 30) {
+      a = new d(paramWindowInsetsAnimation);
+    }
+  }
+  
+  static void d(View paramView, b paramB)
+  {
+    if (Build.VERSION.SDK_INT >= 30)
+    {
+      d.h(paramView, paramB);
+      return;
+    }
+    c.o(paramView, paramB);
+  }
+  
+  static u0 f(WindowInsetsAnimation paramWindowInsetsAnimation)
+  {
+    return new u0(paramWindowInsetsAnimation);
+  }
+  
+  public long a()
+  {
+    return a.a();
+  }
+  
+  public float b()
+  {
+    return a.b();
+  }
+  
+  public int c()
+  {
+    return a.c();
+  }
+  
+  public void e(float paramFloat)
+  {
+    a.d(paramFloat);
+  }
+  
+  public static final class a
+  {
+    private final b a;
+    private final b b;
+    
+    private a(WindowInsetsAnimation.Bounds paramBounds)
+    {
+      a = u0.d.g(paramBounds);
+      b = u0.d.f(paramBounds);
+    }
+    
+    public a(b paramB1, b paramB2)
+    {
+      a = paramB1;
+      b = paramB2;
+    }
+    
+    public static a d(WindowInsetsAnimation.Bounds paramBounds)
+    {
+      return new a(paramBounds);
+    }
+    
+    public b a()
+    {
+      return a;
+    }
+    
+    public b b()
+    {
+      return b;
+    }
+    
+    public WindowInsetsAnimation.Bounds c()
+    {
+      return u0.d.e(this);
+    }
+    
+    public String toString()
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Bounds{lower=");
+      localStringBuilder.append(a);
+      localStringBuilder.append(" upper=");
+      localStringBuilder.append(b);
+      localStringBuilder.append("}");
+      return localStringBuilder.toString();
+    }
+  }
+  
+  public static abstract class b
+  {
+    WindowInsets a;
+    private final int b;
+    
+    public b(int paramInt)
+    {
+      b = paramInt;
+    }
+    
+    public final int a()
+    {
+      return b;
+    }
+    
+    public abstract void b(u0 paramU0);
+    
+    public abstract void c(u0 paramU0);
+    
+    public abstract h1 d(h1 paramH1, List paramList);
+    
+    public abstract u0.a e(u0 paramU0, u0.a paramA);
+  }
+  
+  private static class c
+    extends u0.e
+  {
+    c(int paramInt, Interpolator paramInterpolator, long paramLong)
+    {
+      super(paramInterpolator, paramLong);
+    }
+    
+    static int e(h1 paramH11, h1 paramH12)
+    {
+      int j = 0;
+      int i = 1;
+      while (i <= 256)
+      {
+        int k = j;
+        if (!paramH11.f(i).equals(paramH12.f(i))) {
+          k = j | i;
+        }
+        i <<= 1;
+        j = k;
+      }
+      return j;
+    }
+    
+    static u0.a f(h1 paramH11, h1 paramH12, int paramInt)
+    {
+      paramH11 = paramH11.f(paramInt);
+      paramH12 = paramH12.f(paramInt);
+      return new u0.a(b.b(Math.min(a, a), Math.min(b, b), Math.min(c, c), Math.min(d, d)), b.b(Math.max(a, a), Math.max(b, b), Math.max(c, c), Math.max(d, d)));
+    }
+    
+    private static View.OnApplyWindowInsetsListener g(View paramView, u0.b paramB)
+    {
+      return new a(paramView, paramB);
+    }
+    
+    static void h(View paramView, u0 paramU0)
+    {
+      u0.b localB = m(paramView);
+      if (localB != null)
+      {
+        localB.b(paramU0);
+        if (localB.a() == 0) {
+          return;
+        }
+      }
+      if ((paramView instanceof ViewGroup))
+      {
+        paramView = (ViewGroup)paramView;
+        int i = 0;
+        while (i < paramView.getChildCount())
+        {
+          h(paramView.getChildAt(i), paramU0);
+          i += 1;
+        }
+      }
+    }
+    
+    static void i(View paramView, u0 paramU0, WindowInsets paramWindowInsets, boolean paramBoolean)
+    {
+      u0.b localB = m(paramView);
+      int i = 0;
+      boolean bool = paramBoolean;
+      if (localB != null)
+      {
+        a = paramWindowInsets;
+        bool = paramBoolean;
+        if (!paramBoolean)
+        {
+          localB.c(paramU0);
+          if (localB.a() == 0) {
+            bool = true;
+          } else {
+            bool = false;
+          }
+        }
+      }
+      if ((paramView instanceof ViewGroup))
+      {
+        paramView = (ViewGroup)paramView;
+        while (i < paramView.getChildCount())
+        {
+          i(paramView.getChildAt(i), paramU0, paramWindowInsets, bool);
+          i += 1;
+        }
+      }
+    }
+    
+    static void j(View paramView, h1 paramH1, List paramList)
+    {
+      u0.b localB = m(paramView);
+      h1 localH1 = paramH1;
+      if (localB != null)
+      {
+        localH1 = localB.d(paramH1, paramList);
+        if (localB.a() == 0) {
+          return;
+        }
+      }
+      if ((paramView instanceof ViewGroup))
+      {
+        paramView = (ViewGroup)paramView;
+        int i = 0;
+        while (i < paramView.getChildCount())
+        {
+          j(paramView.getChildAt(i), localH1, paramList);
+          i += 1;
+        }
+      }
+    }
+    
+    static void k(View paramView, u0 paramU0, u0.a paramA)
+    {
+      u0.b localB = m(paramView);
+      if (localB != null)
+      {
+        localB.e(paramU0, paramA);
+        if (localB.a() == 0) {
+          return;
+        }
+      }
+      if ((paramView instanceof ViewGroup))
+      {
+        paramView = (ViewGroup)paramView;
+        int i = 0;
+        while (i < paramView.getChildCount())
+        {
+          k(paramView.getChildAt(i), paramU0, paramA);
+          i += 1;
+        }
+      }
+    }
+    
+    static WindowInsets l(View paramView, WindowInsets paramWindowInsets)
+    {
+      if (paramView.getTag(c.L) != null) {
+        return paramWindowInsets;
+      }
+      return paramView.onApplyWindowInsets(paramWindowInsets);
+    }
+    
+    static u0.b m(View paramView)
+    {
+      paramView = paramView.getTag(c.S);
+      if ((paramView instanceof a)) {
+        return a;
+      }
+      return null;
+    }
+    
+    static h1 n(h1 paramH11, h1 paramH12, float paramFloat, int paramInt)
+    {
+      h1.b localB = new h1.b(paramH11);
+      int i = 1;
+      while (i <= 256)
+      {
+        b localB1;
+        if ((paramInt & i) == 0)
+        {
+          localB1 = paramH11.f(i);
+        }
+        else
+        {
+          localB1 = paramH11.f(i);
+          b localB2 = paramH12.f(i);
+          float f1 = a - a;
+          float f2 = 1.0F - paramFloat;
+          localB1 = h1.n(localB1, (int)(f1 * f2 + 0.5D), (int)((b - b) * f2 + 0.5D), (int)((c - c) * f2 + 0.5D), (int)((d - d) * f2 + 0.5D));
+        }
+        localB.b(i, localB1);
+        i <<= 1;
+      }
+      return localB.a();
+    }
+    
+    static void o(View paramView, u0.b paramB)
+    {
+      Object localObject = paramView.getTag(c.L);
+      if (paramB == null)
+      {
+        paramView.setTag(c.S, null);
+        if (localObject == null) {
+          paramView.setOnApplyWindowInsetsListener(null);
+        }
+      }
+      else
+      {
+        paramB = g(paramView, paramB);
+        paramView.setTag(c.S, paramB);
+        if (localObject == null) {
+          paramView.setOnApplyWindowInsetsListener(paramB);
+        }
+      }
+    }
+    
+    private static class a
+      implements View.OnApplyWindowInsetsListener
+    {
+      final u0.b a;
+      private h1 b;
+      
+      a(View paramView, u0.b paramB)
+      {
+        a = paramB;
+        paramView = h0.L(paramView);
+        if (paramView != null) {
+          paramView = new h1.b(paramView).a();
+        } else {
+          paramView = null;
+        }
+        b = paramView;
+      }
+      
+      public WindowInsets onApplyWindowInsets(final View paramView, WindowInsets paramWindowInsets)
+      {
+        if (!paramView.isLaidOut())
+        {
+          b = h1.w(paramWindowInsets, paramView);
+          return u0.c.l(paramView, paramWindowInsets);
+        }
+        final h1 localH1 = h1.w(paramWindowInsets, paramView);
+        if (b == null) {
+          b = h0.L(paramView);
+        }
+        if (b == null) {}
+        for (;;)
+        {
+          b = localH1;
+          break;
+          Object localObject = u0.c.m(paramView);
+          if ((localObject != null) && (Objects.equals(a, paramWindowInsets))) {
+            return u0.c.l(paramView, paramWindowInsets);
+          }
+          final int i = u0.c.e(localH1, b);
+          if (i == 0) {
+            return u0.c.l(paramView, paramWindowInsets);
+          }
+          localObject = b;
+          final u0 localU0 = new u0(i, new DecelerateInterpolator(), 160L);
+          localU0.e(0.0F);
+          final ValueAnimator localValueAnimator = ValueAnimator.ofFloat(new float[] { 0.0F, 1.0F }).setDuration(localU0.a());
+          final u0.a localA = u0.c.f(localH1, (h1)localObject, i);
+          u0.c.i(paramView, localU0, paramWindowInsets, false);
+          localValueAnimator.addUpdateListener(new a(localU0, localH1, (h1)localObject, i, paramView));
+          localValueAnimator.addListener(new b(localU0, paramView));
+          f0.a(paramView, new c(paramView, localU0, localA, localValueAnimator));
+        }
+      }
+      
+      class a
+        implements ValueAnimator.AnimatorUpdateListener
+      {
+        a(u0 paramU0, h1 paramH11, h1 paramH12, int paramInt, View paramView) {}
+        
+        public void onAnimationUpdate(ValueAnimator paramValueAnimator)
+        {
+          localU0.e(paramValueAnimator.getAnimatedFraction());
+          paramValueAnimator = u0.c.n(localH1, c, localU0.b(), i);
+          List localList = Collections.singletonList(localU0);
+          u0.c.j(paramView, paramValueAnimator, localList);
+        }
+      }
+      
+      class b
+        extends AnimatorListenerAdapter
+      {
+        b(u0 paramU0, View paramView) {}
+        
+        public void onAnimationEnd(Animator paramAnimator)
+        {
+          localU0.e(1.0F);
+          u0.c.h(paramView, localU0);
+        }
+      }
+      
+      class c
+        implements Runnable
+      {
+        c(View paramView, u0 paramU0, u0.a paramA, ValueAnimator paramValueAnimator) {}
+        
+        public void run()
+        {
+          u0.c.k(paramView, localU0, localA);
+          localValueAnimator.start();
+        }
+      }
+    }
+  }
+  
+  private static class d
+    extends u0.e
+  {
+    private final WindowInsetsAnimation e;
+    
+    d(int paramInt, Interpolator paramInterpolator, long paramLong)
+    {
+      this(a1.a(paramInt, paramInterpolator, paramLong));
+    }
+    
+    d(WindowInsetsAnimation paramWindowInsetsAnimation)
+    {
+      super(null, 0L);
+      e = paramWindowInsetsAnimation;
+    }
+    
+    public static WindowInsetsAnimation.Bounds e(u0.a paramA)
+    {
+      c1.a();
+      return b1.a(paramA.a().e(), paramA.b().e());
+    }
+    
+    public static b f(WindowInsetsAnimation.Bounds paramBounds)
+    {
+      return b.d(e1.a(paramBounds));
+    }
+    
+    public static b g(WindowInsetsAnimation.Bounds paramBounds)
+    {
+      return b.d(d1.a(paramBounds));
+    }
+    
+    public static void h(View paramView, u0.b paramB)
+    {
+      if (paramB != null) {
+        paramB = new a(paramB);
+      } else {
+        paramB = null;
+      }
+      x0.a(paramView, paramB);
+    }
+    
+    public long a()
+    {
+      return v0.a(e);
+    }
+    
+    public float b()
+    {
+      return w0.a(e);
+    }
+    
+    public int c()
+    {
+      return y0.a(e);
+    }
+    
+    public void d(float paramFloat)
+    {
+      z0.a(e, paramFloat);
+    }
+    
+    private static class a
+      extends WindowInsetsAnimation.Callback
+    {
+      private final u0.b a;
+      private List b;
+      private ArrayList c;
+      private final HashMap d = new HashMap();
+      
+      a(u0.b paramB)
+      {
+        super();
+        a = paramB;
+      }
+      
+      private u0 a(WindowInsetsAnimation paramWindowInsetsAnimation)
+      {
+        u0 localU02 = (u0)d.get(paramWindowInsetsAnimation);
+        u0 localU01 = localU02;
+        if (localU02 == null)
+        {
+          localU01 = u0.f(paramWindowInsetsAnimation);
+          d.put(paramWindowInsetsAnimation, localU01);
+        }
+        return localU01;
+      }
+      
+      public void onEnd(WindowInsetsAnimation paramWindowInsetsAnimation)
+      {
+        a.b(a(paramWindowInsetsAnimation));
+        d.remove(paramWindowInsetsAnimation);
+      }
+      
+      public void onPrepare(WindowInsetsAnimation paramWindowInsetsAnimation)
+      {
+        a.c(a(paramWindowInsetsAnimation));
+      }
+      
+      public WindowInsets onProgress(WindowInsets paramWindowInsets, List paramList)
+      {
+        Object localObject = c;
+        if (localObject == null)
+        {
+          localObject = new ArrayList(paramList.size());
+          c = ((ArrayList)localObject);
+          b = Collections.unmodifiableList((List)localObject);
+        }
+        else
+        {
+          ((ArrayList)localObject).clear();
+        }
+        int i = paramList.size() - 1;
+        while (i >= 0)
+        {
+          localObject = f1.a(paramList.get(i));
+          u0 localU0 = a((WindowInsetsAnimation)localObject);
+          localU0.e(g1.a((WindowInsetsAnimation)localObject));
+          c.add(localU0);
+          i -= 1;
+        }
+        return a.d(h1.v(paramWindowInsets), b).u();
+      }
+      
+      public WindowInsetsAnimation.Bounds onStart(WindowInsetsAnimation paramWindowInsetsAnimation, WindowInsetsAnimation.Bounds paramBounds)
+      {
+        return a.e(a(paramWindowInsetsAnimation), u0.a.d(paramBounds)).c();
+      }
+    }
+  }
+  
+  private static abstract class e
+  {
+    private final int a;
+    private float b;
+    private final Interpolator c;
+    private final long d;
+    
+    e(int paramInt, Interpolator paramInterpolator, long paramLong)
+    {
+      a = paramInt;
+      c = paramInterpolator;
+      d = paramLong;
+    }
+    
+    public long a()
+    {
+      return d;
+    }
+    
+    public float b()
+    {
+      Interpolator localInterpolator = c;
+      if (localInterpolator != null) {
+        return localInterpolator.getInterpolation(b);
+      }
+      return b;
+    }
+    
+    public int c()
+    {
+      return a;
+    }
+    
+    public void d(float paramFloat)
+    {
+      b = paramFloat;
+    }
+  }
+}

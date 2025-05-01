@@ -1,0 +1,166 @@
+package x1;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.BaseBundle;
+import android.os.Bundle;
+import com.facebook.u0;
+import db.w;
+import java.util.Arrays;
+import java.util.Locale;
+import n2.a;
+import p1.o.b;
+
+public final class n
+{
+  public static final n a = new n();
+  private static final String b = n.class.getCanonicalName();
+  private static final long[] c = { 300000L, 900000L, 1800000L, 3600000L, 21600000L, 43200000L, 86400000L, 172800000L, 259200000L, 604800000L, 1209600000L, 1814400000L, 2419200000L, 5184000000L, 7776000000L, 10368000000L, 12960000000L, 15552000000L, 31536000000L };
+  
+  private n() {}
+  
+  private final String a(Context paramContext)
+  {
+    try
+    {
+      PackageManager localPackageManager = paramContext.getPackageManager();
+      String str2 = db.l.l("PCKGCHKSUM;", getPackageInfogetPackageName0versionName);
+      SharedPreferences localSharedPreferences = paramContext.getSharedPreferences("com.facebook.sdk.appEventPreferences", 0);
+      String str1 = localSharedPreferences.getString(str2, null);
+      if ((str1 != null) && (str1.length() == 32)) {
+        return str1;
+      }
+      str1 = l.c(paramContext, null);
+      if (str1 != null)
+      {
+        paramContext = str1;
+      }
+      else
+      {
+        paramContext = localPackageManager.getApplicationInfo(paramContext.getPackageName(), 0);
+        db.l.d(paramContext, "pm.getApplicationInfo(context.packageName, 0)");
+        paramContext = l.b(sourceDir);
+      }
+      localSharedPreferences.edit().putString(str2, paramContext).apply();
+      return paramContext;
+    }
+    catch (Exception paramContext) {}
+    return null;
+  }
+  
+  public static final int b(long paramLong)
+  {
+    int i = 0;
+    for (;;)
+    {
+      long[] arrayOfLong = c;
+      if ((i >= arrayOfLong.length) || (arrayOfLong[i] >= paramLong)) {
+        break;
+      }
+      i += 1;
+    }
+    return i;
+  }
+  
+  public static final void c(String paramString1, o paramO, String paramString2, Context paramContext)
+  {
+    db.l.e(paramString1, "activityName");
+    db.l.e(paramContext, "context");
+    Object localObject = "Unclassified";
+    if (paramO == null)
+    {
+      paramO = (o)localObject;
+    }
+    else
+    {
+      paramO = paramO.toString();
+      if (paramO == null) {
+        paramO = (o)localObject;
+      }
+    }
+    localObject = new Bundle();
+    ((BaseBundle)localObject).putString("fb_mobile_launch_source", paramO);
+    ((BaseBundle)localObject).putString("fb_mobile_pckg_fp", a.a(paramContext));
+    ((BaseBundle)localObject).putString("fb_mobile_app_cert_hash", a.a(paramContext));
+    paramO = p1.e0.b;
+    paramString1 = paramO.b(paramString1, paramString2, null);
+    paramString1.d("fb_mobile_activate_app", (Bundle)localObject);
+    if (paramO.d() != o.b.f) {
+      paramString1.a();
+    }
+  }
+  
+  private final void d()
+  {
+    e2.e0.a localA = e2.e0.e;
+    u0 localU0 = u0.i;
+    String str = b;
+    db.l.b(str);
+    localA.b(localU0, str, "Clock skew detected");
+  }
+  
+  public static final void e(String paramString1, m paramM, String paramString2)
+  {
+    db.l.e(paramString1, "activityName");
+    if (paramM == null) {
+      return;
+    }
+    Object localObject1 = paramM.b();
+    long l3 = 0L;
+    if (localObject1 == null)
+    {
+      localObject1 = paramM.e();
+      if (localObject1 == null) {
+        l1 = 0L;
+      } else {
+        l1 = ((Long)localObject1).longValue();
+      }
+      l1 = 0L - l1;
+    }
+    else
+    {
+      l1 = ((Long)localObject1).longValue();
+    }
+    long l2 = l1;
+    if (l1 < 0L)
+    {
+      a.d();
+      l2 = 0L;
+    }
+    long l4 = paramM.f();
+    long l1 = l4;
+    if (l4 < 0L)
+    {
+      a.d();
+      l1 = 0L;
+    }
+    Bundle localBundle = new Bundle();
+    localBundle.putInt("fb_mobile_app_interruptions", paramM.c());
+    localObject1 = w.a;
+    localObject1 = String.format(Locale.ROOT, "session_quanta_%d", Arrays.copyOf(new Object[] { Integer.valueOf(b(l2)) }, 1));
+    db.l.d(localObject1, "java.lang.String.format(locale, format, *args)");
+    localBundle.putString("fb_mobile_time_between_sessions", (String)localObject1);
+    Object localObject2 = paramM.g();
+    localObject1 = "Unclassified";
+    if (localObject2 != null)
+    {
+      localObject2 = ((o)localObject2).toString();
+      if (localObject2 != null) {
+        localObject1 = localObject2;
+      }
+    }
+    localBundle.putString("fb_mobile_launch_source", (String)localObject1);
+    paramM = paramM.e();
+    if (paramM == null) {
+      l2 = l3;
+    } else {
+      l2 = paramM.longValue();
+    }
+    localBundle.putLong("_logTime", l2 / '?');
+    p1.e0.b.b(paramString1, paramString2, null).c("fb_mobile_deactivate_app", l1 / 1000L, localBundle);
+  }
+}

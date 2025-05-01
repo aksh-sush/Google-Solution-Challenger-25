@@ -1,0 +1,19 @@
+package com.google.android.gms.common.internal;
+
+import android.os.IInterface;
+import b4.a;
+import q3.h0;
+import q3.j0;
+import q3.l0;
+
+public abstract interface i1
+  extends IInterface
+{
+  public abstract j0 C(h0 paramH0);
+  
+  public abstract boolean f(l0 paramL0, a paramA);
+  
+  public abstract j0 p(h0 paramH0);
+  
+  public abstract boolean zzi();
+}

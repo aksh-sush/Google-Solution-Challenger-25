@@ -1,0 +1,92 @@
+package s8;
+
+public final class a
+{
+  private Float accuracy;
+  private Boolean bg;
+  private Double lat;
+  private Double log;
+  private Long timeStamp;
+  private Integer type;
+  
+  public a() {}
+  
+  public final Float getAccuracy()
+  {
+    return accuracy;
+  }
+  
+  public final Boolean getBg()
+  {
+    return bg;
+  }
+  
+  public final Double getLat()
+  {
+    return lat;
+  }
+  
+  public final Double getLog()
+  {
+    return log;
+  }
+  
+  public final Long getTimeStamp()
+  {
+    return timeStamp;
+  }
+  
+  public final Integer getType()
+  {
+    return type;
+  }
+  
+  public final void setAccuracy(Float paramFloat)
+  {
+    accuracy = paramFloat;
+  }
+  
+  public final void setBg(Boolean paramBoolean)
+  {
+    bg = paramBoolean;
+  }
+  
+  public final void setLat(Double paramDouble)
+  {
+    lat = paramDouble;
+  }
+  
+  public final void setLog(Double paramDouble)
+  {
+    log = paramDouble;
+  }
+  
+  public final void setTimeStamp(Long paramLong)
+  {
+    timeStamp = paramLong;
+  }
+  
+  public final void setType(Integer paramInteger)
+  {
+    type = paramInteger;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("LocationPoint{lat=");
+    localStringBuilder.append(lat);
+    localStringBuilder.append(", log=");
+    localStringBuilder.append(log);
+    localStringBuilder.append(", accuracy=");
+    localStringBuilder.append(accuracy);
+    localStringBuilder.append(", type=");
+    localStringBuilder.append(type);
+    localStringBuilder.append(", bg=");
+    localStringBuilder.append(bg);
+    localStringBuilder.append(", timeStamp=");
+    localStringBuilder.append(timeStamp);
+    localStringBuilder.append('}');
+    return localStringBuilder.toString();
+  }
+}

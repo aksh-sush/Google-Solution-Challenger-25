@@ -1,0 +1,87 @@
+package u3;
+
+import android.util.Log;
+import com.google.android.gms.common.internal.j;
+import java.util.Locale;
+
+public class a
+{
+  private final String a;
+  private final String b;
+  private final j c;
+  private final int d;
+  
+  public a(String paramString, String... paramVarArgs)
+  {
+    b = paramVarArgs;
+    a = paramString;
+    c = new j(paramString);
+    int i = 2;
+    while ((i <= 7) && (!Log.isLoggable(a, i))) {
+      i += 1;
+    }
+    d = i;
+  }
+  
+  public void a(String paramString, Object... paramVarArgs)
+  {
+    if (f(3)) {
+      Log.d(a, d(paramString, paramVarArgs));
+    }
+  }
+  
+  public void b(String paramString, Throwable paramThrowable, Object... paramVarArgs)
+  {
+    Log.e(a, d(paramString, paramVarArgs), paramThrowable);
+  }
+  
+  public void c(String paramString, Object... paramVarArgs)
+  {
+    Log.e(a, d(paramString, paramVarArgs));
+  }
+  
+  protected String d(String paramString, Object... paramVarArgs)
+  {
+    String str = paramString;
+    if (paramVarArgs != null)
+    {
+      str = paramString;
+      if (paramVarArgs.length > 0) {
+        str = String.format(Locale.US, paramString, paramVarArgs);
+      }
+    }
+    return b.concat(str);
+  }
+  
+  public void e(String paramString, Object... paramVarArgs)
+  {
+    Log.i(a, d(paramString, paramVarArgs));
+  }
+  
+  public boolean f(int paramInt)
+  {
+    return d <= paramInt;
+  }
+  
+  public void g(String paramString, Object... paramVarArgs)
+  {
+    if (f(2)) {
+      Log.v(a, d(paramString, paramVarArgs));
+    }
+  }
+  
+  public void h(String paramString, Object... paramVarArgs)
+  {
+    Log.w(a, d(paramString, paramVarArgs));
+  }
+  
+  public void i(String paramString, Throwable paramThrowable, Object... paramVarArgs)
+  {
+    Log.wtf(a, d(paramString, paramVarArgs), paramThrowable);
+  }
+  
+  public void j(Throwable paramThrowable)
+  {
+    Log.wtf(a, paramThrowable);
+  }
+}

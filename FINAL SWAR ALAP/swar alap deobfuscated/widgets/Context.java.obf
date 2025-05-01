@@ -1,0 +1,6 @@
+package sa;
+
+public abstract interface h
+{
+  public abstract Object getValue();
+}

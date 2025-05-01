@@ -1,0 +1,71 @@
+package va;
+
+import db.l;
+
+public abstract interface e
+  extends g.b
+{
+  public static final b d = b.e;
+  
+  public abstract d W(d paramD);
+  
+  public abstract void j0(d paramD);
+  
+  public static final abstract class a
+  {
+    public static g.b a(e paramE, g.c paramC)
+    {
+      l.e(paramC, "key");
+      boolean bool = paramC instanceof b;
+      Object localObject = null;
+      if (bool)
+      {
+        b localB = (b)paramC;
+        paramC = localObject;
+        if (localB.a(paramE.getKey()))
+        {
+          paramE = localB.b(paramE);
+          paramC = localObject;
+          if ((paramE instanceof g.b)) {
+            paramC = paramE;
+          }
+        }
+        return paramC;
+      }
+      if (e.d == paramC)
+      {
+        l.c(paramE, "null cannot be cast to non-null type E of kotlin.coroutines.ContinuationInterceptor.get");
+        return paramE;
+      }
+      return null;
+    }
+    
+    public static g b(e paramE, g.c paramC)
+    {
+      l.e(paramC, "key");
+      if ((paramC instanceof b))
+      {
+        b localB = (b)paramC;
+        paramC = paramE;
+        if (localB.a(paramE.getKey()))
+        {
+          paramC = paramE;
+          if (localB.b(paramE) != null) {
+            paramC = h.e;
+          }
+        }
+        return paramC;
+      }
+      if (e.d == paramC) {
+        paramE = h.e;
+      }
+      return paramE;
+    }
+  }
+  
+  public static final class b
+    implements g.c
+  {
+    private b() {}
+  }
+}

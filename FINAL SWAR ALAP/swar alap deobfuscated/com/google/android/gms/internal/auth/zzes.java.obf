@@ -1,0 +1,57 @@
+package com.google.android.gms.internal.auth;
+
+public class zzes<MessageType extends zzeu<MessageType, BuilderType>, BuilderType extends zzes<MessageType, BuilderType>>
+  extends zzdo<MessageType, BuilderType>
+{
+  protected zzeu zza;
+  protected boolean zzb;
+  private final zzeu zzc;
+  
+  protected zzes(MessageType paramMessageType)
+  {
+    zzc = paramMessageType;
+    zza = ((zzeu)paramMessageType.zzi(4, null, null));
+    zzb = false;
+  }
+  
+  private static final void zzj(zzeu paramZzeu1, zzeu paramZzeu2)
+  {
+    zzge.zza().zzb(paramZzeu1.getClass()).zzf(paramZzeu1, paramZzeu2);
+  }
+  
+  public final zzes zzd()
+  {
+    zzes localZzes = (zzes)zzc.zzi(5, null, null);
+    localZzes.zze(zzf());
+    return localZzes;
+  }
+  
+  public final zzes zze(zzeu paramZzeu)
+  {
+    if (zzb)
+    {
+      zzi();
+      zzb = false;
+    }
+    zzj(zza, paramZzeu);
+    return this;
+  }
+  
+  public MessageType zzf()
+  {
+    if (zzb) {
+      return zza;
+    }
+    zzeu localZzeu = zza;
+    zzge.zza().zzb(localZzeu.getClass()).zze(localZzeu);
+    zzb = true;
+    return zza;
+  }
+  
+  protected void zzi()
+  {
+    zzeu localZzeu = (zzeu)zza.zzi(4, null, null);
+    zzj(localZzeu, zza);
+    zza = localZzeu;
+  }
+}

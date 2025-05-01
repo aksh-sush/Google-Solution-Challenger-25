@@ -1,0 +1,96 @@
+package com.google.android.gms.common.internal;
+
+import android.os.BaseBundle;
+import android.os.Bundle;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+public abstract class q
+{
+  public static boolean a(Bundle paramBundle1, Bundle paramBundle2)
+  {
+    if ((paramBundle1 != null) && (paramBundle2 != null))
+    {
+      if (paramBundle1.size() != paramBundle2.size()) {
+        return false;
+      }
+      Object localObject = paramBundle1.keySet();
+      if (!((Set)localObject).containsAll(paramBundle2.keySet())) {
+        return false;
+      }
+      localObject = ((Set)localObject).iterator();
+      while (((Iterator)localObject).hasNext())
+      {
+        String str = (String)((Iterator)localObject).next();
+        if (!b(paramBundle1.get(str), paramBundle2.get(str))) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return paramBundle1 == paramBundle2;
+  }
+  
+  public static boolean b(Object paramObject1, Object paramObject2)
+  {
+    boolean bool = true;
+    if (paramObject1 != paramObject2)
+    {
+      if (paramObject1 != null) {
+        return paramObject1.equals(paramObject2);
+      }
+      bool = false;
+    }
+    return bool;
+  }
+  
+  public static int c(Object... paramVarArgs)
+  {
+    return Arrays.hashCode(paramVarArgs);
+  }
+  
+  public static a d(Object paramObject)
+  {
+    return new a(paramObject, null);
+  }
+  
+  public static final class a
+  {
+    private final List a;
+    private final Object b;
+    
+    public a a(String paramString, Object paramObject)
+    {
+      List localList = a;
+      s.k(paramString);
+      paramObject = String.valueOf(paramObject);
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append(paramString);
+      localStringBuilder.append("=");
+      localStringBuilder.append(paramObject);
+      localList.add(localStringBuilder.toString());
+      return this;
+    }
+    
+    public String toString()
+    {
+      StringBuilder localStringBuilder = new StringBuilder(100);
+      localStringBuilder.append(b.getClass().getSimpleName());
+      localStringBuilder.append('{');
+      int j = a.size();
+      int i = 0;
+      while (i < j)
+      {
+        localStringBuilder.append((String)a.get(i));
+        if (i < j - 1) {
+          localStringBuilder.append(", ");
+        }
+        i += 1;
+      }
+      localStringBuilder.append('}');
+      return localStringBuilder.toString();
+    }
+  }
+}

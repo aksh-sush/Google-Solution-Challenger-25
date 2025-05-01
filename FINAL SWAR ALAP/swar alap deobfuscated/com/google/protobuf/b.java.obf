@@ -1,0 +1,749 @@
+package com.google.protobuf;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+final class n
+  implements a2
+{
+  private final m a;
+  
+  private n(m paramM)
+  {
+    paramM = (m)c0.b(paramM, "output");
+    a = paramM;
+    a = this;
+  }
+  
+  public static n P(m paramM)
+  {
+    n localN = a;
+    if (localN != null) {
+      return localN;
+    }
+    return new n(paramM);
+  }
+  
+  private void Q(int paramInt, boolean paramBoolean, Object paramObject, m0.a paramA)
+  {
+    a.V0(paramInt, 2);
+    a.X0(m0.b(paramA, Boolean.valueOf(paramBoolean), paramObject));
+    m0.e(a, paramA, Boolean.valueOf(paramBoolean), paramObject);
+  }
+  
+  private void R(int paramInt, m0.a paramA, Map paramMap)
+  {
+    int k = paramMap.size();
+    int[] arrayOfInt = new int[k];
+    Object localObject = paramMap.keySet().iterator();
+    int j = 0;
+    int i = 0;
+    while (((Iterator)localObject).hasNext())
+    {
+      arrayOfInt[i] = ((Integer)((Iterator)localObject).next()).intValue();
+      i += 1;
+    }
+    Arrays.sort(arrayOfInt);
+    i = j;
+    while (i < k)
+    {
+      j = arrayOfInt[i];
+      localObject = paramMap.get(Integer.valueOf(j));
+      a.V0(paramInt, 2);
+      a.X0(m0.b(paramA, Integer.valueOf(j), localObject));
+      m0.e(a, paramA, Integer.valueOf(j), localObject);
+      i += 1;
+    }
+  }
+  
+  private void S(int paramInt, m0.a paramA, Map paramMap)
+  {
+    int k = paramMap.size();
+    long[] arrayOfLong = new long[k];
+    Object localObject = paramMap.keySet().iterator();
+    int j = 0;
+    int i = 0;
+    while (((Iterator)localObject).hasNext())
+    {
+      arrayOfLong[i] = ((Long)((Iterator)localObject).next()).longValue();
+      i += 1;
+    }
+    Arrays.sort(arrayOfLong);
+    i = j;
+    while (i < k)
+    {
+      long l = arrayOfLong[i];
+      localObject = paramMap.get(Long.valueOf(l));
+      a.V0(paramInt, 2);
+      a.X0(m0.b(paramA, Long.valueOf(l), localObject));
+      m0.e(a, paramA, Long.valueOf(l), localObject);
+      i += 1;
+    }
+  }
+  
+  private void T(int paramInt, m0.a paramA, Map paramMap)
+  {
+    switch (a.a[a.ordinal()])
+    {
+    default: 
+      paramMap = new StringBuilder();
+      paramMap.append("does not support key type: ");
+      paramMap.append(a);
+      throw new IllegalArgumentException(paramMap.toString());
+    case 12: 
+      U(paramInt, paramA, paramMap);
+      return;
+    case 7: 
+    case 8: 
+    case 9: 
+    case 10: 
+    case 11: 
+      S(paramInt, paramA, paramMap);
+      return;
+    case 2: 
+    case 3: 
+    case 4: 
+    case 5: 
+    case 6: 
+      R(paramInt, paramA, paramMap);
+      return;
+    }
+    Object localObject = paramMap.get(Boolean.FALSE);
+    if (localObject != null) {
+      Q(paramInt, false, localObject, paramA);
+    }
+    paramMap = paramMap.get(Boolean.TRUE);
+    if (paramMap != null) {
+      Q(paramInt, true, paramMap, paramA);
+    }
+  }
+  
+  private void U(int paramInt, m0.a paramA, Map paramMap)
+  {
+    int k = paramMap.size();
+    String[] arrayOfString = new String[k];
+    Object localObject1 = paramMap.keySet().iterator();
+    int j = 0;
+    int i = 0;
+    while (((Iterator)localObject1).hasNext())
+    {
+      arrayOfString[i] = ((String)((Iterator)localObject1).next());
+      i += 1;
+    }
+    Arrays.sort(arrayOfString);
+    i = j;
+    while (i < k)
+    {
+      localObject1 = arrayOfString[i];
+      Object localObject2 = paramMap.get(localObject1);
+      a.V0(paramInt, 2);
+      a.X0(m0.b(paramA, localObject1, localObject2));
+      m0.e(a, paramA, localObject1, localObject2);
+      i += 1;
+    }
+  }
+  
+  private void V(int paramInt, Object paramObject)
+  {
+    if ((paramObject instanceof String))
+    {
+      a.T0(paramInt, (String)paramObject);
+      return;
+    }
+    a.m0(paramInt, (j)paramObject);
+  }
+  
+  public void A(int paramInt, long paramLong)
+  {
+    a.u0(paramInt, paramLong);
+  }
+  
+  public a2.a B()
+  {
+    return a2.a.e;
+  }
+  
+  public void C(int paramInt, long paramLong)
+  {
+    a.R0(paramInt, paramLong);
+  }
+  
+  public void D(int paramInt, float paramFloat)
+  {
+    a.w0(paramInt, paramFloat);
+  }
+  
+  public void E(int paramInt, List paramList)
+  {
+    boolean bool = paramList instanceof i0;
+    int i = 0;
+    int j = 0;
+    if (bool)
+    {
+      i0 localI0 = (i0)paramList;
+      i = j;
+      while (i < paramList.size())
+      {
+        V(paramInt, localI0.G(i));
+        i += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.T0(paramInt, (String)paramList.get(i));
+      i += 1;
+    }
+  }
+  
+  public void F(int paramInt)
+  {
+    a.V0(paramInt, 4);
+  }
+  
+  public void G(int paramInt, String paramString)
+  {
+    a.T0(paramInt, paramString);
+  }
+  
+  public void H(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.O(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.Q0(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.P0(paramInt, ((Integer)paramList.get(i)).intValue());
+      i += 1;
+    }
+  }
+  
+  public void I(int paramInt, long paramLong)
+  {
+    a.Y0(paramInt, paramLong);
+  }
+  
+  public void J(int paramInt1, int paramInt2)
+  {
+    a.q0(paramInt1, paramInt2);
+  }
+  
+  public void K(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.z(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.F0(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.E0(paramInt, ((Long)paramList.get(i)).longValue());
+      i += 1;
+    }
+  }
+  
+  public void L(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.m(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.r0(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.q0(paramInt, ((Integer)paramList.get(i)).intValue());
+      i += 1;
+    }
+  }
+  
+  public void M(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.k(((Double)paramList.get(paramInt)).doubleValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.p0(((Double)paramList.get(paramInt)).doubleValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.o0(paramInt, ((Double)paramList.get(i)).doubleValue());
+      i += 1;
+    }
+  }
+  
+  public void N(int paramInt1, int paramInt2)
+  {
+    a.P0(paramInt1, paramInt2);
+  }
+  
+  public void O(int paramInt, List paramList)
+  {
+    int i = 0;
+    while (i < paramList.size())
+    {
+      a.m0(paramInt, (j)paramList.get(i));
+      i += 1;
+    }
+  }
+  
+  public void a(int paramInt, List paramList, l1 paramL1)
+  {
+    int i = 0;
+    while (i < paramList.size())
+    {
+      w(paramInt, paramList.get(i), paramL1);
+      i += 1;
+    }
+  }
+  
+  public void b(int paramInt, List paramList, l1 paramL1)
+  {
+    int i = 0;
+    while (i < paramList.size())
+    {
+      i(paramInt, paramList.get(i), paramL1);
+      i += 1;
+    }
+  }
+  
+  public void c(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.x(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.D0(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.C0(paramInt, ((Integer)paramList.get(i)).intValue());
+      i += 1;
+    }
+  }
+  
+  public void d(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.s(((Float)paramList.get(paramInt)).floatValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.x0(((Float)paramList.get(paramInt)).floatValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.w0(paramInt, ((Float)paramList.get(i)).floatValue());
+      i += 1;
+    }
+  }
+  
+  public void e(int paramInt, long paramLong)
+  {
+    a.E0(paramInt, paramLong);
+  }
+  
+  public void f(int paramInt, boolean paramBoolean)
+  {
+    a.i0(paramInt, paramBoolean);
+  }
+  
+  public void g(int paramInt1, int paramInt2)
+  {
+    a.W0(paramInt1, paramInt2);
+  }
+  
+  public final void h(int paramInt, Object paramObject)
+  {
+    if ((paramObject instanceof j))
+    {
+      a.J0(paramInt, (j)paramObject);
+      return;
+    }
+    a.I0(paramInt, (t0)paramObject);
+  }
+  
+  public void i(int paramInt, Object paramObject, l1 paramL1)
+  {
+    a.z0(paramInt, (t0)paramObject, paramL1);
+  }
+  
+  public void j(int paramInt1, int paramInt2)
+  {
+    a.L0(paramInt1, paramInt2);
+  }
+  
+  public void k(int paramInt)
+  {
+    a.V0(paramInt, 3);
+  }
+  
+  public void l(int paramInt, j paramJ)
+  {
+    a.m0(paramInt, paramJ);
+  }
+  
+  public void m(int paramInt1, int paramInt2)
+  {
+    a.C0(paramInt1, paramInt2);
+  }
+  
+  public void n(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.q(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.v0(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.u0(paramInt, ((Long)paramList.get(i)).longValue());
+      i += 1;
+    }
+  }
+  
+  public void o(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.K(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.M0(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.L0(paramInt, ((Integer)paramList.get(i)).intValue());
+      i += 1;
+    }
+  }
+  
+  public void p(int paramInt1, int paramInt2)
+  {
+    a.s0(paramInt1, paramInt2);
+  }
+  
+  public void q(int paramInt, double paramDouble)
+  {
+    a.o0(paramInt, paramDouble);
+  }
+  
+  public void r(int paramInt, long paramLong)
+  {
+    a.N0(paramInt, paramLong);
+  }
+  
+  public void s(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.M(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.O0(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.N0(paramInt, ((Long)paramList.get(i)).longValue());
+      i += 1;
+    }
+  }
+  
+  public void t(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.o(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.t0(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.s0(paramInt, ((Integer)paramList.get(i)).intValue());
+      i += 1;
+    }
+  }
+  
+  public void u(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.X(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.Z0(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.Y0(paramInt, ((Long)paramList.get(i)).longValue());
+      i += 1;
+    }
+  }
+  
+  public void v(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.f(((Boolean)paramList.get(paramInt)).booleanValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.j0(((Boolean)paramList.get(paramInt)).booleanValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.i0(paramInt, ((Boolean)paramList.get(i)).booleanValue());
+      i += 1;
+    }
+  }
+  
+  public void w(int paramInt, Object paramObject, l1 paramL1)
+  {
+    a.G0(paramInt, (t0)paramObject, paramL1);
+  }
+  
+  public void x(int paramInt, m0.a paramA, Map paramMap)
+  {
+    if (a.c0())
+    {
+      T(paramInt, paramA, paramMap);
+      return;
+    }
+    paramMap = paramMap.entrySet().iterator();
+    while (paramMap.hasNext())
+    {
+      Map.Entry localEntry = (Map.Entry)paramMap.next();
+      a.V0(paramInt, 2);
+      a.X0(m0.b(paramA, localEntry.getKey(), localEntry.getValue()));
+      m0.e(a, paramA, localEntry.getKey(), localEntry.getValue());
+    }
+  }
+  
+  public void y(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.V(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.X0(((Integer)paramList.get(paramInt)).intValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.W0(paramInt, ((Integer)paramList.get(i)).intValue());
+      i += 1;
+    }
+  }
+  
+  public void z(int paramInt, List paramList, boolean paramBoolean)
+  {
+    int i = 0;
+    int j = 0;
+    if (paramBoolean)
+    {
+      a.V0(paramInt, 2);
+      paramInt = 0;
+      i = 0;
+      while (paramInt < paramList.size())
+      {
+        i += m.Q(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+      a.X0(i);
+      paramInt = j;
+      while (paramInt < paramList.size())
+      {
+        a.S0(((Long)paramList.get(paramInt)).longValue());
+        paramInt += 1;
+      }
+    }
+    while (i < paramList.size())
+    {
+      a.R0(paramInt, ((Long)paramList.get(i)).longValue());
+      i += 1;
+    }
+  }
+}

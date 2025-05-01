@@ -1,0 +1,8 @@
+package androidx.appcompat.view;
+
+public abstract interface c
+{
+  public abstract void c();
+  
+  public abstract void f();
+}

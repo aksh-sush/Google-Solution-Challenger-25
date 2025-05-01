@@ -1,0 +1,10 @@
+package s9;
+
+public abstract interface a
+{
+  public abstract void addOutcome(String paramString);
+  
+  public abstract void addOutcomeWithValue(String paramString, float paramFloat);
+  
+  public abstract void addUniqueOutcome(String paramString);
+}

@@ -1,0 +1,258 @@
+package com.google.protobuf;
+
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeSet;
+
+abstract class v0
+{
+  private static final String a(String paramString)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    int i = 0;
+    while (i < paramString.length())
+    {
+      char c = paramString.charAt(i);
+      if (Character.isUpperCase(c)) {
+        localStringBuilder.append("_");
+      }
+      localStringBuilder.append(Character.toLowerCase(c));
+      i += 1;
+    }
+    return localStringBuilder.toString();
+  }
+  
+  private static boolean b(Object paramObject)
+  {
+    if ((paramObject instanceof Boolean)) {
+      return ((Boolean)paramObject).booleanValue() ^ true;
+    }
+    if ((paramObject instanceof Integer)) {
+      return ((Integer)paramObject).intValue() == 0;
+    }
+    if ((paramObject instanceof Float)) {
+      return ((Float)paramObject).floatValue() == 0.0F;
+    }
+    if ((paramObject instanceof Double)) {
+      return ((Double)paramObject).doubleValue() == 0.0D;
+    }
+    if ((paramObject instanceof String)) {}
+    for (Object localObject = "";; localObject = j.f)
+    {
+      return paramObject.equals(localObject);
+      if (!(paramObject instanceof j)) {
+        break;
+      }
+    }
+    if ((paramObject instanceof t0)) {
+      return paramObject == ((t0)paramObject).getDefaultInstanceForType();
+    }
+    if ((paramObject instanceof Enum)) {
+      return ((Enum)paramObject).ordinal() == 0;
+    }
+    return false;
+  }
+  
+  static final void c(StringBuilder paramStringBuilder, int paramInt, String paramString, Object paramObject)
+  {
+    if ((paramObject instanceof List))
+    {
+      paramObject = ((List)paramObject).iterator();
+      while (paramObject.hasNext()) {
+        c(paramStringBuilder, paramInt, paramString, paramObject.next());
+      }
+      return;
+    }
+    if ((paramObject instanceof Map))
+    {
+      paramObject = ((Map)paramObject).entrySet().iterator();
+      while (paramObject.hasNext()) {
+        c(paramStringBuilder, paramInt, paramString, (Map.Entry)paramObject.next());
+      }
+      return;
+    }
+    paramStringBuilder.append('\n');
+    int j = 0;
+    int k = 0;
+    int i = 0;
+    while (i < paramInt)
+    {
+      paramStringBuilder.append(' ');
+      i += 1;
+    }
+    paramStringBuilder.append(paramString);
+    if ((paramObject instanceof String)) {
+      paramStringBuilder.append(": \"");
+    }
+    for (paramString = q1.c((String)paramObject);; paramString = q1.a((j)paramObject))
+    {
+      paramStringBuilder.append(paramString);
+      paramStringBuilder.append('"');
+      return;
+      if (!(paramObject instanceof j)) {
+        break;
+      }
+      paramStringBuilder.append(": \"");
+    }
+    if ((paramObject instanceof z))
+    {
+      paramStringBuilder.append(" {");
+      d((z)paramObject, paramStringBuilder, paramInt + 2);
+      paramStringBuilder.append("\n");
+      i = k;
+      while (i < paramInt)
+      {
+        paramStringBuilder.append(' ');
+        i += 1;
+      }
+    }
+    for (;;)
+    {
+      paramStringBuilder.append("}");
+      return;
+      if (!(paramObject instanceof Map.Entry)) {
+        break;
+      }
+      paramStringBuilder.append(" {");
+      paramString = (Map.Entry)paramObject;
+      i = paramInt + 2;
+      c(paramStringBuilder, i, "key", paramString.getKey());
+      c(paramStringBuilder, i, "value", paramString.getValue());
+      paramStringBuilder.append("\n");
+      i = j;
+      while (i < paramInt)
+      {
+        paramStringBuilder.append(' ');
+        i += 1;
+      }
+    }
+    paramStringBuilder.append(": ");
+    paramStringBuilder.append(paramObject.toString());
+  }
+  
+  private static void d(t0 paramT0, StringBuilder paramStringBuilder, int paramInt)
+  {
+    HashMap localHashMap1 = new HashMap();
+    HashMap localHashMap2 = new HashMap();
+    Object localObject1 = new TreeSet();
+    Object localObject2 = paramT0.getClass().getDeclaredMethods();
+    int j = localObject2.length;
+    int i = 0;
+    while (i < j)
+    {
+      localObject3 = localObject2[i];
+      localHashMap2.put(((Method)localObject3).getName(), localObject3);
+      if (((Method)localObject3).getParameterTypes().length == 0)
+      {
+        localHashMap1.put(((Method)localObject3).getName(), localObject3);
+        if (((Method)localObject3).getName().startsWith("get")) {
+          ((Set)localObject1).add(((Method)localObject3).getName());
+        }
+      }
+      i += 1;
+    }
+    Object localObject3 = ((Set)localObject1).iterator();
+    while (((Iterator)localObject3).hasNext())
+    {
+      localObject2 = (String)((Iterator)localObject3).next();
+      if (((String)localObject2).startsWith("get")) {
+        localObject1 = ((String)localObject2).substring(3);
+      } else {
+        localObject1 = localObject2;
+      }
+      boolean bool2 = ((String)localObject1).endsWith("List");
+      boolean bool1 = true;
+      Object localObject4;
+      Object localObject5;
+      if ((bool2) && (!((String)localObject1).endsWith("OrBuilderList")) && (!((String)localObject1).equals("List")))
+      {
+        localObject4 = new StringBuilder();
+        ((StringBuilder)localObject4).append(((String)localObject1).substring(0, 1).toLowerCase());
+        ((StringBuilder)localObject4).append(((String)localObject1).substring(1, ((String)localObject1).length() - 4));
+        localObject4 = ((StringBuilder)localObject4).toString();
+        localObject5 = (Method)localHashMap1.get(localObject2);
+        if ((localObject5 != null) && (((Method)localObject5).getReturnType().equals(List.class)))
+        {
+          c(paramStringBuilder, paramInt, a((String)localObject4), z.invokeOrDie((Method)localObject5, paramT0, new Object[0]));
+          continue;
+        }
+      }
+      if ((((String)localObject1).endsWith("Map")) && (!((String)localObject1).equals("Map")))
+      {
+        localObject4 = new StringBuilder();
+        ((StringBuilder)localObject4).append(((String)localObject1).substring(0, 1).toLowerCase());
+        ((StringBuilder)localObject4).append(((String)localObject1).substring(1, ((String)localObject1).length() - 3));
+        localObject4 = ((StringBuilder)localObject4).toString();
+        localObject2 = (Method)localHashMap1.get(localObject2);
+        if ((localObject2 != null) && (((Method)localObject2).getReturnType().equals(Map.class)) && (!((AccessibleObject)localObject2).isAnnotationPresent(Deprecated.class)) && (Modifier.isPublic(((Method)localObject2).getModifiers())))
+        {
+          c(paramStringBuilder, paramInt, a((String)localObject4), z.invokeOrDie((Method)localObject2, paramT0, new Object[0]));
+          continue;
+        }
+      }
+      localObject2 = new StringBuilder();
+      ((StringBuilder)localObject2).append("set");
+      ((StringBuilder)localObject2).append((String)localObject1);
+      if ((Method)localHashMap2.get(((StringBuilder)localObject2).toString()) != null) {
+        if (((String)localObject1).endsWith("Bytes"))
+        {
+          localObject2 = new StringBuilder();
+          ((StringBuilder)localObject2).append("get");
+          ((StringBuilder)localObject2).append(((String)localObject1).substring(0, ((String)localObject1).length() - 5));
+          if (localHashMap1.containsKey(((StringBuilder)localObject2).toString())) {}
+        }
+        else
+        {
+          localObject2 = new StringBuilder();
+          ((StringBuilder)localObject2).append(((String)localObject1).substring(0, 1).toLowerCase());
+          ((StringBuilder)localObject2).append(((String)localObject1).substring(1));
+          localObject2 = ((StringBuilder)localObject2).toString();
+          localObject4 = new StringBuilder();
+          ((StringBuilder)localObject4).append("get");
+          ((StringBuilder)localObject4).append((String)localObject1);
+          localObject4 = (Method)localHashMap1.get(((StringBuilder)localObject4).toString());
+          localObject5 = new StringBuilder();
+          ((StringBuilder)localObject5).append("has");
+          ((StringBuilder)localObject5).append((String)localObject1);
+          localObject1 = (Method)localHashMap1.get(((StringBuilder)localObject5).toString());
+          if (localObject4 != null)
+          {
+            localObject4 = z.invokeOrDie((Method)localObject4, paramT0, new Object[0]);
+            if (localObject1 == null)
+            {
+              if (b(localObject4)) {
+                bool1 = false;
+              }
+            }
+            else {
+              bool1 = ((Boolean)z.invokeOrDie((Method)localObject1, paramT0, new Object[0])).booleanValue();
+            }
+            if (bool1) {
+              c(paramStringBuilder, paramInt, a((String)localObject2), localObject4);
+            }
+          }
+        }
+      }
+    }
+    paramT0 = unknownFields;
+    if (paramT0 != null) {
+      paramT0.p(paramStringBuilder, paramInt);
+    }
+  }
+  
+  static String e(t0 paramT0, String paramString)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("# ");
+    localStringBuilder.append(paramString);
+    d(paramT0, localStringBuilder, 0);
+    return localStringBuilder.toString();
+  }
+}

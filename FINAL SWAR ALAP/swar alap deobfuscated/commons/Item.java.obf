@@ -1,0 +1,7 @@
+package jb;
+
+import sa.c;
+
+public abstract interface d
+  extends a, c
+{}

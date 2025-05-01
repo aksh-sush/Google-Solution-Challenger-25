@@ -1,0 +1,35 @@
+package com.google.android.gms.common.internal;
+
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.g;
+import com.google.android.gms.common.api.h;
+import n4.i;
+import n4.j;
+
+public abstract class r
+{
+  private static final t0 a = new p0();
+  
+  public static i a(PendingResult paramPendingResult, g paramG)
+  {
+    return b(paramPendingResult, new r0(paramG));
+  }
+  
+  public static i b(PendingResult paramPendingResult, a paramA)
+  {
+    t0 localT0 = a;
+    j localJ = new j();
+    paramPendingResult.addStatusListener(new q0(paramPendingResult, localJ, paramA, localT0));
+    return localJ.a();
+  }
+  
+  public static i c(PendingResult paramPendingResult)
+  {
+    return b(paramPendingResult, new s0());
+  }
+  
+  public static abstract interface a
+  {
+    public abstract Object a(h paramH);
+  }
+}

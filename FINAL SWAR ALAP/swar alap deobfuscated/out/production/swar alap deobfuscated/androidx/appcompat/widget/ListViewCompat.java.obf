@@ -1,0 +1,664 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import androidx.core.widget.f;
+import h.c;
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+class p0
+  extends ListView
+{
+  private final Rect e = new Rect();
+  private int f = 0;
+  private int g = 0;
+  private int h = 0;
+  private int i = 0;
+  private int j;
+  private d k;
+  private boolean l;
+  private boolean m;
+  private boolean n;
+  private androidx.core.view.p0 o;
+  private f p;
+  f q;
+  
+  p0(Context paramContext, boolean paramBoolean)
+  {
+    super(paramContext, null, f.a.y);
+    m = paramBoolean;
+    setCacheColorHint(0);
+  }
+  
+  private void a()
+  {
+    n = false;
+    setPressed(false);
+    drawableStateChanged();
+    Object localObject = getChildAt(j - getFirstVisiblePosition());
+    if (localObject != null) {
+      ((View)localObject).setPressed(false);
+    }
+    localObject = o;
+    if (localObject != null)
+    {
+      ((androidx.core.view.p0)localObject).c();
+      o = null;
+    }
+  }
+  
+  private void b(View paramView, int paramInt)
+  {
+    performItemClick(paramView, paramInt, getItemIdAtPosition(paramInt));
+  }
+  
+  private void c(Canvas paramCanvas)
+  {
+    if (!e.isEmpty())
+    {
+      Drawable localDrawable = getSelector();
+      if (localDrawable != null)
+      {
+        localDrawable.setBounds(e);
+        localDrawable.draw(paramCanvas);
+      }
+    }
+  }
+  
+  private void f(int paramInt, View paramView)
+  {
+    Rect localRect = e;
+    localRect.set(paramView.getLeft(), paramView.getTop(), paramView.getRight(), paramView.getBottom());
+    left -= f;
+    top -= g;
+    right += h;
+    bottom += i;
+    boolean bool = k();
+    if (paramView.isEnabled() != bool)
+    {
+      l(bool ^ true);
+      if (paramInt != -1) {
+        refreshDrawableState();
+      }
+    }
+  }
+  
+  private void g(int paramInt, View paramView)
+  {
+    Drawable localDrawable = getSelector();
+    boolean bool = true;
+    int i1;
+    if ((localDrawable != null) && (paramInt != -1)) {
+      i1 = 1;
+    } else {
+      i1 = 0;
+    }
+    if (i1 != 0) {
+      localDrawable.setVisible(false, false);
+    }
+    f(paramInt, paramView);
+    if (i1 != 0)
+    {
+      paramView = e;
+      float f1 = paramView.exactCenterX();
+      float f2 = paramView.exactCenterY();
+      if (getVisibility() != 0) {
+        bool = false;
+      }
+      localDrawable.setVisible(bool, false);
+      androidx.core.graphics.drawable.a.k(localDrawable, f1, f2);
+    }
+  }
+  
+  private void h(int paramInt, View paramView, float paramFloat1, float paramFloat2)
+  {
+    g(paramInt, paramView);
+    paramView = getSelector();
+    if ((paramView != null) && (paramInt != -1)) {
+      androidx.core.graphics.drawable.a.k(paramView, paramFloat1, paramFloat2);
+    }
+  }
+  
+  private void i(View paramView, int paramInt, float paramFloat1, float paramFloat2)
+  {
+    n = true;
+    a.a(this, paramFloat1, paramFloat2);
+    if (!isPressed()) {
+      setPressed(true);
+    }
+    layoutChildren();
+    int i1 = j;
+    if (i1 != -1)
+    {
+      View localView = getChildAt(i1 - getFirstVisiblePosition());
+      if ((localView != null) && (localView != paramView) && (localView.isPressed())) {
+        localView.setPressed(false);
+      }
+    }
+    j = paramInt;
+    a.a(paramView, paramFloat1 - paramView.getLeft(), paramFloat2 - paramView.getTop());
+    if (!paramView.isPressed()) {
+      paramView.setPressed(true);
+    }
+    h(paramInt, paramView, paramFloat1, paramFloat2);
+    j(false);
+    refreshDrawableState();
+  }
+  
+  private void j(boolean paramBoolean)
+  {
+    d localD = k;
+    if (localD != null) {
+      localD.b(paramBoolean);
+    }
+  }
+  
+  private boolean k()
+  {
+    if (androidx.core.os.a.d()) {
+      return c.a(this);
+    }
+    return e.a(this);
+  }
+  
+  private void l(boolean paramBoolean)
+  {
+    if (androidx.core.os.a.d())
+    {
+      c.b(this, paramBoolean);
+      return;
+    }
+    e.b(this, paramBoolean);
+  }
+  
+  private boolean m()
+  {
+    return n;
+  }
+  
+  private void n()
+  {
+    Drawable localDrawable = getSelector();
+    if ((localDrawable != null) && (m()) && (isPressed())) {
+      localDrawable.setState(getDrawableState());
+    }
+  }
+  
+  public int d(int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5)
+  {
+    paramInt2 = getListPaddingTop();
+    paramInt3 = getListPaddingBottom();
+    int i1 = getDividerHeight();
+    Object localObject = getDivider();
+    ListAdapter localListAdapter = getAdapter();
+    paramInt3 = paramInt2 + paramInt3;
+    if (localListAdapter == null) {
+      return paramInt3;
+    }
+    if ((i1 <= 0) || (localObject == null)) {
+      i1 = 0;
+    }
+    int i6 = localListAdapter.getCount();
+    localObject = null;
+    int i2 = 0;
+    int i4 = 0;
+    int i5;
+    for (paramInt2 = 0; i2 < i6; paramInt2 = i5)
+    {
+      i5 = localListAdapter.getItemViewType(i2);
+      int i3 = i4;
+      if (i5 != i4)
+      {
+        localObject = null;
+        i3 = i5;
+      }
+      View localView = localListAdapter.getView(i2, (View)localObject, this);
+      ViewGroup.LayoutParams localLayoutParams = localView.getLayoutParams();
+      localObject = localLayoutParams;
+      if (localLayoutParams == null)
+      {
+        localObject = generateDefaultLayoutParams();
+        localView.setLayoutParams((ViewGroup.LayoutParams)localObject);
+      }
+      i4 = height;
+      if (i4 > 0) {
+        i4 = View.MeasureSpec.makeMeasureSpec(i4, 1073741824);
+      } else {
+        i4 = View.MeasureSpec.makeMeasureSpec(0, 0);
+      }
+      localView.measure(paramInt1, i4);
+      localView.forceLayout();
+      i4 = paramInt3;
+      if (i2 > 0) {
+        i4 = paramInt3 + i1;
+      }
+      paramInt3 = i4 + localView.getMeasuredHeight();
+      if (paramInt3 >= paramInt4)
+      {
+        paramInt1 = paramInt4;
+        if (paramInt5 >= 0)
+        {
+          paramInt1 = paramInt4;
+          if (i2 > paramInt5)
+          {
+            paramInt1 = paramInt4;
+            if (paramInt2 > 0)
+            {
+              paramInt1 = paramInt4;
+              if (paramInt3 != paramInt4) {
+                paramInt1 = paramInt2;
+              }
+            }
+          }
+        }
+        return paramInt1;
+      }
+      i5 = paramInt2;
+      if (paramInt5 >= 0)
+      {
+        i5 = paramInt2;
+        if (i2 >= paramInt5) {
+          i5 = paramInt3;
+        }
+      }
+      i2 += 1;
+      i4 = i3;
+      localObject = localView;
+    }
+    return paramInt3;
+  }
+  
+  protected void dispatchDraw(Canvas paramCanvas)
+  {
+    c(paramCanvas);
+    super.dispatchDraw(paramCanvas);
+  }
+  
+  protected void drawableStateChanged()
+  {
+    if (q != null) {
+      return;
+    }
+    super.drawableStateChanged();
+    j(true);
+    n();
+  }
+  
+  public boolean e(MotionEvent paramMotionEvent, int paramInt)
+  {
+    int i1 = paramMotionEvent.getActionMasked();
+    if (i1 != 1) {
+      if (i1 != 2) {
+        if (i1 == 3) {}
+      }
+    }
+    boolean bool;
+    for (;;)
+    {
+      paramInt = 0;
+      bool = true;
+      break;
+      label45:
+      do
+      {
+        paramInt = 0;
+        bool = false;
+        break;
+        bool = true;
+        break label45;
+        bool = false;
+        i2 = paramMotionEvent.findPointerIndex(paramInt);
+      } while (i2 < 0);
+      paramInt = (int)paramMotionEvent.getX(i2);
+      int i2 = (int)paramMotionEvent.getY(i2);
+      int i3 = pointToPosition(paramInt, i2);
+      if (i3 == -1)
+      {
+        paramInt = 1;
+        break;
+      }
+      View localView = getChildAt(i3 - getFirstVisiblePosition());
+      i(localView, i3, paramInt, i2);
+      if (i1 == 1) {
+        b(localView, i3);
+      }
+    }
+    if ((!bool) || (paramInt != 0)) {
+      a();
+    }
+    if (bool)
+    {
+      if (p == null) {
+        p = new f(this);
+      }
+      p.m(true);
+      p.onTouch(this, paramMotionEvent);
+      return bool;
+    }
+    paramMotionEvent = p;
+    if (paramMotionEvent != null) {
+      paramMotionEvent.m(false);
+    }
+    return bool;
+  }
+  
+  public boolean hasFocus()
+  {
+    return (m) || (super.hasFocus());
+  }
+  
+  public boolean hasWindowFocus()
+  {
+    return (m) || (super.hasWindowFocus());
+  }
+  
+  public boolean isFocused()
+  {
+    return (m) || (super.isFocused());
+  }
+  
+  public boolean isInTouchMode()
+  {
+    return ((m) && (l)) || (super.isInTouchMode());
+  }
+  
+  protected void onDetachedFromWindow()
+  {
+    q = null;
+    super.onDetachedFromWindow();
+  }
+  
+  public boolean onHoverEvent(MotionEvent paramMotionEvent)
+  {
+    int i1 = Build.VERSION.SDK_INT;
+    if (i1 < 26) {
+      return super.onHoverEvent(paramMotionEvent);
+    }
+    int i2 = paramMotionEvent.getActionMasked();
+    if ((i2 == 10) && (q == null))
+    {
+      f localF = new f();
+      q = localF;
+      localF.b();
+    }
+    boolean bool = super.onHoverEvent(paramMotionEvent);
+    if ((i2 != 9) && (i2 != 7))
+    {
+      setSelection(-1);
+      return bool;
+    }
+    i2 = pointToPosition((int)paramMotionEvent.getX(), (int)paramMotionEvent.getY());
+    if ((i2 != -1) && (i2 != getSelectedItemPosition()))
+    {
+      paramMotionEvent = getChildAt(i2 - getFirstVisiblePosition());
+      if (paramMotionEvent.isEnabled())
+      {
+        requestFocus();
+        if ((i1 >= 30) && (b.a())) {
+          b.b(this, i2, paramMotionEvent);
+        } else {
+          setSelectionFromTop(i2, paramMotionEvent.getTop() - getTop());
+        }
+      }
+      n();
+    }
+    return bool;
+  }
+  
+  public boolean onTouchEvent(MotionEvent paramMotionEvent)
+  {
+    if (paramMotionEvent.getAction() == 0) {
+      j = pointToPosition((int)paramMotionEvent.getX(), (int)paramMotionEvent.getY());
+    }
+    f localF = q;
+    if (localF != null) {
+      localF.a();
+    }
+    return super.onTouchEvent(paramMotionEvent);
+  }
+  
+  void setListSelectionHidden(boolean paramBoolean)
+  {
+    l = paramBoolean;
+  }
+  
+  public void setSelector(Drawable paramDrawable)
+  {
+    if (paramDrawable != null) {
+      localObject = new d(paramDrawable);
+    } else {
+      localObject = null;
+    }
+    k = ((d)localObject);
+    super.setSelector((Drawable)localObject);
+    Object localObject = new Rect();
+    if (paramDrawable != null) {
+      paramDrawable.getPadding((Rect)localObject);
+    }
+    f = left;
+    g = top;
+    h = right;
+    i = bottom;
+  }
+  
+  static abstract class a
+  {
+    static void a(View paramView, float paramFloat1, float paramFloat2)
+    {
+      paramView.drawableHotspotChanged(paramFloat1, paramFloat2);
+    }
+  }
+  
+  static abstract class b
+  {
+    private static Method a;
+    private static Method b;
+    private static Method c;
+    private static boolean d;
+    
+    static
+    {
+      try
+      {
+        Object localObject1 = Integer.TYPE;
+        Object localObject2 = Boolean.TYPE;
+        Class localClass = Float.TYPE;
+        localObject2 = AbsListView.class.getDeclaredMethod("positionSelector", new Class[] { localObject1, View.class, localObject2, localClass, localClass });
+        a = (Method)localObject2;
+        ((AccessibleObject)localObject2).setAccessible(true);
+        localObject2 = AdapterView.class.getDeclaredMethod("setSelectedPositionInt", new Class[] { localObject1 });
+        b = (Method)localObject2;
+        ((AccessibleObject)localObject2).setAccessible(true);
+        localObject1 = AdapterView.class.getDeclaredMethod("setNextSelectedPositionInt", new Class[] { localObject1 });
+        c = (Method)localObject1;
+        ((AccessibleObject)localObject1).setAccessible(true);
+        d = true;
+        return;
+      }
+      catch (NoSuchMethodException localNoSuchMethodException)
+      {
+        localNoSuchMethodException.printStackTrace();
+      }
+    }
+    
+    static boolean a()
+    {
+      return d;
+    }
+    
+    static void b(p0 paramP0, int paramInt, View paramView)
+    {
+      try
+      {
+        a.invoke(paramP0, new Object[] { Integer.valueOf(paramInt), paramView, Boolean.FALSE, Integer.valueOf(-1), Integer.valueOf(-1) });
+        b.invoke(paramP0, new Object[] { Integer.valueOf(paramInt) });
+        c.invoke(paramP0, new Object[] { Integer.valueOf(paramInt) });
+        return;
+      }
+      catch (InvocationTargetException paramP0) {}catch (IllegalAccessException paramP0) {}
+      paramP0.printStackTrace();
+    }
+  }
+  
+  static abstract class c
+  {
+    static boolean a(AbsListView paramAbsListView)
+    {
+      return paramAbsListView.isSelectedChildViewEnabled();
+    }
+    
+    static void b(AbsListView paramAbsListView, boolean paramBoolean)
+    {
+      paramAbsListView.setSelectedChildViewEnabled(paramBoolean);
+    }
+  }
+  
+  private static class d
+    extends c
+  {
+    private boolean f = true;
+    
+    d(Drawable paramDrawable)
+    {
+      super();
+    }
+    
+    void b(boolean paramBoolean)
+    {
+      f = paramBoolean;
+    }
+    
+    public void draw(Canvas paramCanvas)
+    {
+      if (f) {
+        super.draw(paramCanvas);
+      }
+    }
+    
+    public void setHotspot(float paramFloat1, float paramFloat2)
+    {
+      if (f) {
+        super.setHotspot(paramFloat1, paramFloat2);
+      }
+    }
+    
+    public void setHotspotBounds(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+    {
+      if (f) {
+        super.setHotspotBounds(paramInt1, paramInt2, paramInt3, paramInt4);
+      }
+    }
+    
+    public boolean setState(int[] paramArrayOfInt)
+    {
+      if (f) {
+        return super.setState(paramArrayOfInt);
+      }
+      return false;
+    }
+    
+    public boolean setVisible(boolean paramBoolean1, boolean paramBoolean2)
+    {
+      if (f) {
+        return super.setVisible(paramBoolean1, paramBoolean2);
+      }
+      return false;
+    }
+  }
+  
+  static abstract class e
+  {
+    private static final Field a;
+    
+    static
+    {
+      Object localObject = null;
+      try
+      {
+        Field localField = AbsListView.class.getDeclaredField("mIsChildViewEnabled");
+        localObject = localField;
+        localField.setAccessible(true);
+        localObject = localField;
+      }
+      catch (NoSuchFieldException localNoSuchFieldException)
+      {
+        localNoSuchFieldException.printStackTrace();
+      }
+      a = localObject;
+    }
+    
+    static boolean a(AbsListView paramAbsListView)
+    {
+      Field localField = a;
+      if (localField != null) {
+        try
+        {
+          boolean bool = localField.getBoolean(paramAbsListView);
+          return bool;
+        }
+        catch (IllegalAccessException paramAbsListView)
+        {
+          paramAbsListView.printStackTrace();
+        }
+      }
+      return false;
+    }
+    
+    static void b(AbsListView paramAbsListView, boolean paramBoolean)
+    {
+      Field localField = a;
+      if (localField != null) {
+        try
+        {
+          localField.set(paramAbsListView, Boolean.valueOf(paramBoolean));
+          return;
+        }
+        catch (IllegalAccessException paramAbsListView)
+        {
+          paramAbsListView.printStackTrace();
+        }
+      }
+    }
+  }
+  
+  private class f
+    implements Runnable
+  {
+    f() {}
+    
+    public void a()
+    {
+      p0 localP0 = p0.this;
+      q = null;
+      localP0.removeCallbacks(this);
+    }
+    
+    public void b()
+    {
+      post(this);
+    }
+    
+    public void run()
+    {
+      p0 localP0 = p0.this;
+      q = null;
+      localP0.drawableStateChanged();
+    }
+  }
+}

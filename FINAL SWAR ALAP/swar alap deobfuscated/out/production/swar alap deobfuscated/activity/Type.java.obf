@@ -1,0 +1,30 @@
+package va;
+
+public abstract class b
+  implements g.c
+{
+  private final cb.l e;
+  private final g.c f;
+  
+  public b(g.c paramC, cb.l paramL)
+  {
+    e = paramL;
+    paramL = paramC;
+    if ((paramC instanceof b)) {
+      paramL = f;
+    }
+    f = paramL;
+  }
+  
+  public final boolean a(g.c paramC)
+  {
+    db.l.e(paramC, "key");
+    return (paramC == this) || (f == paramC);
+  }
+  
+  public final g.b b(g.b paramB)
+  {
+    db.l.e(paramB, "element");
+    return (g.b)e.invoke(paramB);
+  }
+}

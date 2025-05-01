@@ -1,0 +1,61 @@
+package com.google.android.gms.internal.auth;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Looper;
+import android.text.TextUtils;
+import com.google.android.gms.common.api.internal.g;
+import com.google.android.gms.common.api.internal.o;
+import com.google.android.gms.common.internal.d;
+import com.google.android.gms.common.internal.h;
+import h3.b;
+import h3.c;
+import java.util.Set;
+
+public final class zzbe
+  extends h
+{
+  private final Bundle zze;
+  
+  public zzbe(Context paramContext, Looper paramLooper, d paramD, c paramC, g paramG, o paramO)
+  {
+    super(paramContext, paramLooper, 16, paramD, paramG, paramO);
+    if (paramC == null) {
+      paramContext = new Bundle();
+    } else {
+      paramContext = paramC.a();
+    }
+    zze = paramContext;
+  }
+  
+  protected final Bundle getGetServiceRequestExtraArgs()
+  {
+    return zze;
+  }
+  
+  public final int getMinApkVersion()
+  {
+    return 12451000;
+  }
+  
+  protected final String getServiceDescriptor()
+  {
+    return "com.google.android.gms.auth.api.internal.IAuthService";
+  }
+  
+  protected final String getStartServiceAction()
+  {
+    return "com.google.android.gms.auth.service.START";
+  }
+  
+  public final boolean requiresSignIn()
+  {
+    d localD = getClientSettings();
+    return (!TextUtils.isEmpty(localD.b())) && (!localD.e(b.a).isEmpty());
+  }
+  
+  public final boolean usesClientTelemetry()
+  {
+    return true;
+  }
+}

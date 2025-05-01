@@ -1,0 +1,34 @@
+package com.google.android.gms.internal.auth;
+
+public enum zzho
+{
+  private final Object zzk;
+  
+  static
+  {
+    zzho localZzho1 = new zzho("INT", 0, Integer.valueOf(0));
+    zza = localZzho1;
+    zzho localZzho2 = new zzho("LONG", 1, Long.valueOf(0L));
+    zzb = localZzho2;
+    zzho localZzho3 = new zzho("FLOAT", 2, Float.valueOf(0.0F));
+    zzc = localZzho3;
+    zzho localZzho4 = new zzho("DOUBLE", 3, Double.valueOf(0.0D));
+    zzd = localZzho4;
+    zzho localZzho5 = new zzho("BOOLEAN", 4, Boolean.FALSE);
+    zze = localZzho5;
+    zzho localZzho6 = new zzho("STRING", 5, "");
+    zzf = localZzho6;
+    zzho localZzho7 = new zzho("BYTE_STRING", 6, zzee.zzb);
+    zzg = localZzho7;
+    zzho localZzho8 = new zzho("ENUM", 7, null);
+    zzh = localZzho8;
+    zzho localZzho9 = new zzho("MESSAGE", 8, null);
+    zzi = localZzho9;
+    zzj = new zzho[] { localZzho1, localZzho2, localZzho3, localZzho4, localZzho5, localZzho6, localZzho7, localZzho8, localZzho9 };
+  }
+  
+  private zzho(Object paramObject)
+  {
+    zzk = paramObject;
+  }
+}

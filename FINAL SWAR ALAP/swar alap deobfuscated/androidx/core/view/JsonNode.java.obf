@@ -1,0 +1,197 @@
+package androidx.core.view;
+
+import android.view.View;
+import android.view.ViewGroup;
+import cb.p;
+import db.l;
+import eb.a;
+import java.util.Iterator;
+import kb.e;
+import kotlin.coroutines.jvm.internal.k;
+import sa.o;
+import sa.t;
+
+public abstract class l0
+{
+  public static final kb.b a(ViewGroup paramViewGroup)
+  {
+    l.e(paramViewGroup, "<this>");
+    return new a(paramViewGroup);
+  }
+  
+  public static final kb.b b(ViewGroup paramViewGroup)
+  {
+    l.e(paramViewGroup, "<this>");
+    return e.b(new b(paramViewGroup, null));
+  }
+  
+  public static final Iterator c(ViewGroup paramViewGroup)
+  {
+    l.e(paramViewGroup, "<this>");
+    return new c(paramViewGroup);
+  }
+  
+  public static final class a
+    implements kb.b
+  {
+    a(ViewGroup paramViewGroup) {}
+    
+    public Iterator iterator()
+    {
+      return l0.c(a);
+    }
+  }
+  
+  static final class b
+    extends k
+    implements p
+  {
+    Object f;
+    Object g;
+    int h;
+    int i;
+    int j;
+    
+    b(ViewGroup paramViewGroup, va.d paramD)
+    {
+      super(paramD);
+    }
+    
+    public final Object a(kb.d paramD, va.d paramD1)
+    {
+      return ((b)create(paramD, paramD1)).invokeSuspend(t.a);
+    }
+    
+    public final va.d create(Object paramObject, va.d paramD)
+    {
+      paramD = new b(l, paramD);
+      k = paramObject;
+      return paramD;
+    }
+    
+    public final Object invokeSuspend(Object paramObject)
+    {
+      Object localObject4 = wa.b.c();
+      int m = j;
+      int n;
+      Object localObject3;
+      Object localObject1;
+      Object localObject2;
+      View localView;
+      if (m != 0)
+      {
+        if (m != 1)
+        {
+          if (m == 2)
+          {
+            n = i;
+            m = h;
+            localObject3 = (ViewGroup)f;
+            localObject1 = (kb.d)k;
+            o.b(paramObject);
+            localObject2 = this;
+            paramObject = localObject3;
+            break label322;
+          }
+          throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+        }
+        n = i;
+        m = h;
+        localView = (View)g;
+        localObject2 = (ViewGroup)f;
+        localObject3 = (kb.d)k;
+        o.b(paramObject);
+        localObject1 = this;
+        paramObject = localObject3;
+      }
+      else
+      {
+        o.b(paramObject);
+        localObject2 = (kb.d)k;
+        paramObject = l;
+        n = paramObject.getChildCount();
+        m = 0;
+        localObject1 = this;
+      }
+      while (m < n)
+      {
+        localView = paramObject.getChildAt(m);
+        l.d(localView, "getChildAt(index)");
+        k = localObject2;
+        f = paramObject;
+        g = localView;
+        h = m;
+        i = n;
+        j = 1;
+        if (((kb.d)localObject2).c(localView, (va.d)localObject1) == localObject4) {
+          return localObject4;
+        }
+        localObject3 = paramObject;
+        paramObject = localObject2;
+        localObject2 = localObject3;
+        if ((localView instanceof ViewGroup))
+        {
+          localObject3 = l0.b((ViewGroup)localView);
+          k = paramObject;
+          f = localObject2;
+          g = null;
+          h = m;
+          i = n;
+          j = 2;
+          if (paramObject.g((kb.b)localObject3, (va.d)localObject1) == localObject4) {
+            return localObject4;
+          }
+          localObject3 = localObject2;
+          localObject2 = localObject1;
+          localObject1 = paramObject;
+          paramObject = localObject3;
+          label322:
+          localObject3 = localObject1;
+          localObject1 = localObject2;
+          localObject2 = localObject3;
+        }
+        else
+        {
+          localObject3 = localObject2;
+          localObject2 = paramObject;
+          paramObject = localObject3;
+        }
+        m += 1;
+      }
+      return t.a;
+    }
+  }
+  
+  public static final class c
+    implements Iterator, a
+  {
+    private int e;
+    
+    c(ViewGroup paramViewGroup) {}
+    
+    public View b()
+    {
+      Object localObject = f;
+      int i = e;
+      e = (i + 1);
+      localObject = ((ViewGroup)localObject).getChildAt(i);
+      if (localObject != null) {
+        return localObject;
+      }
+      throw new IndexOutOfBoundsException();
+    }
+    
+    public boolean hasNext()
+    {
+      return e < f.getChildCount();
+    }
+    
+    public void remove()
+    {
+      ViewGroup localViewGroup = f;
+      int i = e - 1;
+      e = i;
+      localViewGroup.removeViewAt(i);
+    }
+  }
+}

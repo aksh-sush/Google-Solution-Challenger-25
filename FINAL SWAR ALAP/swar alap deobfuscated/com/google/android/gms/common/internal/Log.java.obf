@@ -1,0 +1,147 @@
+package com.google.android.gms.common.internal;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
+import y3.t;
+
+public abstract class s
+{
+  public static void a(boolean paramBoolean)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalArgumentException();
+  }
+  
+  public static void b(boolean paramBoolean, Object paramObject)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalArgumentException(String.valueOf(paramObject));
+  }
+  
+  public static void c(boolean paramBoolean, String paramString, Object... paramVarArgs)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalArgumentException(String.format(paramString, paramVarArgs));
+  }
+  
+  public static void d(Handler paramHandler)
+  {
+    Object localObject = Looper.myLooper();
+    if (localObject != paramHandler.getLooper())
+    {
+      if (localObject != null) {
+        localObject = ((Looper)localObject).getThread().getName();
+      } else {
+        localObject = "null current looper";
+      }
+      paramHandler = paramHandler.getLooper().getThread().getName();
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Must be called on ");
+      localStringBuilder.append(paramHandler);
+      localStringBuilder.append(" thread, but got ");
+      localStringBuilder.append((String)localObject);
+      localStringBuilder.append(".");
+      throw new IllegalStateException(localStringBuilder.toString());
+    }
+  }
+  
+  public static void e(Handler paramHandler, String paramString)
+  {
+    if (Looper.myLooper() == paramHandler.getLooper()) {
+      return;
+    }
+    throw new IllegalStateException(paramString);
+  }
+  
+  public static void f(String paramString)
+  {
+    if (t.a()) {
+      return;
+    }
+    throw new IllegalStateException(paramString);
+  }
+  
+  public static String g(String paramString)
+  {
+    if (!TextUtils.isEmpty(paramString)) {
+      return paramString;
+    }
+    throw new IllegalArgumentException("Given String is empty or null");
+  }
+  
+  public static String h(String paramString, Object paramObject)
+  {
+    if (!TextUtils.isEmpty(paramString)) {
+      return paramString;
+    }
+    throw new IllegalArgumentException(String.valueOf(paramObject));
+  }
+  
+  public static void i()
+  {
+    j("Must not be called on the main application thread");
+  }
+  
+  public static void j(String paramString)
+  {
+    if (!t.a()) {
+      return;
+    }
+    throw new IllegalStateException(paramString);
+  }
+  
+  public static Object k(Object paramObject)
+  {
+    if (paramObject != null) {
+      return paramObject;
+    }
+    throw new NullPointerException("null reference");
+  }
+  
+  public static Object l(Object paramObject1, Object paramObject2)
+  {
+    if (paramObject1 != null) {
+      return paramObject1;
+    }
+    throw new NullPointerException(String.valueOf(paramObject2));
+  }
+  
+  public static int m(int paramInt)
+  {
+    if (paramInt != 0) {
+      return paramInt;
+    }
+    throw new IllegalArgumentException("Given Integer is zero");
+  }
+  
+  public static void n(boolean paramBoolean)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalStateException();
+  }
+  
+  public static void o(boolean paramBoolean, Object paramObject)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalStateException(String.valueOf(paramObject));
+  }
+  
+  public static void p(boolean paramBoolean, String paramString, Object... paramVarArgs)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalStateException(String.format(paramString, paramVarArgs));
+  }
+}

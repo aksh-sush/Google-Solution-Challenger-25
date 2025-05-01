@@ -1,0 +1,180 @@
+package com.google.protobuf;
+
+import java.util.AbstractMap;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public final class n0
+  extends LinkedHashMap
+{
+  private static final n0 f;
+  private boolean e = true;
+  
+  static
+  {
+    n0 localN0 = new n0();
+    f = localN0;
+    localN0.i();
+  }
+  
+  private n0() {}
+  
+  private n0(Map paramMap)
+  {
+    super(paramMap);
+  }
+  
+  static int a(Map paramMap)
+  {
+    paramMap = paramMap.entrySet().iterator();
+    int i = 0;
+    while (paramMap.hasNext())
+    {
+      Map.Entry localEntry = (Map.Entry)paramMap.next();
+      int j = b(localEntry.getKey());
+      i += (b(localEntry.getValue()) ^ j);
+    }
+    return i;
+  }
+  
+  private static int b(Object paramObject)
+  {
+    if ((paramObject instanceof byte[])) {
+      return c0.d((byte[])paramObject);
+    }
+    if (!(paramObject instanceof c0.c)) {
+      return paramObject.hashCode();
+    }
+    throw new UnsupportedOperationException();
+  }
+  
+  private static void c(Map paramMap)
+  {
+    Iterator localIterator = paramMap.keySet().iterator();
+    while (localIterator.hasNext())
+    {
+      Object localObject = localIterator.next();
+      c0.a(localObject);
+      c0.a(paramMap.get(localObject));
+    }
+  }
+  
+  public static n0 d()
+  {
+    return f;
+  }
+  
+  private void e()
+  {
+    if (h()) {
+      return;
+    }
+    throw new UnsupportedOperationException();
+  }
+  
+  private static boolean f(Object paramObject1, Object paramObject2)
+  {
+    if (((paramObject1 instanceof byte[])) && ((paramObject2 instanceof byte[]))) {
+      return Arrays.equals((byte[])paramObject1, (byte[])paramObject2);
+    }
+    return paramObject1.equals(paramObject2);
+  }
+  
+  static boolean g(Map paramMap1, Map paramMap2)
+  {
+    if (paramMap1 == paramMap2) {
+      return true;
+    }
+    if (paramMap1.size() != paramMap2.size()) {
+      return false;
+    }
+    paramMap1 = paramMap1.entrySet().iterator();
+    while (paramMap1.hasNext())
+    {
+      Map.Entry localEntry = (Map.Entry)paramMap1.next();
+      if (!paramMap2.containsKey(localEntry.getKey())) {
+        return false;
+      }
+      if (!f(localEntry.getValue(), paramMap2.get(localEntry.getKey()))) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public void clear()
+  {
+    e();
+    super.clear();
+  }
+  
+  public Set entrySet()
+  {
+    if (isEmpty()) {
+      return Collections.emptySet();
+    }
+    return super.entrySet();
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    return ((paramObject instanceof Map)) && (g(this, (Map)paramObject));
+  }
+  
+  public boolean h()
+  {
+    return e;
+  }
+  
+  public int hashCode()
+  {
+    return a(this);
+  }
+  
+  public void i()
+  {
+    e = false;
+  }
+  
+  public void j(n0 paramN0)
+  {
+    e();
+    if (!paramN0.isEmpty()) {
+      putAll(paramN0);
+    }
+  }
+  
+  public n0 k()
+  {
+    if (isEmpty()) {
+      return new n0();
+    }
+    return new n0(this);
+  }
+  
+  public Object put(Object paramObject1, Object paramObject2)
+  {
+    e();
+    c0.a(paramObject1);
+    c0.a(paramObject2);
+    return super.put(paramObject1, paramObject2);
+  }
+  
+  public void putAll(Map paramMap)
+  {
+    e();
+    c(paramMap);
+    super.putAll(paramMap);
+  }
+  
+  public Object remove(Object paramObject)
+  {
+    e();
+    return super.remove(paramObject);
+  }
+}

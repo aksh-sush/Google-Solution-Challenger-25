@@ -1,0 +1,12 @@
+package com.google.android.gms.internal.auth;
+
+import android.os.IInterface;
+import m3.c;
+
+public abstract interface zzbg
+  extends IInterface
+{
+  public abstract void zzb(c paramC);
+  
+  public abstract void zzc(String paramString);
+}

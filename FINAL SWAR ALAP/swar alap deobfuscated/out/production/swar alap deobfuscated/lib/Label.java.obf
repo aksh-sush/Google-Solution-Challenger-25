@@ -1,0 +1,169 @@
+package x1;
+
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
+import com.facebook.i0;
+import db.l;
+import java.util.UUID;
+
+public final class m
+{
+  public static final a g = new a(null);
+  private final Long a;
+  private Long b;
+  private UUID c;
+  private int d;
+  private Long e;
+  private o f;
+  
+  public m(Long paramLong1, Long paramLong2, UUID paramUUID)
+  {
+    a = paramLong1;
+    b = paramLong2;
+    c = paramUUID;
+  }
+  
+  public final Long b()
+  {
+    Long localLong2 = e;
+    Long localLong1 = localLong2;
+    if (localLong2 == null) {
+      localLong1 = Long.valueOf(0L);
+    }
+    return localLong1;
+  }
+  
+  public final int c()
+  {
+    return d;
+  }
+  
+  public final UUID d()
+  {
+    return c;
+  }
+  
+  public final Long e()
+  {
+    return b;
+  }
+  
+  public final long f()
+  {
+    if (a != null)
+    {
+      Long localLong = b;
+      if (localLong != null)
+      {
+        if (localLong != null) {
+          return localLong.longValue() - a.longValue();
+        }
+        throw new IllegalStateException("Required value was null.".toString());
+      }
+    }
+    return 0L;
+  }
+  
+  public final o g()
+  {
+    return f;
+  }
+  
+  public final void h()
+  {
+    d += 1;
+  }
+  
+  public final void i(Long paramLong)
+  {
+    e = paramLong;
+  }
+  
+  public final void j(UUID paramUUID)
+  {
+    l.e(paramUUID, "<set-?>");
+    c = paramUUID;
+  }
+  
+  public final void k(Long paramLong)
+  {
+    b = paramLong;
+  }
+  
+  public final void l(o paramO)
+  {
+    f = paramO;
+  }
+  
+  public final void m()
+  {
+    Object localObject = PreferenceManager.getDefaultSharedPreferences(i0.l()).edit();
+    Long localLong = a;
+    long l2 = 0L;
+    long l1;
+    if (localLong == null) {
+      l1 = 0L;
+    } else {
+      l1 = localLong.longValue();
+    }
+    ((SharedPreferences.Editor)localObject).putLong("com.facebook.appevents.SessionInfo.sessionStartTime", l1);
+    localLong = b;
+    if (localLong == null) {
+      l1 = l2;
+    } else {
+      l1 = localLong.longValue();
+    }
+    ((SharedPreferences.Editor)localObject).putLong("com.facebook.appevents.SessionInfo.sessionEndTime", l1);
+    ((SharedPreferences.Editor)localObject).putInt("com.facebook.appevents.SessionInfo.interruptionCount", d);
+    ((SharedPreferences.Editor)localObject).putString("com.facebook.appevents.SessionInfo.sessionId", c.toString());
+    ((SharedPreferences.Editor)localObject).apply();
+    localObject = f;
+    if (localObject != null)
+    {
+      if (localObject == null) {
+        return;
+      }
+      ((o)localObject).a();
+    }
+  }
+  
+  public static final class a
+  {
+    private a() {}
+    
+    public final void a()
+    {
+      SharedPreferences.Editor localEditor = PreferenceManager.getDefaultSharedPreferences(i0.l()).edit();
+      localEditor.remove("com.facebook.appevents.SessionInfo.sessionStartTime");
+      localEditor.remove("com.facebook.appevents.SessionInfo.sessionEndTime");
+      localEditor.remove("com.facebook.appevents.SessionInfo.interruptionCount");
+      localEditor.remove("com.facebook.appevents.SessionInfo.sessionId");
+      localEditor.apply();
+      o.c.a();
+    }
+    
+    public final m b()
+    {
+      Object localObject = PreferenceManager.getDefaultSharedPreferences(i0.l());
+      long l1 = ((SharedPreferences)localObject).getLong("com.facebook.appevents.SessionInfo.sessionStartTime", 0L);
+      long l2 = ((SharedPreferences)localObject).getLong("com.facebook.appevents.SessionInfo.sessionEndTime", 0L);
+      String str = ((SharedPreferences)localObject).getString("com.facebook.appevents.SessionInfo.sessionId", null);
+      if ((l1 != 0L) && (l2 != 0L))
+      {
+        if (str == null) {
+          return null;
+        }
+        m localM = new m(Long.valueOf(l1), Long.valueOf(l2), null, 4, null);
+        m.a(localM, ((SharedPreferences)localObject).getInt("com.facebook.appevents.SessionInfo.interruptionCount", 0));
+        localM.l(o.c.b());
+        localM.i(Long.valueOf(System.currentTimeMillis()));
+        localObject = UUID.fromString(str);
+        l.d(localObject, "fromString(sessionIDStr)");
+        localM.j((UUID)localObject);
+        return localM;
+      }
+      return null;
+    }
+  }
+}

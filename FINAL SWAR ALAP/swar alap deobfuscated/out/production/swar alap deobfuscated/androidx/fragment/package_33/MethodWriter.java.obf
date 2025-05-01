@@ -1,0 +1,80 @@
+package androidx.fragment.app;
+
+import android.os.Bundle;
+import androidx.lifecycle.h;
+import androidx.lifecycle.i;
+import androidx.lifecycle.i.a;
+import androidx.lifecycle.i.b;
+import androidx.lifecycle.l0;
+import androidx.lifecycle.m0;
+import androidx.lifecycle.o;
+import androidx.savedstate.a;
+import u0.c;
+import u0.d;
+
+class y
+  implements h, d, m0
+{
+  private final Fragment e;
+  private final l0 f;
+  private o g = null;
+  private c h = null;
+  
+  y(Fragment paramFragment, l0 paramL0)
+  {
+    e = paramFragment;
+    f = paramL0;
+  }
+  
+  void a(i.a paramA)
+  {
+    g.h(paramA);
+  }
+  
+  void b()
+  {
+    if (g == null)
+    {
+      g = new o(this);
+      h = c.a(this);
+    }
+  }
+  
+  boolean c()
+  {
+    return g != null;
+  }
+  
+  void d(Bundle paramBundle)
+  {
+    h.d(paramBundle);
+  }
+  
+  void e(Bundle paramBundle)
+  {
+    h.e(paramBundle);
+  }
+  
+  void f(i.b paramB)
+  {
+    g.n(paramB);
+  }
+  
+  public i getLifecycle()
+  {
+    b();
+    return g;
+  }
+  
+  public a getSavedStateRegistry()
+  {
+    b();
+    return h.b();
+  }
+  
+  public l0 getViewModelStore()
+  {
+    b();
+    return f;
+  }
+}

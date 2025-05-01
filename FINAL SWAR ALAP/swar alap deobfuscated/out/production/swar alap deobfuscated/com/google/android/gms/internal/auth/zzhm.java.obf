@@ -1,0 +1,125 @@
+package com.google.android.gms.internal.auth;
+
+final class zzhm
+{
+  private static final zzhk zza = new zzhl();
+  
+  static
+  {
+    if ((zzhi.zzu()) && (zzhi.zzv())) {
+      int i = zzdr.zza;
+    }
+  }
+  
+  static String zzb(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    int i = paramArrayOfByte.length;
+    if ((paramInt1 | paramInt2 | i - paramInt1 - paramInt2) >= 0)
+    {
+      int k = paramInt1 + paramInt2;
+      char[] arrayOfChar = new char[paramInt2];
+      i = 0;
+      int j = paramInt1;
+      byte b;
+      for (;;)
+      {
+        paramInt1 = i;
+        paramInt2 = j;
+        if (j >= k) {
+          break;
+        }
+        b = paramArrayOfByte[j];
+        if (!zzhj.zzd(b))
+        {
+          paramInt1 = i;
+          paramInt2 = j;
+          break;
+        }
+        j += 1;
+        arrayOfChar[i] = ((char)b);
+        i += 1;
+      }
+      while (paramInt2 < k)
+      {
+        i = paramInt2 + 1;
+        b = paramArrayOfByte[paramInt2];
+        if (zzhj.zzd(b))
+        {
+          paramInt2 = paramInt1 + 1;
+          arrayOfChar[paramInt1] = ((char)b);
+          paramInt1 = paramInt2;
+          for (;;)
+          {
+            j = paramInt1;
+            paramInt1 = j;
+            paramInt2 = i;
+            if (i >= k) {
+              break;
+            }
+            b = paramArrayOfByte[i];
+            if (!zzhj.zzd(b))
+            {
+              paramInt1 = j;
+              paramInt2 = i;
+              break;
+            }
+            i += 1;
+            paramInt1 = j + 1;
+            arrayOfChar[j] = ((char)b);
+          }
+        }
+        if (b < -32)
+        {
+          if (i < k)
+          {
+            zzhj.zzc(b, paramArrayOfByte[i], arrayOfChar, paramInt1);
+            paramInt2 = i + 1;
+            paramInt1 += 1;
+          }
+          else
+          {
+            throw zzfa.zzb();
+          }
+        }
+        else if (b < -16)
+        {
+          if (i < k - 1)
+          {
+            paramInt2 = i + 1;
+            zzhj.zzb(b, paramArrayOfByte[i], paramArrayOfByte[paramInt2], arrayOfChar, paramInt1);
+            paramInt2 += 1;
+            paramInt1 += 1;
+          }
+          else
+          {
+            throw zzfa.zzb();
+          }
+        }
+        else if (i < k - 2)
+        {
+          j = i + 1;
+          paramInt2 = j + 1;
+          zzhj.zza(b, paramArrayOfByte[i], paramArrayOfByte[j], paramArrayOfByte[paramInt2], arrayOfChar, paramInt1);
+          paramInt1 += 2;
+          paramInt2 += 1;
+        }
+        else
+        {
+          throw zzfa.zzb();
+        }
+      }
+      return new String(arrayOfChar, 0, paramInt1);
+    }
+    throw new ArrayIndexOutOfBoundsException(String.format("buffer length=%d, index=%d, size=%d", new Object[] { Integer.valueOf(i), Integer.valueOf(paramInt1), Integer.valueOf(paramInt2) }));
+  }
+  
+  static boolean zzc(byte[] paramArrayOfByte)
+  {
+    return zza.zzb(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  static boolean zzd(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    return zza.zzb(paramArrayOfByte, paramInt1, paramInt2);
+  }
+}

@@ -1,0 +1,12 @@
+package n8;
+
+import va.d;
+
+public abstract interface a
+{
+  public abstract Object cleanCachedInAppMessages(d paramD);
+  
+  public abstract Object listInAppMessages(d paramD);
+  
+  public abstract Object saveInAppMessage(com.onesignal.inAppMessages.internal.a paramA, d paramD);
+}

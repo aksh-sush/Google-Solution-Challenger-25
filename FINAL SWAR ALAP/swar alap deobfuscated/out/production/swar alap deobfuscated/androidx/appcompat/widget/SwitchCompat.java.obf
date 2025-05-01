@@ -1,0 +1,1385 @@
+package androidx.appcompat.widget;
+
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.Rect;
+import android.graphics.Region.Op;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.text.InputFilter;
+import android.text.Layout;
+import android.text.Layout.Alignment;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.text.method.TransformationMethod;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.Property;
+import android.view.ActionMode.Callback;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewParent;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityRecord;
+import android.widget.CompoundButton;
+import android.widget.TextView;
+import androidx.core.view.h0;
+import androidx.emoji2.text.f;
+import androidx.emoji2.text.f.e;
+import f.h;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+import java.util.List;
+
+public class SwitchCompat
+  extends CompoundButton
+{
+  private static final Property W = new a(Float.class, "thumbPos");
+  private static final int[] a0 = { 16842912 };
+  private float A;
+  private VelocityTracker B = VelocityTracker.obtain();
+  private int C;
+  float D;
+  private int E;
+  private int F;
+  private int G;
+  private int H;
+  private int I;
+  private int J;
+  private int K;
+  private boolean L = true;
+  private final TextPaint M;
+  private ColorStateList N;
+  private Layout O;
+  private Layout P;
+  private TransformationMethod Q;
+  ObjectAnimator R;
+  private final b0 S;
+  private m T;
+  private c U;
+  private final Rect V = new Rect();
+  private Drawable e;
+  private ColorStateList f = null;
+  private PorterDuff.Mode g = null;
+  private boolean h = false;
+  private boolean i = false;
+  private Drawable j;
+  private ColorStateList k = null;
+  private PorterDuff.Mode l = null;
+  private boolean m = false;
+  private boolean n = false;
+  private int o;
+  private int p;
+  private int q;
+  private boolean r;
+  private CharSequence s;
+  private CharSequence t;
+  private CharSequence u;
+  private CharSequence v;
+  private boolean w;
+  private int x;
+  private int y;
+  private float z;
+  
+  public SwitchCompat(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, f.a.K);
+  }
+  
+  public SwitchCompat(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    b1.a(this, getContext());
+    Object localObject1 = new TextPaint(1);
+    M = ((TextPaint)localObject1);
+    density = getResourcesgetDisplayMetricsdensity;
+    Object localObject2 = f.j.L2;
+    localObject1 = f1.v(paramContext, paramAttributeSet, (int[])localObject2, paramInt, 0);
+    h0.q0(this, paramContext, (int[])localObject2, paramAttributeSet, ((f1)localObject1).r(), paramInt, 0);
+    localObject2 = ((f1)localObject1).g(f.j.O2);
+    e = ((Drawable)localObject2);
+    if (localObject2 != null) {
+      ((Drawable)localObject2).setCallback(this);
+    }
+    localObject2 = ((f1)localObject1).g(f.j.X2);
+    j = ((Drawable)localObject2);
+    if (localObject2 != null) {
+      ((Drawable)localObject2).setCallback(this);
+    }
+    setTextOnInternal(((f1)localObject1).p(f.j.M2));
+    setTextOffInternal(((f1)localObject1).p(f.j.N2));
+    w = ((f1)localObject1).a(f.j.P2, true);
+    o = ((f1)localObject1).f(f.j.U2, 0);
+    p = ((f1)localObject1).f(f.j.R2, 0);
+    q = ((f1)localObject1).f(f.j.S2, 0);
+    r = ((f1)localObject1).a(f.j.Q2, false);
+    localObject2 = ((f1)localObject1).c(f.j.V2);
+    if (localObject2 != null)
+    {
+      f = ((ColorStateList)localObject2);
+      h = true;
+    }
+    localObject2 = o0.e(((f1)localObject1).k(f.j.W2, -1), null);
+    if (g != localObject2)
+    {
+      g = ((PorterDuff.Mode)localObject2);
+      i = true;
+    }
+    if ((h) || (i)) {
+      b();
+    }
+    localObject2 = ((f1)localObject1).c(f.j.Y2);
+    if (localObject2 != null)
+    {
+      k = ((ColorStateList)localObject2);
+      m = true;
+    }
+    localObject2 = o0.e(((f1)localObject1).k(f.j.Z2, -1), null);
+    if (l != localObject2)
+    {
+      l = ((PorterDuff.Mode)localObject2);
+      n = true;
+    }
+    if ((m) || (n)) {
+      c();
+    }
+    int i1 = ((f1)localObject1).n(f.j.T2, 0);
+    if (i1 != 0) {
+      m(paramContext, i1);
+    }
+    localObject2 = new b0(this);
+    S = ((b0)localObject2);
+    ((b0)localObject2).m(paramAttributeSet, paramInt);
+    ((f1)localObject1).w();
+    paramContext = ViewConfiguration.get(paramContext);
+    y = paramContext.getScaledTouchSlop();
+    C = paramContext.getScaledMinimumFlingVelocity();
+    getEmojiTextViewHelper().c(paramAttributeSet, paramInt);
+    refreshDrawableState();
+    setChecked(isChecked());
+  }
+  
+  private void a(boolean paramBoolean)
+  {
+    float f1;
+    if (paramBoolean) {
+      f1 = 1.0F;
+    } else {
+      f1 = 0.0F;
+    }
+    ObjectAnimator localObjectAnimator = ObjectAnimator.ofFloat(this, W, new float[] { f1 });
+    R = localObjectAnimator;
+    localObjectAnimator.setDuration(250L);
+    b.a(R, true);
+    R.start();
+  }
+  
+  private void b()
+  {
+    Drawable localDrawable = e;
+    if ((localDrawable != null) && ((h) || (i)))
+    {
+      localDrawable = androidx.core.graphics.drawable.a.r(localDrawable).mutate();
+      e = localDrawable;
+      if (h) {
+        androidx.core.graphics.drawable.a.o(localDrawable, f);
+      }
+      if (i) {
+        androidx.core.graphics.drawable.a.p(e, g);
+      }
+      if (e.isStateful()) {
+        e.setState(getDrawableState());
+      }
+    }
+  }
+  
+  private void c()
+  {
+    Drawable localDrawable = j;
+    if ((localDrawable != null) && ((m) || (n)))
+    {
+      localDrawable = androidx.core.graphics.drawable.a.r(localDrawable).mutate();
+      j = localDrawable;
+      if (m) {
+        androidx.core.graphics.drawable.a.o(localDrawable, k);
+      }
+      if (n) {
+        androidx.core.graphics.drawable.a.p(j, l);
+      }
+      if (j.isStateful()) {
+        j.setState(getDrawableState());
+      }
+    }
+  }
+  
+  private void d()
+  {
+    ObjectAnimator localObjectAnimator = R;
+    if (localObjectAnimator != null) {
+      localObjectAnimator.cancel();
+    }
+  }
+  
+  private void e(MotionEvent paramMotionEvent)
+  {
+    paramMotionEvent = MotionEvent.obtain(paramMotionEvent);
+    paramMotionEvent.setAction(3);
+    super.onTouchEvent(paramMotionEvent);
+    paramMotionEvent.recycle();
+  }
+  
+  private static float f(float paramFloat1, float paramFloat2, float paramFloat3)
+  {
+    if (paramFloat1 < paramFloat2) {
+      return paramFloat2;
+    }
+    paramFloat2 = paramFloat1;
+    if (paramFloat1 > paramFloat3) {
+      paramFloat2 = paramFloat3;
+    }
+    return paramFloat2;
+  }
+  
+  private CharSequence g(CharSequence paramCharSequence)
+  {
+    TransformationMethod localTransformationMethod = getEmojiTextViewHelper().f(Q);
+    CharSequence localCharSequence = paramCharSequence;
+    if (localTransformationMethod != null) {
+      localCharSequence = localTransformationMethod.getTransformation(paramCharSequence, this);
+    }
+    return localCharSequence;
+  }
+  
+  private m getEmojiTextViewHelper()
+  {
+    if (T == null) {
+      T = new m(this);
+    }
+    return T;
+  }
+  
+  private boolean getTargetCheckedState()
+  {
+    return D > 0.5F;
+  }
+  
+  private int getThumbOffset()
+  {
+    float f1;
+    if (q1.b(this)) {
+      f1 = 1.0F - D;
+    } else {
+      f1 = D;
+    }
+    return (int)(f1 * getThumbScrollRange() + 0.5F);
+  }
+  
+  private int getThumbScrollRange()
+  {
+    Object localObject = j;
+    if (localObject != null)
+    {
+      Rect localRect = V;
+      ((Drawable)localObject).getPadding(localRect);
+      localObject = e;
+      if (localObject != null) {
+        localObject = o0.d((Drawable)localObject);
+      } else {
+        localObject = o0.c;
+      }
+      return E - G - left - right - left - right;
+    }
+    return 0;
+  }
+  
+  private boolean h(float paramFloat1, float paramFloat2)
+  {
+    Object localObject = e;
+    boolean bool2 = false;
+    if (localObject == null) {
+      return false;
+    }
+    int i3 = getThumbOffset();
+    e.getPadding(V);
+    int i1 = I;
+    int i2 = y;
+    i3 = H + i3 - i2;
+    int i4 = G;
+    localObject = V;
+    int i5 = left;
+    int i6 = right;
+    int i7 = K;
+    boolean bool1 = bool2;
+    if (paramFloat1 > i3)
+    {
+      bool1 = bool2;
+      if (paramFloat1 < i4 + i3 + i5 + i6 + i2)
+      {
+        bool1 = bool2;
+        if (paramFloat2 > i1 - i2)
+        {
+          bool1 = bool2;
+          if (paramFloat2 < i7 + i2) {
+            bool1 = true;
+          }
+        }
+      }
+    }
+    return bool1;
+  }
+  
+  private Layout i(CharSequence paramCharSequence)
+  {
+    TextPaint localTextPaint = M;
+    int i1;
+    if (paramCharSequence != null) {
+      i1 = (int)Math.ceil(Layout.getDesiredWidth(paramCharSequence, localTextPaint));
+    } else {
+      i1 = 0;
+    }
+    return new StaticLayout(paramCharSequence, localTextPaint, i1, Layout.Alignment.ALIGN_NORMAL, 1.0F, 0.0F, true);
+  }
+  
+  private void k()
+  {
+    if (Build.VERSION.SDK_INT >= 30)
+    {
+      CharSequence localCharSequence = u;
+      Object localObject = localCharSequence;
+      if (localCharSequence == null) {
+        localObject = getResources().getString(h.b);
+      }
+      h0.J0(this, (CharSequence)localObject);
+    }
+  }
+  
+  private void l()
+  {
+    if (Build.VERSION.SDK_INT >= 30)
+    {
+      CharSequence localCharSequence = s;
+      Object localObject = localCharSequence;
+      if (localCharSequence == null) {
+        localObject = getResources().getString(h.c);
+      }
+      h0.J0(this, (CharSequence)localObject);
+    }
+  }
+  
+  private void o(int paramInt1, int paramInt2)
+  {
+    Typeface localTypeface;
+    if (paramInt1 != 1)
+    {
+      if (paramInt1 != 2)
+      {
+        if (paramInt1 != 3) {
+          localTypeface = null;
+        } else {
+          localTypeface = Typeface.MONOSPACE;
+        }
+      }
+      else {
+        localTypeface = Typeface.SERIF;
+      }
+    }
+    else {
+      localTypeface = Typeface.SANS_SERIF;
+    }
+    n(localTypeface, paramInt2);
+  }
+  
+  private void p()
+  {
+    if (U == null)
+    {
+      if (!T.b()) {
+        return;
+      }
+      if (f.h())
+      {
+        f localF = f.b();
+        int i1 = localF.d();
+        if ((i1 == 3) || (i1 == 0))
+        {
+          c localC = new c(this);
+          U = localC;
+          localF.s(localC);
+        }
+      }
+    }
+  }
+  
+  private void q(MotionEvent paramMotionEvent)
+  {
+    x = 0;
+    int i1 = paramMotionEvent.getAction();
+    boolean bool1 = true;
+    if ((i1 == 1) && (isEnabled())) {
+      i1 = 1;
+    } else {
+      i1 = 0;
+    }
+    boolean bool2 = isChecked();
+    if (i1 != 0)
+    {
+      B.computeCurrentVelocity(1000);
+      float f1 = B.getXVelocity();
+      if (Math.abs(f1) > C)
+      {
+        if (q1.b(this) ? f1 >= 0.0F : f1 <= 0.0F) {
+          bool1 = false;
+        }
+      }
+      else {
+        bool1 = getTargetCheckedState();
+      }
+    }
+    else
+    {
+      bool1 = bool2;
+    }
+    if (bool1 != bool2) {
+      playSoundEffect(0);
+    }
+    setChecked(bool1);
+    e(paramMotionEvent);
+  }
+  
+  private void setTextOffInternal(CharSequence paramCharSequence)
+  {
+    u = paramCharSequence;
+    v = g(paramCharSequence);
+    P = null;
+    if (w) {
+      p();
+    }
+  }
+  
+  private void setTextOnInternal(CharSequence paramCharSequence)
+  {
+    s = paramCharSequence;
+    t = g(paramCharSequence);
+    O = null;
+    if (w) {
+      p();
+    }
+  }
+  
+  public void draw(Canvas paramCanvas)
+  {
+    Rect localRect = V;
+    int i4 = H;
+    int i7 = I;
+    int i5 = J;
+    int i8 = K;
+    int i2 = getThumbOffset() + i4;
+    Object localObject = e;
+    if (localObject != null) {
+      localObject = o0.d((Drawable)localObject);
+    } else {
+      localObject = o0.c;
+    }
+    Drawable localDrawable = j;
+    int i1 = i2;
+    if (localDrawable != null)
+    {
+      localDrawable.getPadding(localRect);
+      int i3 = left;
+      int i9 = i2 + i3;
+      if (localObject != null)
+      {
+        i2 = left;
+        i1 = i4;
+        if (i2 > i3) {
+          i1 = i4 + (i2 - i3);
+        }
+        i2 = top;
+        i3 = top;
+        if (i2 > i3) {
+          i2 = i2 - i3 + i7;
+        } else {
+          i2 = i7;
+        }
+        i4 = right;
+        i6 = right;
+        i3 = i5;
+        if (i4 > i6) {
+          i3 = i5 - (i4 - i6);
+        }
+        int i10 = bottom;
+        int i11 = bottom;
+        i4 = i1;
+        i5 = i3;
+        i6 = i2;
+        if (i10 > i11)
+        {
+          i6 = i8 - (i10 - i11);
+          break label258;
+        }
+      }
+      else
+      {
+        i6 = i7;
+      }
+      i1 = i8;
+      i2 = i6;
+      int i6 = i1;
+      i3 = i5;
+      i1 = i4;
+      label258:
+      j.setBounds(i1, i2, i3, i6);
+      i1 = i9;
+    }
+    localObject = e;
+    if (localObject != null)
+    {
+      ((Drawable)localObject).getPadding(localRect);
+      i2 = i1 - left;
+      i1 = i1 + G + right;
+      e.setBounds(i2, i7, i1, i8);
+      localObject = getBackground();
+      if (localObject != null) {
+        androidx.core.graphics.drawable.a.l((Drawable)localObject, i2, i7, i1, i8);
+      }
+    }
+    super.draw(paramCanvas);
+  }
+  
+  public void drawableHotspotChanged(float paramFloat1, float paramFloat2)
+  {
+    super.drawableHotspotChanged(paramFloat1, paramFloat2);
+    Drawable localDrawable = e;
+    if (localDrawable != null) {
+      androidx.core.graphics.drawable.a.k(localDrawable, paramFloat1, paramFloat2);
+    }
+    localDrawable = j;
+    if (localDrawable != null) {
+      androidx.core.graphics.drawable.a.k(localDrawable, paramFloat1, paramFloat2);
+    }
+  }
+  
+  protected void drawableStateChanged()
+  {
+    super.drawableStateChanged();
+    int[] arrayOfInt = getDrawableState();
+    Drawable localDrawable = e;
+    boolean bool2 = false;
+    boolean bool1 = bool2;
+    if (localDrawable != null)
+    {
+      bool1 = bool2;
+      if (localDrawable.isStateful()) {
+        bool1 = false | localDrawable.setState(arrayOfInt);
+      }
+    }
+    localDrawable = j;
+    bool2 = bool1;
+    if (localDrawable != null)
+    {
+      bool2 = bool1;
+      if (localDrawable.isStateful()) {
+        bool2 = bool1 | localDrawable.setState(arrayOfInt);
+      }
+    }
+    if (bool2) {
+      invalidate();
+    }
+  }
+  
+  public int getCompoundPaddingLeft()
+  {
+    if (!q1.b(this)) {
+      return super.getCompoundPaddingLeft();
+    }
+    int i2 = super.getCompoundPaddingLeft() + E;
+    int i1 = i2;
+    if (!TextUtils.isEmpty(getText())) {
+      i1 = i2 + q;
+    }
+    return i1;
+  }
+  
+  public int getCompoundPaddingRight()
+  {
+    if (q1.b(this)) {
+      return super.getCompoundPaddingRight();
+    }
+    int i2 = super.getCompoundPaddingRight() + E;
+    int i1 = i2;
+    if (!TextUtils.isEmpty(getText())) {
+      i1 = i2 + q;
+    }
+    return i1;
+  }
+  
+  public ActionMode.Callback getCustomSelectionActionModeCallback()
+  {
+    return androidx.core.widget.j.p(super.getCustomSelectionActionModeCallback());
+  }
+  
+  public boolean getShowText()
+  {
+    return w;
+  }
+  
+  public boolean getSplitTrack()
+  {
+    return r;
+  }
+  
+  public int getSwitchMinWidth()
+  {
+    return p;
+  }
+  
+  public int getSwitchPadding()
+  {
+    return q;
+  }
+  
+  public CharSequence getTextOff()
+  {
+    return u;
+  }
+  
+  public CharSequence getTextOn()
+  {
+    return s;
+  }
+  
+  public Drawable getThumbDrawable()
+  {
+    return e;
+  }
+  
+  protected final float getThumbPosition()
+  {
+    return D;
+  }
+  
+  public int getThumbTextPadding()
+  {
+    return o;
+  }
+  
+  public ColorStateList getThumbTintList()
+  {
+    return f;
+  }
+  
+  public PorterDuff.Mode getThumbTintMode()
+  {
+    return g;
+  }
+  
+  public Drawable getTrackDrawable()
+  {
+    return j;
+  }
+  
+  public ColorStateList getTrackTintList()
+  {
+    return k;
+  }
+  
+  public PorterDuff.Mode getTrackTintMode()
+  {
+    return l;
+  }
+  
+  void j()
+  {
+    setTextOnInternal(s);
+    setTextOffInternal(u);
+    requestLayout();
+  }
+  
+  public void jumpDrawablesToCurrentState()
+  {
+    super.jumpDrawablesToCurrentState();
+    Object localObject = e;
+    if (localObject != null) {
+      ((Drawable)localObject).jumpToCurrentState();
+    }
+    localObject = j;
+    if (localObject != null) {
+      ((Drawable)localObject).jumpToCurrentState();
+    }
+    localObject = R;
+    if ((localObject != null) && (((Animator)localObject).isStarted()))
+    {
+      R.end();
+      R = null;
+    }
+  }
+  
+  public void m(Context paramContext, int paramInt)
+  {
+    f1 localF1 = f1.t(paramContext, paramInt, f.j.a3);
+    paramContext = localF1.c(f.j.e3);
+    if (paramContext == null) {
+      paramContext = getTextColors();
+    }
+    N = paramContext;
+    paramInt = localF1.f(f.j.b3, 0);
+    if (paramInt != 0)
+    {
+      float f1 = paramInt;
+      if (f1 != M.getTextSize())
+      {
+        M.setTextSize(f1);
+        requestLayout();
+      }
+    }
+    o(localF1.k(f.j.c3, -1), localF1.k(f.j.d3, -1));
+    if (localF1.a(f.j.l3, false)) {
+      paramContext = new j.a(getContext());
+    } else {
+      paramContext = null;
+    }
+    Q = paramContext;
+    setTextOnInternal(s);
+    setTextOffInternal(u);
+    localF1.w();
+  }
+  
+  public void n(Typeface paramTypeface, int paramInt)
+  {
+    float f1 = 0.0F;
+    boolean bool = false;
+    if (paramInt > 0)
+    {
+      if (paramTypeface == null) {
+        paramTypeface = Typeface.defaultFromStyle(paramInt);
+      } else {
+        paramTypeface = Typeface.create(paramTypeface, paramInt);
+      }
+      setSwitchTypeface(paramTypeface);
+      int i1;
+      if (paramTypeface != null) {
+        i1 = paramTypeface.getStyle();
+      } else {
+        i1 = 0;
+      }
+      paramInt = i1 & paramInt;
+      paramTypeface = M;
+      if ((paramInt & 0x1) != 0) {
+        bool = true;
+      }
+      paramTypeface.setFakeBoldText(bool);
+      paramTypeface = M;
+      if ((paramInt & 0x2) != 0) {
+        f1 = -0.25F;
+      }
+      paramTypeface.setTextSkewX(f1);
+      return;
+    }
+    M.setFakeBoldText(false);
+    M.setTextSkewX(0.0F);
+    setSwitchTypeface(paramTypeface);
+  }
+  
+  protected int[] onCreateDrawableState(int paramInt)
+  {
+    int[] arrayOfInt = super.onCreateDrawableState(paramInt + 1);
+    if (isChecked()) {
+      View.mergeDrawableStates(arrayOfInt, a0);
+    }
+    return arrayOfInt;
+  }
+  
+  protected void onDraw(Canvas paramCanvas)
+  {
+    super.onDraw(paramCanvas);
+    Object localObject1 = V;
+    Object localObject3 = j;
+    if (localObject3 != null) {
+      ((Drawable)localObject3).getPadding((Rect)localObject1);
+    } else {
+      ((Rect)localObject1).setEmpty();
+    }
+    int i3 = I;
+    int i4 = K;
+    int i5 = top;
+    int i6 = bottom;
+    Object localObject2 = e;
+    Object localObject4;
+    int i1;
+    if (localObject3 != null) {
+      if ((r) && (localObject2 != null))
+      {
+        localObject4 = o0.d((Drawable)localObject2);
+        ((Drawable)localObject2).copyBounds((Rect)localObject1);
+        left += left;
+        right -= right;
+        i1 = paramCanvas.save();
+        paramCanvas.clipRect((Rect)localObject1, Region.Op.DIFFERENCE);
+        ((Drawable)localObject3).draw(paramCanvas);
+        paramCanvas.restoreToCount(i1);
+      }
+      else
+      {
+        ((Drawable)localObject3).draw(paramCanvas);
+      }
+    }
+    int i2 = paramCanvas.save();
+    if (localObject2 != null) {
+      ((Drawable)localObject2).draw(paramCanvas);
+    }
+    if (getTargetCheckedState()) {
+      localObject1 = O;
+    } else {
+      localObject1 = P;
+    }
+    if (localObject1 != null)
+    {
+      localObject3 = getDrawableState();
+      localObject4 = N;
+      if (localObject4 != null) {
+        M.setColor(((ColorStateList)localObject4).getColorForState((int[])localObject3, 0));
+      }
+      M.drawableState = ((int[])localObject3);
+      if (localObject2 != null)
+      {
+        localObject2 = ((Drawable)localObject2).getBounds();
+        i1 = left + right;
+      }
+      else
+      {
+        i1 = getWidth();
+      }
+      i1 /= 2;
+      int i7 = ((Layout)localObject1).getWidth() / 2;
+      i3 = (i3 + i5 + (i4 - i6)) / 2;
+      i4 = ((Layout)localObject1).getHeight() / 2;
+      paramCanvas.translate(i1 - i7, i3 - i4);
+      ((Layout)localObject1).draw(paramCanvas);
+    }
+    paramCanvas.restoreToCount(i2);
+  }
+  
+  public void onInitializeAccessibilityEvent(AccessibilityEvent paramAccessibilityEvent)
+  {
+    super.onInitializeAccessibilityEvent(paramAccessibilityEvent);
+    paramAccessibilityEvent.setClassName("android.widget.Switch");
+  }
+  
+  public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo paramAccessibilityNodeInfo)
+  {
+    super.onInitializeAccessibilityNodeInfo(paramAccessibilityNodeInfo);
+    paramAccessibilityNodeInfo.setClassName("android.widget.Switch");
+    if (Build.VERSION.SDK_INT < 30)
+    {
+      CharSequence localCharSequence1;
+      if (isChecked()) {
+        localCharSequence1 = s;
+      } else {
+        localCharSequence1 = u;
+      }
+      if (!TextUtils.isEmpty(localCharSequence1))
+      {
+        CharSequence localCharSequence2 = paramAccessibilityNodeInfo.getText();
+        if (TextUtils.isEmpty(localCharSequence2))
+        {
+          paramAccessibilityNodeInfo.setText(localCharSequence1);
+          return;
+        }
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append(localCharSequence2);
+        localStringBuilder.append(' ');
+        localStringBuilder.append(localCharSequence1);
+        paramAccessibilityNodeInfo.setText(localStringBuilder);
+      }
+    }
+  }
+  
+  protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    super.onLayout(paramBoolean, paramInt1, paramInt2, paramInt3, paramInt4);
+    Object localObject1 = e;
+    paramInt1 = 0;
+    if (localObject1 != null)
+    {
+      localObject1 = V;
+      Object localObject2 = j;
+      if (localObject2 != null) {
+        ((Drawable)localObject2).getPadding((Rect)localObject1);
+      } else {
+        ((Rect)localObject1).setEmpty();
+      }
+      localObject2 = o0.d(e);
+      paramInt2 = Math.max(0, left - left);
+      paramInt1 = Math.max(0, right - right);
+    }
+    else
+    {
+      paramInt2 = 0;
+    }
+    if (q1.b(this))
+    {
+      paramInt3 = getPaddingLeft() + paramInt2;
+      paramInt1 = E + paramInt3 - paramInt2 - paramInt1;
+      paramInt2 = paramInt3;
+      paramInt3 = paramInt1;
+    }
+    else
+    {
+      paramInt3 = getWidth() - getPaddingRight() - paramInt1;
+      paramInt2 = paramInt3 - E + paramInt2 + paramInt1;
+    }
+    paramInt1 = getGravity() & 0x70;
+    if (paramInt1 != 16)
+    {
+      if (paramInt1 != 80)
+      {
+        paramInt1 = getPaddingTop();
+        paramInt4 = F;
+      }
+      else
+      {
+        paramInt4 = getHeight() - getPaddingBottom();
+        paramInt1 = paramInt4 - F;
+        break label256;
+      }
+    }
+    else
+    {
+      paramInt1 = (getPaddingTop() + getHeight() - getPaddingBottom()) / 2;
+      paramInt4 = F;
+      paramInt1 -= paramInt4 / 2;
+    }
+    paramInt4 += paramInt1;
+    label256:
+    H = paramInt2;
+    I = paramInt1;
+    K = paramInt4;
+    J = paramInt3;
+  }
+  
+  public void onMeasure(int paramInt1, int paramInt2)
+  {
+    if (w)
+    {
+      if (O == null) {
+        O = i(t);
+      }
+      if (P == null) {
+        P = i(v);
+      }
+    }
+    Object localObject = V;
+    Drawable localDrawable = e;
+    int i4 = 0;
+    int i2;
+    if (localDrawable != null)
+    {
+      localDrawable.getPadding((Rect)localObject);
+      i2 = e.getIntrinsicWidth() - left - right;
+      i1 = e.getIntrinsicHeight();
+    }
+    else
+    {
+      i2 = 0;
+      i1 = 0;
+    }
+    if (w) {
+      i3 = Math.max(O.getWidth(), P.getWidth()) + o * 2;
+    } else {
+      i3 = 0;
+    }
+    G = Math.max(i3, i2);
+    localDrawable = j;
+    if (localDrawable != null)
+    {
+      localDrawable.getPadding((Rect)localObject);
+      i2 = j.getIntrinsicHeight();
+    }
+    else
+    {
+      ((Rect)localObject).setEmpty();
+      i2 = i4;
+    }
+    int i6 = left;
+    int i5 = right;
+    localObject = e;
+    i4 = i5;
+    int i3 = i6;
+    if (localObject != null)
+    {
+      localObject = o0.d((Drawable)localObject);
+      i3 = Math.max(i6, left);
+      i4 = Math.max(i5, right);
+    }
+    if (L) {
+      i3 = Math.max(p, G * 2 + i3 + i4);
+    } else {
+      i3 = p;
+    }
+    int i1 = Math.max(i2, i1);
+    E = i3;
+    F = i1;
+    super.onMeasure(paramInt1, paramInt2);
+    if (getMeasuredHeight() < i1) {
+      setMeasuredDimension(getMeasuredWidthAndState(), i1);
+    }
+  }
+  
+  public void onPopulateAccessibilityEvent(AccessibilityEvent paramAccessibilityEvent)
+  {
+    super.onPopulateAccessibilityEvent(paramAccessibilityEvent);
+    CharSequence localCharSequence;
+    if (isChecked()) {
+      localCharSequence = s;
+    } else {
+      localCharSequence = u;
+    }
+    if (localCharSequence != null) {
+      paramAccessibilityEvent.getText().add(localCharSequence);
+    }
+  }
+  
+  public boolean onTouchEvent(MotionEvent paramMotionEvent)
+  {
+    B.addMovement(paramMotionEvent);
+    int i1 = paramMotionEvent.getActionMasked();
+    float f1;
+    float f2;
+    if (i1 != 0)
+    {
+      if (i1 != 1) {
+        if (i1 != 2)
+        {
+          if (i1 != 3) {
+            break label306;
+          }
+        }
+        else
+        {
+          i1 = x;
+          if (i1 != 1)
+          {
+            if (i1 != 2) {
+              break label306;
+            }
+            float f3 = paramMotionEvent.getX();
+            i1 = getThumbScrollRange();
+            f1 = f3 - z;
+            if (i1 != 0) {
+              f1 /= i1;
+            } else if (f1 > 0.0F) {
+              f1 = 1.0F;
+            } else {
+              f1 = -1.0F;
+            }
+            f2 = f1;
+            if (q1.b(this)) {
+              f2 = -f1;
+            }
+            f1 = f(D + f2, 0.0F, 1.0F);
+            if (f1 != D)
+            {
+              z = f3;
+              setThumbPosition(f1);
+            }
+            return true;
+          }
+          f1 = paramMotionEvent.getX();
+          f2 = paramMotionEvent.getY();
+          if ((Math.abs(f1 - z) <= y) && (Math.abs(f2 - A) <= y)) {
+            break label306;
+          }
+          x = 2;
+          getParent().requestDisallowInterceptTouchEvent(true);
+          z = f1;
+          A = f2;
+          return true;
+        }
+      }
+      if (x == 2)
+      {
+        q(paramMotionEvent);
+        super.onTouchEvent(paramMotionEvent);
+        return true;
+      }
+      x = 0;
+      B.clear();
+    }
+    else
+    {
+      f1 = paramMotionEvent.getX();
+      f2 = paramMotionEvent.getY();
+      if ((isEnabled()) && (h(f1, f2)))
+      {
+        x = 1;
+        z = f1;
+        A = f2;
+      }
+    }
+    label306:
+    return super.onTouchEvent(paramMotionEvent);
+  }
+  
+  public void setAllCaps(boolean paramBoolean)
+  {
+    super.setAllCaps(paramBoolean);
+    getEmojiTextViewHelper().d(paramBoolean);
+  }
+  
+  public void setChecked(boolean paramBoolean)
+  {
+    super.setChecked(paramBoolean);
+    paramBoolean = isChecked();
+    if (paramBoolean) {
+      l();
+    } else {
+      k();
+    }
+    if ((getWindowToken() != null) && (h0.W(this)))
+    {
+      a(paramBoolean);
+      return;
+    }
+    d();
+    float f1;
+    if (paramBoolean) {
+      f1 = 1.0F;
+    } else {
+      f1 = 0.0F;
+    }
+    setThumbPosition(f1);
+  }
+  
+  public void setCustomSelectionActionModeCallback(ActionMode.Callback paramCallback)
+  {
+    super.setCustomSelectionActionModeCallback(androidx.core.widget.j.q(this, paramCallback));
+  }
+  
+  public void setEmojiCompatEnabled(boolean paramBoolean)
+  {
+    getEmojiTextViewHelper().e(paramBoolean);
+    setTextOnInternal(s);
+    setTextOffInternal(u);
+    requestLayout();
+  }
+  
+  protected final void setEnforceSwitchWidth(boolean paramBoolean)
+  {
+    L = paramBoolean;
+    invalidate();
+  }
+  
+  public void setFilters(InputFilter[] paramArrayOfInputFilter)
+  {
+    super.setFilters(getEmojiTextViewHelper().a(paramArrayOfInputFilter));
+  }
+  
+  public void setShowText(boolean paramBoolean)
+  {
+    if (w != paramBoolean)
+    {
+      w = paramBoolean;
+      requestLayout();
+      if (paramBoolean) {
+        p();
+      }
+    }
+  }
+  
+  public void setSplitTrack(boolean paramBoolean)
+  {
+    r = paramBoolean;
+    invalidate();
+  }
+  
+  public void setSwitchMinWidth(int paramInt)
+  {
+    p = paramInt;
+    requestLayout();
+  }
+  
+  public void setSwitchPadding(int paramInt)
+  {
+    q = paramInt;
+    requestLayout();
+  }
+  
+  public void setSwitchTypeface(Typeface paramTypeface)
+  {
+    if (((M.getTypeface() != null) && (!M.getTypeface().equals(paramTypeface))) || ((M.getTypeface() == null) && (paramTypeface != null)))
+    {
+      M.setTypeface(paramTypeface);
+      requestLayout();
+      invalidate();
+    }
+  }
+  
+  public void setTextOff(CharSequence paramCharSequence)
+  {
+    setTextOffInternal(paramCharSequence);
+    requestLayout();
+    if (!isChecked()) {
+      k();
+    }
+  }
+  
+  public void setTextOn(CharSequence paramCharSequence)
+  {
+    setTextOnInternal(paramCharSequence);
+    requestLayout();
+    if (isChecked()) {
+      l();
+    }
+  }
+  
+  public void setThumbDrawable(Drawable paramDrawable)
+  {
+    Drawable localDrawable = e;
+    if (localDrawable != null) {
+      localDrawable.setCallback(null);
+    }
+    e = paramDrawable;
+    if (paramDrawable != null) {
+      paramDrawable.setCallback(this);
+    }
+    requestLayout();
+  }
+  
+  void setThumbPosition(float paramFloat)
+  {
+    D = paramFloat;
+    invalidate();
+  }
+  
+  public void setThumbResource(int paramInt)
+  {
+    setThumbDrawable(g.a.b(getContext(), paramInt));
+  }
+  
+  public void setThumbTextPadding(int paramInt)
+  {
+    o = paramInt;
+    requestLayout();
+  }
+  
+  public void setThumbTintList(ColorStateList paramColorStateList)
+  {
+    f = paramColorStateList;
+    h = true;
+    b();
+  }
+  
+  public void setThumbTintMode(PorterDuff.Mode paramMode)
+  {
+    g = paramMode;
+    i = true;
+    b();
+  }
+  
+  public void setTrackDrawable(Drawable paramDrawable)
+  {
+    Drawable localDrawable = j;
+    if (localDrawable != null) {
+      localDrawable.setCallback(null);
+    }
+    j = paramDrawable;
+    if (paramDrawable != null) {
+      paramDrawable.setCallback(this);
+    }
+    requestLayout();
+  }
+  
+  public void setTrackResource(int paramInt)
+  {
+    setTrackDrawable(g.a.b(getContext(), paramInt));
+  }
+  
+  public void setTrackTintList(ColorStateList paramColorStateList)
+  {
+    k = paramColorStateList;
+    m = true;
+    c();
+  }
+  
+  public void setTrackTintMode(PorterDuff.Mode paramMode)
+  {
+    l = paramMode;
+    n = true;
+    c();
+  }
+  
+  public void toggle()
+  {
+    setChecked(isChecked() ^ true);
+  }
+  
+  protected boolean verifyDrawable(Drawable paramDrawable)
+  {
+    return (super.verifyDrawable(paramDrawable)) || (paramDrawable == e) || (paramDrawable == j);
+  }
+  
+  class a
+    extends Property
+  {
+    a(String paramString)
+    {
+      super(paramString);
+    }
+    
+    public Float a(SwitchCompat paramSwitchCompat)
+    {
+      return Float.valueOf(D);
+    }
+    
+    public void b(SwitchCompat paramSwitchCompat, Float paramFloat)
+    {
+      paramSwitchCompat.setThumbPosition(paramFloat.floatValue());
+    }
+  }
+  
+  static abstract class b
+  {
+    static void a(ObjectAnimator paramObjectAnimator, boolean paramBoolean)
+    {
+      paramObjectAnimator.setAutoCancel(paramBoolean);
+    }
+  }
+  
+  static class c
+    extends f.e
+  {
+    private final Reference a;
+    
+    c(SwitchCompat paramSwitchCompat)
+    {
+      a = new WeakReference(paramSwitchCompat);
+    }
+    
+    public void a(Throwable paramThrowable)
+    {
+      paramThrowable = (SwitchCompat)a.get();
+      if (paramThrowable != null) {
+        paramThrowable.j();
+      }
+    }
+    
+    public void b()
+    {
+      SwitchCompat localSwitchCompat = (SwitchCompat)a.get();
+      if (localSwitchCompat != null) {
+        localSwitchCompat.j();
+      }
+    }
+  }
+}

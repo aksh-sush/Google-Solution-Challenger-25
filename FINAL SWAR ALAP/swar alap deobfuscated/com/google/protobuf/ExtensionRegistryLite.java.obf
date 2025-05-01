@@ -1,0 +1,46 @@
+package com.google.protobuf;
+
+import java.lang.reflect.Method;
+
+abstract class q
+{
+  static final Class a = ;
+  
+  public static r a()
+  {
+    r localR = b("getEmptyRegistry");
+    if (localR != null) {
+      return localR;
+    }
+    return r.d;
+  }
+  
+  private static final r b(String paramString)
+  {
+    Class localClass = a;
+    if (localClass == null) {
+      return null;
+    }
+    try
+    {
+      paramString = (r)localClass.getDeclaredMethod(paramString, new Class[0]).invoke(null, new Object[0]);
+      return paramString;
+    }
+    catch (Exception paramString) {}
+    return null;
+  }
+  
+  static Class c()
+  {
+    try
+    {
+      Class localClass = Class.forName("com.google.protobuf.ExtensionRegistry");
+      return localClass;
+    }
+    catch (ClassNotFoundException localClassNotFoundException)
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+}

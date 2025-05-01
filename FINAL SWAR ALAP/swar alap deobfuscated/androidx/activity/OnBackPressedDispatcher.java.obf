@@ -1,0 +1,452 @@
+package androidx.activity;
+
+import android.os.Build.VERSION;
+import android.window.BackEvent;
+import android.window.OnBackAnimationCallback;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
+import androidx.lifecycle.i;
+import androidx.lifecycle.i.a;
+import androidx.lifecycle.i.b;
+import androidx.lifecycle.n;
+import db.j;
+import db.m;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import ta.e;
+
+public final class OnBackPressedDispatcher
+{
+  private final Runnable a;
+  private final androidx.core.util.a b;
+  private final e c;
+  private o d;
+  private OnBackInvokedCallback e;
+  private OnBackInvokedDispatcher f;
+  private boolean g;
+  private boolean h;
+  
+  public OnBackPressedDispatcher(Runnable paramRunnable)
+  {
+    this(paramRunnable, null);
+  }
+  
+  public OnBackPressedDispatcher(Runnable paramRunnable, androidx.core.util.a paramA)
+  {
+    a = paramRunnable;
+    b = paramA;
+    c = new e();
+    int i = Build.VERSION.SDK_INT;
+    if (i >= 33)
+    {
+      if (i >= 34) {
+        paramRunnable = g.a.a(new a(this), new b(this), new c(this), new d(this));
+      } else {
+        paramRunnable = f.a.b(new e(this));
+      }
+      e = paramRunnable;
+    }
+  }
+  
+  private final void j()
+  {
+    Object localObject = c;
+    ListIterator localListIterator = ((List)localObject).listIterator(((List)localObject).size());
+    while (localListIterator.hasPrevious())
+    {
+      localObject = localListIterator.previous();
+      if (((o)localObject).g()) {
+        break label49;
+      }
+    }
+    localObject = null;
+    label49:
+    localObject = (o)localObject;
+    d = null;
+    if (localObject != null) {
+      ((o)localObject).c();
+    }
+  }
+  
+  private final void l(b paramB)
+  {
+    Object localObject = c;
+    ListIterator localListIterator = ((List)localObject).listIterator(((List)localObject).size());
+    while (localListIterator.hasPrevious())
+    {
+      localObject = localListIterator.previous();
+      if (((o)localObject).g()) {
+        break label49;
+      }
+    }
+    localObject = null;
+    label49:
+    localObject = (o)localObject;
+    if (localObject != null) {
+      ((o)localObject).e(paramB);
+    }
+  }
+  
+  private final void m(b paramB)
+  {
+    Object localObject = c;
+    ListIterator localListIterator = ((List)localObject).listIterator(((List)localObject).size());
+    while (localListIterator.hasPrevious())
+    {
+      localObject = localListIterator.previous();
+      if (((o)localObject).g()) {
+        break label49;
+      }
+    }
+    localObject = null;
+    label49:
+    localObject = (o)localObject;
+    d = ((o)localObject);
+    if (localObject != null) {
+      ((o)localObject).f(paramB);
+    }
+  }
+  
+  private final void o(boolean paramBoolean)
+  {
+    OnBackInvokedDispatcher localOnBackInvokedDispatcher = f;
+    OnBackInvokedCallback localOnBackInvokedCallback = e;
+    if ((localOnBackInvokedDispatcher != null) && (localOnBackInvokedCallback != null))
+    {
+      if ((paramBoolean) && (!g))
+      {
+        f.a.d(localOnBackInvokedDispatcher, 0, localOnBackInvokedCallback);
+        g = true;
+        return;
+      }
+      if ((!paramBoolean) && (g))
+      {
+        f.a.e(localOnBackInvokedDispatcher, localOnBackInvokedCallback);
+        g = false;
+      }
+    }
+  }
+  
+  private final void p()
+  {
+    boolean bool3 = h;
+    Object localObject = c;
+    boolean bool1 = localObject instanceof Collection;
+    boolean bool2 = false;
+    if ((bool1) && (((Collection)localObject).isEmpty()))
+    {
+      bool1 = bool2;
+    }
+    else
+    {
+      localObject = ((Iterable)localObject).iterator();
+      do
+      {
+        bool1 = bool2;
+        if (!((Iterator)localObject).hasNext()) {
+          break;
+        }
+      } while (!((o)((Iterator)localObject).next()).g());
+      bool1 = true;
+    }
+    h = bool1;
+    if (bool1 != bool3)
+    {
+      localObject = b;
+      if (localObject != null) {
+        ((androidx.core.util.a)localObject).accept(Boolean.valueOf(bool1));
+      }
+      if (Build.VERSION.SDK_INT >= 33) {
+        o(bool1);
+      }
+    }
+  }
+  
+  public final void h(n paramN, o paramO)
+  {
+    db.l.e(paramN, "owner");
+    db.l.e(paramO, "onBackPressedCallback");
+    paramN = paramN.getLifecycle();
+    if (paramN.b() == i.b.e) {
+      return;
+    }
+    paramO.a(new LifecycleOnBackPressedCancellable(paramN, paramO));
+    p();
+    paramO.k(new i());
+  }
+  
+  public final c i(o paramO)
+  {
+    db.l.e(paramO, "onBackPressedCallback");
+    c.add(paramO);
+    h localH = new h(paramO);
+    paramO.a(localH);
+    p();
+    paramO.k(new j());
+    return localH;
+  }
+  
+  public final void k()
+  {
+    Object localObject = c;
+    ListIterator localListIterator = ((List)localObject).listIterator(((List)localObject).size());
+    while (localListIterator.hasPrevious())
+    {
+      localObject = localListIterator.previous();
+      if (((o)localObject).g()) {
+        break label49;
+      }
+    }
+    localObject = null;
+    label49:
+    localObject = (o)localObject;
+    d = null;
+    if (localObject != null)
+    {
+      ((o)localObject).d();
+      return;
+    }
+    localObject = a;
+    if (localObject != null) {
+      ((Runnable)localObject).run();
+    }
+  }
+  
+  public final void n(OnBackInvokedDispatcher paramOnBackInvokedDispatcher)
+  {
+    db.l.e(paramOnBackInvokedDispatcher, "invoker");
+    f = paramOnBackInvokedDispatcher;
+    o(h);
+  }
+  
+  private final class LifecycleOnBackPressedCancellable
+    implements androidx.lifecycle.l, c
+  {
+    private final i e;
+    private final o f;
+    private c g;
+    
+    public LifecycleOnBackPressedCancellable(i paramI, o paramO)
+    {
+      e = paramI;
+      f = paramO;
+      paramI.a(this);
+    }
+    
+    public void cancel()
+    {
+      e.c(this);
+      f.i(this);
+      c localC = g;
+      if (localC != null) {
+        localC.cancel();
+      }
+      g = null;
+    }
+    
+    public void d(n paramN, i.a paramA)
+    {
+      db.l.e(paramN, "source");
+      db.l.e(paramA, "event");
+      if (paramA == i.a.ON_START)
+      {
+        g = i(f);
+        return;
+      }
+      if (paramA == i.a.ON_STOP)
+      {
+        paramN = g;
+        if (paramN != null) {
+          paramN.cancel();
+        }
+      }
+      else if (paramA == i.a.ON_DESTROY)
+      {
+        cancel();
+      }
+    }
+  }
+  
+  static final class a
+    extends m
+    implements cb.l
+  {
+    a(OnBackPressedDispatcher paramOnBackPressedDispatcher)
+    {
+      super();
+    }
+    
+    public final void a(b paramB)
+    {
+      db.l.e(paramB, "backEvent");
+      OnBackPressedDispatcher.e(e, paramB);
+    }
+  }
+  
+  static final class b
+    extends m
+    implements cb.l
+  {
+    b(OnBackPressedDispatcher paramOnBackPressedDispatcher)
+    {
+      super();
+    }
+    
+    public final void a(b paramB)
+    {
+      db.l.e(paramB, "backEvent");
+      OnBackPressedDispatcher.d(e, paramB);
+    }
+  }
+  
+  static final class c
+    extends m
+    implements cb.a
+  {
+    c(OnBackPressedDispatcher paramOnBackPressedDispatcher)
+    {
+      super();
+    }
+    
+    public final void invoke()
+    {
+      e.k();
+    }
+  }
+  
+  static final class d
+    extends m
+    implements cb.a
+  {
+    d(OnBackPressedDispatcher paramOnBackPressedDispatcher)
+    {
+      super();
+    }
+    
+    public final void invoke()
+    {
+      OnBackPressedDispatcher.c(e);
+    }
+  }
+  
+  static final class e
+    extends m
+    implements cb.a
+  {
+    e(OnBackPressedDispatcher paramOnBackPressedDispatcher)
+    {
+      super();
+    }
+    
+    public final void invoke()
+    {
+      e.k();
+    }
+  }
+  
+  public static final class f
+  {
+    public static final f a = new f();
+    
+    private f() {}
+    
+    private static final void c(cb.a paramA)
+    {
+      db.l.e(paramA, "$onBackInvoked");
+      paramA.invoke();
+    }
+    
+    public final OnBackInvokedCallback b(cb.a paramA)
+    {
+      db.l.e(paramA, "onBackInvoked");
+      return new p(paramA);
+    }
+    
+    public final void d(Object paramObject1, int paramInt, Object paramObject2)
+    {
+      db.l.e(paramObject1, "dispatcher");
+      db.l.e(paramObject2, "callback");
+      ((OnBackInvokedDispatcher)paramObject1).registerOnBackInvokedCallback(paramInt, (OnBackInvokedCallback)paramObject2);
+    }
+    
+    public final void e(Object paramObject1, Object paramObject2)
+    {
+      db.l.e(paramObject1, "dispatcher");
+      db.l.e(paramObject2, "callback");
+      ((OnBackInvokedDispatcher)paramObject1).unregisterOnBackInvokedCallback((OnBackInvokedCallback)paramObject2);
+    }
+  }
+  
+  public static final class g
+  {
+    public static final g a = new g();
+    
+    private g() {}
+    
+    public final OnBackInvokedCallback a(cb.l paramL1, final cb.l paramL2, final cb.a paramA1, final cb.a paramA2)
+    {
+      db.l.e(paramL1, "onBackStarted");
+      db.l.e(paramL2, "onBackProgressed");
+      db.l.e(paramA1, "onBackInvoked");
+      db.l.e(paramA2, "onBackCancelled");
+      return new a(paramL1, paramL2, paramA1, paramA2);
+    }
+    
+    public static final class a
+      implements OnBackAnimationCallback
+    {
+      a(cb.l paramL1, cb.l paramL2, cb.a paramA1, cb.a paramA2) {}
+      
+      public void onBackCancelled()
+      {
+        paramA2.invoke();
+      }
+      
+      public void onBackInvoked()
+      {
+        paramA1.invoke();
+      }
+      
+      public void onBackProgressed(BackEvent paramBackEvent)
+      {
+        db.l.e(paramBackEvent, "backEvent");
+        paramL2.invoke(new b(paramBackEvent));
+      }
+      
+      public void onBackStarted(BackEvent paramBackEvent)
+      {
+        db.l.e(paramBackEvent, "backEvent");
+        a.invoke(new b(paramBackEvent));
+      }
+    }
+  }
+  
+  private final class h
+    implements c
+  {
+    private final o e;
+    
+    public h(o paramO)
+    {
+      e = paramO;
+    }
+    
+    public void cancel()
+    {
+      OnBackPressedDispatcher.b(OnBackPressedDispatcher.this).remove(e);
+      if (db.l.a(OnBackPressedDispatcher.a(OnBackPressedDispatcher.this), e))
+      {
+        e.c();
+        OnBackPressedDispatcher.f(OnBackPressedDispatcher.this, null);
+      }
+      e.i(this);
+      cb.a localA = e.b();
+      if (localA != null) {
+        localA.invoke();
+      }
+      e.k(null);
+    }
+  }
+}

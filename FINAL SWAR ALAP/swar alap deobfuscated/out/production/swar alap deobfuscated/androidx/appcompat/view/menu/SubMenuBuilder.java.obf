@@ -1,0 +1,139 @@
+package androidx.appcompat.view.menu;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
+import android.view.View;
+
+public class r
+  extends g
+  implements SubMenu
+{
+  private g B;
+  private i C;
+  
+  public r(Context paramContext, g paramG, i paramI)
+  {
+    super(paramContext);
+    B = paramG;
+    C = paramI;
+  }
+  
+  public g D()
+  {
+    return B.D();
+  }
+  
+  public boolean F()
+  {
+    return B.F();
+  }
+  
+  public boolean G()
+  {
+    return B.G();
+  }
+  
+  public boolean H()
+  {
+    return B.H();
+  }
+  
+  public void R(g.a paramA)
+  {
+    B.R(paramA);
+  }
+  
+  public Menu e0()
+  {
+    return B;
+  }
+  
+  public boolean f(i paramI)
+  {
+    return B.f(paramI);
+  }
+  
+  public MenuItem getItem()
+  {
+    return C;
+  }
+  
+  boolean h(g paramG, MenuItem paramMenuItem)
+  {
+    return (super.h(paramG, paramMenuItem)) || (B.h(paramG, paramMenuItem));
+  }
+  
+  public boolean k(i paramI)
+  {
+    return B.k(paramI);
+  }
+  
+  public void setGroupDividerEnabled(boolean paramBoolean)
+  {
+    B.setGroupDividerEnabled(paramBoolean);
+  }
+  
+  public SubMenu setHeaderIcon(int paramInt)
+  {
+    return (SubMenu)super.U(paramInt);
+  }
+  
+  public SubMenu setHeaderIcon(Drawable paramDrawable)
+  {
+    return (SubMenu)super.V(paramDrawable);
+  }
+  
+  public SubMenu setHeaderTitle(int paramInt)
+  {
+    return (SubMenu)super.X(paramInt);
+  }
+  
+  public SubMenu setHeaderTitle(CharSequence paramCharSequence)
+  {
+    return (SubMenu)super.Y(paramCharSequence);
+  }
+  
+  public SubMenu setHeaderView(View paramView)
+  {
+    return (SubMenu)super.Z(paramView);
+  }
+  
+  public SubMenu setIcon(int paramInt)
+  {
+    C.setIcon(paramInt);
+    return this;
+  }
+  
+  public SubMenu setIcon(Drawable paramDrawable)
+  {
+    C.setIcon(paramDrawable);
+    return this;
+  }
+  
+  public void setQwertyMode(boolean paramBoolean)
+  {
+    B.setQwertyMode(paramBoolean);
+  }
+  
+  public String t()
+  {
+    Object localObject = C;
+    int i;
+    if (localObject != null) {
+      i = ((i)localObject).getItemId();
+    } else {
+      i = 0;
+    }
+    if (i == 0) {
+      return null;
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append(super.t());
+    ((StringBuilder)localObject).append(":");
+    ((StringBuilder)localObject).append(i);
+    return ((StringBuilder)localObject).toString();
+  }
+}

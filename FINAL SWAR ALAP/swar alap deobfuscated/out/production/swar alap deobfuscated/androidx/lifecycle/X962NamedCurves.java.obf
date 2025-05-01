@@ -1,0 +1,83 @@
+package androidx.lifecycle;
+
+import android.app.Application;
+import db.l;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.List;
+import ta.f;
+import ta.m;
+
+public abstract class f0
+{
+  private static final List a = m.g(new Class[] { Application.class, a0.class });
+  private static final List b = m.b(a0.class);
+  
+  public static final Constructor c(Class paramClass, List paramList)
+  {
+    l.e(paramClass, "modelClass");
+    l.e(paramList, "signature");
+    Object localObject1 = paramClass.getConstructors();
+    l.d(localObject1, "modelClass.constructors");
+    int j = localObject1.length;
+    int i = 0;
+    while (i < j)
+    {
+      Object localObject2 = localObject1[i];
+      Object localObject3 = localObject2.getParameterTypes();
+      l.d(localObject3, "constructor.parameterTypes");
+      localObject3 = f.u((Object[])localObject3);
+      if (l.a(paramList, localObject3))
+      {
+        l.c(localObject2, "null cannot be cast to non-null type java.lang.reflect.Constructor<T of androidx.lifecycle.SavedStateViewModelFactoryKt.findMatchingConstructor>");
+        return localObject2;
+      }
+      if ((paramList.size() == ((List)localObject3).size()) && (((List)localObject3).containsAll(paramList)))
+      {
+        localObject1 = new StringBuilder();
+        ((StringBuilder)localObject1).append("Class ");
+        ((StringBuilder)localObject1).append(paramClass.getSimpleName());
+        ((StringBuilder)localObject1).append(" must have parameters in the proper order: ");
+        ((StringBuilder)localObject1).append(paramList);
+        throw new UnsupportedOperationException(((StringBuilder)localObject1).toString());
+      }
+      i += 1;
+    }
+    return null;
+  }
+  
+  public static final h0 d(Class paramClass, Constructor paramConstructor, Object... paramVarArgs)
+  {
+    l.e(paramClass, "modelClass");
+    l.e(paramConstructor, "constructor");
+    l.e(paramVarArgs, "params");
+    try
+    {
+      paramConstructor = (h0)paramConstructor.newInstance(Arrays.copyOf(paramVarArgs, paramVarArgs.length));
+      return paramConstructor;
+    }
+    catch (InvocationTargetException paramConstructor)
+    {
+      paramVarArgs = new StringBuilder();
+      paramVarArgs.append("An exception happened in constructor of ");
+      paramVarArgs.append(paramClass);
+      throw new RuntimeException(paramVarArgs.toString(), paramConstructor.getCause());
+    }
+    catch (InstantiationException paramConstructor)
+    {
+      paramVarArgs = new StringBuilder();
+      paramVarArgs.append("A ");
+      paramVarArgs.append(paramClass);
+      paramVarArgs.append(" cannot be instantiated.");
+      throw new RuntimeException(paramVarArgs.toString(), paramConstructor);
+    }
+    catch (IllegalAccessException paramConstructor)
+    {
+      paramVarArgs = new StringBuilder();
+      paramVarArgs.append("Failed to access ");
+      paramVarArgs.append(paramClass);
+      throw new RuntimeException(paramVarArgs.toString(), paramConstructor);
+    }
+  }
+}

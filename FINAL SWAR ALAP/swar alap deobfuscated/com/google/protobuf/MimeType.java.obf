@@ -1,0 +1,42 @@
+package com.google.protobuf;
+
+abstract class d
+{
+  private static final Class a = a("libcore.io.Memory");
+  private static final boolean b;
+  
+  static
+  {
+    boolean bool;
+    if (a("org.robolectric.Robolectric") != null) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    b = bool;
+  }
+  
+  private static Class a(String paramString)
+  {
+    try
+    {
+      paramString = Class.forName(paramString);
+      return paramString;
+    }
+    finally
+    {
+      for (;;) {}
+    }
+    return null;
+  }
+  
+  static Class b()
+  {
+    return a;
+  }
+  
+  static boolean c()
+  {
+    return (a != null) && (!b);
+  }
+}

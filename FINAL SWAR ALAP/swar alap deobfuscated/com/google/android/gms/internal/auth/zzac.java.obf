@@ -1,0 +1,21 @@
+package com.google.android.gms.internal.auth;
+
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.a;
+import com.google.android.gms.common.api.h;
+import com.google.android.gms.common.api.internal.e;
+
+final class zzac
+  extends e
+{
+  zzac(zzal paramZzal, a paramA, GoogleApiClient paramGoogleApiClient, boolean paramBoolean)
+  {
+    super(paramA, paramGoogleApiClient);
+  }
+  
+  protected final h createFailedResult(Status paramStatus)
+  {
+    return new zzaj(paramStatus);
+  }
+}

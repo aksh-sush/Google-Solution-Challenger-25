@@ -1,0 +1,57 @@
+package t;
+
+import java.util.ArrayList;
+import q.c;
+
+public abstract class m
+  extends e
+{
+  public ArrayList L0 = new ArrayList();
+  
+  public m() {}
+  
+  public void b(e paramE)
+  {
+    L0.add(paramE);
+    if (paramE.K() != null) {
+      ((m)paramE.K()).t1(paramE);
+    }
+    paramE.c1(this);
+  }
+  
+  public ArrayList r1()
+  {
+    return L0;
+  }
+  
+  public abstract void s1();
+  
+  public void t0()
+  {
+    L0.clear();
+    super.t0();
+  }
+  
+  public void t1(e paramE)
+  {
+    L0.remove(paramE);
+    paramE.t0();
+  }
+  
+  public void u1()
+  {
+    L0.clear();
+  }
+  
+  public void w0(c paramC)
+  {
+    super.w0(paramC);
+    int j = L0.size();
+    int i = 0;
+    while (i < j)
+    {
+      ((e)L0.get(i)).w0(paramC);
+      i += 1;
+    }
+  }
+}

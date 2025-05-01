@@ -1,0 +1,162 @@
+package android.support.v4.media.session;
+
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import android.text.TextUtils;
+import java.util.List;
+
+public final class PlaybackStateCompat
+  implements Parcelable
+{
+  public static final Parcelable.Creator<PlaybackStateCompat> CREATOR = new a();
+  final int e;
+  final long f;
+  final long g;
+  final float h;
+  final long i;
+  final int j;
+  final CharSequence k;
+  final long l;
+  List m;
+  final long n;
+  final Bundle o;
+  
+  PlaybackStateCompat(Parcel paramParcel)
+  {
+    e = paramParcel.readInt();
+    f = paramParcel.readLong();
+    h = paramParcel.readFloat();
+    l = paramParcel.readLong();
+    g = paramParcel.readLong();
+    i = paramParcel.readLong();
+    k = ((CharSequence)TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(paramParcel));
+    m = paramParcel.createTypedArrayList(CustomAction.CREATOR);
+    n = paramParcel.readLong();
+    o = paramParcel.readBundle(MediaSessionCompat.class.getClassLoader());
+    j = paramParcel.readInt();
+  }
+  
+  public int describeContents()
+  {
+    return 0;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder("PlaybackState {");
+    localStringBuilder.append("state=");
+    localStringBuilder.append(e);
+    localStringBuilder.append(", position=");
+    localStringBuilder.append(f);
+    localStringBuilder.append(", buffered position=");
+    localStringBuilder.append(g);
+    localStringBuilder.append(", speed=");
+    localStringBuilder.append(h);
+    localStringBuilder.append(", updated=");
+    localStringBuilder.append(l);
+    localStringBuilder.append(", actions=");
+    localStringBuilder.append(i);
+    localStringBuilder.append(", error code=");
+    localStringBuilder.append(j);
+    localStringBuilder.append(", error message=");
+    localStringBuilder.append(k);
+    localStringBuilder.append(", custom actions=");
+    localStringBuilder.append(m);
+    localStringBuilder.append(", active item id=");
+    localStringBuilder.append(n);
+    localStringBuilder.append("}");
+    return localStringBuilder.toString();
+  }
+  
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramParcel.writeInt(e);
+    paramParcel.writeLong(f);
+    paramParcel.writeFloat(h);
+    paramParcel.writeLong(l);
+    paramParcel.writeLong(g);
+    paramParcel.writeLong(i);
+    TextUtils.writeToParcel(k, paramParcel, paramInt);
+    paramParcel.writeTypedList(m);
+    paramParcel.writeLong(n);
+    paramParcel.writeBundle(o);
+    paramParcel.writeInt(j);
+  }
+  
+  public static final class CustomAction
+    implements Parcelable
+  {
+    public static final Parcelable.Creator<CustomAction> CREATOR = new a();
+    private final String e;
+    private final CharSequence f;
+    private final int g;
+    private final Bundle h;
+    
+    CustomAction(Parcel paramParcel)
+    {
+      e = paramParcel.readString();
+      f = ((CharSequence)TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(paramParcel));
+      g = paramParcel.readInt();
+      h = paramParcel.readBundle(MediaSessionCompat.class.getClassLoader());
+    }
+    
+    public int describeContents()
+    {
+      return 0;
+    }
+    
+    public String toString()
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Action:mName='");
+      localStringBuilder.append(f);
+      localStringBuilder.append(", mIcon=");
+      localStringBuilder.append(g);
+      localStringBuilder.append(", mExtras=");
+      localStringBuilder.append(h);
+      return localStringBuilder.toString();
+    }
+    
+    public void writeToParcel(Parcel paramParcel, int paramInt)
+    {
+      paramParcel.writeString(e);
+      TextUtils.writeToParcel(f, paramParcel, paramInt);
+      paramParcel.writeInt(g);
+      paramParcel.writeBundle(h);
+    }
+    
+    static final class a
+      implements Parcelable.Creator
+    {
+      a() {}
+      
+      public PlaybackStateCompat.CustomAction a(Parcel paramParcel)
+      {
+        return new PlaybackStateCompat.CustomAction(paramParcel);
+      }
+      
+      public PlaybackStateCompat.CustomAction[] b(int paramInt)
+      {
+        return new PlaybackStateCompat.CustomAction[paramInt];
+      }
+    }
+  }
+  
+  static final class a
+    implements Parcelable.Creator
+  {
+    a() {}
+    
+    public PlaybackStateCompat a(Parcel paramParcel)
+    {
+      return new PlaybackStateCompat(paramParcel);
+    }
+    
+    public PlaybackStateCompat[] b(int paramInt)
+    {
+      return new PlaybackStateCompat[paramInt];
+    }
+  }
+}

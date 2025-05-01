@@ -1,0 +1,6 @@
+package a8;
+
+public abstract interface a
+{
+  public abstract long getCurrentTimeMillis();
+}

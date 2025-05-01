@@ -1,0 +1,17 @@
+package androidx.lifecycle;
+
+public class s
+  extends LiveData
+{
+  public s() {}
+  
+  public void l(Object paramObject)
+  {
+    super.l(paramObject);
+  }
+  
+  public void n(Object paramObject)
+  {
+    super.n(paramObject);
+  }
+}

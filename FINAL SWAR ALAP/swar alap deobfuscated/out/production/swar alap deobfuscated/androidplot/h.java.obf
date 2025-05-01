@@ -1,0 +1,320 @@
+package u;
+
+import java.util.List;
+import t.e;
+import t.e.b;
+
+public abstract class p
+  implements d
+{
+  public int a;
+  e b;
+  m c;
+  protected e.b d;
+  g e = new g(this);
+  public int f = 0;
+  boolean g = false;
+  public f h = new f(this);
+  public f i = new f(this);
+  protected b j = b.e;
+  
+  public p(e paramE)
+  {
+    b = paramE;
+  }
+  
+  private void l(int paramInt1, int paramInt2)
+  {
+    int m = a;
+    int k = paramInt2;
+    if (m != 0) {
+      if (m != 1)
+      {
+        float f1;
+        if (m != 2)
+        {
+          if (m != 3) {
+            return;
+          }
+          localE = b;
+          localObject1 = e;
+          Object localObject2 = d;
+          e.b localB = e.b.g;
+          if ((localObject2 == localB) && (a == 3))
+          {
+            localObject2 = f;
+            if ((d == localB) && (a == 3)) {
+              return;
+            }
+          }
+          if (paramInt1 == 0) {
+            localObject1 = f;
+          }
+          if (!e.j) {
+            return;
+          }
+          f1 = localE.v();
+          if (paramInt1 == 1) {
+            paramInt1 = (int)(e.g / f1 + 0.5F);
+          } else {
+            paramInt1 = (int)(f1 * e.g + 0.5F);
+          }
+          e.d(paramInt1);
+          return;
+        }
+        localObject1 = b.K();
+        if (localObject1 == null) {
+          return;
+        }
+        if (paramInt1 == 0) {
+          localObject1 = e;
+        } else {
+          localObject1 = f;
+        }
+        localObject1 = e;
+        if (!j) {
+          return;
+        }
+        e localE = b;
+        if (paramInt1 == 0) {
+          f1 = B;
+        } else {
+          f1 = E;
+        }
+        k = (int)(g * f1 + 0.5F);
+      }
+      else
+      {
+        paramInt1 = g(e.m, paramInt1);
+        localObject1 = e;
+        paramInt1 = Math.min(paramInt1, paramInt2);
+        break label312;
+      }
+    }
+    Object localObject1 = e;
+    paramInt1 = g(k, paramInt1);
+    label312:
+    ((g)localObject1).d(paramInt1);
+  }
+  
+  public abstract void a(d paramD);
+  
+  protected final void b(f paramF1, f paramF2, int paramInt)
+  {
+    l.add(paramF2);
+    f = paramInt;
+    k.add(paramF1);
+  }
+  
+  protected final void c(f paramF1, f paramF2, int paramInt, g paramG)
+  {
+    l.add(paramF2);
+    l.add(e);
+    h = paramInt;
+    i = paramG;
+    k.add(paramF1);
+    k.add(paramF1);
+  }
+  
+  abstract void d();
+  
+  abstract void e();
+  
+  abstract void f();
+  
+  protected final int g(int paramInt1, int paramInt2)
+  {
+    e localE;
+    if (paramInt2 == 0)
+    {
+      localE = b;
+      k = A;
+      paramInt2 = Math.max(z, paramInt1);
+      if (k > 0) {
+        paramInt2 = Math.min(k, paramInt1);
+      }
+      k = paramInt1;
+      if (paramInt2 == paramInt1) {
+        return k;
+      }
+    }
+    else
+    {
+      localE = b;
+      k = D;
+      paramInt2 = Math.max(C, paramInt1);
+      if (k > 0) {
+        paramInt2 = Math.min(k, paramInt1);
+      }
+      k = paramInt1;
+      if (paramInt2 == paramInt1) {
+        return k;
+      }
+    }
+    int k = paramInt2;
+    return k;
+  }
+  
+  protected final f h(t.d paramD)
+  {
+    Object localObject = f;
+    if (localObject == null) {
+      return null;
+    }
+    paramD = d;
+    localObject = e;
+    int k = a.a[localObject.ordinal()];
+    if (k != 1)
+    {
+      if (k != 2)
+      {
+        if (k != 3)
+        {
+          if (k != 4)
+          {
+            if (k != 5) {
+              return null;
+            }
+            paramD = f;
+          }
+          else
+          {
+            return f.k;
+          }
+        }
+        else
+        {
+          paramD = f;
+          break label96;
+        }
+      }
+      else {
+        paramD = e;
+      }
+      return i;
+    }
+    else
+    {
+      paramD = e;
+    }
+    label96:
+    return h;
+  }
+  
+  protected final f i(t.d paramD, int paramInt)
+  {
+    Object localObject = f;
+    if (localObject == null) {
+      return null;
+    }
+    paramD = d;
+    if (paramInt == 0) {
+      paramD = e;
+    } else {
+      paramD = f;
+    }
+    localObject = e;
+    paramInt = a.a[localObject.ordinal()];
+    if (paramInt != 1)
+    {
+      if (paramInt != 2)
+      {
+        if (paramInt == 3) {
+          break label74;
+        }
+        if (paramInt != 5) {
+          return null;
+        }
+      }
+      return i;
+    }
+    label74:
+    return h;
+  }
+  
+  public long j()
+  {
+    g localG = e;
+    if (j) {
+      return g;
+    }
+    return 0L;
+  }
+  
+  public boolean k()
+  {
+    return g;
+  }
+  
+  abstract boolean m();
+  
+  protected void n(d paramD, t.d paramD1, t.d paramD2, int paramInt)
+  {
+    paramD = h(paramD1);
+    f localF = h(paramD2);
+    if (j)
+    {
+      if (!j) {
+        return;
+      }
+      int m = g + paramD1.f();
+      int k = g - paramD2.f();
+      int n = k - m;
+      if ((!e.j) && (d == e.b.g)) {
+        l(paramInt, n);
+      }
+      paramD1 = e;
+      if (!j) {
+        return;
+      }
+      if (g == n)
+      {
+        h.d(m);
+        paramD = i;
+      }
+      for (;;)
+      {
+        paramD.d(k);
+        return;
+        paramD1 = b;
+        float f1;
+        if (paramInt == 0) {
+          f1 = paramD1.y();
+        } else {
+          f1 = paramD1.R();
+        }
+        paramInt = m;
+        if (paramD == localF)
+        {
+          paramInt = g;
+          k = g;
+          f1 = 0.5F;
+        }
+        m = e.g;
+        h.d((int)(paramInt + 0.5F + (k - paramInt - m) * f1));
+        paramD = i;
+        k = h.g + e.g;
+      }
+    }
+  }
+  
+  protected void o(d paramD) {}
+  
+  protected void p(d paramD) {}
+  
+  static enum b
+  {
+    static
+    {
+      b localB1 = new b("NONE", 0);
+      e = localB1;
+      b localB2 = new b("START", 1);
+      f = localB2;
+      b localB3 = new b("END", 2);
+      g = localB3;
+      b localB4 = new b("CENTER", 3);
+      h = localB4;
+      i = new b[] { localB1, localB2, localB3, localB4 };
+    }
+  }
+}

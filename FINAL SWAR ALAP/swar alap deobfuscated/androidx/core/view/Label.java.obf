@@ -1,0 +1,121 @@
+package androidx.core.view;
+
+import android.graphics.Rect;
+import android.os.Build.VERSION;
+import android.view.DisplayCutout;
+import androidx.core.util.c;
+import java.util.List;
+
+public final class n
+{
+  private final DisplayCutout a;
+  
+  private n(DisplayCutout paramDisplayCutout)
+  {
+    a = paramDisplayCutout;
+  }
+  
+  static n e(DisplayCutout paramDisplayCutout)
+  {
+    if (paramDisplayCutout == null) {
+      return null;
+    }
+    return new n(paramDisplayCutout);
+  }
+  
+  public int a()
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return a.c(a);
+    }
+    return 0;
+  }
+  
+  public int b()
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return a.d(a);
+    }
+    return 0;
+  }
+  
+  public int c()
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return a.e(a);
+    }
+    return 0;
+  }
+  
+  public int d()
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return a.f(a);
+    }
+    return 0;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if ((paramObject != null) && (n.class == paramObject.getClass()))
+    {
+      paramObject = (n)paramObject;
+      return c.a(a, a);
+    }
+    return false;
+  }
+  
+  public int hashCode()
+  {
+    DisplayCutout localDisplayCutout = a;
+    if (localDisplayCutout == null) {
+      return 0;
+    }
+    return m.a(localDisplayCutout);
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("DisplayCutoutCompat{");
+    localStringBuilder.append(a);
+    localStringBuilder.append("}");
+    return localStringBuilder.toString();
+  }
+  
+  static abstract class a
+  {
+    static DisplayCutout a(Rect paramRect, List<Rect> paramList)
+    {
+      return new DisplayCutout(paramRect, paramList);
+    }
+    
+    static List<Rect> b(DisplayCutout paramDisplayCutout)
+    {
+      return paramDisplayCutout.getBoundingRects();
+    }
+    
+    static int c(DisplayCutout paramDisplayCutout)
+    {
+      return paramDisplayCutout.getSafeInsetBottom();
+    }
+    
+    static int d(DisplayCutout paramDisplayCutout)
+    {
+      return paramDisplayCutout.getSafeInsetLeft();
+    }
+    
+    static int e(DisplayCutout paramDisplayCutout)
+    {
+      return paramDisplayCutout.getSafeInsetRight();
+    }
+    
+    static int f(DisplayCutout paramDisplayCutout)
+    {
+      return paramDisplayCutout.getSafeInsetTop();
+    }
+  }
+}

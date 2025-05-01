@@ -1,0 +1,78 @@
+package com.google.android.gms.internal.auth;
+
+final class zzfo
+  implements zzgi
+{
+  private static final zzfu zza = new zzfm();
+  private final zzfu zzb;
+  
+  public zzfo()
+  {
+    zzez.zzf(localObject, "messageInfoFactory");
+    zzb = ((zzfu)localObject);
+  }
+  
+  private static boolean zzb(zzft paramZzft)
+  {
+    return paramZzft.zzc() == 1;
+  }
+  
+  public final zzgh zza(Class paramClass)
+  {
+    zzgj.zzg(paramClass);
+    zzft localZzft = zzb.zzb(paramClass);
+    Object localObject1;
+    if (localZzft.zzb())
+    {
+      if (zzeu.class.isAssignableFrom(paramClass)) {
+        localObject1 = zzgj.zzc();
+      }
+      for (paramClass = zzen.zzb();; paramClass = zzen.zza())
+      {
+        return zzga.zzb((zzgy)localObject1, paramClass, localZzft.zza());
+        localObject1 = zzgj.zza();
+      }
+    }
+    boolean bool;
+    Object localObject2;
+    zzfk localZzfk;
+    Object localObject3;
+    zzfr localZzfr;
+    Object localObject4;
+    if (zzeu.class.isAssignableFrom(paramClass))
+    {
+      bool = zzb(localZzft);
+      localObject2 = zzgc.zzb();
+      localZzfk = zzfk.zzd();
+      localObject3 = zzgj.zzc();
+      if (bool) {
+        localObject1 = zzen.zzb();
+      } else {
+        localObject1 = null;
+      }
+      localZzfr = zzfs.zzb();
+      localObject4 = localObject1;
+    }
+    else
+    {
+      bool = zzb(localZzft);
+      zzgb localZzgb = zzgc.zza();
+      localZzfk = zzfk.zzc();
+      if (bool)
+      {
+        localObject1 = zzgj.zza();
+        localObject2 = zzen.zza();
+      }
+      else
+      {
+        localObject1 = zzgj.zzb();
+        localObject2 = null;
+      }
+      localZzfr = zzfs.zza();
+      localObject4 = localObject2;
+      localObject3 = localObject1;
+      localObject2 = localZzgb;
+    }
+    return zzfz.zzj(paramClass, localZzft, (zzgb)localObject2, localZzfk, (zzgy)localObject3, localObject4, localZzfr);
+  }
+}

@@ -1,0 +1,12 @@
+package n6;
+
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView.e0;
+import k6.b;
+
+public abstract interface g
+{
+  public abstract RecyclerView.e0 a(b paramB, ViewGroup paramViewGroup, int paramInt);
+  
+  public abstract RecyclerView.e0 b(b paramB, RecyclerView.e0 paramE0);
+}

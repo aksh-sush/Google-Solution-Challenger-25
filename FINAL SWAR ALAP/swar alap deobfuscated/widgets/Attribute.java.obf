@@ -1,0 +1,68 @@
+package sa;
+
+import db.l;
+import java.io.Serializable;
+
+public abstract class n
+  implements Serializable
+{
+  public static final a e = new a(null);
+  
+  public static Object a(Object paramObject)
+  {
+    return paramObject;
+  }
+  
+  public static final Throwable b(Object paramObject)
+  {
+    if ((paramObject instanceof b)) {
+      return e;
+    }
+    return null;
+  }
+  
+  public static final boolean c(Object paramObject)
+  {
+    return paramObject instanceof b;
+  }
+  
+  public static final boolean d(Object paramObject)
+  {
+    return paramObject instanceof b ^ true;
+  }
+  
+  public static final class a
+  {
+    private a() {}
+  }
+  
+  public static final class b
+    implements Serializable
+  {
+    public final Throwable e;
+    
+    public b(Throwable paramThrowable)
+    {
+      e = paramThrowable;
+    }
+    
+    public boolean equals(Object paramObject)
+    {
+      return ((paramObject instanceof b)) && (l.a(e, e));
+    }
+    
+    public int hashCode()
+    {
+      return e.hashCode();
+    }
+    
+    public String toString()
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Failure(");
+      localStringBuilder.append(e);
+      localStringBuilder.append(')');
+      return localStringBuilder.toString();
+    }
+  }
+}

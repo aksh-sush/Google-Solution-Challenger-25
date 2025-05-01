@@ -1,0 +1,94 @@
+package c;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+
+public class b
+  implements Parcelable
+{
+  public static final Parcelable.Creator<b> CREATOR = new a();
+  final boolean e = false;
+  final Handler f = null;
+  a g;
+  
+  b(Parcel paramParcel)
+  {
+    g = a.a.c(paramParcel.readStrongBinder());
+  }
+  
+  protected void a(int paramInt, Bundle paramBundle) {}
+  
+  public int describeContents()
+  {
+    return 0;
+  }
+  
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    try
+    {
+      if (g == null) {
+        g = new b();
+      }
+      paramParcel.writeStrongBinder(g.asBinder());
+      return;
+    }
+    finally {}
+  }
+  
+  class a
+    implements Parcelable.Creator
+  {
+    a() {}
+    
+    public b a(Parcel paramParcel)
+    {
+      return new b(paramParcel);
+    }
+    
+    public b[] b(int paramInt)
+    {
+      return new b[paramInt];
+    }
+  }
+  
+  class b
+    extends a.a
+  {
+    b() {}
+    
+    public void V(int paramInt, Bundle paramBundle)
+    {
+      b localB = b.this;
+      Handler localHandler = f;
+      if (localHandler != null)
+      {
+        localHandler.post(new b.c(localB, paramInt, paramBundle));
+        return;
+      }
+      localB.a(paramInt, paramBundle);
+    }
+  }
+  
+  class c
+    implements Runnable
+  {
+    final int e;
+    final Bundle f;
+    
+    c(int paramInt, Bundle paramBundle)
+    {
+      e = paramInt;
+      f = paramBundle;
+    }
+    
+    public void run()
+    {
+      a(e, f);
+    }
+  }
+}

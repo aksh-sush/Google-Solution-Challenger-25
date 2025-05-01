@@ -1,0 +1,80 @@
+package sa;
+
+import db.l;
+import java.io.Serializable;
+
+public final class m
+  implements Serializable
+{
+  private final Object e;
+  private final Object f;
+  
+  public m(Object paramObject1, Object paramObject2)
+  {
+    e = paramObject1;
+    f = paramObject2;
+  }
+  
+  public final Object a()
+  {
+    return e;
+  }
+  
+  public final Object b()
+  {
+    return f;
+  }
+  
+  public final Object c()
+  {
+    return e;
+  }
+  
+  public final Object d()
+  {
+    return f;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof m)) {
+      return false;
+    }
+    paramObject = (m)paramObject;
+    if (!l.a(e, e)) {
+      return false;
+    }
+    return l.a(f, f);
+  }
+  
+  public int hashCode()
+  {
+    Object localObject = e;
+    int j = 0;
+    int i;
+    if (localObject == null) {
+      i = 0;
+    } else {
+      i = localObject.hashCode();
+    }
+    localObject = f;
+    if (localObject != null) {
+      j = localObject.hashCode();
+    }
+    return i * 31 + j;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append('(');
+    localStringBuilder.append(e);
+    localStringBuilder.append(", ");
+    localStringBuilder.append(f);
+    localStringBuilder.append(')');
+    return localStringBuilder.toString();
+  }
+}

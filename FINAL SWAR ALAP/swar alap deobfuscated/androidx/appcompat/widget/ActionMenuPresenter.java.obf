@@ -1,0 +1,818 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
+import android.util.SparseBooleanArray;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.appcompat.view.menu.ActionMenuItemView.b;
+import androidx.appcompat.view.menu.i;
+import androidx.appcompat.view.menu.l;
+import androidx.appcompat.view.menu.m.a;
+import androidx.appcompat.view.menu.n;
+import androidx.appcompat.view.menu.n.a;
+import androidx.appcompat.view.menu.p;
+import androidx.appcompat.view.menu.r;
+import androidx.core.view.b.a;
+import java.util.ArrayList;
+
+class c
+  extends androidx.appcompat.view.menu.b
+  implements b.a
+{
+  private int A;
+  private final SparseBooleanArray B = new SparseBooleanArray();
+  e C;
+  a D;
+  c E;
+  private b F;
+  final f G = new f();
+  int H;
+  d o;
+  private Drawable p;
+  private boolean q;
+  private boolean r;
+  private boolean s;
+  private int t;
+  private int u;
+  private int v;
+  private boolean w;
+  private boolean x;
+  private boolean y;
+  private boolean z;
+  
+  public c(Context paramContext)
+  {
+    super(paramContext, f.g.c, f.g.b);
+  }
+  
+  private View z(MenuItem paramMenuItem)
+  {
+    ViewGroup localViewGroup = (ViewGroup)m;
+    if (localViewGroup == null) {
+      return null;
+    }
+    int j = localViewGroup.getChildCount();
+    int i = 0;
+    while (i < j)
+    {
+      View localView = localViewGroup.getChildAt(i);
+      if (((localView instanceof n.a)) && (((n.a)localView).getItemData() == paramMenuItem)) {
+        return localView;
+      }
+      i += 1;
+    }
+    return null;
+  }
+  
+  public Drawable A()
+  {
+    d localD = o;
+    if (localD != null) {
+      return localD.getDrawable();
+    }
+    if (q) {
+      return p;
+    }
+    return null;
+  }
+  
+  public boolean B()
+  {
+    Object localObject = E;
+    if (localObject != null)
+    {
+      n localN = m;
+      if (localN != null)
+      {
+        ((View)localN).removeCallbacks((Runnable)localObject);
+        E = null;
+        return true;
+      }
+    }
+    localObject = C;
+    if (localObject != null)
+    {
+      ((l)localObject).b();
+      return true;
+    }
+    return false;
+  }
+  
+  public boolean C()
+  {
+    a localA = D;
+    if (localA != null)
+    {
+      localA.b();
+      return true;
+    }
+    return false;
+  }
+  
+  public boolean D()
+  {
+    return (E != null) || (E());
+  }
+  
+  public boolean E()
+  {
+    e localE = C;
+    return (localE != null) && (localE.d());
+  }
+  
+  public void F(Configuration paramConfiguration)
+  {
+    if (!w) {
+      v = androidx.appcompat.view.a.b(f).d();
+    }
+    paramConfiguration = g;
+    if (paramConfiguration != null) {
+      paramConfiguration.K(true);
+    }
+  }
+  
+  public void G(boolean paramBoolean)
+  {
+    z = paramBoolean;
+  }
+  
+  public void H(ActionMenuView paramActionMenuView)
+  {
+    m = paramActionMenuView;
+    paramActionMenuView.b(g);
+  }
+  
+  public void I(Drawable paramDrawable)
+  {
+    d localD = o;
+    if (localD != null)
+    {
+      localD.setImageDrawable(paramDrawable);
+      return;
+    }
+    q = true;
+    p = paramDrawable;
+  }
+  
+  public void J(boolean paramBoolean)
+  {
+    r = paramBoolean;
+    s = true;
+  }
+  
+  public boolean K()
+  {
+    if ((r) && (!E()))
+    {
+      Object localObject = g;
+      if ((localObject != null) && (m != null) && (E == null) && (!((androidx.appcompat.view.menu.g)localObject).z().isEmpty()))
+      {
+        localObject = new c(new e(f, g, o, true));
+        E = ((c)localObject);
+        ((View)m).post((Runnable)localObject);
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public void a(androidx.appcompat.view.menu.g paramG, boolean paramBoolean)
+  {
+    y();
+    super.a(paramG, paramBoolean);
+  }
+  
+  public void c(Context paramContext, androidx.appcompat.view.menu.g paramG)
+  {
+    super.c(paramContext, paramG);
+    paramG = paramContext.getResources();
+    paramContext = androidx.appcompat.view.a.b(paramContext);
+    if (!s) {
+      r = paramContext.f();
+    }
+    if (!y) {
+      t = paramContext.c();
+    }
+    if (!w) {
+      v = paramContext.d();
+    }
+    int i = t;
+    if (r)
+    {
+      if (o == null)
+      {
+        paramContext = new d(e);
+        o = paramContext;
+        if (q)
+        {
+          paramContext.setImageDrawable(p);
+          p = null;
+          q = false;
+        }
+        int j = View.MeasureSpec.makeMeasureSpec(0, 0);
+        o.measure(j, j);
+      }
+      i -= o.getMeasuredWidth();
+    }
+    else
+    {
+      o = null;
+    }
+    u = i;
+    A = ((int)(getDisplayMetricsdensity * 56.0F));
+  }
+  
+  public void d(i paramI, n.a paramA)
+  {
+    paramA.e(paramI, 0);
+    paramI = (ActionMenuView)m;
+    paramA = (ActionMenuItemView)paramA;
+    paramA.setItemInvoker(paramI);
+    if (F == null) {
+      F = new b();
+    }
+    paramA.setPopupCallback(F);
+  }
+  
+  public boolean e(r paramR)
+  {
+    boolean bool1 = paramR.hasVisibleItems();
+    boolean bool2 = false;
+    if (!bool1) {
+      return false;
+    }
+    for (Object localObject = paramR; ((r)localObject).e0() != g; localObject = (r)((r)localObject).e0()) {}
+    localObject = z(((r)localObject).getItem());
+    if (localObject == null) {
+      return false;
+    }
+    H = paramR.getItem().getItemId();
+    int j = paramR.size();
+    int i = 0;
+    for (;;)
+    {
+      bool1 = bool2;
+      if (i >= j) {
+        break;
+      }
+      MenuItem localMenuItem = paramR.getItem(i);
+      if ((localMenuItem.isVisible()) && (localMenuItem.getIcon() != null))
+      {
+        bool1 = true;
+        break;
+      }
+      i += 1;
+    }
+    localObject = new a(f, paramR, (View)localObject);
+    D = ((a)localObject);
+    ((l)localObject).g(bool1);
+    D.k();
+    super.e(paramR);
+    return true;
+  }
+  
+  public void f(boolean paramBoolean)
+  {
+    super.f(paramBoolean);
+    ((View)m).requestLayout();
+    Object localObject1 = g;
+    int j = 0;
+    int k;
+    Object localObject2;
+    if (localObject1 != null)
+    {
+      localObject1 = ((androidx.appcompat.view.menu.g)localObject1).s();
+      k = ((ArrayList)localObject1).size();
+      i = 0;
+      while (i < k)
+      {
+        localObject2 = ((i)((ArrayList)localObject1).get(i)).b();
+        if (localObject2 != null) {
+          ((androidx.core.view.b)localObject2).h(this);
+        }
+        i += 1;
+      }
+    }
+    localObject1 = g;
+    if (localObject1 != null) {
+      localObject1 = ((androidx.appcompat.view.menu.g)localObject1).z();
+    } else {
+      localObject1 = null;
+    }
+    int i = j;
+    boolean bool;
+    if (r)
+    {
+      i = j;
+      if (localObject1 != null)
+      {
+        k = ((ArrayList)localObject1).size();
+        if (k == 1)
+        {
+          bool = ((i)((ArrayList)localObject1).get(0)).isActionViewExpanded() ^ true;
+        }
+        else
+        {
+          bool = j;
+          if (k > 0) {
+            bool = true;
+          }
+        }
+      }
+    }
+    localObject1 = o;
+    if (bool)
+    {
+      if (localObject1 == null) {
+        o = new d(e);
+      }
+      localObject1 = (ViewGroup)o.getParent();
+      if (localObject1 != m)
+      {
+        if (localObject1 != null) {
+          ((ViewGroup)localObject1).removeView(o);
+        }
+        localObject1 = (ActionMenuView)m;
+        ((ViewGroup)localObject1).addView(o, ((ActionMenuView)localObject1).F());
+      }
+    }
+    else if (localObject1 != null)
+    {
+      localObject1 = ((View)localObject1).getParent();
+      localObject2 = m;
+      if (localObject1 == localObject2) {
+        ((ViewGroup)localObject2).removeView(o);
+      }
+    }
+    ((ActionMenuView)m).setOverflowReserved(r);
+  }
+  
+  public boolean h()
+  {
+    Object localObject2 = this;
+    Object localObject1 = g;
+    int m;
+    if (localObject1 != null)
+    {
+      localObject1 = ((androidx.appcompat.view.menu.g)localObject1).E();
+      m = ((ArrayList)localObject1).size();
+    }
+    else
+    {
+      localObject1 = null;
+      m = 0;
+    }
+    int i = v;
+    int i5 = u;
+    int i6 = View.MeasureSpec.makeMeasureSpec(0, 0);
+    ViewGroup localViewGroup = (ViewGroup)m;
+    int j = 0;
+    int i1 = 0;
+    int k = 0;
+    int n = 0;
+    int i2;
+    while (j < m)
+    {
+      localObject3 = (i)((ArrayList)localObject1).get(j);
+      if (((i)localObject3).o()) {
+        k += 1;
+      } else if (((i)localObject3).n()) {
+        n += 1;
+      } else {
+        i1 = 1;
+      }
+      i2 = i;
+      if (z)
+      {
+        i2 = i;
+        if (((i)localObject3).isActionViewExpanded()) {
+          i2 = 0;
+        }
+      }
+      j += 1;
+      i = i2;
+    }
+    j = i;
+    if (r) {
+      if (i1 == 0)
+      {
+        j = i;
+        if (n + k <= i) {}
+      }
+      else
+      {
+        j = i - 1;
+      }
+    }
+    i = j - k;
+    Object localObject3 = B;
+    ((SparseBooleanArray)localObject3).clear();
+    int i3;
+    if (x)
+    {
+      j = A;
+      k = i5 / j;
+      i3 = j + i5 % j / k;
+    }
+    else
+    {
+      i3 = 0;
+      k = 0;
+    }
+    int i4 = 0;
+    j = 0;
+    i1 = i5;
+    i5 = m;
+    for (;;)
+    {
+      localObject2 = this;
+      if (i4 >= i5) {
+        break;
+      }
+      i localI = (i)((ArrayList)localObject1).get(i4);
+      View localView;
+      if (localI.o())
+      {
+        localView = ((c)localObject2).n(localI, null, localViewGroup);
+        if (x) {
+          k -= ActionMenuView.L(localView, i3, k, i6, 0);
+        } else {
+          localView.measure(i6, i6);
+        }
+        n = localView.getMeasuredWidth();
+        i2 = i1 - n;
+        m = j;
+        if (j == 0) {
+          m = n;
+        }
+        j = localI.getGroupId();
+        if (j != 0) {
+          ((SparseBooleanArray)localObject3).put(j, true);
+        }
+        localI.u(true);
+      }
+      for (;;)
+      {
+        i1 = i2;
+        j = m;
+        break label736;
+        if (!localI.n()) {
+          break;
+        }
+        int i7 = localI.getGroupId();
+        boolean bool2 = ((SparseBooleanArray)localObject3).get(i7);
+        int i8;
+        if (((i > 0) || (bool2)) && (i1 > 0) && ((!x) || (k > 0))) {
+          i8 = 1;
+        } else {
+          i8 = 0;
+        }
+        int i9 = i8;
+        boolean bool1 = i8;
+        i2 = i1;
+        n = k;
+        m = j;
+        if (i8 != 0)
+        {
+          localView = ((c)localObject2).n(localI, null, localViewGroup);
+          if (x)
+          {
+            n = ActionMenuView.L(localView, i3, k, i6, 0);
+            m = k - n;
+            k = m;
+            if (n == 0)
+            {
+              i9 = 0;
+              k = m;
+            }
+          }
+          else
+          {
+            localView.measure(i6, i6);
+          }
+          n = localView.getMeasuredWidth();
+          i2 = i1 - n;
+          m = j;
+          if (j == 0) {
+            m = n;
+          }
+          if (x ? i2 >= 0 : i2 + m > 0) {
+            j = 1;
+          } else {
+            j = 0;
+          }
+          bool1 = i9 & j;
+          n = k;
+        }
+        if ((bool1) && (i7 != 0))
+        {
+          ((SparseBooleanArray)localObject3).put(i7, true);
+          j = i;
+        }
+        else
+        {
+          j = i;
+          if (bool2)
+          {
+            ((SparseBooleanArray)localObject3).put(i7, false);
+            k = 0;
+            for (;;)
+            {
+              j = i;
+              if (k >= i4) {
+                break;
+              }
+              localObject2 = (i)((ArrayList)localObject1).get(k);
+              j = i;
+              if (((i)localObject2).getGroupId() == i7)
+              {
+                j = i;
+                if (((i)localObject2).l()) {
+                  j = i + 1;
+                }
+                ((i)localObject2).u(false);
+              }
+              k += 1;
+              i = j;
+            }
+          }
+        }
+        i = j;
+        if (bool1) {
+          i = j - 1;
+        }
+        localI.u(bool1);
+        k = n;
+      }
+      localI.u(false);
+      label736:
+      i4 += 1;
+    }
+    return true;
+  }
+  
+  public boolean l(ViewGroup paramViewGroup, int paramInt)
+  {
+    if (paramViewGroup.getChildAt(paramInt) == o) {
+      return false;
+    }
+    return super.l(paramViewGroup, paramInt);
+  }
+  
+  public View n(i paramI, View paramView, ViewGroup paramViewGroup)
+  {
+    View localView = paramI.getActionView();
+    if ((localView == null) || (paramI.j())) {
+      localView = super.n(paramI, paramView, paramViewGroup);
+    }
+    int i;
+    if (paramI.isActionViewExpanded()) {
+      i = 8;
+    } else {
+      i = 0;
+    }
+    localView.setVisibility(i);
+    paramI = (ActionMenuView)paramViewGroup;
+    paramView = localView.getLayoutParams();
+    if (!paramI.checkLayoutParams(paramView)) {
+      localView.setLayoutParams(paramI.E(paramView));
+    }
+    return localView;
+  }
+  
+  public n o(ViewGroup paramViewGroup)
+  {
+    n localN = m;
+    paramViewGroup = super.o(paramViewGroup);
+    if (localN != paramViewGroup) {
+      ((ActionMenuView)paramViewGroup).setPresenter(this);
+    }
+    return paramViewGroup;
+  }
+  
+  public boolean q(int paramInt, i paramI)
+  {
+    return paramI.l();
+  }
+  
+  public boolean y()
+  {
+    return B() | C();
+  }
+  
+  private class a
+    extends l
+  {
+    public a(Context paramContext, r paramR, View paramView)
+    {
+      super(paramR, paramView, false, f.a.i);
+      if (!((i)paramR.getItem()).l())
+      {
+        paramR = o;
+        paramContext = paramR;
+        if (paramR == null) {
+          paramContext = (View)c.t(c.this);
+        }
+        f(paramContext);
+      }
+      j(G);
+    }
+    
+    protected void e()
+    {
+      c localC = c.this;
+      D = null;
+      H = 0;
+      super.e();
+    }
+  }
+  
+  private class b
+    extends ActionMenuItemView.b
+  {
+    b() {}
+    
+    public p a()
+    {
+      c.a localA = D;
+      if (localA != null) {
+        return localA.c();
+      }
+      return null;
+    }
+  }
+  
+  private class c
+    implements Runnable
+  {
+    private c.e e;
+    
+    public c(c.e paramE)
+    {
+      e = paramE;
+    }
+    
+    public void run()
+    {
+      if (c.v(c.this) != null) {
+        c.w(c.this).d();
+      }
+      View localView = (View)c.x(c.this);
+      if ((localView != null) && (localView.getWindowToken() != null) && (e.m())) {
+        C = e;
+      }
+      E = null;
+    }
+  }
+  
+  private class d
+    extends AppCompatImageView
+    implements ActionMenuView.a
+  {
+    public d(Context paramContext)
+    {
+      super(null, f.a.h);
+      setClickable(true);
+      setFocusable(true);
+      setVisibility(0);
+      setEnabled(true);
+      k1.a(this, getContentDescription());
+      setOnTouchListener(new a(this, c.this));
+    }
+    
+    public boolean a()
+    {
+      return false;
+    }
+    
+    public boolean b()
+    {
+      return false;
+    }
+    
+    public boolean performClick()
+    {
+      if (super.performClick()) {
+        return true;
+      }
+      playSoundEffect(0);
+      K();
+      return true;
+    }
+    
+    protected boolean setFrame(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+    {
+      boolean bool = super.setFrame(paramInt1, paramInt2, paramInt3, paramInt4);
+      Drawable localDrawable1 = getDrawable();
+      Drawable localDrawable2 = getBackground();
+      if ((localDrawable1 != null) && (localDrawable2 != null))
+      {
+        int i = getWidth();
+        paramInt2 = getHeight();
+        paramInt1 = Math.max(i, paramInt2) / 2;
+        int j = getPaddingLeft();
+        int k = getPaddingRight();
+        paramInt3 = getPaddingTop();
+        paramInt4 = getPaddingBottom();
+        i = (i + (j - k)) / 2;
+        paramInt2 = (paramInt2 + (paramInt3 - paramInt4)) / 2;
+        androidx.core.graphics.drawable.a.l(localDrawable2, i - paramInt1, paramInt2 - paramInt1, i + paramInt1, paramInt2 + paramInt1);
+      }
+      return bool;
+    }
+    
+    class a
+      extends r0
+    {
+      a(View paramView, c paramC)
+      {
+        super();
+      }
+      
+      public p b()
+      {
+        c.e localE = C;
+        if (localE == null) {
+          return null;
+        }
+        return localE.c();
+      }
+      
+      public boolean c()
+      {
+        K();
+        return true;
+      }
+      
+      public boolean d()
+      {
+        c localC = c.this;
+        if (E != null) {
+          return false;
+        }
+        localC.B();
+        return true;
+      }
+    }
+  }
+  
+  private class e
+    extends l
+  {
+    public e(Context paramContext, androidx.appcompat.view.menu.g paramG, View paramView, boolean paramBoolean)
+    {
+      super(paramG, paramView, paramBoolean, f.a.i);
+      h(8388613);
+      j(G);
+    }
+    
+    protected void e()
+    {
+      if (c.r(c.this) != null) {
+        c.s(c.this).close();
+      }
+      C = null;
+      super.e();
+    }
+  }
+  
+  private class f
+    implements m.a
+  {
+    f() {}
+    
+    public void a(androidx.appcompat.view.menu.g paramG, boolean paramBoolean)
+    {
+      if ((paramG instanceof r)) {
+        paramG.D().e(false);
+      }
+      m.a localA = m();
+      if (localA != null) {
+        localA.a(paramG, paramBoolean);
+      }
+    }
+    
+    public boolean b(androidx.appcompat.view.menu.g paramG)
+    {
+      Object localObject = c.u(c.this);
+      boolean bool = false;
+      if (paramG == localObject) {
+        return false;
+      }
+      H = ((r)paramG).getItem().getItemId();
+      localObject = m();
+      if (localObject != null) {
+        bool = ((m.a)localObject).b(paramG);
+      }
+      return bool;
+    }
+  }
+}

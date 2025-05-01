@@ -1,0 +1,122 @@
+package com.google.android.gms.common;
+
+import android.content.Context;
+import android.content.res.Resources.Theme;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import b4.c.a;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.internal.a0;
+import com.google.android.gms.common.internal.a1;
+import p3.d;
+
+public final class SignInButton
+  extends FrameLayout
+  implements View.OnClickListener
+{
+  private int e;
+  private int f;
+  private View g;
+  private View.OnClickListener h = null;
+  
+  public SignInButton(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 0);
+  }
+  
+  public SignInButton(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    paramContext = paramContext.getTheme().obtainStyledAttributes(paramAttributeSet, d.b, 0, 0);
+    try
+    {
+      e = paramContext.getInt(d.c, 0);
+      f = paramContext.getInt(d.d, 2);
+      paramContext.recycle();
+      a(e, f);
+      return;
+    }
+    finally
+    {
+      paramContext.recycle();
+    }
+  }
+  
+  private final void b(Context paramContext)
+  {
+    Object localObject = g;
+    if (localObject != null) {
+      removeView((View)localObject);
+    }
+    try
+    {
+      g = a1.c(paramContext, e, f);
+    }
+    catch (c.a localA)
+    {
+      int i;
+      int j;
+      for (;;) {}
+    }
+    Log.w("SignInButton", "Sign in button not found, using placeholder instead");
+    i = e;
+    j = f;
+    localObject = new a0(paramContext, null);
+    ((a0)localObject).a(paramContext.getResources(), i, j);
+    g = ((View)localObject);
+    addView(g);
+    g.setEnabled(isEnabled());
+    g.setOnClickListener(this);
+  }
+  
+  public void a(int paramInt1, int paramInt2)
+  {
+    e = paramInt1;
+    f = paramInt2;
+    b(getContext());
+  }
+  
+  public void onClick(View paramView)
+  {
+    View.OnClickListener localOnClickListener = h;
+    if ((localOnClickListener != null) && (paramView == g)) {
+      localOnClickListener.onClick(this);
+    }
+  }
+  
+  public void setColorScheme(int paramInt)
+  {
+    a(e, paramInt);
+  }
+  
+  public void setEnabled(boolean paramBoolean)
+  {
+    super.setEnabled(paramBoolean);
+    g.setEnabled(paramBoolean);
+  }
+  
+  public void setOnClickListener(View.OnClickListener paramOnClickListener)
+  {
+    h = paramOnClickListener;
+    paramOnClickListener = g;
+    if (paramOnClickListener != null) {
+      paramOnClickListener.setOnClickListener(this);
+    }
+  }
+  
+  @Deprecated
+  public void setScopes(Scope[] paramArrayOfScope)
+  {
+    a(e, f);
+  }
+  
+  public void setSize(int paramInt)
+  {
+    a(paramInt, f);
+  }
+}

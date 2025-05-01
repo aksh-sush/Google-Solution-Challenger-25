@@ -1,0 +1,30 @@
+package com.google.android.gms.common.internal;
+
+import android.os.Bundle;
+import q3.b;
+
+public final class t1
+  extends b1
+{
+  public t1(c paramC, int paramInt, Bundle paramBundle)
+  {
+    super(paramC, paramInt, null);
+  }
+  
+  protected final void f(b paramB)
+  {
+    if ((g.enableLocalFallback()) && (c.zzo(g)))
+    {
+      c.zzk(g, 16);
+      return;
+    }
+    g.zzc.b(paramB);
+    g.onConnectionFailed(paramB);
+  }
+  
+  protected final boolean g()
+  {
+    g.zzc.b(b.i);
+    return true;
+  }
+}

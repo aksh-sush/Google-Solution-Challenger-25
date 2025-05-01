@@ -1,0 +1,149 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.AbsSeekBar;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
+import androidx.core.graphics.drawable.a;
+import androidx.core.view.h0;
+import f.j;
+
+class w
+  extends s
+{
+  private final SeekBar d;
+  private Drawable e;
+  private ColorStateList f = null;
+  private PorterDuff.Mode g = null;
+  private boolean h = false;
+  private boolean i = false;
+  
+  w(SeekBar paramSeekBar)
+  {
+    super(paramSeekBar);
+    d = paramSeekBar;
+  }
+  
+  private void f()
+  {
+    Drawable localDrawable = e;
+    if ((localDrawable != null) && ((h) || (i)))
+    {
+      localDrawable = a.r(localDrawable.mutate());
+      e = localDrawable;
+      if (h) {
+        a.o(localDrawable, f);
+      }
+      if (i) {
+        a.p(e, g);
+      }
+      if (e.isStateful()) {
+        e.setState(d.getDrawableState());
+      }
+    }
+  }
+  
+  void c(AttributeSet paramAttributeSet, int paramInt)
+  {
+    super.c(paramAttributeSet, paramInt);
+    Object localObject = d.getContext();
+    int[] arrayOfInt = j.T;
+    localObject = f1.v((Context)localObject, paramAttributeSet, arrayOfInt, paramInt, 0);
+    SeekBar localSeekBar = d;
+    h0.q0(localSeekBar, localSeekBar.getContext(), arrayOfInt, paramAttributeSet, ((f1)localObject).r(), paramInt, 0);
+    paramAttributeSet = ((f1)localObject).h(j.U);
+    if (paramAttributeSet != null) {
+      d.setThumb(paramAttributeSet);
+    }
+    j(((f1)localObject).g(j.V));
+    paramInt = j.X;
+    if (((f1)localObject).s(paramInt))
+    {
+      g = o0.e(((f1)localObject).k(paramInt, -1), g);
+      i = true;
+    }
+    paramInt = j.W;
+    if (((f1)localObject).s(paramInt))
+    {
+      f = ((f1)localObject).c(paramInt);
+      h = true;
+    }
+    ((f1)localObject).w();
+    f();
+  }
+  
+  void g(Canvas paramCanvas)
+  {
+    if (e != null)
+    {
+      int m = d.getMax();
+      int k = 1;
+      if (m > 1)
+      {
+        int j = e.getIntrinsicWidth();
+        int n = e.getIntrinsicHeight();
+        if (j >= 0) {
+          j /= 2;
+        } else {
+          j = 1;
+        }
+        if (n >= 0) {
+          k = n / 2;
+        }
+        e.setBounds(-j, -k, j, k);
+        float f1 = (d.getWidth() - d.getPaddingLeft() - d.getPaddingRight()) / m;
+        k = paramCanvas.save();
+        paramCanvas.translate(d.getPaddingLeft(), d.getHeight() / 2);
+        j = 0;
+        while (j <= m)
+        {
+          e.draw(paramCanvas);
+          paramCanvas.translate(f1, 0.0F);
+          j += 1;
+        }
+        paramCanvas.restoreToCount(k);
+      }
+    }
+  }
+  
+  void h()
+  {
+    Drawable localDrawable = e;
+    if ((localDrawable != null) && (localDrawable.isStateful()) && (localDrawable.setState(d.getDrawableState()))) {
+      d.invalidateDrawable(localDrawable);
+    }
+  }
+  
+  void i()
+  {
+    Drawable localDrawable = e;
+    if (localDrawable != null) {
+      localDrawable.jumpToCurrentState();
+    }
+  }
+  
+  void j(Drawable paramDrawable)
+  {
+    Drawable localDrawable = e;
+    if (localDrawable != null) {
+      localDrawable.setCallback(null);
+    }
+    e = paramDrawable;
+    if (paramDrawable != null)
+    {
+      paramDrawable.setCallback(d);
+      a.m(paramDrawable, h0.E(d));
+      if (paramDrawable.isStateful()) {
+        paramDrawable.setState(d.getDrawableState());
+      }
+      f();
+    }
+    d.invalidate();
+  }
+}

@@ -1,0 +1,479 @@
+package androidx.fragment.app;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import androidx.activity.ComponentActivity;
+import androidx.activity.OnBackPressedDispatcher;
+import androidx.activity.result.ActivityResultRegistry;
+import androidx.activity.result.d;
+import androidx.core.app.b.e;
+import androidx.core.app.b.f;
+import androidx.core.app.n0;
+import androidx.lifecycle.i;
+import androidx.lifecycle.i.a;
+import androidx.lifecycle.i.b;
+import androidx.lifecycle.l0;
+import androidx.lifecycle.m0;
+import androidx.lifecycle.o;
+import androidx.savedstate.a.c;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.Iterator;
+
+public abstract class e
+  extends ComponentActivity
+  implements b.e, b.f
+{
+  static final String FRAGMENTS_TAG = "android:support:fragments";
+  boolean mCreated;
+  final o mFragmentLifecycleRegistry = new o(this);
+  final h mFragments = h.b(new c());
+  boolean mResumed;
+  boolean mStopped = true;
+  
+  public e()
+  {
+    t();
+  }
+  
+  private void t()
+  {
+    getSavedStateRegistry().h("android:support:fragments", new a());
+    addOnContextAvailableListener(new b());
+  }
+  
+  private static boolean u(m paramM, i.b paramB)
+  {
+    paramM = paramM.s0().iterator();
+    boolean bool1 = false;
+    while (paramM.hasNext())
+    {
+      Fragment localFragment = (Fragment)paramM.next();
+      if (localFragment != null)
+      {
+        boolean bool2 = bool1;
+        if (localFragment.getHost() != null) {
+          bool2 = bool1 | u(localFragment.getChildFragmentManager(), paramB);
+        }
+        y localY = mViewLifecycleOwner;
+        bool1 = bool2;
+        if (localY != null)
+        {
+          bool1 = bool2;
+          if (localY.getLifecycle().b().c(i.b.h))
+          {
+            mViewLifecycleOwner.f(paramB);
+            bool1 = true;
+          }
+        }
+        if (mLifecycleRegistry.b().c(i.b.h))
+        {
+          mLifecycleRegistry.n(paramB);
+          bool1 = true;
+        }
+      }
+    }
+    return bool1;
+  }
+  
+  final View dispatchFragmentsOnCreateView(View paramView, String paramString, Context paramContext, AttributeSet paramAttributeSet)
+  {
+    return mFragments.v(paramView, paramString, paramContext, paramAttributeSet);
+  }
+  
+  public void dump(String paramString, FileDescriptor paramFileDescriptor, PrintWriter paramPrintWriter, String[] paramArrayOfString)
+  {
+    super.dump(paramString, paramFileDescriptor, paramPrintWriter, paramArrayOfString);
+    paramPrintWriter.print(paramString);
+    paramPrintWriter.print("Local FragmentActivity ");
+    paramPrintWriter.print(Integer.toHexString(System.identityHashCode(this)));
+    paramPrintWriter.println(" State:");
+    Object localObject = new StringBuilder();
+    ((StringBuilder)localObject).append(paramString);
+    ((StringBuilder)localObject).append("  ");
+    localObject = ((StringBuilder)localObject).toString();
+    paramPrintWriter.print((String)localObject);
+    paramPrintWriter.print("mCreated=");
+    paramPrintWriter.print(mCreated);
+    paramPrintWriter.print(" mResumed=");
+    paramPrintWriter.print(mResumed);
+    paramPrintWriter.print(" mStopped=");
+    paramPrintWriter.print(mStopped);
+    if (getApplication() != null) {
+      androidx.loader.app.a.b(this).a((String)localObject, paramFileDescriptor, paramPrintWriter, paramArrayOfString);
+    }
+    mFragments.t().W(paramString, paramFileDescriptor, paramPrintWriter, paramArrayOfString);
+  }
+  
+  public m getSupportFragmentManager()
+  {
+    return mFragments.t();
+  }
+  
+  @Deprecated
+  public androidx.loader.app.a getSupportLoaderManager()
+  {
+    return androidx.loader.app.a.b(this);
+  }
+  
+  void markFragmentsCreated()
+  {
+    while (u(getSupportFragmentManager(), i.b.g)) {}
+  }
+  
+  protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
+  {
+    mFragments.u();
+    super.onActivityResult(paramInt1, paramInt2, paramIntent);
+  }
+  
+  @Deprecated
+  public void onAttachFragment(Fragment paramFragment) {}
+  
+  public void onConfigurationChanged(Configuration paramConfiguration)
+  {
+    mFragments.u();
+    super.onConfigurationChanged(paramConfiguration);
+    mFragments.d(paramConfiguration);
+  }
+  
+  protected void onCreate(Bundle paramBundle)
+  {
+    super.onCreate(paramBundle);
+    mFragmentLifecycleRegistry.h(i.a.ON_CREATE);
+    mFragments.f();
+  }
+  
+  public boolean onCreatePanelMenu(int paramInt, Menu paramMenu)
+  {
+    if (paramInt == 0) {
+      return super.onCreatePanelMenu(paramInt, paramMenu) | mFragments.g(paramMenu, getMenuInflater());
+    }
+    return super.onCreatePanelMenu(paramInt, paramMenu);
+  }
+  
+  public View onCreateView(View paramView, String paramString, Context paramContext, AttributeSet paramAttributeSet)
+  {
+    View localView = dispatchFragmentsOnCreateView(paramView, paramString, paramContext, paramAttributeSet);
+    if (localView == null) {
+      return super.onCreateView(paramView, paramString, paramContext, paramAttributeSet);
+    }
+    return localView;
+  }
+  
+  public View onCreateView(String paramString, Context paramContext, AttributeSet paramAttributeSet)
+  {
+    View localView = dispatchFragmentsOnCreateView(null, paramString, paramContext, paramAttributeSet);
+    if (localView == null) {
+      return super.onCreateView(paramString, paramContext, paramAttributeSet);
+    }
+    return localView;
+  }
+  
+  protected void onDestroy()
+  {
+    super.onDestroy();
+    mFragments.h();
+    mFragmentLifecycleRegistry.h(i.a.ON_DESTROY);
+  }
+  
+  public void onLowMemory()
+  {
+    super.onLowMemory();
+    mFragments.i();
+  }
+  
+  public boolean onMenuItemSelected(int paramInt, MenuItem paramMenuItem)
+  {
+    if (super.onMenuItemSelected(paramInt, paramMenuItem)) {
+      return true;
+    }
+    if (paramInt != 0)
+    {
+      if (paramInt != 6) {
+        return false;
+      }
+      return mFragments.e(paramMenuItem);
+    }
+    return mFragments.k(paramMenuItem);
+  }
+  
+  public void onMultiWindowModeChanged(boolean paramBoolean)
+  {
+    mFragments.j(paramBoolean);
+  }
+  
+  protected void onNewIntent(Intent paramIntent)
+  {
+    mFragments.u();
+    super.onNewIntent(paramIntent);
+  }
+  
+  public void onPanelClosed(int paramInt, Menu paramMenu)
+  {
+    if (paramInt == 0) {
+      mFragments.l(paramMenu);
+    }
+    super.onPanelClosed(paramInt, paramMenu);
+  }
+  
+  protected void onPause()
+  {
+    super.onPause();
+    mResumed = false;
+    mFragments.m();
+    mFragmentLifecycleRegistry.h(i.a.ON_PAUSE);
+  }
+  
+  public void onPictureInPictureModeChanged(boolean paramBoolean)
+  {
+    mFragments.n(paramBoolean);
+  }
+  
+  protected void onPostResume()
+  {
+    super.onPostResume();
+    onResumeFragments();
+  }
+  
+  @Deprecated
+  protected boolean onPrepareOptionsPanel(View paramView, Menu paramMenu)
+  {
+    return super.onPreparePanel(0, paramView, paramMenu);
+  }
+  
+  public boolean onPreparePanel(int paramInt, View paramView, Menu paramMenu)
+  {
+    if (paramInt == 0) {
+      return onPrepareOptionsPanel(paramView, paramMenu) | mFragments.o(paramMenu);
+    }
+    return super.onPreparePanel(paramInt, paramView, paramMenu);
+  }
+  
+  public void onRequestPermissionsResult(int paramInt, String[] paramArrayOfString, int[] paramArrayOfInt)
+  {
+    mFragments.u();
+    super.onRequestPermissionsResult(paramInt, paramArrayOfString, paramArrayOfInt);
+  }
+  
+  protected void onResume()
+  {
+    mFragments.u();
+    super.onResume();
+    mResumed = true;
+    mFragments.s();
+  }
+  
+  protected void onResumeFragments()
+  {
+    mFragmentLifecycleRegistry.h(i.a.ON_RESUME);
+    mFragments.p();
+  }
+  
+  protected void onStart()
+  {
+    mFragments.u();
+    super.onStart();
+    mStopped = false;
+    if (!mCreated)
+    {
+      mCreated = true;
+      mFragments.c();
+    }
+    mFragments.s();
+    mFragmentLifecycleRegistry.h(i.a.ON_START);
+    mFragments.q();
+  }
+  
+  public void onStateNotSaved()
+  {
+    mFragments.u();
+  }
+  
+  protected void onStop()
+  {
+    super.onStop();
+    mStopped = true;
+    markFragmentsCreated();
+    mFragments.r();
+    mFragmentLifecycleRegistry.h(i.a.ON_STOP);
+  }
+  
+  public void setEnterSharedElementCallback(n0 paramN0)
+  {
+    androidx.core.app.b.v(this, paramN0);
+  }
+  
+  public void setExitSharedElementCallback(n0 paramN0)
+  {
+    androidx.core.app.b.w(this, paramN0);
+  }
+  
+  public void startActivityFromFragment(Fragment paramFragment, Intent paramIntent, int paramInt)
+  {
+    startActivityFromFragment(paramFragment, paramIntent, paramInt, null);
+  }
+  
+  public void startActivityFromFragment(Fragment paramFragment, Intent paramIntent, int paramInt, Bundle paramBundle)
+  {
+    if (paramInt == -1)
+    {
+      androidx.core.app.b.y(this, paramIntent, -1, paramBundle);
+      return;
+    }
+    paramFragment.startActivityForResult(paramIntent, paramInt, paramBundle);
+  }
+  
+  @Deprecated
+  public void startIntentSenderFromFragment(Fragment paramFragment, IntentSender paramIntentSender, int paramInt1, Intent paramIntent, int paramInt2, int paramInt3, int paramInt4, Bundle paramBundle)
+  {
+    if (paramInt1 == -1)
+    {
+      androidx.core.app.b.z(this, paramIntentSender, paramInt1, paramIntent, paramInt2, paramInt3, paramInt4, paramBundle);
+      return;
+    }
+    paramFragment.startIntentSenderForResult(paramIntentSender, paramInt1, paramIntent, paramInt2, paramInt3, paramInt4, paramBundle);
+  }
+  
+  public void supportFinishAfterTransition()
+  {
+    androidx.core.app.b.q(this);
+  }
+  
+  @Deprecated
+  public void supportInvalidateOptionsMenu()
+  {
+    invalidateOptionsMenu();
+  }
+  
+  public void supportPostponeEnterTransition()
+  {
+    androidx.core.app.b.s(this);
+  }
+  
+  public void supportStartPostponedEnterTransition()
+  {
+    androidx.core.app.b.A(this);
+  }
+  
+  @Deprecated
+  public final void validateRequestPermissionsRequestCode(int paramInt) {}
+  
+  class a
+    implements a.c
+  {
+    a() {}
+    
+    public Bundle a()
+    {
+      Bundle localBundle = new Bundle();
+      markFragmentsCreated();
+      mFragmentLifecycleRegistry.h(i.a.ON_STOP);
+      Parcelable localParcelable = mFragments.x();
+      if (localParcelable != null) {
+        localBundle.putParcelable("android:support:fragments", localParcelable);
+      }
+      return localBundle;
+    }
+  }
+  
+  class b
+    implements d.b
+  {
+    b() {}
+    
+    public void a(Context paramContext)
+    {
+      mFragments.a(null);
+      paramContext = getSavedStateRegistry().b("android:support:fragments");
+      if (paramContext != null)
+      {
+        paramContext = paramContext.getParcelable("android:support:fragments");
+        mFragments.w(paramContext);
+      }
+    }
+  }
+  
+  class c
+    extends j
+    implements m0, androidx.activity.q, d, q
+  {
+    public c()
+    {
+      super();
+    }
+    
+    public void a(m paramM, Fragment paramFragment)
+    {
+      onAttachFragment(paramFragment);
+    }
+    
+    public View c(int paramInt)
+    {
+      return findViewById(paramInt);
+    }
+    
+    public boolean d()
+    {
+      Window localWindow = getWindow();
+      return (localWindow != null) && (localWindow.peekDecorView() != null);
+    }
+    
+    public ActivityResultRegistry getActivityResultRegistry()
+    {
+      return e.this.getActivityResultRegistry();
+    }
+    
+    public i getLifecycle()
+    {
+      return mFragmentLifecycleRegistry;
+    }
+    
+    public OnBackPressedDispatcher getOnBackPressedDispatcher()
+    {
+      return e.this.getOnBackPressedDispatcher();
+    }
+    
+    public l0 getViewModelStore()
+    {
+      return e.this.getViewModelStore();
+    }
+    
+    public LayoutInflater i()
+    {
+      return getLayoutInflater().cloneInContext(e.this);
+    }
+    
+    public boolean k(Fragment paramFragment)
+    {
+      return isFinishing() ^ true;
+    }
+    
+    public boolean l(String paramString)
+    {
+      return androidx.core.app.b.x(e.this, paramString);
+    }
+    
+    public void o()
+    {
+      supportInvalidateOptionsMenu();
+    }
+    
+    public e p()
+    {
+      return e.this;
+    }
+  }
+}

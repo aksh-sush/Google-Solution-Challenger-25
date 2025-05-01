@@ -1,0 +1,19 @@
+package g;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import androidx.appcompat.widget.w0;
+
+public abstract class a
+{
+  public static ColorStateList a(Context paramContext, int paramInt)
+  {
+    return androidx.core.content.a.d(paramContext, paramInt);
+  }
+  
+  public static Drawable b(Context paramContext, int paramInt)
+  {
+    return w0.h().j(paramContext, paramInt);
+  }
+}

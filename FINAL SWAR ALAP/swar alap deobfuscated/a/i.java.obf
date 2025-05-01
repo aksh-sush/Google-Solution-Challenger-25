@@ -1,0 +1,17 @@
+package n6;
+
+import androidx.recyclerview.widget.RecyclerView.e0;
+import java.util.List;
+
+public abstract interface d
+{
+  public abstract void a(RecyclerView.e0 paramE0, int paramInt);
+  
+  public abstract void b(RecyclerView.e0 paramE0, int paramInt, List paramList);
+  
+  public abstract boolean c(RecyclerView.e0 paramE0, int paramInt);
+  
+  public abstract void d(RecyclerView.e0 paramE0, int paramInt);
+  
+  public abstract void e(RecyclerView.e0 paramE0, int paramInt);
+}

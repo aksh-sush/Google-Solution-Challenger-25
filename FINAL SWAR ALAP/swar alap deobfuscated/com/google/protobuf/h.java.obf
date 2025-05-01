@@ -1,0 +1,8 @@
+package com.google.protobuf;
+
+abstract interface s0
+{
+  public abstract r0 a(Class paramClass);
+  
+  public abstract boolean b(Class paramClass);
+}

@@ -1,0 +1,40 @@
+package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+
+public class p1
+  extends x0
+{
+  private static boolean c = false;
+  private final WeakReference b;
+  
+  public p1(Context paramContext, Resources paramResources)
+  {
+    super(paramResources);
+    b = new WeakReference(paramContext);
+  }
+  
+  public static boolean b()
+  {
+    return c;
+  }
+  
+  public static boolean c()
+  {
+    b();
+    return false;
+  }
+  
+  public Drawable getDrawable(int paramInt)
+  {
+    Context localContext = (Context)b.get();
+    if (localContext != null) {
+      return w0.h().t(localContext, this, paramInt);
+    }
+    return a(paramInt);
+  }
+}

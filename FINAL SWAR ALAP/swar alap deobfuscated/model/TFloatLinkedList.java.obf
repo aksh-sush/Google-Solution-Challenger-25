@@ -1,0 +1,37 @@
+package db;
+
+public final class n
+  implements d
+{
+  private final Class a;
+  private final String b;
+  
+  public n(Class paramClass, String paramString)
+  {
+    a = paramClass;
+    b = paramString;
+  }
+  
+  public Class b()
+  {
+    return a;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    return ((paramObject instanceof n)) && (l.a(b(), ((n)paramObject).b()));
+  }
+  
+  public int hashCode()
+  {
+    return b().hashCode();
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(b().toString());
+    localStringBuilder.append(" (Kotlin reflection is not available)");
+    return localStringBuilder.toString();
+  }
+}

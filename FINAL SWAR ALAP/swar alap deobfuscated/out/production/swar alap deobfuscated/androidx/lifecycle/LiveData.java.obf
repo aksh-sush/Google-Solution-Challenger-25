@@ -1,0 +1,351 @@
+package androidx.lifecycle;
+
+import java.util.Iterator;
+import java.util.Map.Entry;
+import k.c;
+import l.b;
+import l.b.d;
+
+public abstract class LiveData
+{
+  static final Object k = new Object();
+  final Object a = new Object();
+  private b b = new b();
+  int c = 0;
+  private boolean d;
+  private volatile Object e;
+  volatile Object f;
+  private int g;
+  private boolean h;
+  private boolean i;
+  private final Runnable j;
+  
+  public LiveData()
+  {
+    Object localObject = k;
+    f = localObject;
+    j = new a();
+    e = localObject;
+    g = -1;
+  }
+  
+  static void b(String paramString)
+  {
+    if (c.g().b()) {
+      return;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Cannot invoke ");
+    localStringBuilder.append(paramString);
+    localStringBuilder.append(" on a background thread");
+    throw new IllegalStateException(localStringBuilder.toString());
+  }
+  
+  private void d(c paramC)
+  {
+    if (!f) {
+      return;
+    }
+    if (!paramC.k())
+    {
+      paramC.f(false);
+      return;
+    }
+    int m = g;
+    int n = g;
+    if (m >= n) {
+      return;
+    }
+    g = n;
+    e.a(e);
+  }
+  
+  void c(int paramInt)
+  {
+    int m = c;
+    c = (paramInt + m);
+    if (d) {
+      return;
+    }
+    d = true;
+    for (;;)
+    {
+      int n;
+      try
+      {
+        n = c;
+        if (m != n)
+        {
+          if ((m == 0) && (n > 0))
+          {
+            paramInt = 1;
+            break label90;
+            if (paramInt != 0) {
+              j();
+            } else if (m != 0) {
+              k();
+            }
+            m = n;
+          }
+        }
+        else {
+          return;
+        }
+      }
+      finally
+      {
+        d = false;
+      }
+      paramInt = 0;
+      label90:
+      if ((m > 0) && (n == 0)) {
+        m = 1;
+      } else {
+        m = 0;
+      }
+    }
+  }
+  
+  void e(c paramC)
+  {
+    if (h)
+    {
+      i = true;
+      return;
+    }
+    h = true;
+    do
+    {
+      i = false;
+      c localC;
+      if (paramC != null)
+      {
+        d(paramC);
+        localC = null;
+      }
+      else
+      {
+        b.d localD = b.e();
+        do
+        {
+          localC = paramC;
+          if (!localD.hasNext()) {
+            break;
+          }
+          d((c)((Map.Entry)localD.next()).getValue());
+        } while (!i);
+        localC = paramC;
+      }
+      paramC = localC;
+    } while (i);
+    h = false;
+  }
+  
+  public Object f()
+  {
+    Object localObject = e;
+    if (localObject != k) {
+      return localObject;
+    }
+    return null;
+  }
+  
+  public boolean g()
+  {
+    return c > 0;
+  }
+  
+  public void h(n paramN, t paramT)
+  {
+    b("observe");
+    if (paramN.getLifecycle().b() == i.b.e) {
+      return;
+    }
+    LifecycleBoundObserver localLifecycleBoundObserver = new LifecycleBoundObserver(paramN, paramT);
+    paramT = (c)b.i(paramT, localLifecycleBoundObserver);
+    if ((paramT != null) && (!paramT.j(paramN))) {
+      throw new IllegalArgumentException("Cannot add the same observer with different lifecycles");
+    }
+    if (paramT != null) {
+      return;
+    }
+    paramN.getLifecycle().a(localLifecycleBoundObserver);
+  }
+  
+  public void i(t paramT)
+  {
+    b("observeForever");
+    b localB = new b(paramT);
+    paramT = (c)b.i(paramT, localB);
+    if (!(paramT instanceof LifecycleBoundObserver))
+    {
+      if (paramT != null) {
+        return;
+      }
+      localB.f(true);
+      return;
+    }
+    throw new IllegalArgumentException("Cannot add the same observer with different lifecycles");
+  }
+  
+  protected void j() {}
+  
+  protected void k() {}
+  
+  protected void l(Object paramObject)
+  {
+    for (;;)
+    {
+      synchronized (a)
+      {
+        if (f == k)
+        {
+          m = 1;
+          f = paramObject;
+          if (m == 0) {
+            return;
+          }
+          c.g().c(j);
+          return;
+        }
+      }
+      int m = 0;
+    }
+  }
+  
+  public void m(t paramT)
+  {
+    b("removeObserver");
+    paramT = (c)b.j(paramT);
+    if (paramT == null) {
+      return;
+    }
+    paramT.i();
+    paramT.f(false);
+  }
+  
+  protected void n(Object paramObject)
+  {
+    b("setValue");
+    g += 1;
+    e = paramObject;
+    e(null);
+  }
+  
+  class LifecycleBoundObserver
+    extends LiveData.c
+    implements l
+  {
+    final n i;
+    
+    LifecycleBoundObserver(n paramN, t paramT)
+    {
+      super(paramT);
+      i = paramN;
+    }
+    
+    public void d(n paramN, i.a paramA)
+    {
+      paramN = i.getLifecycle().b();
+      if (paramN == i.b.e)
+      {
+        m(e);
+        return;
+      }
+      paramA = null;
+      while (paramA != paramN)
+      {
+        f(k());
+        i.b localB = i.getLifecycle().b();
+        paramA = paramN;
+        paramN = localB;
+      }
+    }
+    
+    void i()
+    {
+      i.getLifecycle().c(this);
+    }
+    
+    boolean j(n paramN)
+    {
+      return i == paramN;
+    }
+    
+    boolean k()
+    {
+      return i.getLifecycle().b().c(i.b.h);
+    }
+  }
+  
+  class a
+    implements Runnable
+  {
+    a() {}
+    
+    public void run()
+    {
+      synchronized (a)
+      {
+        Object localObject2 = f;
+        f = LiveData.k;
+        n(localObject2);
+        return;
+      }
+    }
+  }
+  
+  private class b
+    extends LiveData.c
+  {
+    b(t paramT)
+    {
+      super(paramT);
+    }
+    
+    boolean k()
+    {
+      return true;
+    }
+  }
+  
+  private abstract class c
+  {
+    final t e;
+    boolean f;
+    int g = -1;
+    
+    c(t paramT)
+    {
+      e = paramT;
+    }
+    
+    void f(boolean paramBoolean)
+    {
+      if (paramBoolean == f) {
+        return;
+      }
+      f = paramBoolean;
+      LiveData localLiveData = LiveData.this;
+      int i;
+      if (paramBoolean) {
+        i = 1;
+      } else {
+        i = -1;
+      }
+      localLiveData.c(i);
+      if (f) {
+        e(this);
+      }
+    }
+    
+    void i() {}
+    
+    boolean j(n paramN)
+    {
+      return false;
+    }
+    
+    abstract boolean k();
+  }
+}

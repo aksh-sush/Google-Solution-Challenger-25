@@ -1,0 +1,1276 @@
+package androidx.core.view;
+
+import android.graphics.Rect;
+import android.os.Build.VERSION;
+import android.util.Log;
+import android.view.View;
+import android.view.WindowInsets;
+import android.view.WindowInsets.Builder;
+import androidx.core.graphics.b;
+import androidx.core.util.c;
+import androidx.core.util.h;
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Objects;
+
+public class h1
+{
+  public static final h1 b;
+  private final l a;
+  
+  static
+  {
+    h1 localH1;
+    if (Build.VERSION.SDK_INT >= 30) {
+      localH1 = k.q;
+    } else {
+      localH1 = l.b;
+    }
+    b = localH1;
+  }
+  
+  private h1(WindowInsets paramWindowInsets)
+  {
+    int i = Build.VERSION.SDK_INT;
+    if (i >= 30) {
+      paramWindowInsets = new k(this, paramWindowInsets);
+    }
+    for (;;)
+    {
+      a = paramWindowInsets;
+      return;
+      if (i >= 29) {
+        paramWindowInsets = new j(this, paramWindowInsets);
+      } else if (i >= 28) {
+        paramWindowInsets = new i(this, paramWindowInsets);
+      } else {
+        paramWindowInsets = new h(this, paramWindowInsets);
+      }
+    }
+  }
+  
+  public h1(h1 paramH1)
+  {
+    if (paramH1 != null)
+    {
+      l localL = a;
+      int i = Build.VERSION.SDK_INT;
+      if ((i >= 30) && ((localL instanceof k))) {
+        paramH1 = new k(this, (k)localL);
+      }
+      for (;;)
+      {
+        a = paramH1;
+        break;
+        if ((i >= 29) && ((localL instanceof j))) {
+          paramH1 = new j(this, (j)localL);
+        } else if ((i >= 28) && ((localL instanceof i))) {
+          paramH1 = new i(this, (i)localL);
+        } else if ((localL instanceof h)) {
+          paramH1 = new h(this, (h)localL);
+        } else if ((localL instanceof g)) {
+          paramH1 = new g(this, (g)localL);
+        } else {
+          paramH1 = new l(this);
+        }
+      }
+      localL.e(this);
+      return;
+    }
+    a = new l(this);
+  }
+  
+  static b n(b paramB, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    int i = Math.max(0, a - paramInt1);
+    int j = Math.max(0, b - paramInt2);
+    int k = Math.max(0, c - paramInt3);
+    int m = Math.max(0, d - paramInt4);
+    if ((i == paramInt1) && (j == paramInt2) && (k == paramInt3) && (m == paramInt4)) {
+      return paramB;
+    }
+    return b.b(i, j, k, m);
+  }
+  
+  public static h1 v(WindowInsets paramWindowInsets)
+  {
+    return w(paramWindowInsets, null);
+  }
+  
+  public static h1 w(WindowInsets paramWindowInsets, View paramView)
+  {
+    paramWindowInsets = new h1((WindowInsets)h.g(paramWindowInsets));
+    if ((paramView != null) && (h0.V(paramView)))
+    {
+      paramWindowInsets.s(h0.L(paramView));
+      paramWindowInsets.d(paramView.getRootView());
+    }
+    return paramWindowInsets;
+  }
+  
+  public h1 a()
+  {
+    return a.a();
+  }
+  
+  public h1 b()
+  {
+    return a.b();
+  }
+  
+  public h1 c()
+  {
+    return a.c();
+  }
+  
+  void d(View paramView)
+  {
+    a.d(paramView);
+  }
+  
+  public n e()
+  {
+    return a.f();
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof h1)) {
+      return false;
+    }
+    paramObject = (h1)paramObject;
+    return c.a(a, a);
+  }
+  
+  public b f(int paramInt)
+  {
+    return a.g(paramInt);
+  }
+  
+  public b g()
+  {
+    return a.i();
+  }
+  
+  public b h()
+  {
+    return a.j();
+  }
+  
+  public int hashCode()
+  {
+    l localL = a;
+    if (localL == null) {
+      return 0;
+    }
+    return localL.hashCode();
+  }
+  
+  public int i()
+  {
+    return a.k().d;
+  }
+  
+  public int j()
+  {
+    return a.k().a;
+  }
+  
+  public int k()
+  {
+    return a.k().c;
+  }
+  
+  public int l()
+  {
+    return a.k().b;
+  }
+  
+  public h1 m(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    return a.m(paramInt1, paramInt2, paramInt3, paramInt4);
+  }
+  
+  public boolean o()
+  {
+    return a.n();
+  }
+  
+  public h1 p(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    return new b(this).d(b.b(paramInt1, paramInt2, paramInt3, paramInt4)).a();
+  }
+  
+  void q(b[] paramArrayOfB)
+  {
+    a.p(paramArrayOfB);
+  }
+  
+  void r(b paramB)
+  {
+    a.q(paramB);
+  }
+  
+  void s(h1 paramH1)
+  {
+    a.r(paramH1);
+  }
+  
+  void t(b paramB)
+  {
+    a.s(paramB);
+  }
+  
+  public WindowInsets u()
+  {
+    l localL = a;
+    if ((localL instanceof g)) {
+      return c;
+    }
+    return null;
+  }
+  
+  static abstract class a
+  {
+    private static Field a;
+    private static Field b;
+    private static Field c;
+    private static boolean d;
+    
+    static
+    {
+      try
+      {
+        Object localObject1 = View.class.getDeclaredField("mAttachInfo");
+        a = (Field)localObject1;
+        ((AccessibleObject)localObject1).setAccessible(true);
+        localObject1 = Class.forName("android.view.View$AttachInfo");
+        localObject2 = ((Class)localObject1).getDeclaredField("mStableInsets");
+        b = (Field)localObject2;
+        ((AccessibleObject)localObject2).setAccessible(true);
+        localObject1 = ((Class)localObject1).getDeclaredField("mContentInsets");
+        c = (Field)localObject1;
+        ((AccessibleObject)localObject1).setAccessible(true);
+        d = true;
+        return;
+      }
+      catch (ReflectiveOperationException localReflectiveOperationException)
+      {
+        Object localObject2 = new StringBuilder();
+        ((StringBuilder)localObject2).append("Failed to get visible insets from AttachInfo ");
+        ((StringBuilder)localObject2).append(localReflectiveOperationException.getMessage());
+        Log.w("WindowInsetsCompat", ((StringBuilder)localObject2).toString(), localReflectiveOperationException);
+      }
+    }
+    
+    public static h1 a(View paramView)
+    {
+      if (d)
+      {
+        if (!paramView.isAttachedToWindow()) {
+          return null;
+        }
+        Object localObject1 = paramView.getRootView();
+        try
+        {
+          Object localObject2 = a.get(localObject1);
+          if (localObject2 != null)
+          {
+            localObject1 = (Rect)b.get(localObject2);
+            localObject2 = (Rect)c.get(localObject2);
+            if ((localObject1 != null) && (localObject2 != null))
+            {
+              localObject1 = new h1.b().c(b.c((Rect)localObject1)).d(b.c((Rect)localObject2)).a();
+              ((h1)localObject1).s((h1)localObject1);
+              ((h1)localObject1).d(paramView.getRootView());
+              return localObject1;
+            }
+          }
+        }
+        catch (IllegalAccessException paramView)
+        {
+          localObject1 = new StringBuilder();
+          ((StringBuilder)localObject1).append("Failed to get insets from AttachInfo. ");
+          ((StringBuilder)localObject1).append(paramView.getMessage());
+          Log.w("WindowInsetsCompat", ((StringBuilder)localObject1).toString(), paramView);
+        }
+      }
+      return null;
+    }
+  }
+  
+  public static final class b
+  {
+    private final h1.f a;
+    
+    public b()
+    {
+      int i = Build.VERSION.SDK_INT;
+      Object localObject;
+      if (i >= 30) {
+        localObject = new h1.e();
+      }
+      for (;;)
+      {
+        a = ((h1.f)localObject);
+        return;
+        if (i >= 29) {
+          localObject = new h1.d();
+        } else {
+          localObject = new h1.c();
+        }
+      }
+    }
+    
+    public b(h1 paramH1)
+    {
+      int i = Build.VERSION.SDK_INT;
+      if (i >= 30) {
+        paramH1 = new h1.e(paramH1);
+      }
+      for (;;)
+      {
+        a = paramH1;
+        return;
+        if (i >= 29) {
+          paramH1 = new h1.d(paramH1);
+        } else {
+          paramH1 = new h1.c(paramH1);
+        }
+      }
+    }
+    
+    public h1 a()
+    {
+      return a.b();
+    }
+    
+    public b b(int paramInt, b paramB)
+    {
+      a.c(paramInt, paramB);
+      return this;
+    }
+    
+    public b c(b paramB)
+    {
+      a.e(paramB);
+      return this;
+    }
+    
+    public b d(b paramB)
+    {
+      a.g(paramB);
+      return this;
+    }
+  }
+  
+  private static class c
+    extends h1.f
+  {
+    private static Field e;
+    private static boolean f = false;
+    private static Constructor g;
+    private static boolean h = false;
+    private WindowInsets c;
+    private b d;
+    
+    c()
+    {
+      c = i();
+    }
+    
+    c(h1 paramH1)
+    {
+      super();
+      c = paramH1.u();
+    }
+    
+    private static WindowInsets i()
+    {
+      if (!f)
+      {
+        try
+        {
+          e = WindowInsets.class.getDeclaredField("CONSUMED");
+        }
+        catch (ReflectiveOperationException localReflectiveOperationException1)
+        {
+          Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets.CONSUMED field", localReflectiveOperationException1);
+        }
+        f = true;
+      }
+      Object localObject1 = e;
+      if (localObject1 != null) {
+        try
+        {
+          localObject1 = (WindowInsets)((Field)localObject1).get(null);
+          if (localObject1 != null)
+          {
+            localObject1 = new WindowInsets((WindowInsets)localObject1);
+            return localObject1;
+          }
+        }
+        catch (ReflectiveOperationException localReflectiveOperationException2)
+        {
+          Log.i("WindowInsetsCompat", "Could not get value from WindowInsets.CONSUMED field", localReflectiveOperationException2);
+        }
+      }
+      if (!h)
+      {
+        try
+        {
+          g = WindowInsets.class.getConstructor(new Class[] { Rect.class });
+        }
+        catch (ReflectiveOperationException localReflectiveOperationException3)
+        {
+          Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets(Rect) constructor", localReflectiveOperationException3);
+        }
+        h = true;
+      }
+      Object localObject2 = g;
+      if (localObject2 != null) {
+        try
+        {
+          localObject2 = (WindowInsets)((Constructor)localObject2).newInstance(new Object[] { new Rect() });
+          return localObject2;
+        }
+        catch (ReflectiveOperationException localReflectiveOperationException4)
+        {
+          Log.i("WindowInsetsCompat", "Could not invoke WindowInsets(Rect) constructor", localReflectiveOperationException4);
+        }
+      }
+      return null;
+    }
+    
+    h1 b()
+    {
+      a();
+      h1 localH1 = h1.v(c);
+      localH1.q(b);
+      localH1.t(d);
+      return localH1;
+    }
+    
+    void e(b paramB)
+    {
+      d = paramB;
+    }
+    
+    void g(b paramB)
+    {
+      WindowInsets localWindowInsets = c;
+      if (localWindowInsets != null) {
+        c = localWindowInsets.replaceSystemWindowInsets(a, b, c, d);
+      }
+    }
+  }
+  
+  private static class d
+    extends h1.f
+  {
+    final WindowInsets.Builder c;
+    
+    d()
+    {
+      c = o1.a();
+    }
+    
+    d(h1 paramH1)
+    {
+      super();
+      paramH1 = paramH1.u();
+      if (paramH1 != null) {
+        paramH1 = p1.a(paramH1);
+      } else {
+        paramH1 = o1.a();
+      }
+      c = paramH1;
+    }
+    
+    h1 b()
+    {
+      a();
+      h1 localH1 = h1.v(n1.a(c));
+      localH1.q(b);
+      return localH1;
+    }
+    
+    void d(b paramB)
+    {
+      l1.a(c, paramB.e());
+    }
+    
+    void e(b paramB)
+    {
+      k1.a(c, paramB.e());
+    }
+    
+    void f(b paramB)
+    {
+      m1.a(c, paramB.e());
+    }
+    
+    void g(b paramB)
+    {
+      j1.a(c, paramB.e());
+    }
+    
+    void h(b paramB)
+    {
+      i1.a(c, paramB.e());
+    }
+  }
+  
+  private static class e
+    extends h1.d
+  {
+    e() {}
+    
+    e(h1 paramH1)
+    {
+      super();
+    }
+    
+    void c(int paramInt, b paramB)
+    {
+      q1.a(c, h1.n.a(paramInt), paramB.e());
+    }
+  }
+  
+  private static abstract class f
+  {
+    private final h1 a;
+    b[] b;
+    
+    f()
+    {
+      this(new h1(null));
+    }
+    
+    f(h1 paramH1)
+    {
+      a = paramH1;
+    }
+    
+    protected final void a()
+    {
+      Object localObject1 = b;
+      if (localObject1 != null)
+      {
+        Object localObject3 = localObject1[h1.m.b(1)];
+        Object localObject2 = b[h1.m.b(2)];
+        localObject1 = localObject2;
+        if (localObject2 == null) {
+          localObject1 = a.f(2);
+        }
+        localObject2 = localObject3;
+        if (localObject3 == null) {
+          localObject2 = a.f(1);
+        }
+        g(b.a((b)localObject2, (b)localObject1));
+        localObject1 = b[h1.m.b(16)];
+        if (localObject1 != null) {
+          f((b)localObject1);
+        }
+        localObject1 = b[h1.m.b(32)];
+        if (localObject1 != null) {
+          d((b)localObject1);
+        }
+        localObject1 = b[h1.m.b(64)];
+        if (localObject1 != null) {
+          h((b)localObject1);
+        }
+      }
+    }
+    
+    abstract h1 b();
+    
+    void c(int paramInt, b paramB)
+    {
+      if (b == null) {
+        b = new b[9];
+      }
+      int i = 1;
+      while (i <= 256)
+      {
+        if ((paramInt & i) != 0) {
+          b[h1.m.b(i)] = paramB;
+        }
+        i <<= 1;
+      }
+    }
+    
+    void d(b paramB) {}
+    
+    abstract void e(b paramB);
+    
+    void f(b paramB) {}
+    
+    abstract void g(b paramB);
+    
+    void h(b paramB) {}
+  }
+  
+  private static class g
+    extends h1.l
+  {
+    private static boolean h = false;
+    private static Method i;
+    private static Class j;
+    private static Field k;
+    private static Field l;
+    final WindowInsets c;
+    private b[] d;
+    private b e = null;
+    private h1 f;
+    b g;
+    
+    g(h1 paramH1, WindowInsets paramWindowInsets)
+    {
+      super();
+      c = paramWindowInsets;
+    }
+    
+    g(h1 paramH1, g paramG)
+    {
+      this(paramH1, new WindowInsets(c));
+    }
+    
+    private b t(int paramInt, boolean paramBoolean)
+    {
+      b localB = b.e;
+      int m = 1;
+      while (m <= 256)
+      {
+        if ((paramInt & m) != 0) {
+          localB = b.a(localB, u(m, paramBoolean));
+        }
+        m <<= 1;
+      }
+      return localB;
+    }
+    
+    private b v()
+    {
+      h1 localH1 = f;
+      if (localH1 != null) {
+        return localH1.g();
+      }
+      return b.e;
+    }
+    
+    private b w(View paramView)
+    {
+      if (Build.VERSION.SDK_INT < 30)
+      {
+        if (!h) {
+          x();
+        }
+        Object localObject = i;
+        StringBuilder localStringBuilder = null;
+        if ((localObject != null) && (j != null))
+        {
+          if (k == null) {
+            return null;
+          }
+          try
+          {
+            paramView = ((Method)localObject).invoke(paramView, new Object[0]);
+            if (paramView == null)
+            {
+              Log.w("WindowInsetsCompat", "Failed to get visible insets. getViewRootImpl() returned null from the provided view. This means that the view is either not attached or the method has been overridden", new NullPointerException());
+              return null;
+            }
+            paramView = l.get(paramView);
+            localObject = (Rect)k.get(paramView);
+            paramView = localStringBuilder;
+            if (localObject != null) {
+              paramView = b.c((Rect)localObject);
+            }
+            return paramView;
+          }
+          catch (ReflectiveOperationException paramView)
+          {
+            localStringBuilder = new StringBuilder();
+            localStringBuilder.append("Failed to get visible insets. (Reflection error). ");
+            localStringBuilder.append(paramView.getMessage());
+            Log.e("WindowInsetsCompat", localStringBuilder.toString(), paramView);
+          }
+        }
+        return null;
+      }
+      throw new UnsupportedOperationException("getVisibleInsets() should not be called on API >= 30. Use WindowInsets.isVisible() instead.");
+    }
+    
+    private static void x()
+    {
+      try
+      {
+        i = View.class.getDeclaredMethod("getViewRootImpl", new Class[0]);
+        Class localClass = Class.forName("android.view.View$AttachInfo");
+        j = localClass;
+        k = localClass.getDeclaredField("mVisibleInsets");
+        l = Class.forName("android.view.ViewRootImpl").getDeclaredField("mAttachInfo");
+        k.setAccessible(true);
+        l.setAccessible(true);
+      }
+      catch (ReflectiveOperationException localReflectiveOperationException)
+      {
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Failed to get visible insets. (Reflection error). ");
+        localStringBuilder.append(localReflectiveOperationException.getMessage());
+        Log.e("WindowInsetsCompat", localStringBuilder.toString(), localReflectiveOperationException);
+      }
+      h = true;
+    }
+    
+    void d(View paramView)
+    {
+      b localB = w(paramView);
+      paramView = localB;
+      if (localB == null) {
+        paramView = b.e;
+      }
+      q(paramView);
+    }
+    
+    void e(h1 paramH1)
+    {
+      paramH1.s(f);
+      paramH1.r(g);
+    }
+    
+    public boolean equals(Object paramObject)
+    {
+      if (!super.equals(paramObject)) {
+        return false;
+      }
+      paramObject = (g)paramObject;
+      return Objects.equals(g, g);
+    }
+    
+    public b g(int paramInt)
+    {
+      return t(paramInt, false);
+    }
+    
+    final b k()
+    {
+      if (e == null) {
+        e = b.b(c.getSystemWindowInsetLeft(), c.getSystemWindowInsetTop(), c.getSystemWindowInsetRight(), c.getSystemWindowInsetBottom());
+      }
+      return e;
+    }
+    
+    h1 m(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+    {
+      h1.b localB = new h1.b(h1.v(c));
+      localB.d(h1.n(k(), paramInt1, paramInt2, paramInt3, paramInt4));
+      localB.c(h1.n(i(), paramInt1, paramInt2, paramInt3, paramInt4));
+      return localB.a();
+    }
+    
+    boolean o()
+    {
+      return c.isRound();
+    }
+    
+    public void p(b[] paramArrayOfB)
+    {
+      d = paramArrayOfB;
+    }
+    
+    void q(b paramB)
+    {
+      g = paramB;
+    }
+    
+    void r(h1 paramH1)
+    {
+      f = paramH1;
+    }
+    
+    protected b u(int paramInt, boolean paramBoolean)
+    {
+      if (paramInt != 1)
+      {
+        Object localObject1 = null;
+        b localB = null;
+        if (paramInt != 2)
+        {
+          if (paramInt != 8)
+          {
+            if (paramInt != 16)
+            {
+              if (paramInt != 32)
+              {
+                if (paramInt != 64)
+                {
+                  if (paramInt != 128) {
+                    return b.e;
+                  }
+                  localObject1 = f;
+                  if (localObject1 != null) {
+                    localObject1 = ((h1)localObject1).e();
+                  } else {
+                    localObject1 = f();
+                  }
+                  if (localObject1 != null) {
+                    return b.b(((n)localObject1).b(), ((n)localObject1).d(), ((n)localObject1).c(), ((n)localObject1).a());
+                  }
+                  return b.e;
+                }
+                return l();
+              }
+              return h();
+            }
+            return j();
+          }
+          localObject2 = d;
+          localObject1 = localB;
+          if (localObject2 != null) {
+            localObject1 = localObject2[h1.m.b(8)];
+          }
+          if (localObject1 != null) {
+            return localObject1;
+          }
+          localB = k();
+          localObject1 = v();
+          paramInt = d;
+          if (paramInt > d) {
+            return b.b(0, 0, 0, paramInt);
+          }
+          localB = g;
+          if ((localB != null) && (!localB.equals(b.e)))
+          {
+            paramInt = g.d;
+            if (paramInt > d) {
+              return b.b(0, 0, 0, paramInt);
+            }
+          }
+          return b.e;
+        }
+        if (paramBoolean)
+        {
+          localObject1 = v();
+          localB = i();
+          return b.b(Math.max(a, a), 0, Math.max(c, c), Math.max(d, d));
+        }
+        localB = k();
+        Object localObject2 = f;
+        if (localObject2 != null) {
+          localObject1 = ((h1)localObject2).g();
+        }
+        int m = d;
+        paramInt = m;
+        if (localObject1 != null) {
+          paramInt = Math.min(m, d);
+        }
+        return b.b(a, 0, c, paramInt);
+      }
+      if (paramBoolean) {
+        return b.b(0, Math.max(vb, kb), 0, 0);
+      }
+      return b.b(0, kb, 0, 0);
+    }
+  }
+  
+  private static class h
+    extends h1.g
+  {
+    private b m = null;
+    
+    h(h1 paramH1, WindowInsets paramWindowInsets)
+    {
+      super(paramWindowInsets);
+    }
+    
+    h(h1 paramH1, h paramH)
+    {
+      super(paramH);
+      m = m;
+    }
+    
+    h1 b()
+    {
+      return h1.v(c.consumeStableInsets());
+    }
+    
+    h1 c()
+    {
+      return h1.v(c.consumeSystemWindowInsets());
+    }
+    
+    final b i()
+    {
+      if (m == null) {
+        m = b.b(c.getStableInsetLeft(), c.getStableInsetTop(), c.getStableInsetRight(), c.getStableInsetBottom());
+      }
+      return m;
+    }
+    
+    boolean n()
+    {
+      return c.isConsumed();
+    }
+    
+    public void s(b paramB)
+    {
+      m = paramB;
+    }
+  }
+  
+  private static class i
+    extends h1.h
+  {
+    i(h1 paramH1, WindowInsets paramWindowInsets)
+    {
+      super(paramWindowInsets);
+    }
+    
+    i(h1 paramH1, i paramI)
+    {
+      super(paramI);
+    }
+    
+    h1 a()
+    {
+      return h1.v(s1.a(c));
+    }
+    
+    public boolean equals(Object paramObject)
+    {
+      if (this == paramObject) {
+        return true;
+      }
+      if (!(paramObject instanceof i)) {
+        return false;
+      }
+      paramObject = (i)paramObject;
+      return (Objects.equals(c, c)) && (Objects.equals(g, g));
+    }
+    
+    n f()
+    {
+      return n.e(r1.a(c));
+    }
+    
+    public int hashCode()
+    {
+      return c.hashCode();
+    }
+  }
+  
+  private static class j
+    extends h1.i
+  {
+    private b n = null;
+    private b o = null;
+    private b p = null;
+    
+    j(h1 paramH1, WindowInsets paramWindowInsets)
+    {
+      super(paramWindowInsets);
+    }
+    
+    j(h1 paramH1, j paramJ)
+    {
+      super(paramJ);
+    }
+    
+    b h()
+    {
+      if (o == null) {
+        o = b.d(v1.a(c));
+      }
+      return o;
+    }
+    
+    b j()
+    {
+      if (n == null) {
+        n = b.d(t1.a(c));
+      }
+      return n;
+    }
+    
+    b l()
+    {
+      if (p == null) {
+        p = b.d(u1.a(c));
+      }
+      return p;
+    }
+    
+    h1 m(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+    {
+      return h1.v(w1.a(c, paramInt1, paramInt2, paramInt3, paramInt4));
+    }
+    
+    public void s(b paramB) {}
+  }
+  
+  private static class k
+    extends h1.j
+  {
+    static final h1 q = h1.v(x1.a());
+    
+    k(h1 paramH1, WindowInsets paramWindowInsets)
+    {
+      super(paramWindowInsets);
+    }
+    
+    k(h1 paramH1, k paramK)
+    {
+      super(paramK);
+    }
+    
+    final void d(View paramView) {}
+    
+    public b g(int paramInt)
+    {
+      return b.d(y1.a(c, h1.n.a(paramInt)));
+    }
+  }
+  
+  private static class l
+  {
+    static final h1 b = new h1.b().a().a().b().c();
+    final h1 a;
+    
+    l(h1 paramH1)
+    {
+      a = paramH1;
+    }
+    
+    h1 a()
+    {
+      return a;
+    }
+    
+    h1 b()
+    {
+      return a;
+    }
+    
+    h1 c()
+    {
+      return a;
+    }
+    
+    void d(View paramView) {}
+    
+    void e(h1 paramH1) {}
+    
+    public boolean equals(Object paramObject)
+    {
+      if (this == paramObject) {
+        return true;
+      }
+      if (!(paramObject instanceof l)) {
+        return false;
+      }
+      paramObject = (l)paramObject;
+      return (o() == paramObject.o()) && (n() == paramObject.n()) && (c.a(k(), paramObject.k())) && (c.a(i(), paramObject.i())) && (c.a(f(), paramObject.f()));
+    }
+    
+    n f()
+    {
+      return null;
+    }
+    
+    b g(int paramInt)
+    {
+      return b.e;
+    }
+    
+    b h()
+    {
+      return k();
+    }
+    
+    public int hashCode()
+    {
+      return c.b(new Object[] { Boolean.valueOf(o()), Boolean.valueOf(n()), k(), i(), f() });
+    }
+    
+    b i()
+    {
+      return b.e;
+    }
+    
+    b j()
+    {
+      return k();
+    }
+    
+    b k()
+    {
+      return b.e;
+    }
+    
+    b l()
+    {
+      return k();
+    }
+    
+    h1 m(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+    {
+      return b;
+    }
+    
+    boolean n()
+    {
+      return false;
+    }
+    
+    boolean o()
+    {
+      return false;
+    }
+    
+    public void p(b[] paramArrayOfB) {}
+    
+    void q(b paramB) {}
+    
+    void r(h1 paramH1) {}
+    
+    public void s(b paramB) {}
+  }
+  
+  public static final abstract class m
+  {
+    public static int a()
+    {
+      return 8;
+    }
+    
+    static int b(int paramInt)
+    {
+      if (paramInt != 1)
+      {
+        if (paramInt != 2)
+        {
+          if (paramInt != 4)
+          {
+            if (paramInt != 8)
+            {
+              if (paramInt != 16)
+              {
+                if (paramInt != 32)
+                {
+                  if (paramInt != 64)
+                  {
+                    if (paramInt != 128)
+                    {
+                      if (paramInt == 256) {
+                        return 8;
+                      }
+                      StringBuilder localStringBuilder = new StringBuilder();
+                      localStringBuilder.append("type needs to be >= FIRST and <= LAST, type=");
+                      localStringBuilder.append(paramInt);
+                      throw new IllegalArgumentException(localStringBuilder.toString());
+                    }
+                    return 7;
+                  }
+                  return 6;
+                }
+                return 5;
+              }
+              return 4;
+            }
+            return 3;
+          }
+          return 2;
+        }
+        return 1;
+      }
+      return 0;
+    }
+    
+    public static int c()
+    {
+      return 32;
+    }
+    
+    public static int d()
+    {
+      return 7;
+    }
+  }
+  
+  private static final abstract class n
+  {
+    static int a(int paramInt)
+    {
+      int k = 0;
+      int j = 1;
+      while (j <= 256)
+      {
+        int i = k;
+        if ((paramInt & j) != 0)
+        {
+          if (j != 1)
+          {
+            if (j != 2)
+            {
+              if (j != 4)
+              {
+                if (j != 8)
+                {
+                  if (j != 16)
+                  {
+                    if (j != 32)
+                    {
+                      if (j != 64)
+                      {
+                        if (j != 128)
+                        {
+                          i = k;
+                          break label127;
+                        }
+                        i = g2.a();
+                      }
+                      else
+                      {
+                        i = f2.a();
+                      }
+                    }
+                    else {
+                      i = e2.a();
+                    }
+                  }
+                  else {
+                    i = d2.a();
+                  }
+                }
+                else {
+                  i = c2.a();
+                }
+              }
+              else {
+                i = b2.a();
+              }
+            }
+            else {
+              i = a2.a();
+            }
+          }
+          else {
+            i = z1.a();
+          }
+          i = k | i;
+        }
+        label127:
+        j <<= 1;
+        k = i;
+      }
+      return k;
+    }
+  }
+}

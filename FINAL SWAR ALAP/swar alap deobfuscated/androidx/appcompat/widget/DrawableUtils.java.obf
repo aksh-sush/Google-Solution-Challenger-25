@@ -1,0 +1,254 @@
+package androidx.appcompat.widget;
+
+import android.graphics.Insets;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import androidx.core.graphics.drawable.a;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public abstract class o0
+{
+  private static final int[] a = { 16842912 };
+  private static final int[] b = new int[0];
+  public static final Rect c = new Rect();
+  
+  public static boolean a(Drawable paramDrawable)
+  {
+    return true;
+  }
+  
+  static void b(Drawable paramDrawable)
+  {
+    String str = paramDrawable.getClass().getName();
+    int i = Build.VERSION.SDK_INT;
+    if ((i == 21) && ("android.graphics.drawable.VectorDrawable".equals(str))) {}
+    while ((i >= 29) && (i < 31) && ("android.graphics.drawable.ColorStateListDrawable".equals(str)))
+    {
+      c(paramDrawable);
+      return;
+    }
+  }
+  
+  private static void c(Drawable paramDrawable)
+  {
+    int[] arrayOfInt = paramDrawable.getState();
+    if ((arrayOfInt != null) && (arrayOfInt.length != 0)) {
+      paramDrawable.setState(b);
+    } else {
+      paramDrawable.setState(a);
+    }
+    paramDrawable.setState(arrayOfInt);
+  }
+  
+  public static Rect d(Drawable paramDrawable)
+  {
+    if (Build.VERSION.SDK_INT >= 29)
+    {
+      paramDrawable = b.a(paramDrawable);
+      return new Rect(k0.a(paramDrawable), l0.a(paramDrawable), m0.a(paramDrawable), n0.a(paramDrawable));
+    }
+    return a.a(a.q(paramDrawable));
+  }
+  
+  public static PorterDuff.Mode e(int paramInt, PorterDuff.Mode paramMode)
+  {
+    if (paramInt != 3)
+    {
+      if (paramInt != 5)
+      {
+        if (paramInt != 9)
+        {
+          switch (paramInt)
+          {
+          default: 
+            return paramMode;
+          case 16: 
+            return PorterDuff.Mode.ADD;
+          case 15: 
+            return PorterDuff.Mode.SCREEN;
+          }
+          return PorterDuff.Mode.MULTIPLY;
+        }
+        return PorterDuff.Mode.SRC_ATOP;
+      }
+      return PorterDuff.Mode.SRC_IN;
+    }
+    return PorterDuff.Mode.SRC_OVER;
+  }
+  
+  static abstract class a
+  {
+    private static final boolean a = false;
+    private static final Method b;
+    private static final Field c;
+    private static final Field d;
+    private static final Field e;
+    private static final Field f;
+    
+    static
+    {
+      for (;;)
+      {
+        try
+        {
+          localObject2 = Class.forName("android.graphics.Insets");
+          localObject1 = Drawable.class.getMethod("getOpticalInsets", new Class[0]);
+        }
+        catch (NoSuchMethodException localNoSuchMethodException1)
+        {
+          Object localObject2;
+          Object localObject1;
+          Field localField;
+          Object localObject4;
+          Object localObject3;
+          int i;
+          continue;
+        }
+        catch (ClassNotFoundException localClassNotFoundException1)
+        {
+          continue;
+        }
+        catch (NoSuchFieldException localNoSuchFieldException1)
+        {
+          label108:
+          label123:
+          label138:
+          label142:
+          label150:
+          continue;
+        }
+        try
+        {
+          localField = ((Class)localObject2).getField("left");
+        }
+        catch (NoSuchMethodException localNoSuchMethodException2)
+        {
+          continue;
+        }
+        catch (ClassNotFoundException localClassNotFoundException2)
+        {
+          continue;
+        }
+        catch (NoSuchFieldException localNoSuchFieldException2)
+        {
+          continue;
+        }
+        try
+        {
+          localObject4 = ((Class)localObject2).getField("top");
+        }
+        catch (NoSuchMethodException localNoSuchMethodException3)
+        {
+          continue;
+        }
+        catch (ClassNotFoundException localClassNotFoundException3)
+        {
+          continue;
+        }
+        catch (NoSuchFieldException localNoSuchFieldException3)
+        {
+          continue;
+        }
+        try
+        {
+          localObject3 = ((Class)localObject2).getField("right");
+        }
+        catch (NoSuchMethodException|ClassNotFoundException|NoSuchFieldException localNoSuchMethodException4)
+        {
+          continue;
+        }
+        try
+        {
+          localObject2 = ((Class)localObject2).getField("bottom");
+          i = 1;
+        }
+        catch (NoSuchMethodException|ClassNotFoundException|NoSuchFieldException localNoSuchMethodException5) {}
+      }
+      break label150;
+      localObject3 = null;
+      break label150;
+      localObject3 = null;
+      localObject2 = localObject1;
+      localObject1 = localObject3;
+      break label142;
+      localObject3 = null;
+      localObject2 = localObject1;
+      localObject1 = localObject3;
+      break label142;
+      localObject3 = null;
+      localObject2 = localObject1;
+      localObject1 = localObject3;
+      break label142;
+      break label108;
+      break label123;
+      localObject2 = localObject1;
+      break label138;
+      localObject1 = null;
+      localField = null;
+      localObject3 = null;
+      localObject2 = localObject1;
+      localObject1 = localObject3;
+      break label142;
+      localObject1 = null;
+      localField = null;
+      localObject3 = null;
+      localObject2 = localObject1;
+      localObject1 = localObject3;
+      break label142;
+      localObject2 = null;
+      localField = null;
+      localObject1 = null;
+      localObject3 = localObject1;
+      localObject4 = localObject1;
+      localObject1 = localObject2;
+      localObject2 = null;
+      i = 0;
+      if (i != 0)
+      {
+        b = (Method)localObject1;
+        c = localField;
+        d = (Field)localObject4;
+        e = (Field)localObject3;
+        f = (Field)localObject2;
+        a = true;
+        return;
+      }
+      b = null;
+      c = null;
+      d = null;
+      e = null;
+      f = null;
+    }
+    
+    static Rect a(Drawable paramDrawable)
+    {
+      if ((Build.VERSION.SDK_INT < 29) && (a)) {}
+      try
+      {
+        paramDrawable = b.invoke(paramDrawable, new Object[0]);
+        if (paramDrawable != null)
+        {
+          paramDrawable = new Rect(c.getInt(paramDrawable), d.getInt(paramDrawable), e.getInt(paramDrawable), f.getInt(paramDrawable));
+          return paramDrawable;
+        }
+      }
+      catch (IllegalAccessException|InvocationTargetException paramDrawable)
+      {
+        for (;;) {}
+      }
+      return o0.c;
+    }
+  }
+  
+  static abstract class b
+  {
+    static Insets a(Drawable paramDrawable)
+    {
+      return paramDrawable.getOpticalInsets();
+    }
+  }
+}

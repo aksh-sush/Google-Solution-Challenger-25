@@ -1,0 +1,59 @@
+package androidx.core.app;
+
+import android.os.BaseBundle;
+import android.os.Bundle;
+import androidx.core.graphics.drawable.IconCompat;
+
+abstract class i0
+{
+  private static final Object a = new Object();
+  private static final Object b = new Object();
+  
+  static Bundle a(k.a paramA)
+  {
+    Bundle localBundle = new Bundle();
+    Object localObject = paramA.d();
+    int i;
+    if (localObject != null) {
+      i = ((IconCompat)localObject).e();
+    } else {
+      i = 0;
+    }
+    localBundle.putInt("icon", i);
+    localBundle.putCharSequence("title", paramA.h());
+    localBundle.putParcelable("actionIntent", paramA.a());
+    if (paramA.c() != null) {
+      localObject = new Bundle(paramA.c());
+    } else {
+      localObject = new Bundle();
+    }
+    ((Bundle)localObject).putBoolean("android.support.allowGeneratedReplies", paramA.b());
+    localBundle.putBundle("extras", (Bundle)localObject);
+    localBundle.putParcelableArray("remoteInputs", c(paramA.e()));
+    localBundle.putBoolean("showsUserInterface", paramA.g());
+    localBundle.putInt("semanticAction", paramA.f());
+    return localBundle;
+  }
+  
+  private static Bundle b(m0 paramM0)
+  {
+    new Bundle();
+    throw null;
+  }
+  
+  private static Bundle[] c(m0[] paramArrayOfM0)
+  {
+    if (paramArrayOfM0 == null) {
+      return null;
+    }
+    Bundle[] arrayOfBundle = new Bundle[paramArrayOfM0.length];
+    int i = 0;
+    while (i < paramArrayOfM0.length)
+    {
+      m0 localM0 = paramArrayOfM0[i];
+      arrayOfBundle[i] = b(null);
+      i += 1;
+    }
+    return arrayOfBundle;
+  }
+}

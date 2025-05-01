@@ -1,0 +1,82 @@
+package androidx.fragment.app;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import androidx.core.app.b;
+import androidx.core.content.a;
+import androidx.core.util.h;
+
+public abstract class j
+  extends g
+{
+  private final Activity e;
+  private final Context f;
+  private final Handler g;
+  private final int h;
+  final m i = new n();
+  
+  j(Activity paramActivity, Context paramContext, Handler paramHandler, int paramInt)
+  {
+    e = paramActivity;
+    f = ((Context)h.h(paramContext, "context == null"));
+    g = ((Handler)h.h(paramHandler, "handler == null"));
+    h = paramInt;
+  }
+  
+  j(e paramE)
+  {
+    this(paramE, paramE, new Handler(), 0);
+  }
+  
+  Activity e()
+  {
+    return e;
+  }
+  
+  Context f()
+  {
+    return f;
+  }
+  
+  Handler g()
+  {
+    return g;
+  }
+  
+  public abstract Object h();
+  
+  public abstract LayoutInflater i();
+  
+  public void j(Fragment paramFragment, String[] paramArrayOfString, int paramInt) {}
+  
+  public abstract boolean k(Fragment paramFragment);
+  
+  public abstract boolean l(String paramString);
+  
+  public void m(Fragment paramFragment, Intent paramIntent, int paramInt, Bundle paramBundle)
+  {
+    if (paramInt == -1)
+    {
+      a.m(f, paramIntent, paramBundle);
+      return;
+    }
+    throw new IllegalStateException("Starting activity with a requestCode requires a FragmentActivity host");
+  }
+  
+  public void n(Fragment paramFragment, IntentSender paramIntentSender, int paramInt1, Intent paramIntent, int paramInt2, int paramInt3, int paramInt4, Bundle paramBundle)
+  {
+    if (paramInt1 == -1)
+    {
+      b.z(e, paramIntentSender, paramInt1, paramIntent, paramInt2, paramInt3, paramInt4, paramBundle);
+      return;
+    }
+    throw new IllegalStateException("Starting intent sender with a requestCode requires a FragmentActivity host");
+  }
+  
+  public abstract void o();
+}

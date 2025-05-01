@@ -1,0 +1,34 @@
+package androidx.lifecycle;
+
+public final class SavedStateHandleAttacher
+  implements l
+{
+  private final c0 e;
+  
+  public SavedStateHandleAttacher(c0 paramC0)
+  {
+    e = paramC0;
+  }
+  
+  public void d(n paramN, i.a paramA)
+  {
+    db.l.e(paramN, "source");
+    db.l.e(paramA, "event");
+    int i;
+    if (paramA == i.a.ON_CREATE) {
+      i = 1;
+    } else {
+      i = 0;
+    }
+    if (i != 0)
+    {
+      paramN.getLifecycle().c(this);
+      e.d();
+      return;
+    }
+    paramN = new StringBuilder();
+    paramN.append("Next event must be ON_CREATE, it was ");
+    paramN.append(paramA);
+    throw new IllegalStateException(paramN.toString().toString());
+  }
+}

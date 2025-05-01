@@ -1,0 +1,71 @@
+package androidx.appcompat.view;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+
+public abstract class b
+{
+  private Object e;
+  private boolean f;
+  
+  public b() {}
+  
+  public abstract void c();
+  
+  public abstract View d();
+  
+  public abstract Menu e();
+  
+  public abstract MenuInflater f();
+  
+  public abstract CharSequence g();
+  
+  public Object h()
+  {
+    return e;
+  }
+  
+  public abstract CharSequence i();
+  
+  public boolean j()
+  {
+    return f;
+  }
+  
+  public abstract void k();
+  
+  public abstract boolean l();
+  
+  public abstract void m(View paramView);
+  
+  public abstract void n(int paramInt);
+  
+  public abstract void o(CharSequence paramCharSequence);
+  
+  public void p(Object paramObject)
+  {
+    e = paramObject;
+  }
+  
+  public abstract void q(int paramInt);
+  
+  public abstract void r(CharSequence paramCharSequence);
+  
+  public void s(boolean paramBoolean)
+  {
+    f = paramBoolean;
+  }
+  
+  public static abstract interface a
+  {
+    public abstract boolean a(b paramB, Menu paramMenu);
+    
+    public abstract void b(b paramB);
+    
+    public abstract boolean c(b paramB, MenuItem paramMenuItem);
+    
+    public abstract boolean d(b paramB, Menu paramMenu);
+  }
+}

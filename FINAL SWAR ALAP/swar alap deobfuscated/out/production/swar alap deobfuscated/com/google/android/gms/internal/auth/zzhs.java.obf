@@ -1,0 +1,33 @@
+package com.google.android.gms.internal.auth;
+
+public final class zzhs
+  implements zzdj
+{
+  private static final zzhs zza = new zzhs();
+  private final zzdj zzb;
+  
+  public zzhs()
+  {
+    zzb = zzdn.zza(localZzdj);
+  }
+  
+  public static zzhr zzb()
+  {
+    return zza.zzc().zza();
+  }
+  
+  public static boolean zzd()
+  {
+    return zza.zzc().zzb();
+  }
+  
+  public static boolean zze()
+  {
+    return zza.zzc().zzc();
+  }
+  
+  public final zzht zzc()
+  {
+    return (zzht)zzb.zza();
+  }
+}

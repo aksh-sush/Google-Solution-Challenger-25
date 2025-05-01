@@ -1,0 +1,149 @@
+package androidx.fragment.app;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.os.Parcelable;
+import android.util.AttributeSet;
+import android.view.LayoutInflater.Factory2;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import androidx.lifecycle.m0;
+
+public class h
+{
+  private final j a;
+  
+  private h(j paramJ)
+  {
+    a = paramJ;
+  }
+  
+  public static h b(j paramJ)
+  {
+    return new h((j)androidx.core.util.h.h(paramJ, "callbacks == null"));
+  }
+  
+  public void a(Fragment paramFragment)
+  {
+    j localJ = a;
+    i.k(localJ, localJ, paramFragment);
+  }
+  
+  public void c()
+  {
+    a.i.y();
+  }
+  
+  public void d(Configuration paramConfiguration)
+  {
+    a.i.A(paramConfiguration);
+  }
+  
+  public boolean e(MenuItem paramMenuItem)
+  {
+    return a.i.B(paramMenuItem);
+  }
+  
+  public void f()
+  {
+    a.i.C();
+  }
+  
+  public boolean g(Menu paramMenu, MenuInflater paramMenuInflater)
+  {
+    return a.i.D(paramMenu, paramMenuInflater);
+  }
+  
+  public void h()
+  {
+    a.i.E();
+  }
+  
+  public void i()
+  {
+    a.i.G();
+  }
+  
+  public void j(boolean paramBoolean)
+  {
+    a.i.H(paramBoolean);
+  }
+  
+  public boolean k(MenuItem paramMenuItem)
+  {
+    return a.i.J(paramMenuItem);
+  }
+  
+  public void l(Menu paramMenu)
+  {
+    a.i.K(paramMenu);
+  }
+  
+  public void m()
+  {
+    a.i.M();
+  }
+  
+  public void n(boolean paramBoolean)
+  {
+    a.i.N(paramBoolean);
+  }
+  
+  public boolean o(Menu paramMenu)
+  {
+    return a.i.O(paramMenu);
+  }
+  
+  public void p()
+  {
+    a.i.Q();
+  }
+  
+  public void q()
+  {
+    a.i.R();
+  }
+  
+  public void r()
+  {
+    a.i.T();
+  }
+  
+  public boolean s()
+  {
+    return a.i.a0(true);
+  }
+  
+  public m t()
+  {
+    return a.i;
+  }
+  
+  public void u()
+  {
+    a.i.T0();
+  }
+  
+  public View v(View paramView, String paramString, Context paramContext, AttributeSet paramAttributeSet)
+  {
+    return a.i.u0().onCreateView(paramView, paramString, paramContext, paramAttributeSet);
+  }
+  
+  public void w(Parcelable paramParcelable)
+  {
+    j localJ = a;
+    if ((localJ instanceof m0))
+    {
+      i.h1(paramParcelable);
+      return;
+    }
+    throw new IllegalStateException("Your FragmentHostCallback must implement ViewModelStoreOwner to call restoreSaveState(). Call restoreAllState()  if you're still using retainNestedNonConfig().");
+  }
+  
+  public Parcelable x()
+  {
+    return a.i.j1();
+  }
+}

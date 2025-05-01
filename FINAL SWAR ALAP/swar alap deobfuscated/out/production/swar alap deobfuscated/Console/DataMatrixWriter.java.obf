@@ -1,0 +1,169 @@
+package c6;
+
+import d6.e;
+import d6.i;
+import d6.j;
+import d6.k;
+import d6.l;
+import java.util.Map;
+import x5.c;
+import x5.g;
+
+public final class a
+  implements g
+{
+  public a() {}
+  
+  private static a6.b b(j6.b paramB, int paramInt1, int paramInt2)
+  {
+    int m = paramB.e();
+    int n = paramB.d();
+    int i = Math.max(paramInt1, m);
+    int j = Math.max(paramInt2, n);
+    int i1 = Math.min(i / m, j / n);
+    i = (i - m * i1) / 2;
+    j = (j - n * i1) / 2;
+    a6.b localB;
+    if ((paramInt2 >= n) && (paramInt1 >= m))
+    {
+      localB = new a6.b(paramInt1, paramInt2);
+      paramInt1 = i;
+      paramInt2 = j;
+    }
+    else
+    {
+      localB = new a6.b(m, n);
+      paramInt1 = 0;
+      paramInt2 = 0;
+    }
+    localB.b();
+    i = 0;
+    while (i < n)
+    {
+      j = paramInt1;
+      int k = 0;
+      while (k < m)
+      {
+        if (paramB.b(k, i) == 1) {
+          localB.h(j, paramInt2, i1, i1);
+        }
+        k += 1;
+        j += i1;
+      }
+      i += 1;
+      paramInt2 += i1;
+    }
+    return localB;
+  }
+  
+  private static a6.b c(e paramE, k paramK, int paramInt1, int paramInt2)
+  {
+    int i1 = paramK.h();
+    int i2 = paramK.g();
+    j6.b localB = new j6.b(paramK.j(), paramK.i());
+    int j = 0;
+    int i = 0;
+    while (j < i2)
+    {
+      int k = i;
+      boolean bool;
+      if (j % e == 0)
+      {
+        k = 0;
+        m = 0;
+        while (k < paramK.j())
+        {
+          if (k % 2 == 0) {
+            bool = true;
+          } else {
+            bool = false;
+          }
+          localB.g(m, i, bool);
+          m += 1;
+          k += 1;
+        }
+        k = i + 1;
+      }
+      int m = 0;
+      i = 0;
+      while (m < i1)
+      {
+        int n = i;
+        if (m % d == 0)
+        {
+          localB.g(i, k, true);
+          n = i + 1;
+        }
+        localB.g(n, k, paramE.e(m, j));
+        n += 1;
+        int i3 = d;
+        i = n;
+        if (m % i3 == i3 - 1)
+        {
+          if (j % 2 == 0) {
+            bool = true;
+          } else {
+            bool = false;
+          }
+          localB.g(n, k, bool);
+          i = n + 1;
+        }
+        m += 1;
+      }
+      m = k + 1;
+      k = e;
+      i = m;
+      if (j % k == k - 1)
+      {
+        i = 0;
+        k = 0;
+        while (i < paramK.j())
+        {
+          localB.g(k, m, true);
+          k += 1;
+          i += 1;
+        }
+        i = m + 1;
+      }
+      j += 1;
+    }
+    return b(localB, paramInt1, paramInt2);
+  }
+  
+  public a6.b a(String paramString, x5.a paramA, int paramInt1, int paramInt2, Map paramMap)
+  {
+    if (!paramString.isEmpty())
+    {
+      if (paramA == x5.a.j)
+      {
+        if ((paramInt1 >= 0) && (paramInt2 >= 0))
+        {
+          paramA = l.e;
+          Object localObject = paramA;
+          if (paramMap != null)
+          {
+            localObject = (l)paramMap.get(c.g);
+            if (localObject != null) {
+              paramA = (x5.a)localObject;
+            }
+            android.support.v4.media.session.b.a(paramMap.get(c.h));
+            android.support.v4.media.session.b.a(paramMap.get(c.i));
+            localObject = paramA;
+          }
+          paramString = j.b(paramString, (l)localObject, null, null);
+          paramA = k.l(paramString.length(), (l)localObject, null, null, true);
+          paramString = new e(i.c(paramString, paramA), paramA.h(), paramA.g());
+          paramString.h();
+          return c(paramString, paramA, paramInt1, paramInt2);
+        }
+        paramString = new StringBuilder("Requested dimensions can't be negative: ");
+        paramString.append(paramInt1);
+        paramString.append('x');
+        paramString.append(paramInt2);
+        throw new IllegalArgumentException(paramString.toString());
+      }
+      throw new IllegalArgumentException("Can only encode DATA_MATRIX, but got ".concat(String.valueOf(paramA)));
+    }
+    throw new IllegalArgumentException("Found empty contents");
+  }
+}
